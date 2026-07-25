@@ -3,17 +3,6 @@ import client from '../api/client';
 
 const fileBaseUrl = 'http://localhost:5000';
 
-const isProfileComplete = (usr) => {
-  if (!usr) return false;
-  const requiredFields = [
-    'fullName', 'fatherName', 'dob', 'nationality', 'residenceCountry',
-    'streetAddress', 'zipCode', 'city', 'country',
-    'photoWithPassport', 'passportPath', 'residenceProofPath', 'signaturePath'
-  ];
-  const fieldsOk = requiredFields.every((f) => Boolean(usr[f]));
-  return fieldsOk && usr.profileStatus === 'APPROVED';
-};
-
 const initialProperty = { name: '', city: '', address: '' };
 const initialApartment = { propertyId: '', code: '', amenities: 'Common Kitchen,Shared Washroom', imageUrls: [] };
 const initialRoom = {
@@ -83,9 +72,6 @@ export default function AdminOwnerEntryPage() {
   const [csvFile, setCsvFile] = useState(null);
   const [importing, setImporting] = useState(false);
   const [importResult, setImportResult] = useState(null);
-
-  const [adminProfiles, setAdminProfiles] = useState([]);
-  const [rejectReasons, setRejectReasons] = useState({});
 
   const [myEntries, setMyEntries] = useState([]);
   const [entryEdits, setEntryEdits] = useState({});
@@ -164,29 +150,6 @@ export default function AdminOwnerEntryPage() {
       setSettingsMessage('System platform fee settings updated successfully.');
     } catch (err) {
       setSettingsError(err.response?.data?.error || 'Failed to update settings.');
-    }
-  };
-
-  const loadAdminProfiles = async () => {
-    if (user?.role !== 'ADMIN') return;
-    try {
-      const res = await client.get('/admin/profiles');
-      setAdminProfiles(res.data);
-    } catch (_err) {}
-  };
-
-  const updateProfileStatus = async (userId, status) => {
-    clearNotice();
-    try {
-      await client.patch(`/admin/profiles/${userId}/status`, {
-        status,
-        rejectReason: rejectReasons[userId] || ''
-      });
-      setMessage(`Profile status updated to ${status}`);
-      await loadAdminProfiles();
-      await loadOwnerBookings();
-    } catch (err) {
-      setError(err.response?.data?.error || 'Failed to update profile status');
     }
   };
 
@@ -280,7 +243,6 @@ export default function AdminOwnerEntryPage() {
     loadManageData();
     loadOwnerBankAccount();
     loadSystemSettings();
-    loadAdminProfiles();
   }, []);
 
   const uploadImages = async (files, maxCount) => {
@@ -566,15 +528,6 @@ export default function AdminOwnerEntryPage() {
             System Settings
           </button>
         )}
-        {user?.role === 'ADMIN' && (
-          <button
-            type="button"
-            className={`tab-btn ${activeTab === 'verify-profiles' ? 'active' : ''}`}
-            onClick={() => setActiveTab('verify-profiles')}
-          >
-            Verify User Profiles
-          </button>
-        )}
       </div>
 
       {activeTab === 'my-bookings' && <div className="card" style={{ marginBottom: 14 }}>
@@ -743,49 +696,16 @@ export default function AdminOwnerEntryPage() {
                   </div>
                 )}
                 {b.status === 'PAYMENT_RECEIVED' && <p><strong>Payment ID:</strong> {b.paymentId}</p>}
-                {/* Profile Completeness Checks and Banners */}
-                {(() => {
-                  const isTenantOk = isProfileComplete(b.User);
-                  const isOwnerOk = isProfileComplete(b.Listing?.User);
-                  const blocked = !isTenantOk || !isOwnerOk;
-                  return (
-                    <>
-                      {!isTenantOk ? (
-                        <div style={{ background: '#fffbeb', border: '1px solid #fef3c7', color: '#b45309', padding: '10px', borderRadius: '8px', marginBottom: '10px', fontSize: '0.84rem', fontWeight: '500' }}>
-                          ⚠️ Tenant's profile must be 100% completed and verified by admin before this booking can be confirmed.
-                        </div>
-                      ) : (
-                        <div style={{ background: '#ecfdf5', border: '1px solid #a7f3d0', color: '#047857', padding: '10px', borderRadius: '8px', marginBottom: '10px', fontSize: '0.84rem', fontWeight: '600' }}>
-                          ✓ Tenant Profile Verified & Approved
-                        </div>
-                      )}
-                      {!isOwnerOk ? (
-                        <div style={{ background: '#fffbeb', border: '1px solid #fef3c7', color: '#b45309', padding: '10px', borderRadius: '8px', marginBottom: '10px', fontSize: '0.84rem', fontWeight: '500' }}>
-                          ⚠️ Your (Owner) profile must be 100% completed and verified by admin before this booking can be confirmed.
-                        </div>
-                      ) : (
-                        <div style={{ background: '#ecfdf5', border: '1px solid #a7f3d0', color: '#047857', padding: '10px', borderRadius: '8px', marginBottom: '10px', fontSize: '0.84rem', fontWeight: '600' }}>
-                          ✓ Owner Profile Verified & Approved
-                        </div>
-                      )}
-
-                      {(b.status === 'PENDING' || b.status === 'OWNER_APPROVED') && (
-                        <div className="row">
-                          {b.status === 'PENDING' && (
-                            <button type="button" onClick={() => approveOwnerBooking(b.id)} disabled={blocked} style={{ opacity: blocked ? 0.6 : 1, cursor: blocked ? 'not-allowed' : 'pointer' }}>
-                              Approve Booking
-                            </button>
-                          )}
-                          {b.status === 'OWNER_APPROVED' && (
-                            <button type="button" onClick={() => markPaymentReceived(b.id)} disabled={blocked} style={{ opacity: blocked ? 0.6 : 1, cursor: blocked ? 'not-allowed' : 'pointer' }}>
-                              Confirm Payment Received
-                            </button>
-                          )}
-                        </div>
-                      )}
-                    </>
-                  );
-                })()}
+                {(b.status === 'PENDING' || b.status === 'OWNER_APPROVED') && (
+                  <div className="row">
+                    {b.status === 'PENDING' && (
+                      <button type="button" onClick={() => approveOwnerBooking(b.id)}>Approve Booking</button>
+                    )}
+                    {b.status === 'OWNER_APPROVED' && (
+                      <button type="button" onClick={() => markPaymentReceived(b.id)}>Payment Received</button>
+                    )}
+                  </div>
+                )}
               </div>
             ))}
           </div>}
@@ -1219,151 +1139,6 @@ export default function AdminOwnerEntryPage() {
                   Save Platform Fee Settings
                 </button>
               </form>
-            </div>
-          )}
-
-          {activeTab === 'verify-profiles' && user.role === 'ADMIN' && (
-            <div className="card" style={{ marginBottom: 14 }}>
-              <h3 style={{ fontSize: '1.3rem', fontWeight: '700', color: '#1e293b', marginBottom: '8px' }}>
-                Verify User & Owner Profiles
-              </h3>
-              <p style={{ color: '#64748b', fontSize: '0.88rem', marginBottom: '16px' }}>
-                Review legal credentials, passport photos, residence permits, and digital signatures uploaded by platform users and owners.
-              </p>
-
-              {adminProfiles.length === 0 && <p className="muted">No user profiles found.</p>}
-
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
-                {adminProfiles.map((p) => {
-                  const hasPhoto = !!p.photoWithPassport;
-                  const hasPassport = !!p.passportPath;
-                  const hasResidenceProof = !!p.residenceProofPath;
-                  const hasSignature = !!p.signaturePath;
-                  const isFullyUploaded = hasPhoto && hasPassport && hasResidenceProof && hasSignature;
-
-                  return (
-                    <div key={p.id} className="card" style={{ padding: '16px', background: '#ffffff', border: '1px solid #e2e8f0', borderRadius: '12px' }}>
-                      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: '10px', marginBottom: '12px' }}>
-                        <div>
-                          <h4 style={{ margin: 0, fontSize: '1.1rem', color: '#0f172a' }}>
-                            {p.fullName} <span style={{ fontSize: '0.8rem', color: '#64748b', fontWeight: 'normal' }}>({p.role}) · ID #{p.id}</span>
-                          </h4>
-                          <p style={{ margin: '2px 0', fontSize: '0.84rem', color: '#475569' }}>Email: {p.email} | Mobile: {p.mobileNumber || 'N/A'}</p>
-                          <p style={{ margin: '2px 0', fontSize: '0.82rem', color: '#64748b' }}>
-                            Address: {p.streetAddress || '—'}, {p.city || '—'}, {p.zipCode || '—'}, {p.country || '—'}
-                          </p>
-                        </div>
-                        <div>
-                          <span style={{
-                            padding: '4px 12px',
-                            borderRadius: '12px',
-                            fontWeight: 'bold',
-                            fontSize: '0.8rem',
-                            background: p.profileStatus === 'APPROVED' ? '#dcfce7' : p.profileStatus === 'REJECTED' ? '#fee2e2' : '#fef3c7',
-                            color: p.profileStatus === 'APPROVED' ? '#15803d' : p.profileStatus === 'REJECTED' ? '#b91c1c' : '#b45309'
-                          }}>
-                            {p.profileStatus}
-                          </span>
-                        </div>
-                      </div>
-
-                      {/* Documents Checklist & Links */}
-                      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '10px', background: '#f8fafc', padding: '12px', borderRadius: '8px', marginBottom: '14px' }}>
-                        <div>
-                          <span style={{ fontSize: '0.8rem', fontWeight: 'bold', color: hasPhoto ? '#16a34a' : '#dc2626' }}>
-                            {hasPhoto ? '✓ Photo with Passport' : '✗ Photo with Passport'}
-                          </span>
-                          {hasPhoto && (
-                            <a href={`${fileBaseUrl}/${p.photoWithPassport}`} target="_blank" rel="noreferrer" style={{ display: 'block', fontSize: '0.78rem', color: '#1f66ea', marginTop: '2px' }}>
-                              View Photo File
-                            </a>
-                          )}
-                        </div>
-                        <div>
-                          <span style={{ fontSize: '0.8rem', fontWeight: 'bold', color: hasPassport ? '#16a34a' : '#dc2626' }}>
-                            {hasPassport ? '✓ Passport Scan' : '✗ Passport Scan'}
-                          </span>
-                          {hasPassport && (
-                            <a href={`${fileBaseUrl}/${p.passportPath}`} target="_blank" rel="noreferrer" style={{ display: 'block', fontSize: '0.78rem', color: '#1f66ea', marginTop: '2px' }}>
-                              View Passport
-                            </a>
-                          )}
-                        </div>
-                        <div>
-                          <span style={{ fontSize: '0.8rem', fontWeight: 'bold', color: hasResidenceProof ? '#16a34a' : '#dc2626' }}>
-                            {hasResidenceProof ? '✓ Residence Proof' : '✗ Residence Proof'}
-                          </span>
-                          {hasResidenceProof && (
-                            <a href={`${fileBaseUrl}/${p.residenceProofPath}`} target="_blank" rel="noreferrer" style={{ display: 'block', fontSize: '0.78rem', color: '#1f66ea', marginTop: '2px' }}>
-                              View Residence Document
-                            </a>
-                          )}
-                        </div>
-                        <div>
-                          <span style={{ fontSize: '0.8rem', fontWeight: 'bold', color: hasSignature ? '#16a34a' : '#dc2626' }}>
-                            {hasSignature ? '✓ Signature Image' : '✗ Signature Image'}
-                          </span>
-                          {hasSignature && (
-                            <a href={`${fileBaseUrl}/${p.signaturePath}`} target="_blank" rel="noreferrer" style={{ display: 'block', fontSize: '0.78rem', color: '#1f66ea', marginTop: '2px' }}>
-                              View Signature
-                            </a>
-                          )}
-                        </div>
-                      </div>
-
-                      {p.profileRejectReason && (
-                        <div style={{ color: '#b91c1c', fontSize: '0.82rem', marginBottom: '10px' }}>
-                          <strong>Rejection Reason:</strong> {p.profileRejectReason}
-                        </div>
-                      )}
-
-                      {/* Action Controls */}
-                      <div style={{ display: 'flex', gap: '10px', alignItems: 'center', flexWrap: 'wrap' }}>
-                        <button
-                          type="button"
-                          onClick={() => updateProfileStatus(p.id, 'APPROVED')}
-                          disabled={!isFullyUploaded}
-                          style={{
-                            background: '#16a34a',
-                            color: '#ffffff',
-                            padding: '8px 16px',
-                            border: 'none',
-                            borderRadius: '8px',
-                            fontWeight: 'bold',
-                            fontSize: '0.85rem',
-                            cursor: !isFullyUploaded ? 'not-allowed' : 'pointer',
-                            opacity: !isFullyUploaded ? 0.6 : 1
-                          }}
-                        >
-                          Approve Profile
-                        </button>
-                        <input
-                          placeholder="Rejection reason if denying..."
-                          value={rejectReasons[p.id] || ''}
-                          onChange={(e) => setRejectReasons({ ...rejectReasons, [p.id]: e.target.value })}
-                          style={{ padding: '8px', borderRadius: '8px', border: '1px solid #cbd5e1', fontSize: '0.85rem', flex: 1, minWidth: '200px' }}
-                        />
-                        <button
-                          type="button"
-                          onClick={() => updateProfileStatus(p.id, 'REJECTED')}
-                          style={{
-                            background: '#dc2626',
-                            color: '#ffffff',
-                            padding: '8px 16px',
-                            border: 'none',
-                            borderRadius: '8px',
-                            fontWeight: 'bold',
-                            fontSize: '0.85rem',
-                            cursor: 'pointer'
-                          }}
-                        >
-                          Reject Profile
-                        </button>
-                      </div>
-                    </div>
-                  );
-                })}
-              </div>
             </div>
           )}
         </>
