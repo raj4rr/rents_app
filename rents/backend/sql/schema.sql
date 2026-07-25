@@ -15,6 +15,20 @@ CREATE TABLE IF NOT EXISTS users (
   updatedAt DATETIME NOT NULL
 ) ENGINE=InnoDB;
 
+CREATE TABLE IF NOT EXISTS ownerBankAccounts (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  userId INT NOT NULL UNIQUE,
+  accountHolder VARCHAR(120) NOT NULL,
+  iban VARCHAR(34) NOT NULL,
+  bic VARCHAR(11) NOT NULL,
+  editCount INT NOT NULL DEFAULT 0,
+  createdAt DATETIME NOT NULL,
+  updatedAt DATETIME NOT NULL,
+  CONSTRAINT fk_owner_bank_accounts_user
+    FOREIGN KEY (userId) REFERENCES users(id)
+    ON UPDATE CASCADE ON DELETE CASCADE
+) ENGINE=InnoDB;
+
 -- =========================
 -- Property hierarchy
 -- =========================
@@ -111,6 +125,8 @@ CREATE TABLE IF NOT EXISTS listings (
   longitude DECIMAL(10,7) NULL,
   rentType ENUM('WARM', 'COLD') NOT NULL,
   baseRent DECIMAL(10,2) NOT NULL,
+  depositAmount DECIMAL(10,2) NOT NULL DEFAULT 0,
+  cleaningCharge DECIMAL(10,2) NOT NULL DEFAULT 0,
   anmeldungAvailable BOOLEAN DEFAULT FALSE,
   internetIncluded BOOLEAN DEFAULT FALSE,
   electricityIncluded BOOLEAN DEFAULT FALSE,
@@ -177,13 +193,29 @@ CREATE TABLE IF NOT EXISTS kycVerifications (
 
 CREATE TABLE IF NOT EXISTS contracts (
   id INT AUTO_INCREMENT PRIMARY KEY,
+  bookingId INT NULL,
   leaseType ENUM('SHORT_TERM', 'LONG_TERM') NOT NULL,
   startDate DATE NOT NULL,
   endDate DATE NOT NULL,
   signedAt DATETIME NULL,
   status ENUM('DRAFT', 'SENT', 'SIGNED') NOT NULL DEFAULT 'DRAFT',
+  tenantId INT NULL,
+  ownerId INT NULL,
+  tenantName VARCHAR(200) NULL,
+  tenantAddress VARCHAR(500) NULL,
+  ownerDetails JSON NULL,
+  filePath VARCHAR(500) NULL,
   createdAt DATETIME NOT NULL,
-  updatedAt DATETIME NOT NULL
+  updatedAt DATETIME NOT NULL,
+  CONSTRAINT fk_contracts_booking
+    FOREIGN KEY (bookingId) REFERENCES bookings(id)
+    ON UPDATE CASCADE ON DELETE SET NULL,
+  CONSTRAINT fk_contracts_tenant
+    FOREIGN KEY (tenantId) REFERENCES users(id)
+    ON UPDATE CASCADE ON DELETE SET NULL,
+  CONSTRAINT fk_contracts_owner
+    FOREIGN KEY (ownerId) REFERENCES users(id)
+    ON UPDATE CASCADE ON DELETE SET NULL
 ) ENGINE=InnoDB;
 
 CREATE TABLE IF NOT EXISTS maintenanceTickets (

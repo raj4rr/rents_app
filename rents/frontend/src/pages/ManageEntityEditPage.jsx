@@ -5,9 +5,9 @@ import client from '../api/client';
 const editableFields = {
   properties: ['name', 'city', 'address'],
   apartments: ['code', 'amenities', 'imageUrls'],
-  rooms: ['code', 'capacity', 'inventoryMode', 'furnishingStatus', 'hasPrivateBathroom', 'imageUrls'],
+  rooms: ['code', 'capacity', 'maxPersons', 'singleBeds', 'doubleBeds', 'inventoryMode', 'furnishingStatus', 'hasPrivateBathroom', 'imageUrls'],
   beds: ['bedCode', 'status', 'imageUrl'],
-  listings: ['title', 'listingType', 'imageUrl', 'imageUrls', 'locationText', 'latitude', 'longitude', 'rentType', 'baseRent', 'anmeldungAvailable', 'internetIncluded', 'electricityIncluded', 'maintenanceIncluded', 'heatingIncluded', 'waterIncluded', 'isActive']
+  listings: ['title', 'listingType', 'stayType', 'minStayMonths', 'imageUrl', 'imageUrls', 'locationText', 'latitude', 'longitude', 'rentType', 'baseRent', 'depositAmount', 'cleaningCharge', 'anmeldungAvailable', 'internetIncluded', 'electricityIncluded', 'maintenanceIncluded', 'heatingIncluded', 'waterIncluded', 'isActive']
 };
 
 const maxImagesByEntity = {
@@ -25,12 +25,23 @@ export default function ManageEntityEditPage() {
   const [message, setMessage] = useState('');
   const [error, setError] = useState('');
   const [uploading, setUploading] = useState(false);
+  const [platformFees, setPlatformFees] = useState({ shortTermFee: 10, longTermFee: 50 });
 
   useEffect(() => {
-    client.get(`/manage/${entity}/${id}`).then((res) => {
-      const data = { ...res.data };
+    Promise.all([
+      client.get('/settings').catch(() => ({ data: { shortTermFee: 10, longTermFee: 50 } })),
+      client.get(`/manage/${entity}/${id}`)
+    ]).then(([settingsRes, entityRes]) => {
+      const feesObj = settingsRes.data || { shortTermFee: 10, longTermFee: 50 };
+      setPlatformFees(feesObj);
+
+      const data = { ...entityRes.data };
       if (Array.isArray(data.amenities)) data.amenities = data.amenities.join(', ');
       if (Array.isArray(data.imageUrls)) data.imageUrls = data.imageUrls.join(', ');
+      if (entity === 'listings' && data.baseRent !== undefined) {
+        const fee = data.stayType === 'LONG_TERM' ? feesObj.longTermFee : feesObj.shortTermFee;
+        data.baseRent = Number(data.baseRent) - fee;
+      }
       setForm(data);
     }).catch((err) => {
       setError(err.response?.data?.error || 'Failed to load record');
@@ -93,7 +104,7 @@ export default function ManageEntityEditPage() {
         if (key === 'amenities' || key === 'imageUrls') {
           value = parseCsv(value);
         }
-        if (['capacity', 'baseRent', 'latitude', 'longitude'].includes(key) && value !== '' && value !== null && value !== undefined) {
+        if (['capacity', 'maxPersons', 'singleBeds', 'doubleBeds', 'minStayMonths', 'baseRent', 'depositAmount', 'cleaningCharge', 'latitude', 'longitude'].includes(key) && value !== '' && value !== null && value !== undefined) {
           value = Number(value);
         }
         payload[key] = value;
@@ -170,11 +181,30 @@ export default function ManageEntityEditPage() {
                 </select>
               );
             }
+            if (field === 'stayType') {
+              return (
+                <select key={field} value={v || 'SHORT_TERM'} onChange={(e) => onChange(field, e.target.value)}>
+                  <option value="SHORT_TERM">Short-term stay</option>
+                  <option value="LONG_TERM">Long-term stay</option>
+                </select>
+              );
+            }
+            if (field === 'minStayMonths') {
+              return (
+                <select key={field} value={v || 1} onChange={(e) => onChange(field, Number(e.target.value))}>
+                  <option value={1}>1 month</option>
+                  <option value={2}>2 months</option>
+                  <option value={3}>3 months</option>
+                  <option value={6}>6 months</option>
+                  <option value={12}>12 months</option>
+                </select>
+              );
+            }
             if (field === 'rentType') {
               return (
                 <select key={field} value={v || 'WARM'} onChange={(e) => onChange(field, e.target.value)}>
-                  <option value="WARM">WARM</option>
-                  <option value="COLD">COLD</option>
+                  <option value="WARM">warmmiete</option>
+                  <option value="COLD">kaltmiete</option>
                 </select>
               );
             }
@@ -187,7 +217,35 @@ export default function ManageEntityEditPage() {
                 </select>
               );
             }
-            const type = ['capacity', 'baseRent', 'latitude', 'longitude'].includes(field) ? 'number' : 'text';
+            if (field === 'baseRent' && entity === 'listings') {
+              return (
+                <div key={field} style={{ marginBottom: '12px' }}>
+                  <label style={{ fontSize: '0.8rem', fontWeight: 'bold', color: '#475569', display: 'block', marginBottom: '4px' }}>Base Rent (€)</label>
+                  <input
+                    type="number"
+                    step="any"
+                    value={v ?? ''}
+                    onChange={(e) => onChange(field, e.target.value)}
+                    placeholder="base rent"
+                    style={{ width: '100%', padding: '10px', borderRadius: '8px', border: '1px solid #cbd5e1', marginBottom: '8px', boxSizing: 'border-box' }}
+                  />
+                  {v && (
+                    <div style={{ background: '#f8fafc', padding: '10px 12px', borderRadius: '8px', border: '1px solid #e2e8f0', fontSize: '0.82rem', marginBottom: '4px' }}>
+                      <p style={{ margin: '0 0 3px', color: '#475569' }}>
+                        Base price input: <strong>€{v}</strong>
+                      </p>
+                      <p style={{ margin: 0, color: '#16a34a', fontWeight: 'bold' }}>
+                        Stored Rent: €{Number(v) + (form.stayType === 'LONG_TERM' ? platformFees.longTermFee : platformFees.shortTermFee)}
+                        <span style={{ fontSize: '0.75rem', color: '#64748b', fontWeight: 'normal', marginLeft: '6px' }}>
+                          (includes €{form.stayType === 'LONG_TERM' ? platformFees.longTermFee : platformFees.shortTermFee} platform fee)
+                        </span>
+                      </p>
+                    </div>
+                  )}
+                </div>
+              );
+            }
+            const type = ['capacity', 'baseRent', 'depositAmount', 'cleaningCharge', 'latitude', 'longitude'].includes(field) ? 'number' : 'text';
             return (
               <input
                 key={field}
