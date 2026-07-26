@@ -36,7 +36,7 @@ export default function RegisterPage() {
   return (
     <section className="login-page">
       <div className="login-panel hero">
-        <p className="eyebrow">RentStack OS</p>
+        <p className="eyebrow">RentStack Inventory OS</p>
         <h2>Create Account</h2>
         <p>Register as Owner or Tenant and start booking or managing entries.</p>
       </div>

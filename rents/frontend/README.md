@@ -1,4 +1,6 @@
-# React + Vite
+# RentStack Inventory Frontend (React + Vite)
+
+**Website:** [https://rentstackinventory.com/](https://rentstackinventory.com/)
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 

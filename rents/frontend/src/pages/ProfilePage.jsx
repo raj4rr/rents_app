@@ -216,7 +216,7 @@ export default function ProfilePage() {
           {profile.role === 'OWNER' ? 'Owner Verification Portal' : 'User Verification & Profile'}
         </h2>
         <p style={{ color: '#64748b' }}>
-          Configure your legal credentials and identity documents to complete verification for RentStack contracts.
+          Configure your legal credentials and identity documents to complete verification for RentStack Inventory contracts.
         </p>
       </div>
 

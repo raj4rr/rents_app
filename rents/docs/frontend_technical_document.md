@@ -1,6 +1,6 @@
-# RentStack Frontend Technical Documentation
+# RentStack Inventory Frontend Technical Documentation
 
-This document outlines the frontend page architectures, state hooks, layout integrations, and UI custom components implemented for the RentStack room inventory app.
+This document outlines the frontend page architectures, state hooks, layout integrations, and UI custom components implemented for the **RentStack Inventory** room inventory app (Official Website: [https://rentstackinventory.com/](https://rentstackinventory.com/)).
 
 ## 1. System Overview
 The frontend is built using **Vite**, **React**, and **React Router**. Styled entirely using vanilla CSS rules, it leverages responsive layouts (flexbox & grid columns) to build dashboards and booking flows for owners and tenants.

@@ -291,7 +291,7 @@ export default function ListingsPage({ defaultStayType = 'ALL', title = 'All Lis
 
   return (
     <section>
-      <SEO title="Verified Stays & Room Listings" description="Browse RentStack's listings of fully verified rooms, shared apartments, and student housing options in top cities." />
+      <SEO title="Verified Stays & Room Listings" description="Browse RentStack Inventory's listings of fully verified rooms, shared apartments, and student housing options in top cities." />
       <h2>{title}</h2>
       <div className="search-and-filter-card">
         {/* Main Search Bar */}

@@ -7,11 +7,11 @@ const FAQ_DATA = [
     items: [
       {
         question: 'Who we are?',
-        answer: 'RentStack is a premier modern room inventory and coliving network. We connect verified room owners directly with international students, remote workers, and young professionals searching for vetted, high-quality, and community-driven housing.'
+        answer: 'RentStack Inventory is a premier modern room inventory and coliving network available at https://rentstackinventory.com/. We connect verified room owners directly with international students, remote workers, and young professionals searching for vetted, high-quality, and community-driven housing.'
       },
       {
         question: 'Why choose us?',
-        answer: 'Unlike traditional rental platforms, RentStack offers zero-middleman transactions, automatic professional lease contracts, standard 3D AI-rendered space layouts, and fully verified bank routing. We eliminate scams and duplicate listings entirely.'
+        answer: 'Unlike traditional rental platforms, RentStack Inventory offers zero-middleman transactions, automatic professional lease contracts, standard 3D AI-rendered space layouts, and fully verified bank routing. We eliminate scams and duplicate listings entirely.'
       },
       {
         question: 'Why you can trust us?',
@@ -122,13 +122,13 @@ export default function FAQPage() {
 
   return (
     <section style={{ maxWidth: '900px', margin: '0 auto', padding: '20px 10px' }}>
-      <SEO title="Frequently Asked Questions (FAQ)" description="Find answers to common questions about booking rooms, security deposits, utility billing, and lease agreements on RentStack." />
+      <SEO title="Frequently Asked Questions (FAQ)" description="Find answers to common questions about booking rooms, security deposits, utility billing, and lease agreements on RentStack Inventory." />
       <div style={{ textAlign: 'center', marginBottom: '35px' }}>
         <h2 style={{ fontSize: '2.2rem', fontWeight: '800', color: '#1e293b', marginBottom: '10px' }}>
           Frequently Asked Questions
         </h2>
         <p style={{ color: '#64748b', fontSize: '1.1rem' }}>
-          Everything you need to know about booking, payments, trust, and verification on RentStack.
+          Everything you need to know about booking, payments, trust, and verification on RentStack Inventory.
         </p>
 
         {/* Search bar */}

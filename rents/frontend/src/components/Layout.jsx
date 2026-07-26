@@ -32,6 +32,29 @@ export default function Layout({ children }) {
         </header>
       )}
       <main>{children}</main>
+      {!isLoginPage && (
+        <footer className="footer" style={{ marginTop: '60px', padding: '32px 20px', borderTop: '1px solid var(--border-color, #e2e8f0)', background: 'var(--bg-card, #f8fafc)', textAlign: 'center', fontSize: '0.9rem', color: '#64748b' }}>
+          <div style={{ maxWidth: '1100px', margin: '0 auto', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '12px' }}>
+            <div style={{ fontWeight: '700', fontSize: '1.1rem', color: '#0f172a', letterSpacing: '-0.02em' }}>
+              RentStack Inventory
+            </div>
+            <div>
+              Official Website:{' '}
+              <a 
+                href="https://rentstackinventory.com/" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                style={{ color: '#2563eb', fontWeight: '600', textDecoration: 'none' }}
+              >
+                https://rentstackinventory.com/
+              </a>
+            </div>
+            <p style={{ margin: 0, fontSize: '0.85rem', color: '#94a3b8' }}>
+              © {new Date().getFullYear()} RentStack Inventory. All rights reserved. Vetted room & bed coliving ecosystem.
+            </p>
+          </div>
+        </footer>
+      )}
     </div>
   );
 }

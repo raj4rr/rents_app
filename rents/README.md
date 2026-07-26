@@ -1,4 +1,6 @@
-# Hierarchical Inventory App (React + Node + MySQL)
+# RentStack Inventory (React + Node + MySQL)
+
+**Website:** [https://rentstackinventory.com/](https://rentstackinventory.com/)
 
 Full-stack starter for:
 - Property > Apartment > Room > Bed hierarchy

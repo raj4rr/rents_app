@@ -1187,7 +1187,7 @@ router.post('/contracts/generate', requireAuth, async (req, res) => {
       .text('RESIDENTIAL LEASE AGREEMENT', { align: 'center', bold: true });
 
     doc.fontSize(10)
-      .text('(Wohnungsmietvertrag - RentStack Network)', { align: 'center', italic: true });
+      .text('(Wohnungsmietvertrag - RentStack Inventory Network | https://rentstackinventory.com/)', { align: 'center', italic: true });
 
     doc.moveDown(1.5);
 
@@ -1198,7 +1198,7 @@ router.post('/contracts/generate', requireAuth, async (req, res) => {
 
     // Landlord
     doc.text('LANDLORD (Vermieter):', { bold: true });
-    doc.text(`Name: ${owner?.fullName || 'RentStack Landlord Partner'}`);
+    doc.text(`Name: ${owner?.fullName || 'RentStack Inventory Landlord Partner'}`);
     if (owner?.mobileNumber) doc.text(`Mobile: ${owner.mobileNumber}`);
     if (owner?.email) doc.text(`Email: ${owner.email}`);
 
@@ -1206,7 +1206,7 @@ router.post('/contracts/generate', requireAuth, async (req, res) => {
 
     // Tenant
     doc.text('TENANT (Mieter):', { bold: true });
-    doc.text(`Name: ${tenant?.fullName || 'RentStack Tenant Partner'}`);
+    doc.text(`Name: ${tenant?.fullName || 'RentStack Inventory Tenant Partner'}`);
     if (tenant?.email) doc.text(`Email: ${tenant.email}`);
 
     doc.moveDown(1.5);

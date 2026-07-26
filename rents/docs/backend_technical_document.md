@@ -1,6 +1,6 @@
-# RentStack Backend Technical Documentation
+# RentStack Inventory Backend Technical Documentation
 
-This document outlines the backend architecture, database schemas, and REST API endpoints implemented for the RentStack room inventory and lease management system.
+This document outlines the backend architecture, database schemas, and REST API endpoints implemented for the **RentStack Inventory** room inventory and lease management system (Official Website: [https://rentstackinventory.com/](https://rentstackinventory.com/)).
 
 ## 1. System Overview
 The backend is built using **Node.js**, **Express**, and **Sequelize ORM** with SQLite/Postgres. It manages the property hierarchy (Property → Apartment → Room → Bed), user credentials, KYC audits, bank routing, booking states, contract generation, and security deposit deductions.

@@ -44,14 +44,14 @@ export default function AboutPage() {
 
   return (
     <section style={{ maxWidth: '900px', margin: '0 auto', padding: '30px 15px' }}>
-      <SEO title="About Us & Vision" description="Learn more about RentStack, our vision for co-living automation, our product goals, our team, and how to get in touch." />
+      <SEO title="About Us & Vision" description="Learn more about RentStack Inventory, our vision for co-living automation, our product goals, team, and contact information." />
       
       {/* Hero Section */}
       <div style={{ textAlign: 'center', marginBottom: '40px', background: 'linear-gradient(135deg, #1e293b 0%, #0f172a 100%)', padding: '40px 20px', borderRadius: '16px', color: '#ffffff' }}>
-        <p className="eyebrow" style={{ color: '#38bdf8', fontWeight: 'bold', textTransform: 'uppercase', fontSize: '0.85rem', trackingLetter: '1px' }}>RentStack OS Ecosystem</p>
+        <p className="eyebrow" style={{ color: '#38bdf8', fontWeight: 'bold', textTransform: 'uppercase', fontSize: '0.85rem', trackingLetter: '1px' }}>RentStack Inventory Ecosystem</p>
         <h2 style={{ fontSize: '2.5rem', fontWeight: '800', margin: '10px 0' }}>About Us</h2>
         <p style={{ maxWidth: '600px', margin: '0 auto', color: '#94a3b8', fontSize: '1.05rem', lineHeight: '1.6' }}>
-          We build robust digital infrastructure to run bed-level and room-level inventory with zero operations overhead.
+          We build robust digital infrastructure to run bed-level and room-level inventory with zero operations overhead at <a href="https://rentstackinventory.com/" style={{ color: '#38bdf8', textDecoration: 'underline' }}>rentstackinventory.com</a>.
         </p>
       </div>
 
@@ -103,7 +103,8 @@ export default function AboutPage() {
             </p>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', fontSize: '0.9rem', color: '#334155' }}>
               <span>📍 <strong>Address:</strong> Berlin Mitte Creative Hub, Germany</span>
-              <span>📧 <strong>Email:</strong> operational-support@rentstack.dev</span>
+              <span>🌐 <strong>Website:</strong> <a href="https://rentstackinventory.com/" target="_blank" rel="noopener noreferrer">https://rentstackinventory.com/</a></span>
+              <span>📧 <strong>Email:</strong> support@rentstackinventory.com</span>
               <span>📞 <strong>Phone:</strong> +49 30 12345678</span>
             </div>
           </div>

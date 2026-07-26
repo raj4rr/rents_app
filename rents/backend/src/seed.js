@@ -39,9 +39,9 @@ async function seed() {
 
     const passwordHash = await bcrypt.hash('Pass@123', 10);
     const users = await User.bulkCreate([
-      { fullName: 'Admin One', email: 'admin@rentstack.dev', mobileNumber: '+49-170-0000001', passwordHash, role: 'ADMIN' },
-      { fullName: 'Owner One', email: 'owner@rentstack.dev', mobileNumber: '+49-170-0000002', passwordHash, role: 'OWNER' },
-      { fullName: 'Tenant One', email: 'tenant@rentstack.dev', mobileNumber: '+49-170-0000003', passwordHash, role: 'TENANT' }
+      { fullName: 'Admin One', email: 'admin@rentstackinventory.com', mobileNumber: '+49-170-0000001', passwordHash, role: 'ADMIN' },
+      { fullName: 'Owner One', email: 'owner@rentstackinventory.com', mobileNumber: '+49-170-0000002', passwordHash, role: 'OWNER' },
+      { fullName: 'Tenant One', email: 'tenant@rentstackinventory.com', mobileNumber: '+49-170-0000003', passwordHash, role: 'TENANT' }
     ], { returning: true });
     const adminUser = users.find((u) => u.role === 'ADMIN');
     const ownerUser = users.find((u) => u.role === 'OWNER');
@@ -1113,7 +1113,7 @@ async function seed() {
     ]);
 
     console.log('Sample data created successfully.');
-    console.log('Login users: admin@rentstack.dev / owner@rentstack.dev / tenant@rentstack.dev');
+    console.log('Login users: admin@rentstackinventory.com / owner@rentstackinventory.com / tenant@rentstackinventory.com');
     console.log('Password for all sample users: Pass@123');
     await sequelize.close();
   } catch (error) {

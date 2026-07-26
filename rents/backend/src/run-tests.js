@@ -14,7 +14,7 @@ const {
 } = require('./models');
 
 async function runTests() {
-  console.log('🚀 Starting RentStack Feature Unit Tests...');
+  console.log('🚀 Starting RentStack Inventory Feature Unit Tests...');
   let exitCode = 0;
 
   let owner = null;
@@ -52,13 +52,13 @@ async function runTests() {
     // Setup Mock User Roles
     owner = await User.create({
       fullName: 'Test Owner',
-      email: `owner_${Date.now()}@rentstack.test`,
+      email: `owner_${Date.now()}@rentstackinventory.test`,
       passwordHash: 'hashedpassword',
       role: 'OWNER'
     });
     tenant = await User.create({
       fullName: 'Test Tenant',
-      email: `tenant_${Date.now()}@rentstack.test`,
+      email: `tenant_${Date.now()}@rentstackinventory.test`,
       passwordHash: 'hashedpassword',
       role: 'TENANT'
     });

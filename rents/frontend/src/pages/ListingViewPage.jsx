@@ -214,7 +214,7 @@ export default function ListingViewPage() {
     <section>
       <SEO 
         title={listing.title} 
-        description={`Book ${listing.title} in ${listing.locationText || 'Berlin'}. Fully vetted room rentals and coliving accommodations in Berlin on RentStack.`} 
+        description={`Book ${listing.title} in ${listing.locationText || 'Berlin'}. Fully vetted room rentals and coliving accommodations in Berlin on RentStack Inventory at https://rentstackinventory.com/.`} 
         keywords={`accommodations in Berlin, room rental in Berlin, rent flat in Berlin, student housing Berlin, ${listing.title}`} 
       />
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: '16px', marginBottom: '16px' }}>

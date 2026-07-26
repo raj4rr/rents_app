@@ -101,8 +101,8 @@ const SLIDES = [
     title: '4. Pay Rent & Platform Fees',
     subtitle: 'Submit bank transfer reference codes on your booking.',
     description: [
-      'RentStack requires bank transfers directly to two separate IBAN accounts.',
-      'Transfer the Platform Fee to RentStack, and the Rent + Deposit to the owner.',
+      'RentStack Inventory requires bank transfers directly to two separate IBAN accounts.',
+      'Transfer the Platform Fee to RentStack Inventory, and the Rent + Deposit to the owner.',
       'Paste the transaction reference numbers from your bank transfer confirmation.',
       'The landlord confirms references before the booking status transitions.'
     ],
@@ -176,7 +176,7 @@ export default function HowItWorksPage() {
 
   return (
     <section style={{ maxWidth: '850px', margin: '0 auto', padding: '30px 15px' }}>
-      <SEO title="How It Works - Booking Walkthrough" description="Learn step-by-step instructions on how to browse verified stays, verify your resident profile, submit bank transfers, and download signed lease contracts on RentStack." />
+      <SEO title="How It Works - Booking Walkthrough" description="Learn step-by-step instructions on how to browse verified stays, verify your resident profile, submit bank transfers, and download signed lease contracts on RentStack Inventory." />
       <div style={{ textAlign: 'center', marginBottom: '35px' }}>
         <h2 style={{ fontSize: '2.5rem', fontWeight: '900', color: '#0f172a', marginBottom: '10px', background: 'linear-gradient(135deg, #1e293b, #475569)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
           Vetted Stays Made Simple

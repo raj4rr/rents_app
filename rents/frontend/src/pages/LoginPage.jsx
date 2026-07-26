@@ -5,13 +5,11 @@ import client from '../api/client';
 const roleConfig = {
   USER: {
     title: 'Resident Login',
-    subtitle: 'Access bookings, chores, expenses, and your shared living hub.',
-    hint: 'Demo: tenant@rentstack.dev / Pass@123'
+    subtitle: 'Access bookings, chores, expenses, and your shared living hub.'
   },
   ADMIN: {
     title: 'Admin Login',
-    subtitle: 'Manage inventory, occupancy, legal docs, and operations in one place.',
-    hint: 'Demo: admin@rentstack.dev / Pass@123'
+    subtitle: 'Manage inventory, occupancy, legal docs, and operations in one place.'
   }
 };
 
@@ -99,7 +97,7 @@ export default function LoginPage() {
   return (
     <section className="login-page">
       <div className="login-panel hero">
-        <p className="eyebrow">RentStack OS</p>
+        <p className="eyebrow">RentStack Inventory OS</p>
         <h2>Run Bed-Level To Apartment-Level Inventory Without Chaos</h2>
         <p>
           Unified booking control for private rooms, shared beds, contracts, KYC, maintenance,
@@ -170,7 +168,6 @@ export default function LoginPage() {
         </form>
 
         {error && <p className="error-text">{error}</p>}
-        <p className="demo-hint">{current.hint}</p>
         <div style={{ marginTop: '16px', display: 'flex', flexDirection: 'column', gap: '8px', alignItems: 'center' }}>
           <p className="demo-hint" style={{ margin: 0 }}>
             New user? <Link to="/register">Create account</Link>.
