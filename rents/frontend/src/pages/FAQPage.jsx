@@ -1,3 +1,4 @@
+import useSEO from '../hooks/useSEO';
 import { useMemo, useState } from 'react';
 import SEO from '../components/SEO';
 
@@ -101,6 +102,12 @@ const FAQ_DATA = [
 ];
 
 export default function FAQPage() {
+  useSEO({
+    title: 'Frequently Asked Questions',
+    description: 'Got questions about renting with RentStack? Read our FAQ for answers about deposits, leases, bookings, and more.',
+    keywords: 'FAQ, help, rental questions, renting guide, rentstack support'
+  });
+
   const [searchTerm, setSearchTerm] = useState('');
   const [activeQuestion, setActiveQuestion] = useState(null);
 

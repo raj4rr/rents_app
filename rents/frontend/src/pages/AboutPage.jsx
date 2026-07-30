@@ -1,3 +1,4 @@
+import useSEO from '../hooks/useSEO';
 import { useState } from 'react';
 import SEO from '../components/SEO';
 import client from '../api/client';
@@ -24,6 +25,12 @@ const TEAM_MEMBERS = [
 ];
 
 export default function AboutPage() {
+  useSEO({
+    title: 'About Us',
+    description: 'RentStack Inventory is redefining property management and rentals. Discover our mission to connect tenants with quality homes.',
+    keywords: 'about rentstack, property management, real estate tech, company mission'
+  });
+
   const [contactForm, setContactForm] = useState({ name: '', email: '', message: '' });
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);

@@ -27,6 +27,9 @@ import HowItWorksPage from './pages/HowItWorksPage';
 import AboutPage from './pages/AboutPage';
 import './App.css';
 
+import GlobalSettingsPage from './pages/GlobalSettingsPage';
+import DynamicOwnerFeesPage from './pages/DynamicOwnerFeesPage';
+
 function ProtectedRoute({ children }) {
   const token = localStorage.getItem('auth_token');
   if (!token) return <Navigate to="/login" replace />;
@@ -60,6 +63,8 @@ export default function App() {
           <Route path="/manage-entry/create/bed" element={<ProtectedRoute><CreateBedPage /></ProtectedRoute>} />
           <Route path="/manage-entry/records" element={<ProtectedRoute><ManageRecordsPage /></ProtectedRoute>} />
           <Route path="/manage-entry/bank-account" element={<ProtectedRoute><OwnerBankAccountPage /></ProtectedRoute>} />
+          <Route path="/manage-entry/system-settings" element={<ProtectedRoute><GlobalSettingsPage /></ProtectedRoute>} />
+          <Route path="/manage-entry/owner-fees" element={<ProtectedRoute><DynamicOwnerFeesPage /></ProtectedRoute>} />
           <Route path="/manage-entry/edit/:entity/:id" element={<ProtectedRoute><ManageEntityEditPage /></ProtectedRoute>} />
           <Route path="/faq" element={<FAQPage />} />
           <Route path="/how-it-works" element={<HowItWorksPage />} />

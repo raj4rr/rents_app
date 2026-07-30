@@ -1,8 +1,15 @@
+import useSEO from '../hooks/useSEO';
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import client from '../api/client';
 
 export default function RegisterPage() {
+  useSEO({
+    title: 'Register',
+    description: 'Create a new RentStack Inventory account to start booking or managing properties.',
+    keywords: 'register, sign up, rentstack'
+  });
+
   const navigate = useNavigate();
   const [form, setForm] = useState({
     fullName: '',

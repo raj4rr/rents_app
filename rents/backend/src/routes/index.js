@@ -52,16 +52,28 @@ const rateLimiter = (limit, windowMs) => {
   };
 };
 
-const getPlatformFees = async () => {
+const getPlatformFees = async (ownerUserId = null) => {
   try {
-    const { SystemSetting } = require('../models');
+    const { SystemSetting, User } = require('../models');
     const settings = await SystemSetting.findAll();
     const shortTermObj = settings.find(s => s.key === 'SHORT_TERM_FEE');
     const longTermObj = settings.find(s => s.key === 'LONG_TERM_FEE');
-    return {
-      shortTermFee: shortTermObj ? Number(shortTermObj.value) : 10,
-      longTermFee: longTermObj ? Number(longTermObj.value) : 50
-    };
+    let shortTermFee = shortTermObj ? Number(shortTermObj.value) : 10;
+    let longTermFee = longTermObj ? Number(longTermObj.value) : 50;
+
+    if (ownerUserId) {
+      const owner = await User.findByPk(ownerUserId);
+      if (owner) {
+        if (owner.shortTermFee !== null && owner.shortTermFee !== undefined) {
+          shortTermFee = Number(owner.shortTermFee);
+        }
+        if (owner.longTermFee !== null && owner.longTermFee !== undefined) {
+          longTermFee = Number(owner.longTermFee);
+        }
+      }
+    }
+
+    return { shortTermFee, longTermFee };
   } catch (err) {
     return { shortTermFee: 10, longTermFee: 50 };
   }
@@ -278,7 +290,7 @@ router.get('/beds', async (_req, res) => res.json(await Bed.findAll()));
 
 router.post('/listings', requireAuth, requireOwnerOrAdmin, async (req, res) => {
   if (req.body.baseRent !== undefined) {
-    const fees = await getPlatformFees();
+    const fees = await getPlatformFees(req.user.id);
     const fee = req.body.stayType === 'LONG_TERM' ? fees.longTermFee : fees.shortTermFee;
     req.body.baseRent = Number(req.body.baseRent) + fee;
   }
@@ -1460,7 +1472,7 @@ router.patch('/manage/listings/:id', requireAuth, requireOwnerOrAdmin, async (re
 
   if (req.body.baseRent !== undefined) {
     const stayType = req.body.stayType || row.stayType;
-    const fees = await getPlatformFees();
+    const fees = await getPlatformFees(row.createdByUserId || req.user.id);
     const fee = stayType === 'LONG_TERM' ? fees.longTermFee : fees.shortTermFee;
     req.body.baseRent = Number(req.body.baseRent) + fee;
   }
@@ -1569,9 +1581,11 @@ router.post('/owner/bookings/:id/deduct-deposit', requireAuth, requireOwnerOrAdm
   }
 });
 
-// System Settings API Endpoints
+// System Settings & Owner Fee API Endpoints
 router.get('/settings', async (req, res) => {
-  const fees = await getPlatformFees();
+  const user = getAuthUser(req);
+  const ownerId = req.query.ownerId || (user ? user.id : null);
+  const fees = await getPlatformFees(ownerId);
   res.json(fees);
 });
 
@@ -1591,7 +1605,70 @@ router.put('/admin/settings', requireAuth, requireAdmin, async (req, res) => {
     for (const item of settings) {
       await SystemSetting.upsert({ key: item.key, value: String(item.value) });
     }
-    res.json({ ok: true, message: 'Settings updated successfully' });
+    res.json({ ok: true, message: 'Settings updated successfully', settings: await getPlatformFees() });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+// Admin Owner Specific Platform Fee Management
+router.get('/admin/owners', requireAuth, requireAdmin, async (req, res) => {
+  try {
+    const { User } = require('../models');
+    const systemFees = await getPlatformFees(null);
+    const owners = await User.findAll({
+      where: { role: 'OWNER' },
+      attributes: ['id', 'fullName', 'email', 'mobileNumber', 'profileStatus', 'shortTermFee', 'longTermFee', 'createdAt'],
+      order: [['fullName', 'ASC']]
+    });
+
+    const result = owners.map(o => {
+      const ownerJson = o.toJSON();
+      const customShort = ownerJson.shortTermFee !== null && ownerJson.shortTermFee !== undefined;
+      const customLong = ownerJson.longTermFee !== null && ownerJson.longTermFee !== undefined;
+      return {
+        ...ownerJson,
+        shortTermFee: customShort ? Number(ownerJson.shortTermFee) : null,
+        longTermFee: customLong ? Number(ownerJson.longTermFee) : null,
+        effectiveShortTermFee: customShort ? Number(ownerJson.shortTermFee) : systemFees.shortTermFee,
+        effectiveLongTermFee: customLong ? Number(ownerJson.longTermFee) : systemFees.longTermFee
+      };
+    });
+
+    res.json(result);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+router.put('/admin/owners/:id/fees', requireAuth, requireAdmin, async (req, res) => {
+  try {
+    const { User } = require('../models');
+    const owner = await User.findOne({ where: { id: req.params.id, role: 'OWNER' } });
+    if (!owner) {
+      return res.status(404).json({ error: 'Owner not found' });
+    }
+
+    const { shortTermFee, longTermFee } = req.body;
+    owner.shortTermFee = (shortTermFee === null || shortTermFee === '' || shortTermFee === undefined) ? null : Number(shortTermFee);
+    owner.longTermFee = (longTermFee === null || longTermFee === '' || longTermFee === undefined) ? null : Number(longTermFee);
+
+    await owner.save();
+
+    const resolvedFees = await getPlatformFees(owner.id);
+    res.json({
+      ok: true,
+      message: 'Owner platform fees updated successfully',
+      owner: {
+        id: owner.id,
+        fullName: owner.fullName,
+        email: owner.email,
+        shortTermFee: owner.shortTermFee !== null ? Number(owner.shortTermFee) : null,
+        longTermFee: owner.longTermFee !== null ? Number(owner.longTermFee) : null,
+        effectiveShortTermFee: resolvedFees.shortTermFee,
+        effectiveLongTermFee: resolvedFees.longTermFee
+      }
+    });
   } catch (err) {
     res.status(500).json({ error: err.message });
   }

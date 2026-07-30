@@ -1,3 +1,4 @@
+import useSEO from '../hooks/useSEO';
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import SEO from '../components/SEO';
@@ -150,6 +151,12 @@ const SLIDES = [
 ];
 
 export default function HowItWorksPage() {
+  useSEO({
+    title: 'How It Works',
+    description: 'Learn how to book your perfect rental, manage your entries, and understand the RentStack process step-by-step.',
+    keywords: 'how it works, rental process, booking guide, tenant guide, owner guide'
+  });
+
   const navigate = useNavigate();
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isPlaying, setIsPlaying] = useState(true);

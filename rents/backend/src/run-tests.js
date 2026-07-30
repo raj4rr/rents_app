@@ -10,8 +10,31 @@ const {
   Property,
   Apartment,
   Room,
-  ContactMessage
+  ContactMessage,
+  SystemSetting
 } = require('./models');
+
+const getPlatformFees = async (ownerUserId = null) => {
+  const settings = await SystemSetting.findAll();
+  const shortTermObj = settings.find(s => s.key === 'SHORT_TERM_FEE');
+  const longTermObj = settings.find(s => s.key === 'LONG_TERM_FEE');
+  let shortTermFee = shortTermObj ? Number(shortTermObj.value) : 10;
+  let longTermFee = longTermObj ? Number(longTermObj.value) : 50;
+
+  if (ownerUserId) {
+    const owner = await User.findByPk(ownerUserId);
+    if (owner) {
+      if (owner.shortTermFee !== null && owner.shortTermFee !== undefined) {
+        shortTermFee = Number(owner.shortTermFee);
+      }
+      if (owner.longTermFee !== null && owner.longTermFee !== undefined) {
+        longTermFee = Number(owner.longTermFee);
+      }
+    }
+  }
+
+  return { shortTermFee, longTermFee };
+};
 
 async function runTests() {
   console.log('🚀 Starting RentStack Inventory Feature Unit Tests...');
@@ -361,6 +384,43 @@ TEST-ROOM-99,,Cozy Room near Tempelhof,ENTIRE_ROOM,LONG_TERM,3,Berlin Tempelhof,
     // Clean up Test 10 booking
     await testBooking.destroy().catch(() => {});
     console.log('✓ Test 10 Passed: Profile financialDocPath, comment validation limits, and Wohnungsgeberbestätigung successfully validated.');
+
+    // ── TEST 11: Dynamic Per-Owner Platform Fees Overrides ──
+    console.log('\nRunning Test 11: Dynamic Per-Owner Platform Fees Overrides...');
+    const globalDefaultFees = await getPlatformFees(null);
+    const ownerCustom = await User.create({
+      fullName: 'Custom Fee Owner',
+      email: `custom_owner_${Date.now()}@test.com`,
+      passwordHash: 'secret',
+      role: 'OWNER'
+    });
+
+    // 1. Owner without custom fees should default to global fees
+    let ownerFees = await getPlatformFees(ownerCustom.id);
+    assert.strictEqual(ownerFees.shortTermFee, globalDefaultFees.shortTermFee, 'Default shortTermFee for owner without override should match global fee');
+    assert.strictEqual(ownerFees.longTermFee, globalDefaultFees.longTermFee, 'Default longTermFee for owner without override should match global fee');
+
+    // 2. Set custom platform fees for owner
+    ownerCustom.shortTermFee = 25.00;
+    ownerCustom.longTermFee = 85.00;
+    await ownerCustom.save();
+
+    // 3. Resolve platform fees for owner ID
+    ownerFees = await getPlatformFees(ownerCustom.id);
+    assert.strictEqual(ownerFees.shortTermFee, 25, 'Custom shortTermFee for owner should be 25');
+    assert.strictEqual(ownerFees.longTermFee, 85, 'Custom longTermFee for owner should be 85');
+
+    // 4. Reset owner custom fees to null to revert back to global settings
+    ownerCustom.shortTermFee = null;
+    ownerCustom.longTermFee = null;
+    await ownerCustom.save();
+
+    ownerFees = await getPlatformFees(ownerCustom.id);
+    assert.strictEqual(ownerFees.shortTermFee, globalDefaultFees.shortTermFee, 'Reset owner shortTermFee should fall back to global fee');
+    assert.strictEqual(ownerFees.longTermFee, globalDefaultFees.longTermFee, 'Reset owner longTermFee should fall back to global fee');
+
+    await ownerCustom.destroy().catch(() => {});
+    console.log('✓ Test 11 Passed: Dynamic per-owner platform fee overrides and fallbacks validated successfully.');
 
     console.log('🎉 All Unit Tests Passed successfully!');
 

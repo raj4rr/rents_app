@@ -71,6 +71,12 @@ sequelize.sync().then(async () => {
   try {
     await sequelize.query("ALTER TABLE Bookings ADD COLUMN wohnungsgeberPath VARCHAR(500) NULL");
   } catch (e) {}
+  try {
+    await sequelize.query("ALTER TABLE Users ADD COLUMN shortTermFee DECIMAL(10,2) NULL");
+  } catch (e) {}
+  try {
+    await sequelize.query("ALTER TABLE Users ADD COLUMN longTermFee DECIMAL(10,2) NULL");
+  } catch (e) {}
 
   try {
     const { SystemSetting } = require('./models');

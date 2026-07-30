@@ -22,7 +22,9 @@ const User = sequelize.define('User', {
   country: { type: DataTypes.STRING(80), allowNull: true },
   profileStatus: { type: DataTypes.ENUM('PENDING', 'APPROVED', 'REJECTED'), allowNull: false, defaultValue: 'PENDING' },
   profileRejectReason: { type: DataTypes.STRING(255), allowNull: true },
-  financialDocPath: { type: DataTypes.STRING(500), allowNull: true }
+  financialDocPath: { type: DataTypes.STRING(500), allowNull: true },
+  shortTermFee: { type: DataTypes.DECIMAL(10, 2), allowNull: true },
+  longTermFee: { type: DataTypes.DECIMAL(10, 2), allowNull: true }
 });
 
 const OwnerBankAccount = sequelize.define('OwnerBankAccount', {

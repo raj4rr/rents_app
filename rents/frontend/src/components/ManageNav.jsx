@@ -5,9 +5,10 @@ export default function ManageNav() {
     try { return JSON.parse(localStorage.getItem('auth_user') || '{}'); } catch { return {}; }
   })();
   const canManageEntries = ['OWNER', 'ADMIN'].includes(user?.role);
+  const isAdmin = user?.role === 'ADMIN';
 
   return (
-    <div className="tab-bar" style={{ marginBottom: '24px' }}>
+    <div className="tab-bar" style={{ marginBottom: '24px', flexWrap: 'wrap' }}>
       <NavLink
         to="/manage-entry/my-bookings"
         className={({ isActive }) => `tab-btn ${isActive ? 'active' : ''}`}
@@ -56,7 +57,25 @@ export default function ManageNav() {
           to="/manage-entry/bank-account"
           className={({ isActive }) => `tab-btn ${isActive ? 'active' : ''}`}
         >
-          Owner Bank Account
+          {isAdmin ? 'Admin Bank Account' : 'Owner Bank Account'}
+        </NavLink>
+      )}
+
+      {isAdmin && (
+        <NavLink
+          to="/manage-entry/system-settings"
+          className={({ isActive }) => `tab-btn ${isActive ? 'active' : ''}`}
+        >
+          Global System Settings
+        </NavLink>
+      )}
+
+      {isAdmin && (
+        <NavLink
+          to="/manage-entry/owner-fees"
+          className={({ isActive }) => `tab-btn ${isActive ? 'active' : ''}`}
+        >
+          Dynamic Owner Fees
         </NavLink>
       )}
     </div>

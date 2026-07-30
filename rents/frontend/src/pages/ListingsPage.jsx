@@ -1,3 +1,4 @@
+import useSEO from '../hooks/useSEO';
 import { useEffect, useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import client from '../api/client';
@@ -161,6 +162,12 @@ const TRUST_QUOTES = [
 ];
 
 export default function ListingsPage({ defaultStayType = 'ALL', title = 'All Listings' }) {
+  useSEO({
+    title: 'All Rental Listings',
+    description: 'Browse our comprehensive inventory of premium rental properties, apartments, and rooms. Find your next home with RentStack today.',
+    keywords: 'rentals, apartments, rooms, real estate, property listings, rentstack'
+  });
+
   const userObj = JSON.parse(localStorage.getItem('auth_user') || 'null');
   const isOwnerOrAdmin = userObj && ['OWNER', 'ADMIN'].includes(userObj.role);
 

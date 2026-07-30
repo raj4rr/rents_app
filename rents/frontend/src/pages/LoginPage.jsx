@@ -1,3 +1,4 @@
+import useSEO from '../hooks/useSEO';
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import client from '../api/client';
@@ -14,6 +15,12 @@ const roleConfig = {
 };
 
 export default function LoginPage() {
+  useSEO({
+    title: 'Login',
+    description: 'Log in to your RentStack Inventory account.',
+    keywords: 'login, rentstack login'
+  });
+
   const [portal, setPortal] = useState('USER');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
