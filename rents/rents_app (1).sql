@@ -609,7 +609,9 @@ CREATE TABLE `Users` (
   `profileStatus` enum('PENDING','APPROVED','REJECTED') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'PENDING',
   `profileRejectReason` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `signaturePath` varchar(500) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `financialDocPath` varchar(500) COLLATE utf8mb4_unicode_ci DEFAULT NULL
+  `financialDocPath` varchar(500) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `shortTermFee` decimal(10,2) DEFAULT NULL,
+  `longTermFee` decimal(10,2) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --

@@ -11,6 +11,8 @@ CREATE TABLE IF NOT EXISTS users (
   mobileNumber VARCHAR(30) NULL,
   passwordHash VARCHAR(255) NOT NULL,
   role ENUM('TENANT', 'OWNER', 'ADMIN') NOT NULL DEFAULT 'TENANT',
+  shortTermFee DECIMAL(10,2) NULL,
+  longTermFee DECIMAL(10,2) NULL,
   createdAt DATETIME NOT NULL,
   updatedAt DATETIME NOT NULL
 ) ENGINE=InnoDB;
