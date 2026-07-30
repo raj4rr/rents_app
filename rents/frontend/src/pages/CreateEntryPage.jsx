@@ -8,6 +8,9 @@ const initialRoom = {
   apartmentId: '',
   code: '',
   capacity: 2,
+  maxPersons: 1,
+  singleBeds: 0,
+  doubleBeds: 0,
   inventoryMode: 'HYBRID',
   furnishingStatus: 'SEMI_FURNISHED',
   hasPrivateBathroom: false,
@@ -28,6 +31,8 @@ const initialListing = {
   longitude: '',
   rentType: 'WARM',
   baseRent: '',
+  depositAmount: '',
+  cleaningCharge: '',
   anmeldungAvailable: true,
   internetIncluded: true,
   electricityIncluded: true,
@@ -129,6 +134,9 @@ export default function CreateEntryPage() {
         apartmentId: Number(room.apartmentId),
         code: room.code,
         capacity: Number(room.capacity),
+        maxPersons: Number(room.maxPersons),
+        singleBeds: Number(room.singleBeds),
+        doubleBeds: Number(room.doubleBeds),
         inventoryMode: room.inventoryMode,
         furnishingStatus: room.furnishingStatus,
         hasPrivateBathroom: room.hasPrivateBathroom,
@@ -176,6 +184,8 @@ export default function CreateEntryPage() {
         longitude: listing.longitude ? Number(listing.longitude) : null,
         rentType: listing.rentType,
         baseRent: Number(listing.baseRent),
+        depositAmount: listing.depositAmount ? Number(listing.depositAmount) : 0,
+        cleaningCharge: listing.cleaningCharge ? Number(listing.cleaningCharge) : 0,
         anmeldungAvailable: listing.anmeldungAvailable,
         internetIncluded: listing.internetIncluded,
         electricityIncluded: listing.electricityIncluded,
@@ -343,6 +353,9 @@ export default function CreateEntryPage() {
           </select>
           <input placeholder="Room Code" value={room.code} onChange={(e) => setRoom({ ...room, code: e.target.value })} required />
           <input type="number" min="1" max="3" placeholder="Capacity" value={room.capacity} onChange={(e) => setRoom({ ...room, capacity: e.target.value })} required />
+          <input type="number" min="1" max="10" placeholder="Number of persons" value={room.maxPersons} onChange={(e) => setRoom({ ...room, maxPersons: e.target.value })} required />
+          <input type="number" min="0" max="10" placeholder="Single beds" value={room.singleBeds} onChange={(e) => setRoom({ ...room, singleBeds: e.target.value })} />
+          <input type="number" min="0" max="10" placeholder="Double beds" value={room.doubleBeds} onChange={(e) => setRoom({ ...room, doubleBeds: e.target.value })} />
           <select value={room.inventoryMode} onChange={(e) => setRoom({ ...room, inventoryMode: e.target.value })}>
             <option value="PRIVATE_ONLY">PRIVATE_ONLY</option>
             <option value="SHARED_ONLY">SHARED_ONLY</option>
@@ -415,6 +428,8 @@ export default function CreateEntryPage() {
           <input type="number" step="0.0000001" placeholder="Latitude" value={listing.latitude} onChange={(e) => setListing({ ...listing, latitude: e.target.value })} />
           <input type="number" step="0.0000001" placeholder="Longitude" value={listing.longitude} onChange={(e) => setListing({ ...listing, longitude: e.target.value })} />
           <input type="number" step="0.01" placeholder="Base Rent" value={listing.baseRent} onChange={(e) => setListing({ ...listing, baseRent: e.target.value })} required />
+          <input type="number" min="0" step="0.01" placeholder="Deposit Amount (optional)" value={listing.depositAmount} onChange={(e) => setListing({ ...listing, depositAmount: e.target.value })} />
+          <input type="number" min="0" step="0.01" placeholder="Cleaning Charge (optional)" value={listing.cleaningCharge} onChange={(e) => setListing({ ...listing, cleaningCharge: e.target.value })} />
           <select value={listing.listingType} onChange={(e) => setListing({ ...listing, listingType: e.target.value })}>
             <option value="SINGLE_BED">SINGLE_BED</option>
             <option value="ENTIRE_ROOM">ENTIRE_ROOM</option>

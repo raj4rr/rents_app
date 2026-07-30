@@ -196,6 +196,32 @@ export default function BookingPaymentPage() {
     }
   };
 
+  const approveOwnerBooking = async () => {
+    try {
+      await client.patch(`/owner/bookings/${bookingId}/approve`);
+      setMessage('Booking approved successfully');
+      loadBookingDetails();
+    } catch (err) {
+      setErrorMsg(err.response?.data?.error || 'Failed to approve booking');
+    }
+  };
+
+  const uploadWohnungsgeber = async (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+    const formData = new FormData();
+    formData.append('file', file);
+    try {
+      await client.put(`/bookings/${bookingId}/wohnungsgeber`, formData, {
+        headers: { 'Content-Type': 'multipart/form-data' }
+      });
+      setMessage('Wohnungsgeberbestätigung uploaded successfully');
+      loadBookingDetails();
+    } catch (err) {
+      setErrorMsg(err.response?.data?.error || 'Failed to upload Wohnungsgeberbestätigung');
+    }
+  };
+
   const confirmOverallPaymentReceived = async () => {
     try {
       const { data } = await client.patch(`/owner/bookings/${bookingId}/payment-received`);
@@ -290,18 +316,51 @@ export default function BookingPaymentPage() {
         </button>
       </div>
 
-      {isOwnerOrAdmin && (
-        <div style={{ background: '#eff6ff', border: '1px solid #bfdbfe', borderRadius: '12px', padding: '14px', marginBottom: '16px', display: 'flex', gap: '10px', alignItems: 'flex-start' }}>
-          <span style={{ fontSize: '1.2rem', marginTop: '-2px' }}>ℹ️</span>
-          <div>
-            <p style={{ margin: 0, fontSize: '0.88rem', fontWeight: 'bold', color: '#1e3a8a', lineHeight: '1.4' }}>
-              Important Note for Owners
-            </p>
-            <p style={{ margin: '4px 0 0', fontSize: '0.82rem', color: '#1e40af', lineHeight: '1.4' }}>
-              Owners need to pay the platform fees to the admin bank account within 48 hours after a booking is confirmed.
-            </p>
+      {isOwnerOrAdmin && bookingInfo && (
+        <>
+          <div style={{ background: '#eff6ff', border: '1px solid #bfdbfe', borderRadius: '12px', padding: '14px', marginBottom: '16px', display: 'flex', gap: '10px', alignItems: 'flex-start' }}>
+            <span style={{ fontSize: '1.2rem', marginTop: '-2px' }}>ℹ️</span>
+            <div>
+              <p style={{ margin: 0, fontSize: '0.88rem', fontWeight: 'bold', color: '#1e3a8a', lineHeight: '1.4' }}>
+                Important Note for Owners
+              </p>
+              <p style={{ margin: '4px 0 0', fontSize: '0.82rem', color: '#1e40af', lineHeight: '1.4' }}>
+                Owners need to pay the platform fees to the admin bank account within 48 hours after a booking is confirmed.
+              </p>
+            </div>
           </div>
-        </div>
+
+          <div className="card" style={{ marginBottom: 16 }}>
+            <h3 style={{ margin: '0 0 12px 0' }}>Tenant Details & Verification</h3>
+            <p><strong>Name:</strong> {bookingInfo.User?.fullName || 'N/A'}</p>
+            <p><strong>Mobile:</strong> {bookingInfo.User?.mobileNumber || 'Not provided'}</p>
+            
+            {bookingInfo.tenantComment && (
+              <div style={{ margin: '8px 0', background: '#f8fafc', padding: '10px 14px', borderRadius: '8px', border: '1px solid #e2e8f0', fontSize: '0.85rem' }}>
+                <span style={{ fontWeight: '700', color: '#334155', display: 'block', marginBottom: '4px' }}>📝 Tenant Motivation Comment</span>
+                <p style={{ margin: 0, color: '#475569', fontStyle: 'italic', whiteSpace: 'pre-wrap', lineHeight: '1.4' }}>"{bookingInfo.tenantComment}"</p>
+              </div>
+            )}
+
+            {bookingInfo.User?.financialDocPath ? (
+              <div style={{ margin: '8px 0', background: '#eff6ff', padding: '10px 14px', borderRadius: '8px', border: '1px solid #bfdbfe', fontSize: '0.85rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                <span style={{ fontWeight: '700', color: '#1e40af' }}>📂 Tenant Financial Verification Document</span>
+                <a href={`${(import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000/api').replace('/api', '')}/${bookingInfo.User.financialDocPath}`} target="_blank" rel="noreferrer" style={{ background: '#1e293b', color: '#ffffff', padding: '4px 10px', borderRadius: '6px', fontWeight: 'bold', fontSize: '0.78rem', textDecoration: 'none' }}>View Document</a>
+              </div>
+            ) : (
+              <div style={{ margin: '8px 0', background: '#fee2e2', padding: '10px 14px', borderRadius: '8px', border: '1px solid #fecaca', fontSize: '0.85rem' }}>
+                <span style={{ fontWeight: '700', color: '#991b1b' }}>✗ Financial Document Missing</span>
+                <span style={{ color: '#7f1d1d', fontSize: '0.8rem', display: 'block', marginTop: '2px' }}>The tenant has not uploaded any financial documents (e.g. payslips) for review yet.</span>
+              </div>
+            )}
+
+            {bookingInfo.status === 'PENDING' && (
+              <div style={{ marginTop: 16 }}>
+                <button type="button" onClick={approveOwnerBooking} style={{ width: '100%', padding: '12px', fontSize: '1rem' }}>Approve Booking</button>
+              </div>
+            )}
+          </div>
+        </>
       )}
 
       {bookingInfo && (
@@ -345,7 +404,6 @@ export default function BookingPaymentPage() {
         </p>
       </div>
 
-      {/* Deposit Refund Info visible to both Tenant and Owner */}
       {quote && Number(quote.depositAmount) > 0 && (
         <div className="card" style={{ padding: '20px 24px', marginBottom: 20, borderLeft: '4px solid #3b82f6' }}>
           <h3 style={{ margin: '0 0 10px 0', fontSize: '1.1rem', color: '#1d4ed8' }}>
@@ -408,10 +466,8 @@ export default function BookingPaymentPage() {
         </div>
       )}
 
-      {/* ── TENANT VIEW ── */}
       {isApproved && isTenantUser && (
         <>
-          {/* Platform fee bank account */}
           {platformAccount && (
             <div className="card" style={{ marginBottom: 16, borderLeft: '4px solid #1f66ea' }}>
               <h3 style={{ margin: '0 0 12px 0', fontSize: '1.1rem' }}>Platform fee bank account</h3>
@@ -454,7 +510,6 @@ export default function BookingPaymentPage() {
             </div>
           )}
 
-          {/* Owner bank account */}
           {ownerAccount && (
             <div className="card" style={{ marginBottom: 16, borderLeft: '4px solid #10b981' }}>
               <h3 style={{ margin: '0 0 12px 0', fontSize: '1.1rem' }}>Owner bank account</h3>
@@ -502,13 +557,30 @@ export default function BookingPaymentPage() {
               )}
             </div>
           )}
+
+          {bookingInfo.Listing?.stayType === 'LONG_TERM' && ['CONFIRMED', 'CHECKED_IN', 'COMPLETED'].includes(bookingInfo.status) && bookingInfo.wohnungsgeberPath && (
+            <div className="card" style={{ marginBottom: 16, borderLeft: '4px solid #10b981', background: '#ecfdf5' }}>
+              <h3 style={{ margin: '0 0 8px 0', fontSize: '1.1rem', color: '#047857' }}>📋 Wohnungsgeberbestätigung Available</h3>
+              <p style={{ color: '#065f46', fontSize: '0.9rem', margin: '0 0 10px 0' }}>The landlord has uploaded the Wohnungsgeberbestätigung. You can download it for your registration (Anmeldung).</p>
+              <a href={`${(import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000/api').replace('/api', '')}/${bookingInfo.wohnungsgeberPath}`} target="_blank" rel="noreferrer" style={{ background: '#10b981', color: '#fff', padding: '8px 16px', borderRadius: '6px', textDecoration: 'none', fontWeight: 'bold', display: 'inline-block' }}>
+                Download Document
+              </a>
+            </div>
+          )}
+
+          {bookingInfo.status === 'PAYMENT_RECEIVED' && (
+            <div className="card" style={{ marginBottom: 16, background: '#ecfdf5', borderLeft: '4px solid #10b981' }}>
+              <h3 style={{ margin: '0 0 4px 0', fontSize: '1.1rem', color: '#047857' }}>Payment Receipt Logged</h3>
+              <p style={{ color: '#065f46', margin: '4px 0' }}>
+                Overall payment is marked as received. Shared Booking Payment ID: <strong>{bookingInfo.paymentId}</strong>
+              </p>
+            </div>
+          )}
         </>
       )}
 
-      {/* ── OWNER/ADMIN VIEW ── */}
       {isApproved && !isTenantUser && (
         <>
-          {/* Owner Rent & Charges Section */}
           <div className="card" style={{ marginBottom: 16, borderLeft: '4px solid #10b981' }}>
             <h3 style={{ margin: '0 0 12px 0', fontSize: '1.1rem' }}>Owner rent payout & reference</h3>
             <div className="notice-panel" style={{ margin: '0 0 12px 0', background: '#f8fafc', border: '1px solid #e2e8f0' }}>
@@ -540,7 +612,6 @@ export default function BookingPaymentPage() {
             </div>
           </div>
 
-          {/* Platform Fee Section */}
           <div className="card" style={{ marginBottom: 16, borderLeft: '4px solid #1f66ea' }}>
             <h3 style={{ margin: '0 0 12px 0', fontSize: '1.1rem' }}>Platform fee payment & reference</h3>
             <div className="notice-panel" style={{ margin: '0 0 12px 0', background: '#f8fafc', border: '1px solid #e2e8f0' }}>
@@ -564,7 +635,6 @@ export default function BookingPaymentPage() {
             </div>
           </div>
 
-          {/* Tenant Refund Details for Security Deposit returns */}
           <div className="card" style={{ marginBottom: 16, borderLeft: '4px solid #3b82f6', background: '#eff6ff' }}>
             <h3 style={{ margin: '0 0 12px 0', fontSize: '1.1rem', color: '#1d4ed8' }}>
               Tenant Security Deposit Refund Details
@@ -623,7 +693,6 @@ export default function BookingPaymentPage() {
               </div>
             )}
 
-            {/* Deduct/Cut Amount feature form for owner */}
             {quote && Number(quote.depositAmount) > 0 && (
               <div style={{ marginTop: '16px', background: '#f8fafc', padding: '16px', borderRadius: '12px', border: '1px dashed #cbd5e1' }}>
                 <h4 style={{ margin: '0 0 12px 0', fontSize: '0.95rem', color: '#334155' }}>
@@ -707,7 +776,6 @@ export default function BookingPaymentPage() {
             )}
           </div>
 
-          {/* Overall Confirmation Block */}
           {bookingInfo.status === 'OWNER_APPROVED' && (
             <div className="card" style={{ marginBottom: 16, borderLeft: '4px solid #f59e0b', background: '#fffbeb' }}>
               <h3 style={{ margin: '0 0 8px 0', fontSize: '1.1rem', color: '#b45309' }}>Confirm Overall Payment</h3>
@@ -728,14 +796,44 @@ export default function BookingPaymentPage() {
                 style={{
                   background: (allApproved && !isProfileWarning) ? '#d97706' : '#cbd5e1',
                   color: '#fff',
-                  padding: '10px 20px',
-                  borderRadius: 8,
+                  padding: '10px 16px',
+                  border: 'none',
+                  borderRadius: '8px',
+                  fontWeight: 'bold',
                   cursor: (allApproved && !isProfileWarning) ? 'pointer' : 'not-allowed',
-                  fontWeight: '600'
+                  fontSize: '0.9rem'
                 }}
               >
-                Confirm Payment Received
+                Confirm Booking is Fully Paid
               </button>
+            </div>
+          )}
+
+          {bookingInfo.Listing?.stayType === 'LONG_TERM' && ['CONFIRMED', 'CHECKED_IN', 'COMPLETED'].includes(bookingInfo.status) && (
+            <div className="card" style={{ marginBottom: 16, borderLeft: '4px solid #10b981' }}>
+              <h3 style={{ margin: '0 0 12px 0', fontSize: '1.1rem', color: '#047857' }}>📋 Wohnungsgeberbestätigung (Landlord Confirmation)</h3>
+              
+              {bookingInfo.wohnungsgeberPath ? (
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                  <div>
+                    <span style={{ fontSize: '0.85rem', color: '#16a34a', fontWeight: '600' }}>✓ Document Stored</span>
+                    <a href={`${(import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000/api').replace('/api', '')}/${bookingInfo.wohnungsgeberPath}`} target="_blank" rel="noreferrer" style={{ marginLeft: '10px', fontSize: '0.82rem', color: '#1f66ea', textDecoration: 'underline' }}>
+                      View Uploaded File
+                    </a>
+                  </div>
+                  <label style={{ background: '#f1f5f9', color: '#475569', padding: '6px 12px', borderRadius: '6px', fontSize: '0.78rem', fontWeight: 'bold', cursor: 'pointer', border: '1px solid #cbd5e1' }}>
+                    Replace File
+                    <input type="file" onChange={uploadWohnungsgeber} style={{ display: 'none' }} />
+                  </label>
+                </div>
+              ) : (
+                <div>
+                  <p style={{ margin: '0 0 10px 0', fontSize: '0.85rem', color: '#64748b' }}>
+                    Upload the signed Wohnungsgeberbestätigung to allow the tenant to register their address (Anmeldung).
+                  </p>
+                  <input type="file" onChange={uploadWohnungsgeber} />
+                </div>
+              )}
             </div>
           )}
 

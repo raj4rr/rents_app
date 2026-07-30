@@ -409,7 +409,7 @@ const calculateDays = (checkIn, checkOut) => {
   return Math.max(1, Math.ceil((end - start) / (1000 * 60 * 60 * 24)));
 };
 
-const calculateMonths = (days) => Math.max(1, Math.ceil(days / 30));
+const calculateMonths = (days) => Math.max(1, Math.round(days / 30.4167));
 
 const calculatePlatformFee = (days, stayType) => {
   if (stayType === 'LONG_TERM') return 100;
@@ -418,7 +418,7 @@ const calculatePlatformFee = (days, stayType) => {
 
 const calculateBookingQuote = (listing, days) => {
   const months = calculateMonths(days);
-  const rentUnits = listing.stayType === 'LONG_TERM' ? months : days;
+  const rentUnits = listing.stayType === 'LONG_TERM' ? 1 : days;
   const rentAmount = Number(listing.baseRent) * rentUnits;
   const platformFee = calculatePlatformFee(days, listing.stayType);
   const depositAmount = Number(listing.depositAmount || 0);

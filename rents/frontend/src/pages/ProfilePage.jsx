@@ -206,7 +206,7 @@ export default function ProfilePage() {
     }
   };
 
-  const fileBaseUrl = 'http://localhost:5000';
+  const fileBaseUrl = (import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000/api').replace('/api', '');
 
   return (
     <section style={{ maxWidth: '800px', margin: '0 auto', padding: '20px 10px' }}>

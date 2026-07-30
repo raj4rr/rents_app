@@ -272,15 +272,6 @@ export default function BookingPage() {
     setQuote(null);
     setMessage('');
 
-    // For long-term listings, only allow check-in on 1st or 15th
-    if (selectedListing?.stayType === 'LONG_TERM') {
-      const day = Number(date.slice(8, 10));
-      if (![1, 15].includes(day)) {
-        setMessage('Long-term check-in must be on the 1st or 15th of a month. Use the quick buttons.');
-        return;
-      }
-    }
-
     if (!form.checkIn || form.checkOut) {
       setForm((prev) => ({ ...prev, checkIn: date, checkOut: '' }));
       return;
@@ -298,6 +289,8 @@ export default function BookingPage() {
 
     setForm((prev) => ({ ...prev, checkOut: date }));
   };
+
+
 
   const chooseNextDay = (dayOfMonth) => {
     const ds = findNextAvailableDay(dayOfMonth);
@@ -456,24 +449,6 @@ export default function BookingPage() {
                 );
               })}
             </div>
-            {selectedListing?.stayType === 'LONG_TERM' && (
-              <div style={{ marginTop: 10 }} className="long-term-controls">
-                <label style={{ marginRight: 10 }}>
-                  Months
-                  <input
-                    type="number"
-                    min={selectedListing?.minStayMonths || 1}
-                    max={12}
-                    value={longTermMonths}
-                    onChange={(e) => setLongTermMonths(e.target.value)}
-                    style={{ width: 80, marginLeft: 8 }}
-                  />
-                </label>
-                <button type="button" onClick={() => chooseNextDay(1)} style={{ marginRight: 8 }}>Next 1st</button>
-                <button type="button" onClick={() => chooseNextDay(15)}>Next 15th</button>
-                <p className="muted">Long-term check-in allowed only on 1st or 15th. Months must be ≥ {selectedListing?.minStayMonths}.</p>
-              </div>
-            )}
           </>
         )}
 
@@ -483,7 +458,14 @@ export default function BookingPage() {
         </div>
         {quote && (
           <>
-            <p><strong>Rent:</strong> €{Number(quote.rentAmount).toFixed(2)} ({quote.durationLabel})</p>
+            <p>
+              <strong>Rent {selectedListing?.stayType === 'LONG_TERM' ? '(1st month)' : ''}:</strong> €{Number(quote.rentAmount).toFixed(2)} ({quote.durationLabel})
+              {selectedListing?.stayType === 'LONG_TERM' && (
+                <span className="muted" style={{ marginLeft: '6px', fontSize: '0.9em' }}>
+                  - First month payment, next months you pay to the owner.
+                </span>
+              )}
+            </p>
             {Number(quote.depositAmount) > 0 && <p><strong>Deposit:</strong> €{Number(quote.depositAmount).toFixed(2)}</p>}
             {Number(quote.cleaningCharge) > 0 && <p><strong>Cleaning Charge:</strong> €{Number(quote.cleaningCharge).toFixed(2)}</p>}
             <p><strong>Platform Fee:</strong> €{Number(quote.platformFee).toFixed(2)}</p>

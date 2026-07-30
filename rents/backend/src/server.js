@@ -30,17 +30,17 @@ cron.schedule('0 10 * * *', async () => {
   console.log(`[BillingJob] ${overdue.length} active bookings checked for reminders`);
 });
 
-// Auto-Confirm Bookings 48 hours after payment receipt is logged by landlord
-cron.schedule('*/10 * * * *', async () => {
+// Auto-Confirm Bookings 10 minutes after payment receipt is logged by landlord
+cron.schedule('*/1 * * * *', async () => {
   try {
     const { Op } = require('sequelize');
-    const fortyEightHoursAgo = new Date(Date.now() - 48 * 60 * 60 * 1000);
+    const tenMinutesAgo = new Date(Date.now() - 10 * 60 * 1000);
 
     const bookingsToConfirm = await Booking.findAll({
       where: {
         status: 'PAYMENT_RECEIVED',
         paymentMarkedAt: {
-          [Op.lte]: fortyEightHoursAgo
+          [Op.lte]: tenMinutesAgo
         }
       }
     });

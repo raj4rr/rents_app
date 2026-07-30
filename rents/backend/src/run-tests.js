@@ -166,19 +166,19 @@ async function runTests() {
     console.log('\nRunning Test 4: Auto-Confirm 48-Hour Booking Job...');
     
     // Create a mock booking marked as paid 50 hours ago
-    const fiftyHoursAgo = new Date(Date.now() - 50 * 60 * 60 * 1000);
+    const elevenMinutesAgo = new Date(Date.now() - 11 * 60 * 1000);
     oldBooking = await Booking.create({
       checkIn: '2026-12-01',
       checkOut: '2026-12-10',
       status: 'PAYMENT_RECEIVED',
-      paymentMarkedAt: fiftyHoursAgo,
+      paymentMarkedAt: elevenMinutesAgo,
       totalAmount: 400,
       userId: tenant.id
     });
 
     // Simulate cron query logic
     const { Op } = require('sequelize');
-    const cutoff = new Date(Date.now() - 48 * 60 * 60 * 1000);
+    const cutoff = new Date(Date.now() - 10 * 60 * 1000);
     
     const overdueBookings = await Booking.findAll({
       where: {
@@ -190,7 +190,7 @@ async function runTests() {
       }
     });
 
-    assert.strictEqual(overdueBookings.length, 1, 'Should find 1 booking older than 48 hours in PAYMENT_RECEIVED state');
+    assert.strictEqual(overdueBookings.length, 1, 'Should find 1 booking older than 10 minutes in PAYMENT_RECEIVED state');
     
     // Auto-confirm it
     overdueBookings[0].status = 'CONFIRMED';
@@ -199,7 +199,7 @@ async function runTests() {
     // Check DB state
     const verifiedBooking = await Booking.findByPk(oldBooking.id);
     assert.strictEqual(verifiedBooking.status, 'CONFIRMED', 'Booking status should be updated to CONFIRMED');
-    console.log('✓ Test 4 Passed: 48-hour auto-confirm job correctly queries and transitions bookings.');
+    console.log('✓ Test 4 Passed: 10-minute auto-confirm job correctly queries and transitions bookings.');
 
     // ── TEST 5: Internal Platform Fees Calculation ──
     console.log('\nRunning Test 5: Internal Platform Fees Calculation...');
