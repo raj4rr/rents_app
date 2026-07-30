@@ -17,6 +17,10 @@ import ListingViewPage from './pages/ListingViewPage';
 import RegisterPage from './pages/RegisterPage';
 import ManageEntityEditPage from './pages/ManageEntityEditPage';
 import BookingPaymentPage from './pages/BookingPaymentPage';
+import CreatePropertyPage from './pages/CreatePropertyPage';
+import CreateApartmentPage from './pages/CreateApartmentPage';
+import CreateRoomPage from './pages/CreateRoomPage';
+import CreateBedPage from './pages/CreateBedPage';
 import FAQPage from './pages/FAQPage';
 import ProfilePage from './pages/ProfilePage';
 import HowItWorksPage from './pages/HowItWorksPage';
@@ -50,6 +54,10 @@ export default function App() {
           <Route path="/manage-entry/booking-requests" element={<ProtectedRoute><BookingRequestsPage /></ProtectedRoute>} />
           <Route path="/manage-entry/my-entries" element={<ProtectedRoute><MyEntriesPage /></ProtectedRoute>} />
           <Route path="/manage-entry/create" element={<ProtectedRoute><CreateEntryPage /></ProtectedRoute>} />
+          <Route path="/manage-entry/create/property" element={<ProtectedRoute><CreatePropertyPage /></ProtectedRoute>} />
+          <Route path="/manage-entry/create/apartment" element={<ProtectedRoute><CreateApartmentPage /></ProtectedRoute>} />
+          <Route path="/manage-entry/create/room" element={<ProtectedRoute><CreateRoomPage /></ProtectedRoute>} />
+          <Route path="/manage-entry/create/bed" element={<ProtectedRoute><CreateBedPage /></ProtectedRoute>} />
           <Route path="/manage-entry/records" element={<ProtectedRoute><ManageRecordsPage /></ProtectedRoute>} />
           <Route path="/manage-entry/bank-account" element={<ProtectedRoute><OwnerBankAccountPage /></ProtectedRoute>} />
           <Route path="/manage-entry/edit/:entity/:id" element={<ProtectedRoute><ManageEntityEditPage /></ProtectedRoute>} />
