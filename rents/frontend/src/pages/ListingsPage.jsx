@@ -3,20 +3,23 @@ import { useEffect, useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import client from '../api/client';
 import SEO from '../components/SEO';
+import { resolveImageUrl } from '../utils/imageUrl';
 
-const ImageCarousel = ({ images, title, setZoomImage }) => {
+const ImageCarousel = ({ images = [], title, setZoomImage }) => {
   const [currentIdx, setCurrentIdx] = useState(0);
 
-  if (!images || images.length === 0) return null;
+  const resolvedImages = useMemo(() => images.map(resolveImageUrl), [images]);
+
+  if (!resolvedImages || resolvedImages.length === 0) return null;
 
   const nextSlide = (e) => {
     e.stopPropagation();
-    setCurrentIdx((prev) => (prev === images.length - 1 ? 0 : prev + 1));
+    setCurrentIdx((prev) => (prev === resolvedImages.length - 1 ? 0 : prev + 1));
   };
 
   const prevSlide = (e) => {
     e.stopPropagation();
-    setCurrentIdx((prev) => (prev === 0 ? images.length - 1 : prev - 1));
+    setCurrentIdx((prev) => (prev === 0 ? resolvedImages.length - 1 : prev - 1));
   };
 
   return (
@@ -24,9 +27,9 @@ const ImageCarousel = ({ images, title, setZoomImage }) => {
       <div className="carousel-container" style={{ position: 'relative', overflow: 'hidden', borderRadius: 12, marginBottom: 8 }}>
         <img
           className="listing-image"
-          src={images[currentIdx]}
+          src={resolvedImages[currentIdx]}
           alt={title}
-          onClick={() => setZoomImage(images[currentIdx])}
+          onClick={() => setZoomImage(resolvedImages[currentIdx])}
           style={{ width: '100%', height: '220px', objectFit: 'cover', cursor: 'zoom-in', display: 'block' }}
         />
         
@@ -123,9 +126,9 @@ const ImageCarousel = ({ images, title, setZoomImage }) => {
       </div>
 
       {/* Thumbnails row */}
-      {images.length > 1 && (
+      {resolvedImages.length > 1 && (
         <div className="gallery-row" style={{ display: 'flex', gap: 6, overflowX: 'auto', paddingBottom: 4 }}>
-          {images.map((img, idx) => (
+          {resolvedImages.map((img, idx) => (
             <img
               key={idx}
               src={img}

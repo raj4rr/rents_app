@@ -3,6 +3,8 @@ import { Link, useNavigate } from 'react-router-dom';
 import client from '../api/client';
 import ManageNav from '../components/ManageNav';
 
+import { resolveImageUrl } from '../utils/imageUrl';
+
 const initialListing = {
   roomId: '',
   bedId: '',
@@ -12,7 +14,7 @@ const initialListing = {
   title: '',
   imageUrl: '',
   imageUrls: [],
-  locationText: '',
+  locationText: 'Britzer Str. 25, 12439 Berlin, Deutschland',
   latitude: '',
   longitude: '',
   rentType: 'WARM',
@@ -30,7 +32,7 @@ const initialListing = {
 
 const Preview = ({ urls = [] }) => (
   <div className="gallery-row" style={{ display: 'flex', gap: '10px', overflowX: 'auto', padding: '10px 0' }}>
-    {urls.map((u, i) => <img key={`${u}-${i}`} src={u} alt={`preview-${i}`} style={{ height: '80px', borderRadius: '8px', objectFit: 'cover' }} />)}
+    {urls.map((u, i) => <img key={`${u}-${i}`} src={resolveImageUrl(u)} alt={`preview-${i}`} style={{ height: '80px', borderRadius: '8px', objectFit: 'cover' }} />)}
   </div>
 );
 

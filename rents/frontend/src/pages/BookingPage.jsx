@@ -153,6 +153,8 @@ const ImageCarousel = ({ images, title }) => {
   );
 };
 
+import { resolveImageUrl } from '../utils/imageUrl';
+
 export default function BookingPage() {
   const [searchParams] = useSearchParams();
   const presetListingId = searchParams.get('listingId') || '';
@@ -227,7 +229,7 @@ export default function BookingPage() {
     if (!selectedListing) return [];
     const images = [...(selectedListing.imageUrls || [])];
     if (selectedListing.imageUrl && !images.includes(selectedListing.imageUrl)) images.unshift(selectedListing.imageUrl);
-    return images;
+    return images.map(resolveImageUrl);
   }, [selectedListing]);
 
   const onListingChange = (e) => {

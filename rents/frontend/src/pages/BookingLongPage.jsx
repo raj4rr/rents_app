@@ -2,6 +2,8 @@ import { useEffect, useMemo, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import client from '../api/client';
 
+import { resolveImageUrl } from '../utils/imageUrl';
+
 export default function BookingLongPage() {
   const [searchParams] = useSearchParams();
   const presetListingId = searchParams.get('listingId') || '';
@@ -40,7 +42,7 @@ export default function BookingLongPage() {
     if (selectedListing.Room?.Apartment?.imageUrls?.length) {
       selectedListing.Room.Apartment.imageUrls.forEach((u) => { if (!all.includes(u)) all.push(u); });
     }
-    return all;
+    return all.map(resolveImageUrl);
   }, [selectedListing]);
 
   const [heroImage, setHeroImage] = useState('');

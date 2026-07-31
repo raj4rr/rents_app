@@ -3,6 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import client from '../api/client';
 import ManageNav from '../components/ManageNav';
 
+import { resolveImageUrl } from '../utils/imageUrl';
+
 export default function ManageRecordsPage() {
   const navigate = useNavigate();
   const user = useMemo(() => {
@@ -124,7 +126,7 @@ export default function ManageRecordsPage() {
             const preview = getPreviewImage(manageEntityTab, row);
             return (
               <div key={`${manageEntityTab}-${row.id}`} className="manage-item">
-                {preview ? <img src={preview} alt={`${manageEntityTab}-${row.id}`} className="manage-thumb" /> : <div className="manage-thumb empty">No image</div>}
+                {preview ? <img src={resolveImageUrl(preview)} alt={`${manageEntityTab}-${row.id}`} className="manage-thumb" /> : <div className="manage-thumb empty">No image</div>}
                 <div className="manage-content">
                   <p className="manage-title">#{row.id} {getPrimaryLine(manageEntityTab, row)}</p>
                   <p className="manage-sub">{getSecondaryLine(manageEntityTab, row)}</p>

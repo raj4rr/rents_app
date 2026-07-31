@@ -19,6 +19,8 @@ const maxImagesByEntity = {
 
 const parseCsv = (raw) => String(raw || '').split(',').map((x) => x.trim()).filter(Boolean);
 
+import { resolveImageUrl } from '../utils/imageUrl';
+
 export default function ManageEntityEditPage() {
   const { entity, id } = useParams();
   const [form, setForm] = useState(null);
@@ -130,7 +132,7 @@ export default function ManageEntityEditPage() {
               <p className="muted" style={{ marginBottom: 8 }}>Uploaded Images</p>
               <div className="gallery-row">
                 {previewUrls.length === 0 && <span className="muted">No images uploaded</span>}
-                {previewUrls.map((url, i) => <img key={`${url}-${i}`} src={url} alt={`uploaded-${i}`} className="gallery-thumb" />)}
+                {previewUrls.map((url, i) => <img key={`${url}-${i}`} src={resolveImageUrl(url)} alt={`uploaded-${i}`} className="gallery-thumb" />)}
               </div>
               <input
                 type="file"
