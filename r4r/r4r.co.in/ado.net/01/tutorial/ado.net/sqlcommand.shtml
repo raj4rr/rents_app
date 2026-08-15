@@ -1,0 +1,209 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>The SQLCOMMAND OBJECT;Creating a SqlCommand Object;Querying Data;Inserting Data;Updating Data;Deleting Data;Getting Single Values</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="The SQLCOMMAND OBJECT;Creating a SqlCommand Object;Querying Data;Inserting Data;Updating Data;Deleting Data;Getting Single Values" >
+<meta name="keywords" CONTENT="The SQLCOMMAND OBJECT;Creating a SqlCommand Object;Querying Data;Inserting Data;Updating Data;Deleting Data;Getting Single Values">
+
+<!-- header start-->	
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>ADO.NET</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+            <img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+            <a href="/ado.net">ADO.Net</a>
+              <img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+
+			  <a href="/ado.net/01/tutorial/ado.net/">ADO.NET Tutorials</a>
+
+              </div>
+
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/ado.net/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	 
+<!-- header End-->	
+
+<div class="heading">The SQLCOMMAND OBJECT</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="Component-classes.shtml" title="Component classes">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="Command_Constructors.shtml" title="Command Constructors">Next</a></td>
+  </tr> 
+</table>
+
+<p>When we have a more complex query that retrieves records from different tables, or don't wado.net the UPDATE command to check for changes in the database before updating it, we can specify our own SQL commands.The Command object enables  to execute queries against  data source. in order to retrieve data, you must know the schema of your database as well as how to build a valid SQL query. The Command objects allow developers to specify parameters dynamically at run time. When defining the SQL statement we use a placeholder instead of a particular value. Then we use the Parameters collection of the Command object to define the dynamic column value.The SqlCommand object must be used in conjunction with the SqlConnection object</p>
+<h3>Creating a SqlCommand Object</h3>
+<div class="code">
+<pre>
+SqlCommand cmd = new SqlCommand(&quot;select CategoryName from Categories&quot;,
+                  new sqlconnection(parameter));
+</pre>
+</div>
+
+<h3>Querying Data</h3>
+<p>using a SQL select command</p>
+<ol>
+<li>Instado.netiate a new command with a query and connection</li>
+<div class="code">
+<pre>
+
+SqlCommand cmd = new SqlCommand(&quot;select EmployeeName 
+                                    from Emp&quot;,conn);
+</pre>
+</div>
+
+<li>Call Execute reader to get query results</li>
+<div class="code">
+<pre>
+SqlDataReader dr = cmd.ExecuteReader();
+</pre>
+</div>
+</ol>
+
+<h3>Inserting Data</h3>
+<p>using a SQL insert command,To insert data into a database, use the ExecuteNonQuery method of the SqlCommand object.</p>
+
+<ol><li>Insert command string</li>
+<div class="code">
+<pre>
+string insertString = @&quot;insert into 
+           Emp(EmpName, Post)values 
+	   ('Aditya', 'S\w Engg')&quot;;
+</pre>
+</div>
+
+<li>Instado.netiate a new command with a query and connection</li>
+<div class="code">
+<pre>
+SqlCommand cmd = new SqlCommand(insertString, conn);
+</pre>
+</div>
+
+<li>Call ExecuteNonQuery to send command</li>
+<div class="code">
+<pre>
+cmd.ExecuteNonQuery();
+</pre>
+</div>
+</ol>
+
+<h3>Updating Data</h3>
+<p>using a SQL update command,To update data into a database, use the ExecuteNonQuery method of the SqlCommand object.</p>
+<ol><li>prepare command string</li>
+<div class="code">
+<pre>
+
+string updateString = "update Emp set EmpName 
+        = 'Ashish' where CategoryName = 'Raj'";
+</pre></div>
+
+<li> Instado.netiate a new command with command text only</li>
+<div class="code">
+<pre>
+SqlCommand cmd = new SqlCommand(updateString,conn);
+</pre>
+</div>
+
+<li>Call ExecuteNonQuery to send command</li>
+<div class="code">
+<pre>
+cmd.ExecuteNonQuery();
+</pre></div>
+</ol>
+
+<h3>Deleting Data</h3>
+<p>using a SQL delete command,To delete data into a database, use the ExecuteNonQuery method of the SqlCommand object.</p>
+<ol><li>delete command string</li>
+<div class="code">
+<pre>
+string deleteString =" delete from Emp
+             where EmpName = 'Ashish'";
+</pre>
+</div>
+
+<li> Instado.netiate a new command</li>
+<div class="code">
+<pre>
+SqlCommand cmd = new SqlCommand();
+</pre>
+</div>
+
+<li>Set the CommandText property</li>
+<div class="code">
+<pre> 
+cmd.CommandText = deleteString;
+</pre>
+</div>
+
+<li> Set the Connection property</li>
+<div class="code">
+<pre>
+cmd.Connection = conn;
+</pre></div>
+
+<li>Call ExecuteNonQuery to send command</li>
+<div class="code">
+<pre>
+cmd.ExecuteNonQuery();</pre>
+</div>
+</ol>
+
+<h3>Getting Single Values</h3>
+<p>For getting a single value we can use  count, sum, average, or other aggregated value from a data set.</p> 
+<ol><li>Instado.netiate a new command</li>
+<div class="code">
+<pre>
+SqlCommand cmd = new SqlCommand(&quot;select count(*)
+                        from Categories&quot;, conn);
+</pre>
+</div>
+
+<li>Call ExecuteNonQuery to send command</li>
+<div class="code">
+<pre> int count = (int)cmd.ExecuteScalar();</pre>
+</div>
+</ol>
+
+ <table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="Component-classes.shtml" title="Component classes">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="Command_Constructors.shtml" title="Command Constructors">Next</a></td>
+  </tr> 
+</table>
+<!-- Footer Start-->		
+		</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/dotnet/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->

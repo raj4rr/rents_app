@@ -1,0 +1,14 @@
+//To input number:-Sum in C#
+using System;
+class x
+{
+	public static void Main()
+	{
+		Console.WriteLine("Enter Number  --->");
+		String n=System.Console.ReadLine();
+		String m=System.Console.ReadLine();	
+		int sum=Int32.Parse(n)+Int32.Parse(m);
+		Console.WriteLine("The sum is --->"+sum);
+	
+	}		
+}

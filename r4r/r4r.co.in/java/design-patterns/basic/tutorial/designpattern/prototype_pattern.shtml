@@ -1,0 +1,133 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD>
+<meta http-equiv="Content-Language" content="en-us">
+<TITLE>Prototype Design Pattern Pattern</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name="description" CONTENT="Prototype Design Pattern Pattern" >
+<meta name="keywords" CONTENT="Prototype Design Pattern Pattern">
+
+<!-- header start-->	
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>Design Pattern Basic Tutorial</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+
+            <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/java/">java</a>
+              <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/java/design-patterns/">Design Pattern</a>
+
+              </div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/design-patterns/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	 
+<!--header end-->                        	
+
+<div class="heading">Prototype Pattern</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="creational_pattern.shtml" title="creational_pattern">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="singleton.shtml" title="singleton">Next</a></td>
+  </tr> 
+</table>
+
+<p>The prototype pattern is allow us to copy of an existing object or allow to clone of an existing object instead of creating the new object and It may be also customized as per the requirement. It is allow to copy the existing objects for avoid so much overhead. We can implement the clone method by the clonable interface for copy of the existing object.</p>
+
+<div class="heading">Benefit of the Prototype Pattern</div>
+<ol>
+<li>It supports for specifying the new objects with varying structure and varying values.
+</li><li>
+It also allow to adding and removing products at runtime.
+</li><li>
+It allow dynamically configuring the classes for an application and reducing sub-classes.
+</li></ol>
+
+<div class="heading">Usage of Prototype Pattern</div>
+<p>The prototype pattern is used when we are not interested into construction of a class hierarchy of factories that is parallel to products class hierarchy. The class Instances have only one combination of state, and the classes are instantiated at run-time.</p>
+
+<h3>Example</h3>
+<div class="code">
+<pre>
+<font color="#0000ff">package </font><font color="#000000">r4r;</font>
+<font color="#0000ff">class </font><font color="#000000">Complex {</font>
+<font color="#0000ff">int</font><font color="#000000">[] nums = {</font><font color="#800080">2</font><font color="#000000">,</font><font color="#800080">4</font><font color="#000000">,</font><font color="#800080">5</font><font color="#000000">,</font><font color="#800080">1</font><font color="#000000">,</font><font color="#800080">3</font><font color="#000000">};</font>
+<font color="#0000ff">public </font><font color="#000000">Complex clone() {</font>
+<font color="#0000ff">return new </font><font color="#000000">Complex();</font>
+<font color="#000000">}</font>
+<font color="#0000ff">int</font><font color="#000000">[] getNums() {</font>
+<font color="#0000ff">return </font><font color="#000000">nums;</font>
+<font color="#000000">}</font>
+<font color="#000000">}</font>
+<font color="#0000ff">class </font><font color="#000000">prototypetests {</font>
+<font color="#000000">Complex c1 = </font><font color="#0000ff">new </font><font color="#000000">Complex();</font>
+<font color="#000000">Complex makeCopy() {</font>
+<font color="#0000ff">return </font><font color="#000000">(Complex)c1.clone();</font>
+<font color="#000000">}</font>
+<font color="#0000ff">public static void </font><font color="#000000">main(</font><font color="#ff0000">String</font><font color="#000000">[] args) {</font>
+<font color="#000000">prototypetests pp = </font><font color="#0000ff">new </font><font color="#000000">prototypetests();</font>
+<font color="#000000">Complex cx = pp.makeCopy();</font>
+<font color="#0000ff">int</font><font color="#000000">[] mycopy = cx.getNums();</font>
+<font color="#000000">mycopy[</font><font color="#800080">0</font><font color="#000000">] = </font><font color="#800080">5</font><font color="#000000">;</font>
+
+<font color="#ff0000">System</font><font color="#000000">.out.println();</font>
+<font color="#ff0000">System</font><font color="#000000">.out.print(</font><font color="#ff00ff">&quot;local array: &quot;</font><font color="#000000">);</font>
+<font color="#0000ff">for</font><font color="#000000">(</font><font color="#0000ff">int </font><font color="#000000">i = </font><font color="#800080">0</font><font color="#000000">; i &lt; mycopy.length; i++)</font>
+<font color="#ff0000">System</font><font color="#000000">.out.print(mycopy[i]);</font>
+<font color="#ff0000">System</font><font color="#000000">.out.println();</font>
+
+<font color="#ff0000">System</font><font color="#000000">.out.print(</font><font color="#ff00ff">&quot;clon of object: &quot;</font><font color="#000000">);</font>
+<font color="#0000ff">for</font><font color="#000000">(</font><font color="#0000ff">int </font><font color="#000000">j = </font><font color="#800080">0</font><font color="#000000">; j &lt; cx.nums.length; j++)</font>
+<font color="#ff0000">System</font><font color="#000000">.out.print(cx.nums[j]);</font>
+<font color="#ff0000">System</font><font color="#000000">.out.println();</font>
+
+<font color="#ff0000">System</font><font color="#000000">.out.print(</font><font color="#ff00ff">&quot;Original object: &quot;</font><font color="#000000">);</font>
+<font color="#0000ff">for</font><font color="#000000">(</font><font color="#0000ff">int </font><font color="#000000">k = </font><font color="#800080">0</font><font color="#000000">; k &lt; pp.c1.nums.length; k++)</font>
+<font color="#ff0000">System</font><font color="#000000">.out.print(pp.c1.nums[k]);</font>
+<font color="#000000">}</font>
+<font color="#000000">}</font>
+</pre>
+</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="creational_pattern.shtml" title="creational_pattern">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="singleton.shtml" title="singleton">Next</a></td>
+  </tr> 
+</table>
+
+<!-- Footer Start-->	   	
+
+		</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->

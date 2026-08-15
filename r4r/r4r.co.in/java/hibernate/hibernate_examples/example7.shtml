@@ -1,0 +1,427 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<HTML><HEAD><TITLE>Insert Data into One or More than One table in the database Using Hibernate|Hibernate examples</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv="content-type" content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="Hibernate Insert Data into One or More than One table in the database Using Hibernate tutorial learn How Insert, delete, update,
+validate, fetch data from database in Hibernate" >
+<meta name="keywords" CONTENT="Hibernate tutorial, Examples, Basics, Beginners, Fresher, Insert Data into One or More than One table in the database Using Hibernate ">
+
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<META http-equiv="Content-Language" content="en-us">
+<link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+<link href="/css/main.css" rel="stylesheet" type="text/css" />
+</HEAD>
+<BODY>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>Hibernate</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+            <img src="/images/left_menu_bullet.gif"/> <a href="/java/hibernate/">Hibernate</a>
+             </div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top">
+                            <?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/hibernate/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                       <div class="main_content">  	 
+
+      <div class="heading">Inserting Data into One or More than One table in the database Using Hibernate and JSP</div>
+
+      <table id="indexing">
+
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="example6.shtml" title="Simple Application Without Database">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="example8.shtml" title="Fetch Data from Database">Next</a></td>
+  </tr> 
+</table>
+      <p>
+          Here we will discuss that how to work with the struts and hibernate. We can work with the 
+          hibernate and struts together. One example we will discuss here below. We will use here 
+          NetBenas and Mysql with Hibernate. We follow the some basic step that are given below:
+      </p>
+      <p>
+          Step 1. First of all we need to create a web application for this we go in the file menu 
+          wizard -> click on the new Project -> click on java web and then java web application -> 
+          put the name on the required field -> select the server which we want to use here to build 
+          the project -> first select to hibernate and then select to struts framework. (if we do not 
+          add the struts framework then we can use this by the adding jar file directly) -> now click 
+          on finish.
+      </p>
+      <h3>hibernate.cfg.xml</h3>
+      <div class="code">
+<pre><code class="language-xml">
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate 
+Configuration DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd"&gt;
+&lt;hibernate-configuration&gt;
+  &lt;session-factory&gt;
+    &lt;property name="hibernate.dialect"&gt;org.hibernate.dialect.MySQLDialect&lt;/property&gt;
+    &lt;property name="hibernate.connection.driver_class"&gt;com.mysql.jdbc.Driver&lt;/property&gt;
+    &lt;property name="hibernate.connection.url"&gt;jdbc:mysql://localhost:3306/hibernate_pro&lt;/property&gt;
+    &lt;property name="hibernate.connection.username"&gt;root&lt;/property&gt;
+    &lt;property name="hibernate.connection.password"&gt;root&lt;/property&gt;
+    
+    &lt;!-- Map the annotated entity class --&gt;
+    &lt;mapping class="r4r.AddStruts"/&gt;
+  &lt;/session-factory&gt;
+&lt;/hibernate-configuration&gt;
+</code></pre>
+      </div>
+      <p>
+          Step 2. Now we create a table on the given database which we select on the configuration file.
+      </p>
+      <div class="code">
+          <pre><code class="language-sql">
+create table AddStruts
+(
+id int not null auto_increment primary key,
+fname varchar(50),
+lname varchar(50),
+mob varchar(50),
+address varchar(50),
+state varchar(50),
+city varchar(50),
+pin int(6)
+)
+</code></pre>
+      </div>
+
+      <p>
+          Step 3. Now we need to create a jsp page click on file menu wizard -> new file -> 
+          web and jsp -> put the name on the required field -> click on finish.
+      </P>
+      <div class="code">
+          <pre><code class="language-java">
+&lt;%@taglib uri="/struts-tags" prefix="s" %&gt;
+&lt;%@page contentType="text/html" pageEncoding="UTF-8"%&gt;
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+    &lt;head&gt;
+        &lt;meta http-equiv="Content-Type" content="text/html; charset=UTF-8"&gt;
+    &lt;title&gt;&lt;s:text name="Welcome Page"/&gt;&lt;/title&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;s:form action="insert" method="post"&gt;
+            &lt;s:textfield label="First Name" name="fname"/&gt;
+            &lt;s:textfield label="Last Name" name="lname"/&gt;
+            &lt;s:textfield label="Address" name="address"/&gt;
+            &lt;s:textfield label="State" name="state"/&gt;
+            &lt;s:textfield label="City" name="city"/&gt;
+            &lt;s:textfield label="Pin Code" name="pin"/&gt;
+            &lt;s:submit value="Submit"/&gt;
+        &lt;/s:form&gt;
+    &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+      </div>
+<p>
+    Step 4. Now we need to create a package to store the action and pojo class. 
+    for this we need to go in the file menu wizard and -> click on new file -> 
+    search java and the opposite side click on package -> type the name of the 
+    package which we want -> click on finish.
+</p>
+<p>
+    Step 5. Now we need to create reverse eng file . Go in the file menu wizard -> 
+    new file click on -> hibernate and reverse eng file -> select table which we 
+    created in the database -> click on finsih.
+</p>
+<div class="code">
+   <pre><code class="language-java">
+ &lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;!DOCTYPE hibernate-reverse-engineering PUBLIC "-//Hibernate/Hibernate 
+Reverse Engineering DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-reverse-engineering-3.0.dtd"&gt;
+&lt;hibernate-reverse-engineering&gt;
+  &lt;schema-selection match-catalog="hibernate_pro"/&gt;
+  &lt;table-filter match-name="AddStruts"/&gt;
+&lt;/hibernate-reverse-engineering&gt;
+</code></pre>
+</div>   
+<p>
+    Step 5. Now create a pojo class on the created package. click on file menu wizard -> 
+    new file -> hibernate -> hibernate pojo class -> select package -> click on finish.
+</p> 
+    <p>
+        Instead of using legacy `.hbm.xml` mapping files, we map the entity directly using JPA annotations like <code>@Entity</code> and <code>@Table</code>.
+    </p>
+<h3>AddStrust.java</h3>  
+<div class="code">
+    <pre><code class="language-java">
+package r4r;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="AddStruts")
+public class AddStruts  implements java.io.Serializable {
+    
+     @Id
+     @GeneratedValue(strategy=GenerationType.IDENTITY)
+     private Integer id;
+     
+     private String fname;
+     private String lname;
+     private String mob;
+     private String address;
+     private String state;
+     private String city;
+     private Integer pin;
+
+    public AddStruts() {
+    }
+
+    public AddStruts(String fname, String lname, String mob, String address, String state, String city, Integer pin) {
+       this.fname = fname;
+       this.lname = lname;
+       this.mob = mob;
+       this.address = address;
+       this.state = state;
+       this.city = city;
+       this.pin = pin;
+    }
+
+    public Integer getId() {
+        return this.id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+    public String getFname() {
+        return this.fname;
+    }
+
+    public void setFname(String fname) {
+        this.fname = fname;
+    }
+    public String getLname() {
+        return this.lname;
+    }
+
+    public void setLname(String lname) {
+        this.lname = lname;
+    }
+    public String getMob() {
+        return this.mob;
+    }
+
+    public void setMob(String mob) {
+        this.mob = mob;
+    }
+    public String getAddress() {
+        return this.address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+    public String getState() {
+        return this.state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
+    }
+    public String getCity() {
+        return this.city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+    public Integer getPin() {
+        return this.pin;
+    }
+
+    public void setPin(Integer pin) {
+        this.pin = pin;
+    }
+
+}
+</code></pre>
+</div>
+<p>
+    Step 6. Now we need to create a java class for the creating the session with the hibernate. 
+    go in file menu wizard -> click on new file -> java -> java class -> put the name on the required 
+    field -> select to package -> finish.
+</p>  
+<div class="code">
+   <pre><code class="language-java">
+ package r4r;
+import org.hibernate.SessionFactory;
+import org.hibernate.cfg.Configuration;
+
+public class HibernatePlug 
+{
+	private static SessionFactory factory = getSessionFactory();
+
+	public static synchronized SessionFactory getSessionFactory() 
+	{	
+	try {	    
+
+	    Configuration cfg = new Configuration();
+	    cfg.configure("hibernate.cfg.xml"); 
+
+	    SessionFactory sessionFactory = cfg.buildSessionFactory();
+	    System.out.println(" ----------   Factory Object Created  ------------");
+	    return sessionFactory;
+
+	     }             catch (Throwable ex) {
+	    System.err.println("Initial SessionFactory creation failed." + ex);
+	     throw new ExceptionInInitializerError(ex);
+	      }
+	  }
+
+	public static SessionFactory getFactory() {
+	return factory;
+	}
+
+}
+</code></pre>
+</div>     
+<p>
+    Step 6. Now we need to create a action class. go in file menu wizard -> click on new file -> 
+    java -> java class -> put the name on the required field -> select to package -> finish.
+</p>   
+
+<div class="code">
+    <pre><code class="language-java">
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package R4R_Dao;
+
+/**
+ *
+ * @author sarvesh
+ */
+import com.opensymphony.xwork2.ActionSupport;
+import com.opensymphony.xwork2.ModelDriven;
+import com.opensymphony.xwork2.Preparable;
+import org.hibernate.HibernateException;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+import org.hibernate.cfg.Configuration;
+import R4R.AddStruts;
+
+public class AddData extends ActionSupport implements ModelDriven, Preparable {
+
+	    AddStruts employee;
+	    SessionFactory sessionFactory = null;
+	    Session session = null;
+
+            @Override
+	    public String execute() {
+	        try {
+	            sessionFactory = new Configuration().configure().buildSessionFactory();
+	            session = sessionFactory.openSession();
+	            Transaction transaction = session.beginTransaction();
+	            session.saveOrUpdate(employee);
+	            transaction .commit();
+	            System.out.println("Record Inserted Successfully");
+	        } catch (HibernateException hibernateException) {
+	            System.out.println(hibernateException.getMessage());
+	            session.close();
+	            return "ERROR";
+	        }
+	        return "SUCCESS";
+	    }
+
+	    @Override
+	    public AddStruts getModel() {
+	        return employee;
+	    }
+	    @Override
+	    public void prepare() throws Exception {
+	        employee = new AddStruts();
+	    }
+	}
+</code></pre>
+</div>   
+<p>
+    Step 7. Now we need to modified to the struts.xml file for making the action.
+</p>   
+<div class="code">
+    <pre><code class="language-java">
+&lt;!DOCTYPE struts PUBLIC
+"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+"http://struts.apache.org/dtds/struts-2.0.dtd"&gt;
+
+&lt;struts&gt;
+    &lt;!-- Configuration for the default package. --&gt;
+    &lt;package name="default" extends="struts-default"&gt;
+                &lt;action name="insert" class="R4R_Dao.AddData"&gt;
+	            &lt;result name="SUCCESS"&gt;/Success.jsp&lt;/result&gt;
+
+	             &lt;result name="ERROR"&gt;/Error.jsp&lt;/result&gt;
+	        &lt;/action&gt;
+    &lt;/package&gt;
+&lt;/struts&gt;
+</code></pre>
+</div>   
+<p>
+    Step 8. Now we need some another jsp file for performing the action so we need to create 
+    as we already to create a jsp page so follow that step.
+</p> 
+<div class="code">
+    <pre><code class="language-java">
+&lt;%@page contentType="text/html" pageEncoding="UTF-8" import="R4R_Dao.AddData"%&gt;
+	&lt;!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+	   "http://www.w3.org/TR/html4/loose.dtd"&gt;
+	&lt;%@taglib prefix="s"  uri="/struts-tags"%&gt;
+	&lt;html&gt;
+	    &lt;head&gt;
+	        &lt;meta http-equiv="Content-Type" content="text/html; charset=UTF-8"&gt;
+	        &lt;title&gt;JSP Page&lt;/title&gt;
+    &lt;/head&gt;
+	    &lt;body&gt;&lt;center&gt;
+	            &lt;br&gt;  &lt;br&gt;  &lt;br&gt;  &lt;br&gt;
+	            &lt;h1 style="color:chocolate"&gt; &lt;s:property value="name"/&gt; registered successfully !!&lt;/h1&gt;
+	               &lt;/center&gt;
+	           &lt;/body&gt;
+	&lt;/html&gt;
+</code></pre>
+</div>     
+        <p>Step 9. Now we will run the project. so right click on the project node -> click on clean and build -> then run.</p>   
+
+        <p>Step 10. Now check to the database table.</p>
+        <table id="indexing">
+
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="example6.shtml" title="Simple Application Without Database">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="example8.shtml" title="Fetch Data from Database">Next</a></td>
+  </tr> 
+</table>
+
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+
+                <?php @include($_SERVER['DOCUMENT_ROOT'] . '/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>

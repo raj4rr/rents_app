@@ -1,0 +1,143 @@
+	<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+
+<HTML><HEAD><TITLE>Configuration of ContextLoaderListener</TITLE>
+
+<META content="r4r.co.in" name="owner">
+<META http-equiv="content-type" content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="Configuration of ContextLoaderListener,spring,spring mvc,spring2.5,spring2.5 mvc" >
+<meta name="keywords" CONTENT="Configuration of ContextLoaderListener,spring,spring mvc,spring2.5,spring2.5 mvc">
+
+<!-- header start-->	
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>Spring Framework</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+           <img src="/images/left_menu_bullet.gif" width="11" height="6"/>  <a href="/java/">Java</a>       <img src="/images/left_menu_bullet.gif" width="11" height="6"/><a href="/java/spring/">Spring</a>
+
+              </div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/spring/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	 
+
+<!-- header End--> 
+
+<div class="heading">Configuration of ContextLoderListener</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="Introduction_of_ContextLoaderListener.shtml" title="Introduction_of_ContextLoaderListener">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="Introduction_of_Controller.shtml" title="Introduction_of_Controller">Next</a></td>
+  </tr> 
+</table>
+
+<p>The ContextLoderListener provide the facility to configure all spring configuration file(s) to load.This information are writen in the web.xml file which are store in the WEB -INF folder of web application directery structure, in the web.xml file following type you are configure the ContextLoaderListener:</p>
+<div class="code">
+<PRE>
+<FONT COLOR="#0000ff">&lt;</FONT><FONT COLOR="#808000">listener</FONT><FONT COLOR="#0000ff">&gt;</FONT>
+<FONT COLOR="#0000ff">&lt;</FONT><FONT COLOR="#808000">listener-class</FONT><FONT COLOR="#0000ff">&gt;</FONT>
+<FONT COLOR="#000000">org.springframework.web.context.ContextLoaderListener</FONT>
+<FONT COLOR="#0000ff">&lt;/</FONT><FONT COLOR="#808000">listener-class</FONT><FONT COLOR="#0000ff">&gt;</FONT>
+<FONT COLOR="#0000ff">&lt;/</FONT><FONT COLOR="#808000">listener</FONT><FONT COLOR="#0000ff">&gt;</FONT>
+</PRE>
+</div>
+
+<p>And you are give the <i>spring configuration file(s)</i> information which are followint type configure:	</p>
+<div class="code">
+<PRE>
+<font color="#0000ff">&lt;</font><font color="#808000">context-param</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">param-name</font><font color="#0000ff">&gt;</font>
+<font color="#000000">contextConfigLocation</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">param-name</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">param-value</font><font color="#0000ff">&gt;</font>
+<font color="#000000">/WEB-INF/dispatcher-servlet.xml</font>
+<font color="#000000">/WEB-INF/data-servlet.xml</font>
+<font color="#000000">/WEB-INF/info-servlet.xml</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">param-value</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">context-param</font><font color="#0000ff">&gt;</font>
+</pre>
+</div>
+<p>Both listener-class and param-name all are configure following:</p>
+
+<div class="code">
+<pre>
+<font color="#0000ff">&lt;?xml </font><font color="#ff0000">version</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;1.0&quot; </font><font color="#ff0000">encoding</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;UTF-8&quot;</font><font color="#800080">?</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">web-app </font>
+<font color="#800080">xmlns:xsi</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</font>
+<font color="#ff0000">xmlns</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;http://java.sun.com/xml/ns/javaee&quot; </font>
+<font color="#800080">xmlns:web</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;</font>
+<font color="#ff00ff">http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd&quot;</font>
+<font color="#800080">xsi:schemaLocation</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;http://java.sun.com/xml/ns/javaee </font>
+<font color="#ff00ff">http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd&quot;</font>
+<font color="#800080">id</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;WebApp_ID&quot; </font><font color="#ff0000">version</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;2.5&quot;</font><font color="#0000ff">&gt;</font>
+
+<font color="#0000ff">&lt;</font><font color="#808000">display-name</font><font color="#0000ff">&gt;</font><font color="#000000">SpringMVC</font><font color="#0000ff">&lt;/</font><font color="#808000">display-name</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">context-param</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">param-name</font><font color="#0000ff">&gt;</font><font color="#000000">contextConfigLocation</font><font color="#0000ff">&lt;/</font><font color="#808000">param-name</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">param-value</font><font color="#0000ff">&gt;</font><font color="#000000">/WEB-INF/dispatcher-servlet.xml</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">param-value</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">context-param</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">listener</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">listener-class</font><font color="#0000ff">&gt;</font>
+<font color="#000000">org.springframework.web.context.</font>
+<font color="#000000">ContextLoaderListener</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">listener-class</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">listener</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">servlet</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">servlet-name</font><font color="#0000ff">&gt;</font><font color="#000000">dispatcher</font><font color="#0000ff">&lt;/</font><font color="#808000">servlet-name</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">servlet-class</font><font color="#0000ff">&gt;</font>
+<font color="#000000">org.springframework.web.servlet.DispatcherServlet</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">servlet-class</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">load-on-startup</font><font color="#0000ff">&gt;</font><font color="#000000">1</font><font color="#0000ff">&lt;/</font><font color="#808000">load-on-startup</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">servlet</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">servlet-mapping</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">servlet-name</font><font color="#0000ff">&gt;</font><font color="#000000">dispatcher</font><font color="#0000ff">&lt;/</font><font color="#808000">servlet-name</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">url-pattern</font><font color="#0000ff">&gt;</font><font color="#000000">*.html</font><font color="#0000ff">&lt;/</font><font color="#808000">url-pattern</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">servlet-mapping</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">welcome-file-list</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">welcome-file</font><font color="#0000ff">&gt;</font><font color="#000000">index.jsp</font><font color="#0000ff">&lt;/</font><font color="#808000">welcome-file</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">welcome-file-list</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">web-app</font><font color="#0000ff">&gt;</font>
+</pre>
+</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="Introduction_of_ContextLoaderListener.shtml" title="Introduction_of_ContextLoaderListener">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="Introduction_of_Controller.shtml" title="Introduction_of_Controller">Next</a></td>
+  </tr> 
+</table>
+
+<!-- Footer Start-->
+
+		</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->

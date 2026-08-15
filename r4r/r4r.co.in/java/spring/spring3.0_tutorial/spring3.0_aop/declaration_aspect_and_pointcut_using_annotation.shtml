@@ -1,0 +1,122 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD>
+<meta http-equiv="Content-Language" content="en-us">
+<TITLE>Declaration aspect and pointcut using annotation in spring </TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name="description" CONTENT="Declaration aspect and pointcut using annotation in spring tutorial provides full
+description and live example with interview questions" >
+<meta name="keywords" CONTENT="Declaration aspect and pointcut using annotation in spring,AOP(aspect oriented programming)Spring, tutorial, fresher,beginners, inversion of control (IoC), dependency injection, bean scopes, bean life cycle, inner beans,
+ autowiring, different modules">
+
+		<!-- header start-->	
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+     <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>Spring Tutorials</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+			<img src="/images/left_menu_bullet.gif"/> <a href="/spring/">Spring</a>
+
+       </div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/spring/commonfiles/leftmenucore.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	 
+
+<div class="heading">Declaring an aspect using Annotation</div>
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="spring_aop_aspectj_annotation_with_example.shtml" title="spring_aop_aspectj_annotation_with_example">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="declaration_aop_advice_using_annotation.shtml" title="declaration_aop_advice_using_annotation">Next</a></td>
+  </tr> 
+</table>
+<p>Aspects classes are like any other normal bean and may have methods and fields just like any other class,With the @AspectJ support enabled, any bean defined in your application context with a class that is an @AspectJ aspect will be automatically detected by Spring and used to configure Spring AOP. Except that they will be annotated with @Aspect as follows:</p>
+<h3>Java Class</h3>
+<div class="code">
+<pre>
+<font color="#0000ff">package </font><font color="#000000">org.r4r</font>
+<font color="#0000ff">import </font><font color="#000000">org.aspectj.lang.annotation.Aspect;</font>
+<font color="#000000">@</font><font color="#0000ff">Aspect</font>
+<font color="#0000ff">public class </font><font color="#000000">LoginAspect {</font>
+<font color="#000000">}</font>
+</pre>
+</div>
+<p>A regular bean definition in the application context, pointing to a bean class that has the @Aspect annotation:</p>
+<h3>Configuration file(Beans.xml)</h3>
+<div class="code">
+<pre>
+<font color="#0000ff">&lt;</font><font color="#808000">bean </font><font color="#800080">id</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;loginAspect&quot; </font><font color="#800080">class</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;org.r4r.LoginAspect&quot;</font><font color="#0000ff">&gt;</font>
+<font color="#008000">&lt;!-- configure properties of aspect here as normal --&gt;</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">bean</font><font color="#0000ff">&gt;</font>
+</pre>
+</div>
+<div class="heading">Declaring a pointcut using Annotation</div>
+<p>Pointcut is an expression language of Spring AOP. The<font class="point_out"> @Pointcut</font> annotation is used to define the pointcut. A pointcut helps in determining the join points (ie methods) of interest to be executed with different advices. While working with @AspectJ based configuration,Spring AOP only supports method execution join points for Spring beans, so you can think of a pointcut as matching the execution of methods on Spring beans.</p><p>A pointcut declaration has two parts: a signature comprising a name and any parameters, and a pointcut expression that determines exactly which method executions we are interested in. In the @AspectJ annotation-style of AOP, a pointcut signature is provided by a regular method definition, and the pointcut expression is indicated using the @Pointcut annotation.</p>
+
+<p>The set of pointcut designators supported by Spring AOP may be extended in future releases to support more of the AspectJ pointcut designators.</p>
+<p><i>execution:</i> for matching method execution join points, this is the primary pointcut designator you will use when working with Spring AOP.</p>
+<p><i>within:</i> limits matching to join points within certain types (simply the execution of a method declared within a matching type when using Spring AOP).</p>
+<p><i>this:</i> limits matching to join points where the bean reference (Spring AOP proxy) is an instance of the given type.</p>
+<p><i>target:</i> limits matching to join pointswhere the target object (application object being proxied) is an instance of the given type.</p>
+<p><i>args:</i> limits matching to join points where the arguments are instances of the given types.</p>
+<p><i>@target:</i> limits matching to join points where the class of the executing object has an annotation of the given type.</p>
+<p><i>@args:</i> limits matching to join points where the runtime type of the actual arguments passed have annotations of the given type(s).</p>
+<p><i>@within:</i> limits matching to join points within types that have the given annotation (the execution of methods declared in types with the given annotation when using Spring AOP).</p>
+<p><i>@annotation:</i> limits matching to join points where the subject of the join point (method being executed in Spring AOP) has the given annotation.</i>
+<p>The following example defines a pointcut named<font class="point_out"> 'loginService'</font> that will match the execution of every method available in the classes under the package<font class="point_out"> com.xyz.myapp.service:</font></p>
+<div class="code">
+<pre>
+<font color="#0000ff">import </font><font color="#000000">org.aspectj.lang.annotation.Pointcut;</font>
+<font color="#000000">@</font><font color="#0000ff">Pointcut</font><font color="#000000">(</font><font color="#ff00ff">&quot;execution(* com.xyz.in.myapp.service *(..))&quot;</font><font color="#000000">)</font>
+<font color="#008000">//expression</font>
+<font color="#0000ff">private void </font><font color="#000000">loginService() {} </font><font color="#008000">// signature</font>
+</pre>
+</div>
+
+<p>The following example defines a pointcut named 'getname' that will match the execution of getName() method available in Employee class under the package com.r4r</p>
+<div class="code">
+<pre>
+<font color="#0000ff">import </font><font color="#000000">org.aspectj.lang.annotation.Pointcut;</font>
+<font color="#000000">@</font><font color="#0000ff">Pointcut</font><font color="#000000">(</font><font color="#ff00ff">&quot;execution(* com.r4r.Employee.getName(..))&quot;</font><font color="#000000">)</font>
+<font color="#0000ff">private void </font><font color="#000000">getname() {}</font>
+</pre>
+</div>
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="spring_aop_aspectj_annotation_with_example.shtml" title="spring_aop_aspectj_annotation_with_example">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="declaration_aop_advice_using_annotation.shtml" title="declaration_aop_advice_using_annotation">Next</a></td>
+  </tr> 
+</table>
+
+		</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->

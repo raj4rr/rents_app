@@ -1,0 +1,270 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<HTML><HEAD><TITLE>Insert data into database using Hibernate|Hibernate tutorial</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv="content-type" content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="Hibernate Insert data into database using Hibernate- Learn How to insert data in database using servlet in hibernet stepwise 
+with Hibernet examples" >
+<meta name="keywords" CONTENT="Hibernate Insert data into database, How to insert data in database, How to insert data into database with servlet and JSP,
+Objects, Collections, interceptors, Hibernate Interview Question, basics of hibernate native sql">
+
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<META http-equiv="Content-Language" content="en-us">
+<link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+<link href="/css/main.css" rel="stylesheet" type="text/css" />
+</HEAD>
+<BODY>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>Hibernate</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+            <img src="/images/left_menu_bullet.gif"/> <a href="/java/hibernate/">Hibernate</a>
+             </div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top">
+                            <?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/hibernate/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                       <div class="main_content">  	 
+
+      <div class="heading">Insert data into database with Servlet and JSP Using Hibernate</div>
+
+      <table id="indexing">
+
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="example21.shtml" title="Delete Data from Database">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="example2.shtml" title="Fetch Data from Database">Next</a></td>
+  </tr> 
+</table>
+      <p>
+          Here we will discuss How to Send Data in Data Base (INSERT Operation in One Table) Using 
+          Servlet and JSP in Hibernate. Hibernate provide the facility without writing procedure 
+          for the database connectivity for sending the data into the database. For Send Data in 
+          Data Base (INSERT Operation in One Table) Using Servlet and JSP in Hibernate we need to 
+          follow some basic step which are given below:
+      </p>
+      <h3>Step 1. DataBase Creation (MySQL)</h3>
+      <p>(a). create Database hibernate_pro; (Store all table into this database)</p>
+      <p>(b). use hibernate_pro; (here use means is activate means all database activity store in this database like as table)</p>
+      <div class="code">
+          <pre><code class="language-sql">
+(c). create table InsertData
+(
+id int auto_increment not null primary key,
+first_name varchar(50),
+last_name varchar(50),
+age varchar(50)
+)
+</code></pre>
+      </div>
+      <p>(d). select * from InsertData;</p>
+      <h3>Step 2. Prepration of application on NetBeans</h3>
+      <p>1. Take a new Project name is \'HibernateApplicationUsingServlet\' First of all we will 
+          select to File Menu Wizard -> then click on NewProject -> Click on JavaWeb -> then Web 
+          Application -> click on Next -> Write the name of the Project -> select the server on 
+          which want to deploy the project -> click on Hibernate -> click on database connection 
+          -> hibernate_pro -> finish. Then given outlook will be the project on NetBeans
+      </p>
+      <h3>hibernate.cfg.xml</h3>
+      <div class="code">
+<pre><code class="language-xml">
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd"&gt;
+&lt;hibernate-configuration&gt;
+  &lt;session-factory&gt;
+    &lt;property name="hibernate.dialect"&gt;org.hibernate.dialect.MySQLDialect&lt;/property&gt;
+    &lt;property name="hibernate.connection.driver_class"&gt;com.mysql.jdbc.Driver&lt;/property&gt;
+    &lt;property name="hibernate.connection.url"&gt;jdbc:mysql://localhost:3306/hibernate_pro&lt;/property&gt;
+    &lt;property name="hibernate.connection.username"&gt;root&lt;/property&gt;
+    &lt;property name="hibernate.connection.password"&gt;root&lt;/property&gt;
+    
+    &lt;!-- Map the annotated entity class --&gt;
+    &lt;mapping class="r4r.InsertData"/&gt;
+  &lt;/session-factory&gt;
+&lt;/hibernate-configuration&gt;
+</code></pre>
+      </div>
+      <h3>Step 3. Take a JSP page for the user view point.</h3>
+      <p>For this we need to go in File Menu Wizard -> click on New File Wizard -> click on web and 
+          then click on also jsp -> next -> jsp page name give here which you want -> click on finish.
+      </p>
+      <h3>index.jsp</h3>
+      <div class="code">
+          <pre><code class="language-java">
+&lt;%@page contentType=\"text/html\" pageEncoding=\"UTF-8\"%&gt;
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+    &lt;head&gt;
+        &lt;meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\"&gt;
+        &lt;title&gt;HibernateApplicationUsingServlet&lt;/title&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;pre&gt;
+        &lt;form action=\"MyServlet\" method=\"post\"&gt;
+        First Name      &lt;input type=\"text\" name=\"fist_name\"/&gt;
+        Last Name       &lt;input type=\"text\" name=\"last_name\"/&gt;
+        Age             &lt;select name=\"age\"&gt;
+                        &lt;option&gt;--Select Age--&lt;/option&gt;
+                        &lt;option&gt;0 to 10&lt;/option&gt;
+                        &lt;option&gt;10 to 20&lt;/option&gt;
+                        &lt;option&gt;20 to 30&lt;/option&gt;
+                        &lt;option&gt;30 to above&lt;/option&gt;
+                        &lt;/select&gt;
+        &lt;input type=\"submit\" value=\"Submit\"/&gt;
+      &lt;/form&gt;
+        &lt;/pre&gt;
+    &lt;/body&gt;   
+&lt;/html&gt;
+</code></pre>
+      </div>
+
+    <h3>Step 4. Create the Entity Class (POJO) with JPA Annotations</h3>
+    <p>
+        Instead of using legacy XML mapping files, we will use modern JPA annotations to map our Java class to the database table. Create a new Java class named <code>InsertData</code> in the <code>r4r</code> package.
+    </p>
+    <div class="code">
+       <pre><code class="language-java">
+package r4r;
+
+import java.util.Date;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="InsertData")
+public class InsertData {
+
+    @Id
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    private int id;
+    
+    private String first_name;
+    private String last_name;
+    private String age;
+    private Date recordDate;
+
+    public InsertData() {}
+
+    public InsertData(String first_name, String last_name, String age, Date recordDate) {
+        this.first_name = first_name;
+        this.last_name = last_name;
+        this.age = age;
+        this.recordDate = recordDate;
+    }
+
+    // Getters and Setters omitted for brevity
+}
+</code></pre>
+    </div>
+    <h3>
+        Step 6: Now we need to create a action page of servlet. for creating the 
+        servlet page we need to go in File Menu wizard-> new file-> web & opposite 
+        side search to servlet click on it -> mark on add information as given in the 
+        image below and then click on finish.
+    </h3> 
+    <h3>Step 7.  Add this code into the default servlet page code</h3>
+    <div class="code">
+       <pre><code class="language-java">
+ public class MyServlet extends HttpServlet 
+{
+
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        response.setContentType(\"text/html;charset=UTF-8\");
+        String fist_name, last_name, age;
+        fist_name = request.getParameter(\"fist_name\");
+        last_name = request.getParameter(\"last_name\");
+        age = request.getParameter(\"age\");
+        SessionFactory sf = new Configuration().configure().buildSessionFactory();
+            Session s = sf.openSession();
+            Transaction tr = s.beginTransaction();
+        InsertData id = new InsertData(fist_name, last_name, age, new Date());
+ s.save(id);
+        tr.commit();
+        s.close();
+        try (PrintWriter out = response.getWriter()) {
+            /* TODO output your page here. You may use following sample code. */
+            out.println(\"&lt;!DOCTYPE html&gt;\");
+            out.println(\"&lt;html&gt;\");
+            out.println(\"&lt;head&gt;\");
+            out.println(\"&lt;title&gt;Servlet MyServlet&lt;/title&gt;\");            
+            out.println(\"&lt;/head&gt;\");
+            out.println(\"&lt;body&gt;\");
+            out.println(\"&lt;h1&gt;Welcome \" + fist_name + \"&lt;/h1&gt;\");
+            out.println(\"&lt;/body&gt;\");
+            out.println(\"&lt;/html&gt;\");
+        }
+    }
+</code></pre>
+    </div>
+    <p>Point to remember - servlet file should be in the web.xml file as given below:</p> 
+    <div class="code">
+       <pre><code class="language-java">
+&lt;?xml version=\"1.0\" encoding=\"UTF-8\"?&gt;
+&lt;web-app version=\"3.1\" xmlns=\"http://
+xmlns.jcp.org/xml/ns/javaee\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" 
+xsi:schemaLocation=\"http://xmlns.jcp.org/xml/ns/javaee 
+http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd\"&gt;
+    &lt;servlet&gt;
+        &lt;servlet-name&gt;MyServlet&lt;/servlet-name&gt;
+        &lt;servlet-class&gt;r4r.MyServlet&lt;/servlet-class&gt;
+    &lt;/servlet&gt;
+    &lt;servlet-mapping&gt;
+        &lt;servlet-name&gt;MyServlet&lt;/servlet-name&gt;
+        &lt;url-pattern&gt;/MyServlet&lt;/url-pattern&gt;
+    &lt;/servlet-mapping&gt;
+    &lt;session-config&gt;
+        &lt;session-timeout&gt;
+            30
+        &lt;/session-timeout&gt;
+    &lt;/session-config&gt;
+    &lt;welcome-file-list&gt;
+        &lt;welcome-file&gt;index.html&lt;/welcome-file&gt;
+    &lt;/welcome-file-list&gt;
+&lt;/web-app&gt;
+</code></pre> 
+    </div>
+    <h3>
+        Step 8.  After all doing the Now we need to build and run the project for this we need to 
+        go in the menu wizard -> click on run menu -> click on clean and build the project -> 
+        then click on the run when successfully build the project.
+    </h3>
+    <p>input the given form as click on submit welcome message will come on the screen.</p>
+    <p>check the data base for the data is going in the data base or not.</p>
+
+      <table id="indexing">
+
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="example21.shtml" title="Delete Data from Database">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="example2.shtml" title="Fetch Data from Database">Next</a></td>
+  </tr> 
+</table>
+
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+
+                <?php @include($_SERVER['DOCUMENT_ROOT'] . '/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>

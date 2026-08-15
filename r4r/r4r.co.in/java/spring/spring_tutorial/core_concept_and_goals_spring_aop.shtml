@@ -1,0 +1,117 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD>
+<meta http-equiv="Content-Language" content="en-us">
+<TITLE>Spring core concept and goals spring aop</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name="description" CONTENT="Spring core concept and goals spring aop tutorial for Beginner, freshers,
+aop examples stewise with examples" >
+<meta name="keywords" CONTENT="spring, tutorial,spring aop expression, spring aop expression syntax
+core concepts and goals spring aop">
+
+		<!-- header start-->	
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+     <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>Spring Tutorials</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+			<img src="/images/left_menu_bullet.gif"/> <a href="/java/spring/">Spring</a>
+
+       </div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/spring/commonfiles/leftmenucore.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content">
+<!-- LEGACY BANNER START -->
+<div style="background: rgba(255, 244, 229, 0.9); border-left: 5px solid #ff9800; padding: 20px; margin-bottom: 25px; border-radius: 8px; font-family: 'Inter', sans-serif; box-shadow: 0 4px 6px rgba(0,0,0,0.05);">
+    <h3 style="margin-top: 0; color: #e65100; font-size: 1.2rem; display: flex; align-items: center; gap: 8px;">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+        Legacy Spring Framework Warning
+    </h3>
+    <p style="margin-bottom: 0; color: #5d4037; font-size: 1.05rem; line-height: 1.5;">
+        This tutorial teaches an outdated version of Spring using <strong>legacy XML configuration</strong> (<code>applicationContext.xml</code>). Modern Spring applications rely on <strong>Spring Boot</strong> and <strong>Java Annotations</strong>. This page is preserved for historical context and maintaining legacy systems.
+    </p>
+</div>
+<!-- LEGACY BANNER END -->
+ 	 
+
+<div class="heading">Core concept of Aspects Oriented Programming (AOP)</div>
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="aop_introduction.shtml" title="aop_introduction">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="aop_proxies_and_implementation.shtml" title="aop_proxies_and_implementation">Next</a></td>
+  </tr> 
+</table>
+<p>There are  some central AOP concepts and terminology as given below:</p>
+<ol>
+<li><i>Aspect:</i> a modularization of a concern that cuts across multiple classes. Transaction management is a good example of a crosscutting concern in enterprise Java applications. In Spring AOP, aspects are implemented using regular classes (the schema-based approach) or regular classes annotated with the @Aspect annotation (the @AspectJ style).</li>
+<li>
+<i>Join point:</i> a point during the execution of a program, such as the execution of a method or the handling of an exception. In Spring AOP, a join point always represents a method execution.</li>
+<li>
+<i> Advice:</i> action taken by an aspect at a particular join point. Different types of advice include "around," "before" and "after" advice. Many AOP frameworks, including Spring, model an advice as an interceptor, maintaining a chain of interceptors around the join point.</li>
+<li>
+<i>Pointcut:</i> a predicate that matches join points. Advice is associated with a pointcut expression and runs at any join point matched by the pointcut (for example, the execution of a method with a certain name). The concept of join points as matched by pointcut expressions is central to AOP, and Spring uses the AspectJ pointcut expression language by default.</li>
+<li>
+<i>Introduction:</i> declaring additional methods or fields on behalf of a type. Spring AOP allows you to introduce new interfaces (and a corresponding implementation) to any advised object. <p>For example, you could use an introduction to make a bean implement an IsModified interface, to simplify caching. (An introduction is known as an inter-type declaration in the AspectJ community.)</p></li>
+<li>
+<i>Target object:</i> object being advised by one or more aspects. Also referred to as the advised object. Since Spring AOP is implemented using runtime proxies, this object will always be a proxied object.</li>
+<li>
+<i>AOP proxy:</i> an object created by the AOP framework in order to implement the aspect contracts (advise method executions and so on). In the Spring Framework, an AOP proxy will be a JDK dynamic proxy or a CGLIB proxy.</li>
+<li>
+<i>Weaving:</i> linking aspects with other application types or objects to create an advised object. This can be done at compile time (using the AspectJ compiler, for example), load time, or at runtime. Spring AOP, like other pure Java AOP frameworks, performs weaving at runtime.</li>
+</ol>
+
+<div class="heading">Spring AOP capabilities and goals</div>
+ <p>There are some AOP capabilities in Spring framework as given below:</p>
+ <ol>
+ <li>
+ Spring AOP is implemented in pure Java. There is no need for a special compilation process. Spring AOP does not need to control the class loader hierarchy, and is thus suitable for use in a Servlet container or application server.</li>
+<li>
+ Spring AOP currently supports only method execution join points (advising the execution of methods on Spring beans). Field interception is not implemented, although support for field interception could be added without breaking the core Spring AOP APIs. If you need to advise field access and update join points, consider a language such as AspectJ.</li>
+<li>
+ Spring AOPs approach to AOP differs from that of most other AOP frameworks. The aim is not to provide the most complete AOP implementation (although Spring AOP is quite capable); it is rather to provide a close integration between AOP implementation and Spring IoC to help solve common problems in enterprise applications.</li>
+<li>
+ Spring Frameworks AOP functionality is normally used in conjunction with the Spring IoC container. Aspects are configured using normal bean definition syntax (although this allows powerful "autoproxying" capabilities): this is a crucial difference from other AOP implementations.<p> There are some things you cannot do easily or efficiently with Spring AOP, such as advise very fine-grained objects (such as domain objects typically): AspectJ is the best choice in such cases. However, our experience is that Spring AOP provides an excellent solution to most problems in enterprise Java applications that are amenable to AOP.</p></li>
+<li>
+ Spring AOP will never strive to compete with AspectJ to provide a comprehensive AOP solution. We believe that both proxy-based frameworks like Spring AOP and full-blown frameworks such as AspectJ are valuable, and that they are complementary, rather than in competition. <p>Spring seamlessly integrates Spring AOP and IoC with AspectJ, to enable all uses of AOP to be catered for within a consistent Spring-based application architecture. This integration does not affect the Spring AOP API or the AOP Alliance API: Spring AOP remains backward-compatible.</p> </li>
+ </ol>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="aop_introduction.shtml" title="aop_introduction">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="aop_proxies_and_implementation.shtml" title="aop_proxies_and_implementation">Next</a></td>
+  </tr> 
+</table>
+
+		</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->

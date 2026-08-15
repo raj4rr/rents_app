@@ -1,0 +1,152 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>C Tutorial on POINTER and POINTER DECLARATION</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="Learn POINTER in C,POINTER DECLARATION,Arrays,Structures,Pointers,Storage class,Loops,Functions,Data types,C constants,Union,Preprocessor,Interview questions and answers" >
+<meta name="keywords" CONTENT="POINTER in C,POINTER DECLARATION,Pointer example,Arrays,Structures,Pointers,Storage class,Loops,Functions,Data types,C constants,Union,Preprocessor,Interview questions and answers">
+
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+     <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>C Programming language</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a><img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/c/">C </a>
+              <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/c/basic_tutorials/06/">C Tutorial</a></div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/c/commonfiles/leftmenu.shtml'); ?></td>
+
+                       <td style="80%" valign="top">
+                        <div class="main_content"> 
+
+	<!-- header End-->
+
+    <div class="heading">Pointer in C :Definition and declaration</div>
+
+<table id="indexing">
+  <tr>
+   <td style="width:33%; text-align:left;"><a href="CALL_BY_VALUE_AND_CALL_BY_REFERENCE.shtml" title="Function in C: call by value and call by reference">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="POINTER_EXPRESSION_AND_POINTER_ARITHMETIC.shtml" title="Pointer in C: Pointer expression and pointer airthmetic">Next</a></td>
+  </tr>
+</table>
+
+<h2>Pointer</h2>
+<p>Generally a pointer is a variable which keeps the address of another variable. pointer  points to a memory location in which data is stored. Each memory cell in the computer has an address that can be used to access that location. through the pointer we can change the contents of memory locations.</p>
+
+<h2>Pointer declaration</h2>
+<p>A pointer is a variable that contains the memory location of another variable. The syntax is as shown below. You start by specifying the type of data stored in the location identified by the pointer. The asterisk tells the compiler that you are creating a pointer variable. Finally you give the name of the variable.</p>
+<div class="code">
+<PRE>
+<FONT COLOR="#000000">type * variable name </FONT>
+</PRE>
+</div>
+
+<h3>Example</h3>
+<div class="code">
+<PRE>
+<FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">*ptr; </FONT>
+<FONT COLOR="#0000ff">float </FONT><FONT COLOR="#000000">*string;</FONT>
+</PRE>
+</div>
+
+<h2>Address operator</h2>
+<p>Once we declare a pointer variable we must point it to something we can do this by assigning to the pointer the address of the variable you want to point as in the following example:</p>
+<div class="code">
+<PRE>
+<FONT COLOR="#000000">ptr=&amp;num; </FONT>
+</PRE>
+</div>
+
+<p>This places the address where num is stores into the variable ptr. If num is stored in memory 21260 address then the variable ptr has the value 21260.</p>
+<p>Another declaration to the pointer is given below:</p>
+<div class="code">
+<PRE>
+<FONT COLOR="#0000ff">int</FONT><FONT COLOR="#000000">*alpha;</FONT>
+
+<FONT COLOR="#0000ff">char</FONT><FONT COLOR="#000000">*ch;</FONT>
+
+<FONT COLOR="#0000ff">float</FONT><FONT COLOR="#000000">*s;</FONT>
+</PRE>
+</div>
+
+<p>Here above alpha,ch and s are declared as the pointer variable and trually these three can hold the address of next variable according to above declaration. so we can say that pointers are variables that contain addresses, and since addresses are always whole numbers, pointers
+would always contain whole numbers </p>
+<div class="code">
+<PRE>
+<FONT COLOR="#008000">/* A program to illustrate pointer declaration*/ </FONT>
+
+<FONT COLOR="#000000">main() </FONT>
+<FONT COLOR="#000000">{ </FONT>
+<FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">*ptr; </FONT>
+<FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">multiplication; </FONT>
+<FONT COLOR="#000000">multiplication=</FONT><FONT COLOR="#800080">20</FONT><FONT COLOR="#000000">; </FONT>
+<FONT COLOR="#000000">ptr=*</FONT>
+<FONT COLOR="#000000">printf (\n Sum is %d\n, sum); </FONT>
+<FONT COLOR="#000000">printf (\n The sum pointer is %d, ptr); </FONT>
+<FONT COLOR="#000000">}</FONT>
+</PRE>
+</div>
+
+<p>we will get the same result by assigning the address of num to a regular(non pointer) variable. The benefit is that we can also refer to the pointer variable as *ptr the asterisk tells to the computer that we are not interested in the value 21260 but in the value stored in that memory location. While the value of pointer is 21260 the value of sum is 45 however we can assign a value to the pointer * ptr as in *ptr=45.</p>
+
+<p>This means place the value 45 in the memory address pointer by the variable ptr. Since the pointer contains the address 21260 the value 45 is placed in that memory location. And since this is the location of the variable num the value also becomes 45. this shows how we can change the value of pointer directly using a pointer and the indirection pointer.</p>
+
+<div class="code">
+<PRE>
+<FONT COLOR="#008000">/* Program to display the contents of the variable their address <br>
+   using pointer variable*/ </FONT>
+
+<FONT COLOR="#000000">include&lt; stdio.h &gt; </FONT>
+<FONT COLOR="#000000">{ </FONT>
+<FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">num, *intptr; </FONT>
+<FONT COLOR="#0000ff">float </FONT><FONT COLOR="#000000">x, *floptr; </FONT>
+<FONT COLOR="#0000ff">char </FONT><FONT COLOR="#000000">ch, *cptr; </FONT>
+<FONT COLOR="#000000">num=</FONT><FONT COLOR="#800080">123</FONT><FONT COLOR="#000000">; </FONT>
+<FONT COLOR="#000000">x=</FONT><FONT COLOR="#800080">12</FONT><FONT COLOR="#000000">.</FONT><FONT COLOR="#800080">34</FONT><FONT COLOR="#000000">; </FONT>
+<FONT COLOR="#000000">ch=a; </FONT>
+<FONT COLOR="#000000">intptr=&amp;x; </FONT>
+<FONT COLOR="#000000">cptr=&amp;ch; </FONT>
+<FONT COLOR="#000000">floptr=&amp;x; </FONT>
+<FONT COLOR="#000000">printf(Num %d stored at address %u\n,*intptr,intptr); </FONT>
+<FONT COLOR="#000000">printf(Value %f stored at address %u\n,*floptr,floptr); </FONT>
+<FONT COLOR="#000000">printf(Character %c stored at address %u\n,*cptr,cptr); </FONT>
+<FONT COLOR="#000000">}</FONT>
+</PRE>
+</div>
+
+<table id="indexing">
+  <tr>
+   <td style="width:33%; text-align:left;"><a href="CALL_BY_VALUE_AND_CALL_BY_REFERENCE.shtml" title="Function in C: call by value and call by reference">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="POINTER_EXPRESSION_AND_POINTER_ARITHMETIC.shtml" title="Pointer in C: Pointer expression and pointer arithmetic">Next</a></td>
+  </tr>
+</table>
+
+<!--Footer  --> 
+   </div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>

@@ -1,0 +1,146 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>Initialize the array of structures,How we use Array of Structures in C data structures?</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="Learn How we use Array of Structures in C data structures,Initialize the array of structures with examples" >
+<meta name="keywords" CONTENT="c tutorial,c basics,programming language,examples,pointer,function,loop,else,if else,while,array,pre processor,post processor,structures,memory menagement,string,constants,variables,decisions making,c unions,c memory allocation, c operators, C pointers,c error handling, c file handling">
+	<link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+    <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>C Programming language</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a><img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/c/">C </a>
+              <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/c/c_topics/c_data_structures">C Data structures</a></div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/c/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 
+
+	<!-- Header End-->
+    <div class="heading">Array of Structures in C Data structures</div>
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="array_delete.shtml" title="C - Delete value from an Array">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="exmple_arrof_structures.shtml" title="C - Example of Array of structure">Next</a></td>
+  </tr>
+</table>
+
+<p>As we are aware of the fact that the structures in the C language provides a mechanism to incorporate different data types within a same structure like integers, floats and character values which are known as structure members. As a fact, structures are simple to define if there are only one or two elements but in case if too many objects are needed e.g.. to show the data of each student of a class, in that case we 
+introduces the concept of the array of the structures. </p><p><i>We can declare an array of structures as follows :</i></p>
+
+<div class="code">
+    <pre><font><font color="#ff0000">#include </font><font>&lt;stdio.h&gt;</font>
+    <font color="#0000ff">struct </font><font>studentinfo</font>
+    <font>{</font>
+    <font color="#0000ff">int </font><font>rollno.;</font>
+    <font color="#0000ff">char </font><font>name[</font><font color="#800080">21</font><font>];</font>
+    <font color="#0000ff">char </font><font>sex;</font>
+    <font>};</font>
+    <font>studentinfo detail[</font><font color="#800080">35</font><font>];</font>
+    </font></pre>
+</div>
+<p>In the above declaration, we have defined a structure named studentinfo which keeps the information about a particular student like rollno. of the student , name and sex. Then after defining the structure we have declared an array of structures we can contain 35 objects of such structure and can incorporate the details of 35 students.</p>
+<h2>Initializing the array of structures</h2>
+<p>An array of structure can initialized in the same manner as we initialize a simple array. It must be kept in mind that only the static and external variables are initialized, lets understand to initialize a array of structure by taking this example :</p>
+<div class="code">
+<pre><font><font color="#ff0000">#include </font><font>&lt;stdio.h&gt;</font>
+ <font color="#008000">
+ /* we have taken a structure which  stores 
+ the information about the information about a particular employee */</font>
+<font color="#0000ff">struct </font><font>employeeinfo </font>
+<font>{</font>
+<font color="#0000ff">int </font><font>emp_id;</font>
+<font color="#0000ff">char </font><font>sex;</font>
+<font color="#0000ff">int </font><font>salary;</font>
+<font>};</font>
+ <font color="#008000">
+ /* here we have declared an array of structure i.e. data 
+ which is of employeeinfo type and</font>
+<font color="#008000"> contains the 3 objects of above defined structure 
+i.e. of employeeinfo */</font>
+<font>employeeinfo data[</font><font color="#800080">3</font><font>] = { {</font><font color="#800080">1001</font><font>, </font><font color="#ff00ff">'M'</font><font>, </font><font color="#800080">10000</font><font>}, 
+{</font><font color="#800080">1002</font><font>, </font><font color="#ff00ff">'F'</font><font>, </font><font color="#800080">8000</font><font>}, {</font><font color="#800080">1003</font><font>, </font><font color="#ff00ff">'M'</font><font>, </font><font color="#800080">15000</font><font>}};</font></font></pre>
+</div>
+
+<p><i>The above initialized values will be considered or assigned by the compiler in the following manner :</i></p>
+<div class="table_content">
+<table>
+	<tr>
+    	<td style="width:33%;" class="alternate_heading1">data[0].emp_id = 1001</td>
+        <td style="width:34%;" class="alternate_heading1">data[0].sex = 'M'</td>
+        <td style="width:33%;" class="alternate_heading1">data[0].salary = 10000</td>
+    </tr>
+    <tr>
+    	<td style="width:33%;" class="alternate_heading1">data[1].emp_id = 1002</td>
+        <td style="width:34%;" class="alternate_heading1">data[1].sex = 'F'</td>
+        <td style="width:33%;" class="alternate_heading1">data[1].salary = 8000</td>
+    </tr>
+    <tr>
+    	<td style="width:33%;" class="alternate_heading1">data[2].emp_id = 1003</td>
+        <td style="width:34%;" class="alternate_heading1">data[2].sex = 'M'</td>
+        <td style="width:33%;" class="alternate_heading1">data[2].salary = 15000</td>
+    </tr>
+</table>
+</div>
+<div class="code"><font>
+<font>employeeinfo data[</font><font color="#800080">3</font><font>] = { {</font><font color="#800080">1001</font><font>, </font><font color="#ff00ff">'M'</font><font>}, {</font><font color="#800080">1002</font><font>, </font><font color="#ff00ff">'F'</font><font>}, {</font><font color="#800080">1003</font><font>, </font><font color="#ff00ff">'M'</font><font>}};</font></font>
+</div>
+<p>The above initialized values will be considered or assigned by the compiler in the following manner :</p>
+
+<div class="table_content">
+<table>
+	<tr>
+    	<td style="width:33%;" class="alternate_heading1">data[0].emp_id = 1001</td>
+        <td style="width:34%;" class="alternate_heading1">data[0].sex = 'M'</td>
+        <td style="width:33%;" class="alternate_heading1">data[0].salary = 0</td>
+    </tr>
+    <tr>
+    	<td style="width:33%;" class="alternate_heading1">data[1].emp_id = 1002</td>
+        <td style="width:34%;" class="alternate_heading1">data[1].sex = 'F'</td>
+        <td style="width:33%;" class="alternate_heading1">data[1].salary = 0</td>
+    </tr>
+    <tr>
+    	<td style="width:33%;" class="alternate_heading1">data[2].emp_id = 1003</td>
+        <td style="width:34%;" class="alternate_heading1">data[2].sex = 'M'</td>
+        <td style="width:33%;" class="alternate_heading1">data[2].salary = 0</td>
+    </tr>
+</table>
+</div>    
+<p>Where uninitialized element i.e. salary is provided with the default value of zero</i></p>    
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="array_delete.shtml" title="C - Delete value from an Array">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="exmple_arrof_structures.shtml" title="C - Example of Array of structure">Next</a></td>
+  </tr>
+</table>
+
+<!--Footer  --> 
+</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>

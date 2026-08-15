@@ -1,0 +1,202 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD>
+<meta http-equiv="Content-Language" content="en-us">
+<TITLE>What is the LEFT JOIN in MySQL,Which type declare MySQL LEFT JOIN ,What is the Differences between MySQL Join and LEFT JOIN</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name="description" CONTENT="What is the LEFT JOIN in MySQL,Which type declare MySQL LEFT JOIN ,What is the Differences between MySQL Join and LEFT JOIN" >
+<meta name="keywords" CONTENT="What is the LEFT JOIN in MySQL,Which type declare MySQL LEFT JOIN ,What is the Differences between MySQL Join and LEFT JOIN">
+
+<!-- header start-->	
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>PHP Programing language</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+            <img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+            <a href="/php/">PHP</a>
+
+              </div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/php/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	  
+
+	   	   <div class="heading">PHP MySQL Left Join</div>
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="php_mysql_joins.shtml" title="PHP MySQL JOIN">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="php_mysql_update.shtml" title="PHP MySQL UPDATE">Next</a></td>
+</table>
+
+<!-- header End-->	
+
+<p>We are know in this previous lesson how to join two table , and this lesson we will read a Left join.</p>
+<h3>Declaration MySQL LEFT JOIN</h3> 
+<p>The normal join and left join between more differences available:</p>
+<p>The normal join is simply join for two table , but the left join syntax is quite different and somewhat more complex. Besides looking different, the LEFT JOIN gives extra consideration to the table that is on the left. &quot;on the left&quot; is being simply refers to the table that it's appearing before the LEFT JOIN in our SQL statement. </p>
+<p>This extra consideration to the left table can be thought of as special kind of preservation. Each item in the left table will show up in a MySQL result, even if there isn't a match with the other table that it is being joined to.</p>
+<div class="heading">Differences between MySQL Join and LEFT JOIN</div>
+<h3>Family Table</h3>
+<div class="table_content">
+<table>
+<tr>
+<td class="heading" style="width:50%;">Position</td>
+<td class="heading" style="width:50%;">Age</td>
+</tr>
+<tr>
+<td class="alternate_heading1">Dad</td>	
+<td class="alternate_heading1">45</td>	
+</tr>
+<tr>
+<td class="alternate_heading2">Mom</td>
+<td class="alternate_heading2">41</td>
+</tr>
+<tr>
+<td class="alternate_heading1">Daughter</td>
+<td class="alternate_heading1">17</td>
+</tr>
+<tr>
+<td class="alternate_heading2">Dog</td>					
+<td class="alternate_heading2"></td>	
+</tr>
+</table>
+</div>
+<h3>Food Table</h3>
+<div class="table_content">
+<table>
+<tr>
+<td class="heading" style="width:50%;">Meal</td>
+<td class="heading" style="width:50%;">Position</td>
+</tr>
+<tr>
+<td class="alternate_heading1">Steak</td>	
+<td class="alternate_heading1">Dad</td>	
+</tr>
+<tr>
+<td class="alternate_heading2">Salad</td>
+<td class="alternate_heading2">Mom</td>
+</tr>
+<tr>
+<td class="alternate_heading1">Spinach</td>
+<td class="alternate_heading1">Daughter</td>
+</tr>
+<tr>
+<td class="alternate_heading2">Tacos</td>					
+<td class="alternate_heading2">Dad</td>	
+</tr>
+</table>
+</div>
+
+<p>We executed a simple query that selected all meals that were liked by a family member with this simple join query:<br>
+</p>
+
+<h3>Simplified MySQL Query:</h3>
+<div class="code">
+<pre>
+<font color="#000000">SELECT food.Meal, family.Position </font>
+<font color="#000000">FROM family, food </font>
+<font color="#000000">WHERE food.Position = family.Position</font>
+</pre>
+</div>
+<h3>Result Table:</h3>
+<div class="table_content">
+<table>
+<tr>
+<td class="heading" style="width:50%;">Meal</td>
+<td class="heading" style="width:50%;">Position</td>
+</tr>
+<tr>
+<td class="alternate_heading1">Steak</td>	
+<td class="alternate_heading1">Dad</td>	
+</tr>
+<tr>
+<td class="alternate_heading2">Salad</td>
+<td class="alternate_heading2">Mom</td>
+</tr>
+<tr>
+<td class="alternate_heading1">Tacos</td>					
+<td class="alternate_heading1">Dad</td>	
+</tr>
+</table>
+</div>
+<p>In this queries all the member is listed then how can we decide to use a LEFT JOIN in the query instead, even if they do not have a favorite dish in our food table.This is because a left join will preserve the records of the &quot;left&quot; table.</p>
+<h3>Example of the MySQL LEFT JOIN </h3>
+<div class="code">
+<pre>
+<font color="#000000">PHP and MySQL Code:</font>
+
+<font color="#800000">&lt;?php</font>
+
+<font color="#008000">// Make a MySQL Connection</font>
+<font color="#008000">// Construct our join query</font>
+
+<font color="#0000ff">$</font><font color="#008080">query </font><font color="#800000">= </font><font color="#ff00ff">&quot;SELECT family.Position, food.Meal &quot;</font><font color="#800000">.</font>
+<font color="#ff00ff">&quot;FROM family LEFT JOIN food &quot;</font><font color="#800000">.</font>
+<font color="#ff00ff">&quot;ON family.Position = food.Position&quot;</font><font color="#800000">; </font>
+
+<font color="#0000ff">$</font><font color="#008080">result </font><font color="#800000">= mysql_query(</font><font color="#0000ff">$</font><font color="#008080">query</font><font color="#800000">) </font><font color="#0000ff">or die</font><font color="#800000">(mysql_error());</font>
+
+<font color="#008000">// Print out the contents of each row into a table </font>
+
+<font color="#0000ff">while</font><font color="#800000">(</font><font color="#0000ff">$</font><font color="#008080">row </font><font color="#800000">= mysql_fetch_array(</font><font color="#0000ff">$</font><font color="#008080">result</font><font color="#800000">))</font>
+	<font color="#800000">{</font>
+<font color="#0000ff">echo $</font><font color="#008080">row</font><font color="#800000">[</font><font color="#ff00ff">'Position'</font><font color="#800000">]. </font><font color="#ff00ff">&quot; - &quot;</font><font color="#800000">. </font><font color="#0000ff">$</font><font color="#008080">row</font><font color="#800000">[</font><font color="#ff00ff">'Meal'</font><font color="#800000">];</font>
+<font color="#0000ff">echo </font><font color="#ff00ff">&quot;&lt;br /&gt;&quot;</font><font color="#800000">;</font>
+    <font color="#800000">}</font>
+<font color="#800000">?&gt;</font>
+</pre>
+</div>
+<p><i>Output</i></p>
+<div class="output">
+<pre>
+Dad - Steak
+Dad - Tacos
+Mom - Salad
+Daughter -
+Dog -
+</pre>
+</div>
+
+<p>Success! The LEFT JOIN preserved every family member, including those who don't yet have a favorite meal in the food table! Please feel free to play around with LEFT JOIN until you feel like you have a solid grasp of it. This stuff isn't easy.</p>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="php_mysql_joins.shtml" title="PHP MySQL JOIN">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="php_mysql_update.shtml" title="PHP MySQL UPDATE">Next</a></td>
+</table>
+
+	<!-- Footer Start-->  	
+
+</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/php/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->

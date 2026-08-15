@@ -1,0 +1,815 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>Creating a Struts Application by using DynaValidationForm</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="Creating a Struts Application by using DynaValidationForm" >
+<meta name="keywords" CONTENT="Creating a Struts Application by using DynaValidationForm">
+
+<!-- header start-->	
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>Struts</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+            <img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+            <a href="/java/">Java</a>
+              <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/java/struts">Struts</a>
+              </div>
+
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/struts/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	 
+<!-- header End-->
+
+<div class="heading">Application- 14 : Creating a Struts Application by using DynaValidationForm</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="../Example%2013" title="Creating a Struts Application for Upload document into browser by Using DynaValidatorForm">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="../Example%2015" title="Creating a Struts Application by using DynaValidationForm(JavaScript Validation)">Next</a></td>
+  </tr> 
+</table>
+
+<p>In this chapter, you create a new application and provide validation in it from validation.xml file. DynaValidationForm class extends DynaActionForm and provides basic field validation based on an XML( validation.xml  and validator- rules.xml)  files. In which, the key passed into the validate is the action element's 'name' attribute from the  <form-property> in struts-config.xml which should match the form element's name attribute in the validation.xml. </p>
+<p>Validator-rules.xml file contained in struts-core.jar, and should be referenced in the struts-config.xml under the plug-in element for the ValidatorPlugIn. Important point is that NetBean IDE automatic configure the Validatior and Tiles and also plugin these resource into struts-config.xml file.  Once you have configured the Validator Plug-In, so that it can load your Validator Resources you just have to extend org.apache.struts.validator.action.ValidatorForm instead of org.apache.struts.action.ActionForm. Then when the Validate method is called, the action's name attribute from the struts-config.xml is used to load the validations for the current form. So the form element's name attribute in the validator-rules.xml should match action element's name attribute. </p>
+<p>For each piece of the application, we show you the code and then explain the code. This application design in NetBeans IDE- 6.8  with Struts 1.3</p>
+<h3>Requirement  for your struts application-</h3>
+<ul><li>At least one view component is required in every Application.</li>
+<li>A subclass of ActionForm is used to submit the date as application needed.</li>
+<li>A subclass of Action class which provide specific processing functionality for the application.</li>
+<li>A web.xml file is required for calling ActionServlet and struts-config.xml.</li>
+<li>A struts-config.xml file is required for updating and mapping the update.	</li></ul>
+<p>Let's Start the application, this application provide a good understanding how struts framework works and also understanding the development of Struts applications.</p>
+<p>Now, Following the some steps for develop your first application name as ValidationEx_1. ValidationEx_1 application contain following page-</p>
+<ul><li>Three View file name as index.jsp and sucess.jsp</li>
+<li>One DynaValidatorForm class name as a registerForm, used for store data as application need.</li>
+<li>One Action class name as registerAction.java, used for provide specific processing functionality.</li>
+<li>Two XML file name as web.xml and struts-config.xml file, used for provide control, mapping and validation in application.</li>	</ul>
+<p><i>Step- 1 :</i> Start your IDE ( NetBeans 6.8 with struts 1.3).</p>
+<p><i>Step- 2 : </i>Open a new project( Crtl+Shift+N), name it , add server( Apache Tomcat 6.0.20 ), then add struts framework 1.3 , and don't forget to add Struts TLDs.</p>
+<p>When you click Finish button, your NetBeans IDE configure everything in place and project open in your IDE.</p>
+<div class="image"><img src="images/validate.png"></div>
+<p><i>Step- 3:</i> Open index.jsp page, from your struts application and code it as describe below.</p>
+<div class="code"><pre>
+<font color="#000000">&lt;%-- </font><font color="#ff0000">Document</font><font color="#000000">: index.jsp</font>
+<font color="#000000">Description : First Page of ValidationEx_1 Application--%&gt;</font>
+<font color="#000000">&lt;%@</font><font color="#0000ff">page </font><font color="#000000">contentType=</font><font color="#ff00ff">&quot;text/html&quot;</font><font color="#000000">%&gt;</font>
+<font color="#000000">&lt;%@</font><font color="#0000ff">page </font><font color="#000000">pageEncoding=</font><font color="#ff00ff">&quot;UTF-8&quot;</font><font color="#000000">%&gt;</font>
+<font color="#000000">&lt;%@ taglib uri=</font><font color="#ff00ff">&quot;http://struts.apache.org/tags-bean&quot; </font>
+<font color="#000000">prefix=</font><font color="#ff00ff">&quot;bean&quot; </font><font color="#000000">%&gt;</font>
+<font color="#000000">&lt;%@ taglib uri=</font><font color="#ff00ff">&quot;http://struts.apache.org/tags-html&quot; </font>
+<font color="#000000">prefix=</font><font color="#ff00ff">&quot;html&quot; </font><font color="#000000">%&gt;</font>
+<font color="#000000">&lt;%@ taglib uri=</font><font color="#ff00ff">&quot;http://struts.apache.org/tags-logic&quot; </font>
+<font color="#000000">prefix=</font><font color="#ff00ff">&quot;logic&quot; </font><font color="#000000">%&gt;</font>
+<font color="#000000">&lt;html:html lang=</font><font color="#ff00ff">&quot;true&quot;</font><font color="#000000">&gt;</font>
+<font color="#000000">&lt;head&gt;</font>
+<font color="#000000">&lt;meta http-equiv=</font><font color="#ff00ff">&quot;Content-Type&quot;</font>
+<font color="#000000">content=</font><font color="#ff00ff">&quot;text/html; charset=UTF-8&quot;</font><font color="#000000">&gt;</font>
+<font color="#000000">&lt;title&gt;&lt;bean:message key=</font><font color="#ff00ff">&quot;welcome.title&quot;</font><font color="#000000">/&gt;&lt;/title&gt;</font>
+<font color="#000000">&lt;html:base/&gt;</font>
+<font color="#000000">&lt;/head&gt;</font>
+<font color="#000000">&lt;body style=</font><font color="#ff00ff">&quot;background-color: white&quot;</font><font color="#000000">&gt;</font>
+<font color="#000000">&lt;html:form action=</font><font color="#ff00ff">&quot;/register&quot; </font><font color="#000000">&gt;</font>
+
+<font color="#000000">&lt;h3&gt;&lt;bean:message key=</font><font color="#ff00ff">&quot;welcome.heading&quot;</font><font color="#000000">/&gt;&lt;/h3&gt;</font>
+<font color="#000000">&lt;%-- ======= Add error into JSP page ======= --%&gt;</font>
+<font color="#000000">&lt;html:errors /&gt;</font>
+<font color="#000000">&lt;ul&gt;</font>
+<font color="#000000">&lt;table border=</font><font color="#ff00ff">&quot;0&quot; </font><font color="#000000">cellspacing=</font><font color="#ff00ff">&quot;4&quot; </font><font color="#000000">cellpadding=</font><font color="#ff00ff">&quot;4&quot;</font><font color="#000000">&gt;</font>
+<font color="#000000">&lt;tbody&gt;</font>
+<font color="#000000">&lt;tr&gt;</font>
+<font color="#000000">&lt;td&gt;&lt;bean:message key=</font><font color="#ff00ff">&quot;welcome.name&quot; </font><font color="#000000">/&gt;&lt;/td&gt;</font>
+<font color="#000000">&lt;td&gt;&lt;html:text property=</font><font color="#ff00ff">&quot;name&quot; </font><font color="#000000">size=</font><font color="#ff00ff">&quot;25&quot; </font><font color="#000000">/&gt;&lt;/td&gt;</font>
+<font color="#000000">&lt;/tr&gt;</font>
+<font color="#000000">&lt;tr&gt;</font>
+<font color="#000000">&lt;td&gt;&lt;bean:message key=</font><font color="#ff00ff">&quot;welcome.number&quot; </font><font color="#000000">/&gt;&lt;/td&gt;</font>
+<font color="#000000">&lt;td&gt;&lt;html:text property=</font><font color="#ff00ff">&quot;number&quot; </font><font color="#000000">size=</font><font color="#ff00ff">&quot;25&quot; </font><font color="#000000">/&gt;&lt;/td&gt;</font>
+<font color="#000000">&lt;/tr&gt;</font>
+<font color="#000000">&lt;tr&gt;</font>
+<font color="#000000">&lt;td&gt;&lt;bean:message key=</font><font color="#ff00ff">&quot;welcome.age&quot; </font><font color="#000000">/&gt;&lt;/td&gt;</font>
+<font color="#000000">&lt;td&gt;&lt;html:text property=</font><font color="#ff00ff">&quot;age&quot; </font><font color="#000000">size=</font><font color="#ff00ff">&quot;25&quot; </font><font color="#000000">/&gt;&lt;/td&gt;</font>
+<font color="#000000">&lt;/tr&gt;</font>
+<font color="#000000">&lt;tr&gt;</font>
+<font color="#000000">&lt;td&gt;&lt;bean:message key=</font><font color="#ff00ff">&quot;welcome.email&quot; </font><font color="#000000">/&gt;&lt;/td&gt;</font>
+<font color="#000000">&lt;td&gt;&lt;html:text property=</font><font color="#ff00ff">&quot;email&quot; </font><font color="#000000">size=</font><font color="#ff00ff">&quot;25&quot; </font><font color="#000000">/&gt;&lt;/td&gt;</font>
+<font color="#000000">&lt;/tr&gt;</font>
+<font color="#000000">&lt;tr&gt;</font>
+<font color="#000000">&lt;td&gt;&lt;bean:message key=</font><font color="#ff00ff">&quot;welcome.gender&quot;</font><font color="#000000">/&gt;&lt;/td&gt;</font>
+<font color="#000000">&lt;td&gt;&lt;html:radio property=</font><font color="#ff00ff">&quot;gender&quot; </font><font color="#000000">value=</font><font color="#ff00ff">&quot;male&quot; </font><font color="#000000">/&gt; Male</font>
+<font color="#000000">&lt;html:radio property=</font><font color="#ff00ff">&quot;gender&quot; </font><font color="#000000">value=</font><font color="#ff00ff">&quot;female&quot; </font><font color="#000000">/&gt;</font>
+<font color="#000000">Female &lt;/td&gt;</font>
+<font color="#000000">&lt;/tr&gt;</font>
+<font color="#000000">&lt;tr&gt;</font>
+<font color="#000000">&lt;td align=</font><font color="#ff00ff">&quot;center&quot;</font><font color="#000000">&gt;&lt;html:submit /&gt;&lt;/td&gt;</font>
+<font color="#000000">&lt;td align=</font><font color="#ff00ff">&quot;center&quot;</font><font color="#000000">&gt;&lt;html:reset /&gt;&lt;/td&gt;</font>
+<font color="#000000">&lt;/tr&gt;</font>
+<font color="#000000">&lt;/tbody&gt;</font>
+<font color="#000000">&lt;/table&gt;</font>
+<font color="#000000">&lt;/ul&gt;</font>
+<font color="#000000">&lt;/html:form&gt;</font>
+<font color="#000000">&lt;/body&gt;</font>
+<font color="#000000">&lt;/html:html&gt;</font>
+</pre>
+</div>
+<p><i>Step- 4:</i> Open sucess.jsp page, from your struts application and code it as describe below.</p>
+<div class="code"><pre>
+<font color="#000000">&lt;%-- </font><font color="#ff0000">Document</font><font color="#000000">: sucess.jsp</font>
+ <font color="#000000">Description : Second Page of ValidationEx_1 Application--%&gt;</font>
+<font color="#000000">&lt;%@</font><font color="#0000ff">page </font><font color="#000000">contentType=</font><font color="#ff00ff">&quot;text/html&quot;</font><font color="#000000">%&gt;</font>
+<font color="#000000">&lt;%@</font><font color="#0000ff">page </font><font color="#000000">pageEncoding=</font><font color="#ff00ff">&quot;UTF-8&quot;</font><font color="#000000">%&gt;</font>
+<font color="#000000">&lt;%@ taglib uri=</font><font color="#ff00ff">&quot;http://struts.apache.org/tags-bean&quot; </font>
+<font color="#000000">prefix=</font><font color="#ff00ff">&quot;bean&quot; </font><font color="#000000">%&gt;</font>
+<font color="#000000">&lt;%@ taglib uri=</font><font color="#ff00ff">&quot;http://struts.apache.org/tags-html&quot;</font>
+<font color="#000000">prefix=</font><font color="#ff00ff">&quot;html&quot; </font><font color="#000000">%&gt;</font>
+<font color="#000000">&lt;html:html lang=</font><font color="#ff00ff">&quot;true&quot;</font><font color="#000000">&gt;</font>
+<font color="#000000">&lt;head&gt;</font>
+<font color="#000000">&lt;meta http-equiv=</font><font color="#ff00ff">&quot;Content-Type&quot; </font>
+<font color="#000000">content=</font><font color="#ff00ff">&quot;text/html; charset=UTF-8&quot;</font><font color="#000000">&gt;</font>
+<font color="#000000">&lt;title&gt;&lt;bean:message key=</font><font color="#ff00ff">&quot;welcome.title&quot;</font><font color="#000000">/&gt;&lt;/title&gt;</font>
+<font color="#000000">&lt;/head&gt;</font>
+<font color="#000000">&lt;body style=</font><font color="#ff00ff">&quot;background-color: white&quot;</font><font color="#000000">&gt;</font>
+<font color="#000000">&lt;h1&gt;Congratulations ! your Detail successfully submit&lt;/h1&gt;</font>
+<font color="#000000">&lt;h2&gt; Check your detail&lt;/h2&gt;</font>
+<font color="#000000">&lt;ul&gt;</font>
+<font color="#000000">&lt;table border=</font><font color="#ff00ff">&quot;1&quot; </font><font color="#000000">cellspacing=</font><font color="#ff00ff">&quot;4&quot; </font><font color="#000000">cellpadding=</font><font color="#ff00ff">&quot;4&quot; </font>
+<font color="#000000">style=</font><font color="#ff00ff">&quot;border-bottom-style: groove; border-color: blue&quot;</font><font color="#000000">&gt;</font>
+<font color="#000000">&lt;tbody&gt;</font>
+<font color="#000000">&lt;tr&gt;</font>
+<font color="#000000">&lt;td&gt; </font><font color="#ff0000">Name</font><font color="#000000">: &lt;/td&gt;</font>
+<font color="#000000">&lt;td&gt;&lt;b&gt;&lt;bean:write name=</font><font color="#ff00ff">&quot;registerForm&quot; </font>
+<font color="#000000">property=</font><font color="#ff00ff">&quot;name&quot; </font><font color="#000000">/&gt;&lt;/b&gt;&lt;/td&gt;</font>
+<font color="#000000">&lt;/tr&gt;</font>
+<font color="#000000">&lt;tr&gt;</font>
+<font color="#000000">&lt;td&gt; Phone/Mobile No: &lt;/td&gt;</font>
+<font color="#000000">&lt;td&gt;&lt;b&gt;&lt;bean:write name=</font><font color="#ff00ff">&quot;registerForm&quot; </font>
+<font color="#000000">property=</font><font color="#ff00ff">&quot;number&quot; </font><font color="#000000">/&gt;&lt;/b&gt;&lt;/td&gt;</font>
+<font color="#000000">&lt;/tr&gt;</font>
+<font color="#000000">&lt;tr&gt;</font>
+<font color="#000000">&lt;td&gt; Age: &lt;/td&gt;</font>
+<font color="#000000">&lt;td&gt;&lt;b&gt;&lt;bean:write name=</font><font color="#ff00ff">&quot;registerForm&quot;</font>
+<font color="#000000">property=</font><font color="#ff00ff">&quot;age&quot; </font><font color="#000000">/&gt;&lt;/b&gt;&lt;/td&gt;</font>
+<font color="#000000">&lt;/tr&gt;</font>
+<font color="#000000">&lt;tr&gt;</font>
+<font color="#000000">&lt;td&gt; E-mail Id: &lt;/td&gt;</font>
+<font color="#000000">&lt;td&gt;&lt;b&gt;&lt;bean:write name=</font><font color="#ff00ff">&quot;registerForm&quot;</font>
+<font color="#000000">property=</font><font color="#ff00ff">&quot;email&quot; </font><font color="#000000">/&gt;&lt;/b&gt;&lt;/td&gt;</font>
+<font color="#000000">&lt;/tr&gt;</font>
+<font color="#000000">&lt;tr&gt;</font>
+<font color="#000000">&lt;td&gt; Gender: &lt;/td&gt;</font>
+<font color="#000000">&lt;td&gt;&lt;b&gt;&lt;bean:write name=</font><font color="#ff00ff">&quot;registerForm&quot;</font>
+<font color="#000000">property=</font><font color="#ff00ff">&quot;gender&quot; </font><font color="#000000">/&gt;&lt;/b&gt;&lt;/td&gt;</font>
+<font color="#000000">&lt;/tr&gt;</font>
+<font color="#000000">&lt;/tbody&gt;</font>
+<font color="#000000">&lt;/table&gt;</font>
+<font color="#000000">&lt;/ul&gt;</font>
+<font color="#000000">&lt;/body&gt;</font>
+<font color="#000000">&lt;/html:html&gt;</font>
+</pre>
+</div>
+<p><i>Step- 5:</i> Open web.xml file place in WEB-INF folder, this file is used to map the ActionServlet( work as backbone of application, every Action, Validation and ActionForm class control by this class) , struts-config.xml file, welcome file and five different TagLibrary.</p>
+<div class="code"><pre>
+<font color="#000000">&lt;!-- Save as a web.xml--&gt;</font>
+<font color="#000000">&lt;?xml version=</font><font color="#ff00ff">&quot;1.0&quot; </font><font color="#000000">encoding=</font><font color="#ff00ff">&quot;UTF-8&quot;</font><font color="#000000">?&gt;</font>
+<font color="#000000">&lt;web-app version=</font><font color="#ff00ff">&quot;2.5&quot; </font>
+<font color="#000000">xmlns=</font><font color="#ff00ff">&quot;http://java.sun.com/xml/ns/javaee&quot; </font>
+<font color="#000000">xmlns:xsi=</font><font color="#ff00ff">&quot;http://www.w3.org/2001/XMLSchema-instance&quot; </font>
+<font color="#000000">xsi:schemaLocation=</font><font color="#ff00ff">&quot;http://java.sun.com/xml/ns/javaee </font>
+<font color="#000000">http:</font><font color="#008000">//java.sun.com/xml/ns/javaee/web-app_2_5.xsd&quot;&gt;</font>
+<font color="#000000">&lt;servlet&gt;</font>
+<font color="#000000">&lt;!-- ActionServlet map here, however you can</font><font color="#ff00ff">'t find</font>
+<font color="#0000ff">this class </font><font color="#000000">within the project but it work as a backbone </font>
+<font color="#000000">of the project --&gt;</font>
+<font color="#000000">&lt;servlet-name&gt;action&lt;/servlet-name&gt;</font>
+<font color="#000000">&lt;servlet-</font><font color="#0000ff">class</font><font color="#000000">&gt;org.apache.struts.action.ActionServlet</font>
+<font color="#000000">&lt;/servlet-</font><font color="#0000ff">class</font><font color="#000000">&gt;</font>
+<font color="#000000">&lt;!-- Your struts-config.xml file map here--&gt;</font>
+<font color="#000000">&lt;init-param&gt;</font>
+<font color="#000000">&lt;param-name&gt;config&lt;/param-name&gt;</font>
+<font color="#000000">&lt;param-value&gt;/WEB-INF/struts-config.xml</font>
+<font color="#000000">&lt;/param-value&gt;</font>
+<font color="#000000">&lt;/init-param&gt;</font>
+<font color="#000000">&lt;init-param&gt;</font>
+<font color="#000000">&lt;param-name&gt;debug&lt;/param-name&gt;</font>
+<font color="#000000">&lt;param-value&gt;</font><font color="#800080">2</font><font color="#000000">&lt;/param-value&gt;</font>
+<font color="#000000">&lt;/init-param&gt;</font>
+<font color="#000000">&lt;init-param&gt;</font>
+<font color="#000000">&lt;param-name&gt;detail&lt;/param-name&gt;</font>
+<font color="#000000">&lt;param-value&gt;</font><font color="#800080">2</font><font color="#000000">&lt;/param-value&gt;</font>
+<font color="#000000">&lt;/init-param&gt;</font>
+<font color="#000000">&lt;load-on-startup&gt;</font><font color="#800080">2</font><font color="#000000">&lt;/load-on-startup&gt;</font>
+<font color="#000000">&lt;/servlet&gt;</font>
+<font color="#000000">&lt;!-- </font><font color="#ff0000">Action </font><font color="#0000ff">class </font><font color="#000000">map with </font><font color="#ff0000">URL </font><font color="#000000">--&gt;</font>
+<font color="#000000">&lt;servlet-mapping&gt;</font>
+<font color="#000000">&lt;servlet-name&gt;action&lt;/servlet-name&gt;</font>
+<font color="#000000">&lt;url-pattern&gt;*.</font><font color="#0000ff">do</font><font color="#000000">&lt;/url-pattern&gt;</font>
+<font color="#000000">&lt;/servlet-mapping&gt;</font>
+<font color="#000000">&lt;session-config&gt;</font>
+<font color="#000000">&lt;session-timeout&gt;</font>
+<font color="#800080">30</font>
+<font color="#000000">&lt;/session-timeout&gt;</font>
+<font color="#000000">&lt;/session-config&gt;</font>
+<font color="#000000">&lt;!-- Welcome file map here: --&gt;</font>
+<font color="#000000">&lt;welcome-file-list&gt;</font>
+<font color="#000000">&lt;welcome-file&gt;index.jsp&lt;/welcome-file&gt;</font>
+<font color="#000000">&lt;/welcome-file-list&gt;</font>
+<font color="#000000">&lt;jsp-config&gt;</font>
+<font color="#000000">&lt;!-- All the Tag Library which used with </font>
+<font color="#000000">in the project --&gt;</font>
+<font color="#000000">&lt;taglib&gt;</font>
+<font color="#000000">&lt;taglib-uri&gt;/WEB-INF/struts-bean.tld&lt;/taglib-uri&gt;</font>
+<font color="#000000">&lt;taglib-location&gt;/WEB-INF/struts-bean.tld</font>
+<font color="#000000">&lt;/taglib-location&gt;</font>
+<font color="#000000">&lt;/taglib&gt;</font>
+<font color="#000000">&lt;taglib&gt;</font>
+<font color="#000000">&lt;taglib-uri&gt;/WEB-INF/struts-html.tld&lt;/taglib-uri&gt;</font>
+<font color="#000000">&lt;taglib-location&gt;/WEB-INF/struts-html.tld</font>
+<font color="#000000">&lt;/taglib-location&gt;</font>
+<font color="#000000">&lt;/taglib&gt;</font>
+<font color="#000000">&lt;taglib&gt;</font>
+<font color="#000000">&lt;taglib-uri&gt;/WEB-INF/struts-logic.tld&lt;/taglib-uri&gt;</font>
+<font color="#000000">&lt;taglib-location&gt;/WEB-INF/struts-logic.tld</font>
+<font color="#000000">&lt;/taglib-location&gt;</font>
+<font color="#000000">&lt;/taglib&gt;</font>
+<font color="#000000">&lt;taglib&gt;</font>
+<font color="#000000">&lt;taglib-uri&gt;/WEB-INF/struts-nested.tld&lt;/taglib-uri&gt;</font>
+<font color="#000000">&lt;taglib-location&gt;/WEB-INF/struts-nested.tld</font>
+<font color="#000000">&lt;/taglib-location&gt;</font>
+<font color="#000000">&lt;/taglib&gt;</font>
+<font color="#000000">&lt;taglib&gt;</font>
+<font color="#000000">&lt;taglib-uri&gt;/WEB-INF/struts-tiles.tld&lt;/taglib-uri&gt;</font>
+<font color="#000000">&lt;taglib-location&gt;/WEB-INF/struts-tiles.tld</font>
+<font color="#000000">&lt;/taglib-location&gt;</font>
+<font color="#000000">&lt;/taglib&gt;</font>
+<font color="#000000">&lt;/jsp-config&gt;</font>
+<font color="#000000">&lt;/web-app&gt;</font>
+</pre>
+</div>
+<p><i>Step- 6:</i> Open struts-config.xml  file place in WEB-INF folder, this file is used to map Model class, Exception class, Validation class, Action class( Action class further choose View class) and ApplicationResource class.</p>
+<div class="code"><pre>
+<font color="#000000">&lt;?xml version=</font><font color="#ff00ff">&quot;1.0&quot; </font><font color="#000000">encoding=</font><font color="#ff00ff">&quot;UTF-8&quot; </font><font color="#000000">?&gt;</font>
+<font color="#000000">&lt;!DOCTYPE struts-config PUBLIC</font>
+<font color="#ff00ff">&quot;-//Apache Software Foundation//</font>
+<font color="#ff0000">DTD </font><font color="#000000">Struts </font><font color="#ff0000">Configuration </font><font color="#800080">1</font><font color="#000000">.</font><font color="#800080">3</font><font color="#008000">//EN&quot;</font>
+<font color="#ff00ff">&quot;http://jakarta.apache.org/struts</font>
+<font color="#000000">/dtds/struts-config_1_3.dtd</font><font color="#ff00ff">&quot;&gt;</font>
+<font color="#000000">&lt;struts-config&gt;</font>
+<font color="#000000">&lt;!-- Create a DynaValidatorForm and pass the property in it --&gt;</font>
+<font color="#000000">&lt;form-beans&gt;</font>
+<font color="#000000">&lt;form-bean name=</font><font color="#ff00ff">&quot;registerForm&quot; </font>
+<font color="#000000">type=</font><font color="#ff00ff">&quot;org.apache.struts.validator.DynaValidatorForm&quot; </font><font color="#000000">&gt;</font>
+<font color="#000000">&lt;form-property name=</font><font color="#ff00ff">&quot;name&quot; </font><font color="#000000">type=</font><font color="#ff00ff">&quot;java.lang.String&quot; </font><font color="#000000">/&gt;</font>
+<font color="#000000">&lt;form-property name=</font><font color="#ff00ff">&quot;age&quot; </font><font color="#000000">type=</font><font color="#ff00ff">&quot;java.lang.Integer&quot; </font><font color="#000000">/&gt;</font>
+<font color="#000000">&lt;form-property name=</font><font color="#ff00ff">&quot;email&quot; </font><font color="#000000">type=</font><font color="#ff00ff">&quot;java.lang.String&quot; </font><font color="#000000">/&gt;</font>
+<font color="#000000">&lt;form-property name=</font><font color="#ff00ff">&quot;number&quot; </font><font color="#000000">type=</font><font color="#ff00ff">&quot;java.lang.Integer&quot; </font><font color="#000000">/&gt;</font>
+<font color="#000000">&lt;form-property name=</font><font color="#ff00ff">&quot;gender&quot; </font><font color="#000000">type=</font><font color="#ff00ff">&quot;java.lang.String&quot; </font><font color="#000000">/&gt;</font>
+<font color="#000000">&lt;/form-bean&gt;</font>
+<font color="#000000">&lt;/form-beans&gt;</font>
+<font color="#000000">&lt;global-exceptions&gt;</font>
+<font color="#000000">&lt;/global-exceptions&gt;</font>
+<font color="#000000">&lt;global-forwards&gt;</font>
+<font color="#000000">&lt;/global-forwards&gt;</font>
+<font color="#000000">&lt;action-mappings&gt;</font>
+<font color="#000000">&lt;action input=</font><font color="#ff00ff">&quot;/index.jsp&quot; </font><font color="#000000">name=</font><font color="#ff00ff">&quot;registerForm&quot;</font>
+<font color="#000000">path=</font><font color="#ff00ff">&quot;/register&quot; </font><font color="#000000">scope=</font><font color="#ff00ff">&quot;request&quot; </font>
+<font color="#000000">type=</font><font color="#ff00ff">&quot;r4r.struts.registerAction&quot;</font><font color="#000000">&gt;</font>
+<font color="#000000">&lt;forward name=</font><font color="#ff00ff">&quot;success&quot; </font><font color="#000000">path=</font><font color="#ff00ff">&quot;/sucess.jsp&quot;</font><font color="#000000">/&gt;</font>
+<font color="#000000">&lt;forward name=</font><font color="#ff00ff">&quot;failure&quot; </font><font color="#000000">path=</font><font color="#ff00ff">&quot;/index.jsp&quot;</font><font color="#000000">/&gt;</font>
+<font color="#000000">&lt;/action&gt;</font>
+<font color="#000000">&lt;/action-mappings&gt;</font>
+<font color="#000000">&lt;controller processorClass=</font><font color="#ff00ff">&quot;org.apache.struts</font>
+<font color="#000000">.tiles.TilesRequestProcessor</font><font color="#ff00ff">&quot;/&gt;</font>
+<font color="#000000">&lt;message-resources parameter=</font><font color="#ff00ff">&quot;com/myapp/struts</font>
+<font color="#000000">/ApplicationResource</font><font color="#ff00ff">&quot;/&gt;</font>
+<font color="#000000">&lt;!-- =========== Tiles plugin =========--&gt;</font>
+<font color="#000000">&lt;plug-in className=</font><font color="#ff00ff">&quot;org.apache.struts</font>
+<font color="#000000">.tiles.TilesPlugin</font><font color="#ff00ff">&quot; &gt;</font>
+<font color="#000000">&lt;set-property property=</font><font color="#ff00ff">&quot;definitions-config&quot; </font>
+<font color="#000000">value=</font><font color="#ff00ff">&quot;/WEB-INF/tiles-defs.xml&quot; </font><font color="#000000">/&gt;</font>
+<font color="#000000">&lt;set-property property=</font><font color="#ff00ff">&quot;moduleAware&quot; </font><font color="#000000">value=</font><font color="#ff00ff">&quot;true&quot; </font><font color="#000000">/&gt;</font>
+<font color="#000000">&lt;/plug-in&gt;</font>
+
+<font color="#000000">&lt;!-- ======== </font><font color="#ff0000">Validator </font><font color="#000000">plugin ========== --&gt;</font>
+<font color="#000000">&lt;plug-in className=</font><font color="#ff00ff">&quot;org.apache.struts</font>
+<font color="#000000">.validator.ValidatorPlugIn</font><font color="#ff00ff">&quot;&gt;</font>
+   <font color="#000000">&lt;!-- </font><font color="#ff0000">Validator </font><font color="#000000">plugin utilize two validator.xml </font>
+   <font color="#000000">and validator-rule.xml files validator-rules.xml</font>
+   <font color="#000000">file define error rule </font><font color="#0000ff">while </font><font color="#000000">validator.xml set up error--&gt;</font>
+<font color="#000000">&lt;set-property</font>
+<font color="#000000">property=</font><font color="#ff00ff">&quot;pathnames&quot;</font>
+<font color="#000000">value=</font><font color="#ff00ff">&quot;/WEB-INF/validator-rules.xml,/WEB-INF/validation.xml&quot;</font><font color="#000000">/&gt;</font>
+<font color="#000000">&lt;/plug-in&gt;</font>
+<font color="#000000">&lt;/struts-config&gt;</font>
+</pre>
+</div>
+<p><i>Step- 7:</i> Open validation.xml file place into WEB-INF folder, this file used to provide the validation as well as error in JSP page of application, this( validation.xml)  file call by struts-cofig.xml file as we define earlier.</p>
+<div class="code"><pre>
+<font color="#000000">&lt;?xml version=</font><font color="#ff00ff">&quot;1.0&quot; </font><font color="#000000">encoding=</font><font color="#ff00ff">&quot;UTF-8&quot; </font><font color="#000000">?&gt;</font>
+<font color="#000000">&lt;!DOCTYPE form-validation PUBLIC</font>
+<font color="#ff00ff">&quot;-//Apache Software Foundation//</font>
+<font color="#ff0000">DTD </font><font color="#000000">Commons </font><font color="#ff0000">Validator </font><font color="#000000">Rules </font><font color="#ff0000">Configuration </font><font color="#800080">1</font><font color="#000000">.</font><font color="#800080">1</font><font color="#000000">.</font><font color="#800080">3</font><font color="#008000">//EN&quot;</font>
+<font color="#ff00ff">&quot;http://jakarta.apache.org/commons/dtds/validator_1_1_3.dtd&quot;</font><font color="#000000">&gt;</font>
+<font color="#000000">&lt;form-validation&gt;</font>
+<font color="#000000">&lt;!-- This is a minimal </font><font color="#ff0000">Validator </font><font color="#000000">form file with a </font>
+<font color="#000000">couple of examples.--&gt;</font>
+<font color="#000000">&lt;global&gt;</font>
+ <font color="#000000">&lt;!-- An example global constant</font>
+<font color="#000000">&lt;constant&gt;</font>
+<font color="#000000">&lt;constant-name&gt;postalCode&lt;/constant-name&gt;</font>
+<font color="#000000">&lt;constant-value&gt;^\d{</font><font color="#800080">5</font><font color="#000000">}\d*$&lt;/constant-value&gt;</font>
+<font color="#000000">&lt;/constant&gt;</font>
+<font color="#000000">end example--&gt;</font>
+<font color="#000000">&lt;/global&gt;</font>
+ <font color="#000000">&lt;!--  --&gt;</font>
+<font color="#000000">&lt;!-- add validation into index.jsp page o</font>
+<font color="#000000">f ValidationEx_1 application --&gt;</font>
+<font color="#000000">&lt;formset&gt;</font>
+<font color="#000000">&lt;!-- Add validation into form--&gt;</font>
+<font color="#000000">&lt;form name=</font><font color="#ff00ff">&quot;registerForm&quot; </font><font color="#000000">&gt;</font>
+<font color="#000000">&lt;!-- add validation into each field present</font>
+<font color="#000000">into registerForm--&gt;</font>
+<font color="#000000">&lt;field property=</font><font color="#ff00ff">&quot;name&quot; </font><font color="#000000">depends=</font><font color="#ff00ff">&quot;required&quot; </font><font color="#000000">&gt;</font>
+<font color="#000000">&lt;arg key=</font><font color="#ff00ff">&quot;registerForm.name&quot; </font><font color="#000000">/&gt;</font>
+<font color="#000000">&lt;/field&gt;</font>
+<font color="#000000">&lt;field property=</font><font color="#ff00ff">&quot;number&quot; </font><font color="#000000">depends=</font><font color="#ff00ff">&quot;required, minlength&quot; </font><font color="#000000">&gt;</font>
+<font color="#000000">&lt;arg0 key=</font><font color="#ff00ff">&quot;registerForm.number&quot; </font><font color="#000000">/&gt;</font>
+<font color="#000000">&lt;arg1 key=</font><font color="#ff00ff">&quot;${var:minlength}&quot; </font><font color="#000000">name=</font><font color="#ff00ff">&quot;minlength&quot; </font>
+<font color="#000000">resource=</font><font color="#ff00ff">&quot;false&quot; </font><font color="#000000">/&gt;</font>
+<font color="#000000">&lt;var&gt;</font>
+<font color="#000000">&lt;var-name&gt;minlength&lt;/var-name&gt;</font>
+<font color="#000000">&lt;var-value&gt;</font><font color="#800080">10</font><font color="#000000">&lt;/var-value&gt;</font>
+<font color="#000000">&lt;/var&gt;</font>
+<font color="#000000">&lt;/field&gt;</font>
+<font color="#000000">&lt;field property=</font><font color="#ff00ff">&quot;age&quot; </font><font color="#000000">depends=</font><font color="#ff00ff">&quot;required, intRange&quot; </font><font color="#000000">&gt;</font>
+<font color="#000000">&lt;arg0 key=</font><font color="#ff00ff">&quot;registerForm.age&quot; </font><font color="#000000">/&gt;</font>
+<font color="#000000">&lt;arg1 key=</font><font color="#ff00ff">&quot;${var:min}&quot; </font><font color="#000000">name=</font><font color="#ff00ff">&quot;intRange&quot; </font>
+<font color="#000000">resource=</font><font color="#ff00ff">&quot;false&quot; </font><font color="#000000">/&gt;</font>
+<font color="#000000">&lt;arg2 key=</font><font color="#ff00ff">&quot;${var:max}&quot; </font><font color="#000000">name=</font><font color="#ff00ff">&quot;intRange&quot; </font>
+<font color="#000000">resource=</font><font color="#ff00ff">&quot;false&quot;</font><font color="#000000">/&gt;</font>
+<font color="#000000">&lt;var&gt;</font>
+<font color="#000000">&lt;var-name&gt;min&lt;/var-name&gt;</font>
+<font color="#000000">&lt;var-value&gt;</font><font color="#800080">15</font><font color="#000000">&lt;/var-value&gt;</font>
+<font color="#000000">&lt;/var&gt;</font>
+<font color="#000000">&lt;var&gt;</font>
+<font color="#000000">&lt;var-name&gt;max&lt;/var-name&gt;</font>
+<font color="#000000">&lt;var-value&gt;</font><font color="#800080">65</font><font color="#000000">&lt;/var-value&gt;</font>
+<font color="#000000">&lt;/var&gt;</font>
+<font color="#000000">&lt;/field&gt;</font>
+<font color="#000000">&lt;field property=</font><font color="#ff00ff">&quot;email&quot; </font><font color="#000000">depends=</font><font color="#ff00ff">&quot;required,email&quot; </font><font color="#000000">&gt;</font>
+<font color="#000000">&lt;arg0 key=</font><font color="#ff00ff">&quot;registerForm.email&quot; </font><font color="#000000">/&gt;</font>
+<font color="#000000">&lt;arg1 key=</font><font color="#ff00ff">&quot;$(var:email)&quot; </font><font color="#000000">name=</font><font color="#ff00ff">&quot;email&quot; </font><font color="#000000">resource=</font><font color="#ff00ff">&quot;false&quot; </font><font color="#000000">/&gt;</font>
+<font color="#000000">&lt;var&gt;</font>
+<font color="#000000">&lt;var-name&gt;email&lt;/var-name&gt;</font>
+<font color="#000000">&lt;var-value&gt;^([_A-Za-z0-</font><font color="#800080">9</font><font color="#000000">-]*@([A-Za-z0-</font><font color="#800080">9</font><font color="#000000">-])+((\\.com)|</font>
+<font color="#000000">(\\.net))$)&lt;/var-value&gt;</font>
+<font color="#000000">&lt;/var&gt;</font>
+<font color="#000000">&lt;/field&gt;</font>
+<font color="#000000">&lt;field property=</font><font color="#ff00ff">&quot;gender&quot; </font><font color="#000000">depends=</font><font color="#ff00ff">&quot;required&quot; </font><font color="#000000">&gt;</font>
+<font color="#000000">&lt;arg key=</font><font color="#ff00ff">&quot;registerForm.gender&quot; </font><font color="#000000">/&gt;</font>
+<font color="#000000">&lt;/field&gt;</font>
+<font color="#000000">&lt;/form&gt;</font>
+<font color="#000000">&lt;/formset&gt;</font>
+<font color="#000000">&lt;/form-validation&gt;</font>
+</pre>
+</div>
+<p><i>Step- 8: </i>Open validator-rules.xml file place into WEB-INF folder, file used to define the rule of validation set up by validation.xml file and error mapping into ApplicationResource.properties file.This( validator-rules.xml) file is also define for the custom error message.</p>
+<div class="code"><pre>
+<font color="#000000">&lt;!DOCTYPE form-validation PUBLIC</font>
+<font color="#ff00ff">&quot;-//Apache Software Foundation//</font>
+<font color="#ff0000">DTD </font><font color="#000000">Commons </font><font color="#ff0000">Validator </font><font color="#000000">Rules </font><font color="#ff0000">Configuration </font><font color="#800080">1</font><font color="#000000">.</font><font color="#800080">3</font><font color="#000000">.</font><font color="#800080">0</font><font color="#008000">//EN&quot;</font>
+<font color="#ff00ff">&quot;http://jakarta.apache.org/commons/dtds/validator_1_3_0.dtd&quot;</font><font color="#000000">&gt;</font>
+<font color="#000000">&lt;!-- $Id: validator-rules.xml </font><font color="#800080">481833 2006</font><font color="#000000">-</font><font color="#800080">12</font><font color="#000000">-</font><font color="#800080">03 17</font><font color="#000000">:</font><font color="#800080">32</font><font color="#000000">:52Z</font>
+<font color="#000000">niallp $ This file contains the </font><font color="#0000ff">default </font>
+<font color="#000000">Struts </font><font color="#ff0000">Validator </font><font color="#000000">pluggable validator definitions.  </font>
+<font color="#000000">It is contained in struts-core.jar, and should be referenced</font>
+<font color="#000000">in the struts-config.xml under the plug-in element</font>
+   <font color="#0000ff">for </font><font color="#000000">the ValidatorPlugIn.</font>
+<font color="#000000">&lt;plug-in className=</font><font color="#ff00ff">&quot;org.apache.struts.validator</font>
+<font color="#000000">.ValidatorPlugIn</font><font color="#ff00ff">&quot;&gt;</font>
+  <font color="#000000">&lt;set-property property=</font><font color="#ff00ff">&quot;pathnames&quot;</font>
+<font color="#000000">value=</font><font color="#ff00ff">&quot;/org/apache/struts/validator/validator-rules.xml,</font>
+     <font color="#000000">/WEB-INF/validation.xml</font><font color="#ff00ff">&quot;/&gt;</font>
+<font color="#000000">&lt;/plug-in&gt;</font>
+   <font color="#000000">These are the </font><font color="#0000ff">default </font><font color="#000000">error messages associated with</font>
+   <font color="#000000">each validator defined in </font><font color="#0000ff">this </font><font color="#000000">file.  They should be</font>
+   <font color="#000000">added to your projects ApplicationResources.properties</font>
+   <font color="#000000">file or you can associate </font><font color="#0000ff">new </font><font color="#000000">ones by modifying the</font>
+   <font color="#000000">pluggable validators msg attributes in </font><font color="#0000ff">this </font><font color="#000000">file.</font>
+   <font color="#000000"># Struts </font><font color="#ff0000">Validator Error </font><font color="#000000">Messages</font>
+   <font color="#000000">errors.required={</font><font color="#800080">0</font><font color="#000000">} is required.</font>
+   <font color="#000000">errors.minlength={</font><font color="#800080">0</font><font color="#000000">} can not be less than </font>
+   <font color="#000000">{</font><font color="#800080">1</font><font color="#000000">} characters.</font>
+   <font color="#000000">errors.maxlength={</font><font color="#800080">0</font><font color="#000000">} can not be greater than </font>
+   <font color="#000000">{</font><font color="#800080">1</font><font color="#000000">} characters.</font>
+   <font color="#000000">errors.invalid={</font><font color="#800080">0</font><font color="#000000">} is invalid.</font>
+   <font color="#000000">errors.</font><font color="#0000ff">byte</font><font color="#000000">={</font><font color="#800080">0</font><font color="#000000">} must be a </font><font color="#0000ff">byte</font><font color="#000000">.</font>
+   <font color="#000000">errors.</font><font color="#0000ff">short</font><font color="#000000">={</font><font color="#800080">0</font><font color="#000000">} must be a </font><font color="#0000ff">short</font><font color="#000000">.</font>
+   <font color="#000000">errors.integer={</font><font color="#800080">0</font><font color="#000000">} must be an integer.</font>
+   <font color="#000000">errors.</font><font color="#0000ff">long</font><font color="#000000">={</font><font color="#800080">0</font><font color="#000000">} must be a </font><font color="#0000ff">long</font><font color="#000000">.</font>
+   <font color="#000000">errors.</font><font color="#0000ff">float</font><font color="#000000">={</font><font color="#800080">0</font><font color="#000000">} must be a </font><font color="#0000ff">float</font><font color="#000000">.</font>
+   <font color="#000000">errors.</font><font color="#0000ff">double</font><font color="#000000">={</font><font color="#800080">0</font><font color="#000000">} must be a </font><font color="#0000ff">double</font><font color="#000000">.</font>
+   <font color="#000000">errors.date={</font><font color="#800080">0</font><font color="#000000">} is not a date.</font>
+   <font color="#000000">errors.range={</font><font color="#800080">0</font><font color="#000000">} is not in the range {</font><font color="#800080">1</font><font color="#000000">} </font>
+   <font color="#000000">through {</font><font color="#800080">2</font><font color="#000000">}.</font>
+   <font color="#000000">errors.creditcard={</font><font color="#800080">0</font><font color="#000000">} is an invalid credit</font>
+   <font color="#000000">card number.</font>
+   <font color="#000000">errors.email={</font><font color="#800080">0</font><font color="#000000">} is an invalid e-mail address.</font>
+   <font color="#000000">Note: Starting in Struts </font><font color="#800080">1</font><font color="#000000">.</font><font color="#800080">2</font><font color="#000000">.</font><font color="#800080">0 </font><font color="#000000">the </font><font color="#0000ff">default </font>
+   <font color="#000000">javascript definitions have been consolidated to </font>
+   <font color="#000000">commons-validator. The </font><font color="#0000ff">default </font><font color="#000000">can be overridden</font>
+   <font color="#000000">by supplying a &lt;javascript&gt; element with a CDATA </font>
+   <font color="#000000">section, just as in struts </font><font color="#800080">1</font><font color="#000000">.</font><font color="#800080">1</font><font color="#000000">.--&gt;</font>
+   <font color="#000000">&lt;form-validation&gt;</font>
+    <font color="#000000">&lt;global&gt;</font>
+<font color="#000000">&lt;validator name=</font><font color="#ff00ff">&quot;required&quot;</font>
+     <font color="#000000">classname=</font><font color="#ff00ff">&quot;org.apache.struts.validator.FieldChecks&quot;</font>
+     <font color="#000000">method=</font><font color="#ff00ff">&quot;validateRequired&quot;</font>
+     <font color="#000000">methodParams=</font><font color="#ff00ff">&quot;java.lang.Object,</font>
+     <font color="#000000">org.apache.commons.validator.ValidatorAction,</font>
+     <font color="#000000">org.apache.commons.validator.</font><font color="#ff0000">Field</font><font color="#000000">,</font>
+     <font color="#000000">org.apache.struts.action.ActionMessages,</font>
+     <font color="#000000">org.apache.commons.validator.</font><font color="#ff0000">Validator</font><font color="#000000">,</font>
+     <font color="#000000">javax.servlet.http.HttpServletRequest</font><font color="#ff00ff">&quot;</font>
+     <font color="#000000">msg=</font><font color="#ff00ff">&quot;errors.required&quot;</font><font color="#000000">/&gt;</font>
+ <font color="#000000">&lt;validator name=</font><font color="#ff00ff">&quot;requiredif&quot;</font>
+     <font color="#000000">classname=</font><font color="#ff00ff">&quot;org.apache.struts.validator.FieldChecks&quot;</font>
+     <font color="#000000">method=</font><font color="#ff00ff">&quot;validateRequiredIf&quot;</font>
+     <font color="#000000">methodParams=</font><font color="#ff00ff">&quot;java.lang.Object,</font>
+     <font color="#000000">org.apache.commons.validator.ValidatorAction,</font>
+     <font color="#000000">org.apache.commons.validator.</font><font color="#ff0000">Field</font><font color="#000000">,</font>
+     <font color="#000000">org.apache.struts.action.ActionMessages,</font>
+     <font color="#000000">org.apache.commons.validator.</font><font color="#ff0000">Validator</font><font color="#000000">,</font>
+     <font color="#000000">javax.servlet.http.HttpServletRequest</font><font color="#ff00ff">&quot;</font>
+     <font color="#000000">msg=</font><font color="#ff00ff">&quot;errors.required&quot;</font><font color="#000000">/&gt;</font>
+ <font color="#000000">&lt;validator name=</font><font color="#ff00ff">&quot;validwhen&quot;</font>
+     <font color="#000000">msg=</font><font color="#ff00ff">&quot;errors.required&quot;</font>
+     <font color="#000000">classname=</font><font color="#ff00ff">&quot;org.apache.struts.validator.validwhen.ValidWhen&quot;</font>
+     <font color="#000000">method=</font><font color="#ff00ff">&quot;validateValidWhen&quot;</font>
+     <font color="#000000">methodParams=</font><font color="#ff00ff">&quot;java.lang.Object,</font>
+     <font color="#000000">org.apache.commons.validator.ValidatorAction,</font>
+     <font color="#000000">org.apache.commons.validator.</font><font color="#ff0000">Field</font><font color="#000000">,</font>
+     <font color="#000000">org.apache.struts.action.ActionMessages,</font>
+     <font color="#000000">org.apache.commons.validator.</font><font color="#ff0000">Validator</font><font color="#000000">,</font>
+     <font color="#000000">javax.servlet.http.HttpServletRequest</font><font color="#ff00ff">&quot;/&gt;</font>
+ <font color="#000000">&lt;validator name=</font><font color="#ff00ff">&quot;minlength&quot;</font>
+     <font color="#000000">classname=</font><font color="#ff00ff">&quot;org.apache.struts.validator.FieldChecks&quot;</font>
+     <font color="#000000">method=</font><font color="#ff00ff">&quot;validateMinLength&quot;</font>
+     <font color="#000000">methodParams=</font><font color="#ff00ff">&quot;java.lang.Object,</font>
+     <font color="#000000">org.apache.commons.validator.ValidatorAction,</font>
+     <font color="#000000">org.apache.commons.validator.</font><font color="#ff0000">Field</font><font color="#000000">,</font>
+     <font color="#000000">org.apache.struts.action.ActionMessages,</font>
+     <font color="#000000">org.apache.commons.validator.</font><font color="#ff0000">Validator</font><font color="#000000">,</font>
+     <font color="#000000">javax.servlet.http.HttpServletRequest</font><font color="#ff00ff">&quot;</font>
+     <font color="#000000">depends=</font><font color="#ff00ff">&quot;&quot;</font>
+     <font color="#000000">msg=</font><font color="#ff00ff">&quot;errors.minlength&quot;</font>
+     <font color="#000000">jsFunction=</font><font color="#ff00ff">&quot;org.apache.commons.validator</font>
+	 <font color="#000000">.javascript.validateMinLength</font><font color="#ff00ff">&quot;/&gt;</font>
+ <font color="#000000">&lt;validator name=</font><font color="#ff00ff">&quot;maxlength&quot;</font>
+     <font color="#000000">classname=</font><font color="#ff00ff">&quot;org.apache.struts.validator.FieldChecks&quot;</font>
+     <font color="#000000">method=</font><font color="#ff00ff">&quot;validateMaxLength&quot;</font>
+     <font color="#000000">methodParams=</font><font color="#ff00ff">&quot;java.lang.Object,</font>
+     <font color="#000000">org.apache.commons.validator.ValidatorAction,</font>
+     <font color="#000000">org.apache.commons.validator.</font><font color="#ff0000">Field</font><font color="#000000">,</font>
+     <font color="#000000">org.apache.struts.action.ActionMessages,</font>
+     <font color="#000000">org.apache.commons.validator.</font><font color="#ff0000">Validator</font><font color="#000000">,</font>
+     <font color="#000000">javax.servlet.http.HttpServletRequest</font><font color="#ff00ff">&quot;</font>
+     <font color="#000000">depends=</font><font color="#ff00ff">&quot;&quot;</font>
+     <font color="#000000">msg=</font><font color="#ff00ff">&quot;errors.maxlength&quot;</font>
+     <font color="#000000">jsFunction=</font><font color="#ff00ff">&quot;org.apache.commons.validator</font>
+	 <font color="#000000">.javascript.validateMaxLength</font><font color="#ff00ff">&quot;/&gt;</font>
+ <font color="#000000">&lt;validator name=</font><font color="#ff00ff">&quot;mask&quot;</font>
+     <font color="#000000">classname=</font><font color="#ff00ff">&quot;org.apache.struts.validator.FieldChecks&quot;</font>
+     <font color="#000000">method=</font><font color="#ff00ff">&quot;validateMask&quot;</font>
+     <font color="#000000">methodParams=</font><font color="#ff00ff">&quot;java.lang.Object,</font>
+     <font color="#000000">org.apache.commons.validator.ValidatorAction,</font>
+     <font color="#000000">org.apache.commons.validator.</font><font color="#ff0000">Field</font><font color="#000000">,</font>
+     <font color="#000000">org.apache.struts.action.ActionMessages,</font>
+     <font color="#000000">org.apache.commons.validator.</font><font color="#ff0000">Validator</font><font color="#000000">,</font>
+     <font color="#000000">javax.servlet.http.HttpServletRequest</font><font color="#ff00ff">&quot;</font>
+     <font color="#000000">depends=</font><font color="#ff00ff">&quot;&quot;</font>
+     <font color="#000000">msg=</font><font color="#ff00ff">&quot;errors.invalid&quot;</font><font color="#000000">/&gt;</font>
+ <font color="#000000">&lt;validator name=</font><font color="#ff00ff">&quot;byte&quot;</font>
+     <font color="#000000">classname=</font><font color="#ff00ff">&quot;org.apache.struts.validator.FieldChecks&quot;</font>
+     <font color="#000000">method=</font><font color="#ff00ff">&quot;validateByte&quot;</font>
+     <font color="#000000">methodParams=</font><font color="#ff00ff">&quot;java.lang.Object,</font>
+     <font color="#000000">org.apache.commons.validator.ValidatorAction,</font>
+     <font color="#000000">org.apache.commons.validator.</font><font color="#ff0000">Field</font><font color="#000000">,</font>
+     <font color="#000000">org.apache.struts.action.ActionMessages,</font>
+     <font color="#000000">org.apache.commons.validator.</font><font color="#ff0000">Validator</font><font color="#000000">,</font>
+     <font color="#000000">javax.servlet.http.HttpServletRequest</font><font color="#ff00ff">&quot;</font>
+     <font color="#000000">depends=</font><font color="#ff00ff">&quot;&quot;</font>
+     <font color="#000000">msg=</font><font color="#ff00ff">&quot;errors.byte&quot;</font>
+     <font color="#000000">jsFunctionName=</font><font color="#ff00ff">&quot;ByteValidations&quot;</font><font color="#000000">/&gt;</font>
+ <font color="#000000">&lt;validator name=</font><font color="#ff00ff">&quot;short&quot;</font>
+     <font color="#000000">classname=</font><font color="#ff00ff">&quot;org.apache.struts.validator.FieldChecks&quot;</font>
+     <font color="#000000">method=</font><font color="#ff00ff">&quot;validateShort&quot;</font>
+     <font color="#000000">methodParams=</font><font color="#ff00ff">&quot;java.lang.Object,</font>
+     <font color="#000000">org.apache.commons.validator.ValidatorAction,</font>
+     <font color="#000000">org.apache.commons.validator.</font><font color="#ff0000">Field</font><font color="#000000">,</font>
+     <font color="#000000">org.apache.struts.action.ActionMessages,</font>
+     <font color="#000000">org.apache.commons.validator.</font><font color="#ff0000">Validator</font><font color="#000000">,</font>
+     <font color="#000000">javax.servlet.http.HttpServletRequest</font><font color="#ff00ff">&quot;</font>
+     <font color="#000000">depends=</font><font color="#ff00ff">&quot;&quot;</font>
+     <font color="#000000">msg=</font><font color="#ff00ff">&quot;errors.short&quot;</font>
+     <font color="#000000">jsFunctionName=</font><font color="#ff00ff">&quot;ShortValidations&quot;</font><font color="#000000">/&gt;</font>
+ <font color="#000000">&lt;validator name=</font><font color="#ff00ff">&quot;integer&quot;</font>
+     <font color="#000000">classname=</font><font color="#ff00ff">&quot;org.apache.struts.validator.FieldChecks&quot;</font>
+     <font color="#000000">method=</font><font color="#ff00ff">&quot;validateInteger&quot;</font>
+     <font color="#000000">methodParams=</font><font color="#ff00ff">&quot;java.lang.Object,</font>
+     <font color="#000000">org.apache.commons.validator.ValidatorAction,</font>
+     <font color="#000000">org.apache.commons.validator.</font><font color="#ff0000">Field</font><font color="#000000">,</font>
+     <font color="#000000">org.apache.struts.action.ActionMessages,</font>
+     <font color="#000000">org.apache.commons.validator.</font><font color="#ff0000">Validator</font><font color="#000000">,</font>
+     <font color="#000000">javax.servlet.http.HttpServletRequest</font><font color="#ff00ff">&quot;</font>
+     <font color="#000000">depends=</font><font color="#ff00ff">&quot;&quot;</font>
+     <font color="#000000">msg=</font><font color="#ff00ff">&quot;errors.integer&quot;</font>
+     <font color="#000000">jsFunctionName=</font><font color="#ff00ff">&quot;IntegerValidations&quot;</font><font color="#000000">/&gt;</font>
+ <font color="#000000">&lt;validator name=</font><font color="#ff00ff">&quot;long&quot;</font>
+     <font color="#000000">classname=</font><font color="#ff00ff">&quot;org.apache.struts.validator.FieldChecks&quot;</font>
+     <font color="#000000">method=</font><font color="#ff00ff">&quot;validateLong&quot;</font>
+     <font color="#000000">methodParams=</font><font color="#ff00ff">&quot;java.lang.Object,</font>
+     <font color="#000000">org.apache.commons.validator.ValidatorAction,</font>
+     <font color="#000000">org.apache.commons.validator.</font><font color="#ff0000">Field</font><font color="#000000">,</font>
+     <font color="#000000">org.apache.struts.action.ActionMessages,</font>
+     <font color="#000000">org.apache.commons.validator.</font><font color="#ff0000">Validator</font><font color="#000000">,</font>
+     <font color="#000000">javax.servlet.http.HttpServletRequest</font><font color="#ff00ff">&quot;</font>
+     <font color="#000000">depends=</font><font color="#ff00ff">&quot;&quot;</font>
+     <font color="#000000">msg=</font><font color="#ff00ff">&quot;errors.long&quot;</font><font color="#000000">/&gt;</font>
+ <font color="#000000">&lt;validator name=</font><font color="#ff00ff">&quot;float&quot;</font>
+     <font color="#000000">classname=</font><font color="#ff00ff">&quot;org.apache.struts.validator.FieldChecks&quot;</font>
+     <font color="#000000">method=</font><font color="#ff00ff">&quot;validateFloat&quot;</font>
+     <font color="#000000">methodParams=</font><font color="#ff00ff">&quot;java.lang.Object,</font>
+     <font color="#000000">org.apache.commons.validator.ValidatorAction,</font>
+     <font color="#000000">org.apache.commons.validator.</font><font color="#ff0000">Field</font><font color="#000000">,</font>
+     <font color="#000000">org.apache.struts.action.ActionMessages,</font>
+     <font color="#000000">org.apache.commons.validator.</font><font color="#ff0000">Validator</font><font color="#000000">,</font>
+     <font color="#000000">javax.servlet.http.HttpServletRequest</font><font color="#ff00ff">&quot;</font>
+     <font color="#000000">depends=</font><font color="#ff00ff">&quot;&quot;</font>
+     <font color="#000000">msg=</font><font color="#ff00ff">&quot;errors.float&quot;</font>
+     <font color="#000000">jsFunctionName=</font><font color="#ff00ff">&quot;FloatValidations&quot;</font><font color="#000000">/&gt;</font>
+ <font color="#000000">&lt;validator name=</font><font color="#ff00ff">&quot;double&quot;</font>
+     <font color="#000000">classname=</font><font color="#ff00ff">&quot;org.apache.struts.validator.FieldChecks&quot;</font>
+     <font color="#000000">method=</font><font color="#ff00ff">&quot;validateDouble&quot;</font>
+     <font color="#000000">methodParams=</font><font color="#ff00ff">&quot;java.lang.Object,</font>
+     <font color="#000000">org.apache.commons.validator.ValidatorAction,</font>
+     <font color="#000000">org.apache.commons.validator.</font><font color="#ff0000">Field</font><font color="#000000">,</font>
+     <font color="#000000">org.apache.struts.action.ActionMessages,</font>
+     <font color="#000000">org.apache.commons.validator.</font><font color="#ff0000">Validator</font><font color="#000000">,</font>
+     <font color="#000000">javax.servlet.http.HttpServletRequest</font><font color="#ff00ff">&quot;</font>
+     <font color="#000000">depends=</font><font color="#ff00ff">&quot;&quot;</font>
+     <font color="#000000">msg=</font><font color="#ff00ff">&quot;errors.double&quot;</font><font color="#000000">/&gt;</font>
+ <font color="#000000">&lt;validator name=</font><font color="#ff00ff">&quot;byteLocale&quot;</font>
+     <font color="#000000">classname=</font><font color="#ff00ff">&quot;org.apache.struts.validator.FieldChecks&quot;</font>
+     <font color="#000000">method=</font><font color="#ff00ff">&quot;validateByteLocale&quot;</font>
+     <font color="#000000">methodParams=</font><font color="#ff00ff">&quot;java.lang.Object,</font>
+     <font color="#000000">org.apache.commons.validator.ValidatorAction,</font>
+     <font color="#000000">org.apache.commons.validator.</font><font color="#ff0000">Field</font><font color="#000000">,</font>
+     <font color="#000000">org.apache.struts.action.ActionMessages,</font>
+     <font color="#000000">org.apache.commons.validator.</font><font color="#ff0000">Validator</font><font color="#000000">,</font>
+     <font color="#000000">javax.servlet.http.HttpServletRequest</font><font color="#ff00ff">&quot;</font>
+     <font color="#000000">depends=</font><font color="#ff00ff">&quot;&quot;</font>
+     <font color="#000000">msg=</font><font color="#ff00ff">&quot;errors.byte&quot;</font><font color="#000000">/&gt;</font>
+ <font color="#000000">&lt;validator name=</font><font color="#ff00ff">&quot;shortLocale&quot;</font>
+     <font color="#000000">classname=</font><font color="#ff00ff">&quot;org.apache.struts.validator.FieldChecks&quot;</font>
+     <font color="#000000">method=</font><font color="#ff00ff">&quot;validateShortLocale&quot;</font>
+     <font color="#000000">methodParams=</font><font color="#ff00ff">&quot;java.lang.Object,</font>
+     <font color="#000000">org.apache.commons.validator.ValidatorAction,</font>
+     <font color="#000000">org.apache.commons.validator.</font><font color="#ff0000">Field</font><font color="#000000">,</font>
+     <font color="#000000">org.apache.struts.action.ActionMessages,</font>
+     <font color="#000000">org.apache.commons.validator.</font><font color="#ff0000">Validator</font><font color="#000000">,</font>
+     <font color="#000000">javax.servlet.http.HttpServletRequest</font><font color="#ff00ff">&quot;</font>
+     <font color="#000000">depends=</font><font color="#ff00ff">&quot;&quot;</font>
+     <font color="#000000">msg=</font><font color="#ff00ff">&quot;errors.short&quot;</font><font color="#000000">/&gt;</font>
+ <font color="#000000">&lt;validator name=</font><font color="#ff00ff">&quot;integerLocale&quot;</font>
+     <font color="#000000">classname=</font><font color="#ff00ff">&quot;org.apache.struts.validator.FieldChecks&quot;</font>
+     <font color="#000000">method=</font><font color="#ff00ff">&quot;validateIntegerLocale&quot;</font>
+     <font color="#000000">methodParams=</font><font color="#ff00ff">&quot;java.lang.Object,</font>
+     <font color="#000000">org.apache.commons.validator.ValidatorAction,</font>
+     <font color="#000000">org.apache.commons.validator.</font><font color="#ff0000">Field</font><font color="#000000">,</font>
+     <font color="#000000">org.apache.struts.action.ActionMessages,</font>
+     <font color="#000000">org.apache.commons.validator.</font><font color="#ff0000">Validator</font><font color="#000000">,</font>
+     <font color="#000000">javax.servlet.http.HttpServletRequest</font><font color="#ff00ff">&quot;</font>
+     <font color="#000000">depends=</font><font color="#ff00ff">&quot;&quot;</font>
+     <font color="#000000">msg=</font><font color="#ff00ff">&quot;errors.integer&quot;</font><font color="#000000">/&gt;</font>
+ <font color="#000000">&lt;validator name=</font><font color="#ff00ff">&quot;longLocale&quot;</font>
+     <font color="#000000">classname=</font><font color="#ff00ff">&quot;org.apache.struts.validator.FieldChecks&quot;</font>
+     <font color="#000000">method=</font><font color="#ff00ff">&quot;validateLongLocale&quot;</font>
+     <font color="#000000">methodParams=</font><font color="#ff00ff">&quot;java.lang.Object,</font>
+     <font color="#000000">org.apache.commons.validator.ValidatorAction,</font>
+     <font color="#000000">org.apache.commons.validator.</font><font color="#ff0000">Field</font><font color="#000000">,</font>
+     <font color="#000000">org.apache.struts.action.ActionMessages,</font>
+     <font color="#000000">org.apache.commons.validator.</font><font color="#ff0000">Validator</font><font color="#000000">,</font>
+     <font color="#000000">javax.servlet.http.HttpServletRequest</font><font color="#ff00ff">&quot;</font>
+     <font color="#000000">depends=</font><font color="#ff00ff">&quot;&quot;</font>
+     <font color="#000000">msg=</font><font color="#ff00ff">&quot;errors.long&quot;</font><font color="#000000">/&gt;</font>
+ <font color="#000000">&lt;validator name=</font><font color="#ff00ff">&quot;floatLocale&quot;</font>
+     <font color="#000000">classname=</font><font color="#ff00ff">&quot;org.apache.struts.validator.FieldChecks&quot;</font>
+     <font color="#000000">method=</font><font color="#ff00ff">&quot;validateFloatLocale&quot;</font>
+     <font color="#000000">methodParams=</font><font color="#ff00ff">&quot;java.lang.Object,</font>
+     <font color="#000000">org.apache.commons.validator.ValidatorAction,</font>
+     <font color="#000000">org.apache.commons.validator.</font><font color="#ff0000">Field</font><font color="#000000">,</font>
+     <font color="#000000">org.apache.struts.action.ActionMessages,</font>
+     <font color="#000000">org.apache.commons.validator.</font><font color="#ff0000">Validator</font><font color="#000000">,</font>
+     <font color="#000000">javax.servlet.http.HttpServletRequest</font><font color="#ff00ff">&quot;</font>
+     <font color="#000000">depends=</font><font color="#ff00ff">&quot;&quot;</font>
+     <font color="#000000">msg=</font><font color="#ff00ff">&quot;errors.float&quot;</font><font color="#000000">/&gt;</font>
+ <font color="#000000">&lt;validator name=</font><font color="#ff00ff">&quot;doubleLocale&quot;</font>
+     <font color="#000000">classname=</font><font color="#ff00ff">&quot;org.apache.struts.validator.FieldChecks&quot;</font>
+     <font color="#000000">method=</font><font color="#ff00ff">&quot;validateDoubleLocale&quot;</font>
+     <font color="#000000">methodParams=</font><font color="#ff00ff">&quot;java.lang.Object,</font>
+     <font color="#000000">org.apache.commons.validator.ValidatorAction,</font>
+     <font color="#000000">org.apache.commons.validator.</font><font color="#ff0000">Field</font><font color="#000000">,</font>
+     <font color="#000000">org.apache.struts.action.ActionMessages,</font>
+     <font color="#000000">org.apache.commons.validator.</font><font color="#ff0000">Validator</font><font color="#000000">,</font>
+     <font color="#000000">javax.servlet.http.HttpServletRequest</font><font color="#ff00ff">&quot;</font>
+     <font color="#000000">depends=</font><font color="#ff00ff">&quot;&quot;</font>
+     <font color="#000000">msg=</font><font color="#ff00ff">&quot;errors.double&quot;</font><font color="#000000">/&gt;</font>
+ <font color="#000000">&lt;validator name=</font><font color="#ff00ff">&quot;date&quot;</font>
+     <font color="#000000">classname=</font><font color="#ff00ff">&quot;org.apache.struts.validator.FieldChecks&quot;</font>
+     <font color="#000000">method=</font><font color="#ff00ff">&quot;validateDate&quot;</font>
+     <font color="#000000">methodParams=</font><font color="#ff00ff">&quot;java.lang.Object,</font>
+     <font color="#000000">org.apache.commons.validator.ValidatorAction,</font>
+     <font color="#000000">org.apache.commons.validator.</font><font color="#ff0000">Field</font><font color="#000000">,</font>
+     <font color="#000000">org.apache.struts.action.ActionMessages,</font>
+     <font color="#000000">org.apache.commons.validator.</font><font color="#ff0000">Validator</font><font color="#000000">,</font>
+     <font color="#000000">javax.servlet.http.HttpServletRequest</font><font color="#ff00ff">&quot;</font>
+     <font color="#000000">depends=</font><font color="#ff00ff">&quot;&quot;</font>
+     <font color="#000000">msg=</font><font color="#ff00ff">&quot;errors.date&quot;</font>
+     <font color="#000000">jsFunctionName=</font><font color="#ff00ff">&quot;DateValidations&quot;</font><font color="#000000">/&gt;</font>
+ <font color="#000000">&lt;validator name=</font><font color="#ff00ff">&quot;intRange&quot;</font>
+     <font color="#000000">classname=</font><font color="#ff00ff">&quot;org.apache.struts.validator.FieldChecks&quot;</font>
+     <font color="#000000">method=</font><font color="#ff00ff">&quot;validateIntRange&quot;</font>
+     <font color="#000000">methodParams=</font><font color="#ff00ff">&quot;java.lang.Object,</font>
+     <font color="#000000">org.apache.commons.validator.ValidatorAction,</font>
+     <font color="#000000">org.apache.commons.validator.</font><font color="#ff0000">Field</font><font color="#000000">,</font>
+     <font color="#000000">org.apache.struts.action.ActionMessages,</font>
+     <font color="#000000">org.apache.commons.validator.</font><font color="#ff0000">Validator</font><font color="#000000">,</font>
+     <font color="#000000">javax.servlet.http.HttpServletRequest</font><font color="#ff00ff">&quot;</font>
+     <font color="#000000">depends=</font><font color="#ff00ff">&quot;integer&quot;</font>
+     <font color="#000000">msg=</font><font color="#ff00ff">&quot;errors.range&quot;</font><font color="#000000">/&gt;</font>
+ <font color="#000000">&lt;validator name=</font><font color="#ff00ff">&quot;longRange&quot;</font>
+     <font color="#000000">classname=</font><font color="#ff00ff">&quot;org.apache.struts.validator.FieldChecks&quot;</font>
+     <font color="#000000">method=</font><font color="#ff00ff">&quot;validateLongRange&quot;</font>
+     <font color="#000000">methodParams=</font><font color="#ff00ff">&quot;java.lang.Object,</font>
+     <font color="#000000">org.apache.commons.validator.ValidatorAction,</font>
+     <font color="#000000">org.apache.commons.validator.</font><font color="#ff0000">Field</font><font color="#000000">,</font>
+     <font color="#000000">org.apache.struts.action.ActionMessages,</font>
+     <font color="#000000">org.apache.commons.validator.</font><font color="#ff0000">Validator</font><font color="#000000">,</font>
+     <font color="#000000">javax.servlet.http.HttpServletRequest</font><font color="#ff00ff">&quot;</font>
+     <font color="#000000">depends=</font><font color="#ff00ff">&quot;long&quot;</font>
+     <font color="#000000">msg=</font><font color="#ff00ff">&quot;errors.range&quot;</font><font color="#000000">/&gt;</font>
+ <font color="#000000">&lt;validator name=</font><font color="#ff00ff">&quot;floatRange&quot;</font>
+     <font color="#000000">classname=</font><font color="#ff00ff">&quot;org.apache.struts.validator.FieldChecks&quot;</font>
+     <font color="#000000">method=</font><font color="#ff00ff">&quot;validateFloatRange&quot;</font>
+     <font color="#000000">methodParams=</font><font color="#ff00ff">&quot;java.lang.Object,</font>
+     <font color="#000000">org.apache.commons.validator.ValidatorAction,</font>
+     <font color="#000000">org.apache.commons.validator.</font><font color="#ff0000">Field</font><font color="#000000">,</font>
+     <font color="#000000">org.apache.struts.action.ActionMessages,</font>
+     <font color="#000000">org.apache.commons.validator.</font><font color="#ff0000">Validator</font><font color="#000000">,</font>
+     <font color="#000000">javax.servlet.http.HttpServletRequest</font><font color="#ff00ff">&quot;</font>
+     <font color="#000000">depends=</font><font color="#ff00ff">&quot;float&quot;</font>
+     <font color="#000000">msg=</font><font color="#ff00ff">&quot;errors.range&quot;</font><font color="#000000">/&gt;</font>
+ <font color="#000000">&lt;validator name=</font><font color="#ff00ff">&quot;doubleRange&quot;</font>
+     <font color="#000000">classname=</font><font color="#ff00ff">&quot;org.apache.struts.validator.FieldChecks&quot;</font>
+     <font color="#000000">method=</font><font color="#ff00ff">&quot;validateDoubleRange&quot;</font>
+     <font color="#000000">methodParams=</font><font color="#ff00ff">&quot;java.lang.Object,</font>
+     <font color="#000000">org.apache.commons.validator.ValidatorAction,</font>
+     <font color="#000000">org.apache.commons.validator.</font><font color="#ff0000">Field</font><font color="#000000">,</font>
+     <font color="#000000">org.apache.struts.action.ActionMessages,</font>
+     <font color="#000000">org.apache.commons.validator.</font><font color="#ff0000">Validator</font><font color="#000000">,</font>
+     <font color="#000000">javax.servlet.http.HttpServletRequest</font><font color="#ff00ff">&quot;</font>
+     <font color="#000000">depends=</font><font color="#ff00ff">&quot;double&quot;</font>
+     <font color="#000000">msg=</font><font color="#ff00ff">&quot;errors.range&quot;</font><font color="#000000">/&gt;</font>
+ <font color="#000000">&lt;validator name=</font><font color="#ff00ff">&quot;creditCard&quot;</font>
+     <font color="#000000">classname=</font><font color="#ff00ff">&quot;org.apache.struts.validator.FieldChecks&quot;</font>
+     <font color="#000000">method=</font><font color="#ff00ff">&quot;validateCreditCard&quot;</font>
+     <font color="#000000">methodParams=</font><font color="#ff00ff">&quot;java.lang.Object,</font>
+     <font color="#000000">org.apache.commons.validator.ValidatorAction,</font>
+     <font color="#000000">org.apache.commons.validator.</font><font color="#ff0000">Field</font><font color="#000000">,</font>
+     <font color="#000000">org.apache.struts.action.ActionMessages,</font>
+     <font color="#000000">org.apache.commons.validator.</font><font color="#ff0000">Validator</font><font color="#000000">,</font>
+     <font color="#000000">javax.servlet.http.HttpServletRequest</font><font color="#ff00ff">&quot;</font>
+     <font color="#000000">depends=</font><font color="#ff00ff">&quot;&quot;</font>
+     <font color="#000000">msg=</font><font color="#ff00ff">&quot;errors.creditcard&quot;</font><font color="#000000">/&gt;</font>
+ <font color="#000000">&lt;validator name=</font><font color="#ff00ff">&quot;email&quot;</font>
+     <font color="#000000">classname=</font><font color="#ff00ff">&quot;org.apache.struts.validator.FieldChecks&quot;</font>
+     <font color="#000000">method=</font><font color="#ff00ff">&quot;validateEmail&quot;</font>
+     <font color="#000000">methodParams=</font><font color="#ff00ff">&quot;java.lang.Object,</font>
+     <font color="#000000">org.apache.commons.validator.ValidatorAction,</font>
+     <font color="#000000">org.apache.commons.validator.</font><font color="#ff0000">Field</font><font color="#000000">,</font>
+     <font color="#000000">org.apache.struts.action.ActionMessages,</font>
+     <font color="#000000">org.apache.commons.validator.</font><font color="#ff0000">Validator</font><font color="#000000">,</font>
+     <font color="#000000">javax.servlet.http.HttpServletRequest</font><font color="#ff00ff">&quot;</font>
+     <font color="#000000">depends=</font><font color="#ff00ff">&quot;&quot;</font>
+     <font color="#000000">msg=</font><font color="#ff00ff">&quot;errors.email&quot;</font><font color="#000000">/&gt;</font>
+ <font color="#000000">&lt;validator name=</font><font color="#ff00ff">&quot;url&quot;</font>
+     <font color="#000000">classname=</font><font color="#ff00ff">&quot;org.apache.struts.validator.FieldChecks&quot;</font>
+     <font color="#000000">method=</font><font color="#ff00ff">&quot;validateUrl&quot;</font>
+     <font color="#000000">methodParams=</font><font color="#ff00ff">&quot;java.lang.Object,</font>
+     <font color="#000000">org.apache.commons.validator.ValidatorAction,</font>
+     <font color="#000000">org.apache.commons.validator.</font><font color="#ff0000">Field</font><font color="#000000">,</font>
+     <font color="#000000">org.apache.struts.action.ActionMessages,</font>
+     <font color="#000000">org.apache.commons.validator.</font><font color="#ff0000">Validator</font><font color="#000000">,</font>
+     <font color="#000000">javax.servlet.http.HttpServletRequest</font><font color="#ff00ff">&quot;</font>
+     <font color="#000000">depends=</font><font color="#ff00ff">&quot;&quot;</font>
+     <font color="#000000">msg=</font><font color="#ff00ff">&quot;errors.url&quot;</font><font color="#000000">/&gt;</font>
+ <font color="#000000">&lt;!--</font>
+   <font color="#000000">This simply allows struts to include the </font>
+   <font color="#000000">validateUtilities into a page, it should</font>
+   <font color="#000000">not be used as a validation rule.--&gt;</font>
+ <font color="#000000">&lt;validator name=</font><font color="#ff00ff">&quot;includeJavaScriptUtilities&quot;</font>
+     <font color="#000000">classname=</font><font color="#ff00ff">&quot;&quot;</font>
+     <font color="#000000">method=</font><font color="#ff00ff">&quot;&quot;</font>
+     <font color="#000000">methodParams=</font><font color="#ff00ff">&quot;&quot;</font>
+     <font color="#000000">depends=</font><font color="#ff00ff">&quot;&quot;</font>
+     <font color="#000000">msg=</font><font color="#ff00ff">&quot;&quot;</font>
+     <font color="#000000">jsFunction=</font><font color="#ff00ff">&quot;org.apache.commons.validator</font>
+	 <font color="#000000">.javascript.validateUtilities</font><font color="#ff00ff">&quot;/&gt;</font>
+    <font color="#000000">&lt;/global&gt;</font>
+<font color="#000000">&lt;/form-validation&gt;</font>
+</pre>
+</div>
+<p><i>Step- 9: </i>Now introduce Bean class into struts-config.xml file, Since In this application we used DynaValidationForm which extend DynaActionForm so, no need to make another Bean/Form class.</p>
+<p><i>Step- 10:</i> Introduce Action class in to struts-config.xml file, as we define in our first application, that Netbean IDE able to configure your action class in struts-config.xml file.</p>
+<div class="code"><pre>
+<font color="#008000">/* Save as a registerAction.java</font>
+<font color="#008000"> * Action class of ValidationEx_1 application */</font>
+<font color="#0000ff">package </font><font color="#000000">r4r.struts;</font>
+<font color="#0000ff">import </font><font color="#000000">javax.servlet.http.HttpServletRequest;</font>
+<font color="#0000ff">import </font><font color="#000000">javax.servlet.http.HttpServletResponse;</font>
+<font color="#0000ff">import </font><font color="#000000">org.apache.struts.action.ActionForm;</font>
+<font color="#0000ff">import </font><font color="#000000">org.apache.struts.action.ActionForward;</font>
+<font color="#0000ff">import </font><font color="#000000">org.apache.struts.action.ActionMapping;</font>
+<font color="#0000ff">import </font><font color="#000000">org.apache.struts.validator.DynaValidatorForm;</font>
+<font color="#0000ff">public class </font><font color="#000000">registerAction </font><font color="#0000ff">extends</font>
+	<font color="#000000">org.apache.struts.action.</font><font color="#ff0000">Action </font><font color="#000000">{</font>
+<font color="#008000">/* forward name=&quot;&quot; path=&quot;&quot; */</font>
+<font color="#0000ff">private static final </font><font color="#ff0000">String </font><font color="#000000">SUCCESS = </font><font color="#ff00ff">&quot;success&quot;</font><font color="#000000">;</font>
+<font color="#0000ff">private </font><font color="#ff0000">String </font><font color="#000000">name, email, gender;</font>
+<font color="#0000ff">private int </font><font color="#000000">age, number;</font>
+<font color="#000000">/ * This is the action called from the Struts framework. */</font>
+<font color="#000000">@</font><font color="#0000ff">Override</font>
+<font color="#0000ff">public </font><font color="#000000">ActionForward execute(ActionMapping mapping, </font>
+	<font color="#000000">ActionForm form,HttpServletRequest request, </font>
+	<font color="#000000">HttpServletResponse response)</font><font color="#0000ff">throws </font><font color="#ff0000">Exception </font><font color="#000000">{</font>
+<font color="#000000">DynaValidatorForm validatorForm = (DynaValidatorForm) form;</font>
+<font color="#000000">name = (</font><font color="#ff0000">String</font><font color="#000000">) validatorForm.get(</font><font color="#ff00ff">&quot;name&quot;</font><font color="#000000">);</font>
+<font color="#000000">email = (</font><font color="#ff0000">String</font><font color="#000000">) validatorForm.get(</font><font color="#ff00ff">&quot;email&quot;</font><font color="#000000">);</font>
+<font color="#000000">gender = (</font><font color="#ff0000">String</font><font color="#000000">) validatorForm.get(</font><font color="#ff00ff">&quot;gender&quot;</font><font color="#000000">);</font>
+<font color="#000000">age = (</font><font color="#ff0000">Integer</font><font color="#000000">) validatorForm.get(</font><font color="#ff00ff">&quot;age&quot;</font><font color="#000000">);</font>
+<font color="#000000">number = (</font><font color="#ff0000">Integer</font><font color="#000000">) validatorForm.get(</font><font color="#ff00ff">&quot;number&quot;</font><font color="#000000">);</font>
+<font color="#0000ff">return </font><font color="#000000">mapping.findForward(SUCCESS);</font>
+<font color="#000000">}</font>
+<font color="#000000">}</font>
+</pre>
+</div>
+<p><i><u>Run your application: </u></i></p>
+<p> Now your application is complete, so now start run your application. Start your server( which you embedded when configure our struts application), then right click your application and click upon Run option or open your welcome( index.jsp) page and press shift+F6.</p>
+
+<div class="image"><img src="images/validate1.png"></div>
+<p>Check validation into JSP page</p> 
+<div class="image"><img src="images/validate2.png"></div>
+<div class="image"><img src="images/validate3.png"></div>
+<div class="image"><img src="images/validate4.png"></div>
+<div class="image"><img src="images/validate5.png" ></div>
+<div class="image"><img src="images/validate6.png"></div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="../Example%2013" title="Creating a Struts Application for Upload document into browser by Using DynaValidatorForm">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="../Example%2015" title="Creating a Struts Application by using DynaValidationForm(JavaScript Validation)">Next</a></td>
+  </tr> 
+</table>	
+	<!-- Footer Start-->	
+		</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->

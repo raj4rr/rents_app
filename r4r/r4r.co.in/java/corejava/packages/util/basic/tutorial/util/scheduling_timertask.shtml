@@ -1,0 +1,140 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD>
+<meta http-equiv="Content-Language" content="en-us">
+<TITLE>scheduling timer task,how to schedule the timer task</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name="description" CONTENT="scheduling timer task,how to schedule the timer task" >
+<meta name="keywords" CONTENT="scheduling timer task,how to schedule the timer task">
+
+<!-- header start-->	
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>Java Programing laungage</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+            <img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+            <a href="/java/">Java</a>
+              <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/java/corejava">Core Java</a>
+               <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/java/corejava/packages">Package</a>
+                     <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/java/corejava/packages/lang">Java Util Package</a>
+              </div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/corejava/packages/util/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	 
+
+<div class="heading">Scheduling to Timer Task</div>
+<p>In this page of the tutorials, we shall be learn how to schedule a timer task to run at a certain time and repeatedly. There is an example given for the description.</p>
+
+<table id="indexing">
+  <tr>
+ <td style="width:33%; text-align:left;"><a href="clonemethod.shtml" title="clone method">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="stack.shtml" title="stack">Next</a></td>
+  </tr> 
+</table>
+<!-- header End-->
+
+<p>This program will be ask you for the way of performing the task whether at the certain time or repeatedly. If we are enter the "c" then the program will perform the timer task at a certain time means the task will work only once while we enter the "r" then the program performs the timer task repeatedly until you terminate the program.</p>
+
+<div class="heading">Code Description</div>
+<p>This program has used the following method.</p>
+<h2>Timer.schedule()</h2>
+<p>This method of Timer class is used to set the schedule for the specific task. In this program, this method has been used two times. In this program First time passed The two parameters through the method.</p>
+
+<ul>
+<li>
+<p>Task which has to be performed.</p>
+</li>
+<li>
+<p>Time for the first time perform the task.</p>
+</li></ul>
+<p>Second time three parameters have passed in the method.</p>
+<ul>
+<li>
+<p>Time period in which the task has to be repeated.</p>
+</li>
+</ul>
+
+<h3>Example</h3>
+<div class="code">
+<PRE>
+<FONT FACE="Arial">
+<FONT COLOR="#0000ff">package </FONT><FONT COLOR="#000000">r4r;</FONT>
+<FONT COLOR="#0000ff">import </FONT><FONT COLOR="#000000">java.io.</FONT><FONT COLOR="#ff0000">BufferedReader</FONT><FONT COLOR="#000000">;</FONT>
+<FONT COLOR="#0000ff">import </FONT><FONT COLOR="#000000">java.io.</FONT><FONT COLOR="#ff0000">IOException</FONT><FONT COLOR="#000000">;</FONT>
+<FONT COLOR="#0000ff">import </FONT><FONT COLOR="#000000">java.io.</FONT><FONT COLOR="#ff0000">InputStreamReader</FONT><FONT COLOR="#000000">;</FONT>
+<FONT COLOR="#0000ff">import </FONT><FONT COLOR="#000000">java.util.*;</FONT>
+<FONT COLOR="#0000ff">public class </FONT><FONT COLOR="#000000">scheduletimertasks {</FONT>
+<FONT COLOR="#0000ff">public static void </FONT><FONT COLOR="#000000">main(</FONT><FONT COLOR="#ff0000">String</FONT><FONT COLOR="#000000">[] args) </FONT><FONT COLOR="#0000ff">throws </FONT><FONT COLOR="#ff0000">IOException</FONT><FONT COLOR="#000000">{</FONT>
+<FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">delay = </FONT><FONT COLOR="#800080">1000</FONT><FONT COLOR="#000000">;</FONT>
+<FONT COLOR="#ff0000">Timer </FONT><FONT COLOR="#000000">timer = </FONT><FONT COLOR="#0000ff">new </FONT><FONT COLOR="#ff0000">Timer</FONT><FONT COLOR="#000000">();</FONT>
+<FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.println(</FONT><FONT COLOR="#ff00ff">"What do you want (Time Creation or time Repeat)?"</FONT><FONT COLOR="#000000">);</FONT>
+<FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.print(</FONT><FONT COLOR="#ff00ff">"Please enter \'C\' or \'R\' for Choice: "</FONT><FONT COLOR="#000000">);</FONT>
+<FONT COLOR="#ff0000">BufferedReader </FONT><FONT COLOR="#000000">br = </FONT><FONT COLOR="#0000ff">new </FONT><FONT COLOR="#ff0000">BufferedReader</FONT><FONT COLOR="#000000">(</FONT><FONT COLOR="#0000ff">new </FONT><FONT COLOR="#ff0000">InputStreamReader</FONT><FONT COLOR="#000000">(</FONT><FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.in));</FONT>
+<FONT COLOR="#ff0000">String </FONT><FONT COLOR="#000000">ans = br.readLine();</FONT>
+<FONT COLOR="#0000ff">if </FONT><FONT COLOR="#000000">(ans.equals(</FONT><FONT COLOR="#ff00ff">"C"</FONT><FONT COLOR="#000000">) || ans.equals(</FONT><FONT COLOR="#ff00ff">"c"</FONT><FONT COLOR="#000000">)){</FONT>
+<FONT COLOR="#000000">timer.schedule(</FONT><FONT COLOR="#0000ff">new </FONT><FONT COLOR="#ff0000">TimerTask</FONT><FONT COLOR="#000000">(){</FONT>
+<FONT COLOR="#0000ff">public void </FONT><FONT COLOR="#000000">run(){</FONT>
+<FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.println(</FONT><FONT COLOR="#ff00ff">"This is printed only once."</FONT><FONT COLOR="#000000">);</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#000000">},delay);</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#0000ff">else if</FONT><FONT COLOR="#000000">(ans.equals(</FONT><FONT COLOR="#ff00ff">"r"</FONT><FONT COLOR="#000000">) || ans.equals(</FONT><FONT COLOR="#ff00ff">"R"</FONT><FONT COLOR="#000000">)){</FONT>
+<FONT COLOR="#000000">timer.schedule(</FONT><FONT COLOR="#0000ff">new </FONT><FONT COLOR="#ff0000">TimerTask</FONT><FONT COLOR="#000000">(){</FONT>
+<FONT COLOR="#0000ff">public void </FONT><FONT COLOR="#000000">run(){</FONT>
+<FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.println(</FONT><FONT COLOR="#ff00ff">"This is printed repeatedly."</FONT><FONT COLOR="#000000">);</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#000000">},delay, </FONT><FONT COLOR="#800080">1000</FONT><FONT COLOR="#000000">);</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#0000ff">else</FONT><FONT COLOR="#000000">{</FONT>
+<FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.println(</FONT><FONT COLOR="#ff00ff">"Invalid Entry."</FONT><FONT COLOR="#000000">);</FONT>
+<FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.exit(</FONT><FONT COLOR="#800080">0</FONT><FONT COLOR="#000000">);</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.exit(</FONT><FONT COLOR="#800080">0</FONT><FONT COLOR="#000000">);</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#000000">}</FONT>
+</FONT>
+</PRE>
+</div>
+
+<table id="indexing">
+  <tr>
+ <td style="width:33%; text-align:left;"><a href="clonemethod.shtml" title="clone method">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="stack.shtml" title="stack">Next</a></td>
+  </tr> 
+</table>
+
+<!-- Footer Start-->
+		</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->

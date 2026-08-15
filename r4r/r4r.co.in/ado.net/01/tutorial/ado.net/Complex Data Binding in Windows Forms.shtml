@@ -1,0 +1,173 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>Complex Data Binding in Windows Forms </TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="Complex Data Binding in Windows Forms " >
+<meta name="keywords" CONTENT="Complex Data Binding in Windows Forms ">
+
+<!-- header start-->	
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>ADO.NET</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+            <img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+            <a href="/ado.net">ADO.Net</a>
+              <img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+
+			  <a href="/ado.net/01/tutorial/ado.net/">ADO.NET Tutorials</a>
+
+              </div>
+
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/ado.net/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	 
+<!-- header End-->	
+
+<div class="heading">Complex Data Binding in Windows Forms</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="Simple%20Data%20Binding%20in%20Windows%20Forms.shtml" title="Simple Data Binding in Windows Forms">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="Displaying%20Hierarchical%20Data%20Using%20the%20DataGrid.shtml" title="Displaying Hierarchical Data Using the DataGrid">Next</a></td>
+  </tr> 
+</table>
+
+<p>We will build Windows Form that will display all student in a bound ListBox and thestudents's associated marks in a bound DataGrid. A more 
+complex DataSet will be needed that provides the relationship path to traverse from student to marks  using the primary key of student (stdid) 
+to foreign key in marks (stdid). we will have to do data bindings for both the ListBox control and the DataGrid con</p>
+<h3>Create a New Project in VS .NET</h3>
+<ol>
+<li>Create a new project in VS .NET by choosing File, New, and then choosing the Project option.</li>
+<li>When the New Project dialog box appears, choose  Visual C# Projects and Windows Applications. Name this project "comlexdatabinding". This creates a default form for you to start from.</li>
+</ol>
+<h3>Add the Data Connection and Two Data Adapters</h3>
+<p>we will need to access both the student  table and themarks table, so two data adapters will be created, each populating different controls but using one database connection.
+From the Data tab of the Toolbox, drag aOledbDataAdapter object into your form. This will automatically invoke the Data Adapter Configuration Wizard. Both the data connection and the data adapter can be fully configured here.</p>
+<ul>
+<li>a. The wizard starts with the Choose our Data Connection dialog box. If   there  already exist a connection defined in your project,then it will be placed in the dialog box; otherwise, choose to create a new connection and specify the appropriate connection information.</li>
+
+<li>b. Choose the Use SQL Statements option.</li>
+
+<li>c. we will be presented with a Generate the SQL Statements dialog box where you will simply type in a valid SQL statement, or you can use the Query Builder option to formulate the SQL query.such as:
+<div class="code">
+<pre>
+<font color="#000000">SELECT stdid,stdname FROM student</font>
+</pre>
+</div>
+</li>
+<li>d. Finally, the wizard will show you the tasks that it has done and indicate whether the oledbDataAdapter has been configured successfully.</li>
+</ul>
+
+<ol>
+<li> we need one more data adapter for access to the mrks  table. Drag another oledbDataAdapter object onto the form.</li>
+</ol>
+<ul>
+<li>a. Again, the wizard starts with the Choose Your Data Connection dialog box.</li>
+<li>b. Choose the Use SQL Statements option.</li>
+<li>c. we  will be presented with a Generate the SQL Statements dialog box where you will type the following query:
+
+<div class="code">
+<pre>
+<font color="#000000">SELECT subid, stdid, subname,mark</font>
+<font color="#000000">FROM marks</font>
+</pre>
+</div></li>
+<li>d. Then the wizard will show we  the tasks that it has done and indicate whether the oledbDataAdapter has been configured successfully .</li></ul>
+
+<h2>Generate a DataSet</h2>
+
+<p>Now that the OledbDataAdapter and DataConnection objects have been configured and added to the form, you must generate a DataSet and then add an instance of this DataSet to the form.</p>
+<ol>
+<li><p>From the Data menu in Visual Studio, simply choose the Generate Dataset option.</p>
+<div class="image">
+<img src="images/Complex_Data_Binding_Windows_Forms2.jpg">
+</div>
+</li>
+<li><p>XML Schema editorSTUDENTDS.xsd schema file.</p>
+<div class="image">
+<img src="images/Complex_Data_Binding_Windows_Forms4.jpg">
+</div></li>
+<li><p>Next, drag a Relation object onto the Orders table</p>
+<div class="image">
+<img src="images/Complex_Data_Binding_Windows_Forms6.jpg">
+</div>
+</li>
+<li>
+Adding the ListBox and DataGrid Controls</li>
+<p> create the ListBox to display all of the Sudent Names from the Student table.</p>
+<ul>
+<li>a. Drag a ListBox object from the Windows Forms tab of the Toolbox onto the Form.</li>
+
+<li>b. Press F4 to go right to the properties of this ListBox.</li>
+
+<li>c. For the DataSource property, you will need to select the dtatsaet1 data source.</li>
+
+<li>d. For the DisplayMember property, you will select student , expand this node, and select studentname.shows the complete ListBox property.</li>
+</ul>
+<p> the DataGrid control to display all of the Orders that are associated with a particular Company that is selected.</p>
+<ul>
+<li>a. Drag a DataGrid object from the Windows Forms tab of the toolbox onto the Form.</li>
+
+<li>b. Press F4 to go right to the properties of this DataGrid.</li>
+
+<li>c. For the DataSource property, you will need to select the student data source.</li>
+
+<li>d. And, for the DisplayMember property, you will select and expand student, and then select marks</li></ul>
+
+<p>Just double-click on the form to create a handler for the form's Load event. You will need to clear the DataSet first, and then fill each data adapter that we defined.</p>
+
+<div class="code">
+<pre>
+<font color="#000000">datsaet1.Clear()</font>
+<font color="#000000">OledbDataAdapter1.Fill(dataset1)</font>
+<font color="#000000">OledbDataAdapter2.Fill(dataset1)</font>
+</pre>
+</div>
+
+<div class="image">
+<img src="images/Complex_Data_Binding_Windows_Forms8.jpg">
+</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="Simple%20Data%20Binding%20in%20Windows%20Forms.shtml" title="Simple Data Binding in Windows Forms">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="Displaying%20Hierarchical%20Data%20Using%20the%20DataGrid.shtml" title="Displaying Hierarchical Data Using the DataGrid">Next</a></td>
+  </tr> 
+</table>
+
+<!-- Footer Start-->		
+		</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/dotnet/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->

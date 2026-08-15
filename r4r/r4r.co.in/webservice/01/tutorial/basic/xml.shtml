@@ -1,0 +1,447 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>XML-RPC,RPC,Introduction to XML-RPC,Why XML-RPC?,XML-RPC Data Model,XML-RPC simple types mapped onto .NET data types,XML-RPC Request Format,XML-RPC Response Format,XML-RPC Fault Format,XML-RPC Examples (in .net),XML-RPC Examples (in .net),XML-RPC Client,XML-RPC Services 
+</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="XML-RPC,RPC,Introduction to XML-RPC,Why XML-RPC?,XML-RPC Data Model,XML-RPC simple types mapped onto .NET data types,XML-RPC Request Format,XML-RPC Response Format,XML-RPC Fault Format,XML-RPC Examples (in .net),XML-RPC Examples (in .net),XML-RPC Client,XML-RPC Services " >
+<meta name="keywords" CONTENT="XML-RPC,RPC,Introduction to XML-RPC,Why XML-RPC?,XML-RPC Data Model,XML-RPC simple types mapped onto .NET data types,XML-RPC Request Format,XML-RPC Response Format,XML-RPC Fault Format,XML-RPC Examples (in .net),XML-RPC Examples (in .net),XML-RPC Client,XML-RPC Services ">
+
+<!-- header start-->	
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>Web Services</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+            <img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+           <a href="/webservice/">Web Services</a>
+
+              </div>
+
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/webservice/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	 
+
+<!-- header End-->	
+
+  <div class="heading">XML-RPC</div>
+ <table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="system_requirements.shtml" title="System Requirements">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="soap.shtml" title="SOAP">Next</a></td>
+  </tr> 
+</table>
+
+<p><h3>RPC</p></h3>
+
+RPC is a older technology stands for Remote Procedure 
+Call. RPC is a mechanism to call function or procedure that are 
+available on a remote computer. RPC provides a mechanism to the developer and 
+define interfaces which must be called over a network. These interfaces can be 
+as simple as a single function call.
+
+<div class="heading">Introduction to XML-RPC</div></p>
+</p>
+
+<ul>
+  <li>
+
+XML-RPC provide facility to computer to call procedure from 
+other remote computer and make function across network.
+
+  </li>
+  <li>
+
+XML-RPC uses the HTTP protocol to transfer information 
+between a client computer and a server computer. It uses XML vocabulary to 
+describe nature of request and response.
+
+  </li>
+  <li>
+
+XML-RPC client specified only a procedure name and parameters&nbsp; 
+and the server returns fault or response to the client but both are in XML 
+format.
+
+  </li>
+  <li>
+
+With XML-RPC and web services, however, the Web becomes a 
+collection of procedural connections where computers exchange information along 
+tightly bound paths. 
+
+  </li>
+</ul>
+
+<div class="image">
+<img src="Images/XmlRpc.gif" ></div>
+
+<h3>Why XML-RPC ?</h3>
+If you want to establish communication easily between client 
+and server, XML-RPC be the better way. It integrate multiple or more computing 
+environment easily&nbsp; without sharing complex data structure. XML-RPC make 
+easy to share information or program in a single computing environment. XML-RPC 
+uses standers XML vocabulary to response and request.
+
+<p><font class="point_out">XML-RPC Data Model</font></p>
+
+<p><font class="point_out">XML-RPC simple types mapped onto .NET data types.</font></p>
+<h2>XML-RPC simple types are mapped to and from the following .NET types:</h2>
+
+<div class="table_content">
+<table>
+<tr>
+<td class ="alternate_heading1" style="width=:20%;">double </td>
+<td class ="alternate_heading1" style="width=:40%;">System .Double</td>
+<td class ="alternate_heading1" style="width=:40%;">64-bit floating-point numbers</td>
+</tr>
+
+<tr>
+<td class ="alternate_heading2" style="width=:20%;">base64 </td>
+<td class ="alternate_heading2" style="width=:40%;">System .Byte[]</td>
+<td class ="alternate_heading2" style="width=:40%;"></td>
+</tr>
+
+<tr>
+<td class ="alternate_heading1" style="width=:20%;">boolean </td>
+<td class ="alternate_heading1" style="width=:40%;">System .Boolean</td>
+<td class ="alternate_heading1" style="width=:40%;">true (1) or false (0)</td>
+</tr>
+
+<tr>
+<td class ="alternate_heading2" style="width=:20%;">string </td>
+<td class ="alternate_heading2" style="width=:40%;">System .String</td>
+<td class ="alternate_heading2" style="width=:40%;">XML-RPC.NET always outputs the string element instead of just a value element with text content</td>
+</tr>
+
+<tr>
+<td class ="alternate_heading1" style="width=:20%;">i4 int</td>
+<td class ="alternate_heading1" style="width=:40%;">System .Int32</td>
+<td class ="alternate_heading1" style="width=:40%;">XML-RPC.NET by default outputs i4</td>
+</tr>
+<tr>
+<td class ="alternate_heading2" style="width=:20%;">dateTime iso8601</td>
+<td class ="alternate_heading2" style="width=:40%;">System .DateTime</td>
+<td class ="alternate_heading2" style="width=:40%;">Dates in ISO8601 format: CCYYMMDDTHH:MM:SS</td>
+</tr>
+
+<tr>
+<td class ="alternate_heading1" style="width=:20%;">i81</td>
+<td class ="alternate_heading1" style="width=:40%;">System .Int64</td>
+<td class ="alternate_heading1" style="width=:40%;">Extension to XML-RPC.</td>
+</tr>
+
+</table>
+</div>
+
+<p><font class="point_out"> The given basics types are always enclosed in a value elements.</p></font>
+
+<ul>
+  <li>
+
+Strings may be enclosed in a value element but omit the 
+string element.
+
+  </li>
+  <li>
+
+These basic types may be combined into two more complex types, arrays and structs. 
+Arrays represent sequential information, while structs represent name-value 
+pairs, much like hashtables, associative arrays, or properties.
+</li></ul>
+
+<div class="code">
+<pre>
+<font color="#0000ff">&lt;</font><font color="#808000">value</font><font color="#0000ff">&gt;&lt;</font><font color="#808000">array</font><font color="#0000ff">&gt;&lt;</font><font color="#808000">data</font><font color="#0000ff">&gt;</font>
+<font color="#000000">      </font><font color="#0000ff">&lt;</font><font color="#808000">value</font><font color="#0000ff">&gt;&lt;</font><font color="#808000">string</font><font color="#0000ff">&gt;</font><font color="#000000">Hello </font><font color="#0000ff">&lt;/</font><font color="#808000">string</font><font color="#0000ff">&gt;&lt;/</font><font color="#808000">value</font><font color="#0000ff">&gt;</font>
+<font color="#000000">     </font><font color="#0000ff">&lt;</font><font color="#808000">value</font><font color="#0000ff">&gt;&lt;</font><font color="#808000">string</font><font color="#0000ff">&gt;</font><font color="#000000">Good </font><font color="#0000ff">&lt;/</font><font color="#808000">string</font><font color="#0000ff">&gt;&lt;/</font><font color="#808000">value</font><font color="#0000ff">&gt;</font>
+<font color="#000000">   </font><font color="#0000ff">&lt;/</font><font color="#808000">data</font><font color="#0000ff">&gt;&lt;/</font><font color="#808000">array</font><font color="#0000ff">&gt;&lt;/</font><font color="#808000">value</font><font color="#0000ff">&gt;</font>
+<font color="#000000">.......................................................</font>
+<font color="#0000ff">&lt;</font><font color="#808000">value</font><font color="#0000ff">&gt;&lt;</font><font color="#808000">array</font><font color="#0000ff">&gt;&lt;</font><font color="#808000">data</font><font color="#0000ff">&gt;</font>
+<font color="#000000">    </font><font color="#0000ff">&lt;</font><font color="#808000">value</font><font color="#0000ff">&gt;&lt;</font><font color="#808000">int</font><font color="#0000ff">&gt;</font><font color="#000000">7</font><font color="#0000ff">&lt;/</font><font color="#808000">int</font><font color="#0000ff">&gt;&lt;/</font><font color="#808000">value</font><font color="#0000ff">&gt;</font>
+<font color="#000000">    </font><font color="#0000ff">&lt;</font><font color="#808000">value</font><font color="#0000ff">&gt;&lt;</font><font color="#808000">int</font><font color="#0000ff">&gt;</font><font color="#000000">124</font><font color="#0000ff">&lt;/</font><font color="#808000">int</font><font color="#0000ff">&gt;&lt;/</font><font color="#808000">value</font><font color="#0000ff">&gt;</font>
+<font color="#000000">   </font><font color="#0000ff">&lt;/</font><font color="#808000">data</font><font color="#0000ff">&gt;&lt;/</font><font color="#808000">array</font><font color="#0000ff">&gt;</font>
+<font color="#000000">.......................................................</font>
+<font color="#0000ff">&lt;</font><font color="#808000">value</font><font color="#0000ff">&gt;&lt;</font><font color="#808000">array</font><font color="#0000ff">&gt;</font>
+<font color="#000000">    </font><font color="#0000ff">&lt;</font><font color="#808000">data</font><font color="#0000ff">&gt;</font>
+<font color="#000000">    </font><font color="#0000ff">&lt;</font><font color="#808000">value</font><font color="#0000ff">&gt;&lt;</font><font color="#808000">boolean</font><font color="#0000ff">&gt;</font><font color="#000000">1</font><font color="#0000ff">&lt;/</font><font color="#808000">boolean</font><font color="#0000ff">&gt;&lt;/</font><font color="#808000">value</font><font color="#0000ff">&gt;</font>
+<font color="#000000">    </font><font color="#0000ff">&lt;</font><font color="#808000">value</font><font color="#0000ff">&gt;&lt;</font><font color="#808000">double</font><font color="#0000ff">&gt;</font><font color="#000000">42.14159265</font><font color="#0000ff">&lt;/</font><font color="#808000">double</font><font color="#0000ff">&gt;&lt;/</font><font color="#808000">value</font><font color="#0000ff">&gt;</font>
+<font color="#000000">   </font><font color="#0000ff">&lt;/</font><font color="#808000">data</font><font color="#0000ff">&gt;&lt;/</font><font color="#808000">array</font><font color="#0000ff">&gt;&lt;/</font><font color="#808000">value</font><font color="#0000ff">&gt;</font>
+
+</pre>
+</div>
+
+<div class="heading">
+XML-RPC Request Format</div>
+
+<ul>
+  <li>
+<p>It is a combination of HTTP headers and XML contents</p>
+  </li>
+  <li>
+<i> XML content</i> used the data type structure which help to passed parameter according when 
+you call procedure and it also contains additional information about calling 
+procedur.
+  </li>
+  <li>
+The<i> HTTP headers</i> provide 
+a wrapper for request to passing over the Web. Request contained at least single 
+XML document, whose root element is a methodCall element.
+  </li>
+  <li>
+Each <i>methodCall</i>element contains two element first one is the&nbsp; methodName and second element 
+is a params element.
+  </li>
+  <li>
+The <i>methodName</i>element 
+identifies the name of the procedure to be called.
+  </li>
+  <li>
+The <i>params</i> element 
+contains a list of parameters and their values.
+  </li>
+</ul>
+
+<div class="code">
+<pre>
+<font color="#0000ff">&lt;?xml </font><font color="#ff0000">version</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;1.0&quot;</font><font color="#800080">?</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">methodCall</font><font color="#0000ff">&gt;</font>
+<font color="#000000">   </font><font color="#0000ff">&lt;</font><font color="#808000">methodName</font><font color="#0000ff">&gt;</font><font color="#000000">AreaSquare</font><font color="#0000ff">&lt;/</font><font color="#808000">methodName</font><font color="#0000ff">&gt;</font>
+<font color="#000000">      </font><font color="#0000ff">&lt;</font><font color="#808000">params</font><font color="#0000ff">&gt;&lt;</font><font color="#808000">param</font><font color="#0000ff">&gt;</font>
+<font color="#000000">            </font><font color="#0000ff">&lt;</font><font color="#808000">value</font><font color="#0000ff">&gt;&lt;</font><font color="#808000">double</font><font color="#0000ff">&gt;</font><font color="#000000">2</font><font color="#0000ff">&lt;/</font><font color="#808000">double</font><font color="#0000ff">&gt;&lt;/</font><font color="#808000">value</font><font color="#0000ff">&gt;</font>
+<font color="#000000">         </font><font color="#0000ff">&lt;/</font><font color="#808000">param</font><font color="#0000ff">&gt;&lt;/</font><font color="#808000">params</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">methodCall</font><font color="#0000ff">&gt;</font>
+</pre>
+</div>
+
+<div class="heading">XML-RPC Response Format</div>
+XML-RPC responses nearly as like request. The procedure was 
+executed correctly and returned appropriate results are totally based on 
+responces. If response returned a value then application may be error free.
+XML-RPC responses contain following information
+<ul>
+  <li>An XML-RPC <i>response</i> contain only one parameter.</li>
+  <li>That <i>parameter</i> may be any type. It may be array type, struct type 
+  etc. Therefore it returns multiple values</li>
+  <li>It also return boolean values.</li>
+</ul>
+<div class="code">
+<pre>
+
+<font color="#0000ff">&lt;?xml </font><font color="#ff0000">version</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;1.0&quot;</font><font color="#800080">?</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">methodResponse</font><font color="#0000ff">&gt;</font>
+<font color="#000000">   </font><font color="#0000ff">&lt;</font><font color="#808000">params</font><font color="#0000ff">&gt;&lt;</font><font color="#808000">param</font><font color="#0000ff">&gt;</font>
+<font color="#000000">         </font><font color="#0000ff">&lt;</font><font color="#808000">value</font><font color="#0000ff">&gt;&lt;</font><font color="#808000">double</font><font color="#0000ff">&gt;</font><font color="#000000">4</font><font color="#0000ff">&lt;/</font><font color="#808000">double</font><font color="#0000ff">&gt;&lt;/</font><font color="#808000">value</font><font color="#0000ff">&gt;</font>
+<font color="#000000">      </font><font color="#0000ff">&lt;/</font><font color="#808000">param</font><font color="#0000ff">&gt;&lt;/</font><font color="#808000">params</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">methodResponse</font><font color="#0000ff">&gt;</font>
+
+</pre>
+</div>
+
+<div class="heading"> XML-RPC Fault Format</div>
+XML-RPC Fault is a type of responses, they contained:
+<ul>
+  <li>
+A fault will also have an error code which make easy to 
+understand that what type error
+  </li>
+  <li>
+If any problem to processing requests then <i>methodResponse
+</i>element contain fault element instead of a params element
+  </li>
+  <li>
+
+<i>Fault element </i>contain a single value like a params 
+element that indicates that something wrong
+  </li>
+</ul>
+<div class="code">
+<pre>
+
+<font color="#0000ff">&lt;?xml </font><font color="#ff0000">version</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;1.0&quot;</font><font color="#800080">?</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">methodResponse</font><font color="#0000ff">&gt;</font>
+<font color="#000000">   </font><font color="#0000ff">&lt;</font><font color="#808000">fault</font><font color="#0000ff">&gt;</font>
+<font color="#000000">      </font><font color="#0000ff">&lt;</font><font color="#808000">value</font><font color="#0000ff">&gt;&lt;</font><font color="#808000">string</font><font color="#0000ff">&gt;</font><font color="#000000">No Method</font><font color="#0000ff">&lt;/</font><font color="#808000">string</font><font color="#0000ff">&gt;&lt;/</font><font color="#808000">value</font><font color="#0000ff">&gt;</font>
+<font color="#000000">   </font><font color="#0000ff">&lt;/</font><font color="#808000">fault</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">methodResponse</font><font color="#0000ff">&gt;</font>
+<font color="#000000">.........................................................</font>
+<font color="#0000ff">&lt;?xml </font><font color="#ff0000">version</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;1.0&quot;</font><font color="#800080">?</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">methodResponse</font><font color="#0000ff">&gt;</font>
+<font color="#000000">   </font><font color="#0000ff">&lt;</font><font color="#808000">fault</font><font color="#0000ff">&gt;&lt;</font><font color="#808000">value</font><font color="#0000ff">&gt;&lt;</font><font color="#808000">struct</font><font color="#0000ff">&gt;</font>
+<font color="#000000">            </font><font color="#0000ff">&lt;</font><font color="#808000">member</font><font color="#0000ff">&gt;</font>
+<font color="#000000">             </font><font color="#0000ff">&lt;</font><font color="#808000">name</font><font color="#0000ff">&gt;</font><font color="#000000">name</font><font color="#0000ff">&lt;/</font><font color="#808000">name</font><font color="#0000ff">&gt;</font>
+<font color="#000000">        </font><font color="#0000ff">&lt;</font><font color="#808000">value</font><font color="#0000ff">&gt;&lt;</font><font color="#808000">int</font><font color="#0000ff">&gt;</font><font color="#000000">26</font><font color="#0000ff">&lt;/</font><font color="#808000">int</font><font color="#0000ff">&gt;&lt;/</font><font color="#808000">value</font><font color="#0000ff">&gt;&lt;/</font><font color="#808000">member</font><font color="#0000ff">&gt;</font>
+<font color="#000000">            </font><font color="#0000ff">&lt;</font><font color="#808000">member</font><font color="#0000ff">&gt;</font>
+<font color="#000000">           </font><font color="#0000ff">&lt;</font><font color="#808000">name</font><font color="#0000ff">&gt;</font><font color="#000000">message</font><font color="#0000ff">&lt;/</font><font color="#808000">name</font><font color="#0000ff">&gt;</font>
+<font color="#000000">     </font><font color="#0000ff">&lt;</font><font color="#808000">value</font><font color="#0000ff">&gt;&lt;</font><font color="#808000">string</font><font color="#0000ff">&gt;</font><font color="#000000">No Method</font><font color="#0000ff">&lt;/</font><font color="#808000">string</font><font color="#0000ff">&gt;&lt;/</font><font color="#808000">value</font><font color="#0000ff">&gt;</font>
+<font color="#000000">    </font><font color="#0000ff">&lt;/</font><font color="#808000">member</font><font color="#0000ff">&gt;&lt;/</font><font color="#808000">struct</font><font color="#0000ff">&gt;&lt;/</font><font color="#808000">value</font><font color="#0000ff">&gt;&lt;/</font><font color="#808000">fault</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">methodResponse</font><font color="#0000ff">&gt;</font>
+</pre>
+</div>
+
+<div class="heading">XML-RPC Examples (in .net)</div>
+
+<h3>XML-RPC Client</h3>
+First create client code for calling XML-RPC servers. Interface representing the XML-RPC end-point and 
+then use the XmlRpcProxyGen class to automatically generate the code for the 
+proxy.
+
+<div class="code">
+<pre>
+<font color="#000000">[XmlRpcUrl(</font><font color="#ff00ff">&quot;http://...&quot;</font><font color="#000000">)]</font>
+<font color="#0000ff">public interface </font><font color="#000000">IcityName : IXmlRpcProxy</font>
+<font color="#000000">{</font>
+    <font color="#000000">[XmlRpcMethod(</font><font color="#ff00ff">&quot;examples.cityName&quot;</font><font color="#000000">)]</font>
+    <font color="#000000">string GetCityName(</font><font color="#0000ff">int </font><font color="#000000">cityNumber); </font>
+<font color="#000000">}</font>
+</pre>
+</div>
+The proxy instance is generated using static method Create of the 
+XmlRpcProxyGen class.  
+
+<div class="code">
+<pre>
+<font color="#000000">ICityName proxycity = XmlRpcProxyGen.Create</font><font color="#0000ff">&lt;</font><font color="#808000">ICityName</font><font color="#0000ff">&gt;</font><font color="#000000">();</font>
+</pre>
+</div>
+
+The method on the proxy can then be called to make the XML-RPC request to the 
+serve.
+
+<div class="code">
+<pre>
+<font color="#000000">string cityName = proxycity.GetCityName(</font><font color="#800080">45</font><font color="#000000">);</font>
+</pre>
+</div>
+
+<div class="heading">XML-RPC Services </div>
+<p>The model for XML-RPC Services are SOAP-based Web 
+Services implemented as part of ASP. Net and they running in Microsoft IIS web 
+server environment . An XML-RPC Service is implemented in any language that 
+compiled under CLR (Common Language Runtime). It is create by creating a class which 
+derives from the XmlRpcService base class. Decorating the methods to be 
+exposed via XML-RPC with the XmlRpcMethod attribute. </p> 
+<p><i>For example:</i></p>
+
+<div class="code">
+<pre>
+<font color="#0000ff">public class </font><font color="#000000">CityNameService : XmlRpcService </font>
+<font color="#000000">{</font>
+  <font color="#000000">[XmlRpcMethod(</font><font color="#ff00ff">&quot;examples.getCityName&quot;</font><font color="#000000">,</font>
+    <font color="#000000">Description=</font><font color="#ff00ff">&quot;Return name of city given its number&quot;</font><font color="#000000">)] </font>
+  <font color="#0000ff">public </font><font color="#000000">string getCityName(</font><font color="#0000ff">int </font><font color="#000000">cityNum)</font>
+  <font color="#000000">{</font>
+    <font color="#0000ff">if </font><font color="#000000">(cityNum == </font><font color="#800080">45</font><font color="#000000">)</font>
+      <font color="#0000ff">return </font><font color="#ff00ff">&quot;Delhi&quot;</font><font color="#000000">;</font>
+    <font color="#0000ff">else</font>
+      <font color="#0000ff">return </font><font color="#ff00ff">&quot;Unknown&quot;</font><font color="#000000">;</font>
+  <font color="#000000">}</font>
+<font color="#000000">}</font>
+</pre>
+</div>
+
+As well as specifying an XML-RPC method the XmlRpcMethod attribute is here 
+used to specify that the method is to be called using the XML-RPC protocol as examples.getCityName, 
+not the name of the method used in the Service class. Alternatively the service 
+class may also derive from an interface which defines the XML-RPC methods. The 
+interface can then be also used to generate a proxy class as described above.
+
+<p><i>For example:</i></p>
+
+<div class="code">
+<pre>
+<font color="#0000ff">public interface </font><font color="#000000">ICityName</font>
+<font color="#000000">{</font>
+    <font color="#000000">[XmlRpcMethod(</font><font color="#ff00ff">&quot;examples.getCityName&quot;</font><font color="#000000">)]</font>
+    <font color="#000000">string GetCityName(</font><font color="#0000ff">int </font><font color="#000000">cityNumber); </font>
+<font color="#000000">}</font>
+<font color="#0000ff">public interface </font><font color="#000000">ICityNameProxy : ICityName, IXmlRpcProxy</font>
+<font color="#000000">{</font>
+<font color="#000000">}</font>
+<font color="#0000ff">public class </font><font color="#000000">CityNameService : XmlRpcService, ICityName</font>
+<font color="#000000">{</font>
+  <font color="#0000ff">public </font><font color="#000000">string getCityName(</font><font color="#0000ff">int </font><font color="#000000">cityNum)</font>
+  <font color="#000000">{</font>
+    <font color="#0000ff">if </font><font color="#000000">(cityNum == </font><font color="#800080">45</font><font color="#000000">)</font>
+        <font color="#0000ff">return </font><font color="#ff00ff">&quot;Delhi&quot;</font><font color="#000000">;</font>
+    <font color="#0000ff">else</font>
+      <font color="#0000ff">return </font><font color="#ff00ff">&quot;Unknown&quot;</font><font color="#000000">;</font>
+  <font color="#000000">}</font>
+<font color="#000000">}</font>
+</pre>
+</div>
+
+<ol>
+<li>A class may implemented many XML-RPC methods not like a single as 
+shown in above example.</li>
+<li>The resulting assembly DLL placed in the bin directory of an IIS file 
+directory</li>
+<li>To dispatch HTTP requests to the custom 
+handler implemented by class XmlRpcService.</li>
+<li>A web.config file is used.</li></ol>
+<p><i>For example</i></p> if r4r.com 
+has a file directory called xmlrpc and the following config file is placed in 
+the root directory of xmlrpc:
+
+<div class="code">
+<pre>
+<font color="#0000ff">&lt;configuration&gt;</font>
+<font color="#000000">  </font><font color="#0000ff">&lt;</font><font color="#808000">system</font><font color="#000000">.</font><font color="#800080">web</font><font color="#0000ff">&gt;</font>
+<font color="#000000">    </font><font color="#0000ff">&lt;</font><font color="#808000">httpHandlers</font><font color="#0000ff">&gt;</font>
+<font color="#000000">      </font><font color="#0000ff">&lt;</font><font color="#808000">add </font><font color="#800080">verb</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;*&quot; </font><font color="#800080">path</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;cityname.rem&quot; </font>
+        <font color="#ff0000">type</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;r4r.CityNameService, CityNameService&quot; </font><font color="#0000ff">/&gt;</font>
+<font color="#000000">    </font><font color="#0000ff">&lt;/</font><font color="#808000">httpHandlers</font><font color="#0000ff">&gt;</font>
+<font color="#000000">  </font><font color="#0000ff">&lt;/</font><font color="#808000">system</font><font color="#000000">.</font><font color="#800080">web</font><font color="#0000ff">&gt;</font><font color="#000000"> </font>
+<font color="#0000ff">&lt;/configuration&gt;</font>
+</pre>
+</div>
+
+<p>The Service can be invoked via the XML-RPC protocol at this URL:</p>
+
+<div class="code">
+<pre>
+<font color="#000000">http:</font><font color="#008000">//localhost/xmlrpc/cityname.rem</font>
+</pre>
+</div>
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="system_requirements.shtml" title="System Requirements">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="soap.shtml" title="SOAP">Next</a></td>
+  </tr> 
+</table>
+
+<!-- Footer Start-->	
+		<!-- Footer Start-->	
+
+		</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->

@@ -1,0 +1,212 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>Introduction of Socket,Server Socket Program,Client Socket Program,Code for Server Socket Program,Code for Client Socket Program</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="Introduction of Socket,Server Socket Program,Client Socket Program,Code for Server Socket Program,Code for Client Socket Program" >
+<meta name="keywords" CONTENT="Introduction of Socket,Server Socket Program,Client Socket Program,Code for Server Socket Program,Code for Client Socket Program">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+     <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>C# Tutorial</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a><img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/c1/">C#</a>
+
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/c1/commonfiles/leftmenu.shtml'); ?></td>
+
+                       <td style="80%" valign="top">
+                        <div class="main_content"> 
+
+	<!-- Header End-->
+
+	<div class="heading">Socket</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="Slicechart.shtml" title="Creating Slice Chart in windows using C#">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="Bar_chart.shtml" title="Creating Bar Chart in windows using C#">Next</a></td>
+  </tr>
+</table>
+<h3>Introduction of Socket</h3>
+<p>A Socket is an End-Point for communication link between two programs (Server Program and Client Program ) running on the
+ same network .Socket is bidirectional. We have to write two programs for implementing a socket application in C#.</p>
+ <ol><li>Server Socket Program ( Server )</li>
+ <li> Client Socket Program ( Client )</li></ol>
+
+ <p>In C# network programming can be done by using   namespaces like System.Net and System.Net.Sockets . The classes and methods
+  of these namespaces can communicate across the network. The communication can be either connection oriented or
+   connectionless. They can also be either stream oriented or data-gram based.</p>
+   <p><i>Server Socket Program-</i> Server program running on a computer has a socket that bound to a Port Number on the
+    same computer and listening to the client's incoming requests.</p>
+
+<p><i>Client Socket Program-</i> Client program have to know the IP Address ( Hostname ) of the computer that the C# Server
+Socket Program resides and the Port Number assign for listening for client's request .</p>
+
+<div class="image">
+<img src="socket.PNG">
+</div>
+<h3>Code for Server Socket Program</h3>
+
+<div class="code">
+<pre>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Net</font><font color="#000000">.</font><font color="#008080">Sockets</font><font color="#000000">;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Text</font><font color="#000000">;</font>
+<font color="#0000ff">namespace </font><font color="#000000">ConsoleApplication1</font>
+<font color="#000000">{</font>
+<font color="#0000ff">class </font><font color="#000000">Program</font>
+<font color="#000000">{</font>
+<font color="#0000ff">static void </font><font color="#000000">Main(</font><font color="#0000ff">string</font><font color="#000000">[] args)</font>
+<font color="#000000">{</font>
+<font color="#808000">TcpListener </font><font color="#000000">serverSocket = </font><font color="#0000ff">new </font><font color="#808000">TcpListener</font><font color="#000000">(</font><font color="#800080">8888</font><font color="#000000">);</font>
+<font color="#0000ff">int </font><font color="#000000">requestCount = </font><font color="#800080">0</font><font color="#000000">;</font>
+<font color="#808000">TcpClient </font><font color="#000000">clientSocket = </font><font color="#0000ff">default</font><font color="#000000">(</font><font color="#808000">TcpClient</font><font color="#000000">);</font>
+<font color="#000000">serverSocket.Start();</font>
+<font color="#808000">Console</font><font color="#000000">.WriteLine(</font><font color="#ff00ff">&quot; &gt;&gt; Server Started&quot;</font><font color="#000000">);</font>
+<font color="#000000">clientSocket = serverSocket.AcceptTcpClient();</font>
+<font color="#808000">Console</font><font color="#000000">.WriteLine(</font><font color="#ff00ff">&quot; &gt;&gt; Accept connection from client&quot;</font><font color="#000000">);</font>
+<font color="#000000">requestCount = </font><font color="#800080">0</font><font color="#000000">;</font>
+<font color="#0000ff">while </font><font color="#000000">((</font><font color="#0000ff">true</font><font color="#000000">))</font>
+<font color="#000000">{</font>
+<font color="#0000ff">try</font>
+<font color="#000000">{</font>
+<font color="#000000">requestCount = requestCount + </font><font color="#800080">1</font><font color="#000000">;</font>
+<font color="#808000">NetworkStream </font><font color="#000000">networkStream = clientSocket.GetStream();</font>
+<font color="#0000ff">byte</font><font color="#000000">[] bytesFrom = </font><font color="#0000ff">new byte</font><font color="#000000">[</font><font color="#800080">10025</font><font color="#000000">];</font>
+<font color="#000000">networkStream.Read(bytesFrom,</font><font color="#800080">0</font><font color="#000000">,(</font><font color="#0000ff">int</font><font color="#000000">)clientSocket.ReceiveBufferSize);</font>
+<font color="#0000ff">string </font><font color="#000000">dataFromClient = </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Text</font><font color="#000000">.</font><font color="#808000">Encoding</font><font color="#000000">.ASCII.GetString(bytesFrom);</font>
+<font color="#000000">dataFromClient = dataFromClient.Substring(</font><font color="#800080">0</font><font color="#000000">,dataFromClient.IndexOf(</font><font color="#ff00ff">&quot;$&quot;</font><font color="#000000">));</font>
+<font color="#808000">Console</font><font color="#000000">.WriteLine(</font><font color="#ff00ff">&quot; &gt;&gt; Data from client - &quot;</font><font color="#000000">+ dataFromClient);</font>
+<font color="#0000ff">string </font><font color="#000000">serverResponse = </font><font color="#ff00ff">&quot;Server response &quot;</font><font color="#000000">+ </font><font color="#808000">Convert</font><font color="#000000">.ToString(requestCount);</font>
+<font color="#000000">Byte[] sendBytes = </font><font color="#808000">Encoding</font><font color="#000000">.ASCII.GetBytes(serverResponse);</font>
+<font color="#000000">networkStream.Write(sendBytes,</font><font color="#800080">0</font><font color="#000000">,sendBytes.Length);</font>
+<font color="#000000">networkStream.Flush();</font>
+<font color="#808000">Console</font><font color="#000000">.WriteLine(</font><font color="#ff00ff">&quot; &gt;&gt; &quot;</font><font color="#000000">+ serverResponse);}</font>
+<font color="#0000ff">catch </font><font color="#000000">(</font><font color="#808000">Exception </font><font color="#000000">ex)</font>
+<font color="#000000">{</font>
+<font color="#808000">Console</font>
+<font color="#000000">.WriteLine(ex.ToString());</font>
+<font color="#000000">}</font>
+<font color="#000000">}</font>
+
+<font color="#000000">clientSocket.Close();</font>
+<font color="#000000">serverSocket.Stop();</font>
+<font color="#808000">Console</font><font color="#000000">.WriteLine(</font><font color="#ff00ff">&quot; &gt;&gt; exit&quot;</font><font color="#000000">);</font>
+<font color="#808000">Console</font><font color="#000000">.ReadLine();</font>
+<font color="#000000">}</font>
+<font color="#000000">}</font>
+<font color="#000000">}</font>
+</pre>
+</div>
+
+<div class="image">
+<img src="socket1.PNG">
+</div>
+
+<h3>Code for Client Socket Program</h3>
+<p>For creating Client design a Client using windows application. Server is console application but client is windows 
+application. Server will give response when client request to sending data or connecting with server.</p>
+<div class="image">
+<img src="socket2.PNG">
+</div>
+<div class="code">
+<pre>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Collections</font><font color="#000000">.</font><font color="#008080">Generic</font><font color="#000000">;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">ComponentModel</font><font color="#000000">;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Data</font><font color="#000000">;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Drawing</font><font color="#000000">;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.Linq;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Text</font><font color="#000000">;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Windows</font><font color="#000000">.</font><font color="#008080">Forms</font><font color="#000000">;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Windows</font><font color="#000000">.</font><font color="#008080">Forms</font><font color="#000000">;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Net</font><font color="#000000">.</font><font color="#008080">Sockets</font><font color="#000000">;</font>
+
+<font color="#0000ff">namespace </font><font color="#000000">New_Client</font>
+<font color="#000000">{</font>
+<font color="#0000ff">public </font><font color="#000000">partial </font><font color="#0000ff">class </font><font color="#000000">Form1 : </font><font color="#808000">Form</font>
+<font color="#000000">{</font>
+<font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Net</font><font color="#000000">.</font><font color="#008080">Sockets</font><font color="#000000">.</font><font color="#808000">TcpClient </font><font color="#000000">clientSocket = </font>
+<font color="#0000ff">new </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Net</font><font color="#000000">.</font><font color="#008080">Sockets</font><font color="#000000">.</font><font color="#808000">TcpClient</font><font color="#000000">();</font>
+
+<font color="#0000ff">public </font><font color="#000000">Form1()</font>
+<font color="#000000">{</font>
+<font color="#000000">InitializeComponent();</font>
+<font color="#000000">}</font>
+
+<font color="#0000ff">private void </font><font color="#000000">Form1_Load(</font><font color="#0000ff">object </font><font color="#000000">sender, </font><font color="#808000">EventArgs </font><font color="#000000">e)</font>
+<font color="#000000">{</font>
+<font color="#000000">msg(</font><font color="#ff00ff">&quot;Client Started&quot;</font><font color="#000000">);</font>
+<font color="#000000">clientSocket.Connect(</font><font color="#ff00ff">&quot;127.0.0.1&quot;</font><font color="#000000">,</font><font color="#800080">8888</font><font color="#000000">);</font>
+<font color="#000000">}</font>
+<font color="#0000ff">public void </font><font color="#000000">msg(</font><font color="#0000ff">string </font><font color="#000000">mesg)</font>
+<font color="#000000">{</font>
+<font color="#000000">textBox1.</font><font color="#008080">Text </font><font color="#000000">= textBox1.</font><font color="#008080">Text </font><font color="#000000">+ </font><font color="#808000">Environment</font><font color="#000000">.NewLine + </font><font color="#ff00ff">&quot; &gt;&gt; &quot; </font><font color="#000000">+ mesg;</font>
+<font color="#000000">}</font>
+
+<font color="#0000ff">private void </font><font color="#000000">button1_Click(</font><font color="#0000ff">object </font><font color="#000000">sender,</font><font color="#808000">EventArgs </font><font color="#000000">e)</font>
+<font color="#000000">{</font>
+<font color="#808000">NetworkStream </font><font color="#000000">serverStream = clientSocket.GetStream();</font>
+<font color="#0000ff">byte</font><font color="#000000">[] outStream = </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Text</font><font color="#000000">.</font><font color="#808000">Encoding</font><font color="#000000">.ASCII.GetBytes</font>
+	<font color="#000000">(</font><font color="#ff00ff">&quot;Message from Client$&quot;</font><font color="#000000">);</font>
+<font color="#000000">serverStream.Write(outStream, </font><font color="#800080">0</font><font color="#000000">, outStream.Length);</font>
+<font color="#000000">serverStream.Flush();</font>
+
+<font color="#0000ff">byte</font><font color="#000000">[] inStream = </font><font color="#0000ff">new byte</font><font color="#000000">[</font><font color="#800080">10025</font><font color="#000000">];</font>
+<font color="#000000">serverStream.Read(inStream, </font><font color="#800080">0</font><font color="#000000">, (</font><font color="#0000ff">int</font><font color="#000000">)clientSocket.ReceiveBufferSize);</font>
+<font color="#0000ff">string </font><font color="#000000">returndata = </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Text</font><font color="#000000">.</font><font color="#808000">Encoding</font><font color="#000000">.ASCII.GetString(inStream);</font>
+<font color="#000000">msg(</font><font color="#ff00ff">&quot;Data from Server : &quot; </font><font color="#000000">+ returndata);</font>
+<font color="#000000">} </font>
+
+<font color="#000000">}</font>
+<font color="#000000">}</font>
+</pre>
+</div>
+
+<p>First execute the Server Socket Program and then Client Socket Program as shown in above pictures- </p>
+<div class="image">
+<img src="socket3.PNG">
+</div>
+<p>On Click to button "Send data to server" the data will send to server.</p>
+<div class="image">
+<img src="socket4.PNG">
+</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="Slicechart.shtml" title="Creating Slice Chart in windows using C#">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="Bar_chart.shtml" title="Creating Bar Chart in windows using C#">Next</a></td>
+  </tr>
+</table>
+
+ <!--Footer-->
+   </div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/dotnet/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+     <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>

@@ -1,0 +1,165 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>Array,Multidimensional Array,Concrete Collection Classes,Collections</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="Array,Multidimensional Array,Concrete Collection Classes,Collections" >
+<meta name="keywords" CONTENT="Array,Multidimensional Array,Concrete Collection Classes,Collections">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+     <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>C# Tutorial</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a><img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/c1/">C#</a>
+
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/c1/commonfiles/leftmenu.shtml'); ?></td>
+
+                       <td style="80%" valign="top">
+                        <div class="main_content"> 
+
+	<!-- Header End-->
+
+  <div class="heading">Arrays, Indexer and Collections</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="statements.shtml" title="Control Statements">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="inheritance and polymorphism.shtml" title="Inheritance and Polymorphism">Next</a></td>
+  </tr>
+</table>
+<h3>Array</h3>
+<p>An array is the collection of similar type of objects. Array in C# is different for the array of C++ and other languages 
+because they are objects. </p>
+<p>This provides them useful methods and property. Arrays allow a group of elements of a particular type to be stored
+in a contiguous block of memory. Array types derive from System.Array and are declared in C# using brackets ([]). </p>
+<pre>
+Syntax- datatype [] array-name; 
+      e.g.- int [] age;
+</pre>
+<p>The square brackets ([]) tell the C# compiler that you are declaring an array, and the type specifies the type of the
+elements it will contain. In the previous example, age is an array of integers. Instantiate an array using the 
+new keyword</p>
+<h3>For example</h3>
+<p>age = new int[5]; This declaration sets aside memory for an array holding five integers.</p>
+<div class="heading">Multidimensional Array</div>
+<p>Multidimensional Arrays of two types  Rectangular Array and Jagged Array Rectangular Array represents n-dimensional
+ blocks.</p>
+<i>e.g.- int [ , ,] age = new int[17,20,34];   
+Jagged Arrays are arrays of arrays.</i>
+
+<div class="code">
+<pre>
+<font color="#0000ff">int </font><font color="#000000">[][][] books = </font><font color="#0000ff">new int </font><font color="#000000">[</font><font color="#800080">3</font><font color="#000000">][][];</font>
+<font color="#0000ff">for </font><font color="#000000">(</font><font color="#0000ff">int </font><font color="#000000">i = </font><font color="#800080">0</font><font color="#000000">; i &lt; </font><font color="#800080">3</font><font color="#000000">; i++)</font>
+<font color="#000000">{</font>
+<font color="#000000">books[i] = </font><font color="#0000ff">new int </font><font color="#000000">[</font><font color="#800080">4</font><font color="#000000">][];</font>
+<font color="#0000ff">for </font><font color="#000000">(</font><font color="#0000ff">int </font><font color="#000000">j = </font><font color="#800080">0</font><font color="#000000">; j &lt; </font><font color="#800080">4</font><font color="#000000">; j++)</font>
+<font color="#000000">books[i][j] = </font><font color="#0000ff">new int </font><font color="#000000">[</font><font color="#800080">5</font><font color="#000000">];</font>
+<font color="#000000">}</font>
+<font color="#008000">// assign an element</font>
+<font color="#000000">books1 [</font><font color="#800080">1</font><font color="#000000">,</font><font color="#800080">1</font><font color="#000000">,</font><font color="#800080">1</font><font color="#000000">] = books [</font><font color="#800080">1</font><font color="#000000">][</font><font color="#800080">1</font><font color="#000000">][</font><font color="#800080">1</font><font color="#000000">] = </font><font color="#800080">7</font><font color="#000000">;</font>
+</pre>
+</div>
+
+<div class="heading">Indexer</div>
+<p>Indexers are usually known as smart array in C#.It is used for treating  object as an array.Defining an indexer in C# is 
+much like same as defining properties. Or we can say that an indexer is a member that enables an object to be indexed in the 
+same way as an array.</p>
+
+<h3>Syntax</h3>
+<div class="code">
+<pre>
+<font color="#000000">&lt;access modifier&gt; &lt;</font><font color="#0000ff">return </font>
+<font color="#000000">type&gt; </font><font color="#0000ff">this </font>
+<font color="#000000">[argument list]</font>
+<font color="#000000">{</font>
+<font color="#000000">get</font>
+<font color="#000000">{</font>
+<font color="#008000">// Write here some code for Get</font>
+<font color="#000000">}</font>
+<font color="#000000">set</font>
+<font color="#000000">{</font>
+<font color="#008000">// Write here some code for Get</font>
+<font color="#000000">}</font>
+<font color="#000000">}</font>
+</pre>
+</div>
+
+<div class="heading">Collections</div>
+<p>Collections are the enumerable data structure in C# that can be assessed using indexes or keys. Types of collections in 
+C# are given below</p>
+<i>System.Collections namespace</i>
+<p>This provides a lot of classes, methods and properties to interact with the varying data structures that are supported by
+ it.  The interfaces that are defined in this namespace include:</p>
+ <ol>
+<li>IEnumerable</li>
+<li>IEnumerator</li>
+<li>ICollection</li>
+<li>IList</li>
+<li>IDictionary</li>
+</ol>
+<p><i>System.Collections.Stack
+and   System.Collections.Queue </i> Both  are derived from ICollection Interface.</p>
+
+  <p>The collections that inherit the IDictionary interface include</p>
+   <ol><li>System.Collections.SortedList </li>   
+    <li>System.Collections.Hashtable</li></ol>
+   <p>The IList interface represents collections that only have value. The following are the classes that extend this 
+   interface</p>
+ <ol>
+ <li>System.Array</li>
+<li>System.Collections.ArrayList</li>
+<li>System.Collections.Specialized.StringCollection</li>
+</ol>
+<div class="heading">Concrete Collection Classes</div>
+<ol>
+<li><b>ArrayList class-</b> This works by maintaining an internal array of objects that is replaced with a larger array when it 
+reaches its capacity of elements.</li>
+<li><b>BitArray class-</b>  It is a dynamically sized array of Boolean values. It is more memory-efficient  than a simple array of bools 
+because it uses only one bit for each value.</li>
+<li><b>Hashtable class-</b> A Hashtable is a standard dictionary (key/value) data structure that uses a hashing  algorithm to store
+ and index values efficiently.</li>
+<li><b>Queue class-</b> A Queue is a standard first-in, first-out (FIFO) data structure, providing simple operations to enqueue, 
+dequeue, peek, etc.</li>
+<li><b>SortedList class-</b>A SortedList is a standard dictionary data structure that uses a binary-chop search to index efficiently.</li>
+<li><b>Stack class- </b>A Stack is a standard last-in first-out (LIFO) data structure.</li>
+<li><b>StringCollection class- </b>A StringCollection is a standard collection data structure for storing strings.</li>
+</ol>
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="statements.shtml" title="Control Statements">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="inheritance and polymorphism.shtml" title="Inheritance and Polymorphism">Next</a></td>
+  </tr>
+</table>
+
+ <!--Footer  -->
+   </div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/dotnet/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>

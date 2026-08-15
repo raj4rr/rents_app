@@ -1,0 +1,137 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>Storing Database Connection Strings in App.Config</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="Storing Database Connection Strings in App.Config" >
+<meta name="keywords" CONTENT="Storing Database Connection Strings in App.Config">
+<!-- header start-->	
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>VB.NET Technology</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+            <img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+            <a href="/vb.net/">VB.net</a>
+              <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/vb.net/01/tutorial/vbnet/">VB.NET Tutorial</a>
+
+              </div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/vb.net/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	 
+
+<div class="heading">Storing Database Connection Strings in App.Config </div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="Multiple%20Colored%20Texts%20in%20RichTextBox%20using%20C-Sharp.shtml" title="Multiple Colored Texts in RichTextBox using VB.Net">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="index.shtml" title="VB.NET Tutorial">Next</a></td>
+  </tr> 
+</table>
+<!-- header End-->	
+
+<p>.NET Framework 2.0 added a separate configuration section in both Windows Application configuration (App.config) and Web Application configuration (Web.config) file. Developers can use these section to store connection string information such as a connection string name or provider type etc. In the following tutorial I will show you how you can store and retrieve connection string information in .NET Windows Application using VB.Net.
+</p>
+
+<h3>The following code shows how you can store connection strings in App.config file.
+
+</h3>
+
+<div class="code">
+<pre>
+<font face="Arial"><font color="#0000ff">&lt;?xml </font><font color="#ff0000">version</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;1.0&quot; </font><font color="#ff0000">encoding</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;utf-8&quot; </font><font color="#800080">?</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;configuration&gt;</font>
+<font color="#000000">  </font><font color="#0000ff">&lt;</font><font color="#808000">appSettings</font><font color="#0000ff">&gt;</font>
+<font color="#000000">    </font><font color="#0000ff">&lt;</font><font color="#808000">add </font><font color="#800080">key</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;name&quot; </font><font color="#800080">value</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;provider=microsoft.jet.oledb.4.0;data source=E://invent.mdb&quot;</font><font color="#0000ff">/&gt;</font>
+<font color="#000000">  </font><font color="#0000ff">&lt;/</font><font color="#808000">appSettings</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;/configuration&gt;</font></font>
+</pre>
+</div>
+
+<h3>In the code behind you should import the following namespace:
+</h3>
+<div class="code">
+<pre>
+<font face="Arial"><font color="#000000">Imports System.Configuration</font></font>
+</pre>
+</div>
+
+<h3>Then retreive the value from the App.Config by the following code
+</h3>
+<div class="code">
+<pre>
+<font face="Arial"><font color="#0000ff">Dim </font><font color="#000000">con As </font><font color="#ff0000">String </font><font color="#000000">= ConfigurationSettings.AppSettings(</font><font color="#ff00ff">&quot;name&quot;</font><font color="#000000">).ToString()</font></font>
+</pre>
+</div>
+
+<h3>Example
+</h3>
+<div class="code">
+<pre>
+<font face="Arial><font color="#000000">Imports System.Collections.Generic</font>
+<font color="#000000">Imports System.ComponentModel</font>
+<font color="#000000">Imports System.Data</font>
+<font color="#000000">Imports System.Drawing</font>
+<font color="#000000">Imports System.Linq</font>
+<font color="#000000">Imports System.Text</font>
+<font color="#000000">Imports System.Windows.Forms</font>
+<font color="#000000">Imports System.Configuration</font>
+<font color="#000000">Imports System.Data.OleDb</font>
+<font color="#0000ff">Public Class </font><font color="#000000">Form1</font>
+    <font color="#0000ff">Dim </font><font color="#000000">con As </font><font color="#ff0000">String </font><font color="#000000">= ConfigurationSettings.AppSettings(</font><font color="#ff00ff">&quot;name&quot;</font><font color="#000000">).ToString()</font>
+    <font color="#0000ff">Dim </font><font color="#000000">mycon As OleDbConnection</font>
+    <font color="#0000ff">Private Sub </font><font color="#000000">Button1_Click(</font><font color="#0000ff">ByVal </font><font color="#000000">sender As System.Object, </font>
+	<font color="#0000ff">ByVal </font><font color="#000000">e As System.EventArgs) Handles Button1.Click</font>
+        <font color="#000000">mycon = New OleDbConnection(con)</font>
+        <font color="#000000">mycon.Open()</font>
+        <font color="#0000ff">Dim </font><font color="#000000">cmd1 As New OleDbCommand(</font><font color="#ff00ff">&quot;select location from purchasing &quot;</font><font color="#000000">, mycon)</font>
+        <font color="#0000ff">Dim </font><font color="#000000">dr As OleDbDataReader = cmd1.ExecuteReader()</font>
+        <font color="#0000ff">While </font><font color="#000000">dr.Read()</font>
+            <font color="#000000">textBox1.Text = dr(</font><font color="#800080">0</font><font color="#000000">).ToString()</font>
+        <font color="#0000ff">End While</font>
+        <font color="#000000">mycon.Close()</font>
+    <font color="#0000ff">End Sub</font>
+<font color="#0000ff">End Class</font></font>
+</pre>
+</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="Multiple%20Colored%20Texts%20in%20RichTextBox%20using%20C-Sharp.shtml" title="Multiple Colored Texts in RichTextBox using VB.Net">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="index.shtml" title="VB.NET Tutorial">Next</a></td>
+  </tr> 
+</table>
+<!-- Footer Start-->		
+
+		</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/dotnet/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->

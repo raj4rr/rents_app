@@ -1,0 +1,200 @@
+<!DOCTYPE HTML PUBLIC "-/W3C/DTD HTML 4.01 Transitional/EN" "http:/www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>Set Margins Of PDF Using Java</TITLE>
+<META content=r4r.co.in name=owner>
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="Set Margins Of PDF Using Java" >
+<meta name="keywords" CONTENT="Set Margins Of PDF Using Java">
+
+<!-- header start-->	
+
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>Java Programing laungage</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+            <img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+            <a href="/java/">Java</a>
+                     <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/java/apis/iText/">iText</a>
+
+              </div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/apis/iText/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	 
+
+	   	   <div class="heading">Set Margins Of PDF Using Java</div>
+
+		   <table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="StandardType1Fonts.shtml" title="Set Standard Type 1 Fonts Of PDF Using Java">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="SetAlignmentInPDF.shtml" title="Set Different Alignment Of PDF Using Java">Next</a></td>
+  </tr>
+</table>
+
+	<!-- Footer Start-->		
+
+<p>Here we are creating a PDF document with different pages that have different margins. To set the margins we are using the <font class="point_out">setMargins()</font> method. Here we are using an other method <font class="point_out">setMarginMirroring(true)</font>. This is used to set the mirror of previous page margins at next page. To create a PDF using java you need <font class="point_out">iText API</font>. You can download from website. This is an open source jar. Then you have to set class path of this <font class="point_out">iText jar</font>.</p>
+<div class="heading">There are basic five steps to create PDF:</div>
+<p><i>Step1:</i> Here we are creating an object of a document.</p>
+
+<div class="code">
+<pre>
+<font color="#ff0000">Document </font><font color="#000000">document = </font><font color="#0000ff">new </font><font color="#ff0000">Document</font><font color="#000000">(PageSize.A5, </font><font color="#800080">36</font><font color="#000000">, </font><font color="#800080">72</font><font color="#000000">, </font><font color="#800080">108</font><font color="#000000">, </font><font color="#800080">180</font><font color="#000000">);</font>
+</pre>
+</div>
+<p><i>Step2:</i> Here we are creating a writer that listens to the document and directs a PDF-stream to a file.</p>
+<div class="code">
+<pre>
+<font color="#000000">PdfWriter.getInstance(document, </font><font color="#0000ff">new </font><font color="#ff0000">FileOutputStream</font><font color="#000000">( </font><font color="#ff00ff">&quot;MarginsInPDF.pdf&quot;</font><font color="#000000">));</font>
+</pre>
+</div>
+<p><i>Step3:</i> Here we are opening the document.</p>
+<div class="code">
+<pre>
+<font color="#000000">document.open();</font>
+</pre>
+</div>
+<p><i>Step4:</i> Here we are adding the paragraph in PDF document.Here margins are default.</p>
+<font class="point_out">document.add(new Paragraph("The left margin of this document is 36pt (0.5 inch); the right margin 72pt (1 inch); the top margin 108pt (1.5 inch); the bottom margin 180pt (2.5 inch)."));</font></p>
+<div class="code">
+<pre>
+<font color="#000000">document.add(paragraph);</font>
+<font color="#000000">the bottom margin 180pt (</font><font color="#800080">2</font><font color="#000000">.</font><font color="#800080">5 </font><font color="#000000">inch). </font><font color="#ff00ff">&quot;));</font>
+</pre>
+</div>
+<p>Here we are setting the merging.</p>
+<div class="code">
+<pre>
+<font color="#000000">document.setMargins(</font><font color="#800080">180</font><font color="#000000">, </font><font color="#800080">108</font><font color="#000000">, </font><font color="#800080">72</font><font color="#000000">, </font><font color="#800080">36</font><font color="#000000">);</font>
+<font color="#000000">document.add(</font><font color="#0000ff">new </font><font color="#000000">Paragraph(</font>
+<font color="#ff00ff">&quot;Now we change the margins. You will see the effect on the next page.&quot;</font><font color="#000000">));</font>
+<font color="#000000">document.add(paragraph);</font>
+</pre>
+</div>
+<p>Here we are setting the margin mirror true. So that the margins will be mirrored on next page.</p>
+<div class="code">
+<pre>
+<font color="#000000">document.setMarginMirroring(</font><font color="#0000ff">true</font><font color="#000000">);</font>
+<font color="#000000">document .add(</font><font color="#0000ff">new </font><font color="#000000">Paragraph( </font>
+<font color="#ff00ff">&quot;Starting on the next page, the margins will be mirrored.&quot;</font><font color="#000000">));</font>
+<font color="#000000">document.add(paragraph);</font>
+</pre>
+</div>
+<p><i>Step5:</i> Close the document</p>
+<div class="code">
+<pre>
+<font color="#000000">document.close();</font>
+</pre>
+</div>
+
+<h3>Example:</h3>
+<div class="code">
+<pre>
+<font color="#0000ff">package </font><font color="#000000">com.itext.pdf.example.r4r;</font>
+<font color="#008000">/These are package of java.io.*</font>
+<font color="#0000ff">import </font><font color="#000000">java.io.</font><font color="#ff0000">FileOutputStream</font><font color="#000000">;</font>
+<font color="#0000ff">import </font><font color="#000000">java.io.</font><font color="#ff0000">IOException</font><font color="#000000">;</font>
+<font color="#008000">/These are package of iText API </font>
+<font color="#0000ff">import </font><font color="#000000">com.lowagie.text.</font><font color="#ff0000">Document</font><font color="#000000">;</font>
+<font color="#0000ff">import </font><font color="#000000">com.lowagie.text.DocumentException;</font>
+<font color="#0000ff">import </font><font color="#000000">com.lowagie.text.PageSize;</font>
+<font color="#0000ff">import </font><font color="#000000">com.lowagie.text.Paragraph;</font>
+<font color="#0000ff">import </font><font color="#000000">com.lowagie.text.pdf.PdfWriter;</font>
+
+<font color="#008000">/***This is example of set margins of a PDF.</font>
+<font color="#008000"> */</font>
+<font color="#0000ff">public class </font><font color="#000000">MarginsInPDF {</font>
+<font color="#008000">/*** Here we are creating  a PDF document with different pages </font>
+<font color="#008000">that have different margins.</font>
+<font color="#008000"> * To set the margins we are using the setMargins() method.</font>
+<font color="#008000"> * Here we are using an other method setMarginMirroring(true).</font>
+<font color="#008000">   This is used to set the mirrore of previous page margins at next page</font>
+<font color="#008000"> */</font>
+<font color="#0000ff">public static void </font><font color="#000000">main(</font><font color="#ff0000">String</font><font color="#000000">[] args) {</font>
+<font color="#ff0000">System</font><font color="#000000">.out.println(</font><font color="#ff00ff">&quot;Set margins in PDF pages.&quot;</font><font color="#000000">);</font>
+<font color="#008000">/ Step1:Here we are creating an object of a document.</font>
+<font color="#ff0000">Document </font><font color="#000000">document = </font><font color="#0000ff">new </font><font color="#ff0000">Document</font><font color="#000000">(PageSize.A5, </font><font color="#800080">36</font><font color="#000000">, </font><font color="#800080">72</font><font color="#000000">, </font><font color="#800080">108</font><font color="#000000">, </font><font color="#800080">180</font><font color="#000000">);</font>
+<font color="#0000ff">try </font><font color="#000000">{</font>
+<font color="#008000">/ Step2:Here we are creating a writer that listens to </font>
+       <font color="#000000">the document and directs a PDF-stream to a file.</font>
+
+<font color="#000000">PdfWriter.getInstance(document, </font><font color="#0000ff">new </font><font color="#ff0000">FileOutputStream</font><font color="#000000">(</font>
+	<font color="#ff00ff">&quot;MarginsInPDF.pdf&quot;</font><font color="#000000">));</font>
+
+<font color="#008000">/ Step3:Here we are opening the document.</font>
+<font color="#000000">document.open();</font>
+
+<font color="#008000">/ Step4:Here we are adding the paragraph in PDF document.</font>
+   <font color="#000000">Here margins are </font><font color="#0000ff">default</font><font color="#000000">.</font>
+
+ <font color="#000000">document.add(</font><font color="#0000ff">new </font><font color="#000000">Paragraph(</font>
+	<font color="#ff00ff">&quot;The left margin of this document is 36pt (0.5 inch); </font>
+    <font color="#000000">the right margin 72pt (</font><font color="#800080">1 </font><font color="#000000">inch); the top margin 108pt (</font><font color="#800080">1</font><font color="#000000">.</font><font color="#800080">5 </font><font color="#000000">inch); </font>
+	<font color="#000000">the bottom margin 180pt (</font><font color="#800080">2</font><font color="#000000">.</font><font color="#800080">5 </font><font color="#000000">inch).</font><font color="#ff00ff">&quot;));</font>
+
+<font color="#000000">Paragraph paragraph = </font><font color="#0000ff">new </font><font color="#000000">Paragraph();</font>
+<font color="#000000">document.add(paragraph);</font>
+<font color="#008000">/Here we are setting the margings.</font>
+<font color="#000000">document.setMargins(</font><font color="#800080">180</font><font color="#000000">, </font><font color="#800080">108</font><font color="#000000">, </font><font color="#800080">72</font><font color="#000000">, </font><font color="#800080">36</font><font color="#000000">);</font>
+<font color="#000000">document.add(</font><font color="#0000ff">new </font><font color="#000000">Paragraph(</font>
+<font color="#ff00ff">&quot;Now we change the margins.You will see the effect on the next page.&quot;</font><font color="#000000">));</font>
+<font color="#000000">document.add(paragraph);</font>
+<font color="#008000">/Here we are setting the margin mirror true.So that the </font>
+<font color="#000000">margins will be mirrored.</font>
+
+<font color="#000000">document.setMarginMirroring(</font><font color="#0000ff">true</font><font color="#000000">);</font>
+<font color="#000000">document.add(</font><font color="#0000ff">new </font><font color="#000000">Paragraph(</font>
+<font color="#ff00ff">&quot;Starting on the next page,the margins will be mirrored.&quot;</font><font color="#000000">));</font>
+<font color="#000000">document.add(paragraph);</font>
+<font color="#000000">} </font><font color="#0000ff">catch </font><font color="#000000">(DocumentException de) {</font>
+		<font color="#ff0000">System</font><font color="#000000">.err.println(de.getMessage());</font>
+<font color="#000000">} </font><font color="#0000ff">catch </font><font color="#000000">(</font><font color="#ff0000">IOException </font><font color="#000000">ioe) {</font>
+		<font color="#ff0000">System</font><font color="#000000">.err.println(ioe.getMessage());</font>
+<font color="#000000">}</font>
+
+<font color="#008000">/ Step5:We are closing the document</font>
+<font color="#000000">document.close();</font>
+	<font color="#000000">}</font>
+<font color="#000000">}</font>
+</pre>
+</div>
+
+      <table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="StandardType1Fonts.shtml" title="Set Standard Type 1 Fonts Of PDF Using Java">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="SetAlignmentInPDF.shtml" title="Set Different Alignment Of PDF Using Java">Next</a></td>
+  </tr>
+</table>
+
+<!-- Footer Start-->				
+
+</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->

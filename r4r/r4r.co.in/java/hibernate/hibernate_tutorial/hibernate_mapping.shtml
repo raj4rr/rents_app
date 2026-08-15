@@ -1,0 +1,163 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<HTML><HEAD><TITLE>Hibernate Mapping tutorial</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv="content-type" content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="Hibernate Mapping tutorial learn easily and shortly with hibernate tutorial,hibernate
+Examples,hibernate interview questions Step by step covers all topics of hibernate" >
+<meta name="keywords" CONTENT="Hibernate Mapping tutorial, types of mapping,one to many mapping, 
+mapping with example, mapping using annotations, one to one mapping, association mapping, component mapping">
+
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<META http-equiv="Content-Language" content="en-us">
+<link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+<link href="/css/main.css" rel="stylesheet" type="text/css" />
+</HEAD>
+<BODY>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>Hibernate</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+            <img src="/images/left_menu_bullet.gif"/> <a href="/java/hibernate/">Hibernate</a>
+             </div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top">
+                            <?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/hibernate/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                       <div class="main_content">  	 
+
+      <div class="heading">Hibernate Mapping</div>
+
+      <table id="indexing">
+
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="sequence_generator.shtml" title="Sequence Generator">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="mapping_in_hibernate.shtml" title="Mapping In Hibernate">Next</a></td>
+  </tr> 
+</table>
+
+      <p>
+          In modern Hibernate, object-relational mapping (ORM) is primarily achieved using standard JPA (Java Persistence API) annotations. These annotations allow you to define exactly how your Java classes (Entities) map to your database tables, without the need for complex XML files.
+      </p>
+
+      <h3>1. The @Entity and @Table Annotations</h3>
+      <p>
+          The <code>@Entity</code> annotation marks a Java class as a persistent entity. Hibernate will map this class to a database table. By default, the table name matches the class name, but you can explicitly specify the table name using the <code>@Table</code> annotation.
+      </p>
+      <div class="code">
+<pre><code>
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "employee_records")
+public class Employee {
+    // ... fields and methods ...
+}
+</code></pre>
+      </div>
+
+      <h3>2. Primary Keys: @Id and @GeneratedValue</h3>
+      <p>
+          Every entity must have a primary key, mapped using the <code>@Id</code> annotation. You can let the database automatically generate these keys using the <code>@GeneratedValue</code> annotation.
+      </p>
+      <div class="code">
+<pre><code>
+import javax.persistence.Id;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+</code></pre>
+      </div>
+      <p>
+          <code>GenerationType.IDENTITY</code> is commonly used with MySQL to rely on auto-increment columns.
+      </p>
+
+      <h3>3. Mapping Columns: @Column</h3>
+      <p>
+          By default, every field in your entity is mapped to a column with the same name. If your database columns use different naming conventions (like snake_case), you use <code>@Column</code> to map them. You can also specify column lengths and constraints.
+      </p>
+      <div class="code">
+<pre><code>
+import javax.persistence.Column;
+
+    @Column(name = "first_name", nullable = false, length = 50)
+    private String firstName;
+</code></pre>
+      </div>
+
+      <div class="heading">Association Mapping (Relationships)</div>
+      <p>
+          Hibernate excels at managing relationships between different entities. These map to foreign keys in your database.
+      </p>
+      <h3>Types of Association Mapping:</h3>
+      <ol>
+          <li><strong>@OneToOne:</strong> A person has exactly one passport.</li>
+          <li><strong>@OneToMany:</strong> A department has many employees.</li>
+          <li><strong>@ManyToOne:</strong> Many employees belong to one department.</li>
+          <li><strong>@ManyToMany:</strong> Many students enroll in many courses.</li>
+      </ol>
+
+      <div class="code">
+<pre><code>
+import javax.persistence.ManyToOne;
+import javax.persistence.JoinColumn;
+
+    // Example of a ManyToOne mapping inside an Employee class
+    @ManyToOne
+    @JoinColumn(name = "department_id")
+    private Department department;
+</code></pre>
+      </div>
+
+      <div class="heading">Basic Data Types Mapping</div>
+      <p>
+          Hibernate automatically translates standard Java types into corresponding SQL types. For example:
+      </p>
+      <div class="table_content">
+          <TABLE>
+              <tr><td class="heading">Java Type</td><td class="heading">ANSI SQL Type</td></tr>
+              <tr><td class="alternate_heading1">java.lang.String</td><td class="alternate_heading1">VARCHAR</td></tr>
+              <tr><td class="alternate_heading2">java.lang.Integer / int</td><td class="alternate_heading2">INTEGER</td></tr>
+              <tr><td class="alternate_heading1">java.lang.Long / long</td><td class="alternate_heading1">BIGINT</td></tr>
+              <tr><td class="alternate_heading2">java.util.Date</td><td class="alternate_heading2">TIMESTAMP / DATE</td></tr>
+              <tr><td class="alternate_heading1">java.lang.Boolean / boolean</td><td class="alternate_heading1">BIT / BOOLEAN</td></tr>
+          </TABLE>
+      </div>
+     <table id="indexing">
+
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="sequence_generator.shtml" title="Sequence Generator">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="mapping_in_hibernate.shtml" title="Mapping In Hibernate">Next</a></td>
+  </tr> 
+</table>            	
+
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+
+                <?php @include($_SERVER['DOCUMENT_ROOT'] . '/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>

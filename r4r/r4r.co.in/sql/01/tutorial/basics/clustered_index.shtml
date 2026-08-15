@@ -1,0 +1,120 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>CLUSTERED INDEX,How Clustered Indexes Work</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="CLUSTERED INDEX,HOW CLUSTERED INDEXES WORK" >
+<meta name="keywords" CONTENT="CLUSTERED INDEX,HOW CLUSTERED INDEXES WORK">
+
+<!--header start-->
+
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>DATABASE & SQL/PLSQL</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a><img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+			<a href="/sql/">SQL </a>
+              </div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/sql/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	  
+
+                        	                        	<!-- Header End-->	
+ <div class="heading">CLUSTERED INDEX</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="INDEXES.shtml" title="INDEXES">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="nonclustered.shtml" title="NONCLUSTERED Index">Next</a></td>
+  </tr>
+</table>
+
+  <p>The data is physically stored there is only one clustered index can be created per table</p>
+  <p>Clustered index must be build on attribute that have a high percentage of unique values and they are not modified often
+  A clustered indexes should be created before a nonclustered index</p>
+  <p>A clustered index changes the order of the rows.</p>
+
+<h3>How Clustered Indexes Work</h3>
+
+<p>In clustered index data are stored at 
+the leaf level of the B-tree. The data pages of a table are like folders stored 
+in an alphabetically order in the filling cabinet, and the rows of the data are 
+like the documents stored in folders.</p>
+
+<p>SQL server performs the following steps 
+when it uses a clustered index to search for a value:</p>
+
+<p><b>Step 1. </b>First SQL sever find the root page from the sysindexes 
+table</p>
+
+<p><b>Step 2. </b>The search value is compared with the key values on the 
+root page</p>
+
+<p><b>Step 3. </b>The page with the highest key value less than or equal to 
+the search value is found</p>
+
+<p><b>Step 4.</b> The page pointer is followed the next lower level in the index</p>
+
+<p><b>Step 5.</b>Step 3 and 4 repeated until the data page is reached</p>
+
+<p><b>Step 6.</b>The rows of the data are searched on the data page until 
+the search value is found. If the search value is not found on the data page, no 
+rows are returned by the query</p>
+
+<p><h3>Example:</h3> Consider the following 
+example in which the rows of the employee table are sorted according to the Eid 
+attribute and stored in the table.</p>
+
+<div class="image">
+<img src="Image/clustered.gif">
+</div>
+
+<p>If the row containing Eid E006 were to be searched using the 
+clustered index displayed in the figure, the following step will be followed.</p>
+
+<p>SQL Server starts from page 603, the root page It searches the highest key value on the page, which is less 
+than or equal to the search value. The result of this search is the page containing the pointer to Eid E005
+The search continues from page 602,</p>
+<p>There, the Eid E005 is found and the search continues on page 
+203 Page and 203 is searched to find the required row.</p>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="INDEXES.shtml" title="INDEXES">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="nonclustered.shtml" title="NONCLUSTERED Index">Next</a></td>
+  </tr>
+</table>
+
+                       <!--Footer  -->
+
+</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>

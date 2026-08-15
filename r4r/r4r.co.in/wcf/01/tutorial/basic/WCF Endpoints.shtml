@@ -1,0 +1,168 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>WCF Endpoints,Administrative Endpoint Configuration,Multiple endpoints on the same service,Service-side binding configuration,Service-side programmatic endpoint configuration</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="WCF Endpoints,Administrative Endpoint Configuration,Multiple endpoints on the same service,Service-side binding configuration,Service-side programmatic endpoint configuration" >
+<meta name="keywords" CONTENT="WCF Endpoints,Administrative Endpoint Configuration,Multiple endpoints on the same service,Service-side binding configuration,Service-side programmatic endpoint configuration">
+
+<!--Header start-->
+
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>WCF</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a><img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+			<a href="/wcf">WCF with C# </a>
+              <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/wcf/01/tutorial/basic/">WCF Tutorials</a></div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/wcf/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	  
+
+<!-- Header End-->
+<div class="heading">WCF Endpoints</div>
+
+  <table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="WCF%20%20Channels%20%20Working.shtml" title="WCF Channels Working
+">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="First%20WCF%20Service.shtml" title="First WCF Service">Next</a></td>
+  </tr>
+</table>
+<p>In WCF the relationship between Address, Contract and 
+Binding is called Endpoint. The Endpoint is the fusion of Address, Contract and 
+Binding. WCF formalizes this relationship in the form of an endpoint.</p>
+<p>Every service must have Address that defines where the service resides, Contract that defines what the service 
+does and a Binding that defines how to communicate with the service</p>
+
+<div class="heading">Administrative Endpoint Configuration</div>
+
+<p>Configuring an endpoint administratively requires placing the 
+endpoints in the hosting process' config file. For example, given this service 
+definition:</p>
+<div class="code">
+<pre>
+<font color="#0000ff">namespace </font><font color="#000000">endname</font>
+<font color="#000000">{</font>
+   <font color="#000000">[ServiceContract]</font>
+   <font color="#0000ff">interface </font><font color="#000000">IMyContract</font>
+   <font color="#000000">{...}</font>
+   <font color="#0000ff">class </font><font color="#000000">MyService : IMyContract</font>
+   <font color="#000000">{...}</font>
+<font color="#000000">}</font>
+</pre>
+</div>
+
+<h3>Example: </h3>
+<div class="code">
+<pre>
+<font color="#0000ff">&lt;</font><font color="#808000">system</font><font color="#000000">.</font><font color="#800080">serviceModel</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">services</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">service </font><font color="#ff0000">name</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;MyNamespace.MyService&quot;</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">endpoint </font><font color="#800080">address</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;http://localhost:8000/MyService/&quot;</font>
+          <font color="#800080">binding</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;wsHttpBinding&quot; </font><font color="#800080">contract</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;MyNamespace.IMyContract&quot;</font><font color="#0000ff">/&gt;</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">service</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">services</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">system</font><font color="#000000">.</font><font color="#800080">serviceModel</font><font color="#0000ff">&gt;</font>
+</pre>
+</div>
+<pre></pre>
+
+<h3>Multiple endpoints on the same service: </h3>
+<div class="code">
+<pre>
+<font color="#0000ff">&lt;</font><font color="#808000">servicename</font><font color="#000000">=&quot;</font><font color="#800080">MyService</font><font color="#000000">&quot;</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">endpoint </font><font color="#800080">address</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;http://localhost:8000/MyService/&quot;</font>
+          <font color="#800080">binding</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;wsHttpBinding&quot; </font><font color="#800080">contract</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;IMyContract&quot;</font><font color="#0000ff">/&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">endpoint </font><font color="#800080">address</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;net.tcp://localhost:8001/MyService/&quot;</font>
+          <font color="#800080">binding</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;netTcpBinding&quot; </font><font color="#800080">contract</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;IMyContract&quot;</font><font color="#0000ff">/&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">endpoint </font><font color="#800080">address</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;net.tcp://localhost:8002/MyService/&quot;</font>
+          <font color="#800080">binding</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;netTcpBinding&quot; </font><font color="#800080">contract</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;IMyOtherContract&quot;</font><font color="#0000ff">/&gt;</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">service</font><font color="#0000ff">&gt;</font>
+</pre>
+</div>
+<h3>Service-side binding configuration: </h3>
+<div class="code">
+<pre>
+<font color="#0000ff">&lt;</font><font color="#808000">system</font><font color="#000000">.</font><font color="#800080">serviceModel</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">services</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">service </font><font color="#ff0000">name </font><font color="#0000ff">= </font><font color="#ff00ff">&quot;MyService&quot;</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">endpoint </font><font color="#800080">address  </font><font color="#0000ff">= </font><font color="#ff00ff">&quot;net.tcp://localhost:8000/MyService/&quot;</font>
+          <font color="#800080">bindingConfiguration </font><font color="#0000ff">= </font><font color="#ff00ff">&quot;TransactionalTCP&quot; </font>
+	  <font color="#800080">binding  </font><font color="#0000ff">= </font><font color="#ff00ff">&quot;netTcpBinding&quot; </font><font color="#800080">contract </font><font color="#0000ff">= </font><font color="#ff00ff">&quot;IMyContract&quot;</font><font color="#0000ff">/&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">endpoint </font><font color="#800080">address  </font><font color="#0000ff">= </font><font color="#ff00ff">&quot;net.tcp://localhost:8001/MyService/&quot;</font>
+          <font color="#800080">bindingConfiguration </font><font color="#0000ff">= </font><font color="#ff00ff">&quot;TransactionalTCP&quot;</font>
+	  <font color="#800080">binding  </font><font color="#0000ff">= </font><font color="#ff00ff">&quot;netTcpBinding&quot; </font><font color="#800080">contract </font><font color="#0000ff">= </font><font color="#ff00ff">&quot;IMyOtherContract&quot;</font><font color="#0000ff">/&gt;</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">service</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">services</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">bindings</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">netTcpBinding</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">binding </font><font color="#ff0000">name </font><font color="#0000ff">= </font><font color="#ff00ff">&quot;TransactionalTCP&quot; </font><font color="#800080">transactionFlow </font><font color="#0000ff">= </font><font color="#ff00ff">&quot;true&quot;</font><font color="#0000ff">/&gt;</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">netTcpBinding</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">bindings</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">system</font><font color="#000000">.</font><font color="#800080">serviceModel</font><font color="#0000ff">&gt;</font>
+</pre>
+</div>
+
+<h3>Service-side programmatic endpoint configuration: </h3>
+<div class="code">
+<pre>
+<font color="#808000">ServiceHost </font><font color="#000000">host = </font><font color="#0000ff">new </font><font color="#808000">ServiceHost</font><font color="#000000">(</font><font color="#0000ff">typeof</font><font color="#000000">(MyService));</font>
+<font color="#808000">Binding </font><font color="#000000">wsBinding  = </font><font color="#0000ff">new </font><font color="#808000">WSHttpBinding</font><font color="#000000">( );</font>
+<font color="#808000">Binding </font><font color="#000000">tcpBinding = </font><font color="#0000ff">new </font><font color="#808000">NetTcpBinding</font><font color="#000000">( );</font>
+<font color="#000000">host.AddServiceEndpoint(</font><font color="#0000ff">typeof</font><font color="#000000">(IMyContract),wsBinding,</font>
+            <font color="#ff00ff">&quot;http://localhost:8000/MyService&quot;</font><font color="#000000">);</font>
+<font color="#000000">host.AddServiceEndpoint(</font><font color="#0000ff">typeof</font><font color="#000000">(IMyContract),tcpBinding,</font>
+            <font color="#ff00ff">&quot;net.tcp://localhost:8001/MyService&quot;</font><font color="#000000">);</font>
+<font color="#000000">host.AddServiceEndpoint(</font><font color="#0000ff">typeof</font><font color="#000000">(IMyOtherContract),tcpBinding,</font>
+            <font color="#ff00ff">&quot;net.tcp://localhost:8002/MyService&quot;</font><font color="#000000">);</font>
+<font color="#000000">host.Open( );</font>
+<font color="#000000">&lt;/system.serviceModel&gt;</font>
+</pre>
+</div>
+
+<p><i>AddServiceEndpoint( )  </i>It 
+adds a service endpoint to the hosted service with a specified contract, 
+binding, and endpoint address.</p>
+
+ <table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="WCF%20%20Channels%20%20Working.shtml" title="WCF Channels Working
+">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="First%20WCF%20Service.shtml" title="First WCF Service">Next</a></td>
+  </tr>
+</table>
+
+ <!--Footer  -->
+</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/dotnet/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>

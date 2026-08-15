@@ -1,0 +1,124 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD>
+<meta http-equiv="Content-Language" content="en-us">
+<TITLE>greedy-non greedy matches,how to implement to greedy and non greedy maches</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name="description" CONTENT="greedy-non greedy matches,how to implement to greedy and non greedy maches" >
+<meta name="keywords" CONTENT="greedy-non greedy matches,how to implement to greedy and non greedy maches">
+
+<!-- header start-->	
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>Java Programing laungage</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+            <img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+            <a href="/java/">Java</a>
+              <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/java/corejava">Core Java</a>
+               <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/java/corejava/packages">Package</a>
+                     <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/java/corejava/packages/lang">Java Util Package</a>
+              </div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/corejava/packages/util/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	 
+
+<div class="heading">Greedy and Non-Greedy Matching</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="create_customlog_level.shtml" title="create customlog level">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="regular_expression_search.shtml" title="regular expression search">Next</a></td>
+  </tr> 
+</table>
+
+<!-- header End-->
+
+<h2>Greedy Matching</h2>
+<p>This is the way of matching the two string from one to another. In this method, the matcher method is used to return that word of the complete content of the file or the string or text in which all the characters of the search string is found.</p>
+
+<h2>Non-Greedy Matching</h2>
+<p>This is also a way of the string matching, In this way of the matching, string is searched in the complete string or text inputted by the user or the contents of the file. if any character of the searched string is found in the complete string or text in which another one is searched. In this way of matching, the matcher returns all the words or character from the whole string or text where from no any characters are fond in the string or text which is not present in the searched string or text.</p>
+
+<div class="heading">Code Description</div>
+<h3>"a.+?c"</h3>
+<p>This is the regular expression which is used in the following program for the Non-Greedy search or matching from the given string or the content of the file.</p>
+
+<h3>"a.*c"</h3>
+<p>This is also a regular expression of java programming language which performs the Greedy search or matching from the given string or the content of the file.</p>
+
+<h3>Example</h3>
+<div class=" code">
+<PRE>
+<FONT FACE="Arial">
+<FONT COLOR="#0000ff">package </FONT><FONT COLOR="#000000">r4r;</FONT>
+<FONT COLOR="#0000ff">import </FONT><FONT COLOR="#000000">java.io.</FONT><FONT COLOR="#ff0000">BufferedReader</FONT><FONT COLOR="#000000">;</FONT>
+<FONT COLOR="#0000ff">import </FONT><FONT COLOR="#000000">java.io.</FONT><FONT COLOR="#ff0000">IOException</FONT><FONT COLOR="#000000">;</FONT>
+<FONT COLOR="#0000ff">import </FONT><FONT COLOR="#000000">java.io.</FONT><FONT COLOR="#ff0000">InputStreamReader</FONT><FONT COLOR="#000000">;</FONT>
+<FONT COLOR="#0000ff">import </FONT><FONT COLOR="#000000">java.util.*;</FONT>
+<FONT COLOR="#0000ff">import </FONT><FONT COLOR="#000000">java.util.regex.</FONT><FONT COLOR="#ff0000">Matcher</FONT><FONT COLOR="#000000">;</FONT>
+<FONT COLOR="#0000ff">import </FONT><FONT COLOR="#000000">java.util.regex.</FONT><FONT COLOR="#ff0000">Pattern</FONT><FONT COLOR="#000000">;</FONT>
+<FONT COLOR="#0000ff">public class </FONT><FONT COLOR="#000000">matchingtest {</FONT>
+<FONT COLOR="#0000ff">public static void </FONT><FONT COLOR="#000000">main(</FONT><FONT COLOR="#ff0000">String</FONT><FONT COLOR="#000000">[] args) </FONT><FONT COLOR="#0000ff">throws </FONT><FONT COLOR="#ff0000">IOException</FONT><FONT COLOR="#000000">{</FONT>
+ <FONT COLOR="#ff0000">BufferedReader </FONT><FONT COLOR="#000000">br = </FONT><FONT COLOR="#0000ff">new </FONT><FONT COLOR="#ff0000">BufferedReader</FONT><FONT COLOR="#000000">(</FONT><FONT COLOR="#0000ff">new </FONT><FONT COLOR="#ff0000">InputStreamReader</FONT><FONT COLOR="#000000">(</FONT><FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.in));</FONT>
+ <FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.print(</FONT><FONT COLOR="#ff00ff">"Enter string/text in which search operation will be performed: "</FONT><FONT COLOR="#000000">);</FONT>
+ <FONT COLOR="#ff0000">String </FONT><FONT COLOR="#000000">str = br.readLine();</FONT>
+ <FONT COLOR="#008000">//  Non-Greedy Matching.</FONT>
+ <FONT COLOR="#ff0000">Pattern </FONT><FONT COLOR="#000000">pat = </FONT><FONT COLOR="#ff0000">Pattern</FONT><FONT COLOR="#000000">.compile(</FONT><FONT COLOR="#ff00ff">"a.+?c"</FONT><FONT COLOR="#000000">);</FONT>
+ <FONT COLOR="#ff0000">Matcher </FONT><FONT COLOR="#000000">match = pat.matcher(str);</FONT>
+ <FONT COLOR="#ff0000">String </FONT><FONT COLOR="#000000">str1 = match.replaceAll(</FONT><FONT COLOR="#ff00ff">"F"</FONT><FONT COLOR="#000000">);</FONT>
+ <FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.println(str1);</FONT>
+ <FONT COLOR="#008000">//  Greedy Matching.</FONT>
+ <FONT COLOR="#000000">pat = </FONT><FONT COLOR="#ff0000">Pattern</FONT><FONT COLOR="#000000">.compile(</FONT><FONT COLOR="#ff00ff">"a.*c"</FONT><FONT COLOR="#000000">);</FONT>
+ <FONT COLOR="#000000">match = pat.matcher(str);</FONT>
+ <FONT COLOR="#000000">str1 = match.replaceAll(</FONT><FONT COLOR="#ff00ff">"z"</FONT><FONT COLOR="#000000">);</FONT>
+ <FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.println(str);</FONT>
+ <FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.println(str1);</FONT>
+ <FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#000000">}</FONT>
+</FONT>
+</PRE>
+</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="create_customlog_level.shtml" title="create customlog level">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="regular_expression_search.shtml" title="regular expression search">Next</a></td>
+  </tr> 
+</table>
+
+<!-- Footer Start-->
+		</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->
+

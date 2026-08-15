@@ -1,0 +1,126 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>C Language File Handling, C tutorial, Examples,Interview Questions </TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="Learn C File Handling, File handling Examples,C Function,introduction of C,Loops in C, Pointer, Union in C, Preprocessor,Memory Management, C data types, Operator in C, Features of C , History of C, Sample of C program, C Advantages and Disadvantages Step by Step with Programming" >
+<meta name="keywords" CONTENT="C File Handling, C File Handling Examples,C Function,introduction of C,Loops in C, Pointer in C, Union in C, Preprocessor,Memory Management, C data types, Operator in C, Features of C , History of C, Sample of C program, C Advantages and Disadvantages, Switch Statements with Examples">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		<link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>C Programming language</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a><img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/c/">C </a>
+              <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/c/basic_tutorials/03/">C Basic Tutorials</a></div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/c/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content" > 
+ <div class="heading">C Declaration </div>
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="c_data_types.shtml" title="C data types">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="functions.shtml" title="function in c">Next</a></td>
+  </tr>
+</table>
+	<!-- Header End-->	
+
+<h2>Declaration of Storage Class</h2>
+<p>Variables in C have not only the data type but also storage class that provides information about their location and visibility. The storage class divides the portion of the program within which the variables are recognized. </p>
+<h2>auto</h2>
+<p>Auto is the default storage class.It is a local variable known only to the function in which it is declared. </p>
+<h2>static</h2> 
+<p>Local variable which exists and retains its value even after the control is transferred to the calling function.</p>
+<h2>extern </h2>
+<p>Global variable known to all functions in the file.</p>
+<h2>register</h2>
+<p>Social variables which are stored in the register</p>
+<h2>Defining Symbolic Constants</h2>
+<p>A symbolic constant value can be defined as a preprocessor statement and used in the program as any other constant value. The general form of a symbolic constant is</p>
+<p># define symbolic_name value of constant</p>
+<p>Valid examples of constant definitions are</p> 
+<div class="code">
+<pre>
+# define marks 100
+# define total 50
+# define pi 3.14159
+</pre></div>
+<p>These values may appear anywhere in the program, but must come before it is referenced in the program.<br>It is a standard practice to place them at the beginning of the program.</p>
+<h2>Declaring Variable as Constant</h2>
+<p>The values of some variable may be required to remain constant through-out the program. We can do this by using the qualifier const at the time of initialization.  
+<h2>Example</h2>
+
+<p>Const int class_size = 40;</p>
+<p>The const data type qualifier tells the compiler that the value of the int variable class _size may not be modified in the program.</p>
+<h2>Format Specifiers in C</h2>
+<div class="table_content">
+<table>
+<tr><td class="alternate_heading1" style="width:50%;">%c</td><td class="alternate_heading1" style="width:50%;">The character format specifier.</td></tr>
+<tr><td class="alternate_heading2" style="width:50%;">%d</td><td class="alternate_heading2" style="width:50%;">The integer format specifier.
+</td></tr>
+<tr><td class="alternate_heading1" style="width:50%;">%i</td><td class="alternate_heading1" style="width:50%;">The integer format specifier (same as %d).
+</td></tr>
+<tr><td class="alternate_heading2" style="width:50%;">%f</td><td class="alternate_heading2" style="width:50%;">The floating-point format specifier.
+</td></tr>
+<tr><td class="alternate_heading1" style="width:50%;">%e</td><td class="alternate_heading1" style="width:50%;">The scientific notation format specifier.
+</td></tr>
+<tr><td class="alternate_heading2" style="width:50%;">%E</td><td class="alternate_heading2" style="width:50%;">The scientific notation format specifier.
+</td></tr>
+<tr><td class="alternate_heading1" style="width:50%;">%g</td><td class="alternate_heading1" style="width:50%;">Uses %f or %e, whichever result is shorter.
+</td></tr>
+<tr><td class="alternate_heading2" style="width:50%;">%G</td><td class="alternate_heading2" style="width:50%;">Uses %f or %E, whichever result is shorter.
+</td></tr>
+<tr><td class="alternate_heading1" style="width:50%;">%o</td><td class="alternate_heading1" style="width:50%;">The unsigned octal format specifier.
+</td></tr>
+<tr><td class="alternate_heading2" style="width:50%;">%s</td><td class="alternate_heading2" style="width:50%;">The string format specifier.
+</td></tr>
+<tr><td class="alternate_heading1" style="width:50%;">%u</td><td class="alternate_heading1" style="width:50%;">The unsigned integer format specifier.
+</td></tr>
+<tr><td class="alternate_heading2" style="width:50%;">%x</td><td class="alternate_heading2" style="width:50%;">The unsigned hexadecimal format specifier.
+</td></tr>
+<tr><td class="alternate_heading1" style="width:50%;">%X</td><td class="alternate_heading1" style="width:50%;">The unsigned hexadecimal format specifier.
+</td></tr>
+<tr><td class="alternate_heading2" style="width:50%;">%p</td><td class="alternate_heading2" style="width:50%;">Displays the corresponding argument that is a pointer.
+</td></tr>
+<tr><td class="alternate_heading1" style="width:50%;">%n</td><td class="alternate_heading1" style="width:50%;">Records the number of characters written so far.
+</td></tr>
+<tr><td class="alternate_heading2" style="width:50%;">%%</td><td class="alternate_heading2" style="width:50%;">Outputs a percent sign.
+</td></tr>
+
+ <table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="c_data_types.shtml" title="C data types">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="getting_started_with_c.shtml" title="Cgetting started with c">Next</a></td>
+  </tr>
+</table>
+	<!--Footer  --> 	
+
+		</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>

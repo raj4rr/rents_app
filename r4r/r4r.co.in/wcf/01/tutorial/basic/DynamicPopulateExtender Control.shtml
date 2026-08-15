@@ -1,0 +1,175 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>DynamicPopulateExtender Control,DynamicPopulateExtender  property,How to use DynamicPopulateExtender control</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="DynamicPopulateExtender Control,DynamicPopulateExtender  property,How to use DynamicPopulateExtender control" >
+<meta name="keywords" CONTENT="DynamicPopulateExtender Control,DynamicPopulateExtender  property,How to use DynamicPopulateExtender control">
+
+<!--Header start-->
+
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>WCF</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a><img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+			<a href="/wcf">WCF with C# </a>
+              <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/wcf/01/tutorial/basic/">WCF Tutorials</a></div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/wcf/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	  
+
+<!-- Header End-->
+<div class="heading">DynamicPopulateExtender Control</div>
+
+  <table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="Explicit%20transaction%20management.shtml" title="Explicit transaction management
+">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="index.shtml" title="Home">Next</a></td>
+  </tr>
+</table>
+
+<p>DynamicPopulate is a simple extender that replaces the contents of a control 
+with the result of a web service or page method call.The DynamicPopulate control 
+in the ASP.NET AJAX Control Toolkit calls a web service (or page method) and 
+fills the resulting value into a target control on the page, without a page 
+refresh.</p>
+<h3>DynamicPopulateExtender property: </h3>
+<p><i>TargetControlID: </i>It represnt id of the button.</p>
+<p><i>ClearContentsDuringUpdate: </i>It is bydefult true for clear the HTML  contents when new updation starts.</p>
+<p><i>ServicePath: </i>The URL of the web service to call</p>
+<p><i>ServiceMethod: </i>The name of the method to call on the page or web service</p>
+<p><i>UpdatingCssClass: </i>The CSS class to apply to the target during asynchronous calls.</p>
+<p><i>CustomScript: </i>Its used for calling a Web or Page method. </p>
+<p><i>ContextKey: </i>An arbitrary string value to be passed to the web method</p>
+<p><i>CacheDynamicResults: </i>Whether the results of the dynamic population should be cached and not fetched again after the first load.</p>
+
+<div class="heading">How to use DynamicPopulateExtender control: </div>
+
+<p><i>Step 1: </i>Start -&gt; All Programs -&gt; Visual Studio 2005 or Visual 
+Studio 2008</p>
+<p><i>Step 2: </i>Now go to File Menu -&gt; New -&gt; Web Site</p>
+<p><i>Step 3: </i>Under Visual Studio Installed Template-&gt; Choose ASP.NET WEB SITE -&gt; Choose File System< from the location combo 
+box -&gt; Set the path by the browse button - &gt; Choose the language from the 
+Language ComboBox (Visual C# ,Visual Basic , J #) </p>
+<p>
+Choose Visual C# </p>
+<p>
+<i>Step 4: </i>Click on the OK Button.
+
+<p><i>Step 5: </i>Now drag some controls under the AJAX Extensions.</p>
+<p>
+First control you are going to drag and drop on the page is - <font class="point_out">Script Manager.</font>
+<p>After that .</p>
+<div class="code">
+<pre>
+<font color="#800000">&lt;%</font><font color="#800000">@ Page Language=</font><font color="#ff00ff">&quot;C#&quot; </font><font color="#800000">AutoEventWireup=</font><font color="#ff00ff">&quot;true&quot; </font>
+<font color="#800000">CodeFile=</font><font color="#ff00ff">&quot;Default.aspx.cs&quot; </font><font color="#800000">Inherits=</font><font color="#ff00ff">&quot;_Default&quot; </font><font color="#800000">%&gt;</font>
+<font color="#800000">&lt;%</font><font color="#800000">@ Register Assembly=</font><font color="#ff00ff">&quot;AjaxControlToolkit&quot; </font>
+<font color="#800000">Namespace=</font><font color="#ff00ff">&quot;AjaxControlToolkit&quot; </font><font color="#800000">TagPrefix=</font><font color="#ff00ff">&quot;cc1&quot; </font><font color="#800000">%&gt;</font>
+<font color="#0000ff">&lt;!DOCTYPE </font><font color="#800080">html PUBLIC </font><font color="#000000">&quot;</font><font color="#800080">-</font><font color="#000000">//</font><font color="#800080">W3C</font><font color="#000000">//</font><font color="#800080">DTD XHTML 1</font><font color="#000000">.</font><font color="#800080">0 Transitional</font><font color="#000000">//</font><font color="#800080">EN</font><font color="#000000">&quot;</font>
+<font color="#000000">&quot;</font><font color="#800080">http:</font><font color="#000000">//</font><font color="#800080">www</font><font color="#000000">.</font><font color="#800080">w3</font><font color="#000000">.</font><font color="#800080">org</font><font color="#000000">/</font><font color="#800080">TR</font><font color="#000000">/</font><font color="#800080">xhtml1</font><font color="#000000">/</font><font color="#800080">DTD</font><font color="#000000">/</font><font color="#800080">xhtml1-transitional</font><font color="#000000">.</font><font color="#800080">dtd</font><font color="#000000">&quot;</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">html </font><font color="#ff0000">xmlns</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;http://www.w3.org/1999/xhtml&quot;</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">head </font><font color="#800080">runat</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;server&quot;</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">title</font><font color="#0000ff">&gt;</font><font color="#000000">Untitled Page</font><font color="#0000ff">&lt;/</font><font color="#808000">title</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;script </font><font color="#800080">runat</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;server&quot;</font><font color="#0000ff">&gt;</font>
+  <font color="#800000">[System.Web.Services.WebMethod]  </font>
+<font color="#800000">[System.Web.Script.Services.ScriptMethod] </font>
+ <font color="#0000ff">public </font><font color="#ff0000">String </font><font color="#800000">operation(string s)</font>
+  <font color="#800000">{</font>
+<font color="#0000ff">return  </font><font color="#800000">Convert.ToString( </font><font color="#ff00ff">&quot;You Selected Pizza &quot; </font><font color="#800000">+ s);</font>
+  <font color="#800000">}</font>
+<font color="#0000ff">&lt;/script&gt;</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">head</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">body</font><font color="#0000ff">&gt;</font>
+<font color="#000000"> </font><font color="#0000ff">&lt;</font><font color="#808000">form </font><font color="#800080">id</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;form1&quot; </font><font color="#800080">runat</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;server&quot;</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">asp:ScriptManager </font><font color="#800080">ID</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;ScriptManager1&quot; </font><font color="#800080">runat</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;server&quot;</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">asp:ScriptManager</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;script </font><font color="#ff0000">type </font><font color="#0000ff">= </font><font color="#ff00ff">&quot;text/javascript&quot;</font><font color="#0000ff">&gt; </font>
+  <font color="#0000ff">function </font><font color="#800000">UpdatePizza(chkcount)</font>
+  <font color="#800000">{</font>
+  <font color="#0000ff">var </font><font color="#800000">behavior = $find(</font><font color="#ff00ff">'dp1'</font><font color="#800000">);</font>
+  <font color="#0000ff">var </font><font color="#800000">value = </font><font color="#ff00ff">''</font><font color="#800000">;</font>
+  <font color="#0000ff">for </font><font color="#800000">(i = </font><font color="#800080">0</font><font color="#800000">; i &lt; chkcount; i++)</font>
+  <font color="#800000">{</font>
+<font color="#0000ff">if </font><font color="#800000">(</font><font color="#ff0000">document</font><font color="#800000">.</font><font color="#ff0000">forms</font><font color="#800000">[</font><font color="#800080">0</font><font color="#800000">].chknumber[i].checked == </font><font color="#0000ff">true</font><font color="#800000">)</font>
+  <font color="#800000">value = </font><font color="#ff00ff">' With ' </font><font color="#800000">+ </font><font color="#ff0000">document</font><font color="#800000">.</font><font color="#ff0000">forms</font><font color="#800000">[</font><font color="#800080">0</font><font color="#800000">].chknumber[i].value + </font><font color="#ff00ff">','</font><font color="#800000">;</font>
+  <font color="#800000">}</font>
+  <font color="#0000ff">if </font><font color="#800000">(behavior)</font>
+  <font color="#800000">{</font>
+<font color="#800000">behavior.populate(value);</font>
+  <font color="#800000">}</font>
+<font color="#800000">}</font>
+
+<font color="#800000">Sys.Application.add_load(</font><font color="#0000ff">function</font><font color="#800000">(){Updatenumber(</font><font color="#800080">3</font><font color="#800000">);});</font>
+<font color="#0000ff">&lt;/script&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">br </font><font color="#0000ff">/&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">label </font><font color="#800080">for</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;Chk1&quot;</font><font color="#0000ff">&gt;&lt;</font><font color="#808000">input </font><font color="#800080">id</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;Chk1&quot; </font><font color="#ff0000">type</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;checkbox&quot;  </font><font color="#ff0000">name</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;chknumber&quot; </font>
+<font color="#800080">value</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;100&quot; </font><font color="#800080">onclick</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;Updatenumber(3);&quot; </font><font color="#0000ff">/&gt;</font><font color="#000000">100</font><font color="#0000ff">&lt;/</font><font color="#808000">label</font><font color="#0000ff">&gt;&lt;</font><font color="#808000">br </font><font color="#0000ff">/&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">label </font><font color="#800080">for</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;Chk2&quot;</font><font color="#0000ff">&gt;&lt;</font><font color="#808000">input </font><font color="#800080">id</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;Chk2&quot; </font><font color="#ff0000">type</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;checkbox&quot;  </font><font color="#ff0000">name</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;chknumber&quot;</font>
+  <font color="#800080">value</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;200&quot; </font><font color="#800080">onclick</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;Updatenumber(3);&quot; </font><font color="#0000ff">/&gt;</font><font color="#000000">200</font><font color="#0000ff">&lt;/</font><font color="#808000">label</font><font color="#0000ff">&gt;&lt;</font><font color="#808000">br </font><font color="#0000ff">/&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">label </font><font color="#800080">for</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;Chk3&quot;</font><font color="#0000ff">&gt;&lt;</font><font color="#808000">input </font><font color="#800080">id</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;Chk3&quot; </font><font color="#ff0000">type</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;checkbox&quot;  </font><font color="#ff0000">name</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;chknumber&quot; </font>
+<font color="#800080">value</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;300&quot;  </font><font color="#800080">onclick</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;Updatenumber(3);&quot; </font><font color="#0000ff">/&gt;</font><font color="#000000">300</font><font color="#0000ff">&lt;/</font><font color="#808000">label</font><font color="#0000ff">&gt;&lt;</font><font color="#808000">br </font><font color="#0000ff">/&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">br </font><font color="#0000ff">/&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">asp:Panel </font><font color="#800080">ID</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;Panel1&quot; </font><font color="#800080">runat</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;server&quot;</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">asp:Panel</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">cc1:DynamicPopulateExtender </font><font color="#800080">ID</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;DynamicPopulateExtender1&quot; </font><font color="#800080">runat</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;server&quot;</font>
+   <font color="#800080">TargetControlID</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;Panel1&quot; </font><font color="#800080">BehaviorID</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;dp1&quot; </font><font color="#800080">ServiceMethod</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;operation&quot;</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">cc1:DynamicPopulateExtender</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">form</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">body</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">html</font><font color="#0000ff">&gt;</font>
+</pre>
+
+</div>
+
+<p><i>Step 6: </i>Now run your web site by Ctrl + F5</p>
+<p><i>Step 7: </i>Output is</p>
+
+<div class="image">
+<img src="DynamicPopulateExtender/1.gif">
+<img src="DynamicPopulateExtender/2.gif">
+</div>
+
+  <table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="Explicit%20transaction%20management.shtml" title="Explicit transaction management
+">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="index.shtml" title="Home">Next</a></td>
+  </tr>
+</table>
+
+ <!--Footer  -->
+</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/dotnet/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>

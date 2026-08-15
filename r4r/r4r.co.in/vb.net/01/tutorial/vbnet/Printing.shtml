@@ -1,0 +1,129 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>Printing Controls in C#</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="Printing Controls in C#" >
+<meta name="keywords" CONTENT="Printing Controls in C#">
+<!-- header start-->	
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>VB.NET Technology</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+            <img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+            <a href="/vb.net/">VB.net</a>
+              <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/vb.net/01/tutorial/vbnet/">VB.NET Tutorial</a>
+
+              </div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/vb.net/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	 
+
+<div class="heading">Printing Controls </div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="dialog.shtml" title="Data Controls">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="data.shtml" title="Dialog Controls">Next</a></td>
+  </tr> 
+</table>
+
+<!-- header End-->	
+<p>
+These controls are used to take printing of documents whether in form of print screen or as printing in the content form . In following figure i tried to describe about these controls how you will use in your window application. For explaining this i had taken the previous example of dialog control, so lets proceed  with printing controls.
+</p>
+
+<div class="image">
+<img src="image/print2.JPG ">
+</div>
+
+<h3>Code for Print Preview- For performing this action first add namespace</h3>
+
+<h3>Imports System.Drawing.Printing</h3>
+<div class="code">
+<pre>
+<font face="Arial"><font color="#0000ff">Private </font><font color="#000000">PrintDoc1 As New PrintDocument()</font>
+<font color="#0000ff">Private </font><font color="#000000">PrintPreviewDialog1 As New PrintPreviewDialog()</font>
+<font color="#0000ff">Private Sub </font><font color="#000000">printToolStripMenuItem_Click(sender As Object, e As EventArgs)</font>
+	<font color="#000000">PrintPreviewDialog1.</font><font color="#ff0000">Document </font><font color="#000000">= PrintDoc1</font>
+	<font color="#000000">PrintDoc1.OriginAtMargins = </font><font color="#0000ff">True</font>
+	<font color="#008000">'To set or Get the Position of a Graphic Object</font>
+	<font color="#000000">PrintDoc1.PrintPage += PDoc_PrintPage</font>
+	<font color="#000000">PrintPreviewDialog1.ShowDialog()</font>
+<font color="#0000ff">End Sub</font></font>
+</pre>
+</div>
+
+<h3>Create Method</h3>
+
+<div class="code">
+<pre>
+<font face="Arial"><font color="#0000ff">Private Sub </font><font color="#000000">PDoc_PrintPage(</font><font color="#0000ff">ByVal </font><font color="#000000">sender As System.Object, </font>
+	<font color="#0000ff">ByVal </font><font color="#000000">e As System.Drawing.Printing.PrintPageEventArgs) Handles PDoc.PrintPage</font>
+        <font color="#0000ff">Dim </font><font color="#000000">bmp As New Bitmap(Me.Width, Me.Height)</font>
+        <font color="#000000">Me.DrawToBitmap(bmp, Me.ClientRectangle)</font>
+        <font color="#000000">Me.DrawToBitmap(bmp, New Rectangle(</font><font color="#800080">0</font><font color="#000000">, </font><font color="#800080">0</font><font color="#000000">, bmp.Width, bmp.Height))</font>
+        <font color="#008000">'Takes the Snap of the Exact WindowForm size as Bitmap image</font>
+        <font color="#000000">e.Graphics.DrawImage(bmp, </font><font color="#800080">0</font><font color="#000000">, </font><font color="#800080">0</font><font color="#000000">)</font>
+    <font color="#0000ff">End Sub</font></font>
+</pre>
+</div>
+
+<div class="image">
+<img src="image/print1.JPG ">
+</div>
+
+<h3>Code for taking Print</h3>
+<div class="code">
+<pre>
+<font face="Arial"><font color="#0000ff">Private Sub </font><font color="#000000">PrintToolStripMenuItem_Click(</font><font color="#0000ff">ByVal </font><font color="#000000">sender As System.Object, </font>
+	<font color="#0000ff">ByVal </font><font color="#000000">e As System.EventArgs) Handles PrintToolStripMenuItem.Click</font>
+        <font color="#000000">PrintDoc1.Print()</font>
+    <font color="#0000ff">End Sub</font></font>
+</pre>
+</div>
+<div class="image">
+<img src="image/print.JPG ">
+</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="dialog.shtml" title="Dialog Controls">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="data.shtml" title="Data Controls">Next</a></td>
+  </tr> 
+</table>
+<!-- Footer Start-->		
+
+		</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/dotnet/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->

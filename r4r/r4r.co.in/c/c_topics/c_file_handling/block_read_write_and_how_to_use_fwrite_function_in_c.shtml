@@ -1,0 +1,132 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>Open, read,write and close a text file,f read fwrite () function</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="Step by step block Read Write in C ,fwrite () function,What is Block Read/Write and How to use fwrite( ) Function in C,c tutorial,c basics,programming language,examples,pointer,function" >
+<meta name="keywords" CONTENT="c tutorial,c basics,programming language,examples,pointer,function,loop,else,if else,while,array,pre processor,post processor,structures,memory menagement,string,constants,variables,decisions making,c unions,c memory allocation, c operators, C pointers,c error handling, c file handling">
+<link href="/css/main.css" rel="stylesheet" type="text/css" />
+        <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+
+	</HEAD>
+	<BODY>
+	<?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style="padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>C Programming language</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a><img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/c/">C</a><img src="/images/left_menu_bullet.gif" width="11" height="6"/><a href="/c/c_topics/c_file_handling/">C File Handling</a></div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/c/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 
+
+		<!-- Header End-->	
+<div class="heading">Record I/O : What is Block Read/Write, How to use fwrite( ) Function in C</div> 
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;">
+    	<a href="How_to_use_fscanf()_in_c.shtml" title="Formatted I/O : How to use fscanf( ) Function in C">Previous</a>
+    </td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="How_to_use_fread_function_in_c.shtml" title="Record I/O : How to use fread( ) Function in C">Next</a></td>
+  </tr>
+</table>
+
+<h3>Record I/O</h3>	   
+<p>It is useful to store block of data into file rather than individual elements . Each block has some fixed size, it may be structure and array. It is easy to to read the entire block from a file or write a entire block to the file.</p>
+<p><i>There are to useful function for this purpose.</i>
+	<ol>
+		<li>fwrite ( ) Function</li>
+		<li><a href="How_to_use_fread_function_in_c.shtml">fread ( ) Function</a></li>
+	</ol>
+<p>Although we can read and write any type of data varying from a single character to array through these function, these function are mainly used for binary files or binary modes. ( wb, rb )</p>
+
+<div class="heading">fwrite () Function</div>
+<p>fwrite function writes a block of data to the given file.</p>
+<div class="code">
+<font color="#000000">size_t fwrite
+<span class="br0">(</span></font><font color="#0000FF"><span class="kw4">const</span> <span class="kw4">void</span></font><font color="#000000">
+<span class="sy0">*</span>ptr<span class="sy0">,</span> size_t size<span class="sy0">,</span> 
+size_t count<span class="sy0">,</span> FILE <span class="sy0">*</span>stream<span class="br0">)</span><span class="sy0"> 
+;</span></font>
+</div>
+<p>size_t is  defined in stdio.h .void means that it is a pointer that can be used for any type variable. ptr is  points to the block of  memory that contains the information to be written to the file ,size denotes the length of each items in bytes</p>
+<p>n is the number of items to be written to the file . fptr is a file pointer which points to the file to which the  data is written .if successful , fwrite will return n items.on error it will return a number less then n</p>
+
+<div class="code">
+<PRE><FONT><FONT COLOR="#ff0000">#include </FONT><FONT COLOR="#000000">&lt;stdio.h&gt;</FONT>
+<FONT COLOR="#0000ff">struct </FONT><FONT COLOR="#000000">emp</FONT>
+<FONT COLOR="#000000">{</FONT>
+	<FONT COLOR="#0000ff">char </FONT><FONT COLOR="#000000">name[</FONT><FONT COLOR="#800080">40</FONT><FONT COLOR="#000000">] ;</FONT>
+	<FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">age ;</FONT>
+	<FONT COLOR="#0000ff">float </FONT><FONT COLOR="#000000">sal ;</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#000000">employee ;</FONT>
+<FONT COLOR="#000000">fwrite(&amp;employee,</FONT><FONT COLOR="#0000ff">sizeof</FONT><FONT COLOR="#000000">(employee),</FONT><FONT COLOR="#800080">1</FONT><FONT COLOR="#000000">,fp);</FONT></FONT></PRE>
+</div>
+<p>This will write single structure to the file.</p>
+<div class="code">
+<PRE><FONT><FONT COLOR="#008000">/** Receives records from keyboard and writes them to a file in binary mode*/</FONT>
+<FONT COLOR="#ff0000">#include</FONT><FONT COLOR="#000000">&lt;stdio.h&gt;</FONT>
+<FONT COLOR="#000000">main( )</FONT>
+<FONT COLOR="#000000">{</FONT>
+	<FONT COLOR="#000000">FILE *fp ;</FONT>
+	<FONT COLOR="#0000ff">char </FONT><FONT COLOR="#000000">another = </FONT><FONT COLOR="#ff00ff">'Y' </FONT><FONT COLOR="#000000">;</FONT>
+	<FONT COLOR="#0000ff">struct </FONT><FONT COLOR="#000000">emp</FONT>
+	<FONT COLOR="#000000">{</FONT>
+		<FONT COLOR="#0000ff">char </FONT><FONT COLOR="#000000">name[</FONT><FONT COLOR="#800080">40</FONT><FONT COLOR="#000000">] ;</FONT>
+		<FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">age ;</FONT>
+		<FONT COLOR="#0000ff">float </FONT><FONT COLOR="#000000">sal ;</FONT>
+	<FONT COLOR="#000000">} ;</FONT>
+	<FONT COLOR="#0000ff">struct </FONT><FONT COLOR="#000000">emp e ;</FONT>
+	<FONT COLOR="#000000">fp = fopen ( </FONT><FONT COLOR="#ff00ff">"EMP.DAT"</FONT><FONT COLOR="#000000">, </FONT><FONT COLOR="#ff00ff">"wb" </FONT><FONT COLOR="#000000">) ;</FONT>
+	<FONT COLOR="#0000ff">if </FONT><FONT COLOR="#000000">( fp == NULL )</FONT>
+	<FONT COLOR="#000000">{</FONT>
+		<FONT COLOR="#000000">puts ( </FONT><FONT COLOR="#ff00ff">"Cannot open file" </FONT><FONT COLOR="#000000">) ;</FONT>
+		<FONT COLOR="#000000">exit( ) ;</FONT>
+	<FONT COLOR="#000000">}</FONT>
+	<FONT COLOR="#0000ff">while </FONT><FONT COLOR="#000000">( another == </FONT><FONT COLOR="#ff00ff">'Y' </FONT><FONT COLOR="#000000">)</FONT>
+	<FONT COLOR="#000000">{</FONT>
+		<FONT COLOR="#000000">printf ( </FONT><FONT COLOR="#ff00ff">"\nEnter name, age and basic salary: " </FONT><FONT COLOR="#000000">) ;</FONT>
+		<FONT COLOR="#000000">scanf ( </FONT><FONT COLOR="#ff00ff">"%s %d %f"</FONT><FONT COLOR="#000000">, e.name, &amp;e.age, &amp;e.sal ) ;</FONT>
+		<FONT COLOR="#000000">fwrite ( &amp;e, </FONT><FONT COLOR="#0000ff">sizeof </FONT><FONT COLOR="#000000">( e ), </FONT><FONT COLOR="#800080">1</FONT><FONT COLOR="#000000">, fp ) ;</FONT>
+		<FONT COLOR="#000000">printf ( </FONT><FONT COLOR="#ff00ff">"Add another record (Y/N) " </FONT><FONT COLOR="#000000">) ;</FONT>
+		<FONT COLOR="#000000">Chapter </FONT><FONT COLOR="#800080">12</FONT><FONT COLOR="#000000">: File Input/Output </FONT><FONT COLOR="#800080">439</FONT>
+		<FONT COLOR="#000000">fflush ( stdin ) ;</FONT>
+		<FONT COLOR="#000000">another = getche( ) ;</FONT>
+	<FONT COLOR="#000000">}</FONT>
+	<FONT COLOR="#000000">fclose ( fp ) ;</FONT>
+<FONT COLOR="#000000">};</FONT></FONT></PRE>
+</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;">
+    	<a href="How_to_use_fscanf()_in_c.shtml" title="Formatted I/O : How to use fscanf( ) Function in C">Previous</a>
+    </td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="How_to_use_fread_function_in_c.shtml" title="Record I/O : How to use fread( ) Function in C">Next</a></td>
+  </tr>
+</table>
+<!--Footer  --> 
+</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>

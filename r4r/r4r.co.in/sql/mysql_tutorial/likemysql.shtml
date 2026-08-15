@@ -1,0 +1,168 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http:///www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML>
+	<HEAD>
+
+	<meta http-equiv="Content-Language" content="en-us">
+	<TITLE>Like in MySQL</TITLE>
+		<META content="Rajesh Kumar" name="author">
+		<META http-equiv="expires" content="0">
+		<META content="r4r.co.in" name="owner">
+		<META http-equiv=Content-Type content="text/html; charset=windows-1252">
+		<meta name="description" CONTENT="Like in MySQL-Learn mysql with r4r tutorial provides you sql tutorial from basic level concept to higher 
+		level concept sql interview questions and sql examples">
+		<meta name="keywords" CONTENT="Like in MySQL,Insert Into In MySQL,Update In MySQL,Delete In MySQL,Injection In MySQL,Select Limit In MySQL
+Like In MySQL,Wildcards In MySQL,Aliases In MySQL,Joins In MySQL,Inner Join In MySQL">
+
+	<!-- header start-->	
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>MySQL </h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+			<img src="/images/left_menu_bullet.gif" width="11" height="6"><a href="/sql/mysql_tutorial/">MySQL</a>
+
+              </div>
+
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/sql/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	 
+
+<div class="heading">Like in MySQL</div>
+<table id="indexing">
+	<tr>
+	<td style="width:33%; text-align:left;"><a href="limitmysql.shtml" title="Limit in MySQL">Previous</a></td>
+	<td style="width:34%; text-align:center"><a href="index.shtml" title="Home">Home</a></td>
+	<td style="width:33%; text-align:right"><a href="wildmysql.shtml" title="Wildcard in MySQL">Next</a></td>
+	</tr>
+</table>
+
+<p>This clause is used for pattern searching string or characters in the specified condtions, they require some characters for searching, they are known as the Wildcard Characteres which provides a easier way to search any related string or character value from the requested column. They can be categories into two ways , they are </p> 
+<div class="table_content">
+<table>
+<tr><td class="heading" style="width:30;">Type</td><td class="heading" style="width:70;">Description</td></tr>
+<tr><td class="alternate_heading1">%</td><td class="alternate_heading1">Minimum 1 size of characters</td></tr>
+<tr><td class="alternate_heading2">_</td><td class="alternate_heading2">size of One character </td></tr>
+</table>
+</div>
+
+<p><h3>Syntax</h3></p>
+<div class="code">
+<pre>
+SELECT *   
+FROM tablename  
+WHERE Clause 
+LIKE 'type_define';
+</pre>
+</div>
+
+<p> The % define the any number of characters in which lname starting letter is 's' and display the following result. </p>
+<p><h3>Example</h3></p>
+<div class="code">
+<pre>
+SELECT *
+FROM studinfo 
+WHERE lname
+LIKE 's%' ;
+</pre>
+</div>
+<div class="output"><div class="image"><img src="images/like1.gif"></div></div>
+
+<p>If we want to add some additional condition like sid>105 then we can compute them also</p>
+
+<p><h3>Example</h3></p>
+<div class="code">
+<pre>
+SELECT *
+FROM studinfo 
+WHERE sid > 105 AND lname
+LIKE 's%' ;
+</pre>
+</div>
+
+<div class="output"><div class="image"><img src="images/like2.gif"></div></div>
+
+<p>Suppose wo know only the first and last character of any stored value we can also search them using the below command</p>
+<p><h3>Example</h3></p>
+<div class="code">
+<pre>
+SELECT *
+FROM studinfo 
+WHERE lname
+LIKE 's%a' ;
+</pre>
+</div>
+<div class="output"><div class="image"><img src="images/like3.gif"></div></div>
+<p>In this first character is 's' and last character is 'a' and % define the undefined size of character stored in the specified conditions</p>
+
+<p><h3>Example</h3></p>
+<div class="code">
+<pre>
+SELECT *
+FROM studinfo 
+WHERE lname LIKE 's%a'
+ORDER BY sid ;
+</pre>
+</div>
+<div class="output"><div class="image"><img src="images/like4.gif"></div></div>
+
+<p>The underscore ( _ ) defines one character space of any type can be present which help them to search the requested query</p>
+
+<p><h3>Example</h3></p>
+<div class="code">
+<pre>
+SELECT *
+FROM studinfo 
+WHERE lname LIKE 's_ _ _ _a';
+</pre>
+</div>
+<div class="output"><div class="image"><img src="images/like5.gif"></div></div>
+<p>The above code we have 4 unspecified character between s and a so we have to insert 4 underscore( _ ) to get the desired output</p>
+<p>In the above code we can also insert the conditions like sid >  105 and order by fname whose code is given below.</p>
+
+<p><h3>Example</h3></p>
+<div class="code">
+<pre>
+SELECT *
+FROM studinfo 
+WHERE sid >105 lname LIKE 's_ _ _ _a'
+ORDER BY fname;
+</pre>
+</div>
+
+<table id="indexing">
+	<tr>
+	<td style="width:33%; text-align:left;"><a href="limitmysql.shtml" title="Limit in MySQL">Previous</a></td>
+	<td style="width:34%; text-align:center"><a href="index.shtml" title="Home">Home</a></td>
+	<td style="width:33%; text-align:right"><a href="wildmysql.shtml" title="Wildcard in MySQL">Next</a></td>
+	</tr>
+</table>
+
+		</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->

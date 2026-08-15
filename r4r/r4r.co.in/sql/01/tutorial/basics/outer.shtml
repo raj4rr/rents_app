@@ -1,0 +1,115 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML>
+<TITLE>Outer Join</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name="description" CONTENT="OUTER JOIN" >
+<meta name="keywords" CONTENT="OUTER JOIN">
+
+<!--header start-->
+
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>DATABASE & SQL/PLSQL</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a><img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+			<a href="/sql/">SQL </a>
+              </div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/sql/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	  
+
+                        	                        	<!-- Header End-->	
+    <div class="heading">Outer Join</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="inner.shtml" title="Inner Join">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="cross.shtml" title="Cross Join">Next</a></td>
+  </tr>
+</table> 
+
+<p>An outer join displays NULL for the columns of the related table where it does not find matching records.</p>
+<p>When the result set contains all rows from one table</p>
+<p>The matching rows from other</p>
+
+<div class="code">
+<pre>
+SELECT<i> columnm_name 1, columnm_name 2....columnm_name n</i>
+FROM <i>table_name</i> [LEFT,RIGHT] OUTER JOIN <i>table_name</i>
+ON<i> [table_name.ref_column_name]</i>  join_operator <i> [table_name.ref_column_name]</i>
+</pre>
+</div>
+
+<p><i>Left Outer Join:</i> Left outer join ensure the inclusion of rows the first table and the matching rows from the second table.</p>
+
+<div class="code">
+<pre>
+SELECT<i>logo,price,notes</i>
+FROM<i> pub_info p</i> LEFT OUTER JOIN <i>titles t</i>>
+ON <i>p.pub_id=t.pub_id</i>
+</pre>
+</div>
+
+<div class="output">
+<div class="image">
+<img src="Image/outerleft.gif">
+</div>
+</div>
+
+<p><i>Right Outer Join:</i> Right outer join ensure the inclusion of rows the second table and the matching rows from the first table.</p>
+
+<div class="code">
+<pre>
+SELECT <i>logo,price,notes</i>
+FROM <i>pub_info p</i> RIGHT OUTER JOIN <i>titles t</i>
+ON <i> p.pub_id=t.pub_id</i>
+</pre>
+</div>
+<div class="output">
+<div class="image">
+<img src="Image/outerRight.gif">
+</div>
+</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="inner.shtml" title="Inner Join">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="cross.shtml" title="Cross Join">Next</a></td>
+  </tr>
+</table>   
+
+                       <!--Footer  -->
+
+</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>

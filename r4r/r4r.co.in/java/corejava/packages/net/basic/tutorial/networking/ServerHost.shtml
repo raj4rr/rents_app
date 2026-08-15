@@ -1,0 +1,127 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD>
+<meta http-equiv="Content-Language" content="en-us">
+<TITLE>Server Host</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name="description" CONTENT="Java Networking Tutorial,Java Networking Example" >
+<meta name="keywords" CONTENT="Java Networking Tutorial,Java Networking Example">
+<!-- header start-->
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+	<BODY>
+		<?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+        <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>Java Networking Tutorials</h1>
+            <div class="link_menu"><br><div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+            <img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+            <a href="/java/">Java</a>
+  <img src="/images/left_menu_bullet.gif" width="11" height="6"> <a href="/java/corejava/">Core Java</a>
+    <img src="/images/left_menu_bullet.gif" width="11" height="6"> <a href="/java/corejava/packages/net/">Java Networking</a>
+
+</div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/corejava/packages/net/commonfiles/leftmenu.shtml'); ?></td>                                           
+                        <td style="80%" valign="top">
+
+                        <div class="main_content"> 	 
+	   	   <div class="heading">Create a Chat Server Program</div>
+<p>In Networking you want to create a Chat Server To Chat With Client. then You using the Socket Programming for Server Site:</p> 
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="Introduction to Datagram.shtml" title="Introduction to Datagram">previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="Chat Client.shtml"title="Chat Client">Next</a></td>
+  </tr>
+</table>
+	<!-- header End-->	
+<h3>Example</h3>
+<div class="code">
+<pre>
+<font face="Arial">
+<font color="#0000ff">package </font><font color="#000000">chat;</font>
+<font color="#0000ff">import </font><font color="#000000">java.net.*;</font>
+<font color="#0000ff">import </font><font color="#000000">java.io.*;</font>
+
+<font color="#0000ff">public class </font><font color="#000000">chatServer</font>
+<font color="#000000">{  </font><font color="#0000ff">private </font><font color="#ff0000">Socket          </font><font color="#000000">socket   = </font><font color="#0000ff">null</font><font color="#000000">;</font>
+   <font color="#0000ff">private </font><font color="#ff0000">ServerSocket    </font><font color="#000000">server   = </font><font color="#0000ff">null</font><font color="#000000">;</font>
+   <font color="#0000ff">private </font><font color="#ff0000">DataInputStream </font><font color="#000000">streamIn =  </font><font color="#0000ff">null</font><font color="#000000">;</font>
+
+   <font color="#0000ff">public </font><font color="#000000">chatServer(</font><font color="#0000ff">int </font><font color="#000000">port)</font>
+   <font color="#000000">{  </font><font color="#0000ff">try</font>
+      <font color="#000000">{  </font><font color="#ff0000">System</font><font color="#000000">.out.println(</font><font color="#ff00ff">&quot;Binding to port &quot; </font><font color="#000000">+ port + </font><font color="#ff00ff">&quot;, please wait  ...&quot;</font><font color="#000000">);</font>
+         <font color="#000000">server = </font><font color="#0000ff">new </font><font color="#ff0000">ServerSocket</font><font color="#000000">(port);  </font>
+         <font color="#ff0000">System</font><font color="#000000">.out.println(</font><font color="#ff00ff">&quot;Server started: &quot; </font><font color="#000000">+ server);</font>
+         <font color="#ff0000">System</font><font color="#000000">.out.println(</font><font color="#ff00ff">&quot;Waiting for a client ...&quot;</font><font color="#000000">); </font>
+         <font color="#000000">socket = server.accept();</font>
+         <font color="#ff0000">System</font><font color="#000000">.out.println(</font><font color="#ff00ff">&quot;Client accepted: &quot; </font><font color="#000000">+ socket);</font>
+         <font color="#000000">open();</font>
+         <font color="#0000ff">boolean </font><font color="#000000">done = </font><font color="#0000ff">false</font><font color="#000000">;</font>
+         <font color="#0000ff">while </font><font color="#000000">(!done)</font>
+         <font color="#000000">{  </font><font color="#0000ff">try</font>
+            <font color="#000000">{  </font><font color="#ff0000">String </font><font color="#000000">line = streamIn.readUTF();</font>
+               <font color="#ff0000">System</font><font color="#000000">.out.println(line);</font>
+               <font color="#000000">done = line.equals(</font><font color="#ff00ff">&quot;.bye&quot;</font><font color="#000000">);</font>
+            <font color="#000000">}</font>
+            <font color="#0000ff">catch</font><font color="#000000">(</font><font color="#ff0000">IOException </font><font color="#000000">ioe)</font>
+            <font color="#000000">{  done = </font><font color="#0000ff">true</font><font color="#000000">;</font>
+            <font color="#000000">}</font>
+         <font color="#000000">}</font>
+         <font color="#000000">close();</font>
+      <font color="#000000">}</font>
+      <font color="#0000ff">catch</font><font color="#000000">(</font><font color="#ff0000">IOException </font><font color="#000000">ioe)</font>
+      <font color="#000000">{  </font><font color="#ff0000">System</font><font color="#000000">.out.println(ioe); </font>
+      <font color="#000000">}</font>
+   <font color="#000000">}</font>
+   <font color="#0000ff">public void </font><font color="#000000">open() </font><font color="#0000ff">throws </font><font color="#ff0000">IOException</font>
+   <font color="#000000">{  streamIn = </font><font color="#0000ff">new </font><font color="#ff0000">DataInputStream</font><font color="#000000">(</font><font color="#0000ff">new </font><font color="#ff0000">BufferedInputStream</font><font color="#000000">(socket.getInputStream()));</font>
+   <font color="#000000">}</font>
+   <font color="#0000ff">public void </font><font color="#000000">close() </font><font color="#0000ff">throws </font><font color="#ff0000">IOException</font>
+   <font color="#000000">{  </font><font color="#0000ff">if </font><font color="#000000">(socket != </font><font color="#0000ff">null</font><font color="#000000">)    socket.close();</font>
+      <font color="#0000ff">if </font><font color="#000000">(streamIn != </font><font color="#0000ff">null</font><font color="#000000">)  streamIn.close();</font>
+   <font color="#000000">}</font>
+   <font color="#0000ff">public static void </font><font color="#000000">main(</font><font color="#ff0000">String </font><font color="#000000">args[])</font>
+   <font color="#000000">{  chatServer server = </font><font color="#0000ff">null</font><font color="#000000">;</font>
+      <font color="#0000ff">if </font><font color="#000000">(args.length != </font><font color="#800080">1</font><font color="#000000">)</font>
+         <font color="#ff0000">System</font><font color="#000000">.out.println(</font><font color="#ff00ff">&quot;Usage: java ChatServer port&quot;</font><font color="#000000">);</font>
+      <font color="#0000ff">else</font>
+         <font color="#000000">server = </font><font color="#0000ff">new </font><font color="#000000">chatServer(</font><font color="#ff0000">Integer</font><font color="#000000">.parseInt(args[</font><font color="#800080">0</font><font color="#000000">]));</font>
+   <font color="#000000">}</font>
+<font color="#000000">}</font>
+</font>
+</pre>
+</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="Introduction to Datagram.shtml" title="Introduction to Datagram">previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="Chat Client.shtml"title="Chat Client">Next</a></td>
+  </tr>
+</table>
+<!-- Footer Start-->	
+		           </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+

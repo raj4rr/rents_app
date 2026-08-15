@@ -1,0 +1,165 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>2 Java Servlets Interview Questions and Answers(Subjective)</TITLE>
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<META content=r4r.co.in name=owner>
+<meta name="description" CONTENT="Servlet Interview Questions and Answers" >
+<meta name="keywords" CONTENT="Servlet Interview Questions and Answers">
+<!--Header start-->
+
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>FAQ</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a><img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+			<a href="/java/">Java </a>
+              <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/java/faq">Faqs</a>
+
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/corejava/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	  
+
+<!-- header End-->
+
+<div class="heading">2 Java Servlets Interview Questions and Answers(Subjective)</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="index_servlets.shtml" title="Java Servlets Interview Questions and Answers(Subjective)
+">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="index_struts.shtml" title="Struts Interview Questions and Answers(Subjective)">Next</a></td>
+  </tr>
+</table>
+
+<div class="heading">Q.11	Which protocol will be used by browser and servlet to communicate ? </div>
+<p><i>Answer: </i>HTTP protocol.</p>
+
+<div class="heading">Q.12	In how many ways we can track the sessions? </div>
+<p><i>Answer: </i>There are four ways to track session:</p>
+
+<p><i>Method 1: </i>By URL rewriting</p>
+<p><i>Method 2: </i> Using Session object</p>
+<p>Getting Session form HttpServletRequest object</p>
+<div class="code">
+<pre>
+<font color="#000000">HttpSession session = request.getSession(</font><font color="#0000ff">true</font><font color="#000000">);</font>
+</pre>
+</div>
+
+<p>Get a Value from the session </p>
+<div class="code">
+<pre>
+<font color="#000000">session.getValue(session.getId()); </font>
+</pre>
+</div>
+
+<p>Adding values to session</p>
+<div class="code">
+<pre>
+<font color="#000000">cart = </font><font color="#0000ff">new </font><font color="#000000">Cart();</font>
+<font color="#000000">session.putValue(session.getId(), cart);</font>
+</pre>
+</div>
+
+<p>At the end of the session, we can inactivate the session by using the following command</p>
+<div class="code">
+<pre>
+<font color="#000000">session.invalidate();</font>
+</pre>
+</div>
+
+<p><i>Method 3: </i>Using cookies</p>
+<p><i>Method 4: </i>Using hidden fields</p>
+
+<div class="heading">Q.13	How Can You invoke other web resources (or other servelt / jsp ) ? </div>
+<p><i>Answer: </i>Servelt can invoke other Web resources in two ways: indirect and direct.</p>
+
+<ol>
+<li><p><i> Indirect Way: </i>Servlet will return the resultant HTML to the browser which will point to another Servlet (Web resource)</p></li>
+<li><p><i>Direct Way: </i>We can call another Web resource (Servelt / Jsp) from Servelt program itself, by using RequestDispatcher object.</p></li>
+</ol>
+
+<p>You can get this object using getRequestDispatcher("URL") method. You can get this object from either a request or a Context.</p>
+<h3>Example: </h3>
+<div class="code">
+<pre>
+<font color="#000000">RequestDispatcher dispatcher = request.getRequestDispatcher</font>
+<font color="#000000">(</font><font color="#ff00ff">&quot;/jspsample.jsp&quot;</font><font color="#000000">);</font>
+<font color="#0000ff">if </font><font color="#000000">(dispatcher != </font><font color="#0000ff">null</font><font color="#000000">)</font>
+<font color="#000000">dispatcher.forward(request, response);</font>
+<font color="#000000">} </font>
+</pre>
+</div>
+
+<div class="heading">Q.14	How Can you include other Resources in the Response?</div>
+<p><i>Answer: </i>Using include method of a <font class="point_out">RequestDispatcher</font> object.Included WebComponent (Servlet / Jsp) cannot set headers or call any method (for example, setCookie) that affects the headers of the response.</p>
+<h3>Example: </h3>
+
+<div class="code">
+<pre>
+<font color="#000000">RequestDispatcher dispatcher=getServletContext().getRequestDispatcher</font>
+<font color="#000000">(</font><font color="#ff00ff">&quot;/banner&quot;</font><font color="#000000">);</font>
+<font color="#0000ff">if </font><font color="#000000">(dispatcher != </font><font color="#0000ff">null</font><font color="#000000">)</font>
+<font color="#000000">dispatcher.include(request, response);</font>
+<font color="#000000">}  </font>
+</pre>
+</div>
+
+<h3>Q.15	What is the difference between the getRequestDispatcher(String path) ServletRequest interface and ServletContext interface? </h3>
+<p><i>Answer: </i>The <font class="point_out">getRequestDispatcher(String path) </font>method of <font class="point_out">ServletRequest</font> interface accepts parameter the path to the resource to be included or forwarded to, which can be relative to the request of the calling servlet. If the path begins with a "/" it is interpreted as relative to the current context root.</p>
+
+<p>The <font class="point_out">getRequestDispatcher(String path)</font> method of ServletContext interface cannot accepts relative paths. All path must sart with a "/" and are interpreted as relative to curent context root. If the resource is not available, or if the server has not implemented a RequestDispatcher object for that type of resource, getRequestDispatcher will return null. Your servlet should be prepared to deal with this condition.</p>
+
+<div class="heading">Q.16	What is the use of ServletContext ? </div>
+<p><i>Answer: </i>Using ServletContext, We can access data from its environment. Servlet context is common to all Servlets so all Servlets share the information through ServeltContext. </p>
+
+<div class="heading">Q.17	Is there any way to generate PDF'S dynamically in servlets? </div>
+<p><i>Answer: </i>We need to use iText. A open source library for java. Please refer sourceforge site for sample servlet examples.</p>
+
+<h3>Q.18	What is the difference between using getSession(true) and getSession(false) methods? </h3>
+<h3>Answer: </h3>
+<ul>
+<li><i>getSession(true): </i>This method will check whether already a session is existing for the user. If a session is existing, it will return that session object, Otherwise it will create new session object and return taht object. </li>
+
+<li><i>getSession(false): </i>This method will check existence of session. If session exists, then it returns the reference of that session object, if not, this methods will return null.</li></ul>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="index_servlets.shtml" title="Java Servlets Interview Questions and Answers(Subjective)
+">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="index_struts.shtml" title="Struts Interview Questions and Answers(Subjective)">Next</a></td>
+  </tr>
+</table>
+
+<!-- Footer Start-->
+
+</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>

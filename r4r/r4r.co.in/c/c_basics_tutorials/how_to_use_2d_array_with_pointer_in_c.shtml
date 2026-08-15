@@ -1,0 +1,143 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>linked to array of  pointer </TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="linked to array of  pointer,linked list, pointer, function, c array pointer, c function, c array of integers" >
+<meta name="keywords" CONTENT="linked to array of  pointer,array of pointer, linked list, pointer, function, c array pointer,c basics, c programs, c function, c array of integers,array examples, questions,answers, interview question in c, c array in  objective,c array function, c array float ">
+
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>C Programming language</h1>
+           <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a><img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/c/">C </a><img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/c/c_topics/c_array_basics">C Array Basics</a></div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/c/commonfiles/new-leftmenu.shtml'); ?></td>
+
+                       <td style="80%" valign="top">
+                        <div class="main_content"> 
+
+                        	 <!-- Header End--> 		
+<div class="heading">How to use 2-D array with pointer in C</div> 
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="c_array_of_pointers.shtml">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="array_of_structures_in_c.shtml">Next</a></td>
+  </tr>
+</table>
+<h2>How arrays and pointer are linked ?</h2>
+<p>As we know that a pointer is a variable that contains the address the another variable. That is, a pointer a special kind of variable that is containing the address of another variable and we can define a pointer in the following manner,</p>
+<div class="code">int *ptr;</div>
+    <p><i>Which means that the ptr is a pointer type variable that is pointing to a address where an integer type value is stored.</i></p>
+    <p>Also, we know that in an array elements are stored in sequential manner in which the very first index corresponds to the base address of first element which acts as a base address of the entire array, i.e. we can say that an array&nbsp; is a kind of pointer itself in which elements are stored according to their addresses.</p>
+    <p>we can declare a pointer to an array in the following way :</p>
+    <div class="code"><p color="#0000FF">int</font> a[5];</p>
+    <p color="#0000FF">int</font> *ptr;</p>
+    <p>ptr = &amp;a[0];</p>
+</div>
+<p>in above example we have defined an array of five elements and a pointer is defined which&nbsp; is pointing to the first element of the array
+</p>
+<h2>A simple example of how to use 2-D array with pointer</h2>
+<p>The following example takes a two dimensional array as input from the user and display&nbsp; its contents via using pointer.</p>
+<div class="code">
+<FONT  size="2">
+<FONT COLOR="#ff0000">#include </FONT><FONT COLOR="#000000">&lt;stdio.h&gt;</FONT><br>
+<FONT COLOR="#ff0000">#include</FONT><FONT COLOR="#000000">&lt;conio.h&gt;</FONT><br>
+<FONT COLOR="#0000ff">void </FONT><FONT COLOR="#000000">main()</FONT><br>
+<FONT COLOR="#000000">{</FONT><br>
+<FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">i=</FONT><FONT COLOR="#800080">0</FONT><FONT COLOR="#000000">, j=</FONT><FONT COLOR="#800080">0</FONT><FONT COLOR="#000000">;</FONT><br>
+<FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">arr[</FONT><FONT COLOR="#800080">3</FONT><FONT COLOR="#000000">][</FONT><FONT COLOR="#800080">3</FONT><FONT COLOR="#000000">];</FONT><br>
+<FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">*ptr1;</FONT><br>
+<FONT COLOR="#000000">ptr1 = &amp;arr[</FONT><FONT COLOR="#800080">0</FONT><FONT COLOR="#000000">][</FONT><FONT COLOR="#800080">0</FONT><FONT COLOR="#000000">];</FONT><br>
+<FONT COLOR="#000000">clrscr();</FONT><br>
+<FONT COLOR="#000000">printf(</FONT><FONT COLOR="#ff00ff">"\nEnter the elements of the array :"</FONT><FONT COLOR="#000000">)</FONT><br>
+<FONT COLOR="#0000ff">for</FONT><FONT COLOR="#000000">(</FONT><FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">i=</FONT><FONT COLOR="#800080">0</FONT><FONT COLOR="#000000">; i&lt;=</FONT><FONT COLOR="#800080">2</FONT><FONT COLOR="#000000">; i++)</FONT><br>
+				<FONT COLOR="#000000">{</FONT><br>
+&nbsp;&nbsp;&nbsp;&nbsp;
+     <FONT COLOR="#0000ff">for</FONT><FONT COLOR="#000000">(</FONT><FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">j=</FONT><FONT COLOR="#800080">0</FONT><FONT COLOR="#000000">; j&lt;=</FONT><FONT COLOR="#800080">2</FONT><FONT COLOR="#000000">; j++)</FONT><br>
+					<FONT COLOR="#000000">{</FONT><br>
+				&nbsp;&nbsp;&nbsp;&nbsp;
+	     <FONT COLOR="#000000">scanf(</FONT><FONT COLOR="#ff00ff">"\n%d"</FONT><FONT COLOR="#000000">, &amp;arr[i][j]);&nbsp;     </FONT><FONT COLOR="#008000">/* taking the input 2-D array or matrix from the user */</FONT><br>
+				&nbsp;&nbsp;&nbsp;
+	    <FONT COLOR="#000000">}</FONT><br>
+&nbsp;&nbsp;&nbsp;
+    <FONT COLOR="#000000">}</FONT><br>
+<FONT COLOR="#000000">printf(</FONT><FONT COLOR="#ff00ff">"Following are the elements of the array :"</FONT><FONT COLOR="#000000">);</FONT><br>
+<FONT COLOR="#0000ff">for</FONT><FONT COLOR="#000000">(</FONT><FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">i=</FONT><FONT COLOR="#800080">0</FONT><FONT COLOR="#000000">; i&lt;=</FONT><FONT COLOR="#800080">2</FONT><FONT COLOR="#000000">; i++)</FONT><br>
+				<FONT COLOR="#000000">{</FONT><br>
+&nbsp;&nbsp;&nbsp;&nbsp;
+     <FONT COLOR="#0000ff">for</FONT><FONT COLOR="#000000">(</FONT><FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">j=</FONT><FONT COLOR="#800080">0</FONT><FONT COLOR="#000000">; j&lt;=</FONT><FONT COLOR="#800080">2</FONT><FONT COLOR="#000000">; j++)</FONT><br>
+					<FONT COLOR="#000000">{</FONT><br>
+				&nbsp;&nbsp;&nbsp;&nbsp;
+	     <FONT COLOR="#000000">printf(</FONT><FONT COLOR="#ff00ff">"\n%d"</FONT><FONT COLOR="#000000">, *ptr1);&nbsp;&nbsp;&nbsp;&nbsp;          </FONT>
+			<FONT COLOR="#008000">/* displaying the content of the matrix */</FONT><br>
+					&nbsp;<FONT COLOR="#000000">ptr1++;</FONT><br>
+				&nbsp;&nbsp;&nbsp;
+	    <FONT COLOR="#000000">}</FONT><br>
+&nbsp;&nbsp;&nbsp;
+    <FONT COLOR="#000000">}</FONT><br>
+<FONT COLOR="#000000">getch();</FONT><br>
+<FONT COLOR="#000000">}</FONT></FONT>
+</div>
+
+<p><i>Output :</i> The output of the following program would be as follows :</p>
+<p>Enter the elements of the array :</p>
+<p>1 2 3</p>
+<p>4 5 6</p>
+<p>7 8 9</p>
+<p>Following are the elements of the array :</p>
+<p>1 2 3</p>
+<p>4 5 6</p>
+<p>7 8 9</p>
+
+<!--Footer  --> 	
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="c_array_of_pointers.shtml">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="array_of_structures_in_c.shtml">Next</a></td>
+  </tr>
+</table>
+
+                        <!--Footer  --> 	
+                        </div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/c/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    </div>
+
+    </div>
+
+    </div>
+
+    </div>
+
+    </div>
+
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>

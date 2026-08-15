@@ -1,0 +1,107 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD>
+<meta http-equiv="Content-Language" content="en-us">
+<TITLE>Architecture of J2ME</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name="description" CONTENT="AWT Examples,AWT Tutorials,AWT Tutorials for Begginers" >
+<meta name="keywords" CONTENT="AWT Examples,AWT Tutorials,AWT Tutorials for Begginers">
+
+<!-- header start-->	
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>Java Programing laungage</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+            <img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+         <a href="/java/">Java</a>
+              <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/java/j2me">J2ME</a>
+                     <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/java/j2me/basic/example/Mobile_Servlet">J2ME BASIC TUTORIALS</a>
+              </div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/j2me/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content">
+
+<div class="heading">Architecture of J2ME</div>
+
+	 <table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="Introduction_J2ME.shtml" title="Introduction_J2ME">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="J2ME_configurations.shtml" title="J2ME_configurations">Next</a></td>
+  </tr> 
+</table>
+	<!-- header End-->
+<p>J2ME uses Configurations, Profiles, and Optional APIs packages to customize the Java Runtime Environment (JRE). As a complete JRE, J2ME is comprised of a configuration, which defines the basic run-time environment as a set of core classes and a specific JVM that run on specific types of devices, a profile defines the application; specifically, it adds domain-specific classes to the J2ME configuration to define certain uses for devices and a optional APIs package define specific additional functionality of core classes.</p>
+<div class="image">
+<img src="images/Architecture_of_J2ME.png">
+</div>
+<h3>Generally, Architecture of J2ME define into four basic layer</h3>
+<ol><li><i> Application Layer:</i> Application layer targeted at two product groups, are:</li>
+<ul><li>Mobile, personal, and connected information devices such as Pagers, Mobile phones etc.</li>
+<li>Fixed, shard, and connected information devices such as Car- Navigation Systems, Internet Appliances, Set - Top boxes etc.</li></ul>
+<li> <i>Profile Layer</i>:Profiles layer based on a configuration and additional APIs for user interface, persistent storage and factors necessary for developing wireless applications.</li>
+<p><i>Mobile Information Device (MIDP) Profile</i>: MIDP is specification published for the use of Java, mobile devices, and embedded system. It is a part of Java Micro Edition (Java ME) framework and top of a Connected Limited Device Configuration (CLDC). Its provides a standard platform for small, resource-limited, and wireless-connected mobile information devices. MIDP requires CLDC for implementation.</p>
+<p><i>Personal Digital Assistance (PDAP) Profile</i>:PDAP is specifically designed for Palmtop or similar devices with limited power, typical battery operated, user interface displays like a pointing device and character input, with minimum of 512kb (and maximum 16MB) combined ROM (read only memory) and RAM (random access memory) hardware.</p>
+<p><i>Personal Profile</i>:Personal profile specification repacks the Personal Java APIs Environment to provide J2ME specification for devices that need a high degree of Internet connectivity. This profile builds on top of foundation profile.</p>
+<p><i>Personal Basic Profile:</i>This profile is intended to provide basic Graphical User Interface (GUI) capabilities to devices where the high-fidelity, feature-rich Personal Profile is not fully utilized or necessary means which running the CDC and Foundation Profile.</p>
+<p><i>Remote Method Invocation (RMI) Profile:</i>RMI profile also builds on top of Foundation profile and supports inter-application RMI over TCP/IP connections for applications written to the Foundation Profile. It's provides the infrastructure to marshal objects as the parameters and return values of remote method calls while the dynamic class loading is utilized to make the marshalled objects available to a particular JVM during a remote call. A special type of protocol - wire protocol JRMP (Java Remote Method Protocol) is required for supported.</p>
+<p><i>Core Application Programming Interface (APIs) of RMI:</i></p>
+<p><b>java.rmi</b></p>
+<p><i>Foundation Profile:</i>The Foundation profiles specified for devices that can support a rich networked J2ME environment. It provides services for other device-specific profiles (such as Personal profile and RMI profile) to be layered on top of it. This profile specific design for CDC profiles that provide Graphical User Interface (GUI), Data storage, and distribution of java networking.</p>
+<li><i> Configuration Layer:</i>The configuration Layer is define the basic defines the basic run-time environment as a set of core classes and a specific JVM that run on specific kind of device based on memory constraints and processor power.</li>
+<p><i>Connected Limited Device Configuration (CLCD)</i>: - CLDC is a framework for ME defines the the basic set of APIs, library, and virtual-machine features for resource-constrained devices like pager, mobile phones, and mainstream Personal Digital Assistants (PDAs) and must be implemented into applications.</p>
+<p>It provide a standard platform for developers for developing some complex applications on embedded devices with limited resource such as phones and pager by combined with one or more than one Profiles. CLDC is build on scale down version of Java virtual Machine (JVM) called KVM (Kilobytes Virtual Machine) for 16 - bit or 32- bit device with limited amounts of memory.</p>
+<p><i>Connected Device Configuration (CLCD):</i>CDC is a framework for Java ME defines the basic set of APIs, library, and virtual-machine features for resource-constrained devices like pager, mobile phones, and mainstream Personal Digital Assistants (PDAs) and must be implemented into applications. It provide a standard platform for developers for developing some complex application for embedded systems( from pager to set-top boxes) by combined with one or more than one Profiles.</p>
+<p>It specifies a full Java virtual Machine (JVM) called CVM (C Virtual Machine) and is used for 32- bit architectures requiring more than 2 MB of memory.</p>
+<li><i> J2ME Foundation Layer:</i>J2ME layer allow the flexibility of definition of APIs these are general purpose library, core classes, and independent to a particular device family. An abstraction of JSE network and I/O classes is designed for J2ME to make connection between mobile devices and web servers (if possible). It is called Generic Connection Framework (GCF) and used at the programming level.</li></ol>
+
+<h3>Designing Goals of J2ME Architecture</h3>
+<p>J2ME support much different architecture that J2SE and J2EE, hence  design goals of J2ME architecture is also different from the Java alternate. Main important goals are:</p>
+<ol><li>Provide a strong and powerful architecture that can able to optimized form small size and space and run on very limited memory.</li>
+<li>Architecture must be focused on devices that can be highly personalized, varied range of networking capabilities and services, often used by a single person.</li>
+<li>Support and power up small memory devices with different capability. These small devices often varies in the area of requirements like memory, user interface, network connectivity, security, data storage, range and bandwidth.</li>
+<li>Support maximum flexibility that provide maximum cross- platform capability of java language to support rapid changing marketplace and adapt to existing and unforeseen applications. Also, provide an optimized for delivering applications and data over a network connection.</li>
+<li>Clean architecture of J2ME provide all resource for third party developers to develop an application of J2ME- supported devices independent of the Original Equipment Manufacturer (OEM). Also, support scale applications across devices with different capabilities, processing abilities and features.</li>
+</ol>
+
+	 <table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="Introduction_J2ME.shtml" title="Introduction_J2ME">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="J2ME_configurations.shtml" title="J2ME_configurations">Next</a></td>
+  </tr> 
+</table>
+<!-- Footer Start-->		
+
+		</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->

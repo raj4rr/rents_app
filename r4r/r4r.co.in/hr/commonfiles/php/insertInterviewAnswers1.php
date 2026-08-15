@@ -1,0 +1,5 @@
+<?php
+require_once($_SERVER['DOCUMENT_ROOT'] . '/config/database.php');
+  require_once dirname(__FILE__) . '/../../config/site_config.php';
+ require_once $CONFIG['CORE_PATH'] . "../../db/dbconnection.php";
+if (!$connection)  {  die('Could not connect: ' . mysql_error());  }    $sql1="select * from answer where question_id='$_POST['qid']' and answer='$_POST['answer']' and username='$_POST['username']'";$obj1=mysql_query($sql1);if(mysql_num_rows($obj1)==0){ $sql="INSERT INTO answer(question_id, answer,username,email,date,hide) VALUES('$_POST['qid']','$_POST['answer']','$_POST['username']','$_POST['email']','$date','YES')" or die("SQL ERROR");;mysql_query($sql);mysql_close($connection); echo '<center><a href='.$_SERVER["HTTP_REFERER"].' >Go Back</a>';die('<b><font color="#0000FF" size="5">Thanks For Your Post</font></b><center>');}mysql_close($connection);    echo '<center><a href='.$_SERVER["HTTP_REFERER"].' >Go Back</a>';die('<b><font color="#0000FF" size="5">already exist</font></b><center>');?>

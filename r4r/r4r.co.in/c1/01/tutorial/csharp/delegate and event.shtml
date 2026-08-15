@@ -1,0 +1,175 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>Delegate,What is a Function Pointer,Types of Delegate,Advantage of using Delegate ,Static Delegates,Delegates as Properties,Event </TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="Delegate,What is a Function Pointer,Types of Delegate,Advantage of using Delegate ,Static Delegates,Delegates as Properties,Event " >
+<meta name="keywords" CONTENT="Delegate,What is a Function Pointer,Types of Delegate,Advantage of using Delegate ,Static Delegates,Delegates as Properties,Event ">
+
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+     <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>C# Tutorial</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a><img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/c1/">C#</a>
+
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/c1/commonfiles/leftmenu.shtml'); ?></td>
+
+                       <td style="80%" valign="top">
+                        <div class="main_content"> 
+
+	<!-- Header End-->
+
+  <div class="heading">Delegates and Events</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="structs.shtml" title="Structs">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="exception.shtml" title="Exception Handling">Next</a></td>
+  </tr>
+</table>
+
+ <p>A delegate in  C# language allows us to reference a method. If we are using a C or C++ then we would sound familiar because
+  a delegate because it is basically a function pointer. Delegates have other uses in addition to event handling. Delegate
+   maintains three important pieces of information </p>
+   <ol>
+   <li>The name of the method on which it make calls.</li>   
+   <li> Any argument (if any) of this method. </li>  
+   <li> The return value (if any) of this method.</li>
+   </ol>
+   <div class="heading">What is a Function Pointer</div>
+   <p>Function Pointers are pointers, i.e. variables, which point to the address of a function.</p>
+   <div class="heading">Types of Delegate</div>
+   <p>Delegates are of two types </p>
+   <ol><li><b>Single Cast delegate</b></li>  
+<div class="code">
+<pre>
+<font color="#0000ff">public delegate </font><font color="#000000">&lt;</font><font color="#0000ff">return </font><font color="#000000">type&gt; &lt;</font><font color="#0000ff">delegate </font><font color="#000000">name&gt;(parameters)</font>
+</pre>
+</div>
+
+<li><b>Multi Cast delegate</b> </li>               
+<div class="code">
+<pre>
+<font color="#0000ff">public delegate void </font><font color="#000000">&lt;</font><font color="#0000ff">delegate </font><font color="#000000">name&gt;(parameters)</font>
+</pre>
+</div></ol>
+
+<div class="heading">Advantage of using Delegate</div>
+<p>Dynamic binding can be done by using delegate because we can call more than one methods at a time dynamically by calling
+ the delegate in which the methods is defined.</p>
+ <h3>Example</h3>
+<div class="code">
+<pre>
+<font color="#0000ff">namespace </font><font color="#000000">delgnew {</font>
+<font color="#0000ff">public delegate int </font><font color="#000000">Delg(</font><font color="#0000ff">int </font><font color="#000000">x, </font><font color="#0000ff">int </font><font color="#000000">y);</font>
+<font color="#0000ff">public class </font><font color="#808000">Math </font><font color="#000000">{</font>
+<font color="#0000ff">public static int </font><font color="#000000">Add( </font><font color="#0000ff">int </font><font color="#000000">x, </font><font color="#0000ff">int </font><font color="#000000">y) { </font>
+<font color="#0000ff">return </font><font color="#000000">x + y;</font>
+ <font color="#000000">}</font>
+<font color="#0000ff">public static int </font><font color="#000000">Multiply(</font><font color="#0000ff">int </font><font color="#000000">x, </font><font color="#0000ff">int </font><font color="#000000">y)</font>
+<font color="#000000">{</font>
+<font color="#0000ff">return </font><font color="#000000">x * y;</font>
+<font color="#000000">}</font>
+<font color="#000000">}</font>
+<font color="#0000ff">class </font><font color="#000000">Fun</font>
+<font color="#000000">{</font>
+ <font color="#0000ff">static void </font><font color="#000000">Main( </font><font color="#0000ff">string</font><font color="#000000">[] args) {</font>
+<font color="#000000">Delg del1 = </font><font color="#0000ff">new </font>
+<font color="#000000">Delg(</font><font color="#808000">Math</font><font color="#000000">.Add);</font>
+<font color="#0000ff">int </font><font color="#000000">add1 = del1(</font><font color="#800080">7</font><font color="#000000">, </font><font color="#800080">7</font><font color="#000000">);</font>
+<font color="#808000">Console</font><font color="#000000">.WriteLine(</font><font color="#ff00ff">&quot;7 + 7 = {0}\n&quot;</font><font color="#000000">, add1);</font>
+<font color="#000000">Delg del2 = </font><font color="#0000ff">new </font><font color="#000000">Delg(</font><font color="#808000">Math</font><font color="#000000">.Multiply);</font>
+<font color="#0000ff">int </font><font color="#000000">multiply1 = del2(</font><font color="#800080">7</font><font color="#000000">,</font><font color="#800080">7</font><font color="#000000">);</font>
+<font color="#808000">Console</font><font color="#000000">.WriteLine(</font><font color="#ff00ff">&quot;7 * 7 = {0}&quot;</font><font color="#000000">, multiply1);</font>
+<font color="#808000">Console</font><font color="#000000">.ReadLine();</font>
+<font color="#000000">}</font>
+<font color="#000000">}</font>
+<font color="#000000">}</font>
+</pre>
+</div>
+
+<div class="heading">Static Delegates</div>
+<p>Denoting static field is meaning that it will not be modified. You can invoke delegates without declaring a local delegate 
+instance. Just pass in the static delegate of the class.</p>
+<div class="heading">Delegates as Properties</div>
+<p>The problem with static delegates is that they must be instantiated  whether or not they are ever used.</p>
+<div class="heading">Event</div>
+<p>An event might be a button push, a menu selection in short we can cay that  something happens and you must respond to it. 
+You cannot predict the order in which events will arise.</p>
+<i>For example- when you click a button, it might raise the Click event. When you add to a drop-down list, it might raise a 
+List Changed event.</i>
+<h3>Defining Event</h3>
+<div class="code">
+<pre>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">;</font>
+<font color="#0000ff">class </font><font color="#000000">Eventtest</font>
+<font color="#000000">{</font>
+<font color="#0000ff">public event </font><font color="#000000">EventHandler myfun{</font>
+<font color="#000000">add</font>
+<font color="#000000">{</font>
+<font color="#808000">Console</font><font color="#000000">.WriteLine (</font><font color="#ff00ff">&quot;Event Fired&quot;</font><font color="#000000">);</font>
+<font color="#000000">}</font>
+<font color="#000000">remove</font>
+<font color="#000000">{</font>
+<font color="#808000">Console</font><font color="#000000">.WriteLine (</font><font color="#ff00ff">&quot;Controlled&quot;</font><font color="#000000">);</font>
+<font color="#000000">}</font>
+<font color="#000000">}   </font>
+<font color="#0000ff">static void </font><font color="#000000">Main()</font>
+<font color="#000000">{</font>
+<font color="#000000">Eventest et = </font><font color="#0000ff">new </font><font color="#000000">Eventtest();</font>
+<font color="#000000">et.myfun += </font><font color="#0000ff">new </font><font color="#000000">EventHandler (et.DoNothing);</font>
+<font color="#000000">et.myfun -= </font><font color="#0000ff">null</font><font color="#000000">;</font>
+<font color="#000000">}   </font>
+<font color="#0000ff">void </font><font color="#000000">DoNothing (</font><font color="#0000ff">object </font><font color="#000000">sender, </font><font color="#808000">EventArgs </font><font color="#000000">e)</font>
+<font color="#000000">{</font>
+<font color="#000000">}</font>
+<font color="#000000">}</font>
+</pre>
+</div>
+
+<p>An event allows a class (or other object) to send notifications to other classes (or objects) that something has occurred.
+ In simple terms an event is the outcome of a specific action. If you have developed programmers in graphical user interfaces 
+ (GUI) then you are very familiar with Event handling.</p>
+ <p>When a user interacts with a GUI control (e.g., clicking a button on a form), one or more methods are executed in response
+  to the above event. Events can also be generated without user interactions. Event handlers are methods in an object that are
+   executed in response to some events occurring in the application.</p>
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="structs.shtml" title="Structs">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="exception.shtml" title="Exception Handling">Next</a></td>
+  </tr>
+</table>
+
+  <!--Footer  -->
+
+   </div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/dotnet/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>

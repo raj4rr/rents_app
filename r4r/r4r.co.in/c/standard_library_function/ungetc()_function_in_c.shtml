@@ -1,0 +1,125 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http:///www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML>
+
+	<HEAD>
+		<TITLE>ungetc() Function</TITLE>
+		<META content="Rajesh Kumar" name="author">
+		<META http-equiv="expires" content="0">
+		<META content="r4r.co.in" name="owner">
+		<META http-equiv="content-type" content="text/html; charset=iso-8859-1">
+		<meta name="description" CONTENT="">
+		<meta name="keywords" CONTENT="">
+
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>Standard Library Functions in C</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a><img src="/images/left_menu_bullet.gif"/> <a href="/c/">c</a></div>
+            	<table>
+                    <tr>
+                      <td width="19%" valign="top" style="width:20%"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/c/commonfiles/s-library-leftmenu.shtml'); ?></td>
+
+                        <td width="81%" style="80%" valign="top">
+
+                        		<!-- Header End-->	
+                     <div class="main_content">
+<div class="heading">ungetc() Function </div>
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="index.shtml" title="Standard Library Functions in C">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml" title="Standard Library Functions in C">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="fread()_function_in_c.shtml" title="fread() Function">Next</a></td>
+  </tr> 
+</table>
+<h1>Description</h1>
+<p>The C library function, The <b>ungetc()</b> function pushes the character char back onto stream and clears the end-of-file indicator. The stream must be open for reading. A subsequent read operation on stream starts with char. An attempt to push EOF onto the stream using ungetc is ignored.</p>
+
+<h1>Declaration</h1>
+<p>Following is the declaration for ungetc() function.</p>
+<div class="code">
+<PRE><FONT FACE="Arial"><FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">ungetc(</FONT><FONT COLOR="#0000ff">int char</FONT><FONT COLOR="#000000">, FILE *stream)</FONT></FONT></PRE>
+</div>
+
+<h1>Parameters</h1>
+<p><b>char</b> - This is the character to be pushed back in stream. This is passed as integer promotion of character.</p>
+<p><b>stream</b> - The stream to modify.</p>
+
+<h1>Return Value</h1>
+<p>If successful, each of these functions returns the character argument c. If c cannot be pushed back or if no character has been read, the input stream is unchanged and ungetc returns EOF; ungetwc returns WEOF.</p>
+
+<h1>Example</h1>
+<div class="code">
+<PRE><FONT FACE="Arial"><FONT COLOR="#000000">#include &lt;stdio.h&gt;</FONT>
+<FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">main(</FONT><FONT COLOR="#0000ff">void</FONT><FONT COLOR="#000000">)</FONT>
+<FONT COLOR="#000000">{</FONT>
+    <FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">ch;</FONT>
+
+    <FONT COLOR="#008000">/* reads characters from the stdin and show them on stdout */</FONT>
+    <FONT COLOR="#008000">/* until encounters '1' */</FONT>
+
+    <FONT COLOR="#0000ff">while </FONT><FONT COLOR="#000000">((ch = getchar()) != </FONT><FONT COLOR="#ff00ff">'1'</FONT><FONT COLOR="#000000">)</FONT>
+        <FONT COLOR="#000000">putchar(ch);</FONT>
+
+    <FONT COLOR="#008000">/* ungetc() returns '1' previously read back to stdin */</FONT>
+    <FONT COLOR="#000000">ungetc(ch, stdin);</FONT>
+
+    <FONT COLOR="#008000">/* getchar() attempts to read next character from stdin */</FONT>
+    <FONT COLOR="#008000">/* and reads character '1' returned back to the stdin by ungetc() */</FONT>
+    <FONT COLOR="#000000">ch = getchar();</FONT>
+
+    <FONT COLOR="#008000">/* putchar() displays character */</FONT>
+    <FONT COLOR="#000000">putchar(ch);</FONT>
+    <FONT COLOR="#000000">puts(</FONT><FONT COLOR="#ff00ff">""</FONT><FONT COLOR="#000000">);</FONT>
+
+    <FONT COLOR="#000000">printf(</FONT><FONT COLOR="#ff00ff">"Thank you!\n"</FONT><FONT COLOR="#000000">);</FONT>
+    <FONT COLOR="#0000ff">return </FONT><FONT COLOR="#800080">0</FONT><FONT COLOR="#000000">;</FONT>
+<FONT COLOR="#000000">}</FONT></FONT></PRE>
+</div>
+
+<h2>Output</h2>
+<div class="code">
+<PRE><FONT FACE="Arial"><FONT COLOR="#000000">a</FONT>
+<FONT COLOR="#000000">a</FONT>
+<FONT COLOR="#000000">v</FONT>
+<FONT COLOR="#000000">v</FONT>
+<FONT COLOR="#000000">c</FONT>
+<FONT COLOR="#000000">c</FONT>
+<FONT COLOR="#000000">u</FONT>
+<FONT COLOR="#000000">u</FONT>
+<FONT COLOR="#800080">1</FONT>
+<FONT COLOR="#800080">1</FONT>
+<FONT COLOR="#000000">Thank you!</FONT></FONT></PRE>
+</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="index.shtml" title="Standard Library Functions in C">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml" title="Standard Library Functions in C">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="fread()_function_in_c.shtml" title="fread() Function">Next</a></td>
+  </tr> 
+</table>
+<!--Footer  --> 	
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/c/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>

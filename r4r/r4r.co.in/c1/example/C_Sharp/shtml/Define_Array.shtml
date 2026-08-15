@@ -1,0 +1,190 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+
+<HTML><HEAD><TITLE>Example Array in C#</TITLE>
+<META content=r4r.co.in name=owner>
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="Example Array in C#" >
+<meta name="keywords" CONTENT="Example Array in C#">
+<META content="Rajesh Kumar" name=author>
+
+<!--header start-->
+
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+  <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+     <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>C# Tutorial</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a><img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/c1/">C#</a>
+
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/c1/commonfiles/leftmenu.shtml'); ?></td>
+
+                       <td style="80%" valign="top">
+                        <div class="main_content"> 
+
+	<!-- Header End-->	
+
+<div class="heading">Example Array in C#</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="Define_delegates.shtml" title="Example of Delegate Declaration in C#">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="Define_abstract_class.shtml" title="Example of Abstract class in C#">Next</a></td>
+  </tr>
+</table>
+
+<div class="code">
+<pre>
+<font color="#008000">/*Array:-</font>
+<font color="#008000">C# supports single-dimensional arrays, multidimensional arrays </font>
+<font color="#008000">(rectangular arrays), and array-of-arrays (jagged arrays). </font>
+
+<font color="#008000">To Declare:-</font>
+<font color="#008000">==========</font>
+<font color="#008000">Single-dimensional arrays:</font>
+<font color="#008000">int[] numbers;</font>
+
+<font color="#008000">Multidimensional arrays:</font>
+<font color="#008000">string[,] names;</font>
+
+<font color="#008000">Array-of-arrays (jagged):</font>
+<font color="#008000">byte[][] scores;</font>
+
+<font color="#008000">Declaring them  does not actually create the arrays.In C#, </font>
+<font color="#008000">arrays are objects  and must be instantiated. The following</font>
+<font color="#008000"> examples show how to create arrays:</font>
+
+<font color="#008000">Single-dimensional arrays:</font>
+<font color="#008000">int[] numbers = new int[5];</font>
+
+<font color="#008000">Multidimensional arrays:</font>
+<font color="#008000">string[,] names = new string[5,4];</font>
+<font color="#008000"> </font>
+<font color="#008000">Array-of-arrays (jagged):</font>
+<font color="#008000">byte[][] scores = new byte[5][];</font>
+<font color="#008000">for (int x = 0; x &lt; scores.Length; x++) </font>
+<font color="#008000">{</font>
+<font color="#008000">   scores[x] = new byte[4]+x;</font>
+<font color="#008000">}</font>
+
+<font color="#008000">Initializing Arrays</font>
+<font color="#008000">=============</font>
+<font color="#008000"> Single-Dimensional Array</font>
+<font color="#008000"> =====================</font>
+<font color="#008000">  int[] numbers = new int[5] {1, 2, 3, 4, 5};</font>
+<font color="#008000">  string[] names = new string[3] {&quot;Matt&quot;, &quot;Joanne&quot;, &quot;Robert&quot;};</font>
+
+<font color="#008000"> You can omit the size of the array, like this:</font>
+<font color="#008000">  int[] numbers = new int[] {1, 2, 3, 4, 5};</font>
+
+<font color="#008000"> string[] names = new string[] {&quot;Matt&quot;, &quot;Joanne&quot;, &quot;Robert&quot;};</font>
+<font color="#008000"> </font>
+<font color="#008000">You can also omit the new operator if an initializer is</font>
+<font color="#008000"> provided, like this:</font>
+<font color="#008000"> int[] numbers = {1, 2, 3, 4, 5};</font>
+<font color="#008000"> string[] names = {&quot;Matt&quot;, &quot;Joanne&quot;, &quot;Robert&quot;};</font>
+
+<font color="#008000">Multidimensional Array</font>
+<font color="#008000">===================</font>
+<font color="#008000">int[,] numbers = new int[3, 2] { {1, 2}, {3, 4}, {5, 6} };</font>
+<font color="#008000">string[,] siblings = new string[2, 2] { {&quot;Mike&quot;,&quot;Amy&quot;}, </font>
+<font color="#008000">{&quot;Mary&quot;,&quot;Albert&quot;} };</font>
+
+<font color="#008000">You can omit the size of the array, like this:</font>
+<font color="#008000">int[,] numbers = new int[,] { {1, 2}, {3, 4}, {5, 6} };</font>
+<font color="#008000">string[,] siblings = new string[,] { {&quot;Mike&quot;,&quot;Amy&quot;},</font>
+<font color="#008000">{&quot;Mary&quot;,&quot;Albert&quot;} };</font>
+
+<font color="#008000">You can also omit the new operator if an initializer </font>
+<font color="#008000">is provided, like this:</font>
+<font color="#008000">int[,] numbers = { {1, 2}, {3, 4}, {5, 6} };</font>
+<font color="#008000">string[,] siblings = { {&quot;Mike&quot;, &quot;Amy&quot;}, {&quot;Mary&quot;, &quot;Albert&quot;} };</font>
+
+<font color="#008000">Jagged Array (Array-of-Arrays)</font>
+<font color="#008000">========================</font>
+<font color="#008000">You can initialize jagged arrays like this example:</font>
+<font color="#008000">int[][] numbers = new int[2][] { new int[] {2,3,4}, new </font>
+<font color="#008000">int[] {5,6,7,8,9} };</font>
+
+<font color="#008000">You can also omit the size of the first array, like this:</font>
+<font color="#008000">int[][] numbers = new int[][] { new int[] {2,3,4}, new </font>
+<font color="#008000">int[] {5,6,7,8,9} };</font>
+<font color="#008000">-or-</font>
+<font color="#008000">int[][] numbers = { new int[] {2,3,4}, new int[] {5,6,7,8,9} };</font>
+
+<font color="#008000">using foreach:-</font>
+<font color="#008000">=============</font>
+<font color="#008000">int[] numbers = {4, 5, 6, 1, 2, 3, -2, -1, 0};</font>
+<font color="#008000">foreach (int i in numbers)</font>
+<font color="#008000">{</font>
+<font color="#008000">   System.Console.WriteLine(i);</font>
+<font color="#008000">}</font>
+<font color="#008000">*/</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">;</font>
+<font color="#0000ff">class </font><font color="#000000">DeclareArraysSample</font>
+<font color="#000000">{</font>
+<font color="#0000ff">public static void </font><font color="#000000">Main()</font>
+<font color="#000000">{</font>
+<font color="#008000">// Single-dimensional array</font>
+<font color="#0000ff">int</font><font color="#000000">[] numbers = </font><font color="#0000ff">new int</font><font color="#000000">[</font><font color="#800080">5</font><font color="#000000">];</font>
+
+<font color="#008000">// Multidimensional array</font>
+<font color="#0000ff">string</font><font color="#000000">[,] names = </font><font color="#0000ff">new string</font><font color="#000000">[</font><font color="#800080">5</font><font color="#000000">,</font><font color="#800080">4</font><font color="#000000">];</font>
+
+<font color="#008000">// Array-of-arrays (jagged array)</font>
+<font color="#0000ff">byte</font><font color="#000000">[][] scores = </font><font color="#0000ff">new byte</font><font color="#000000">[</font><font color="#800080">5</font><font color="#000000">][];</font>
+  <font color="#008000">// Create the jagged array</font>
+<font color="#0000ff">for </font><font color="#000000">(</font><font color="#0000ff">int </font><font color="#000000">i = </font><font color="#800080">0</font><font color="#000000">; i &lt; scores.Length; i++)</font>
+<font color="#000000">{</font>
+<font color="#000000">scores[i] = </font><font color="#0000ff">new byte</font><font color="#000000">[i+</font><font color="#800080">3</font><font color="#000000">];</font>
+<font color="#000000">}</font>
+
+<font color="#008000">// Print length of each row</font>
+<font color="#0000ff">for </font><font color="#000000">(</font><font color="#0000ff">int </font><font color="#000000">i = </font><font color="#800080">0</font><font color="#000000">; i &lt; scores.Length; i++)</font>
+<font color="#000000">{</font>
+<font color="#808000">Console</font><font color="#000000">.WriteLine(</font><font color="#ff00ff">&quot;Length of row {0} is {1}&quot;</font><font color="#000000">, </font>
+<font color="#000000">i, scores[i].Length);</font>
+<font color="#000000">}</font>
+<font color="#000000">}</font>
+<font color="#000000">}</font>
+</pre>
+</div>
+
+<a href="../sourcecode/Define_Array.cs.txt"><font color="#000080">Download Source Code</font></a></p>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="Define_delegates.shtml" title="Example of Delegate Declaration in C#">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="Define_abstract_class.shtml" title="Example of Abstract class in C#">Next</a></td>
+  </tr>
+</table>
+
+<!--Footer  -->
+   </div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/dotnet/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!--footer end-->

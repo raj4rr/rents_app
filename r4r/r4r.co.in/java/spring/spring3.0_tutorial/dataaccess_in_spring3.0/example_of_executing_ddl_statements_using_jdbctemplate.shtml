@@ -1,0 +1,105 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD>
+<meta http-equiv="Content-Language" content="en-us">
+<TITLE>Spring Execute ddl statements using jdbc template  Examples|Spring Examples </TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name="description" CONTENT="spring tutorial Execute ddl statements tutorial examples learn with 
+r4r with best examples" >
+<meta name="keywords" CONTENT="spring ddl statements using jdbc template,spring, tutorial,Beginners, fresher,Declaration AOP(aspect oriented programming)Spring, tutorial, fresher,beginners, inversion of control (IoC), dependency injection, bean scopes, bean life cycle, inner beans,
+ autowiring, different modules">
+
+		<!-- header start-->	
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+     <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>Spring Tutorials</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+			<img src="/images/left_menu_bullet.gif"/> <a href="/spring/">Spring</a>
+
+       </div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/spring/commonfiles/leftmenucore.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	 
+
+<div class="heading">Executing DDL statements</div>
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="example_of_execute_sql_statements.shtml" title="example_of_execute_sql_statements">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="sql_stored_procedure_in_spring.shtml" title="sql_stored_procedure_in_spring">Next</a></td>
+  </tr> 
+</table>
+<p>Executing an SQL statement requires very little code. You need a DataSource and a JdbcTemplate, including the convenience methods that are provided with the JdbcTemplate. 
+We can use the execute(..) method from jdbcTemplate to execute any SQL statements or DDL statements. Following is an example to use CREATE statement to create a table.</p>
+<div class="code">
+<pre>
+<font color="#0000ff">import </font><font color="#000000">javax.sql.</font><font color="#ff0000">DataSource</font><font color="#000000">;</font>
+<font color="#0000ff">import </font><font color="#000000">org.springframework.jdbc.core.JdbcTemplate;</font>
+<font color="#0000ff">public class </font><font color="#000000">ExecuteStatement {</font>
+<font color="#0000ff">private </font><font color="#000000">JdbcTemplate jt;</font>
+<font color="#0000ff">public void </font><font color="#000000">setDataSource(</font><font color="#ff0000">DataSource </font><font color="#000000">ds) {</font>
+<font color="#0000ff">this</font><font color="#000000">.jt = </font><font color="#0000ff">new </font><font color="#000000">JdbcTemplate(ds);}</font>
+<font color="#0000ff">public void </font><font color="#000000">Execute() {</font>
+<font color="#0000ff">this</font><font color="#000000">.jt.execute</font>
+<font color="#000000">(</font><font color="#ff00ff">&quot;create table employee (id integer, name varchar(20),salary integer)&quot;</font><font color="#000000">);</font>
+<font color="#000000">}}</font>
+</pre>
+</div>
+
+<div class="heading">Updating the Database</div>
+<p>The following example shows a column updated for a primary key. In this example, an SQL statement has placeholders for row parameters. The parameter values can be passed in as varargs or alternatively as an array of objects. Thus primitives should be wrapped in the primitive wrapper classes explicitly or using auto-boxing.</p>
+<div class="code">
+<pre>
+<font color="#0000ff">import </font><font color="#000000">javax.sql.</font><font color="#ff0000">DataSource</font><font color="#000000">;</font>
+<font color="#0000ff">import </font><font color="#000000">org.springframework.jdbc.core.JdbcTemplate;</font>
+<font color="#0000ff">public class </font><font color="#000000">ExecuteUpdate {</font>
+<font color="#0000ff">private </font><font color="#000000">JdbcTemplate jt;</font>
+<font color="#0000ff">public void </font><font color="#000000">setDataSource(</font><font color="#ff0000">DataSource </font><font color="#000000">ds) {</font>
+<font color="#0000ff">this</font><font color="#000000">.jt = </font><font color="#0000ff">new </font><font color="#000000">JdbcTemplate(ds); }</font>
+<font color="#0000ff">public void </font><font color="#000000">setName(</font><font color="#0000ff">int </font><font color="#000000">id, </font><font color="#ff0000">String </font><font color="#000000">name) {</font>
+<font color="#0000ff">this</font><font color="#000000">.jt.update</font>
+<font color="#000000">(</font><font color="#ff00ff">&quot;update employee set name = ? where id = ?&quot;</font><font color="#000000">, name, id);</font>
+<font color="#000000">}}</font>
+</pre>
+</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="example_of_execute_sql_statements.shtml" title="example_of_execute_sql_statements">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="sql_stored_procedure_in_spring.shtml" title="sql_stored_procedure_in_spring">Next</a></td>
+  </tr> 
+</table>
+
+		</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->

@@ -1,0 +1,572 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>C Language File Handling, C tutorial, Examples,Interview Questions </TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="Learn C File Handling, File handling Examples,C Function,introduction of C,Loops in C, Pointer, Union in C, Preprocessor,Memory Management, C data types, Operator in C, Features of C , History of C, Sample of C program, C Advantages and Disadvantages Step by Step with Programming" >
+<meta name="keywords" CONTENT="C File Handling, C File Handling Examples,C Function,introduction of C,Loops in C, Pointer in C, Union in C, Preprocessor,Memory Management, C data types, Operator in C, Features of C , History of C, Sample of C program, C Advantages and Disadvantages, Switch Statements with Examples">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		<link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>C Programming language</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a><img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/c/">C </a>
+              <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/c/basic_tutorials/03/">C Basic Tutorials</a></div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/c/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content" > 
+ <div class="heading">Types of Instructions in 'C'</div>
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="identifiers_keywords.shtml" title="C identifiers keywords">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="pointer_in_c.shtml" title="C pointer">Next</a></td>
+  </tr>
+</table>
+	<!-- Header End-->	
+<h2>There are basically three types of instructions in C:</h2>
+<ol><li>Type Declaration Instruction</li>
+<li>Arithmetic Instruction</li>
+<li>Control Instruction</li>
+</ol>
+<h2>The purpose of each of these instructions is given below</h2>
+<ol><li>Type Declaration Instruction: To declare the type of variables .</li>
+<li>Arithmetic instruction: To perform arithmetic operations between constants and variables.</li>
+<li>Control instruction: To control the sequence of execution of various statements.</li>
+</ol>
+<ol><li>An arithmetic operation between integer and integer is always integer.</li>
+<li>An operation between real and real is always real.</li>
+<li>An operation between integer and real is always real.Type Conversion in Assignments.</li>
+</ol>
+<p>The type of the expression and the type of thevariable on the left-hand side of the assignment operator will notbe same. In such a case the value of the expression is promoted or demoted depending on the type of the variable on left-hand side of equal(=).</p>
+<p>For example, consider the following assignment statements.</p>
+<div class="code"><pre>
+<font face="Courier New">
+<font color="#0000ff">int </font><font color="#000000">i ;</font>
+<font color="#0000ff">float </font><font color="#000000">b ;</font>
+<font color="#000000">i = </font><font color="#800080">6</font><font color="#000000">.</font><font color="#800080">3 </font><font color="#000000">;</font>
+<font color="#000000">b = </font><font color="#800080">60 </font><font color="#000000">;</font>
+</font>
+</pre>
+</div>
+<p>In the example above i is type of integer and b is float type but the value assigned is opposite to each other.i is having 6.3 which is float and after assigning this value, it will contain only 6 rest of .3 is demoted.and variable b is having 60 which is integer type and it assign 60.000000, promoted the value.</p>
+<P>Arithmetic operations are performed in an arithmetic expression is called as Hierarchy of operations.and if a=4,b=7,c=3 then using the same expression we will obtain two different answers as z=5.6 or z=7.<P>
+<P>To avoid this condition we must be aware of hierarchy of operations.In arithmetic expressions scanning is always done from left to right.
+<h2>The priority of operations is as shown below</h2>
+<div class="table_content">
+<table>
+<tr><td class="heading" style="width:50%;">Priority</td><td class="heading" style="width:50%;">Operators</td></tr>
+<tr><td class="alternate_heading1">First</td><td class="alternate_heading1">Parentheses or brackets()</td></tr>
+<tr><td class="alternate_heading1">Second</td><td class="alternate_heading1">Multiplication & Division
+</td></tr>
+<tr><td class="alternate_heading1">Third</td><td class="alternate_heading1">Addition & Subtraction</td></tr>
+<tr><td class="alternate_heading1">Fourth</td><td class="alternate_heading1">Assignment i.e.=</td></tr>
+</table></div>
+<h2>If we consider the logical operators used in C language, the operator precedence will be like</h2>
+<div class="table_content">
+<table>
+<tr><td class="heading" style="width:50%;">Operators</td><td class="heading" style="width:50%;">Type</td></tr>
+<tr><td class="alternate_heading1" >!</td><td class="alternate_heading1">Logical NOT ()</td></tr>
+<tr><td class="alternate_heading1">* / %</td><td class="alternate_heading1">Arithmetic and modulus</td></tr>
+<tr><td class="alternate_heading1">+ -</td><td class="alternate_heading1">Arithmetic</td></tr>
+<tr><td class="alternate_heading1">== !=</td><td class="alternate_heading1">Relational</td></tr>
+<tr><td class="alternate_heading1">&&</td><td class="alternate_heading1">Logical AND</td></tr>
+<tr><td class="alternate_heading1">||</td><td class="alternate_heading1"Logical OR</td></tr>
+<tr><td class="alternate_heading1">=</td><td class="alternate_heading1">Assignment</td></tr>
+</table></div>
+<p>In the tables above, the higher the position of an operator, higher is its priority.</p>
+<h2>Control Instructions in C</h2>
+<p>The Control Instructions enable us to specify the order in which instructions in a program are to be executed. or the control instructions determine the flow of control in a program.</p>
+<p>There are four types of control instructions in C. </p>
+<h2>(a) Sequence Control Instruction</h2>
+<p>The Sequence control instruction ensures that the instructions are executed in the same order in which they appear in the program.
+<h2>(b) Selection or Decision Control Instruction</h2>
+<p>Decision instructions allow the computer to take a decision as to which instruction is to be executed next.
+<h2>(c) Repetition or Loop Control Instruction</h2>
+<p>The Loop control instruction helps computer to execute a group of statements repeatedly.</p>
+<h2>(d) Case Control Instruction</h2>
+<p>same as decision control instruction.</p>
+<h2>Control Statement</h2>
+<p>There are 3 types of control statement:</p>
+<ol><li>If Statement</li>
+<li>If-else Statement</li>
+<li>The Conditional Operators</li>
+</ol>
+<h2>If Condition:</h2>
+<p>If (condition is true) execute the statement; The if condition tells the compiler that the condition is true, execute the statement. Condition of if is always within the pair of parentheses. If condition is true the statement will execute and condition is false, the statement will not execute. For checking condition is true or false we use the relational operators.
+<h2>Relational Operators:</h2>
+<div class="table_content">
+<table>
+<tr><td class="heading" style="width:50%;">The Expression</td><td class="heading" style="width:50%;">Is True If</td></tr>
+<tr><td class="alternate_heading1">x == y </td><td class="alternate_heading1">x is equal to y </td></tr>
+<tr><td class="alternate_heading1">x!=y </td><td class="alternate_heading1">x is not equal to y</td></tr>
+<tr><td class="alternate_heading1">x&lt;y</td><td class="alternate_heading1">x is less than y</td></tr>
+<tr><td class="alternate_heading1">x&gt;y</td><td class="alternate_heading1">x is greater than y</td></tr>
+<tr><td class="alternate_heading1">x&quot;<=y </td><td class="alternate_heading1">x is less than or equal to y
+</td></tr>
+<tr><td class="alternate_heading1" >x&gt;>=y </td><td class="alternate_heading1">x is greater than or equal to y</td></tr>
+</table></div>
+<h2>Example</h2>
+<div class="code">
+<pre>
+<font face="Courier New">
+<font color="#000000">main( )</font>
+<font color="#000000">{</font>
+<font color="#0000ff">int </font><font color="#000000">num ;</font>
+<font color="#000000">printf ( </font><font color="#ff00ff">&quot;Enter a number less than 10 &quot; </font><font color="#000000">) ;</font>
+<font color="#000000">scanf ( </font><font color="#ff00ff">&quot;%d&quot;</font><font color="#000000">, &amp;num ) ;</font>
+<font color="#0000ff">if </font><font color="#000000">( num &lt;= </font><font color="#800080">10 </font><font color="#000000">)</font>
+<font color="#000000">printf ( </font><font color="#ff00ff">&quot;What an obedient servant you are !&quot; </font><font color="#000000">) ;</font>
+<font color="#000000">}</font>
+</font>
+</pre>
+</div>
+<h2>Multiple statements within if</h2>
+<p>We can execute more than one statements for that if condition should be satisfied.
+<h2>If-Else Statement</h2>
+<p>We can use If  Else condition when we have more than one conditions. If block checks the condition 1 is true it will execute other else block condition will be executed.Or You can say we can execute group of statements by the If  else condition.</p>
+<h2>Example</h2>
+<div class="code"><pre>
+<font face="Courier New">
+<font color="#008000">/* Calculation of gross salary */</font>
+<font color="#000000">main( )</font>
+<font color="#000000">{</font>
+<font color="#0000ff">float </font><font color="#000000">bs, gs, da, hra ;</font>
+<font color="#000000">printf ( </font><font color="#ff00ff">&quot;Enter basic salary &quot; </font><font color="#000000">) ;</font>
+<font color="#000000">scanf ( </font><font color="#ff00ff">&quot;%f&quot;</font><font color="#000000">, &amp;bs ) ;</font>
+<font color="#0000ff">if </font><font color="#000000">( bs &lt; </font><font color="#800080">1500 </font><font color="#000000">)</font>
+<font color="#000000">{</font>
+<font color="#000000">hra = bs * </font><font color="#800080">10 </font><font color="#000000">/ </font><font color="#800080">100 </font><font color="#000000">;</font>
+<font color="#000000">da = bs * </font><font color="#800080">90 </font><font color="#000000">/ </font><font color="#800080">100 </font><font color="#000000">;</font>
+<font color="#000000">}</font>
+<font color="#0000ff">else</font>
+<font color="#000000">{</font>
+<font color="#000000">hra = </font><font color="#800080">500 </font><font color="#000000">;</font>
+<font color="#000000">da = bs * </font><font color="#800080">98 </font><font color="#000000">/ </font><font color="#800080">100 </font><font color="#000000">;</font>
+<font color="#000000">}</font>
+<font color="#000000">gs = bs + hra + da ;</font>
+<font color="#000000">printf ( </font><font color="#ff00ff">&quot;gross salary = Rs. %f&quot;</font><font color="#000000">, gs ) ;</font>
+<font color="#000000">}</font>
+</font>
+</pre>
+</div>
+<h2>Nested If else</h2>
+<p>We can use several If  else condition within if block or else block. This is called nested if else condition.</p>
+<h2>Example:<h2>
+<div class="code"><pre>
+<font face="Courier New">
+<font color="#008000">/* program of nested if-else */</font>
+<font color="#000000">main( )</font>
+<font color="#000000">{</font>
+<font color="#0000ff">int </font><font color="#000000">i ;</font>
+<font color="#000000">printf ( </font><font color="#ff00ff">&quot;Enter either 1 or 2 &quot; </font><font color="#000000">) ;</font>
+<font color="#000000">scanf ( </font><font color="#ff00ff">&quot;%d&quot;</font><font color="#000000">, &amp;i ) ;</font>
+<font color="#0000ff">if </font><font color="#000000">( i == </font><font color="#800080">1 </font><font color="#000000">)</font>
+<font color="#000000">printf ( </font><font color="#ff00ff">&quot;You would go to heaven !&quot; </font><font color="#000000">) ;</font>
+<font color="#0000ff">else</font>
+<font color="#000000">{</font>
+<font color="#0000ff">if </font><font color="#000000">( i == </font><font color="#800080">2 </font><font color="#000000">)</font>
+<font color="#000000">printf ( </font><font color="#ff00ff">&quot;Hell was created with you in mind&quot; </font><font color="#000000">) ;</font>
+<font color="#0000ff">else</font>
+<font color="#000000">printf ( </font><font color="#ff00ff">&quot;How about mother earth !&quot; </font><font color="#000000">) ;</font>
+<font color="#000000">}</font>
+<font color="#000000">}</font>
+</font>
+</pre>
+</div>
+<h2>Logical operators</h2>
+<p>There are only three logical operator in C.</p>
+<ol><li>&& AND</li>
+<li>|| OR</li>
+<li>! NOT</li>
+</ol>
+<p>The first two operator allows two or more conditions to be combined in an if statement.</p>
+<h2>Example</h2>
+<div class="code"><pre>
+<font face="Courier New">
+<font color="#000000">main( )</font>
+<font color="#000000">{</font>
+<font color="#0000ff">int </font><font color="#000000">m1, m2, m3, m4, m5, per ;</font>
+<font color="#000000">printf ( </font><font color="#ff00ff">&quot;Enter marks in five subjects &quot; </font><font color="#000000">) ;</font>
+<font color="#000000">scanf ( </font><font color="#ff00ff">&quot;%d %d %d %d %d&quot;</font><font color="#000000">, &amp;m1, &amp;m2, &amp;m3, &amp;m4, &amp;m5 ) ;</font>
+<font color="#000000">per = ( m1 + m2 + m3 + m4 + m5 ) / </font><font color="#800080">5 </font><font color="#000000">;</font>
+<font color="#0000ff">if </font><font color="#000000">( per &gt;= </font><font color="#800080">60 </font><font color="#000000">)</font>
+<font color="#000000">printf ( </font><font color="#ff00ff">&quot;First division&quot; </font><font color="#000000">) ;</font>
+<font color="#0000ff">if </font><font color="#000000">( ( per &gt;= </font><font color="#800080">50 </font><font color="#000000">) &amp;&amp; ( per &lt; </font><font color="#800080">60 </font><font color="#000000">) )</font>
+<font color="#000000">printf ( </font><font color="#ff00ff">&quot;Second division&quot; </font><font color="#000000">) ;</font>
+<font color="#0000ff">if </font><font color="#000000">( ( per &gt;= </font><font color="#800080">40 </font><font color="#000000">) &amp;&amp; ( per &lt; </font><font color="#800080">50 </font><font color="#000000">) )</font>
+<font color="#000000">printf ( </font><font color="#ff00ff">&quot;Third division&quot; </font><font color="#000000">) ;</font>
+<font color="#0000ff">if </font><font color="#000000">( per &lt; </font><font color="#800080">40 </font><font color="#000000">)</font>
+<font color="#000000">printf ( </font><font color="#ff00ff">&quot;Fail&quot; </font><font color="#000000">) ;</font>
+<font color="#000000">}</font>
+</font>
+</pre>
+</div>
+<h2>Loops:-</h2>
+<p>Loops are required to perform the same series of actions. We frequently need to perform an action over and over. Ability to perform a set of instructions repeatedly called loops.</p>
+<h2>There are three types of loops</h2>
+<ol><li>for</li>
+<li>while</li>
+<li>do while</li>
+<h2>1. for loop:</h2>
+<div class="code"><pre>
+<font face="Courier New">
+<font color="#0000ff">for </font><font color="#000000">(initialization_expression; loop_condition; increment_expression){</font>
+<font color="#008000">// statements</font>
+</font>
+</pre>
+</div>
+<p>There are three parts which is separated by semi-colons in control block of the for loop.</p>
+<p>initialization_expression is executed before execution of the loop starts. This is typically used to initialize a counter for the number of loop iterations. You can initialize a counter for the loop in this part.</p>
+<p>The execution of the loop continues until the loop_condition is false. This expression is checked at the beginning of each loop iteration.</p>
+<p>The increment_expression, is usually used to increment the loop counter. This is executed at the end of each loop iteration.</p>
+<p>Here is an example of using for loop statement to print an integer five times</p>
+<div class="code"><pre>
+<font face="Courier New">
+<font color="#ff0000">#include </font><font color="#000000">&lt;stdio.h&gt;</font>
+<font color="#0000ff">void </font><font color="#000000">main(){</font>
+<font color="#008000">// using for loop statement</font>
+<font color="#0000ff">int </font><font color="#000000">max = </font><font color="#800080">5</font><font color="#000000">;</font>
+<font color="#0000ff">int </font><font color="#000000">i = </font><font color="#800080">0</font><font color="#000000">;</font>
+<font color="#0000ff">for</font><font color="#000000">(i = </font><font color="#800080">0</font><font color="#000000">; i &lt; max;i++){</font>
+<font color="#000000">printf(</font><font color="#ff00ff">&quot;%d\n&quot;</font><font color="#000000">,i);</font>
+<font color="#000000">}</font>
+<font color="#000000">}</font>
+</font>
+</pre>
+</div>
+<h2>2. While Loop:</h2>
+<p>A loop statement allows you to execute a statement or block of statements repeatedly. First it check the condition then execute it. If condition is true it execute otherwise dont execute the statement. Here is syntax of while loop statement:</p>
+<div class="code"><pre>
+<font face="Courier New">
+<font color="#0000ff">while </font><font color="#000000">(expression) {</font>
+<font color="#008000">// statements</font>
+<font color="#000000">}</font>
+<font color="#000000">Here is a </font><font color="#0000ff">while </font><font color="#000000">loop statement demonstration program:</font>
+<font color="#ff0000">#include </font><font color="#000000">&lt;stdio.h&gt;</font>
+<font color="#0000ff">void </font><font color="#000000">main(){</font>
+<font color="#0000ff">int </font><font color="#000000">x = </font><font color="#800080">10</font><font color="#000000">;</font>
+<font color="#0000ff">int </font><font color="#000000">i = </font><font color="#800080">0</font><font color="#000000">;</font>
+<font color="#008000">// using while loop statement</font>
+<font color="#0000ff">while</font><font color="#000000">(i &lt; x){</font>
+<font color="#000000">i++;</font>
+<font color="#000000">printf(</font><font color="#ff00ff">&quot;%d\n&quot;</font><font color="#000000">,i);</font>
+<font color="#000000">}</font>
+<font color="#008000">// when number 5 found, escape loop body</font>
+<font color="#0000ff">int </font><font color="#000000">numberFound= </font><font color="#800080">5</font><font color="#000000">;</font>
+<font color="#0000ff">int </font><font color="#000000">j = </font><font color="#800080">1</font><font color="#000000">;</font>
+<font color="#0000ff">while</font><font color="#000000">(j &lt; x){</font>
+<font color="#0000ff">if</font><font color="#000000">(j == numberFound){</font>
+<font color="#000000">printf(</font><font color="#ff00ff">&quot;number found\n&quot;</font><font color="#000000">);</font>
+<font color="#0000ff">break</font><font color="#000000">;</font>
+<font color="#000000">}</font>
+<font color="#000000">printf(</font><font color="#ff00ff">&quot;%d...keep finding\n&quot;</font><font color="#000000">,j);</font>
+<font color="#000000">j++;</font>
+<font color="#000000">}</font>
+<font color="#000000">}</font>
+</font>
+</pre>
+</div>
+<h2>Do While Loop:</h2>
+<p>do while loop statement allows you to execute code block in loop body at least once. Here is do while loop syntax:</p>
+<div class="code"><pre>
+<font face="Courier New">
+<font color="#0000ff">do </font><font color="#000000">{</font>
+<font color="#008000">// statements</font>
+<font color="#000000">} </font><font color="#0000ff">while </font><font color="#000000">(expression);</font>
+<font color="#000000">Here is an example of </font><font color="#0000ff">using do while </font><font color="#000000">loop statement:</font>
+<font color="#ff0000">#include </font><font color="#000000">&lt;stdio.h&gt;</font>
+<font color="#0000ff">void </font><font color="#000000">main(){</font>
+<font color="#0000ff">int </font><font color="#000000">x = </font><font color="#800080">5</font><font color="#000000">;</font>
+<font color="#0000ff">int </font><font color="#000000">i = </font><font color="#800080">0</font><font color="#000000">;</font>
+<font color="#008000">// using do while loop statement</font>
+<font color="#0000ff">do</font><font color="#000000">{</font>
+<font color="#000000">i++;</font>
+<font color="#000000">printf(</font><font color="#ff00ff">&quot;%d\n&quot;</font><font color="#000000">,i);</font>
+<font color="#000000">}</font><font color="#0000ff">while</font><font color="#000000">(i &lt; x);</font>
+<font color="#000000">}</font>
+</font>
+</pre>
+</div>
+<h2>The Odd Loop</h2>
+<p>Odd loop executed the statements within them a finite number of times. it execute the statements finite times in the loop.</p>
+<div class="code"><pre>
+<font face="Courier New">
+<font color="#008000">/* Execution of a loop an unknown number of times */</font>
+<font color="#000000">main( )</font>
+<font color="#000000">{</font>
+<font color="#0000ff">char </font><font color="#000000">another ;</font>
+<font color="#0000ff">int </font><font color="#000000">num ;</font>
+<font color="#0000ff">do</font>
+<font color="#000000">{</font>
+<font color="#000000">printf ( </font><font color="#ff00ff">&quot;Enter a number &quot; </font><font color="#000000">) ;</font>
+<font color="#000000">scanf ( </font><font color="#ff00ff">&quot;%d&quot;</font><font color="#000000">, &amp;num ) ;</font>
+<font color="#000000">printf ( </font><font color="#ff00ff">&quot;square of %d is %d&quot;</font><font color="#000000">, num, num * num ) ;</font>
+<font color="#000000">printf ( </font><font color="#ff00ff">&quot;\nWant to enter another number y/n &quot; </font><font color="#000000">) ;</font>
+<font color="#000000">scanf ( </font><font color="#ff00ff">&quot; %c&quot;</font><font color="#000000">, &amp;another ) ;</font>
+<font color="#000000">} </font><font color="#0000ff">while </font><font color="#000000">( another == </font><font color="#ff00ff">'y' </font><font color="#000000">) ;</font>
+<font color="#000000">}</font>
+</font>
+</pre>
+</div>
+<h2>Bitwise operations</h2>
+<div class="table_content">
+<table>
+<tr><td class="heading" style="width:50%;">OPERATORS</td><td class="heading" style="width:50%;">OPERATORS NAME</td></tr>
+<tr><td class="alternate_heading1">&amp;</td><td class="alternate_heading1">AND</td></tr>
+<tr><td class="alternate_heading1">&quot;</td><td class="alternate_heading1">AND EQUAL TO</td></tr>
+<tr><td class="alternate_heading1">|</td><td class="alternate_heading1">OR</td></tr>
+<tr><td class="alternate_heading1">|=</td><td class="alternate_heading1">OR</td></tr>
+<tr><td class="alternate_heading1">^</td><td class="alternate_heading1">XOR</td></tr>
+<tr><td class="alternate_heading1">^=</td><td class="alternate_heading1">XOR</td></tr>
+<tr><td class="alternate_heading1">~</td><td class="alternate_heading1">one's compliment</td></tr>
+<tr><td class="alternate_heading1">&laquo;</td><td class="alternate_heading1">Shift Left</td></tr>
+<tr><td class="alternate_heading1">&raquo;</td><td class="alternate_heading1">Shift Right</td></tr>
+</table></div>
+<h2>AND OR and XOR</h2>
+<P>These require two operands and will perform bit comparisons.</P>
+<p>AND & will copy a bit to the result if it exists in both operands.</p>
+<div class="code"><pre>
+<font face="Courier New">
+<font color="#008000">/* Execution of a loop an unknown number of times */</font>
+<font color="#000000">main( )</font>
+<font color="#000000">{</font>
+<font color="#0000ff">char </font><font color="#000000">another ;</font>
+<font color="#0000ff">int </font><font color="#000000">num ;</font>
+<font color="#0000ff">do</font>
+<font color="#000000">{</font>
+<font color="#000000">printf ( </font><font color="#ff00ff">&quot;Enter a number &quot; </font><font color="#000000">) ;</font>
+<font color="#000000">scanf ( </font><font color="#ff00ff">&quot;%d&quot;</font><font color="#000000">, &amp;num ) ;</font>
+<font color="#000000">printf ( </font><font color="#ff00ff">&quot;square of %d is %d&quot;</font><font color="#000000">, num, num * num ) ;</font>
+<font color="#000000">printf ( </font><font color="#ff00ff">&quot;\nWant to enter another number y/n &quot; </font><font color="#000000">) ;</font>
+<font color="#000000">scanf ( </font><font color="#ff00ff">&quot; %c&quot;</font><font color="#000000">, &amp;another ) ;</font>
+<font color="#000000">} </font><font color="#0000ff">while </font><font color="#000000">( another == </font><font color="#ff00ff">'y' </font><font color="#000000">) ;</font>
+<font color="#000000">}</font>
+<font color="#000000">main()</font>
+ <font color="#000000">{</font>
+<font color="#0000ff">unsigned int </font><font color="#000000">a = </font><font color="#800080">60</font><font color="#000000">; </font><font color="#008000">/* 60 = 0011 1100 */ </font>
+<font color="#0000ff">unsigned int </font><font color="#000000">b = </font><font color="#800080">13</font><font color="#000000">; </font><font color="#008000">/* 13 = 0000 1101 */</font>
+ <font color="#0000ff">unsigned int </font><font color="#000000">c = </font><font color="#800080">0</font><font color="#000000">;          </font>
+ <font color="#000000">c = a &amp; b;   </font><font color="#008000">/* 12 = 0000 1100 */</font>
+  <font color="#000000">}</font>
+<font color="#000000">OR | will copy a bit </font><font color="#0000ff">if </font><font color="#000000">it exists in either operand.</font>
+<font color="#000000">main()</font>
+  <font color="#000000">{</font>
+ <font color="#0000ff">unsigned int </font><font color="#000000">a = </font><font color="#800080">60</font><font color="#000000">; </font><font color="#008000">/* 60 = 0011 1100 */ </font>
+    <font color="#0000ff">unsigned int </font><font color="#000000">b = </font><font color="#800080">13</font><font color="#000000">; </font><font color="#008000">/* 13 = 0000 1101 */</font>
+    <font color="#0000ff">unsigned int </font><font color="#000000">c = </font><font color="#800080">0</font><font color="#000000">;          </font>
+  <font color="#000000">c = a | b;   </font><font color="#008000">/* 61 = 0011 1101 */</font>
+  <font color="#000000">}</font>
+<font color="#000000">XOR ^ copies the bit </font><font color="#0000ff">if </font><font color="#000000">it is set in one operand (but not both).</font>
+<font color="#000000">main()</font>
+ <font color="#000000">{</font>
+ <font color="#0000ff">unsigned int </font><font color="#000000">a = </font><font color="#800080">60</font><font color="#000000">; </font><font color="#008000">/* 60 = 0011 1100 */ </font>
+  <font color="#0000ff">unsigned int </font><font color="#000000">b = </font><font color="#800080">13</font><font color="#000000">; </font><font color="#008000">/* 13 = 0000 1101 */</font>
+    <font color="#0000ff">unsigned int </font><font color="#000000">c = </font><font color="#800080">0</font><font color="#000000">;          </font>
+ <font color="#000000">c = a ^ b;    </font><font color="#008000">/* 49 = 0011 0001 */</font>
+  <font color="#000000">}</font>
+</font>
+</pre>
+</div>
+<h2>Ones Complement</h2>
+<p>This operator is unary (requires one operand) and has the effect of 'flipping' bits.</p>
+<div class="code">
+<pre>
+<font face="Courier New">
+<font color="#000000">main()</font>
+<font color="#000000">{</font>
+<font color="#0000ff">unsigned int </font><font color="#000000">Value = </font><font color="#800080">4</font><font color="#000000">;     </font><font color="#008000">/* 4 = 0000 0100 */</font>
+<font color="#000000">Value = ~ Value;         </font><font color="#008000">/* 251 = 1111 1011 */</font>
+<font color="#000000">}</font>
+</font>
+</pre>
+</div>
+<h2>Bit shift.</h2>
+<p>The following operators can be used for shifting bits left or right.</p>
+<p><<,>>,<<=,>>=</p>
+<p>The left operands value is moved left or right by the number of bits specified by the right operand. For example</p>
+<div class="code">
+<pre>
+<font face="Courier New">
+<font color="#000000">main()</font>
+<font color="#000000">{</font>
+<font color="#0000ff">unsigned int </font><font color="#000000">Value=</font><font color="#800080">4</font><font color="#000000">;             </font><font color="#008000">/* 4 = 0000 0100 */</font>
+<font color="#0000ff">unsigned int </font><font color="#000000">Shift=</font><font color="#800080">2</font><font color="#000000">;</font>
+<font color="#000000">Value = Value &lt;&lt; Shift;         </font><font color="#008000">/* 16 = 0001 0000 */</font>
+<font color="#000000">Value &lt;&lt;= Shift;                     </font><font color="#008000">/* 64 = 0100 0000 */</font>
+<font color="#000000">printf(</font><font color="#ff00ff">&quot;%d\n&quot;</font><font color="#000000">, Value);             </font><font color="#008000">/* Prints 64 */</font>
+<font color="#000000">}</font>
+</font>
+</pre>
+</div>
+<h2>Assignment Operators</h2>
+<p>The Assignment Operator evaluates an expression on the right of the expression and substitutes it to the value or variable on the left of the expression.</p>
+<h2>Example</h2>
+<h2>x = a + b</h2>
+<p>Here the value of a + b is evaluated and substituted to the variable x.</p>
+<p>In addition, C has a set of shorthand assignment operators of the form.</p>
+<p>var oper = exp;</p>
+<p>Here var is a variable, exp is an expression and oper is a C binary arithmetic operator. The operator oper = is known as shorthand assignment operator.</p>
+<h2>Logical operators</h2>
+<p>There are only three logical operator in C.</p>
+<ol><li>&& AND</li>
+<li>|| OR</li>
+<li>! NOT</li>
+</ol>
+<p>The first two operator allows two or more conditions to be combined in an if statement.</p>
+<h2>Example:</h2>
+<div class="code"><pre>
+<font face="Courier New">
+<font color="#000000">main( )</font>
+<font color="#000000">{</font>
+<font color="#0000ff">int </font><font color="#000000">m1, m2, m3, m4, m5, per ;</font>
+<font color="#000000">printf ( </font><font color="#ff00ff">&quot;Enter marks in five subjects &quot; </font><font color="#000000">) ;</font>
+<font color="#000000">scanf ( </font><font color="#ff00ff">&quot;%d %d %d %d %d&quot;</font><font color="#000000">, &amp;m1, &amp;m2, &amp;m3, &amp;m4, &amp;m5 ) ;</font>
+<font color="#000000">per = ( m1 + m2 + m3 + m4 + m5 ) / </font><font color="#800080">5 </font><font color="#000000">;</font>
+<font color="#0000ff">if </font><font color="#000000">( per &gt;= </font><font color="#800080">60 </font><font color="#000000">)</font>
+<font color="#000000">printf ( </font><font color="#ff00ff">&quot;First division&quot; </font><font color="#000000">) ;</font>
+<font color="#0000ff">if </font><font color="#000000">( ( per &gt;= </font><font color="#800080">50 </font><font color="#000000">) &amp;&amp; ( per &lt; </font><font color="#800080">60 </font><font color="#000000">) )</font>
+<font color="#000000">printf ( </font><font color="#ff00ff">&quot;Second division&quot; </font><font color="#000000">) ;</font>
+<font color="#0000ff">if </font><font color="#000000">( ( per &gt;= </font><font color="#800080">40 </font><font color="#000000">) &amp;&amp; ( per &lt; </font><font color="#800080">50 </font><font color="#000000">) )</font>
+<font color="#000000">printf ( </font><font color="#ff00ff">&quot;Third division&quot; </font><font color="#000000">) ;</font>
+<font color="#0000ff">if </font><font color="#000000">( per &lt; </font><font color="#800080">40 </font><font color="#000000">)</font>
+<font color="#000000">printf ( </font><font color="#ff00ff">&quot;Fail&quot; </font><font color="#000000">) ;</font>
+<font color="#000000">}</font>
+</font>
+</pre>
+</div>
+<h2>Break Statement:</h2>
+<p>break statement is used to break any type of loop such as while, do while and for loop. break statement terminates the loop body immediately.</p>
+<h2>Example:</h2>
+<div class="code"><pre>
+<font face="Courier New">
+<font color="#ff0000">#include </font><font color="#000000">&lt;stdio.h&gt;</font>
+<font color="#ff0000">#define </font><font color="#000000">SIZE </font><font color="#800080">10</font>
+<font color="#0000ff">void </font><font color="#000000">main(){</font>
+<font color="#008000">// demonstration of using break statement</font>
+<font color="#0000ff">int </font><font color="#000000">items[SIZE] = {</font><font color="#800080">1</font><font color="#000000">,</font><font color="#800080">3</font><font color="#000000">,</font><font color="#800080">2</font><font color="#000000">,</font><font color="#800080">4</font><font color="#000000">,</font><font color="#800080">5</font><font color="#000000">,</font><font color="#800080">6</font><font color="#000000">,</font><font color="#800080">9</font><font color="#000000">,</font><font color="#800080">7</font><font color="#000000">,</font><font color="#800080">10</font><font color="#000000">,</font><font color="#800080">0</font><font color="#000000">};</font>
+<font color="#0000ff">int </font><font color="#000000">number_found = </font><font color="#800080">4</font><font color="#000000">,i;</font>
+<font color="#0000ff">for</font><font color="#000000">(i = </font><font color="#800080">0</font><font color="#000000">; i &lt; SIZE;i++){</font>
+<font color="#0000ff">if</font><font color="#000000">(items[i] == number_found){</font>
+<font color="#000000">printf(</font><font color="#ff00ff">&quot;number found at position %d\n&quot;</font><font color="#000000">,i);</font>
+<font color="#0000ff">break</font><font color="#000000">;</font><font color="#008000">// break the loop</font>
+<font color="#000000">}</font>
+<font color="#000000">printf(</font><font color="#ff00ff">&quot;finding at position %d\n&quot;</font><font color="#000000">,i);</font>
+<font color="#000000">}</font>
+</font>
+</pre>
+</div>
+<h2>Continue Statement:</h2>
+<p>continue statement is used to break current iteration. After continue statement the control returns to the top of the loop test conditions.</p>
+<h2>Example continues:</h2>
+<div class="code"><pre>
+<font face="Courier New">
+<font color="#008000">// demonstration of using continue statement</font>
+<font color="#0000ff">for</font><font color="#000000">(i = </font><font color="#800080">0</font><font color="#000000">; i &lt; SIZE;i++){</font>
+<font color="#0000ff">if</font><font color="#000000">(items[i] != number_found){</font>
+<font color="#000000">printf(</font><font color="#ff00ff">&quot;finding at position %d\n&quot;</font><font color="#000000">,i);</font>
+<font color="#0000ff">continue</font><font color="#000000">;</font><font color="#008000">// break current iteration</font>
+<font color="#000000">}</font>
+<font color="#008000">// print number found and break the loop</font>
+<font color="#000000">printf(</font><font color="#ff00ff">&quot;number found at position %d\n&quot;</font><font color="#000000">,i);</font>
+<font color="#0000ff">break</font><font color="#000000">;</font>
+<font color="#000000">}</font>
+<font color="#000000">}</font>
+</font>
+</pre>
+</div>
+<h2>Switch Statement:</h2>
+<p>The switch statement allows you to select from multiple choices based on a set of fixed values for a given expression.  break keyword is used to signal the end of the block. Here are the common switch statement syntax:</p>
+<div class="code"><pre>
+<font face="Courier New">
+<font color="#0000ff">switch </font><font color="#000000">(expression){</font>
+<font color="#0000ff">case </font><font color="#000000">value1: </font><font color="#008000">/* execute unit of code 1 */</font>
+<font color="#0000ff">break</font><font color="#000000">;</font>
+<font color="#0000ff">case </font><font color="#000000">value2: </font><font color="#008000">/* execute unit of code 2 */</font>
+<font color="#0000ff">break</font><font color="#000000">;</font>
+<font color="#000000">...</font>
+<font color="#0000ff">default</font><font color="#000000">: </font><font color="#008000">/* execute default action */</font>
+<font color="#0000ff">break</font><font color="#000000">;</font>
+<font color="#000000">}</font>
+<font color="#000000">Here is an example of </font><font color="#0000ff">using </font><font color="#000000">C </font><font color="#0000ff">switch </font><font color="#000000">statement</font>
+<font color="#ff0000">#include </font><font color="#000000">&lt;stdio.h&gt;</font>
+<font color="#0000ff">const int </font><font color="#000000">RED = </font><font color="#800080">1</font><font color="#000000">;</font>
+<font color="#0000ff">const int </font><font color="#000000">GREEN = </font><font color="#800080">2</font><font color="#000000">;</font>
+<font color="#0000ff">const int </font><font color="#000000">BLUE = </font><font color="#800080">3</font><font color="#000000">;</font>
+<font color="#0000ff">void </font><font color="#000000">main(){</font>
+<font color="#0000ff">int </font><font color="#000000">color = </font><font color="#800080">1</font><font color="#000000">;</font>
+<font color="#000000">printf(</font><font color="#ff00ff">&quot;Enter an integer to choose a color(red=1,green=2,blue=3):\n&quot;</font><font color="#000000">);</font>
+<font color="#000000">scanf(</font><font color="#ff00ff">&quot;%d&quot;</font><font color="#000000">,&amp;color);</font>
+<font color="#0000ff">switch</font><font color="#000000">(color){</font>
+<font color="#0000ff">case </font><font color="#000000">RED: printf(</font><font color="#ff00ff">&quot;you chose red color\n&quot;</font><font color="#000000">);</font>
+<font color="#0000ff">break</font><font color="#000000">;</font>
+<font color="#0000ff">case </font><font color="#000000">GREEN:printf(</font><font color="#ff00ff">&quot;you chose green color\n&quot;</font><font color="#000000">);</font>
+<font color="#0000ff">break</font><font color="#000000">;</font>
+<font color="#0000ff">case </font><font color="#000000">BLUE:printf(</font><font color="#ff00ff">&quot;you chose blue color\n&quot;</font><font color="#000000">);</font>
+<font color="#0000ff">break</font><font color="#000000">;</font>
+<font color="#0000ff">default</font><font color="#000000">:printf(</font><font color="#ff00ff">&quot;you did not choose any color\n&quot;</font><font color="#000000">);</font>
+<font color="#000000">}</font>
+<font color="#000000">}</font>
+</font>
+</pre>
+</div>
+
+<h2>Goto statement:</h2>
+<p>The goto statement is use for a jump from one point to another point within a function.</p>
+<h2>Example:</h2>
+<div class="code"><pre>
+<font face="Courier New">
+<font color="#ff0000">#include </font><font color="#000000">&lt;stdio.h&gt;</font>
+<font color="#ff0000">#include </font><font color="#000000">&lt;conio.h&gt;</font>
+<font color="#0000ff">int </font><font color="#000000">main() {</font>
+<font color="#0000ff">int </font><font color="#000000">n = </font><font color="#800080">0</font><font color="#000000">;</font>
+<font color="#000000">loop: ;</font>
+<font color="#000000">printf(</font><font color="#ff00ff">&quot;\n%d&quot;</font><font color="#000000">, n);</font>
+<font color="#000000">n++;</font>
+<font color="#0000ff">if </font><font color="#000000">(n&lt;</font><font color="#800080">10</font><font color="#000000">) {</font>
+<font color="#0000ff">goto </font><font color="#000000">loop;</font>
+<font color="#000000">}</font>
+<font color="#000000">getch();</font>
+<font color="#0000ff">return </font><font color="#800080">0</font><font color="#000000">;</font>
+<font color="#000000">}</font>
+</font>
+</pre>
+</div>
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="identifiers_keywords.shtml" title="C identifiers keywords">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="pointer_in_c.shtml" title="C pointer">Next</a></td>
+  </tr>
+</table>
+
+ <!--Footer  --> 	
+
+		</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>

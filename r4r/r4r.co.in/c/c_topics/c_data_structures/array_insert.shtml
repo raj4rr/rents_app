@@ -1,0 +1,142 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>How can we insert values in an Array?,A C program to insert value at a specified location in  the array</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="Learn How can we insert values in an Array?,A C program to insert value at a specified location in  the array with example" >
+<meta name="keywords" CONTENT="c tutorial,c basics,programming language,examples,pointer,function,loop,else,if else,while,array,pre processor,post processor,structures,memory menagement,string,constants,variables,decisions making,c unions,c memory allocation, c operators, C pointers,c error handling, c file handling">
+<link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+    <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>C Programming language</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a><img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/c/">C </a>
+              <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/c/c_topics/c_data_structures">C Data structures</a></div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/c/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 
+
+	<!-- Header End-->
+    <div class="heading">C - Insert value into array</div>
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="traverse_array.shtml" title="C - Traverse an array data structures">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="array_delete.shtml" title="C - Delete value from an array">Next</a></td>
+  </tr>
+</table>
+
+<h3>How can we insert values in an Array?</h3>
+<p>The values in an array can be inserted in the following two manner :</p>
+	<ul>
+		<li>Insertion at the end of the array.</li>
+		<li>Insertion at the specified location in the array.</li>
+	</ul>
+<p>Insertion at the end of the Array can be carried out very easily. As value has to be inserted at the end so we just need to traverse the whole array till the end and then inserted our desired value at the end by setting the value pointed by the last element of the array to the new node which we desired to insert.</p>
+
+<h3>A program to insert value at a specified location in the array :</h3>
+<p>To insert a value in an array&nbsp; at a desired position firstly we will have to shift all the elements forward so as to accommodate the 
+new element, then we&nbsp; place the element at the required place.</p>
+
+<div class="code"><FONT>
+<FONT COLOR="#ff0000">#include </FONT><FONT >&lt;stdio.h&gt; </FONT>
+			<br>
+<FONT COLOR="#ff0000">#include</FONT><FONT >&lt;conio.h&gt;</FONT><br>
+<FONT COLOR="#0000ff">int </FONT><FONT >i, len, num, num_pos; </FONT><FONT COLOR="#008000">/* declared some global variables */</FONT><br>
+<FONT COLOR="#0000ff">void </FONT><FONT >main()</FONT><br>
+<FONT >{</FONT><br>
+<FONT COLOR="#0000ff">int </FONT><FONT >arr[</FONT><FONT COLOR="#800080">50</FONT><FONT >];</FONT><br>
+<FONT >clrscr();</FONT><br>
+<FONT >add_element(arr, len, num, num_pos); </FONT><FONT COLOR="#008000">/* calling the function to add an element in the array */</FONT><br>
+<FONT >getch();</FONT><br>
+<FONT >}</FONT><br>
+<FONT COLOR="#0000ff">void </FONT><FONT >add_element(</FONT><FONT COLOR="#0000ff">int </FONT><FONT >a[], len, num, num_pos)</FONT><br>
+<FONT >{</FONT><br>
+<FONT >printf(</FONT><FONT COLOR="#ff00ff">"Enter the length of the array :"</FONT><FONT >);</FONT><br>
+<FONT >scanf(</FONT><FONT COLOR="#ff00ff">"\n%d"</FONT><FONT >, &amp;len);</FONT><br>
+<FONT >printf(</FONT><FONT COLOR="#ff00ff">"\nEnter the array elements :"</FONT><FONT >);</FONT><br>
+<FONT >scanf(</FONT><FONT COLOR="#ff00ff">"\n%d"</FONT><FONT >,&amp;a[i]);</FONT><br>
+<FONT >printf(</FONT><FONT COLOR="#ff00ff">"\nEnter the number you want to insert :"</FONT><FONT >);scanf(</FONT><FONT COLOR="#FF00FF">&quot;%d&quot;</FONT><FONT >,&amp;num);</FONT><br>
+<FONT >printf(</FONT><FONT COLOR="#ff00ff">"\nEnter the position of the number at you want to insert :"</FONT><FONT >);</FONT><br>
+<FONT >scanf(</FONT><FONT COLOR="#ff00ff">"%d"</FONT><FONT >, &amp;num_pos);</FONT><br>
+<FONT >--num_pos;</FONT><br>
+<FONT COLOR="#0000ff">if</FONT><FONT >(num_pos&gt;len)</FONT><FONT COLOR="#008000">/*checking whether insertion outside array*/</FONT><FONT >&nbsp;  </FONT>
+			<br>
+				<FONT >{</FONT><br>
+&nbsp;&nbsp;&nbsp;
+    <FONT >printf(</FONT><FONT COLOR="#ff00ff">"insertion outside the array"</FONT><FONT >);</FONT><br>
+				<FONT >}</FONT><br>
+<FONT COLOR="#0000ff">else</FONT><br>
+				<FONT >{</FONT><br>
+&nbsp;&nbsp;&nbsp;&nbsp;
+     <FONT COLOR="#0000ff">for</FONT><FONT >(i=len; i&gt;=num_pos; i--)</FONT><br>
+					<FONT >{</FONT><br>
+				&nbsp;&nbsp;&nbsp;&nbsp;
+	     <FONT >a[i]=a[i+</FONT><FONT COLOR="#800080">1</FONT><FONT >];</FONT><FONT COLOR="#008000">/* shifting all the elements backwards to create a space for new element */</FONT><br>
+					<FONT >}</FONT><br>
+				<FONT >a[num_pos]=num; len=len+1;</FONT><br>
+				<FONT >printf(</FONT><FONT COLOR="#ff00ff">"\n After insertiion now the array is :"</FONT><FONT >);</FONT><br>
+				<FONT COLOR="#0000ff">for</FONT><FONT >(i=</FONT><FONT COLOR="#800080">0</FONT><FONT >; i&lt;len; i++)</FONT><br>
+					<FONT >{</FONT><br>
+				&nbsp;&nbsp;&nbsp;&nbsp;
+	     <FONT >printf(</FONT><FONT COLOR="#ff00ff">"%d"</FONT><FONT >, a[i]);</FONT><FONT COLOR="#008000">/* printing the newly formed array */</FONT><br>
+					<FONT >}</FONT><br>
+				<FONT >}</FONT><br>
+<FONT >}</FONT></FONT>
+</div>
+
+<div class="output">
+<p><i>Output </i>: The output of the above program would something like this</p>
+<p>Enter the length of the array : 5</p>
+<p>Enter the array elements :</p>
+<p>1</p>
+<p>2</p>
+<p>3</p>
+<p>4</p>
+<p>5</p>
+<p>Enter the number you want to insert :7</p>
+<p>Enter the position of the number at you want to insert : 3</p>
+<p>After insertion now the array is :</p>
+<p>1</p>
+<p>2</p>
+<p>7</p>
+<p>3</p>
+<p>4</p>
+<p>5</p>
+</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="traverse_array.shtml" title="C - Traverse an array data structures">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="array_delete.shtml" title="C - Delete value from array">Next</a></td>
+  </tr>
+</table>
+
+<!--Footer  --> 
+</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>

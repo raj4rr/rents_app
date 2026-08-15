@@ -1,0 +1,127 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<HTML><HEAD><TITLE>A Simple Program Of Select In Hibernate</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv="content-type" content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="A Simple Program Of Select In Hibernate tutorial -learn easily and shortly with hibernate tutorial,hibernate
+Examples,hibernate interview questions Step by step covers all topics of hibernate" >
+<meta name="keywords" CONTENT="Hibernate, Tutorial, Beginners, A Simple Program Of Select In Hibernate, mapping, HQL(Hibenate Query Language), HCQL, Named Query, 
+Caching ">
+
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<META http-equiv="Content-Language" content="en-us">
+<link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+<link href="/css/main.css" rel="stylesheet" type="text/css" />
+</HEAD>
+<BODY>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>Hibernate</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+            <img src="/images/left_menu_bullet.gif"/> <a href="/java/hibernate/">Hibernate</a>
+             </div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top">
+                            <?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/hibernate/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                       <div class="main_content">  	 
+
+      <div class="heading">A Sample Program of Select</div>
+
+      <table id="indexing">
+
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="commonly_used_class_and_interfaces.shtml" title="Commonly used classes and interfaces">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="hibernate_architecture.shtml" title="Hibernate Architecture">Next</a></td>
+  </tr> 
+</table>
+      <p>First of all we need to create a database and a table also. Because in the Hibernate we
+      can't do anything without using Database.
+      </p>
+      <div class="code">
+          <HTML>
+<BODY>
+<PRE>
+<FONT FACE="Courier New">
+          <FONT COLOR="#000000">create database R4R;</FONT>
+          <FONT COLOR="#000000">use database R4R;</FONT>
+          <FONT COLOR="#000000">create table AddData</FONT>
+          <FONT COLOR="#000000">(</FONT>
+          <FONT COLOR="#000000">id </FONT><FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">not </FONT><FONT COLOR="#0000ff">null </FONT><FONT COLOR="#000000">primary key auto_increment,</FONT>
+          <FONT COLOR="#000000">fname varhcar(</FONT><FONT COLOR="#800080">50</FONT><FONT COLOR="#000000">),</FONT>
+          <FONT COLOR="#000000">lname varchar(</FONT><FONT COLOR="#800080">50</FONT><FONT COLOR="#000000">)</FONT>
+          <FONT COLOR="#000000">);</FONT>
+</FONT>
+</PRE>
+</BODY>
+         </HTML>
+      </div>
+      <p>Now it code will be written into the java file for performing the action. Below given code is the 
+      simple example of the Hibernate.
+      </p>
+
+      <div class="code">
+          <HTML>
+<BODY>
+<PRE>
+<FONT FACE="Courier New">
+<FONT COLOR="#0000ff">import </FONT><FONT COLOR="#000000">java.util.</FONT><FONT COLOR="#ff0000">List</FONT><FONT COLOR="#000000">;</FONT>
+<FONT COLOR="#0000ff">import </FONT><FONT COLOR="#000000">org.hibernate.</FONT><FONT COLOR="#ff0000">Query</FONT><FONT COLOR="#000000">;</FONT>
+<FONT COLOR="#0000ff">import </FONT><FONT COLOR="#000000">org.hibernate.Session;</FONT>
+<FONT COLOR="#0000ff">import </FONT><FONT COLOR="#000000">com.javacodegeeks.utils.HibernateUtil;</FONT>
+
+<FONT COLOR="#0000ff">public class </FONT><FONT COLOR="#000000">App</FONT>
+  <FONT COLOR="#000000">{</FONT>
+    <FONT COLOR="#0000ff">public static void </FONT><FONT COLOR="#000000">main( </FONT><FONT COLOR="#ff0000">String</FONT><FONT COLOR="#000000">[] args )</FONT>
+    <FONT COLOR="#000000">{</FONT>
+        <FONT COLOR="#000000">Session session = HibernateUtil.getSessionFactory().openSession();</FONT>
+        <FONT COLOR="#ff0000">Query </FONT><FONT COLOR="#000000">query = session.createQuery(</FONT><FONT COLOR="#ff00ff">"from AddData where id = :id "</FONT><FONT COLOR="#000000">);</FONT>
+        <FONT COLOR="#000000">query.setParameter(</FONT><FONT COLOR="#ff00ff">"id"</FONT><FONT COLOR="#000000">, </FONT><FONT COLOR="#800080">5</FONT><FONT COLOR="#000000">);</FONT>
+        <FONT COLOR="#008000">// You can replace the above to commands with this one</FONT>
+        <FONT COLOR="#008000">// Query query = session.createQuery("from Student where studentId = 1 ");</FONT>
+        <FONT COLOR="#ff0000">List</FONT><FONT COLOR="#000000">&lt;?&gt; list = query.list();</FONT>
+        <FONT COLOR="#000000">Student student = (Student)list.get(</FONT><FONT COLOR="#800080">0</FONT><FONT COLOR="#000000">);</FONT>
+        <FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.println(student);</FONT>
+    <FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#000000">}</FONT>
+</FONT>
+</PRE>
+</BODY>
+</HTML>
+
+      </div>
+
+      <table id="indexing">
+
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="commonly_used_class_and_interfaces.shtml" title="Commonly used classes and interfaces">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="hibernate_architecture.shtml" title="Hibernate Architecture">Next</a></td>
+  </tr> 
+</table>          
+
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+
+                <?php @include($_SERVER['DOCUMENT_ROOT'] . '/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>

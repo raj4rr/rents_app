@@ -1,0 +1,186 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD>
+<meta http-equiv="Content-Language" content="en-us">
+<TITLE>JSP Tutorials:-Custom Tag in JSP</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name="keywords" content="JSP, Tutorials, Learning, Beginners, Basics, Life Cycle, Examples,Request, Server Response, Http, Filters, Exceptions, Cookies, Sessions, Database Access, File Uploading, File Uploading, Internationalization." />
+<meta name="description" content="JSP Tutorial - Custom Tag in JSP, JSP (Java Server Pages) in simple and easy steps using this beginner's tutorial" />
+
+<!-- header start-->	
+
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+
+<?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+     <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>JSP Tutorials</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+			<img src="/images/left_menu_bullet.gif"/> <a href="/java/">Java</a>
+			<img src="/images/left_menu_bullet.gif"/> <a href="/java/jsp/">JSP</a>
+
+			       </div>
+
+            	<table>
+                    <tr>
+
+                         <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/jsp/jsp_basics/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	 
+
+<div class="heading">Custom Tag in JSP</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="jstl.shtml" title="JSTL in JSP">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="regisform.shtml" title=" Registration Form in JSP
+">Next</a></td>
+  </tr> 
+</table>
+
+<!-- header End--> 
+
+<h3>Custom Tags in JSP
+</h3>
+
+<p>This tags are user-defined tags and used scriptlet tag .
+</p>
+
+<p>
+Custom Tags advantages</p>
+
+<ol>
+    <li>Eliminates srciptlet tag .</li>
+    <li>Separation of business logic for easy to maintain.</li>
+    <li>Reusability </li>
+</ol>
+
+<h3>
+Syntax  
+</h3>
+
+<div class="code">
+<pre>
+<span style="font-family: Arial"><span style="color: #000000">    </span><span style="color: #0000ff">&lt;</span><span style="color: #808000">prefix:tagname </span><span style="color: #800080">attr1</span><span style="color: #0000ff">=</span><span style="color: #800080">value1</span><span style="color: #000000">....</span><span style="color: #800080">attrn</span><span style="color: #0000ff">=</span><span style="color: #800080">valuen </span><span style="color: #0000ff">/&gt;</span><span style="color: #000000">  </span>
+
+<span style="color: #000000">    </span><span style="color: #0000ff">&lt;</span><span style="color: #808000">prefix:tagname </span><span style="color: #800080">attr1</span><span style="color: #0000ff">=</span><span style="color: #800080">value1</span><span style="color: #000000">....</span><span style="color: #800080">attrn</span><span style="color: #0000ff">=</span><span style="color: #800080">valuen </span><span style="color: #0000ff">/&gt;</span><span style="color: #000000">  </span></span>
+</pre>
+</div>
+
+<h3>Another way to be used
+</h3>
+<div class="code">
+<pre>
+<span style="font-family: Arial"><span style="color: #000000">    </span><span style="color: #800000">&lt;%@ taglib uri=</span><span style="color: #ff00ff">&quot;http://java.sun.com/jsp/jstl/core&quot;     </span>
+	<span style="color: #800000">&lt;prefix:tagname attr1=value1....attrn=valuen &gt;  </span>
+    <span style="color: #800000">body code  </span>
+    <span style="color: #800000">&lt;/prefix:tagname&gt;  </span>
+
+    <span style="color: #800000">&lt;prefix:tagname attr1=value1....attrn=valuen &gt;  </span>
+    <span style="color: #800000">body code  </span>
+    <span style="color: #800000">&lt;/prefix:tagname&gt;prefix=</span><span style="color: #ff00ff">&quot;c&quot; </span><span style="color: #800000">%&gt;</span><span style="color: #000000"> First Name:</span><span style="color: #0000ff">&lt;</span><span style="color: #808000">c:out </span><span style="color: #ff0000">value</span><span style="color: #0000ff">=</span><span style="color: #ff00ff">&quot;${param.fname}&quot;</span><span style="color: #0000ff">&gt;&lt;/</span><span style="color: #808000">c:out</span><span style="color: #0000ff">&gt;&lt;br/&gt;</span><span style="color: #000000">  </span>
+<span style="color: #000000">    Last Name:</span><span style="color: #0000ff">&lt;</span><span style="color: #808000">c:out </span><span style="color: #ff0000">value</span><span style="color: #0000ff">=</span><span style="color: #ff00ff">&quot;${param.lname}&quot;</span><span style="color: #0000ff">&gt;&lt;/</span><span style="color: #808000">c:out</span><span style="color: #0000ff">&gt;</span><span style="color: #000000">  </span>
+
+<span style="color: #000000">    </span><span style="color: #800000">&lt;%@ taglib uri=</span><span style="color: #ff00ff">&quot;http://java.sun.com/jsp/jstl/core&quot; </span>
+	<span style="color: #800000">prefix=</span><span style="color: #ff00ff">&quot;c&quot; </span><span style="color: #800000">%&gt;</span><span style="color: #000000"> First Name:</span><span style="color: #0000ff">&lt;</span><span style="color: #808000">c:out </span><span style="color: #ff0000">value</span><span style="color: #0000ff">=</span><span style="color: #ff00ff">&quot;${param.fname}&quot;</span><span style="color: #0000ff">&gt;&lt;/</span><span style="color: #808000">c:out</span><span style="color: #0000ff">&gt;&lt;br/&gt;</span><span style="color: #000000">  </span>
+<span style="color: #000000">    Last Name:</span><span style="color: #0000ff">&lt;</span><span style="color: #808000">c:out </span><span style="color: #ff0000">value</span><span style="color: #0000ff">=</span><span style="color: #ff00ff">&quot;${param.lname}&quot;</span><span style="color: #0000ff">&gt;&lt;/</span><span style="color: #808000">c:out</span><span style="color: #0000ff">&gt;</span><span style="color: #000000">  </span>
+</span></pre>
+</div>
+
+<h3>JSP Custom Tag API
+</h3>
+
+<p>In this tag is used javax.servlet.jsp.tagext package <p>
+
+<img src="images/custom.gif">
+
+<h3>Example of custom tag with tablib</h3>
+
+<i>message.tld</i>
+<div class="code">
+<pre>
+<span style="font-family: Arial"><span style="color: #0000ff">&lt;</span><span style="color: #808000">taglib</span><span style="color: #0000ff">&gt;</span>
+<span style="color: #000000"> </span><span style="color: #0000ff">&lt;</span><span style="color: #808000">tlib-version</span><span style="color: #0000ff">&gt;</span><span style="color: #000000">1.0</span><span style="color: #0000ff">&lt;/</span><span style="color: #808000">tlib-version</span><span style="color: #0000ff">&gt;</span>
+<span style="color: #000000"> </span><span style="color: #0000ff">&lt;</span><span style="color: #808000">jsp-version</span><span style="color: #0000ff">&gt;</span><span style="color: #000000">2.0</span><span style="color: #0000ff">&lt;/</span><span style="color: #808000">jsp-version</span><span style="color: #0000ff">&gt;</span>
+<span style="color: #000000"> </span><span style="color: #0000ff">&lt;</span><span style="color: #808000">short-name</span><span style="color: #0000ff">&gt;</span><span style="color: #000000">My Custom Tag</span><span style="color: #0000ff">&lt;/</span><span style="color: #808000">short-name</span><span style="color: #0000ff">&gt;</span>
+<span style="color: #000000"> </span><span style="color: #0000ff">&lt;</span><span style="color: #808000">tag</span><span style="color: #0000ff">&gt;</span>
+<span style="color: #000000"> </span><span style="color: #0000ff">&lt;</span><span style="color: #808000">name</span><span style="color: #0000ff">&gt;</span><span style="color: #000000">MyMsg</span><span style="color: #0000ff">&lt;/</span><span style="color: #808000">name</span><span style="color: #0000ff">&gt;</span>
+<span style="color: #000000"> </span><span style="color: #0000ff">&lt;</span><span style="color: #808000">tag-class</span><span style="color: #0000ff">&gt;</span><span style="color: #000000">beginnersbook.com.Details</span><span style="color: #0000ff">&lt;/</span><span style="color: #808000">tag-class</span><span style="color: #0000ff">&gt;</span>
+<span style="color: #000000"> </span><span style="color: #0000ff">&lt;</span><span style="color: #808000">body-content</span><span style="color: #0000ff">&gt;</span><span style="color: #000000">empty</span><span style="color: #0000ff">&lt;/</span><span style="color: #808000">body-content</span><span style="color: #0000ff">&gt;</span>
+<span style="color: #000000"> </span><span style="color: #0000ff">&lt;/</span><span style="color: #808000">tag</span><span style="color: #0000ff">&gt;</span>
+<span style="color: #0000ff">&lt;/</span><span style="color: #808000">taglib</span><span style="color: #0000ff">&gt;</span>
+</span></pre>
+</div>
+
+<p>Using custom tag in JSP : It is created a custom tag named MyMsg and using it.</p>
+
+<p><i>
+Note: </i>taglib directive used TLD file path in uri field andv we have created the message.
+</p>
+
+<p>
+Custom tag is called like this: &lt;prefix:tagName/&gt;. Our prefix is myprefix and tag name is MyMsg so we have called it as &lt;myprefix:MyMsg/&gt; in the below JSP page.</p>
+
+<div class="code">
+
+<pre>
+<span style="font-family: Arial"><span style="color: #800000">&lt;%@ taglib prefix=</span><span style="color: #ff00ff">&quot;myprefix&quot; </span><span style="color: #800000">uri=</span><span style="color: #ff00ff">&quot;WEB-INF/message.tld&quot;</span><span style="color: #800000">%&gt;</span>
+<span style="color: #0000ff">&lt;html&gt;</span>
+<span style="color: #000000"> </span><span style="color: #0000ff">&lt;head&gt;</span>
+<span style="color: #000000">    </span><span style="color: #0000ff">&lt;title&gt;</span><span style="color: #000000">Custom Tags in JSP Example</span><span style="color: #0000ff">&lt;/title&gt;</span>
+<span style="color: #000000"> </span><span style="color: #0000ff">&lt;/head&gt;</span>
+<span style="color: #000000"> </span><span style="color: #0000ff">&lt;body&gt;</span>
+<span style="color: #000000">    </span><span style="color: #0000ff">&lt;</span><span style="color: #808000">myprefix:MyMsg</span><span style="color: #0000ff">/&gt;</span>
+<span style="color: #000000"> </span><span style="color: #0000ff">&lt;/body&gt;</span>
+<span style="color: #0000ff">&lt;/html&gt;</span>
+</span></pre>
+</div>
+
+<p><i>Output :</i></p>
+<div class="output">
+<img src="images/custom1.gif">
+
+</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="jstl.shtml" title="JSTL in JSP">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="regisform.shtml" title=" Registration Form in JSP
+">Next</a></td>
+  </tr> 
+</table>
+
+	<!--Footer  --> 
+
+		</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+
+<!-- Footer End-->
+

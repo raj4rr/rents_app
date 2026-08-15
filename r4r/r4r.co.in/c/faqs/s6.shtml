@@ -1,0 +1,221 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+
+<HTML><HEAD><TITLE>C Interview Questions And Answers</TITLE>
+<META content=r4r.co.in name=owner>
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="Learn easily C Interview Questions And Answers,c tutorial,c basics,c interview questions,C Examples,interview questions and answers with examples, programming language" >
+<meta name="keywords" CONTENT="c tutorial,c basics,c interview questions,c interview questions and answers,interview questions and answers with examples, programming language,examples,pointer,function,loop,else,if else,while,array,pre processor,post processor,structures,memory menagement,string,constants,variables,decisions making,c unions,c memory allocation, c operators,subejctive question,obejective question,literals,directives,stacks,queu,calloc,malloc">
+<link href="/css/main.css" rel="stylesheet" type="text/css" />
+        <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>C Interview Questions And Answers</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a><img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/c/">C </a>
+              <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/c/faqs/">C FAQS</a></div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/c/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 
+
+		<!-- Header End-->	
+<div class="heading">C FAQS</div> 
+
+   <table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;">
+    	<a href="s5.shtml" title="C Interview Questions And Answers">Previous</a>
+    </td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml" title="C FAQS">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="s7.shtml" title="C Interview Questions And Answers">Next</a></td>
+  </tr>
+</table>
+  <p><span class="style3">
+  <font face="Verdana" size="2">
+  <b>Q: Which bit wise operator is suitable for putting on a particular bit in a 
+  number? <br>
+  Ans:</b>The bitwise OR operator. In the following code snippet, the bit number 
+  24 is turned ON: <br>
+  some_int = some_int | KBit24; <br>
+  <br>
+  <b>Q:Does there exist any other function which can be used to convert an 
+  integer or a float to a string? <br>
+  Ans:</b>Some implementations provide a nonstandard function called itoa(), 
+  which converts an integer to string. <br>
+  <br>
+  #include <br>
+  <br>
+  char *itoa(int value, char *string, int radix); <br>
+  <br>
+  DESCRIPTION<br>
+  The itoa() function constructs a string representation of an integer. <br>
+  <br>
+  PARAMETERS<br>
+  value:<br>
+  Is the integer to be converted to string representation. <br>
+  <br>
+  string:<br>
+  Points to the buffer that is to hold resulting string.<br>
+  The resulting string may be as long as seventeen bytes. <br>
+  <br>
+  radix:<br>
+  Is the base of the number; must be in the range 2 - 36. <br>
+  <br>
+  A portable solution exists. One can use sprintf(): <br>
+  <br>
+  char s[SOME_CONST];<br>
+  int i = 10;<br>
+  float f = 10.20;<br>
+  <br>
+  sprintf ( s, %d %f\n, i, f );<br>
+  <br>
+  <b>Q:What are advantages and disadvantages of external storage class? <br>
+
+  Ans:</b>Advantages of external storage class<br>
+  1)Persistent storage of a variable retains the latest value<br>
+  2)The value is globally available<br>
+  Disadvantages of external storage class<br>
+  1)The storage for an external variable exists even when the variable is not 
+  needed<br>
+  2)The side effect may produce surprising output<br>
+  3)Modification of the program is difficult<br>
+  4)Generality of a program is affected <br>
+  <br>
+  <b>Q:What is a void pointer? <br>
+  Ans:</b>A void pointer is a C convention for a raw address. The compiler has 
+  no idea what type of object a void Pointer really points to. If you write<br>
+  int *ip;<br>
+  ip points to an int. If you write<br>
+  void *p;<br>
+  p doesnt point to a void!<br>
+  In C and C++, any time you need a void pointer, you can use another pointer 
+  type. For example, if you have a char*, you can pass it to a function that 
+  expects a void*. You dont even need to cast it. In C (but not in C++), you 
+  can use a void* any time you need any kind of pointer, without casting. (In 
+  C++, you need to cast it).<br>
+  A void pointer is used for working with raw memory or for passing a pointer to 
+  an unspecified type.<br>
+  Some C code operates on raw memory. When C was first invented, character 
+  pointers (char *) were used for that. Then people started getting confused 
+  about when a character pointer was a string, when it was a character array, 
+  and when it was raw memory. <br>
+
+  <br>
+  <b>Q:How can type-insensitive macros be created? <br>
+  Ans:</b>A type-insensitive macro is a macro that performs the same basic 
+  operation on different data types. <br>
+  This task can be accomplished by using the concatenation operator to create a 
+  call to a type-sensitive function based on the parameter passed to the macro. 
+  The following program provides an example: <br>
+  #include <br>
+  #define SORT(data_type) sort_ ## data_type<br>
+  void sort_int(int** i);<br>
+  void sort_long(long** l);<br>
+  void sort_float(float** f);<br>
+  void sort_string(char** s);<br>
+  void main(void);<br>
+  <br>
+  void main(void)<br>
+  {<br>
+  int** ip;<br>
+  long** lp;<br>
+  float** fp;<br>
+  char** cp;<br>
+  ...<br>
+  sort(int)(ip);<br>
+  sort(long)(lp);<br>
+  sort(float)(fp);<br>
+  sort(char)(cp);<br>
+  ...<br>
+  }<br>
+  <br>
+  This program contains four functions to sort four different data types: int, 
+  long, float, and string (notice that only the function prototypes are included 
+  for brevity). A macro named SORT was created to take the data type passed to 
+  the macro and combine it with the sort_ string to form a valid function call 
+  that is appropriate for the data type being sorted. Thus, the string <br>
+  sort(int)(ip);<br>
+  translates into<br>
+  sort_int(ip);<br>
+  after being run through the preprocessor. <br>
+  <br>
+  <b>Q:When should a type cast not be used? <br>
+  Ans:</b>A type cast should not be used to override a const or volatile 
+  declaration. Overriding these type modifiers can cause the program to fail to 
+  run correctly. <br>
+  A type cast should not be used to turn a pointer to one type of structure or 
+  data type into another. In the rare events in which this action is beneficial, 
+  using a union to hold the values makes the programmers intentions clearer.
+  <br>
+  <br>
+  <b>Q:When is a switch statement better than multiple if statements? <br>
+  Ans:</b>A switch statement is generally best to use when you have more than 
+  two conditional expressions based on a single variable of numeric type. <br>
+  <br>
+  <b>Q:What is storage class and what are storage variable ? <br>
+  Ans:</b>A storage class is an attribute that changes the behavior of a 
+  variable. It controls the lifetime, scope and linkage.<br>
+  There are five types of storage classes<br>
+  1) auto <br>
+  2) static <br>
+  3) extern <br>
+  4) register <br>
+  5) typedef <br>
+  <br>
+  <b>Q:What is a static function? <br>
+  Ans:</b>A static function is a function whose scope is limited to the current 
+  source file. Scope refers to the visibility of a function or variable. If the 
+  function or variable is visible outside of the current source file, it is said 
+  to have global, or external, scope. If the function or variable is not visible 
+  outside of the current source file, it is said to have local, or static, 
+  scope. <br>
+  <br>
+  <b>Q:How can I sort things that are too large to bring into memory? <br>
+  Ans:</b>A sorting program that sorts items that are on secondary storage (disk 
+  or tape) rather than primary storage (memory) is called an external sort. 
+  Exactly how to sort large data depends on what is meant by too large to fit in 
+  memory. If the items to be sorted are themselves too large to fit in memory 
+  (such as images), but there arent many items, you can keep in memory only the 
+  sort key and a value indicating the datas location on disk. After the 
+  key/value pairs are sorted, the data is rearranged on disk into the correct 
+  order. If too large to fit in memory means that there are too many items to 
+  fit into memory at one time, the data can be sorted in groups that will fit 
+  into memory, and then the resulting files can be merged. A sort such as a 
+  radix sort can also be used as an external sort, by making each bucket in the 
+  sort a file. Even the quick sort can be an external sort. The data can be 
+  partitioned by writing it to two smaller files. When the partitions are small 
+  enough to fit, they are sorted in memory and concatenated to form the sorted 
+  file.</font><br>
+     <table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;">
+    	<a href="s5.shtml" title="C Interview Questions And Answers">Previous</a>
+    </td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml" title="C FAQS">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="s7.shtml" title="C Interview Questions And Answers">Next</a></td>
+  </tr>
+</table>
+<!--Footer  --> 
+</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>

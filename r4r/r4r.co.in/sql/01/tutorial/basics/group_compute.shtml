@@ -1,0 +1,209 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>Using GROUP BY Clause</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="Using GROUP BY Clause" >
+<meta name="keywords" CONTENT="Using GROUP BY Clause">
+
+<!--header start-->
+
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>DATABASE & SQL/PLSQL</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a><img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+			<a href="/sql/">SQL </a>
+              </div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/sql/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	  
+
+                        	                        	<!-- Header End-->	
+    <div class="heading">Using GROUP BY Clause</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="aggregate.shtml" title="Using Aggregate Functions">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="comput.shtml" title="Using COMPUTE BY Clause">Next</a></td>
+  </tr>
+</table>          
+<p>Group clause summarize the result set in to a groups defined in the query using aggregate function. </p>
+
+<div class="code">
+<pre>
+SELECT  'max'=MAX (discount)
+FROM  discountsSELECT column1, column2, ... column_n, aggregate_function (expression)
+FROM table_name
+WHERE conditions
+GROUP BY ALL column1, column2, ... column_n
+</pre>
+</div>
+
+<div class="code">
+<pre>
+SELECT  'max'=MAX (discount)
+FROM  discountsSELECT column1, column2, ... column_n, aggregate_function (expression)
+FROM table_name
+WHERE conditions
+GROUP BY ALL column1, column2, ... column_n
+</pre>
+</div>
+
+<p><i>expressions:</i>  describe the column name (s) or expressions on which the result set of the SELECT statement is to be grouped.</p>
+<p>ALL is a keyword used to include those groups that do not meet the search condition.</p>
+
+<h3>Example</h3>
+<div class="code">
+<pre>
+SELECT type, 'avg'=AVG(advance)
+FROM titles
+WHERE type LIKE 'b%'
+GROUP BY ALL type
+</pre>
+</div>
+
+<p><i>Output</i></p>
+<div class="output">
+<div class="table_content">
+<table>
+<tr>
+<td class="heading" style="width:33%;">type</td><td class="heading" style="width:34%;">Range</td>
+</tr>
+
+<tr>
+<td class="alternate_heading1">business</td>
+<td class="alternate_heading1">5000.0000</td>
+</tr>
+
+<tr>
+<td class="alternate_heading1">mod_cook</td>
+<td class="alternate_heading1">NULL</td>
+</tr>
+
+<tr>
+<td class="alternate_heading1">popular_comp</td>
+<td class="alternate_heading1">NULL</td>
+</tr>
+
+<tr>
+<td class="alternate_heading1">psychology</td>
+<td class="alternate_heading1">NULL</td>
+</tr>
+
+<tr>
+<td class="alternate_heading1">trad_cook</td>
+<td class="alternate_heading1"> NULL</td>
+</tr>
+
+<tr>
+<td class="alternate_heading1">UNDECIDED</td>
+<td class="alternate_heading1"> NULL</td>
+</tr>
+</table>
+</div>
+</div>
+
+<p>Return all type from table but the 'avg' display only those type which started with ' b'. Means this keyword used to display all groups, including those exclude from WHERE clause. The ALL keyword is meaningful for those query  that contain WHERE clause. </p>
+
+<h3>Example</h3>
+<div class="code">
+<pre>
+SELECT  type,'pub Id'=pub_id, 'avg'=AVG (price)
+FROM  titles
+GROUP BY  type,pub_id
+</pre>
+</div>
+
+<p>Return the 'type' and 'pub Id' and 'avg' , which calculated from titles table.</p>
+<h3>Example</h3>
+<div class="code">
+<pre>
+SELECT type, 'avg'=AVG(advance)
+FROM titles
+WHERE title_id IN ('BU1032','PC1035')
+GROUP BY ALL type
+</pre>
+</div>
+
+<p><i>Output</i></p>
+<div class="output">
+<div class="table_content">
+<table>
+<tr>
+<td class="heading" style="width:33%;">type</td><td class="heading" style="width:34%;">Range</td>
+</tr>
+
+<tr>
+<td class="alternate_heading1">business</td>
+<td class="alternate_heading1">5000.0000</td>
+</tr>
+
+<tr>
+<td class="alternate_heading1">mod_cook</td>
+<td class="alternate_heading1">NULL</td>
+</tr>
+
+<tr>
+<td class="alternate_heading1">popular_comp</td>
+<td class="alternate_heading1">7000.0000</td>
+</tr>
+
+<tr>
+<td class="alternate_heading1">psychology</td>
+<td class="alternate_heading1">NULL</td>
+</tr>
+
+<tr>
+<td class="alternate_heading1">trad_cook</td>
+<td class="alternate_heading1"> NULL</td>
+</tr>
+
+<tr>
+<td class="alternate_heading1">UNDECIDED</td>
+<td class="alternate_heading1"> NULL</td>
+</tr>
+</table>
+</div>
+</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="aggregate.shtml" title="Using Aggregate Functions">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="comput.shtml" title="Using COMPUTE BY Clause">Next</a></td>
+  </tr>
+</table>         
+
+                       <!--Footer  -->
+
+</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>

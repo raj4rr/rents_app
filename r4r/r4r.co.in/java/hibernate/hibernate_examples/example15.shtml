@@ -1,0 +1,350 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<HTML><HEAD><TITLE>Update data in the database table using Hibernate and swing</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv="content-type" content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="Hibernate Update data in the database table using Hibernate and swing learn easily and shortly with hibernate tutorial,hibernate
+Examples,hibernate interview questions Step by step covers all topics of hibernate architecture" >
+<meta name="keywords" CONTENT="Hibernate tutorial,Update data in the database table, Hibernate Examples, object relation mapping(ORM), 
+hibernate query language(HQl), Presistent classes, Objects">
+
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<META http-equiv="Content-Language" content="en-us">
+<link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+<link href="/css/main.css" rel="stylesheet" type="text/css" />
+</HEAD>
+<BODY>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>Hibernate</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+            <img src="/images/left_menu_bullet.gif"/> <a href="/java/hibernate/">Hibernate</a>
+             </div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top">
+                            <?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/hibernate/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                       <div class="main_content">  	 
+
+      <div class="heading">Updation the data in the database table using Hibernate and swing</div>
+
+      <table id="indexing">
+
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="example14.shtml" title="Fetch Data from Database">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="example16.shtml" title="Delete Data from Database">Next</a></td>
+  </tr> 
+</table>
+      <p>
+          In this tutorial of the hibernate we have learn how to insert data into the database and 
+          we have also learn about the how can we insert data into one or more than table. click 
+          here In all above example which we have already discussed that told us how to fetch data 
+          from the data base on the specific form of the Swing JFrame Form. But now we will learn 
+          how to update data form the database using the Hibernate and MYSQL database on the Netbeans. 
+          When we have learn to all operation insert,fetch, fetch specific then we can understand 
+          easyly to this example so let's start.
+      </p>
+      <p>
+          Here in this session we will create update data activity which we perform the swing using 
+          hibernate. In this tutorial we will learn how to fetch the data and update that data by the 
+          activity using Id which we make in the database table. To do this kind of the activity we 
+          need to perform by the NetBeans and using MySql
+      </p>
+      <p>
+          Step 1. Now we for making the application we need to create a database into the MySql. 
+          Now we create the table for connectivity the application and update the database into 
+          that table.
+      </p>
+      <div class="code">
+          <pre><code class="language-sql">
+create table InsertSwingData
+(
+id int not null primary key auto_increment,
+fname varchar(50),
+lname varchar(50),
+address varchar(50)
+)
+</code></pre>
+      </div>
+      <p>
+          Step 2. First of all here we will take as we have already taken the application to create a 
+          action using netbeans. For this we need to go into the File menu wizard -> click new 
+          project -> select to the java and then java application -> put the required name on the 
+          given field -> click on finish.
+      </p>
+      <p>
+          Step 3. Now we need to create a hibernate configuration file to connectivity the database. 
+          Go into the file menu wizard -> new file -> click on Hibernate and then click on hibernate 
+          configuration file -> select the database and then click on finish.
+      </p>
+      <p>Instead of using legacy <code>.hbm.xml</code> mapping files, map the entity directly using JPA annotations like <code>@Entity</code> and <code>@Table</code>.</p>
+
+      <h3>2. InsertSwingData.java</h3>
+      <div class="code">
+          <pre><code class="language-java">
+package r4r;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="InserSwingData")
+public class InserSwingData  implements java.io.Serializable {
+     @Id
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    private Integer id;
+     private String firstName;
+     private String lastName;
+     private String address;
+
+    public InserSwingData() {
+    }
+    public InserSwingData(String firstName, String lastName, String address) {
+       this.firstName = firstName;
+       this.lastName = lastName;
+       this.address = address;
+    }
+    public Integer getId() {
+        return this.id;
+    }
+    public void setId(Integer id) {
+        this.id = id;
+    }
+    public String getFirstName() {
+        return this.firstName;
+    }
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+    public String getLastName() {
+        return this.lastName;
+    }
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+    public String getAddress() {
+        return this.address;
+    }
+    public void setAddress(String address) {
+        this.address = address;
+    }
+}
+</code></pre>
+      </div>
+
+      <p>
+          Step 7. Now we also requred to create Hibernate Util file. for this we need to go into the 
+          file menu wizard -> click on new file -> search to hibernate -> click on hibernate utill 
+          file -> click on finish.
+      </p>
+
+      <div class="code">
+          <pre><code class="language-java">
+package r4r;
+
+import org.hibernate.cfg.AnnotationConfiguration;
+import org.hibernate.SessionFactory;
+public class HibernateUtil {
+    private static final SessionFactory sessionFactory;
+    static {
+        try {
+            sessionFactory = new AnnotationConfiguration().configure().buildSessionFactory();
+        } catch (Throwable ex) {
+            System.err.println("Initial SessionFactory creation failed." + ex);
+            throw new ExceptionInInitializerError(ex);
+        }
+    }
+    public static SessionFactory getSessionFactory() {
+        return sessionFactory;
+    }
+}
+</code></pre>
+      </div>
+
+      <p>
+          Step 8. Now we need to create a Swing JForm. For this we need to go into the File menu 
+          wizard -> click on new file -> click on Swing JForm -> put the required name on the 
+          place -> click on finish.
+      </p>
+
+      <p>Step 9. Now we need to perform the submit action on the submit button.</p>
+      <div class="code">
+         <pre><code class="language-java">
+ Hibernate-application-using-swing-27.gif
+
+       SessionFactory sf = new Configuration().configure().buildSessionFactory();
+       Session s = sf.openSession();
+       Transaction tx = s.beginTransaction();
+
+       InserSwingData i = new InserSwingData(fname.getText(), lname.getText(), address.getText());
+       JOptionPane.showMessageDialog(this, "One Record Inserted");
+       s.save(i);
+       tx.commit();
+       s.close();
+       clear();
+    }                                        
+        void clear()
+        {
+            fname.setText("");
+            lname.setText("");
+            address.setText("");
+        }
+</code></pre>
+      </div>
+
+      <p>Step 10. Now we need to create a another page for update the data into the database. 
+          As take for Step 6 .
+      </p>
+
+      <p>
+          Step 11. Now we need to create a java class for performing the action and working here for 
+          fetching the Id form the database for the update the data. For this we will go into the 
+          file menu wizard -> click on new file -> click on java -> click on java class -> put the 
+          name on the required place -> click on finish.
+      </p>
+      <div class="code">
+          <pre><code class="language-java">
+package hibernateapplicationusingswing.update;
+
+import java.util.ArrayList;
+import java.util.List;
+import org.hibernate.Criteria;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+import org.hibernate.cfg.Configuration;
+
+public class Admin 
+{
+     public static List&lt;String&gt; getId() 
+   {
+     List&lt;String&gt; a = new ArrayList&lt;String&gt;();   
+     try
+     {
+        SessionFactory sf = new Configuration().configure().buildSessionFactory();
+        Session s = sf.openSession();
+        Transaction tr = s.beginTransaction();
+        Criteria cr = s.createCriteria(r4r.InserSwingData.class);
+        java.util.List&lt;r4r.InserSwingData&gt; ds = cr.list();
+        for(r4r.InserSwingData dd : ds)
+        {
+            //a.add(dd.getId());   
+            a.add(Integer.toString(dd.getId()));
+
+         }   
+     }catch(Exception ex) { a.add(ex.getMessage()); }
+     return a;
+   }   
+}
+</code></pre>
+      </div>
+
+      <p>Step 12. Now we need to perform the action on the update button.</p>
+      <h3>// Below code will help to fetch the Id from the database.</h3>
+      <div class="code">
+
+<pre><code class="language-java">
+ public Update() {
+        initComponents();
+       List&lt;String&gt; a = Admin.getId();
+           for(String s : a)
+           Id.addItem(s);  
+
+    }
+</code></pre>
+      </div>
+
+      <h3>//Below code will help us to make the action for Id event Change</h3>
+
+      <div class="code">
+         <pre><code class="language-java">
+ private void IdActionPerformed(java.awt.event.ActionEvent evt) {                                   
+            Id = (JComboBox) evt.getSource();
+            Object selected = Id.getSelectedItem();
+            int n = new Integer (Id.getSelectedItem().toString());
+            SessionFactory sf = r4r.HibernateUtil.getSessionFactory();
+            Session s = sf.openSession();
+            Transaction tx = s.beginTransaction();
+            InserSwingData r = (InserSwingData)s.get(r4r.InserSwingData.class, n);          
+            fname.setText(r.getFirstName());
+                lname.setText(r.getLastName());
+                address.setText(r.getAddress());
+
+    } 
+</code></pre>
+      </div>
+
+      <h3>//Below code help to make the action of update button for value update</h3>
+
+      <div class="code">
+          <pre><code class="language-java">
+private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {                                         
+       if (!validateFields()) {
+			return;
+		}
+        int n = new Integer (Id.getSelectedItem().toString());
+    String fn = fname.getText();
+    String ln = lname.getText();
+    String add = address.getText();
+
+    SessionFactory sf = r4r.HibernateUtil.getSessionFactory();
+    Session s = sf.openSession();
+    Transaction tr = s.beginTransaction();
+    InserSwingData r = (InserSwingData)s.get(r4r.InserSwingData.class, n);          
+    if(fn!=null)
+    {
+        //int sal = Integer.parseInt(request.getParameter("t4"));
+        r.setFirstName(fn);
+        r.setLastName(ln);
+        r.setAddress(add);
+        JOptionPane.showMessageDialog(this, "Record Updated");
+        s.update(r);
+        tr.commit();
+       new Update().setVisible(true);
+       dispose();
+    }
+
+    }
+</code></pre>
+      </div>
+
+      <p>
+          Step 13. Now build and run the application.
+      </p>
+      <p>Step 14. Now click on update button.</p>
+       <table id="indexing">
+
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="example14.shtml" title="Fetch Data from Database">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="example16.shtml" title="Delete Data from Database">Next</a></td>
+  </tr> 
+</table>
+
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+
+                <?php @include($_SERVER['DOCUMENT_ROOT'] . '/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>

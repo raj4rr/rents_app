@@ -1,0 +1,27 @@
+//To call the private data member we can use public method
+class a
+{
+	private int k; 
+    //Public method
+	public void display()
+	{
+		k=1000;
+		System.Console.WriteLine("The value of k is -->"+k);
+	}
+	//Method with parameter
+	public void display1(int p)
+	{
+		k=p;
+		System.Console.WriteLine("The value of k is -->"+k);
+	}
+}
+class b 
+{
+	public static void Main()
+	{
+		a x=new a(); 
+		x.display();
+		x.display1(3413);
+		
+	}
+}

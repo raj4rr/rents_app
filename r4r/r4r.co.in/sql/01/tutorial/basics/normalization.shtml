@@ -1,0 +1,151 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>NORMALIZATION,Functional Dependency,Fully Functional dependency,1NF,2NF,3NF,BCNF,4NF,5NF,Demoralization</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="NORMALIZATION,Functional Dependency,Fully Functional dependency,1NF,2NF,3NF,BCNF,4NF,5NF,Demoralization" >
+<meta name="keywords" CONTENT="NORMALIZATION,Functional Dependency,Fully Functional dependency,1NF,2NF,3NF,BCNF,4NF,5NF,Demoralization">
+
+<!--header start-->
+
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>DATABASE & SQL/PLSQL</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a><img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+			<a href="/sql/">SQL </a>
+              </div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/sql/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	  
+
+                        	                        	<!-- Header End-->
+
+ <div class="heading">NORMALIZATION</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="keys.shtml" title="Keys & Level of Abstraction">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="database_model.shtml" title="Other Database Model">Next</a></td>
+  </tr>
+</table>
+
+<p>Some rules that should followed to achieve a good database design are:</p>
+<ol>
+  <li>Each table should have an identifier.</li>
+  <li>Each table should store data for a single type entity</li>
+  <li>Columns that should store data for a single type of entity.</li>
+  <li>The repetition of values or columns should be avoided.</li>
+</ol>
+
+<p>To remove the redundancy of a table as called Normalization. 
+In other words duplicity or repetitions of data never occur in database. 
+Normalization is mainly minimizing redundancy, insertion, deletion and update 
+anomalies. Normalization achieve through functional dependency. Normalization is 
+much type.</p>
+
+<h3>Functional Dependency: </h3>
+<p>Functional dependencies (FDs) are used to specify formal measures of the 
+goodness of relational designs and used to define normal forms for relations. 
+FDs are constraints that are derived from the meaning and interrelationships of 
+the data attributes. FDs are derived from the real-world constraints on the 
+attributes</p>
+
+<p><h3>Example:</h3> A set of attributes X functionally determines a set of attributes Y 
+if the value of X determines a unique value for Y X--&gt;
+Y holds if whenever two tuples have the same value for X, they must have the 
+same value for Y If t1[X] =t2[X], then t1[Y] =t2[Y] in any relation instance r(R)
+X--&gt;Y in R specifies a constraint on all relation instances r(R)</p>
+
+<p><h3>Fully Functional dependency: </h3>
+A functional dependency X --&gt; Y is full functional dependency if any 
+attribute A removed from X. It means that the dependency does not hold any more 
+then it is not Fully Functional dependence. Means each attribute is functionally 
+dependent.</p>
+<p>All categories are in sequential order:</p>
+
+<ol type="1">
+
+<li><i>1NF:</i> There is no repetition of values and data in table known as 1NF. In other words the 1NF 
+disallows composite attributes, multivalued attributes, and nested relations, 
+attributes whose values for an individual tuple are non-atomic.</li>
+<li><i>2NF:</i> A relation schema R is in 2NF when it is in 1NF and every non-prime attribute A in R is fully 
+functionally dependent on primary key.</li>
+<li><i>3NF:</i> A relation schema R is in 3NF ,It is in 2NF and no non-prime attribute A in R is transitively 
+dependent on the primary key. Transitive dependent means if there a set of attribute Z.
+ that are neither a primary or candidate key and both X--&gt;Z and Y--&gt;Z holds.</li>
+<li><i>BCNF:</i> 3NF inadequate in some situation then it was not satisfactory for the table:</li>
+<ol>
+  <li>
+That had multiple candidate keys.
+  </li>
+  <li>
+Where the multiple candidate keys were composite.
+  </li>
+  <li>
+Where the multiple candidate keys were overlapped.
+
+<p>A relation schema R is in BCNF, It is in 3NF and additional constraints that for every FD X -&gt; A, 
+X must be a candidate key. &quot;A relation is in the Boyce-Codd normal form (BCNF) 
+if and only if every determinant is a candidate key.</p>
+</li>
+ </ol>
+
+<li><i>4NF:</i> A relation schema R is said to be in 4NF, it is in BCNF and for every Multivalued dependency X --&gt; 
+Y that holds over R, Either X is subset or equal to (or) XY = R. or X is a super</li> 
+
+<li><i>5NF:</i> A relation schema R is said to be in 5 NF, it is in 4NF and relation schema R is said to be 5NF if 
+for every join dependency {R1, R2, ..., Rn} that holds R, one the following is true Ri = R for some i. 
+and The join dependency is implied by the set of FD, over R in which the left side is key of R.</li>
+</ol>
+
+<div class="image">
+<img src="Image/nor.JPG">
+</div>
+
+<h3>Demoralization</h3>
+<p>The intentional introduction of redundancy in a table in order to improve 
+performance is called demoralization. The decision to demoralize results in a 
+trade-off performance and data integrity. Demoralization increases disk 
+utilization.</p>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="keys.shtml" title="Keys & Level of Abstraction">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="database_model.shtml" title="Other Database Model">Next</a></td>
+  </tr>
+</table>
+
+    <!--Footer  -->
+
+</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>

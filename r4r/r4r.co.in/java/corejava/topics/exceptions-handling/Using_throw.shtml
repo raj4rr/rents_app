@@ -1,0 +1,130 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>Exception Handling Using Throw</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="Exception Handling Using Throw">
+<meta name="keywords" CONTENT="Exception Handling Using Throw">
+
+<!-- header start-->	
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>Java Programing laungage</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+            <img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+            <a href="/java/">Java</a>
+              <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/java/corejava/">Core Java</a>
+
+                     <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/java/corejava/topics/exceptions-handling/">Exception Handling</a>
+              </div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/corejava/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	 
+<!-- header End-->
+
+<div class="heading">Exception Handling Using Throw</div>
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="Using_try_and_catch.shtml" title="Exception Handling Using Try and Catch">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="Using_throws.shtml" title="Exception Handling Using Throws">Next</a></td>
+  </tr> 
+</table>
+<p>Throws statement throw exception explicitly. if a method does not handle a checked exception, the method must declare it using the throw keyword. Exception throws as throw.</p>
+
+<h2>Throw throwableInstance</h2>
+<p>Throwableinstance must be object of throwable class or of it's sub class. This object will be caught using catch clause. After throw statement flow of excution stop immediately and switch to nearest catch statement. if it doesn't find any catch then default handler of halts the program and print stack trace.</p>
+<h3>Example</h3>
+<div class="code">
+<PRE>
+<FONT FACE="Arial">
+ <FONT COLOR="#008000">/*</FONT>
+<FONT COLOR="#008000"> *  Save as useThrow.java</FONT>
+<FONT COLOR="#008000"> *  Using throw</FONT>
+<FONT COLOR="#008000"> */</FONT>
+
+<FONT COLOR="#0000ff">package </FONT><FONT COLOR="#000000">usingthrow;</FONT>
+<FONT COLOR="#0000ff">class </FONT><FONT COLOR="#000000">throwDemo{</FONT>
+   <FONT COLOR="#0000ff">public void </FONT><FONT COLOR="#000000">throwmeth ( )</FONT>
+       <FONT COLOR="#000000">{</FONT>
+        <FONT COLOR="#0000ff">try</FONT>
+         <FONT COLOR="#000000">{</FONT>
+          <FONT COLOR="#0000ff">throw new </FONT><FONT COLOR="#ff0000">IllegalStateException</FONT><FONT COLOR="#000000">();</FONT>
+          <FONT COLOR="#000000">}</FONT>
+    <FONT COLOR="#0000ff">catch </FONT><FONT COLOR="#000000">(</FONT><FONT COLOR="#ff0000">NullPointerException </FONT><FONT COLOR="#000000">e)</FONT>
+         <FONT COLOR="#000000">{</FONT>
+
+ <FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.println(</FONT><FONT COLOR="#ff00ff">"Not Caught by the catch block inside throwmeth"</FONT><FONT COLOR="#000000">);</FONT>
+
+          <FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#0000ff">public class </FONT><FONT COLOR="#000000">useThrow {</FONT>
+    <FONT COLOR="#0000ff">public static void </FONT><FONT COLOR="#000000">main(</FONT><FONT COLOR="#ff0000">String</FONT><FONT COLOR="#000000">[] str)</FONT>
+    <FONT COLOR="#000000">{</FONT>
+        <FONT COLOR="#0000ff">try</FONT>
+        <FONT COLOR="#000000">{</FONT>
+            <FONT COLOR="#000000">throwDemo obj =</FONT><FONT COLOR="#0000ff">new </FONT><FONT COLOR="#000000">throwDemo();</FONT>
+            <FONT COLOR="#000000">obj.throwmeth();</FONT>
+        <FONT COLOR="#000000">}</FONT>
+        <FONT COLOR="#0000ff">catch</FONT><FONT COLOR="#000000">(</FONT><FONT COLOR="#ff0000">IllegalStateException </FONT><FONT COLOR="#000000">e)</FONT>
+        <FONT COLOR="#000000">{</FONT>
+           <FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.println(</FONT><FONT COLOR="#ff00ff">"Exception Caught in main "</FONT><FONT COLOR="#000000">+ e);</FONT>
+        <FONT COLOR="#000000">}</FONT>
+
+    <FONT COLOR="#000000">}</FONT>
+
+<FONT COLOR="#000000">}</FONT>
+</FONT>
+</PRE>
+</div>
+<p><i>Output:</i></p>
+<div class="output">
+<PRE>
+<FONT FACE="Arial">
+<FONT COLOR="#ff0000">Exception </FONT><FONT COLOR="#000000">Caught in main java.lang.</FONT><FONT COLOR="#ff0000">IllegalStateException</FONT>
+</FONT>
+</PRE>
+</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="Using_try_and_catch.shtml" title="Exception Handling Using Try and Catch">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="Using_throws.shtml" title="Exception Handling Using Throws">Next</a></td>
+  </tr> 
+</table>
+
+<!-- Footer Start-->	
+
+		</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->

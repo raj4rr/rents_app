@@ -1,0 +1,111 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD>
+<meta http-equiv="Content-Language" content="en-us">
+<TITLE>current time,find the current time</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name="description" CONTENT="current time,find the current time" >
+<meta name="keywords" CONTENT="current time,find the current time">
+
+<!-- header start-->	
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>Java Programing laungage</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+            <img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+            <a href="/java/">Java</a>
+              <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/java/corejava">Core Java</a>
+               <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/java/corejava/packages">Package</a>
+                     <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/java/corejava/packages/lang">Java Util Package</a>
+              </div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/corejava/packages/util/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	 
+
+<div class="heading">Getting the Current Time</div>
+<p>In This page of the tutorials, we shows the way of getting the current system time. Through the given Example we can get the current time in the proper format <b>(Hour:Minute:Second AM/PM).</b> This program shows the current time by using the some methods of the Calendar class. These are as follow.</p>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="create_readonly_collection.shtml" title="create readonly collection">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="determind_day%20_of_week.shtml" title="determind day of week">Next</a></td>
+  </tr> 
+</table>
+
+<!-- header End-->	
+<div class="heading">Code Description</div>
+
+<h3>Calendar</h3>
+<p>This class is used to help us to convert a date format object into the integer fields like YEAR, MONTH, HOUR, MINUTE, SECOND etc.</p>
+<h3>Calendar.get(Calendar.MINUTE)</h3>
+<p>This method gives us the minute value from the current time and MINUTE is the predefined field of the Calendar class which returns the integer value i.e. the minute value of the current time.</p>
+<h3>Calendar.AM_PM</h3>
+<p>This field of the Calendar class is used to return the integer value 1 and 0, if the current time is in the PM then it return the 1 otherwise it returns 0 value.</p>
+
+<h3>Example</h3>
+<div class="code">
+<PRE>
+<FONT FACE="Arial">
+<FONT COLOR="#0000ff">package </FONT><FONT COLOR="#000000">r4r;</FONT>
+<FONT COLOR="#0000ff">import </FONT><FONT COLOR="#000000">java.util.*;</FONT>
+<FONT COLOR="#0000ff">public class </FONT><FONT COLOR="#000000">correnttimetest {</FONT>
+<FONT COLOR="#0000ff">public static void </FONT><FONT COLOR="#000000">main(</FONT><FONT COLOR="#ff0000">String</FONT><FONT COLOR="#000000">[] args){</FONT>
+<FONT COLOR="#ff0000">Calendar </FONT><FONT COLOR="#000000">cal = </FONT><FONT COLOR="#0000ff">new </FONT><FONT COLOR="#ff0000">GregorianCalendar</FONT><FONT COLOR="#000000">();</FONT>
+<FONT COLOR="#ff0000">String </FONT><FONT COLOR="#000000">am_pm;</FONT>
+<FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">hour = cal.get(</FONT><FONT COLOR="#ff0000">Calendar</FONT><FONT COLOR="#000000">.HOUR);</FONT>
+<FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">minute = cal.get(</FONT><FONT COLOR="#ff0000">Calendar</FONT><FONT COLOR="#000000">.MINUTE);</FONT>
+<FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">second = cal.get(</FONT><FONT COLOR="#ff0000">Calendar</FONT><FONT COLOR="#000000">.SECOND);</FONT>
+<FONT COLOR="#0000ff">if</FONT><FONT COLOR="#000000">(cal.get(</FONT><FONT COLOR="#ff0000">Calendar</FONT><FONT COLOR="#000000">.AM_PM) == </FONT><FONT COLOR="#800080">0</FONT><FONT COLOR="#000000">)</FONT>
+<FONT COLOR="#000000">am_pm = </FONT><FONT COLOR="#ff00ff">"AM"</FONT><FONT COLOR="#000000">;</FONT>
+<FONT COLOR="#0000ff">else</FONT>
+<FONT COLOR="#000000">am_pm = </FONT><FONT COLOR="#ff00ff">"PM"</FONT><FONT COLOR="#000000">;</FONT>
+<FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.println(</FONT><FONT COLOR="#ff00ff">"Current Time is: " </FONT><FONT COLOR="#000000">+ hour + </FONT><FONT COLOR="#ff00ff">":" </FONT>
+ <FONT COLOR="#000000">+ minute + </FONT><FONT COLOR="#ff00ff">":" </FONT><FONT COLOR="#000000">+ second + </FONT><FONT COLOR="#ff00ff">" " </FONT><FONT COLOR="#000000">+ am_pm);</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#000000">}</FONT>
+</FONT>
+</PRE>
+</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="create_readonly_collection.shtml" title="create readonly collection">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="determind_day%20_of_week.shtml" title="determind day of week">Next</a></td>
+  </tr> 
+</table>
+
+<!-- Footer Start-->
+		</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->

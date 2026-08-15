@@ -1,0 +1,116 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>Extracting Data Into Another Table</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="Extracting Data Into Another Table" >
+<meta name="keywords" CONTENT="Extracting Data Into Another Table">
+
+<!--header start-->
+
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>DATABASE & SQL/PLSQL</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a><img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+			<a href="/sql/">SQL </a>
+              </div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/sql/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	  
+
+                        	                        	<!-- Header End-->	
+
+    <div class="heading">Extracting Data Into Another Table</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="subqry1.shtml" title="Queries with modified Comparison Operators">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="union.shtml" title="Using UNION Operator">Next</a></td>
+  </tr>
+</table>     
+
+<p>A SELECT statement with the INTO clause is used to store the result set in a 
+new table without a data definition process. The SELECT INTO statement creates a 
+new table.</p>
+
+<p>If the table is already exists, then the operation fails.<p>
+
+<p>The command syntax is the,</p>
+<div class="code">
+<pre>
+SELECT <i> columns_list</i>
+INTO <i> new_table_name</i>
+FROM <i>table_name 1, table_name 2.. table_name n</i>  
+WHERE <i>condition 1, condition 2..condition n</i>
+</pre>
+</div>
+
+<p>Where <i>coloumn_list</i> is the list of columns to be included in the new table.</p>
+<p><i>new_table_name</i> is the name of the new table where data is to be stored.</p>
+<p><i>condition</i> is the conditions on which rows are to be included in the new table..</p>
+<h3>Example:</h3>
+<p>Create a new table from the title table.</p>
+<div class="code">
+<pre>
+SELECT <i>title_id ,title</i>
+INTO <i>aditya</i>
+FROM <i>titles</i>
+WHERE <i>price>15</i>
+</pre>
+</div>
+<p>(8 row(s) affected)</p>
+<div class="code">
+<pre>
+SELECT  *
+FROM  aditya
+</pre>
+</div>
+<p><i>output</i></p>
+<div class="output">
+<div class="image">
+<img src="Image/extract.gif">
+</div>
+</div>
+<p>A new table created named aditya</p>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="subqry1.shtml" title="Queries with modified Comparison Operators">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="union.shtml" title="Using UNION Operator">Next</a></td>
+  </tr>
+</table>
+
+                       <!--Footer  -->
+
+</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>

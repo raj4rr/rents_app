@@ -1,0 +1,141 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD>
+<meta http-equiv="Content-Language" content="en-us">
+<TITLE>webservices introduction|Spring tutorial</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name="description" CONTENT="web services in spring learn how to use webservices in spring with this tutorial 
+provide description of all topics with examples" >
+<meta name="keywords" CONTENT="Web services, Features of Web Services,Web Services Architecture,Web Service Protocol Stack,  dependency injection, bean scopes, bean life cycle, inner beans,
+ autowiring, different modules, aspect oriented programming (AOP), database access (JDBC), Transaction Management, Web MVC 
+framework, Web Flow">
+
+		<!-- header start-->	
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+     <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>Spring Tutorials</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+			<img src="/images/left_menu_bullet.gif"/> <a href="/java/spring/">Spring</a>
+
+       </div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/spring/commonfiles/leftmenucore.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content">
+<!-- LEGACY BANNER START -->
+<div style="background: rgba(255, 244, 229, 0.9); border-left: 5px solid #ff9800; padding: 20px; margin-bottom: 25px; border-radius: 8px; font-family: 'Inter', sans-serif; box-shadow: 0 4px 6px rgba(0,0,0,0.05);">
+    <h3 style="margin-top: 0; color: #e65100; font-size: 1.2rem; display: flex; align-items: center; gap: 8px;">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+        Legacy Spring Framework Warning
+    </h3>
+    <p style="margin-bottom: 0; color: #5d4037; font-size: 1.05rem; line-height: 1.5;">
+        This tutorial teaches an outdated version of Spring using <strong>legacy XML configuration</strong> (<code>applicationContext.xml</code>). Modern Spring applications rely on <strong>Spring Boot</strong> and <strong>Java Annotations</strong>. This page is preserved for historical context and maintaining legacy systems.
+    </p>
+</div>
+<!-- LEGACY BANNER END -->
+ 	 
+
+<div class="heading">Introduction of  Webservice</div>
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="example_of_spring_and_jms_integration.shtml" title="example_of_spring_and_jms_integration">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="spring_webservices.shtml" title="spring_webservices">Next</a></td>
+  </tr> 
+</table>
+<p>Web Services are xml based independent and self descriptive application components that are used to communicate with open protocols. The core of Web Services is a combination of XML and HTTP (XML+HTTP), XML is used as a common language for communication in between different platforms and programming languages and HTTP is commonly used protocol that is used to transfer data between client and server.</p>
+OR
+<p>Web services are XML-based information exchange systems that use the Internet for direct application-to-application interaction. These systems can include programs, objects, messages, or documents. To summarize, a complete web service is, therefore, any service that:</p>
+<ol>
+<li>
+Is available over the Internet or private (intranet) networks.
+</li><li>
+Uses a standardized XML messaging system.
+</li><li>
+Is not tied to any one operating system or programming language.
+</li><li>
+Is self-describing via a common XML grammar.
+</li><li>
+Is discoverable via a simple find mechanism.
+</li>
+</ol>
+<div class="heading">Features of Web Services</div>
+<p>There are several features of Web Services as follows:</p>
+<ol>
+<li>
+<i>XML-based:</i> Web Services uses XML at data representation and data transportation layers. Using XML eliminates any networking, operating system, or platform binding.</li>
+<li>
+<i>Loosely coupled:</i> A web service is not tied to that web service directly. The web service interface can change over time without compromising the client's ability to interact with the service.</li>
+<li>
+<i>Ability to be synchronous or asynchronous:</i> Synchronicity refers to the binding of the client to the execution of the service. In synchronous invocations, the client blocks and waits for the service to complete its operation before continuing.</li>
+<p>Asynchronous operations allow a client to invoke a service and then execute other functions.</p>
+<li>
+<i>Supports Remote Procedure Calls (RPCs):</i> Web services allow clients to invoke procedures, functions, and methods on remote objects using an XML-based protocol. Remote procedures expose input and output parameters that a web service must support.</li>
+<li>
+<i>Supports document exchange:</i> One of the key advantages of XML is its generic way of representing not only data, but also complex documents. Web services support the transparent exchange of documents to facilitate business integration.</li>
+</ol>
+<div class="heading">Web Services Architecture</div>
+<p>There are two roles define the web service architecture as follows:</p>
+<h3>Web Service Roles</h3>
+<p> There are three major roles within the web service architecture as given below.</p>
+<ol>
+<li><font class="point_out">Service provider:</font> This is the provider of the web service. The service provider implements the service and makes it available on the Internet.</li>
+
+<li><font class="point_out">Service requestor:</font> This is any consumer of the web service. The requestor utilizes an existing web service by opening a network connection and sending an XML request.</li>
+
+<li><font class="point_out">Service registry:</font> This is a logically centralized directory of services. The registry provides a central place where developers can publish new services or find existing ones.</li>
+</ol>
+<div class="image">
+<img src="images/webservice_architecture.png">
+</div>
+<h3>Web Service Protocol Stack</h3>
+<p> There are four layers of Web Services protocol stack as follows:</p>
+<ol>
+<li><font class="point_out">Service transport:</font> This layer is responsible for transporting messages between applications. Currently, this layer includes hypertext transfer protocol (HTTP), Simple Mail Transfer Protocol (SMTP), file transfer protocol (FTP), and newer protocols, such as Blocks Extensible Exchange Protocol (BEEP).</li>
+
+<li><font class="point_out">XML messaging:</font> This layer is responsible for encoding messages in a common XML format so that messages can be understood at either end. Currently, this layer includes XML-RPC and SOAP.</li>
+
+<li><font class="point_out">Service description:</font> This layer is responsible for describing the public interface to a specific web service. Currently, service description is handled via the Web Service Description Language (WSDL).</li>
+
+<li><font class="point_out">Service discovery:</font> This layer is responsible for centralizing services into a common registry, and providing easy publish/find functionality. Currently, service discovery is handled via Universal Description, Discovery, and Integration (UDDI).</li>
+</ol>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="example_of_spring_and_jms_integration.shtml" title="example_of_spring_and_jms_integration">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="spring_webservices.shtml" title="spring_webservices">Next</a></td>
+  </tr> 
+</table>
+
+		</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->

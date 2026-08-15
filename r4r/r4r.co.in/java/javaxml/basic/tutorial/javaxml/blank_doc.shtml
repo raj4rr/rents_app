@@ -1,0 +1,131 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD>
+<meta http-equiv="Content-Language" content="en-us">
+<TITLE>Creating Blank Document DOM</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name="description" CONTENT="Creating Blank Document DOM" >
+<meta name="keywords" CONTENT="Creating Blank Document DOM">
+
+<!-- header start-->	
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>JAVA XML</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+            <img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+            <a href="/java/">Java</a>
+              <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/java/javaxml">Java XML</a>
+                                   <img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+								   <a href="/java/javaxml/basic/tutorial/javaxml/">JAVA XML Basics</a>
+              </div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/javaxml/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	 
+
+<div class="heading">Creating Blank Document DOM</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="Introduction.shtml" title="Introduction" >Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="Access_root.shtml" title="Access The XML Root Element" >Next</a></td>
+  </tr> 
+</table>
+<!-- header End-->
+
+<p>
+In this tutorials we are going to create the blank document. JAXP is an interface of java which provide the standard approach to parsing XML document. for creating the blank document we use the BuilderFactory to create the DocumentBuilder Class with the JAXP. In XML the DocumentBuilderFactory is used to create the new Document object model parser.
+</p>
+
+<div class="code">
+<pre>
+<font color="#ff0000">DocumentBuilderFactory </font><font color="#000000">fact = </font><font color="#ff0000">DocumentBuilderFactory</font>
+<font color="#000000">.newInstance();</font>
+<font color="#ff0000">DocumentBuilder </font><font color="#000000">pars = fact.newDocumentBuilder();</font>
+<font color="#ff0000">Document </font><font color="#000000">docu = pars.parse(myInputSource);</font>
+</pre>
+</div>
+<p>The parse function is used to parse existing xml document. </p>
+<p>DocumentBuilderFactory is use for the access to system property javax.xml.parsers.XmlDocumentParserFactory . <br>
+this property is help to find the class to load. So we can change the parser by calling. </p>
+
+<div class="code"><pre>
+<font color="#ff0000">System</font><font color="#000000">.setProperty(</font><font color="#ff00ff">&quot;javax.xml.parsers</font>
+<font color="#000000">.XmlDocumentParserFactory</font><font color="#ff00ff">&quot;,&quot;</font><font color="#000000">com.foo.myFactory</font><font color="#ff00ff">&quot;);</font>
+</pre>
+
+</div>
+
+<h3>Example</h3>
+
+<div class="code">
+<pre>
+<font color="#0000ff">package </font><font color="#000000">r4r;</font>
+<font color="#0000ff">import </font><font color="#000000">org.w3c.dom.*;</font>
+<font color="#0000ff">import </font><font color="#000000">javax.xml.*;</font>
+<font color="#0000ff">import </font><font color="#000000">javax.xml.parsers.</font><font color="#ff0000">DocumentBuilder</font><font color="#000000">;</font>
+<font color="#0000ff">import </font><font color="#000000">javax.xml.parsers.</font><font color="#ff0000">DocumentBuilderFactory</font><font color="#000000">;</font>
+<font color="#0000ff">public class </font><font color="#000000">blankdoctest {</font>
+<font color="#0000ff">public static void </font><font color="#000000">main(</font><font color="#ff0000">String</font><font color="#000000">[] args)</font>
+<font color="#000000">{</font>
+<font color="#ff0000">System</font><font color="#000000">.out.println(</font><font color="#ff00ff">&quot;Creation of Balnk Document:&quot;</font><font color="#000000">);</font>
+<font color="#0000ff">try</font><font color="#000000">{</font>
+<font color="#008000">//Firstly create instance of DocumentBuilderFactory</font>
+<font color="#ff0000">DocumentBuilderFactory </font><font color="#000000">fact = </font><font color="#ff0000">DocumentBuilderFactory</font>
+	<font color="#000000">.newInstance();</font>
+<font color="#008000">//Get the DocumentBuilder</font>
+<font color="#ff0000">DocumentBuilder </font><font color="#000000">pars = fact.newDocumentBuilder();</font>
+<font color="#008000">//Create blank DOM Document</font>
+<font color="#ff0000">Document </font><font color="#000000">docu = pars.newDocument();</font>
+<font color="#000000">}</font><font color="#0000ff">catch</font><font color="#000000">(</font><font color="#ff0000">Exception </font><font color="#000000">e){</font>
+<font color="#ff0000">System</font><font color="#000000">.out.println(e.getMessage());</font>
+<font color="#000000">}</font>
+<font color="#ff0000">System</font><font color="#000000">.out.println(</font><font color="#ff00ff">&quot;Creation Done...&quot;</font><font color="#000000">);</font>
+<font color="#ff0000">System</font><font color="#000000">.out.println(</font><font color="#ff00ff">&quot;Exiting from Document...&quot;</font><font color="#000000">);</font>
+<font color="#000000">}</font>
+<font color="#000000">}</font>
+</pre>
+</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="Introduction.shtml" title="Introduction" >Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="Access_root.shtml" title="Access The XML Root Element" >Next</a></td>
+  </tr> 
+</table>
+
+<!-- Footer Start-->	
+
+		</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->

@@ -1,0 +1,335 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD>
+<meta http-equiv="Content-Language" content="en-us">
+<TITLE>Example of Without using template</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name="description" CONTENT="Show in a Message Box using Validation Summary,spring tutorials,spring framework,spring mvc,spring interview question,spring framework tutorials,spring aop" >
+<meta name="keywords" CONTENT="Show in a Message Box using Validation Summary,spring tutorials,spring framework,spring mvc,spring interview question,spring framework tutorials,spring aop">
+
+<!-- header start-->	
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>Spring Framework</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+           <img src="/images/left_menu_bullet.gif" width="11" height="6"/>  <a href="/java/">Java</a>    
+		      <img src="/images/left_menu_bullet.gif" width="11" height="6"/><a href="/java/spring/">Spring</a>
+
+              </div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/spring/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	 
+
+<!-- header End--> 
+
+<div class="heading">Example of Without using template insert, update, delete and select data </div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="Template.shtml" title="Template">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="WithTemplate.shtml" title="With Template">Next</a></td>
+  </tr> 
+</table>
+
+<p><i>Introduction:</i> This example provide the difference between template design pattern and simple design pattern to insert , update, delete and select all data from the data base.</p>
+
+<p>Technology use to run this source code</p>
+<ol>
+<li>
+    Spring 2.5 jar files
+    </li>
+    <li>
+    Eclipse IDE
+    </li>
+    <li>
+    Tomcat Server
+    </li>
+     </ol>
+
+<p>Source Code:</p>
+<h3>ConnectionProvider.java</h3>
+<div class="code">
+<PRE>
+<FONT COLOR="#0000ff">package </FONT><FONT COLOR="#000000">org.r4r;</FONT>
+<FONT COLOR="#0000ff">import </FONT><FONT COLOR="#000000">java.sql.</FONT><FONT COLOR="#ff0000">Connection</FONT><FONT COLOR="#000000">;</FONT>
+<FONT COLOR="#0000ff">import </FONT><FONT COLOR="#000000">java.sql.</FONT><FONT COLOR="#ff0000">DriverManager</FONT><FONT COLOR="#000000">;</FONT>
+<FONT COLOR="#0000ff">public class </FONT><FONT COLOR="#000000">ConnectionProvider {</FONT>
+<FONT COLOR="#0000ff">public static </FONT><FONT COLOR="#ff0000">Connection  </FONT><FONT COLOR="#000000">getConnection()</FONT>
+<FONT COLOR="#000000">{</FONT>
+<FONT COLOR="#ff0000">Connection </FONT><FONT COLOR="#000000">con=</FONT><FONT COLOR="#0000ff">null</FONT><FONT COLOR="#000000">;</FONT>
+<FONT COLOR="#0000ff">try</FONT><FONT COLOR="#000000">{</FONT>
+<FONT COLOR="#ff0000">Class</FONT><FONT COLOR="#000000">.forName(</FONT><FONT COLOR="#ff00ff">"com.mysql.jdbc.Driver"</FONT><FONT COLOR="#000000">);</FONT>
+<FONT COLOR="#000000">con=</FONT><FONT COLOR="#ff0000">DriverManager</FONT><FONT COLOR="#000000">.getConnection</FONT>
+<FONT COLOR="#000000">(</FONT><FONT COLOR="#ff00ff">"jdbc:mysql://localhost/tableone"</FONT><FONT COLOR="#000000">,</FONT><FONT COLOR="#ff00ff">"root"</FONT><FONT COLOR="#000000">,</FONT><FONT COLOR="#ff00ff">"root"</FONT><FONT COLOR="#000000">);</FONT>
+<FONT COLOR="#000000">}</FONT><FONT COLOR="#0000ff">catch</FONT><FONT COLOR="#000000">(</FONT><FONT COLOR="#ff0000">Exception </FONT><FONT COLOR="#000000">e)</FONT>
+<FONT COLOR="#000000">{</FONT>
+<FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.println(e);</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#0000ff">return </FONT><FONT COLOR="#000000">con;</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#000000">}</FONT>
+</PRE>
+</div>
+
+<h3>Emp.java</h3>
+<div class="code">
+<PRE>
+<FONT COLOR="#0000ff">package </FONT><FONT COLOR="#000000">org.r4r;</FONT>
+<FONT COLOR="#0000ff">public class </FONT><FONT COLOR="#000000">Emp {</FONT>
+<FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">id;</FONT>
+<FONT COLOR="#ff0000">String </FONT><FONT COLOR="#000000">name,job;</FONT>
+<FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">salary;</FONT>
+<FONT COLOR="#0000ff">public </FONT><FONT COLOR="#000000">Emp() {</FONT>
+<FONT COLOR="#0000ff">super</FONT><FONT COLOR="#000000">();</FONT>
+<FONT COLOR="#008000">// TODO Auto-generated constructor stub</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#0000ff">public </FONT><FONT COLOR="#000000">Emp(</FONT><FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">id, </FONT><FONT COLOR="#ff0000">String </FONT><FONT COLOR="#000000">name, </FONT><FONT COLOR="#ff0000">String </FONT><FONT COLOR="#000000">job, </FONT><FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">salary) {</FONT>
+<FONT COLOR="#0000ff">super</FONT><FONT COLOR="#000000">();</FONT>
+<FONT COLOR="#0000ff">this</FONT><FONT COLOR="#000000">.id = id;</FONT>
+<FONT COLOR="#0000ff">this</FONT><FONT COLOR="#000000">.name = name;</FONT>
+<FONT COLOR="#0000ff">this</FONT><FONT COLOR="#000000">.job = job;</FONT>
+<FONT COLOR="#0000ff">this</FONT><FONT COLOR="#000000">.salary = salary;</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#0000ff">public int </FONT><FONT COLOR="#000000">getId() {</FONT>
+<FONT COLOR="#0000ff">return </FONT><FONT COLOR="#000000">id;</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#0000ff">public void </FONT><FONT COLOR="#000000">setId(</FONT><FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">id) {</FONT>
+<FONT COLOR="#0000ff">this</FONT><FONT COLOR="#000000">.id = id;</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#0000ff">public </FONT><FONT COLOR="#ff0000">String </FONT><FONT COLOR="#000000">getName() {</FONT>
+<FONT COLOR="#0000ff">return </FONT><FONT COLOR="#000000">name;</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#0000ff">public void </FONT><FONT COLOR="#000000">setName(</FONT><FONT COLOR="#ff0000">String </FONT><FONT COLOR="#000000">name) {</FONT>
+<FONT COLOR="#0000ff">this</FONT><FONT COLOR="#000000">.name = name;</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#0000ff">public </FONT><FONT COLOR="#ff0000">String </FONT><FONT COLOR="#000000">getJob() {</FONT>
+<FONT COLOR="#0000ff">return </FONT><FONT COLOR="#000000">job;</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#0000ff">public void </FONT><FONT COLOR="#000000">setJob(</FONT><FONT COLOR="#ff0000">String </FONT><FONT COLOR="#000000">job) {</FONT>
+<FONT COLOR="#0000ff">this</FONT><FONT COLOR="#000000">.job = job;</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#0000ff">public int </FONT><FONT COLOR="#000000">getSalary() {</FONT>
+<FONT COLOR="#0000ff">return </FONT><FONT COLOR="#000000">salary;</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#0000ff">public void </FONT><FONT COLOR="#000000">setSalary(</FONT><FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">salary) {</FONT>
+<FONT COLOR="#0000ff">this</FONT><FONT COLOR="#000000">.salary = salary;</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#000000">}</FONT>
+</PRE>
+</div>	   
+
+ <h3>EmpDao.java</h3>
+<div class="code">
+<PRE>
+<FONT COLOR="#0000ff">package </FONT><FONT COLOR="#000000">org.r4r;</FONT>
+<FONT COLOR="#0000ff">import </FONT><FONT COLOR="#000000">java.sql.*;</FONT>
+<FONT COLOR="#0000ff">import </FONT><FONT COLOR="#000000">java.util.</FONT><FONT COLOR="#ff0000">Scanner</FONT><FONT COLOR="#000000">;</FONT>
+<FONT COLOR="#0000ff">public class </FONT><FONT COLOR="#000000">EmpDao {</FONT>
+<FONT COLOR="#0000ff">public void </FONT><FONT COLOR="#000000">save(Emp emp){</FONT>
+<FONT COLOR="#0000ff">try</FONT><FONT COLOR="#000000">{</FONT>
+<FONT COLOR="#ff0000">Connection </FONT><FONT COLOR="#000000">con=ConnectionProvider.getConnection();</FONT>
+<FONT COLOR="#ff0000">PreparedStatement </FONT><FONT COLOR="#000000">stmt=con.prepareStatement</FONT>
+<FONT COLOR="#000000">(</FONT><FONT COLOR="#ff00ff">"insert into emp values(?,?,?,?)"</FONT><FONT COLOR="#000000">);</FONT>
+<FONT COLOR="#000000">stmt.setInt(</FONT><FONT COLOR="#800080">1</FONT><FONT COLOR="#000000">, emp.getId());</FONT>
+<FONT COLOR="#000000">stmt.setString(</FONT><FONT COLOR="#800080">2</FONT><FONT COLOR="#000000">, emp.getName());</FONT>
+<FONT COLOR="#000000">stmt.setString(</FONT><FONT COLOR="#800080">3</FONT><FONT COLOR="#000000">, emp.getJob());</FONT>
+<FONT COLOR="#000000">stmt.setInt(</FONT><FONT COLOR="#800080">4</FONT><FONT COLOR="#000000">, emp.getSalary());</FONT>
+<FONT COLOR="#000000">stmt.executeUpdate();</FONT>
+<FONT COLOR="#000000">con.close();</FONT>
+<FONT COLOR="#000000">}</FONT><FONT COLOR="#0000ff">catch</FONT><FONT COLOR="#000000">(</FONT><FONT COLOR="#ff0000">Exception </FONT><FONT COLOR="#000000">e){</FONT>
+<FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.println(e);</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#0000ff">public void </FONT><FONT COLOR="#000000">update(Emp emp){</FONT>
+<FONT COLOR="#0000ff">try</FONT><FONT COLOR="#000000">{</FONT>
+<FONT COLOR="#ff0000">Connection </FONT><FONT COLOR="#000000">con=ConnectionProvider.getConnection();</FONT>
+<FONT COLOR="#ff0000">Scanner </FONT><FONT COLOR="#000000">in=</FONT><FONT COLOR="#0000ff">new </FONT><FONT COLOR="#ff0000">Scanner</FONT><FONT COLOR="#000000">(</FONT><FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.in);</FONT>
+<FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.println(</FONT><FONT COLOR="#ff00ff">"Enter the id:"</FONT><FONT COLOR="#000000">);</FONT>
+<FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">id=in.nextInt();</FONT>
+<FONT COLOR="#000000">in.nextLine();</FONT>
+<FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.println(</FONT><FONT COLOR="#ff00ff">"Enter the name:"</FONT><FONT COLOR="#000000">);</FONT>
+<FONT COLOR="#ff0000">String </FONT><FONT COLOR="#000000">name=in.nextLine();</FONT>
+<FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.println(</FONT><FONT COLOR="#ff00ff">"Enter the job:"</FONT><FONT COLOR="#000000">);</FONT>
+<FONT COLOR="#ff0000">String </FONT><FONT COLOR="#000000">job=in.nextLine();</FONT>
+<FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.println(</FONT><FONT COLOR="#ff00ff">"Enter the salary:"</FONT><FONT COLOR="#000000">);</FONT>
+<FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">salary=in.nextInt();</FONT>
+<FONT COLOR="#000000">in.nextLine();</FONT>
+<FONT COLOR="#ff0000">PreparedStatement </FONT><FONT COLOR="#000000">stmt=con.prepareStatement</FONT>
+<FONT COLOR="#000000">(</FONT><FONT COLOR="#ff00ff">"update emp set name=?, job=?, salary=? where id=?"</FONT><FONT COLOR="#000000">);</FONT>
+<FONT COLOR="#000000">stmt.setInt(</FONT><FONT COLOR="#800080">4</FONT><FONT COLOR="#000000">, id);</FONT>
+<FONT COLOR="#000000">stmt.setString(</FONT><FONT COLOR="#800080">1</FONT><FONT COLOR="#000000">, name);</FONT>
+<FONT COLOR="#000000">stmt.setString(</FONT><FONT COLOR="#800080">2</FONT><FONT COLOR="#000000">, job);</FONT>
+<FONT COLOR="#000000">stmt.setInt(</FONT><FONT COLOR="#800080">3</FONT><FONT COLOR="#000000">, salary);</FONT>
+<FONT COLOR="#000000">stmt.executeUpdate();</FONT>
+<FONT COLOR="#000000">con.close();</FONT>
+<FONT COLOR="#000000">}</FONT><FONT COLOR="#0000ff">catch</FONT><FONT COLOR="#000000">(</FONT><FONT COLOR="#ff0000">Exception </FONT><FONT COLOR="#000000">e){</FONT>
+<FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.println(e);</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#0000ff">public void </FONT><FONT COLOR="#000000">delete(Emp emp){</FONT>
+<FONT COLOR="#0000ff">try</FONT><FONT COLOR="#000000">{</FONT>
+<FONT COLOR="#ff0000">Connection </FONT><FONT COLOR="#000000">con=ConnectionProvider.getConnection();</FONT>
+<FONT COLOR="#ff0000">Scanner </FONT><FONT COLOR="#000000">in=</FONT><FONT COLOR="#0000ff">new </FONT><FONT COLOR="#ff0000">Scanner</FONT><FONT COLOR="#000000">(</FONT><FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.in);</FONT>
+<FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.println(</FONT><FONT COLOR="#ff00ff">"Enter the id:"</FONT><FONT COLOR="#000000">);</FONT>
+<FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">id=in.nextInt();</FONT>
+<FONT COLOR="#ff0000">PreparedStatement </FONT><FONT COLOR="#000000">stmt=con.prepareStatement</FONT>
+<FONT COLOR="#000000">(</FONT><FONT COLOR="#ff00ff">"delete from emp where id=?"</FONT><FONT COLOR="#000000">);</FONT>
+<FONT COLOR="#000000">stmt.setInt(</FONT><FONT COLOR="#800080">1</FONT><FONT COLOR="#000000">, id);</FONT>
+<FONT COLOR="#000000">stmt.executeUpdate();</FONT>
+<FONT COLOR="#000000">con.close();</FONT>
+<FONT COLOR="#000000">}</FONT><FONT COLOR="#0000ff">catch</FONT><FONT COLOR="#000000">(</FONT><FONT COLOR="#ff0000">Exception </FONT><FONT COLOR="#000000">e){</FONT>
+<FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.println(e);</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#000000">}</FONT>
+</PRE>
+</div>
+
+<h3>InsertTest.java</h3>
+<div class="code">
+<PRE>
+<FONT COLOR="#0000ff">package </FONT><FONT COLOR="#000000">org.r4r;</FONT>
+<FONT COLOR="#0000ff">import </FONT><FONT COLOR="#000000">java.util.</FONT><FONT COLOR="#ff0000">Scanner</FONT><FONT COLOR="#000000">;</FONT>
+<FONT COLOR="#0000ff">public class </FONT><FONT COLOR="#000000">InsertTest {</FONT>
+<FONT COLOR="#0000ff">public static void </FONT><FONT COLOR="#000000">main(</FONT><FONT COLOR="#ff0000">String</FONT><FONT COLOR="#000000">[] args) {</FONT>
+<FONT COLOR="#ff0000">Scanner </FONT><FONT COLOR="#000000">in=</FONT><FONT COLOR="#0000ff">new </FONT><FONT COLOR="#ff0000">Scanner</FONT><FONT COLOR="#000000">(</FONT><FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.in);</FONT>
+<FONT COLOR="#000000">EmpDao dao=</FONT><FONT COLOR="#0000ff">new </FONT><FONT COLOR="#000000">EmpDao();</FONT>
+<FONT COLOR="#0000ff">while</FONT><FONT COLOR="#000000">(</FONT><FONT COLOR="#0000ff">true</FONT><FONT COLOR="#000000">){</FONT>
+<FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.println(</FONT><FONT COLOR="#ff00ff">"Enter the id:"</FONT><FONT COLOR="#000000">);</FONT>
+<FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">id=in.nextInt();</FONT>
+<FONT COLOR="#000000">in.nextLine();</FONT>
+<FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.println(</FONT><FONT COLOR="#ff00ff">"Enter the name:"</FONT><FONT COLOR="#000000">);</FONT>
+<FONT COLOR="#ff0000">String </FONT><FONT COLOR="#000000">name=in.nextLine();</FONT>
+<FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.println(</FONT><FONT COLOR="#ff00ff">"Enter the job:"</FONT><FONT COLOR="#000000">);</FONT>
+<FONT COLOR="#ff0000">String </FONT><FONT COLOR="#000000">job=in.nextLine();</FONT>
+<FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.println(</FONT><FONT COLOR="#ff00ff">"Enter the salary:"</FONT><FONT COLOR="#000000">);</FONT>
+<FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">salary=in.nextInt();</FONT>
+<FONT COLOR="#000000">in.nextLine();</FONT>
+<FONT COLOR="#000000">Emp emp=</FONT><FONT COLOR="#0000ff">new </FONT><FONT COLOR="#000000">Emp(id,name,job,salary);</FONT>
+<FONT COLOR="#000000">dao.save(emp);</FONT>
+<FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.println(</FONT><FONT COLOR="#ff00ff">"Insert continue write yes/no:"</FONT><FONT COLOR="#000000">);</FONT>
+<FONT COLOR="#ff0000">String </FONT><FONT COLOR="#000000">reg=in.nextLine();</FONT>
+<FONT COLOR="#0000ff">if</FONT><FONT COLOR="#000000">(reg.equals(</FONT><FONT COLOR="#ff00ff">"no"</FONT><FONT COLOR="#000000">))</FONT>
+<FONT COLOR="#0000ff">break</FONT><FONT COLOR="#000000">;</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.println(</FONT><FONT COLOR="#ff00ff">"You are successfully insert data..."</FONT><FONT COLOR="#000000">);</FONT>
+      <FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#000000">}</FONT>
+</PRE>
+</div>
+
+<h3>UpdateTest.java</h3>
+<div class="code">
+<PRE>
+<FONT COLOR="#0000ff">package </FONT><FONT COLOR="#000000">org.r4r;</FONT>
+<FONT COLOR="#0000ff">public class </FONT><FONT COLOR="#000000">UpdateTest {</FONT>
+<FONT COLOR="#0000ff">public static void </FONT><FONT COLOR="#000000">main(</FONT><FONT COLOR="#ff0000">String</FONT><FONT COLOR="#000000">[] args) {</FONT>
+<FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.println(</FONT><FONT COLOR="#ff00ff">"Update Emp Object....."</FONT><FONT COLOR="#000000">);</FONT>
+<FONT COLOR="#000000">EmpDao dao=</FONT><FONT COLOR="#0000ff">new </FONT><FONT COLOR="#000000">EmpDao();</FONT>
+<FONT COLOR="#000000">Emp emp=</FONT><FONT COLOR="#0000ff">new </FONT><FONT COLOR="#000000">Emp();</FONT>
+<FONT COLOR="#000000">dao.update(emp);</FONT>
+<FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.println(</FONT><FONT COLOR="#ff00ff">"You are successfully update"</FONT><FONT COLOR="#000000">);</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#000000">}</FONT>
+</PRE>
+</div>
+
+<h3>DeleteTest.java</h3>
+<div class="code">
+<PRE>
+<FONT COLOR="#0000ff">package </FONT><FONT COLOR="#000000">org.r4r;</FONT>
+<FONT COLOR="#0000ff">public class </FONT><FONT COLOR="#000000">DeleteTest {</FONT>
+<FONT COLOR="#0000ff">public static void </FONT><FONT COLOR="#000000">main(</FONT><FONT COLOR="#ff0000">String</FONT><FONT COLOR="#000000">[] args) {</FONT>
+<FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.println(</FONT><FONT COLOR="#ff00ff">"Deleted Emp Object....."</FONT><FONT COLOR="#000000">);</FONT>
+<FONT COLOR="#000000">EmpDao dao=</FONT><FONT COLOR="#0000ff">new </FONT><FONT COLOR="#000000">EmpDao();</FONT>
+<FONT COLOR="#000000">Emp emp=</FONT><FONT COLOR="#0000ff">new </FONT><FONT COLOR="#000000">Emp();</FONT>
+<FONT COLOR="#000000">dao.delete(emp);</FONT>
+<FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.println(</FONT><FONT COLOR="#ff00ff">"You are successfully delete"</FONT><FONT COLOR="#000000">);</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#000000">}</FONT>
+</PRE>
+
+</div>
+
+<p><h3>output:</h3></p>
+<div class="output">
+<PRE>
+InsertTest
+
+Enter the id:
+1005
+Enter the name:
+Mukund Singh
+Enter the job:
+Java Developer
+Enter the salary:
+25000
+Insert continue write yes/no:
+no
+You are successfully insert data...
+
+UpdateTest
+
+Update Emp Object.....
+Enter the id:
+1005
+Enter the name:
+Bal Mukund
+Enter the job:
+Spring Develo
+Enter the salary:
+30000
+You are successfully update
+
+DeleteTest
+
+Deleted Emp Object.....
+Enter the id:
+1005
+You are successfully delete
+</PRE>
+</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="Template.shtml" title="Template">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="WithTemplate.shtml" title="With Template">Next</a></td>
+  </tr> 
+</table>
+<!-- Footer Start-->
+
+		</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->
+

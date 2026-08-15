@@ -1,0 +1,491 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD>
+<meta http-equiv="Content-Language" content="en-us">
+<TITLE>Create an application for accessing ImageConversionFilter in Servlet</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name="description" CONTENT="Create an application for access ImageConversionFilter in servlet" >
+<meta name="keywords" CONTENT="Create an application for access ImageConversionFilter in servlet, ImageConversionFilter, ImageConversionFilter Example,  access ImageConversionFilter in servlet, ImageConversionFilter in servlet, use ImageConversionFilter, access ImageConversionFilter,  ImageConversionFilter examples, Servlet Filter, Servlet Filters, Servlet Filters Examples, Writing Servlet Filters, Filter Request and Response Interface filter, Filter, doFilter, FilterChain, Filters Tutorials, Learning, Beginners">
+
+<!-- header start-->	
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+   	  <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>Java Servlet Programing Laungage</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a><img src="/images/left_menu_bullet.gif"/> <a href="/java/servlet/../">Java</a><img src="/images/left_menu_bullet.gif"/><a href="/java/servlet/">Servlet</a><img src="/images/left_menu_bullet.gif"/><a href="index.shtml">Servlet Filter Examples</a>
+       </div>
+
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/servlet/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	 
+<!-- header End-->
+
+<div class="heading">Create an application for accessing ImageConversionFilter in Servlet</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="AuditingFilter.shtml" title="Create an application to accessing AuditingFilter in Servlet">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="DataCompressionFilter.shtml" title="Create an application to accessing DataCompressionFilter in Servlet">Next</a></td>
+  </tr> 
+</table>
+
+<p>In this program, an ImageConversionFilter is used for converting image into another format by converting image pixels.</p>
+<p>Steps involve in creating filter class and mapping it into web.xml file. <a href="FilterServlet.shtml">click here</a></p>
+
+			<h3>Application directory structure</h3>
+			<div class="image">
+			<img src="Servlet%20Filter%20image/AuditingFilter.gif">
+			</div>
+
+			<h3>Web.xml</h3>
+			<div class="code">
+			<pre>
+<font color="#0000ff">&lt;?xml </font><font color="#ff0000">version</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;1.0&quot; </font><font color="#ff0000">encoding</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;UTF-8&quot;</font><font color="#800080">?</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">web-app </font><font color="#ff0000">version</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;3.0&quot; </font>
+ <font color="#ff0000">xmlns</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;http://java.sun.com/xml/ns/javaee&quot;</font>
+  <font color="#800080">xmlns:xsi</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</font>
+ <font color="#800080">xsi:schemaLocation</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;http://java.sun.com/xml/ns/javaee</font>
+<font color="#ff00ff">  http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd&quot;</font><font color="#0000ff">&gt;</font>
+<font color="#000000"> </font><font color="#0000ff">&lt;</font><font color="#808000">filter</font><font color="#0000ff">&gt;</font>
+<font color="#000000">  </font><font color="#0000ff">&lt;</font><font color="#808000">filter-name</font><font color="#0000ff">&gt;</font><font color="#000000">ImageConvertFilter</font><font color="#0000ff">&lt;/</font><font color="#808000">filter-name</font><font color="#0000ff">&gt;</font>
+<font color="#000000">  </font><font color="#0000ff">&lt;</font><font color="#808000">filter-class</font><font color="#0000ff">&gt;</font><font color="#000000">r4r.Filter.ImageConvertFilter</font><font color="#0000ff">&lt;/</font><font color="#808000">filter-class</font><font color="#0000ff">&gt;</font>
+<font color="#000000"> </font><font color="#0000ff">&lt;/</font><font color="#808000">filter</font><font color="#0000ff">&gt;</font>
+<font color="#000000"> </font><font color="#0000ff">&lt;</font><font color="#808000">filter-mapping</font><font color="#0000ff">&gt;</font>
+<font color="#000000">  </font><font color="#0000ff">&lt;</font><font color="#808000">filter-name</font><font color="#0000ff">&gt;</font><font color="#000000">ImageConvertFilter</font><font color="#0000ff">&lt;/</font><font color="#808000">filter-name</font><font color="#0000ff">&gt;</font>
+<font color="#000000">  </font><font color="#0000ff">&lt;</font><font color="#808000">url-pattern</font><font color="#0000ff">&gt;</font><font color="#000000">/*</font><font color="#0000ff">&lt;/</font><font color="#808000">url-pattern</font><font color="#0000ff">&gt;</font>
+<font color="#000000"> </font><font color="#0000ff">&lt;/</font><font color="#808000">filter-mapping</font><font color="#0000ff">&gt;</font>
+<font color="#000000"> </font><font color="#0000ff">&lt;</font><font color="#808000">session-config</font><font color="#0000ff">&gt;</font>
+<font color="#000000">  </font><font color="#0000ff">&lt;</font><font color="#808000">session-timeout</font><font color="#0000ff">&gt;</font>
+<font color="#000000">     30</font>
+<font color="#000000">  </font><font color="#0000ff">&lt;/</font><font color="#808000">session-timeout</font><font color="#0000ff">&gt;</font>
+<font color="#000000"> </font><font color="#0000ff">&lt;/</font><font color="#808000">session-config</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">web-app</font><font color="#0000ff">&gt;</font>
+</pre>
+</div>
+
+			<h3>Index.jsp</h3>
+			<div class="code">
+			<pre>
+<font color="#800000">&lt;%-- </font>
+ <font color="#800000">Document: index.jsp</font>
+<font color="#800000">--%&gt;</font>
+<font color="#800000">&lt;%@page contentType=</font><font color="#ff00ff">&quot;text/html&quot; </font><font color="#800000">pageEncoding=</font><font color="#ff00ff">&quot;UTF-8&quot;</font><font color="#800000">%&gt;</font>
+<font color="#0000ff">&lt;!DOCTYPE </font><font color="#800080">html</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;html&gt;</font>
+<font color="#000000"> </font><font color="#0000ff">&lt;head&gt;</font>
+<font color="#000000">  </font><font color="#0000ff">&lt;meta </font><font color="#ff0000">http-equiv</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;Content-Type&quot;</font>
+       <font color="#ff0000">content</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;text/html; charset=UTF-8&quot;</font><font color="#0000ff">&gt;</font>
+<font color="#000000">  </font><font color="#0000ff">&lt;title&gt;</font><font color="#000000">r4r.co.in-index</font><font color="#0000ff">&lt;/title&gt;</font>
+<font color="#000000"> </font><font color="#0000ff">&lt;/head&gt;</font>
+<font color="#000000"> </font><font color="#0000ff">&lt;body&gt;</font>
+<font color="#000000">  </font><font color="#0000ff">&lt;h1&gt;</font><font color="#000000">Image Conversion Filter!</font><font color="#0000ff">&lt;/h1&gt;</font>
+<font color="#000000">  </font><font color="#0000ff">&lt;form </font><font color="#ff0000">method</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;POST&quot;</font><font color="#0000ff">&gt;</font>
+<font color="#000000">  </font><font color="#0000ff">&lt;img </font><font color="#ff0000">src</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;java-logo1.gif&quot; </font><font color="#ff0000">width</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;651&quot; </font>
+         <font color="#ff0000">height</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;400&quot; </font><font color="#ff0000">alt</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;java-logo1&quot;</font><font color="#0000ff">/&gt;&lt;br/&gt;</font>
+<font color="#0000ff">&lt;select </font><font color="#ff0000">name</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;colorFilter&quot;</font><font color="#0000ff">&gt;</font>
+<font color="#000000"> </font><font color="#0000ff">&lt;option&gt;</font><font color="#000000">Colorless</font><font color="#0000ff">&lt;/option&gt;</font>
+<font color="#000000"> </font><font color="#0000ff">&lt;option&gt;</font><font color="#000000">Black&amp;White</font><font color="#0000ff">&lt;/option&gt;</font>
+<font color="#000000"> </font><font color="#0000ff">&lt;option&gt;</font><font color="#000000">DifferentColor</font><font color="#0000ff">&lt;/option&gt;</font>
+<font color="#0000ff">&lt;/select&gt;</font>
+<font color="#0000ff">&lt;input </font><font color="#ff0000">type</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;submit&quot; </font><font color="#ff0000">value</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;Applying Filter&quot; </font><font color="#0000ff">/&gt;</font>
+<font color="#000000">  </font><font color="#0000ff">&lt;/form&gt;&lt;br/&gt;</font>
+<font color="#000000">  </font><font color="#0000ff">&lt;a </font><font color="#ff0000">href</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;ImageFilter.jsp&quot;</font><font color="#0000ff">&gt;</font>
+<font color="#000000">      ImageFilter.jsp|Test purpose</font><font color="#0000ff">&lt;/a&gt;</font>
+<font color="#000000"> </font><font color="#0000ff">&lt;/body&gt;</font>
+<font color="#0000ff">&lt;/html&gt;</font>
+</pre>
+</div>
+
+			<h3>ImageFilter.jsp page</h3>
+			<div class="code">
+			<pre>
+<font color="#800000">&lt;%-- </font>
+ <font color="#800000">Document: ImageFilter.jsp</font>
+<font color="#800000">--%&gt;</font>
+<font color="#800000">&lt;%@page </font><font color="#0000ff">import</font><font color="#800000">=</font><font color="#ff00ff">&quot;Acme.JPM.Encoders.GifEncoder&quot;</font><font color="#800000">%&gt;</font>
+<font color="#800000">&lt;%@page </font><font color="#0000ff">import</font><font color="#800000">=</font><font color="#ff00ff">&quot;java.awt.image.FilteredImageSource&quot;</font><font color="#800000">%&gt;</font>
+<font color="#800000">&lt;%@page </font><font color="#0000ff">import</font><font color="#800000">=</font><font color="#ff00ff">&quot;java.awt.*&quot;</font><font color="#800000">%&gt;</font>
+<font color="#800000">&lt;%@page contentType=</font><font color="#ff00ff">&quot;text/html&quot; </font><font color="#800000">pageEncoding=</font><font color="#ff00ff">&quot;UTF-8&quot;</font><font color="#800000">%&gt;</font>
+<font color="#0000ff">&lt;!DOCTYPE </font><font color="#800080">html</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;html&gt;</font>
+<font color="#000000"> </font><font color="#0000ff">&lt;head&gt;</font>
+<font color="#000000">  </font><font color="#0000ff">&lt;meta </font><font color="#ff0000">http-equiv</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;Content-Type&quot; </font>
+       <font color="#ff0000">content</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;text/html; charset=UTF-8&quot;</font><font color="#0000ff">&gt;</font>
+<font color="#000000">  </font><font color="#0000ff">&lt;title&gt;</font><font color="#000000">r4r.co.in-ImageFilter</font><font color="#0000ff">&lt;/title&gt;</font>
+<font color="#000000"> </font><font color="#0000ff">&lt;/head&gt;</font>
+<font color="#000000"> </font><font color="#0000ff">&lt;body&gt;</font>
+<font color="#000000">  </font><font color="#0000ff">&lt;h1&gt;</font><font color="#000000">ImageFilter Test page!</font><font color="#0000ff">&lt;/h1&gt;</font>
+<font color="#000000">  </font><font color="#0000ff">&lt;form </font><font color="#ff0000">method</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;POST&quot;</font><font color="#0000ff">&gt;</font>
+<font color="#000000">  </font><font color="#0000ff">&lt;img </font><font color="#ff0000">src</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;java-logo1.gif&quot; </font><font color="#ff0000">width</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;651&quot; </font>
+             <font color="#ff0000">height</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;400&quot; </font><font color="#ff0000">alt</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;Text Image&quot;</font><font color="#0000ff">/&gt;&lt;br/&gt;</font>
+<font color="#000000">  </font><font color="#0000ff">&lt;select </font><font color="#ff0000">name</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;applyingFilter&quot;</font><font color="#0000ff">&gt;</font>
+<font color="#000000"> </font><font color="#0000ff">&lt;option&gt;</font><font color="#000000">ColorLess</font><font color="#0000ff">&lt;/option&gt;</font>
+<font color="#000000"> </font><font color="#0000ff">&lt;option&gt;</font><font color="#000000">Black&amp;White</font><font color="#0000ff">&lt;/option&gt;</font>
+<font color="#000000"> </font><font color="#0000ff">&lt;option&gt;</font><font color="#000000">Red&amp;Yellow</font><font color="#0000ff">&lt;/option&gt;</font>
+<font color="#000000"> </font><font color="#0000ff">&lt;option&gt;</font><font color="#000000">DifferentColor</font><font color="#0000ff">&lt;/option&gt;</font><font color="#000000"> </font>
+<font color="#0000ff">&lt;/select&gt;</font>
+<font color="#0000ff">&lt;input </font><font color="#ff0000">type</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;submit&quot; </font><font color="#ff0000">value</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;Applying Filter&quot; </font><font color="#0000ff">/&gt;&lt;br/&gt;</font>
+<font color="#0000ff">&lt;a </font><font color="#ff0000">href</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;index.jsp&quot;</font><font color="#0000ff">&gt;</font><font color="#000000">Return to Index.jsp page</font><font color="#0000ff">&lt;/a&gt;</font>
+<font color="#000000">  </font><font color="#0000ff">&lt;/form&gt;</font>
+<font color="#000000">  </font><font color="#800000">&lt;%!  java.awt.Frame frame = </font><font color="#0000ff">new </font><font color="#800000">java.awt.Frame();%&gt;</font>
+<font color="#000000">  </font><font color="#800000">&lt;%</font>
+<font color="#008000">// get requested image full path</font>
+<font color="#ff0000">String </font><font color="#800000">imageName =</font>
+  <font color="#800000">request.getServletContext().getRealPath(</font><font color="#ff00ff">&quot;java-logo1.gif&quot;</font><font color="#800000">);</font>
+<font color="#800000">frame.addNotify();</font>
+<font color="#008000">//create a dynamic image with specified image resource</font>
+<font color="#800000">java.awt.Image image = </font>
+  <font color="#800000">java.awt.Toolkit.getDefaultToolkit().createImage(imageName);</font>
+<font color="#008000">//Track the media object status </font>
+<font color="#800000">java.awt.MediaTracker mt = </font><font color="#0000ff">new </font><font color="#800000">java.awt.MediaTracker(frame);</font>
+<font color="#800000">mt.addImage(image, </font><font color="#800080">0</font><font color="#800000">);</font>
+<font color="#008000">// add image into list which track by MediaTracker</font>
+<font color="#800000">mt.waitForAll(); </font><font color="#008000">//wait until all image not load into list</font>
+  <font color="#800000">%&gt;</font>
+
+<font color="#000000">  </font><font color="#800000">&lt;%</font>
+<font color="#008000">// get drop-down field value from ImageFilter.jsp page</font>
+<font color="#ff0000">String </font><font color="#800000">filterType = request.getParameter(</font><font color="#ff00ff">&quot;applyingFilter&quot;</font><font color="#800000">);</font>
+<font color="#0000ff">if </font><font color="#800000">(filterType != </font><font color="#0000ff">null</font><font color="#800000">) {</font>
+ <font color="#0000ff">if </font><font color="#800000">(filterType.equals(</font><font color="#ff00ff">&quot;Colorless&quot;</font><font color="#800000">)) {</font>
+  <font color="#008000">/*create an ImageFilter which modifies </font>
+<font color="#008000">  the image pixels in according with RGB ColorModel.</font>
+<font color="#008000">  */</font>
+  <font color="#800000">java.awt.image.ImageFilter colorFilter =</font>
+	   <font color="#0000ff">new </font><font color="#800000">java.awt.image.RGBImageFilter() {</font>
+<font color="#008000">/*</font>
+<font color="#008000"> *  More color combination for filter</font>
+<font color="#008000"> * </font>
+<font color="#008000"> * RGB --&gt; YUV|  YUV --&gt; RGB</font>
+<font color="#008000"> * Y =  0.299*Red+0.587*Green+0.114*Blue | Red= Y+0.000*U+1.140*V</font>
+<font color="#008000"> * U = -0.147*Red-0.289*Green+0.436*Blue | Green = Y-0.396*U-0.581*V</font>
+<font color="#008000"> * V =  0.615*Red-0.515*Green-0.100*Blue | Blue  = Y+2.029*U+0.000*V</font>
+<font color="#008000"> */</font>
+<font color="#800000">@Override</font>
+<font color="#0000ff">public int </font><font color="#800000">filterRGB(</font><font color="#0000ff">int </font><font color="#800000">x, </font><font color="#0000ff">int </font><font color="#800000">y, </font><font color="#0000ff">int </font><font color="#800000">rgb) {</font>
+ <font color="#008000">// Get (Red Green Blue) color intensity value</font>
+ <font color="#0000ff">int </font><font color="#800000">Red = (rgb &amp; </font><font color="#800080">0x00ff0000</font><font color="#800000">) &gt;&gt; </font><font color="#800080">16</font><font color="#800000">;</font>
+ <font color="#0000ff">int </font><font color="#800000">Green = (rgb &amp; </font><font color="#800080">0x0000ff00</font><font color="#800000">) &gt;&gt; </font><font color="#800080">8</font><font color="#800000">;</font>
+ <font color="#0000ff">int </font><font color="#800000">Blue = rgb &amp; </font><font color="#800080">0x000000ff</font><font color="#800000">;</font>
+
+ <font color="#0000ff">int </font><font color="#800000">Luma = (</font><font color="#0000ff">int</font><font color="#800000">) (</font><font color="#800080">0</font><font color="#800000">.</font><font color="#800080">299 </font><font color="#800000">* Red + </font><font color="#800080">0</font><font color="#800000">.</font><font color="#800080">587 </font><font color="#800000">* Green + </font><font color="#800080">0</font><font color="#800000">.</font><font color="#800080">114 </font><font color="#800000">* Blue);</font>
+ <font color="#008000">//Return image pixels value to ImageFilter</font>
+ <font color="#0000ff">return </font><font color="#800000">((</font><font color="#800080">0xff </font><font color="#800000">&lt;&lt; </font><font color="#800080">24</font><font color="#800000">) | (Luma &lt;&lt; </font><font color="#800080">16</font><font color="#800000">) | (Luma &lt;&lt; </font><font color="#800080">8</font><font color="#800000">) | Luma);</font>
+<font color="#800000">}</font>
+  <font color="#800000">};</font>
+<font color="#008000">/*Creates an offScreenImage from ImageProducer</font>
+<font color="#008000">and applying ImageFilter on it.*/</font>
+  <font color="#800000">java.awt.Image offScreenImage =</font>
+	     <font color="#800000">frame.createImage(</font><font color="#0000ff">new </font><font color="#800000">FilteredImageSource(image.getSource(),</font>
+ <font color="#800000">colorFilter));</font>
+  <font color="#ff0000">ServletOutputStream </font><font color="#800000">sos = response.getOutputStream();</font>
+<font color="#008000">// Encode offScreenImage into GIF format and send to client browser</font>
+  <font color="#800000">Acme.JPM.Encoders.GifEncoder encoder = </font>
+	   <font color="#0000ff">new </font><font color="#800000">GifEncoder(offScreenImage, sos);</font>
+  <font color="#800000">encoder.encode();</font>
+ <font color="#800000">} </font><font color="#0000ff">else if </font><font color="#800000">(filterType.equals(</font><font color="#ff00ff">&quot;Black&amp;White&quot;</font><font color="#800000">)) {</font>
+  <font color="#800000">java.awt.image.ImageFilter colorFilter = </font>
+	         <font color="#0000ff">new </font><font color="#800000">java.awt.image.RGBImageFilter() {</font>
+
+<font color="#800000">@Override</font>
+<font color="#0000ff">public int </font><font color="#800000">filterRGB(</font><font color="#0000ff">int </font><font color="#800000">x, </font><font color="#0000ff">int </font><font color="#800000">y, </font><font color="#0000ff">int </font><font color="#800000">rgb) {</font>
+ <font color="#0000ff">int </font><font color="#800000">Red = (rgb &amp; </font><font color="#800080">0x00ff0000</font><font color="#800000">) &gt;&gt; </font><font color="#800080">16</font><font color="#800000">;</font>
+ <font color="#0000ff">int </font><font color="#800000">Green = (rgb &amp; </font><font color="#800080">0x0000ff00</font><font color="#800000">) &gt;&gt; </font><font color="#800080">8</font><font color="#800000">;</font>
+ <font color="#0000ff">int </font><font color="#800000">Blue = rgb &amp; </font><font color="#800080">0x000000ff</font><font color="#800000">;</font>
+
+ <font color="#0000ff">int </font><font color="#800000">U = (</font><font color="#0000ff">int</font><font color="#800000">) (-</font><font color="#800080">0</font><font color="#800000">.</font><font color="#800080">147 </font><font color="#800000">* Red - </font><font color="#800080">0</font><font color="#800000">.</font><font color="#800080">289 </font><font color="#800000">* Green + </font><font color="#800080">0</font><font color="#800000">.</font><font color="#800080">436 </font><font color="#800000">* Blue);</font>
+ <font color="#0000ff">return </font><font color="#800000">((</font><font color="#800080">0xff </font><font color="#800000">&lt;&lt; </font><font color="#800080">24</font><font color="#800000">) | (U &lt;&lt; </font><font color="#800080">16</font><font color="#800000">) | (U &lt;&lt; </font><font color="#800080">8</font><font color="#800000">) | U);</font>
+<font color="#800000">}</font>
+  <font color="#800000">};</font>
+ <font color="#800000">java.awt.Image offScreenImage = </font>
+	<font color="#800000">frame.createImage(</font><font color="#0000ff">new </font><font color="#800000">FilteredImageSource(image.getSource(),</font>
+ <font color="#800000">colorFilter));</font>
+  <font color="#ff0000">ServletOutputStream </font><font color="#800000">sos = response.getOutputStream();</font>
+  <font color="#800000">Acme.JPM.Encoders.GifEncoder encoder = </font>
+	   <font color="#0000ff">new </font><font color="#800000">GifEncoder(offScreenImage, sos);</font>
+  <font color="#800000">encoder.encode();</font>
+ <font color="#800000">} </font><font color="#0000ff">else if </font><font color="#800000">(filterType.equals(</font><font color="#ff00ff">&quot;Red&amp;Yellow&quot;</font><font color="#800000">)) {</font>
+  <font color="#800000">java.awt.image.ImageFilter colorFilter = </font>
+	  <font color="#0000ff">new </font><font color="#800000">java.awt.image.RGBImageFilter() {</font>
+
+<font color="#800000">@Override</font>
+<font color="#0000ff">public int </font><font color="#800000">filterRGB(</font><font color="#0000ff">int </font><font color="#800000">x, </font><font color="#0000ff">int </font><font color="#800000">y, </font><font color="#0000ff">int </font><font color="#800000">rgb) {</font>
+
+<font color="#0000ff">int </font><font color="#800000">Red = (rgb &amp; </font><font color="#800080">0x00ff0000</font><font color="#800000">) &gt;&gt; </font><font color="#800080">16</font><font color="#800000">;</font>
+<font color="#0000ff">int </font><font color="#800000">Green = (rgb &amp; </font><font color="#800080">0x0000ff00</font><font color="#800000">) &gt;&gt; </font><font color="#800080">8</font><font color="#800000">;</font>
+<font color="#0000ff">int </font><font color="#800000">Blue = rgb &amp; </font><font color="#800080">0x000000ff</font><font color="#800000">;</font>
+
+<font color="#0000ff">int </font><font color="#800000">Y = (</font><font color="#0000ff">int</font><font color="#800000">) (</font><font color="#800080">0</font><font color="#800000">.</font><font color="#800080">299 </font><font color="#800000">* Red + </font><font color="#800080">0</font><font color="#800000">.</font><font color="#800080">587 </font><font color="#800000">* Green + </font><font color="#800080">0</font><font color="#800000">.</font><font color="#800080">114 </font><font color="#800000">* Blue);</font>
+<font color="#0000ff">int </font><font color="#800000">U = (</font><font color="#0000ff">int</font><font color="#800000">) (-</font><font color="#800080">0</font><font color="#800000">.</font><font color="#800080">147 </font><font color="#800000">* Red - </font><font color="#800080">0</font><font color="#800000">.</font><font color="#800080">289 </font><font color="#800000">* Green + </font><font color="#800080">0</font><font color="#800000">.</font><font color="#800080">436 </font><font color="#800000">* Blue);</font>
+<font color="#0000ff">int </font><font color="#800000">V = (</font><font color="#0000ff">int</font><font color="#800000">) (</font><font color="#800080">0</font><font color="#800000">.</font><font color="#800080">615 </font><font color="#800000">* Red - </font><font color="#800080">0</font><font color="#800000">.</font><font color="#800080">515 </font><font color="#800000">* Green - </font><font color="#800080">0</font><font color="#800000">.</font><font color="#800080">100 </font><font color="#800000">* Blue);</font>
+ <font color="#0000ff">return </font><font color="#800000">((</font><font color="#800080">0xff </font><font color="#800000">&lt;&lt; </font><font color="#800080">24</font><font color="#800000">) | (Y &lt;&lt; </font><font color="#800080">16</font><font color="#800000">) | (U &lt;&lt; </font><font color="#800080">8</font><font color="#800000">) | V);</font>
+
+<font color="#800000">}</font>
+  <font color="#800000">};</font>
+  <font color="#800000">java.awt.Image offScreenImage = </font>
+	<font color="#800000">frame.createImage(</font><font color="#0000ff">new </font><font color="#800000">FilteredImageSource(image.getSource(),</font>
+ <font color="#800000">colorFilter));</font>
+  <font color="#ff0000">ServletOutputStream </font><font color="#800000">sos = response.getOutputStream();</font>
+  <font color="#800000">Acme.JPM.Encoders.GifEncoder encoder = </font>
+	    <font color="#0000ff">new </font><font color="#800000">GifEncoder(offScreenImage, sos);</font>
+  <font color="#800000">encoder.encode();</font>
+ <font color="#800000">} </font><font color="#0000ff">else if </font><font color="#800000">(filterType.equals(</font><font color="#ff00ff">&quot;DifferentColor&quot;</font><font color="#800000">)) {</font>
+  <font color="#800000">java.awt.image.ImageFilter colorFilter = </font>
+	     <font color="#0000ff">new </font><font color="#800000">java.awt.image.RGBImageFilter() {</font>
+
+<font color="#800000">@Override</font>
+<font color="#0000ff">public int </font><font color="#800000">filterRGB(</font><font color="#0000ff">int </font><font color="#800000">x, </font><font color="#0000ff">int </font><font color="#800000">y, </font><font color="#0000ff">int </font><font color="#800000">rgb) {</font>
+ <font color="#0000ff">return </font><font color="#800000">((rgb &amp; </font><font color="#800080">0xff00ff00</font><font color="#800000">)</font>
+	    <font color="#800000">| ((rgb &amp; </font><font color="#800080">0xff0000</font><font color="#800000">) &gt;&gt; </font><font color="#800080">16</font><font color="#800000">) | ((rgb &amp; </font><font color="#800080">0xff</font><font color="#800000">) &lt;&lt; </font><font color="#800080">16</font><font color="#800000">));</font>
+<font color="#800000">}</font>
+  <font color="#800000">};</font>
+  <font color="#800000">java.awt.Image offScreenImage =</font>
+	   <font color="#800000">frame.createImage(</font><font color="#0000ff">new </font><font color="#800000">FilteredImageSource(image.getSource(),</font>
+ <font color="#800000">colorFilter));</font>
+  <font color="#ff0000">ServletOutputStream </font><font color="#800000">sos = response.getOutputStream();</font>
+  <font color="#800000">Acme.JPM.Encoders.GifEncoder encoder = </font>
+	           <font color="#0000ff">new </font><font color="#800000">GifEncoder(offScreenImage, sos);</font>
+  <font color="#800000">encoder.encode();</font>
+ <font color="#800000">}</font>
+ <font color="#800000">frame.removeNotify(); </font><font color="#008000">// free resource</font>
+<font color="#800000">}</font>
+  <font color="#800000">%&gt;</font>
+<font color="#000000"> </font><font color="#0000ff">&lt;/body&gt;</font>
+<font color="#0000ff">&lt;/html&gt;</font>
+</pre>
+</div>
+
+			<h3>Filter Program</h3>
+			<div class="code">
+			<pre>
+<font color="#008000">/*</font>
+<font color="#008000"> * Save as a ImageConvertFilter.java</font>
+<font color="#008000"> */</font>
+<font color="#0000ff">package </font><font color="#000000">r4r.</font><font color="#ff0000">Filter</font><font color="#000000">;</font>
+<font color="#0000ff">import </font><font color="#000000">java.awt.image.</font><font color="#ff0000">FilteredImageSource</font><font color="#000000">;</font>
+<font color="#0000ff">import </font><font color="#000000">java.io.</font><font color="#ff0000">IOException</font><font color="#000000">;</font>
+<font color="#0000ff">import </font><font color="#000000">java.util.logging.</font><font color="#ff0000">Level</font><font color="#000000">;</font>
+<font color="#0000ff">import </font><font color="#000000">java.util.logging.</font><font color="#ff0000">Logger</font><font color="#000000">;</font>
+<font color="#0000ff">import </font><font color="#000000">javax.servlet.</font><font color="#ff0000">Filter</font><font color="#000000">;</font>
+<font color="#0000ff">import </font><font color="#000000">javax.servlet.FilterChain;</font>
+<font color="#0000ff">import </font><font color="#000000">javax.servlet.FilterConfig;</font>
+<font color="#0000ff">import </font><font color="#000000">javax.servlet.ServletException;</font>
+<font color="#0000ff">import </font><font color="#000000">javax.servlet.ServletOutputStream;</font>
+<font color="#0000ff">import </font><font color="#000000">javax.servlet.ServletRequest;</font>
+<font color="#0000ff">import </font><font color="#000000">javax.servlet.ServletResponse;</font>
+<font color="#0000ff">import </font><font color="#000000">javax.servlet.http.HttpServletRequest;</font>
+
+<font color="#008000">/**</font>
+<font color="#008000"> *</font>
+<font color="#008000"> * @author R4R</font>
+<font color="#008000"> */</font>
+<font color="#0000ff">public class </font><font color="#000000">ImageConvertFilter </font><font color="#0000ff">implements </font><font color="#ff0000">Filter </font><font color="#000000">{</font>
+
+ <font color="#0000ff">private static final boolean </font><font color="#000000">debug = </font><font color="#0000ff">false</font><font color="#000000">;</font>
+ <font color="#0000ff">private </font><font color="#000000">FilterConfig filterConfig = </font><font color="#0000ff">null</font><font color="#000000">;</font>
+ <font color="#0000ff">private </font><font color="#000000">java.awt.</font><font color="#ff0000">Frame </font><font color="#000000">frame;</font>
+
+ <font color="#008000">// default constructor</font>
+ <font color="#0000ff">public </font><font color="#000000">ImageConvertFilter() {</font>
+ <font color="#000000">}</font>
+
+ <font color="#008000">/**</font>
+<font color="#008000">  * Init method for this filter </font>
+<font color="#008000">  */</font>
+ <font color="#000000">@</font><font color="#0000ff">Override</font>
+ <font color="#0000ff">public void </font><font color="#000000">init(FilterConfig filterConfig) {</font>
+  <font color="#0000ff">this</font><font color="#000000">.filterConfig = filterConfig;</font>
+  <font color="#000000">frame = </font><font color="#0000ff">new </font><font color="#000000">java.awt.</font><font color="#ff0000">Frame</font><font color="#000000">();</font>
+  <font color="#0000ff">if </font><font color="#000000">(filterConfig != </font><font color="#0000ff">null</font><font color="#000000">) {</font>
+<font color="#0000ff">if </font><font color="#000000">(debug) {</font>
+ <font color="#000000">log(</font><font color="#ff00ff">&quot;ImageConvertFilter: Initializing filter&quot;</font><font color="#000000">);</font>
+<font color="#000000">}</font>
+  <font color="#000000">}</font>
+ <font color="#000000">}</font>
+
+ <font color="#008000">/**</font>
+<font color="#008000">  * doFilter method for this filter </font>
+<font color="#008000">  */</font>
+ <font color="#000000">@</font><font color="#0000ff">Override</font>
+ <font color="#0000ff">public void </font><font color="#000000">doFilter(ServletRequest request,</font>
+	 <font color="#000000">ServletResponse response, FilterChain chain)</font>
+<font color="#0000ff">throws </font><font color="#ff0000">IOException</font><font color="#000000">, ServletException {</font>
+  <font color="#0000ff">if </font><font color="#000000">(debug) {</font>
+<font color="#000000">log(</font><font color="#ff00ff">&quot;ImageConvertFilter:doFilter()&quot;</font><font color="#000000">);</font>
+  <font color="#000000">}</font>
+  <font color="#008000">// get requested image full path</font>
+  <font color="#ff0000">String </font><font color="#000000">imagePath =((HttpServletRequest) request)</font>
+	       <font color="#000000">.getServletContext().getRealPath(</font><font color="#ff00ff">&quot;java-logo1.gif&quot;</font><font color="#000000">);</font>
+  <font color="#000000">log(</font><font color="#ff00ff">&quot;Image_Path: &quot; </font><font color="#000000">+ imagePath);</font>
+  <font color="#000000">frame.addNotify();</font>
+  <font color="#008000">//create a dynamic image with specified image resource</font>
+  <font color="#000000">java.awt.</font><font color="#ff0000">Image </font><font color="#000000">image = </font>
+	  <font color="#000000">java.awt.</font><font color="#ff0000">Toolkit</font><font color="#000000">.getDefaultToolkit().createImage(imagePath);</font>
+  <font color="#008000">//Track the media object status </font>
+  <font color="#000000">java.awt.</font><font color="#ff0000">MediaTracker </font><font color="#000000">mt = </font><font color="#0000ff">new </font><font color="#000000">java.awt.</font><font color="#ff0000">MediaTracker</font><font color="#000000">(frame);</font>
+  <font color="#008000">// add image into list which track by MediaTracker</font>
+  <font color="#000000">mt.addImage(image, </font><font color="#800080">0</font><font color="#000000">);</font>
+  <font color="#0000ff">try </font><font color="#000000">{</font>
+<font color="#000000">mt.waitForAll();  </font><font color="#008000">//wait until all image not add into list</font>
+  <font color="#000000">} </font><font color="#0000ff">catch </font><font color="#000000">(</font><font color="#ff0000">InterruptedException </font><font color="#000000">ex) {</font>
+<font color="#ff0000">Logger</font><font color="#000000">.getLogger(ImageConvertFilter.</font><font color="#0000ff">class</font><font color="#000000">.getName()).log(</font><font color="#ff0000">Level</font><font color="#000000">.SEVERE,</font>
+  <font color="#ff00ff">&quot;An InterruptedException generate while loading image&quot;</font><font color="#000000">, ex);</font>
+  <font color="#000000">}</font>
+
+  <font color="#0000ff">if </font><font color="#000000">(request </font><font color="#0000ff">instanceof </font><font color="#000000">HttpServletRequest) {</font>
+<font color="#008000">// get drop-down field value from index.jsp page</font>
+<font color="#ff0000">String </font><font color="#000000">filterType = request.getParameter(</font><font color="#ff00ff">&quot;colorFilter&quot;</font><font color="#000000">);</font>
+<font color="#000000">log(</font><font color="#ff00ff">&quot;Filter_Type&quot; </font><font color="#000000">+ filterType);</font>
+<font color="#0000ff">if </font><font color="#000000">(filterType != </font><font color="#0000ff">null</font><font color="#000000">) {</font>
+
+ <font color="#0000ff">if </font><font color="#000000">(filterType.equals(</font><font color="#ff00ff">&quot;Colorless&quot;</font><font color="#000000">)) {</font>
+  <font color="#008000">/*create an ImageFilter which modifies the image </font>
+<font color="#008000">  pixels in according with RGB ColorModel.*/</font>
+  <font color="#000000">java.awt.image.</font><font color="#ff0000">ImageFilter </font><font color="#000000">colorFilter = </font>
+	        <font color="#0000ff">new </font><font color="#000000">java.awt.image.</font><font color="#ff0000">RGBImageFilter</font><font color="#000000">() {</font>
+
+<font color="#000000">@</font><font color="#0000ff">Override</font>
+<font color="#0000ff">public int </font><font color="#000000">filterRGB(</font><font color="#0000ff">int </font><font color="#000000">x, </font><font color="#0000ff">int </font><font color="#000000">y, </font><font color="#0000ff">int </font><font color="#000000">rgb) {</font>
+ <font color="#008000">// Get (Red Green Blue) color intensity value</font>
+ <font color="#0000ff">int </font><font color="#000000">Red = (rgb &amp; </font><font color="#800080">0x00ff0000</font><font color="#000000">) &gt;&gt; </font><font color="#800080">16</font><font color="#000000">;</font>
+ <font color="#0000ff">int </font><font color="#000000">Green = (rgb &amp; </font><font color="#800080">0x0000ff00</font><font color="#000000">) &gt;&gt; </font><font color="#800080">8</font><font color="#000000">;</font>
+ <font color="#0000ff">int </font><font color="#000000">Blue = rgb &amp; </font><font color="#800080">0x000000ff</font><font color="#000000">;</font>
+
+ <font color="#0000ff">int </font><font color="#000000">Luma = (</font><font color="#0000ff">int</font><font color="#000000">) (</font><font color="#800080">0</font><font color="#000000">.</font><font color="#800080">299 </font><font color="#000000">* Red + </font><font color="#800080">0</font><font color="#000000">.</font><font color="#800080">587 </font><font color="#000000">* Green + </font><font color="#800080">0</font><font color="#000000">.</font><font color="#800080">114 </font><font color="#000000">* Blue);</font>
+ <font color="#008000">//Return image pixels value to ImageFilter</font>
+ <font color="#0000ff">return </font><font color="#000000">((</font><font color="#800080">0xff </font><font color="#000000">&lt;&lt; </font><font color="#800080">24</font><font color="#000000">) | (Luma &lt;&lt; </font><font color="#800080">16</font><font color="#000000">) | (Luma &lt;&lt; </font><font color="#800080">8</font><font color="#000000">) | Luma);</font>
+<font color="#000000">}</font>
+  <font color="#000000">};</font>
+<font color="#008000">//Creates an offScreenImage from ImageProducer and applying ImageFilter on it</font>
+  <font color="#000000">java.awt.</font><font color="#ff0000">Image </font><font color="#000000">offScreenImage =</font>
+	  <font color="#000000">frame.createImage(</font><font color="#0000ff">new </font><font color="#ff0000">FilteredImageSource</font><font color="#000000">(image.getSource(),</font>
+ <font color="#000000">colorFilter));</font>
+  <font color="#000000">ServletOutputStream out = response.getOutputStream();</font>
+  <font color="#008000">// Encode offScreenImage into GIF format and send to client browser</font>
+  <font color="#000000">response.setContentType(</font><font color="#ff00ff">&quot;image/gif&quot;</font><font color="#000000">);</font>
+  <font color="#000000">Acme.JPM.Encoders.GifEncoder encoder = </font>
+	  <font color="#0000ff">new </font><font color="#000000">Acme.JPM.Encoders.GifEncoder(offScreenImage, out);</font>
+  <font color="#000000">encoder.encode();</font>
+ <font color="#000000">} </font><font color="#0000ff">else if </font><font color="#000000">(filterType.equals(</font><font color="#ff00ff">&quot;Black&amp;White&quot;</font><font color="#000000">)) {</font>
+  <font color="#000000">java.awt.image.</font><font color="#ff0000">ImageFilter </font><font color="#000000">colorFilter =</font>
+	     <font color="#0000ff">new </font><font color="#000000">java.awt.image.</font><font color="#ff0000">RGBImageFilter</font><font color="#000000">() {</font>
+
+<font color="#000000">@</font><font color="#0000ff">Override</font>
+<font color="#0000ff">public int </font><font color="#000000">filterRGB(</font><font color="#0000ff">int </font><font color="#000000">x, </font><font color="#0000ff">int </font><font color="#000000">y, </font><font color="#0000ff">int </font><font color="#000000">rgb) {</font>
+ <font color="#0000ff">int </font><font color="#000000">Red = (rgb &amp; </font><font color="#800080">0x00ff0000</font><font color="#000000">) &gt;&gt; </font><font color="#800080">16</font><font color="#000000">;</font>
+ <font color="#0000ff">int </font><font color="#000000">Green = (rgb &amp; </font><font color="#800080">0x0000ff00</font><font color="#000000">) &gt;&gt; </font><font color="#800080">8</font><font color="#000000">;</font>
+ <font color="#0000ff">int </font><font color="#000000">Blue = rgb &amp; </font><font color="#800080">0x000000ff</font><font color="#000000">;</font>
+
+ <font color="#0000ff">int </font><font color="#000000">V = (</font><font color="#0000ff">int</font><font color="#000000">) (</font><font color="#800080">0</font><font color="#000000">.</font><font color="#800080">615 </font><font color="#000000">* Red - </font><font color="#800080">0</font><font color="#000000">.</font><font color="#800080">515 </font><font color="#000000">* Green - </font><font color="#800080">0</font><font color="#000000">.</font><font color="#800080">100 </font><font color="#000000">* Blue);</font>
+ <font color="#0000ff">return </font><font color="#000000">((</font><font color="#800080">0xff </font><font color="#000000">&lt;&lt; </font><font color="#800080">24</font><font color="#000000">) | (V &lt;&lt; </font><font color="#800080">16</font><font color="#000000">) | (V &lt;&lt; </font><font color="#800080">8</font><font color="#000000">) | V);</font>
+<font color="#000000">}</font>
+  <font color="#000000">};</font>
+  <font color="#000000">java.awt.</font><font color="#ff0000">Image </font><font color="#000000">offScreenImage = </font>
+	<font color="#000000">frame.createImage(</font><font color="#0000ff">new </font><font color="#ff0000">FilteredImageSource</font><font color="#000000">(image.getSource(),</font>
+ <font color="#000000">colorFilter));</font>
+  <font color="#000000">ServletOutputStream out = response.getOutputStream();</font>
+  <font color="#000000">response.setContentType(</font><font color="#ff00ff">&quot;image/gif&quot;</font><font color="#000000">);</font>
+  <font color="#000000">Acme.JPM.Encoders.GifEncoder encoder =</font>
+	  <font color="#0000ff">new </font><font color="#000000">Acme.JPM.Encoders.GifEncoder(offScreenImage, out);</font>
+  <font color="#000000">encoder.encode();</font>
+ <font color="#000000">} </font><font color="#0000ff">else </font><font color="#000000">{</font>
+  <font color="#000000">java.awt.image.</font><font color="#ff0000">ImageFilter </font><font color="#000000">colorFilter = </font>
+	          <font color="#0000ff">new </font><font color="#000000">java.awt.image.</font><font color="#ff0000">RGBImageFilter</font><font color="#000000">() {</font>
+
+<font color="#000000">@</font><font color="#0000ff">Override</font>
+<font color="#0000ff">public int </font><font color="#000000">filterRGB(</font><font color="#0000ff">int </font><font color="#000000">x, </font><font color="#0000ff">int </font><font color="#000000">y, </font><font color="#0000ff">int </font><font color="#000000">rgb) {</font>
+ <font color="#0000ff">return </font><font color="#000000">((rgb &amp; </font><font color="#800080">0xff00ff00</font><font color="#000000">) |</font>
+	       <font color="#000000">((rgb &amp; </font><font color="#800080">0xff0000</font><font color="#000000">) &gt;&gt; </font><font color="#800080">16</font><font color="#000000">) | ((rgb &amp; </font><font color="#800080">0xff</font><font color="#000000">) &lt;&lt; </font><font color="#800080">16</font><font color="#000000">));</font>
+<font color="#000000">}</font>
+  <font color="#000000">};</font>
+  <font color="#000000">java.awt.</font><font color="#ff0000">Image </font><font color="#000000">offScreenImage =</font>
+	   <font color="#000000">frame.createImage(</font><font color="#0000ff">new </font><font color="#ff0000">FilteredImageSource</font><font color="#000000">(image.getSource(),</font>
+ <font color="#000000">colorFilter));</font>
+  <font color="#000000">ServletOutputStream out = response.getOutputStream();</font>
+  <font color="#000000">response.setContentType(</font><font color="#ff00ff">&quot;image/gif&quot;</font><font color="#000000">);</font>
+  <font color="#000000">Acme.JPM.Encoders.GifEncoder encoder =</font>
+	     <font color="#0000ff">new </font><font color="#000000">Acme.JPM.Encoders.GifEncoder(offScreenImage, out);</font>
+  <font color="#000000">encoder.encode();</font>
+ <font color="#000000">}</font>
+<font color="#000000">} </font><font color="#0000ff">else </font><font color="#000000">{</font>
+ <font color="#000000">chain.doFilter(request, response);</font>
+<font color="#000000">}</font>
+  <font color="#000000">}</font>
+ <font color="#000000">}</font>
+
+ <font color="#008000">/**</font>
+<font color="#008000">  * Return the filter configuration object for this filter.</font>
+<font color="#008000">  */</font>
+ <font color="#0000ff">public </font><font color="#000000">FilterConfig getFilterConfig() {</font>
+  <font color="#0000ff">return </font><font color="#000000">(</font><font color="#0000ff">this</font><font color="#000000">.filterConfig);</font>
+ <font color="#000000">}</font>
+
+ <font color="#008000">/**</font>
+<font color="#008000">  * Set the filter configuration object for this filter.</font>
+<font color="#008000">  */</font>
+ <font color="#0000ff">public void </font><font color="#000000">setFilterConfig(FilterConfig filterConfig) {</font>
+  <font color="#0000ff">this</font><font color="#000000">.filterConfig = filterConfig;</font>
+ <font color="#000000">}</font>
+
+ <font color="#008000">/**</font>
+<font color="#008000">  * Destroy method for this filter </font>
+<font color="#008000">  */</font>
+ <font color="#000000">@</font><font color="#0000ff">Override</font>
+ <font color="#0000ff">public void </font><font color="#000000">destroy() {</font>
+  <font color="#000000">filterConfig = </font><font color="#0000ff">null</font><font color="#000000">;</font>
+  <font color="#000000">frame.removeNotify();</font>
+ <font color="#000000">}</font>
+
+ <font color="#008000">/**</font>
+<font color="#008000">  * log method for print msg over server console </font>
+<font color="#008000">  */</font>
+ <font color="#0000ff">public void </font><font color="#000000">log(</font><font color="#ff0000">String </font><font color="#000000">msg) {</font>
+  <font color="#000000">filterConfig.getServletContext().log(msg);</font>
+ <font color="#000000">}</font>
+<font color="#000000">}</font>
+</pre>
+</div>
+
+			<i>Output of Program</i>
+			<div class="image">
+			<img src="Servlet%20Filter%20image/ImageConversionFilter1.gif">
+			</div>
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="AuditingFilter.shtml" title="Create an application to accessing AuditingFilter in Servlet">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="DataCompressionFilter.shtml" title="Create an application to accessing DataCompressionFilter in servlet">Next</a></td>
+  </tr> 
+</table>
+	<!-- Footer Start-->		
+		</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->

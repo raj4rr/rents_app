@@ -1,0 +1,186 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>Day 1: C Variables, C Constant, Format Specifiers in C</TITLE>
+<META content=r4r.co.in name=owner>
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="Learn about Variables in C,Operators in C.Pointers,Array,Storage class,Loops,Functions,Data types,C constants,Union,Preprocessor,C interview questions and answers">
+<meta name="keywords" CONTENT="What is Variables in C?,Operators in C,C variables,C operators,Pointers,Array,Storage class,Loops,Functions,Data types,C constants,Union,Preprocessor,C interview questions and answers">
+<META content="Rajesh Kumar" name=author>
+<META http-equiv="expires" content="0">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+		<?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+     <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>C Programming language</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a><img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/c/">C </a>
+              <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/c/c_basics_tutorials/">Learn C in 9 days</a></div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/c/commonfiles/new-leftmenu.shtml'); ?></td>
+
+                       <td style="80%" valign="top">
+                        <div class="main_content">
+
+	 <!-- Header End--> 	
+<div class="heading"><font style="background:#FF9966; padding:7px 0px 7px 7px;">Day <font style="background:#E95409; padding:7px;">1</font></font> C Constant, C Variables, Format specifiers in C</div> 
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="data_size.shtml" title="Day 1: Secondary data types, Primitive and Non-primitive data types">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="write_frist_c_program.shtml" title="Day 2: Write first C program">Next</a></td>
+  </tr>
+</table>
+
+<h2>C constants </h2>
+<p>Constants also called a literals. Constant refer to fixed values that the program may not alter. 
+constant can be any of the basic data types. C have a two type of constant:</p>
+<ol><li>Numeric constant</li>
+<li>Character constant</li>
+</ol>
+
+<div class="image">
+<p class="comment">C constant is showing in the figure:</p>
+<img src="../images/c1.png">
+</div>
+
+<div class="heading">Variables</div>
+<p>A variable is a meaningful name of data storage location in computer memory. When using a variable you refer to memory address of computer.</p>
+<p><i>Types of variables</i> In C variable are divided in two types </p>
+<ol>
+<li><i>Global variable:</i> global variable is a variable defined outside any function block. Global variable is also called external variable.</li>
+<li><i>Local variable:</i> local variable is a variable defined inside a function block. Local variable is also called automatic variables.
+</li>
+</ol>
+
+<h3>Variable Declaration Examples</h3>
+<p><i>Single declarations</i></p>
+<div class="code">
+<PRE>
+<FONT FACE="Arial">
+<FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">age;</FONT>
+<FONT COLOR="#0000ff">float </FONT><FONT COLOR="#000000">amount;</FONT>
+<FONT COLOR="#0000ff">char </FONT><FONT COLOR="#000000">last;</FONT>
+</FONT>
+</PRE>
+</div>
+
+<p><i>Multiple declarations</i>You can repeat the the declaration line with a different variable on each line .</p>
+<div class="code">
+<PRE>
+<FONT FACE="Arial">
+<FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">age;</FONT>
+<FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">hrNumber;</FONT>
+</FONT>
+</PRE>
+</div>
+
+<p>But the normal way is to separate the variables by a comma. Although not required the names are easier to read if a space follows the comma.
+</p>
+
+<div class="code">
+<PRE>
+<FONT FACE="Arial">
+<FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">age, HouseNumber, quality;</FONT>
+<FONT COLOR="#0000ff">float </FONT><FONT COLOR="#000000">distance, Discount;</FONT>
+<FONT COLOR="#0000ff">char </FONT><FONT COLOR="#000000">first, second;</FONT>
+</FONT>
+</PRE>
+</div>
+
+<h3>Scope of variables</h3>
+<p>The scope of a variable depends on where it is declared.</p>
+<ul>
+<li>The area of the program where that variable is valid, i.e. the parts of the program that have access to that variable. This is determined by the location of the declaration. </li>
+<li>The life span of that variable, i.e. the length of time that the variable remains in memory.</li>
+</ul>
+<i>Where do you Declare Variables</i>
+<p>Variables can be declared as</p>
+<ul><li>Prior to the start of the main( ) function. </li>
+<li>Within the main function, after the opening {</li>
+<li>Within a function after the opening {</li>
+<li>Within a block of code, after the {</li>
+<li>Global or external variable Declared before the start of the main( ) function.</li>
+</ul>
+
+<h3>Static Variable</h3>
+<p>When static is used with a global variable it indicates that the variable is local to the current file. If the programmer would like the value of the variable to be remembered when the function is revisited then that variable must be declared as static.</p>
+<h3>Example</h3>
+<div class="code">
+<PRE>
+<FONT FACE="Arial">
+<FONT COLOR="#0000ff">static int </FONT><FONT COLOR="#000000">aVariable = </FONT><FONT COLOR="#800080">1</FONT><FONT COLOR="#000000">;</FONT>
+</FONT>
+</PRE>
+</div>
+<p>In the example the initialisation to 1 occurs only on the first execution of this line of code, it is disregarded on further executions of the line.</p>
+<p>static has a different meaning when used with global variables.</p>
+
+<div class="heading">Format Specifiers in C</div>
+<div class="table_content">
+<table>
+<tr><td class="alternate_heading1" style="width:50%;">%c</td><td class="alternate_heading1" style="width:50%;">The character format specifier.</td></tr>
+<tr><td class="alternate_heading2" style="width:50%;">%d</td><td class="alternate_heading2" style="width:50%;">The integer format specifier.
+</td></tr>
+<tr><td class="alternate_heading1" style="width:50%;">%i</td><td class="alternate_heading1" style="width:50%;">The integer format specifier (same as %d).
+</td></tr>
+<tr><td class="alternate_heading2" style="width:50%;">%f</td><td class="alternate_heading2" style="width:50%;">The floating-point format specifier.
+</td></tr>
+<tr><td class="alternate_heading1" style="width:50%;">%e</td><td class="alternate_heading1" style="width:50%;">The scientific notation format specifier.
+</td></tr>
+<tr><td class="alternate_heading2" style="width:50%;">%E</td><td class="alternate_heading2" style="width:50%;">The scientific notation format specifier.
+</td></tr>
+<tr><td class="alternate_heading1" style="width:50%;">%g</td><td class="alternate_heading1" style="width:50%;">Uses %f or %e, whichever result is shorter.
+</td></tr>
+<tr><td class="alternate_heading2" style="width:50%;">%G</td><td class="alternate_heading2" style="width:50%;">Uses %f or %E, whichever result is shorter.
+</td></tr>
+<tr><td class="alternate_heading1" style="width:50%;">%o</td><td class="alternate_heading1" style="width:50%;">The unsigned octal format specifier.
+</td></tr>
+<tr><td class="alternate_heading2" style="width:50%;">%s</td><td class="alternate_heading2" style="width:50%;">The string format specifier.
+</td></tr>
+<tr><td class="alternate_heading1" style="width:50%;">%u</td><td class="alternate_heading1" style="width:50%;">The unsigned integer format specifier.
+</td></tr>
+<tr><td class="alternate_heading2" style="width:50%;">%x</td><td class="alternate_heading2" style="width:50%;">The unsigned hexadecimal format specifier.
+</td></tr>
+<tr><td class="alternate_heading1" style="width:50%;">%X</td><td class="alternate_heading1" style="width:50%;">The unsigned hexadecimal format specifier.
+</td></tr>
+<tr><td class="alternate_heading2" style="width:50%;">%p</td><td class="alternate_heading2" style="width:50%;">Displays the corresponding argument that is a pointer.
+</td></tr>
+<tr><td class="alternate_heading1" style="width:50%;">%n</td><td class="alternate_heading1" style="width:50%;">Records the number of characters written so far.
+</td></tr>
+<tr><td class="alternate_heading2" style="width:50%;">%%</td><td class="alternate_heading2" style="width:50%;">Outputs a percent sign.
+</td></tr>
+</table>
+</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="data_size.shtml" title="Day 1: Secondary data types, Primitive and Non-primitive data types">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="write_frist_c_program.shtml" title="Day 2: Write first C program">Next</a></td>
+  </tr>
+</table>
+
+<!--Footer  --> 	
+</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/c/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>

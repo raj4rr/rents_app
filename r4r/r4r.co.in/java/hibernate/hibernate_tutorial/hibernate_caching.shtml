@@ -1,0 +1,122 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<HTML><HEAD><TITLE>HIBERNATE Caching Tutorial</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv="content-type" content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="Hibernate Architecture learn easily and shortly with hibernate tutorial,hibernate
+Examples,hibernate interview questions Step by step covers all topics of hibernate " >
+<meta name="keywords" CONTENT="Hibernate caching, Tutorial, Basics, Beginners, Freshers, First level caching,
+second level caching,  mapping, component mapping, HQL(Hibenate Query Language), HCQL, Named Query ">
+
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<META http-equiv="Content-Language" content="en-us">
+<link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+<link href="/css/main.css" rel="stylesheet" type="text/css" />
+</HEAD>
+<BODY>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>Hibernate</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+            <img src="/images/left_menu_bullet.gif"/> <a href="/java/hibernate/">Hibernate</a>
+             </div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top">
+                            <?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/hibernate/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                       <div class="main_content">  	 
+
+      <div class="heading">Hibernate Caching</div>
+
+      <table id="indexing">
+
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="insert_program_in_hql.shtml" title="Insert Program in HQL">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="first_level_caching.shtml" title="First Level Caching">Next</a></td>
+  </tr> 
+</table>
+      <p>Generally we know that every session has its own cache memory. 
+          Cache is used to grow the performance of application and database. 
+          Caching is a machanism for storing the loaded objects into a chache memory. 
+          By the help of the cache memory we can avoid the number of hits as many as possible to give a 
+          better performance for critical applications.</p>
+      <p>
+          caching is the facility of storing object temporally in the memory . 
+          The purpose of caching to improve the performance by reducing database hits . 
+          If same object is required by different session or user then it make sense to 
+          fetch them only one and to store them into the cache so that they can provide 
+          the cache each time they are requested.
+      </p>
+      <p>Hibernate support caching at two levels:-</P>
+      <ol>
+          <li>First Level Caching</li>
+          <li>Second Level Caching</li>
+      </ol>
+      <h3>First Level Caching:-(Transactional scope caching)</h3>
+      <p>
+         First level caching is implicitly enable. It is implemented by session. 
+         First level caching is responsible for storing the object used by user.
+         Object in this cache has transactional scope, once the transaction is 
+         completed object of this cache are synchronize to the database and cache 
+         is discarded.
+      </p>
+      <h3>Second Level Cache :-(Application Scope caching)</h3>
+      <p>
+          Second level cache is not enable by default. This cache has a application scope, 
+          Object in this cache are shared by multiple users. This cache is managed by sessionFactory
+      </p>
+
+      <div class="heading">Advantage of cache mechanism: </DIV>
+
+      <p>When we want to load the same object from the database then instead of hitting the database 
+          once again, it loads from the local cache memory only, 
+          so that the number of round trips between an applications and database server got decreased. 
+          It means caching mechanism increase the performance of the application.</p>
+<!--      <p>Some basic thing in the hibernate mapping and caching we always remember that is none of 
+          the cache providers support all of the cache concurrency strategies.</P>
+
+      <div class="heading">The following table shows which providers are compatible with which concurrency strategies.</div>-->
+<h3>NOTE:-</h3>
+      <p>
+          Hibernate does not provide implementation of Second level caching , 
+          it only provide specification how second level cache should be implemented. 
+          Third party implementation of second level cache are available:
+      </p>
+      <ol>
+          <li>EHCACHE ( Easy hibernate Caching)</li>
+          <li>OSCACHE (Open source caching)</li>
+      </ol>
+     <table id="indexing">
+
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="insert_program_in_hql.shtml" title="Insert Program in HQL">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="first_level_caching.shtml" title="First Level Caching">Next</a></td>
+  </tr> 
+</table>             
+
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+
+                <?php @include($_SERVER['DOCUMENT_ROOT'] . '/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>

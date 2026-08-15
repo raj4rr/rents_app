@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE struts-config PUBLIC
+"-//Apache Software Foundation//DTD Struts Configuration 1.3//EN"
+"http://jakarta.apache.org/struts/dtds/struts-config_1_3.dtd">
+
+
+<struts-config>
+    <form-beans>
+      <!-- DynaActionForm is flexible dynamic sets of properties -->
+        <form-bean name="RegisterForm" type="org.apache.struts.action.DynaActionForm" >
+            <form-property name="LoginName" type="java.lang.String" />
+            <form-property name="LoginPassword" type="java.lang.String" />
+            <form-property name="RegUserName" type="java.lang.String" />
+            <form-property name="RegPassword" type="java.lang.String" />
+            <form-property name="RegName" type="java.lang.String" />
+            <form-property name="RegNumber" type="java.lang.Integer" />
+            <form-property name="email" type="java.lang.String" />
+        </form-bean>
+
+    </form-beans>
+
+    <global-exceptions>
+
+    </global-exceptions>
+
+    <global-forwards>
+        <!-- file call by http:link -->
+        <forward name="register" path="/register.jsp"/>
+    </global-forwards>
+     <!-- All Action class, Bean class, Forward Action  map here-->
+    <action-mappings>
+        <action input="/register.jsp" name="RegisterForm" path="/register" scope="session" type="r4r.struts.RegisterAction">
+            <forward name="success" path="/index.jsp"/>
+            <forward name="failure" path="/register.jsp"/>
+            </action>
+
+            <action input="/index.jsp" name="RegisterForm" path="/login" scope="session" type="r4r.struts.LoginAction">
+                <forward name="success" path="/success.jsp"/>
+                <forward name="failure" path="/index.jsp"/>
+                </action>
+        
+    </action-mappings>
+
+    <controller processorClass="org.apache.struts.tiles.TilesRequestProcessor"/>
+
+    <message-resources parameter="com/myapp/struts/ApplicationResource"/>
+
+    <!-- ========================= Tiles plugin ===============================-->
+  
+    <plug-in className="org.apache.struts.tiles.TilesPlugin" >
+        <set-property property="definitions-config" value="/WEB-INF/tiles-defs.xml" />
+        <set-property property="moduleAware" value="true" />
+    </plug-in>
+
+    <!-- ========================= Validator plugin ================================= -->
+    <plug-in className="org.apache.struts.validator.ValidatorPlugIn">
+        <set-property
+            property="pathnames"
+            value="/WEB-INF/validator-rules.xml,/WEB-INF/validation.xml"/>
+    </plug-in>
+
+</struts-config>

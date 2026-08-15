@@ -1,0 +1,178 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>Static Implementation of Queue using array</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="Learn: How to Static Implement of Queue using array with example,variables,decisions making,c unions,c memory allocation, c operators, C pointers" >
+<meta name="keywords" CONTENT="c tutorial,c basics,programming language,examples,pointer,function,loop,else,if else,while,array,pre processor,post processor,structures,memory menagement,string,constants,variables,decisions making,c unions,c memory allocation, c operators, C pointers,c error handling, c file handling">
+<link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+    <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>C Programming language</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a><img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/c/">C </a>
+              <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/c/c_topics/c_data_structures">C Data structures</a></div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/c/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 
+
+	<!-- Header End-->
+    <div class="heading">C - Queue Static implementation</div>
+<table id="indexing">
+  <tr>
+   <td style="width:33%; text-align:left;">
+   	<a href="wat_is_Queue.shtml" title="C - Queue in Data Structure">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="Queue_dynamic_implementation.shtml" title="C - Queue Dynamic implementation">Next</a></td>
+  </tr>
+</table>
+
+<p>Static Implementation of queue is generally done by using arrays. So we must be sure about the exact number of the elements we want to store in the queue, as it is static implementation is done through arrays, so memory is to be allocated as static and we cannot change the capacity of the queue dynamically. In this implementation the beginning of the queue will become Front and the last element will be Rear.</p>
+<p>So we can say by seeing the following relation between the front and rear the total no. of elements that are contained in a queue can be calculated as:</p>
+<div class="code">(Rear-Front) + 1;<font class="comment">// and if rear, it means the queue will always be empty.</font></div>
+
+<p>As we know that the static implementation of the queue is done by using Array Data structure. So a code snippet shows how we can delete and add an element in a queue using array data structure.<p>
+
+<div class="code">
+<FONT>
+<FONT COLOR="#ff0000">#include </FONT><FONT>&lt;stdio.h&gt;</FONT><br>
+<FONT COLOR="#ff0000">#include</FONT><FONT>&lt;conio.h&gt;</FONT><br>
+<FONT COLOR="#ff0000">#define</FONT><FONT>&lt;stdlib.h&gt;</FONT><br>
+<FONT COLOR="#ff0000">#define </FONT><FONT>MAXSIZE </FONT><FONT COLOR="#800080">17</FONT><br>
+<FONT COLOR="#0000ff">void </FONT><FONT>enqueue();</FONT><br>
+<FONT COLOR="#0000ff">void </FONT><FONT>dequeue();</FONT><br>
+<FONT COLOR="#0000ff">void </FONT><FONT>display();</FONT><br>
+<FONT COLOR="#0000ff">int </FONT><FONT>queue[MAXSIZE];</FONT><br>
+<FONT COLOR="#0000ff">int </FONT><FONT>front=-</FONT><FONT COLOR="#800080">1</FONT><FONT>;</FONT><br>
+<FONT COLOR="#0000ff">int </FONT><FONT>rear=-</FONT><FONT COLOR="#800080">1</FONT><FONT>;</FONT><br>
+<FONT COLOR="#0000ff">void </FONT><FONT>main()</FONT><br>
+<FONT>{</FONT><br>
+<FONT COLOR="#0000ff">int </FONT><FONT>choice;</FONT><br>
+<FONT COLOR="#0000ff">char </FONT><FONT>ch;</FONT><br>
+<FONT>clrscr();</FONT><br>
+<FONT>printf(</FONT><FONT COLOR="#ff00ff">"Program for various operations on Queue using arrays"</FONT><FONT>);</FONT><br>
+<FONT COLOR="#0000ff">do</FONT><br>
+<FONT>{</FONT><br>
+&nbsp;<FONT>printf(</FONT><FONT COLOR="#ff00ff">"\n1. Enqueue"</FONT><FONT>);</FONT><br>
+&nbsp;<FONT>printf(</FONT><FONT COLOR="#ff00ff">"\n2. Dequeue"</FONT><FONT>);</FONT><br>
+&nbsp;<FONT>printf(</FONT><FONT COLOR="#ff00ff">"\n3. Display"</FONT><FONT>);</FONT><br>
+&nbsp;<FONT>printf(</FONT><FONT COLOR="#ff00ff">"Enter your choice :"</FONT><FONT>);</FONT><br>
+&nbsp;<FONT>scanf(</FONT><FONT COLOR="#ff00ff">"%d"</FONT><FONT>,&amp;choice);</FONT><br>
+&nbsp;<FONT COLOR="#0000ff">switch</FONT><FONT>(choice)</FONT><br>
+				<FONT>{</FONT><br>
+&nbsp;&nbsp;&nbsp;&nbsp;
+     <FONT COLOR="#0000ff">case </FONT><FONT COLOR="#800080">1</FONT><FONT>: enqueue();</FONT><br>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	         <FONT COLOR="#0000ff">break</FONT><FONT>;</FONT><br>
+&nbsp;&nbsp;&nbsp;&nbsp;
+     <FONT COLOR="#0000ff">case </FONT><FONT COLOR="#800080">2</FONT><FONT>: dequeue();</FONT><br>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	         <FONT COLOR="#0000ff">break</FONT><FONT>;</FONT><br>
+&nbsp;&nbsp;&nbsp;&nbsp;
+     <FONT COLOR="#0000ff">case </FONT><FONT COLOR="#800080">3</FONT><FONT>: display();</FONT><br>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	         <FONT COLOR="#0000ff">break</FONT><FONT>;</FONT><br>
+				&nbsp;<FONT COLOR="#0000ff">default </FONT><FONT>: printf(</FONT><FONT COLOR="#ff00ff">"\nwrong choice made"</FONT><FONT>);</FONT><br>
+&nbsp;&nbsp;&nbsp;
+    <FONT>}</FONT><br>
+<FONT>printf(</FONT><FONT COLOR="#ff00ff">"\ndo you want to continue y/n"</FONT><FONT>);</FONT><br>
+<FONT>fflush(stdin);</FONT><br>
+<FONT>scanf(</FONT><FONT COLOR="#ff00ff">"%c"</FONT><FONT>,&amp;ch);</FONT><br>
+<FONT>}</FONT><br>
+<FONT COLOR="#0000ff">while </FONT><FONT>((</FONT><FONT COLOR="#0000ff">char</FONT><FONT>==</FONT><FONT COLOR="#ff00ff">'y'</FONT><FONT>)||(</FONT><FONT COLOR="#0000ff">char</FONT><FONT>==</FONT><FONT COLOR="#ff00ff">'Y'</FONT><FONT>));</FONT><br>
+<FONT>getch();</FONT><br>
+<FONT>}</FONT><br>
+<FONT COLOR="#0000ff">void </FONT><FONT>enqueue()</FONT><br>
+<FONT>{</FONT><br>
+<FONT COLOR="#0000ff">int </FONT><FONT>info;</FONT><br>
+<FONT COLOR="#0000ff">if</FONT><FONT>(rear&gt;=MAXSIZE)</FONT><br>
+				<FONT>{</FONT><br>
+&nbsp;&nbsp;&nbsp;
+    <FONT>printf(</FONT><FONT COLOR="#ff00ff">"\nQueue Overflow"</FONT><FONT>);</FONT><br>
+				<FONT COLOR="#0000ff">break</FONT><FONT>;</FONT><br>
+				<FONT>}</FONT><br>
+<FONT COLOR="#0000ff">else</FONT><br>
+				<FONT>{</FONT><br>
+&nbsp;&nbsp;&nbsp;&nbsp;
+     <FONT>printf(</FONT><FONT COLOR="#ff00ff">"\nEnter the element you want to insert to queue"</FONT><FONT>);</FONT><br>
+				&nbsp;<FONT>scanf(</FONT><FONT COLOR="#ff00ff">"\n%d"</FONT><FONT>, &amp;info);</FONT><br>
+				&nbsp;<FONT>rear=rear+</FONT><FONT COLOR="#800080">1</FONT><FONT>;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;                 </FONT>
+			<FONT COLOR="#008000">/* increasing rear to accommodate new element*/</FONT><br>
+				&nbsp;<FONT>queue[rear]=info;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;            </FONT><FONT COLOR="#008000">/* placing the new element to the rear */ </FONT>
+    		<br>
+&nbsp;&nbsp;&nbsp;
+    <FONT>}</FONT><br>
+<FONT>}</FONT><br>
+<FONT COLOR="#0000ff">void </FONT><FONT>dequeue()</FONT><br>
+<FONT>{</FONT><br>
+<FONT COLOR="#0000ff">int </FONT><FONT>info;</FONT><br>
+<FONT COLOR="#0000ff">if</FONT><FONT>(front==-</FONT><FONT COLOR="#800080">1</FONT><FONT>)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;                    </FONT><FONT COLOR="#008000">/*checking the underflow condition */</FONT><br>
+				<FONT>{</FONT><br>
+&nbsp;&nbsp;&nbsp;&nbsp;
+     <FONT>printf(</FONT><FONT COLOR="#ff00ff">"\n the queue is empty"</FONT><FONT>);</FONT><br>
+				&nbsp;<FONT COLOR="#0000ff">break</FONT><FONT>;</FONT><br>
+				<FONT>}</FONT><br>
+<FONT COLOR="#0000ff">else</FONT><br>
+				<FONT>{</FONT><br>
+&nbsp;&nbsp;&nbsp;&nbsp;
+     <FONT>info=queue[front];&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;                </FONT><FONT COLOR="#008000">/*placing front element to info */</FONT><br>
+				&nbsp;<FONT>front=front+</FONT><FONT COLOR="#800080">1</FONT><FONT>;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;                  </FONT><FONT COLOR="#008000">/*incrementing the front value */</FONT><br>
+				&nbsp;<FONT>printf(</FONT><FONT COLOR="#ff00ff">"\n the deleted item is %d"</FONT><FONT>, info);&nbsp;    </FONT><FONT COLOR="#008000">&nbsp;/*returning the deleted value*/ </FONT>
+    		<br>
+&nbsp;&nbsp;&nbsp;
+    <FONT>}</FONT><br>
+<FONT>}</FONT><br>
+<FONT COLOR="#0000ff">void </FONT><FONT>display()</FONT><br>
+<FONT>{</FONT><br>
+&nbsp;<FONT COLOR="#0000ff">int </FONT><FONT>i;</FONT><br>
+&nbsp;<FONT COLOR="#0000ff">if</FONT><FONT>(rear==-</FONT><FONT COLOR="#800080">1</FONT><FONT>)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;                         </FONT><FONT COLOR="#008000">/*checking the underflow condition */</FONT><br>
+				&nbsp;<FONT>printf(</FONT><FONT COLOR="#ff00ff">"\n queue is empty"</FONT><FONT>);</FONT><br>
+&nbsp;<FONT COLOR="#0000ff">else</FONT><br>
+				<FONT>{</FONT><br>
+&nbsp;&nbsp;&nbsp;&nbsp;
+     <FONT>printf(</FONT><FONT COLOR="#ff00ff">"\nthe queue is diplayed as :"</FONT><FONT>)</FONT><br>
+				&nbsp;<FONT COLOR="#0000ff">for</FONT><FONT>(i=front;i&lt;=rear;i++)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;                           </FONT><FONT COLOR="#008000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; /*traversing the queue */</FONT><br>
+					<FONT>{</FONT><br>
+				&nbsp;&nbsp;&nbsp;&nbsp;
+	     <FONT>printf(</FONT><FONT COLOR="#ff00ff">"%d"</FONT><FONT>,queue[i]);</FONT><br>
+					<FONT>}</FONT><br>
+&nbsp;&nbsp;&nbsp;
+    <FONT>}</FONT><br>
+<FONT>}</FONT></FONT>
+</div>
+<table id="indexing">
+  <tr>
+   <td style="width:33%; text-align:left;">
+   	<a href="wat_is_Queue.shtml" title="C - Queue in Data Structure">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="Queue_dynamic_implementation.shtml" title="C - Queue Dynamic implementation">Next</a></td>
+  </tr>
+</table>
+
+<!--Footer  --> 
+</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>

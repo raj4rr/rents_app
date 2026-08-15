@@ -1,0 +1,37 @@
+/*To create array of object
+Indexers allow you to index a class or a struct instance in the same way as an array. 
+Defining an indexer allows you to create classes that act like "virtual arrays." Instances of that class can be accessed using the [] array access operator. 
+*/
+using System;
+class IndexerClass 
+{
+
+   private int [] myArray = new int[100]; 
+   public int this [int index]   // Indexer declaration
+   {
+      get 
+      {
+           return myArray[index];
+      }
+      set 
+      {
+            myArray[index] = value;
+      }
+   }
+  
+}
+
+public class MainClass 
+{
+   public static void Main() 
+   {
+      IndexerClass b = new IndexerClass();
+      // Call the indexer to initialize the elements #3 and #5.
+      b[3] = 256;
+      b[5] = 1024;
+      for (int i=0; i<=10; i++) 
+      {
+         Console.WriteLine("Element #{0} = {1}", i, b[i]);
+      }
+   }
+}

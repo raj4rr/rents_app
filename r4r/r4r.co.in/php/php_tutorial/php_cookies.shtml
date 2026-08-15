@@ -1,0 +1,151 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>Php cookies|cookies in php|php tutorial</TITLE>
+<META content=r4r.co.in name=owner>
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="Php cookies-learn with r4r php tutorial covers all  topics of php from basics concept to higher level php
+best examples interview questions in easy and short way" >
+<meta name="keywords" CONTENT="Php cookies, php array function, PHP, Programming, Language, Built-in Function,HTML,CSS,XML,JavaScript,DOM,jQuery Library, Web Design,Object 
+Oriented PHP, PHP Variables, Scalars,Arrays,Object Oriented In PHP,Exception In PHP">
+<META content="Rajesh Kumar" name=author>
+<!-- header start-->	
+
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>PHP Programing language</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+            <img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+            <a href="/php/">Php</a>
+              </div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/php/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	 
+
+	   	   <div class="heading">Cookies in PHP</div>
+
+		   <table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="php_function.shtml" title="php Functions">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="php_session.shtml" title="php Session">Next</a></td>
+  </tr>
+</table>
+
+<h3>Cookies</h3>
+<p>Cookies are text files stored on the client computer. A cookie is often used to identify a user. They are kept of use tracking purpose. PHP transparently supports HTTP cookies. PHP cookies can be created by using the setcookie() function.</p>
+<p>Server script sends a set of cookies to the browser. Browser stores this information on local machine for future use. When next time browser sends any request to web server then it sends those cookies information to the server and server uses that information to identify the user.</p> 
+<h3>Validity of Cookie</h3>
+<i>Validity of the cookie depends upon following parameters:</i>
+<ol>
+<li>name: The cookie name. The name of each cookie sent is stored in the superglobal array $_COOKIE.</li>
+<li>value: The cookie value.It is associated with the cookie name.</li>
+<li>expire: The time after which the cookie should expire in seconds.</li>
+<li>path : Specifies the exact path on thedomain that can use the cookies.</li>
+<li>domain: The domain that the cookie is available. If not domain is specified, the default value is the value of thedomain in which cookie was created.</li>
+<li>security:Specifies whether the cookie will besent via HTTPS. A value of 1 specifies that the cookie is sent over a secure connection but it doesn't mean that the cookie is secure. It's just a text file like every other cookie. A value of 0 denotes a standard HTTP transmission.</li>
+</ol>
+<i>Syntax:</i>	
+<div class="code">
+<pre>
+<font color="#000000">setcookie(name, value, expire, path, domain, secure);</font>
+</pre>
+</div>
+<p><i>Note:</i> The setcookie() function must appear before the &lt;html&gt; tag.</p>
+
+<h3>Example:</h3>
+<div class="code">
+<pre>
+<font color="#000000">Create and Set cookies:</font>
+
+<font color="#800000">&lt;?php  </font>
+
+<font color="#0000ff">$</font><font color="#008080">cookie_name </font><font color="#800000">= </font><font color="#ff00ff">'php_cookie'</font><font color="#800000">;</font>
+<font color="#0000ff">$</font><font color="#008080">cookie_value </font><font color="#800000">= </font><font color="#ff00ff">'test_cookie_set_with_php'</font><font color="#800000">;</font>
+<font color="#ff0000">setcookie</font><font color="#800000">(</font><font color="#0000ff">$</font><font color="#008080">cookie_name</font><font color="#800000">, </font><font color="#0000ff">$</font><font color="#008080">cookie_value</font><font color="#800000">, </font>
+<font color="#ff0000">time</font><font color="#800000">() + (</font><font color="#800080">86400 </font><font color="#800000">* </font><font color="#800080">30</font><font color="#800000">), </font><font color="#ff00ff">'/'</font><font color="#800000">);</font>
+
+<font color="#800000">?&gt;</font>
+</pre>
+</div>
+<h3>Read a Cookie</h3>
+<p>In Php, you can read a cookie by using <font class="point_out">$_COOKIE</font>.Once the cookies have been set, they can be accessed on the next page load.</p>
+<h3>Example:</h3>
+<div class="code">
+<pre>
+<font color="#000000">Read Cookies:</font>
+
+<font color="#800000">&lt;?php</font>
+  <font color="#0000ff">if</font><font color="#800000">( </font><font color="#0000ff">isset</font><font color="#800000">(</font><font color="#0000ff">$</font><font color="#008080">_COOKIE</font><font color="#800000">[</font><font color="#ff00ff">&quot;name&quot;</font><font color="#800000">]))</font>
+    <font color="#0000ff">echo </font><font color="#ff00ff">&quot;Welcome &quot; </font><font color="#800000">.</font><font color="#0000ff">$</font><font color="#008080">_COOKIE</font><font color="#800000">[</font><font color="#ff00ff">&quot;name&quot;</font><font color="#800000">].</font><font color="#ff00ff">&quot;&lt;br /&gt;&quot;</font><font color="#800000">;</font>
+  <font color="#0000ff">else</font>
+    <font color="#0000ff">echo </font><font color="#ff00ff">&quot;Sorry...!!!! Cookies Not recognized&quot;</font><font color="#800000">.</font><font color="#ff00ff">&quot;&lt;br /&gt;&quot;</font><font color="#800000">;</font>
+<font color="#800000">?&gt;</font>
+</pre>
+</div>
+<h3>Delete a Cookie</h3>	
+<p>In Php, to delete a cookie value, you may set the expiry time of the cookie in the past.</p>
+<div class="code">
+<pre>
+<font color="#800000">&lt;?php</font>
+<font color="#ff0000">setcookie</font><font color="#800000">( </font><font color="#ff00ff">&quot;name&quot;</font><font color="#800000">, </font><font color="#ff00ff">&quot;&quot;</font><font color="#800000">, </font><font color="#ff0000">time</font><font color="#800000">()- </font><font color="#800080">60</font><font color="#800000">, </font><font color="#ff00ff">&quot;/&quot;</font><font color="#800000">,</font><font color="#ff00ff">&quot;&quot;</font><font color="#800000">, </font><font color="#800080">0</font><font color="#800000">);</font>
+<font color="#ff0000">setcookie</font><font color="#800000">( </font><font color="#ff00ff">&quot;age&quot;</font><font color="#800000">, </font><font color="#ff00ff">&quot;&quot;</font><font color="#800000">, </font><font color="#ff0000">time</font><font color="#800000">()- </font><font color="#800080">60</font><font color="#800000">, </font><font color="#ff00ff">&quot;/&quot;</font><font color="#800000">,</font><font color="#ff00ff">&quot;&quot;</font><font color="#800000">, </font><font color="#800080">0</font><font color="#800000">);</font>
+<font color="#800000">?&gt;</font>
+
+<font color="#0000ff">&lt;html&gt;</font>
+<font color="#0000ff">&lt;head&gt;</font>
+<font color="#0000ff">&lt;title&gt;</font><font color="#000000">Deleting Cookies in php</font><font color="#0000ff">&lt;/title&gt;</font>
+<font color="#0000ff">&lt;/head&gt;</font>
+<font color="#0000ff">&lt;body&gt;</font>
+<font color="#000000"> </font>
+<font color="#800000">&lt;?php</font>
+<font color="#0000ff">echo </font><font color="#ff00ff">&quot;Deleted Cookies&quot;</font><font color="#800000">;</font>
+<font color="#800000">?&gt;</font>
+<font color="#0000ff">&lt;/body&gt;</font>
+<font color="#0000ff">&lt;/html&gt;</font>
+</pre>
+</div>
+<p><i>Output:</i>
+<div class="output">
+<div class="image">
+<img src="images/delete_cookie.gif">
+</div>
+</div>
+</p>
+
+	<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="php_function.shtml" title="php Functions">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="php_session.shtml" title="php Session">Next</a></td>
+  </tr>
+</table>
+
+</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/webtechnology/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->

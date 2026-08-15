@@ -1,0 +1,128 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+
+<HTML><HEAD><TITLE>RDBMS Interviews Questions And Answers,Orcale Interviews Questions And Answers,SQL Interviews Questions And Answers</TITLE>
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<META content=r4r.co.in name=owner>
+<meta name="description" CONTENT="RDBMS Interviews Questions And Answers,Orcale Interviews Questions And Answers,SQL Interviews Questions And Answers" >
+<meta name="keywords" CONTENT="RDBMS Interviews Questions And Answers,Orcale Interviews Questions And Answers,SQL Interviews Questions And Answers">
+<META content="Rajesh Kumar" name=author>
+<META http-equiv=expires content=0>
+
+<!--header start-->
+
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>DATABASE & SQL/PLSQL</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a><img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+			<a href="/sql/">SQL </a>
+              <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/sql/01/tutorial/basics">SQL & DATABASE BASIC</a></div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/sql/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	  
+
+                        	<!-- Header End-->	
+
+	  <div class="heading">Oacle interview Questions And Answer</div> 
+
+      <table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="Oracle interview Questions 6.shtml" title="Oracle interview Questions 6">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="Oracle interview Questions 8.shtml" title="Oracle interview Questions 8">Next</a></td>
+  </tr>
+</table>
+
+  <div class="heading"> What is meant by free extent? </div>
+  <p> A free extent is a collection of continuous free blocks in tablespace. When a segment is dropped its extents are reallocated and are marked as free.</p>
+
+  <h2>Which parameter in Storage clause will reduce number of rows per block? </h2>
+  <p>PCTFREE parameter Row size also reduces no of rows per block.</p>
+
+  <h2>. What is the significance of having storage clause? </h2>
+  <p>We can plan the storage for a table as how much initial extents are required, how much can be extended next, how much % should leave free for managing row updating, etc.,</p>
+
+  <h2> How does Space allocation table place within a block? </h2>
+  <p>Each block contains entries as follows
+Fixed block header
+Variable block header
+Row Header, row date (multiple rows may exists)
+PCTEREE (% of free space for row updating in future)</p>
+
+  <div class="heading">What is the role of PCTFREE parameter is storage clause? </div>
+  <p>This is used to reserve certain amount of space in a block for expansion of rows.</p>
+
+  <h2> What is the OPTIMAL parameter? </h2>
+  <p>It is used to set the optimal length of a rollback segment.</p>
+
+  <h2> What is the functionality of SYSTEM table space? </h2>
+  <p>To manage the database level transactions such as modifications of the data dictionary table that record information about the free space usage.</p>
+
+  <h2> How will you create multiple rollback segments in a database? </h2>
+  <ul><li>Create a database, which implicitly creates a SYSTEM rollback segment in a SYSTEM tablespace.</li>
+<li>Create a second rollback segment name R0 in the SYSTEM tablespace.</li>
+<li> Make new rollback segment available (after shutdown, modify init.ora file and start database)</li>
+<li>Create other tablespaces (RBS) for rollback segments.</li>
+<li> Deactivate rollback segment R0 and activate the newly created rollback segments.</li>
+</ul>
+
+  <h2> How the space utilization takes place within rollback segments? </h2>
+  <p>It will try to fit the transaction in a cyclic fashion to all existing extents. Once it found an extent is in use then it forced to acquire a new extent (number of extents is based on the optimal size)</p>
+
+  <div class="heading">Why query fails sometimes? </div>
+ <p>Rollback segment dynamically extent to handle larger transactions entry loads.
+A single transaction may wipeout all available free space in the rollback segment tablespace. This prevents other user using rollback segments.</p>
+
+  <h2>How will you monitor the space allocation? </h2>
+  <p>By querying DBA_SEGMENT table/view</p>
+
+<h2>How will you monitor rollback segment status? </h2>
+<p>Querying the DBA_ROLLBACK_SEGS view</p>
+<ul>
+<li><i>IN USE: </i>Rollback Segment is on-line.</li>
+<li><i>AVAILABLE: </i>Rollback Segment available but not on-line.</li>
+<li><i>OFF-LINE:  </i>Rollback Segment off-line</li>
+<li><i>INVALID: </i>Rollback Segment Dropped.</li>
+<li><i>NEEDS RECOVERY: </i>Contains data but need recovery or corrupted.</li>
+<li><i>PARTLY AVAILABLE: </i>Contains data from an unresolved transaction involving a
+distributed database.</lsi>
+</ul>
+
+  <table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="Oracle interview Questions 6.shtml" title="Oracle interview Questions 6">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="Oracle interview Questions 8.shtml" title="Oracle interview Questions 8">Next</a></td>
+  </tr>
+</table>
+
+                         <!--Footer  -->
+</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>

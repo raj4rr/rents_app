@@ -1,0 +1,313 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>Creating a Simple DynaForm Example with Struts</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="Creating a Simple DynaForm Example with Struts" >
+<meta name="keywords" CONTENT="Creating a Simple DynaForm Example with Struts">
+
+<!-- header start-->	
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>Struts</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+            <img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+            <a href="/java/">Java</a>
+              <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/java/struts">Struts</a>
+              </div>
+
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/struts/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	 
+<!-- header End-->
+
+<div class="heading">Application-4 : Creating a Simple DynaForm Example with Struts</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="../Example-3" title="Creating a Simple onLineDraw Application with Struts">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="../Example-5" title="Creating a Simple Lottery Annotation Application with Struts">Next</a></td>
+  </tr> 
+</table>
+
+<p>DynaBeans are the extensibility and flexibility according to the incoming request, defining even the simplest JavaBean requires defining a new class and coding a field and two methods for each property. The property of DynaBean can be configured via an XML descriptor, its property can't called by a simple java method but work well with reflection and introspection component. </p>
+<p>In this chapter, we have create a very simple DynaForm  Example with struts. This Example design in NetBeans IDE- 6.8  with Struts 1.3.</p> 
+<h3>Requirement  for your DynaForm Example-</h3>  
+<ol>
+<li>At least one view component is required in every Application.</li>
+<li> A Subclass of DynaActionForm class which play virtual role of ActionForm class.</li>
+<li>A subclass of Action class which provide specific processing functionality for the application.</li>
+<li>A web.xml file is required for calling ActionServlet and struts-config.xml.</li>
+<li>A struts-config.xml file is required for updating and mapping the update.</li>
+</ol>	   
+<p>Now, Following the following steps for develop your Fourth  application name as DynaFormExample. DynaFormExample application contain following page-</p>	
+<ol><li>Four View file name as index.jsp, welcomeStruts.jsp,and success.jsp</li>
+<li>Since, we used DynaForm so no used to make a bean class. As we define earlier about DynaForm</li>
+<li>one Action file name as LoginAction.java, used for provide specific processing functionality.</li>
+<li>Two XML file name as web.xml and struts-config.xml file, used for provide control, mapping and validation in application.</li></ol>   
+<p><i><u>Step- 1:</u></i> Start your IDE (NetBeans 6.8 with struts 1.3).</p>	   
+<p><i><u>Step- 2: </u></i>Open a new project( Crtl+Shift+N), name it , add server( Apache Tomcat 6.0.20 ), then add struts framework 1.3 , and don't forget to add Struts TLDs.</p>	   
+<p><i>Note:-</i>When you click Finish button, NetBeans IDE put and configure everything in place and project open in your IDE.</p>	   
+<div class="image"><img src="images/dyna1.png"></div>
+<p><i><u>Step- 3:</u></i> Open welcomeStruts.jsp page from your struts application and code it as describe below.	   
+<div class="code">
+<pre>
+<font color="#800000">&lt;%-- Document: welcomeStruts.jsp</font>
+<font color="#800000">Description : Second Page of onLineDraw Application--%&gt;</font>
+<font color="#800000">&lt;%@page contentType=</font><font color="#ff00ff">&quot;text/html&quot;</font><font color="#800000">%&gt;</font>
+<font color="#800000">&lt;%@page pageEncoding=</font><font color="#ff00ff">&quot;UTF-8&quot;</font><font color="#800000">%&gt;</font>
+<font color="#800000">&lt;%@ taglib uri=</font><font color="#ff00ff">&quot;http://struts.apache.org/tags-bean&quot;</font>
+<font color="#800000">prefix=</font><font color="#ff00ff">&quot;bean&quot; </font><font color="#800000">%&gt;</font>
+<font color="#800000">&lt;%@ taglib uri=</font><font color="#ff00ff">&quot;http://struts.apache.org/tags-html&quot;</font>
+<font color="#800000">prefix=</font><font color="#ff00ff">&quot;html&quot; </font><font color="#800000">%&gt;</font>
+<font color="#800000">&lt;%@ taglib uri=</font><font color="#ff00ff">&quot;http://struts.apache.org/tags-logic&quot;</font>
+<font color="#800000">prefix=</font><font color="#ff00ff">&quot;logic&quot; </font><font color="#800000">%&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">html:html </font><font color="#800080">lang</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;true&quot;</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;head&gt;</font>
+<font color="#0000ff">&lt;meta </font><font color="#ff0000">http-equiv</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;Content-Type&quot; </font><font color="#ff0000">content</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;text/html; </font>
+<font color="#ff00ff">charset=UTF-8&quot;</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;title&gt;&lt;</font><font color="#808000">bean:message </font><font color="#800080">key</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;welcome.title&quot;</font><font color="#0000ff">/&gt;&lt;/title&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">html:base</font><font color="#0000ff">/&gt;</font>
+<font color="#0000ff">&lt;/head&gt;</font>
+<font color="#0000ff">&lt;body </font><font color="#ff0000">style</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;background-color: white&quot;</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">logic:notPresent </font><font color="#ff0000">name</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;org.apache.struts.action.MESSAGE&quot; </font>
+<font color="#ff0000">scope</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;application&quot;</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;div  </font><font color="#ff0000">style</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;color: red&quot;</font><font color="#0000ff">&gt;</font>
+<font color="#000000">ERROR:  Application resources not loaded -- check servlet</font>
+<font color="#000000">container logs for error messages.</font>
+<font color="#0000ff">&lt;/div&gt;</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">logic:notPresent</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">html:form </font><font color="#ff0000">action</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;/example&quot; </font><font color="#ff0000">method</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;post&quot;</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;h3&gt;&lt;</font><font color="#808000">bean:message </font><font color="#800080">key</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;welcome.heading&quot;</font><font color="#0000ff">/&gt;&lt;/h3&gt;</font>
+<font color="#0000ff">&lt;p&gt;&lt;</font><font color="#808000">bean:message </font><font color="#800080">key</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;welcome.message&quot;</font><font color="#0000ff">/&gt;&lt;/p&gt;</font>
+<font color="#0000ff">&lt;table </font><font color="#ff0000">style</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;border:groove&quot; </font><font color="#ff0000">border</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;1&quot; </font><font color="#ff0000">cellspacing</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;5&quot; </font>
+<font color="#ff0000">cellpadding</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;5&quot;</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;tbody&gt;</font>
+<font color="#0000ff">&lt;tr&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">html:errors </font><font color="#ff0000">property</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;first&quot; </font><font color="#0000ff">/&gt;</font>
+<font color="#0000ff">&lt;td&gt;</font><font color="#000000"> </font><font color="#0000ff">&lt;</font><font color="#808000">bean:message </font><font color="#800080">key</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;welocme.first&quot; </font><font color="#0000ff">/&gt;&lt;/td&gt;</font>
+<font color="#0000ff">&lt;td&gt;&lt;</font><font color="#808000">html:text </font><font color="#ff0000">property</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;first&quot; </font><font color="#ff0000">size</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;20&quot;</font><font color="#0000ff">/&gt;&lt;/td&gt;</font>
+<font color="#0000ff">&lt;/tr&gt;</font>
+<font color="#0000ff">&lt;tr&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">html:errors </font><font color="#ff0000">property</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;last&quot; </font><font color="#0000ff">/&gt;</font>
+<font color="#0000ff">&lt;td&gt;&lt;</font><font color="#808000">bean:message </font><font color="#800080">key</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;welcome.last&quot; </font><font color="#0000ff">/&gt;</font><font color="#000000"> </font><font color="#0000ff">&lt;/td&gt;</font>
+<font color="#0000ff">&lt;td&gt;&lt;</font><font color="#808000">html:text </font><font color="#ff0000">property</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;last&quot; </font><font color="#ff0000">size</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;20&quot;</font><font color="#0000ff">/&gt;&lt;/td&gt;</font>
+<font color="#0000ff">&lt;/tr&gt;</font>
+<font color="#0000ff">&lt;tr&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">html:errors </font><font color="#ff0000">property</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;age&quot; </font><font color="#0000ff">/&gt;</font>
+<font color="#0000ff">&lt;td&gt;&lt;</font><font color="#808000">bean:message </font><font color="#800080">key</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;welcome.age&quot; </font><font color="#0000ff">/&gt;&lt;/td&gt;</font>
+<font color="#0000ff">&lt;td&gt;&lt;</font><font color="#808000">html:text </font><font color="#ff0000">property</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;age&quot; </font><font color="#ff0000">size</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;20&quot;</font><font color="#0000ff">/&gt;&lt;/td&gt;</font>
+<font color="#0000ff">&lt;/tr&gt;</font>
+<font color="#0000ff">&lt;tr&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">html:errors </font><font color="#ff0000">property</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;number&quot; </font><font color="#0000ff">/&gt;</font>
+<font color="#0000ff">&lt;td&gt;&lt;</font><font color="#808000">bean:message </font><font color="#800080">key</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;welocme.number&quot; </font><font color="#0000ff">/&gt;&lt;/td&gt;</font>
+<font color="#0000ff">&lt;td&gt;&lt;</font><font color="#808000">html:text </font><font color="#ff0000">property</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;number&quot; </font><font color="#ff0000">size</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;20&quot;</font><font color="#0000ff">/&gt;&lt;/td&gt;</font>
+<font color="#0000ff">&lt;/tr&gt;</font>
+<font color="#0000ff">&lt;tr&gt;</font>
+<font color="#0000ff">&lt;td </font><font color="#ff0000">align</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;center&quot;</font><font color="#0000ff">&gt;&lt;</font><font color="#808000">html:submit </font><font color="#ff0000">property</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;submit&quot; </font>
+<font color="#ff0000">value</font><font color="#0000ff">=</font><font color="#ff00ff">&quot; Submit &quot; </font><font color="#0000ff">/&gt;&lt;/td&gt;</font>
+<font color="#0000ff">&lt;td </font><font color="#ff0000">align</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;center&quot;</font><font color="#0000ff">&gt;&lt;</font><font color="#808000">html:reset </font><font color="#ff0000">property</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;reset&quot; </font>
+<font color="#ff0000">value</font><font color="#0000ff">=</font><font color="#ff00ff">&quot; Reset &quot; </font><font color="#0000ff">/&gt;&lt;/td&gt;</font>
+<font color="#0000ff">&lt;/tr&gt;</font>
+<font color="#0000ff">&lt;/tbody&gt;</font>
+<font color="#0000ff">&lt;/table&gt;</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">html:form</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;/body&gt;</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">html:html</font><font color="#0000ff">&gt;</font><font color="#000000"> </font>
+</pre>
+</div>	   
+<p><i><u>Step- 4:</u></i> Open success.jsp page from your struts application and code it as describe below.</p>	   
+<div class="code">
+<pre>
+<font color="#800000">&lt;%-- Document   : success.jsp</font>
+<font color="#800000">Created on : Third Page of onLineDraw Application--%&gt;</font>
+<font color="#800000">&lt;%@page contentType=</font><font color="#ff00ff">&quot;text/html&quot;</font><font color="#800000">%&gt;</font>
+<font color="#800000">&lt;%@page pageEncoding=</font><font color="#ff00ff">&quot;UTF-8&quot;</font><font color="#800000">%&gt;</font>
+<font color="#0000ff">&lt;!DOCTYPE </font><font color="#800080">HTML PUBLIC </font><font color="#000000">&quot;</font><font color="#800080">-</font><font color="#000000">//</font><font color="#800080">W3C</font><font color="#000000">//</font><font color="#800080">DTD HTML 4</font><font color="#000000">.</font><font color="#800080">01 Transitional</font><font color="#000000">//</font><font color="#800080">EN</font><font color="#000000">&quot;</font>
+   <font color="#000000">&quot;</font><font color="#800080">http:</font><font color="#000000">//</font><font color="#800080">www</font><font color="#000000">.</font><font color="#800080">w3</font><font color="#000000">.</font><font color="#800080">org</font><font color="#000000">/</font><font color="#800080">TR</font><font color="#000000">/</font><font color="#800080">html4</font><font color="#000000">/</font><font color="#800080">loose</font><font color="#000000">.</font><font color="#800080">dtd</font><font color="#000000">&quot;</font><font color="#0000ff">&gt;</font>
+<font color="#800000">&lt;%@ taglib uri=</font><font color="#ff00ff">&quot;http://struts.apache.org/tags-bean&quot;</font>
+<font color="#800000">prefix=</font><font color="#ff00ff">&quot;bean&quot; </font><font color="#800000">%&gt;</font>
+<font color="#0000ff">&lt;html&gt;</font>
+<font color="#0000ff">&lt;head&gt;</font>
+<font color="#0000ff">&lt;meta </font><font color="#ff0000">http-equiv</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;refresh&quot; </font><font color="#ff0000">content</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;10; </font>
+<font color="#ff00ff">URL=index.jsp&quot;</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;title&gt;</font><font color="#000000">success Page</font><font color="#0000ff">&lt;/title&gt;</font>
+<font color="#0000ff">&lt;/head&gt;</font>
+<font color="#0000ff">&lt;body&gt;</font>
+<font color="#0000ff">&lt;h1&gt;</font><font color="#000000">Your Detail!</font><font color="#0000ff">&lt;/h1&gt;</font>
+<font color="#0000ff">&lt;ul&gt;</font>
+<font color="#0000ff">&lt;p&gt;</font><font color="#000000"> First Name:</font><font color="#0000ff">&lt;strong&gt;</font><font color="#000000"> </font><font color="#0000ff">&lt;</font><font color="#808000">bean:write </font><font color="#ff0000">name</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;DynaExample&quot;</font>
+<font color="#ff0000">property</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;first&quot; </font><font color="#0000ff">/&gt;&lt;/strong&gt;</font><font color="#000000"> </font><font color="#0000ff">&lt;/p&gt;</font>
+<font color="#0000ff">&lt;p&gt;</font><font color="#000000"> Last Name: </font><font color="#0000ff">&lt;strong&gt;&lt;</font><font color="#808000">bean:write </font><font color="#ff0000">name</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;DynaExample&quot; </font>
+<font color="#ff0000">property</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;last&quot; </font><font color="#0000ff">/&gt;&lt;/strong&gt;&lt;/p&gt;</font>
+<font color="#0000ff">&lt;p&gt;</font><font color="#000000"> Age: </font><font color="#0000ff">&lt;strong&gt;&lt;</font><font color="#808000">bean:write </font><font color="#ff0000">name</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;DynaExample&quot; </font>
+<font color="#ff0000">property</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;age&quot; </font><font color="#0000ff">/&gt;&lt;/strong&gt;&lt;/p&gt;</font>
+<font color="#0000ff">&lt;p&gt;</font><font color="#000000"> Number: </font><font color="#0000ff">&lt;strong&gt;&lt;</font><font color="#808000">bean:write </font><font color="#ff0000">name</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;DynaExample&quot;</font>
+<font color="#ff0000">property</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;number&quot; </font><font color="#0000ff">/&gt;&lt;/strong&gt;&lt;/p&gt;</font>
+<font color="#0000ff">&lt;/ul&gt;</font>
+<font color="#0000ff">&lt;ul&gt;</font>
+<font color="#0000ff">&lt;p&gt;</font><font color="#000000"> Please, wait page automatic return to </font><font color="#0000ff">&lt;strong&gt;</font>
+<font color="#000000">Home </font><font color="#0000ff">&lt;/strong&gt;</font><font color="#000000"> Page. </font><font color="#0000ff">&lt;/p&gt;</font>
+<font color="#0000ff">&lt;/ul&gt;</font>
+<font color="#0000ff">&lt;/body&gt;</font>
+<font color="#0000ff">&lt;/html&gt;</font>
+</pre>
+</div>
+<p><i><u>Step- 6:</u></i> Open struts-config.xml  file place in WEB-INF folder, this file is used to map Model class, Exception class, Validation class, Action class( Action class further choose View class) and 
+ApplicationResource class.</p>
+<div class="code"><pre>
+<font color="#0000ff">&lt;</font><font color="#808000">?xml </font><font color="#ff0000">version</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;1.0&quot; </font><font color="#ff0000">encoding</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;UTF-8&quot; </font><font color="#800080">?</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;!DOCTYPE </font><font color="#800080">struts-config PUBLIC</font>
+<font color="#000000">&quot;</font><font color="#800080">-</font><font color="#000000">//</font><font color="#800080">Apache Software Foundation</font><font color="#000000">//</font><font color="#800080">DTD Struts </font>
+<font color="#800080">Configuration 1</font><font color="#000000">.</font><font color="#800080">3</font><font color="#000000">//</font><font color="#800080">EN</font><font color="#000000">&quot;</font>
+<font color="#000000">&quot;</font><font color="#800080">http:</font><font color="#000000">//</font><font color="#800080">jakarta</font><font color="#000000">.</font><font color="#800080">apache</font><font color="#000000">.</font><font color="#800080">org</font><font color="#000000">/</font><font color="#800080">struts</font><font color="#000000">/</font><font color="#800080">dtds</font>
+<font color="#000000">/</font><font color="#800080">struts-config_1_3</font><font color="#000000">.</font><font color="#800080">dtd</font><font color="#000000">&quot;</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">struts-config</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">form-beans</font><font color="#0000ff">&gt;</font>
+<font color="#008000">&lt;!-- DynaForm configure into struts-config.xml </font>
+<font color="#008000">and provide the parameter --&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">form-bean </font><font color="#ff0000">name</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;DynaExample&quot; </font><font color="#ff0000">type</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;org.apache</font>
+<font color="#ff00ff">.struts.action.DynaActionForm&quot; </font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">form-property </font><font color="#ff0000">name</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;first&quot; </font><font color="#ff0000">type</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;java.lang.String&quot;</font><font color="#0000ff">/&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">form-property </font><font color="#ff0000">name</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;last&quot; </font><font color="#ff0000">type</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;java.lang.String&quot;</font><font color="#0000ff">/&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">form-property </font><font color="#ff0000">name</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;age&quot; </font><font color="#ff0000">type</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;java.lang.Integer&quot;</font><font color="#0000ff">/&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">form-property </font><font color="#ff0000">name</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;number&quot; </font><font color="#ff0000">type</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;java.lang.Integer&quot;</font><font color="#0000ff">/&gt;</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">form-bean</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">form-beans</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">global-exceptions</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">global-exceptions</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">global-forwards</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">forward </font><font color="#ff0000">name</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;welcome&quot;  </font><font color="#800080">path</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;/Welcome.do&quot;</font><font color="#0000ff">/&gt;</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">global-forwards</font><font color="#0000ff">&gt;</font>
+<font color="#008000">&lt;!-- all the action relative stuff map here:--&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">action-mappings</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">action </font><font color="#800080">input</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;/welcomeStruts.jsp&quot; </font><font color="#ff0000">name</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;DynaExample&quot;</font>
+<font color="#800080">path</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;/example&quot; </font><font color="#ff0000">scope</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;request&quot; </font><font color="#ff0000">type</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;r4r.struts.ExampleAction&quot;</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">forward </font><font color="#ff0000">name</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;success&quot; </font><font color="#800080">path</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;/success.jsp&quot;</font><font color="#0000ff">/&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">forward </font><font color="#ff0000">name</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;failure&quot; </font><font color="#800080">path</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;/welcomeStruts.jsp&quot;</font><font color="#0000ff">/&gt;</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">action</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">action </font><font color="#800080">path</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;/Welcome&quot; </font><font color="#800080">forward</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;/welcomeStruts.jsp&quot;</font><font color="#0000ff">/&gt;</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">action-mappings</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">controller </font><font color="#800080">processorClass</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;org.apache.struts.tiles</font>
+<font color="#ff00ff">.TilesRequestProcessor&quot;</font><font color="#0000ff">/&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">message-resources </font><font color="#800080">parameter</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;com/myapp/struts</font>
+<font color="#ff00ff">/ApplicationResource&quot;</font><font color="#0000ff">/&gt;</font>
+<font color="#008000">&lt;!-- ======== Tiles plugin ========--&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">plug-in </font><font color="#800080">className</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;org.apache.struts.tiles.TilesPlugin&quot; </font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">set-property </font><font color="#ff0000">property</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;definitions-config&quot; </font>
+<font color="#ff0000">value</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;/WEB-INF/tiles-defs.xml&quot; </font><font color="#0000ff">/&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">set-property </font><font color="#ff0000">property</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;moduleAware&quot; </font><font color="#ff0000">value</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;true&quot; </font><font color="#0000ff">/&gt;</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">plug-in</font><font color="#0000ff">&gt;</font>
+<font color="#008000">&lt;!-- ======== Validator plugin ========--&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">plug-in </font><font color="#800080">className</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;org.apache.struts.validator.ValidatorPlugIn&quot;</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">set-property</font>
+<font color="#ff0000">property</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;pathnames&quot;</font>
+<font color="#ff0000">value</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;/WEB-INF/validator-rules.xml,/WEB-INF/validation.xml&quot;</font><font color="#0000ff">/&gt;</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">plug-in</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">struts-config</font><font color="#0000ff">&gt;</font>
+</pre>
+</div>
+<p><i><u>Step- 7:</u></i> Open ApplicationResource.properties place in com.myapp.struts package, this file act as resource bundle of application and used to provide the property and validation into application.</p>
+<p><i><u>Step- 8:</u></i> Since we Already Add property into DynaForm form struts-config.xml file. so no need to design Bean class. Action class automatic call all the property from DynaFrom.</p>	
+<p><i><u>Step- 9:</u></i> DynaForm directly access the Action class of servlet by its instance. </p>  
+<div class="code"><pre>
+<font color="#008000">// Save as a ExampleAction.java</font>
+<font color="#0000ff">package </font><font color="#000000">r4r.struts;</font>
+<font color="#0000ff">import </font><font color="#000000">javax.servlet.http.*;</font>
+<font color="#0000ff">import </font><font color="#000000">org.apache.struts.action.*;</font>
+<font color="#0000ff">public class </font><font color="#000000">ExampleAction </font><font color="#0000ff">extends </font><font color="#000000">org.apache</font>
+	<font color="#000000">.struts.action.</font><font color="#ff0000">Action </font><font color="#000000">{</font>
+<font color="#008000">/* forward name=&quot;success&quot; path=&quot;&quot; */</font>
+<font color="#0000ff">private static final </font><font color="#ff0000">String </font><font color="#000000">SUCCESS = </font><font color="#ff00ff">&quot;success&quot;</font><font color="#000000">;</font>
+<font color="#008000">/* failure name=&quot;failure&quot; path=&quot;&quot; */</font>
+<font color="#0000ff">private static final </font><font color="#ff0000">String </font><font color="#000000">FAILURE = </font><font color="#ff00ff">&quot;failure&quot;</font><font color="#000000">;</font>
+<font color="#000000">@</font><font color="#0000ff">Override</font>
+<font color="#0000ff">public </font><font color="#000000">ActionForward execute(ActionMapping mapping,</font>
+<font color="#000000">ActionForm form,HttpServletRequest request, </font>
+<font color="#000000">HttpServletResponse response)</font>
+<font color="#0000ff">throws </font><font color="#ff0000">Exception </font><font color="#000000">{</font>
+<font color="#008000">//Add error into incoming HTTP request</font>
+<font color="#000000">ActionErrors error = </font><font color="#0000ff">new </font><font color="#000000">ActionErrors();</font>
+<font color="#008000">// By making instance of DynaActionForm class, </font>
+<font color="#000000">DynaActionForm actionForm = (DynaActionForm) form;</font>
+<font color="#008000">//Value store into DynaForm is call here:</font>
+<font color="#ff0000">String </font><font color="#000000">first = (</font><font color="#ff0000">String</font><font color="#000000">) actionForm.get(</font><font color="#ff00ff">&quot;first&quot;</font><font color="#000000">);</font>
+<font color="#ff0000">String </font><font color="#000000">last = (</font><font color="#ff0000">String</font><font color="#000000">) actionForm.get(</font><font color="#ff00ff">&quot;last&quot;</font><font color="#000000">);</font>
+<font color="#0000ff">int </font><font color="#000000">age = (</font><font color="#ff0000">Integer</font><font color="#000000">) actionForm.get(</font><font color="#ff00ff">&quot;age&quot;</font><font color="#000000">);</font>
+<font color="#0000ff">int </font><font color="#000000">number = (</font><font color="#ff0000">Integer</font><font color="#000000">) actionForm.get(</font><font color="#ff00ff">&quot;number&quot;</font><font color="#000000">);</font>
+
+<font color="#008000">//Check the valiadation condition into incomming </font>
+<font color="#000000">HTTP request form DynaForm</font>
+<font color="#0000ff">if </font><font color="#000000">(first == </font><font color="#0000ff">null </font><font color="#000000">|| first.length() &lt; </font><font color="#800080">1</font><font color="#000000">) {</font>
+<font color="#000000">error.add(</font><font color="#ff00ff">&quot;first&quot;</font><font color="#000000">, </font><font color="#0000ff">new </font><font color="#000000">ActionMessage(</font><font color="#ff00ff">&quot;error.first.required&quot;</font><font color="#000000">));</font>
+<font color="#000000">}</font>
+<font color="#0000ff">if </font><font color="#000000">(last == </font><font color="#0000ff">null </font><font color="#000000">|| last.length() &lt; </font><font color="#800080">1</font><font color="#000000">) {</font>
+<font color="#000000">error.add(</font><font color="#ff00ff">&quot;last&quot;</font><font color="#000000">, </font><font color="#0000ff">new </font><font color="#000000">ActionMessage(</font><font color="#ff00ff">&quot;error.last.required&quot;</font><font color="#000000">));</font>
+<font color="#000000">}</font>
+<font color="#0000ff">if </font><font color="#000000">(age == </font><font color="#800080">0</font><font color="#000000">) {</font>
+<font color="#000000">error.add(</font><font color="#ff00ff">&quot;age&quot;</font><font color="#000000">, </font><font color="#0000ff">new </font><font color="#000000">ActionMessage(</font><font color="#ff00ff">&quot;error.age.required&quot;</font><font color="#000000">));</font>
+<font color="#000000">}</font>
+<font color="#0000ff">if </font><font color="#000000">(number &lt; </font><font color="#800080">1</font><font color="#000000">) {</font>
+<font color="#000000">error.add(</font><font color="#ff00ff">&quot;number&quot;</font><font color="#000000">, </font><font color="#0000ff">new </font><font color="#000000">ActionMessage(</font><font color="#ff00ff">&quot;error.number.required&quot;</font><font color="#000000">));</font>
+<font color="#000000">}</font>
+<font color="#008000">/*Save Error/request and dispaly it anywhere within </font>
+<font color="#008000">this application */</font>
+<font color="#000000">saveErrors(request, error);</font>
+<font color="#0000ff">if </font><font color="#000000">(error.isEmpty()) {</font>
+<font color="#0000ff">return </font><font color="#000000">mapping.findForward(SUCCESS);</font>
+<font color="#000000">} </font><font color="#0000ff">else </font><font color="#000000">{</font>
+<font color="#0000ff">return </font><font color="#000000">mapping.findForward(FAILURE);</font>
+<font color="#000000">}</font>
+<font color="#000000">}</font>
+<font color="#000000">}</font>
+</pre>
+</div>
+<p><u><i>Run your application:</i></u></p>	   
+<p><i>Note:-</i>Now your application is complete, so now start run your application. Start your server( which you embedded when configure our struts application), then right click your application and click upon Run option or open your welcome( index.jsp) page and press shift+F6.<p>	   
+
+<div class="code"> <img src="images/dyna2.png"></div>
+<p><i>Note:-</i>Check the Validation into Example</p>
+<div class="code"><img src="images/dyna3.png"></div>
+<div class="code"><img src="images/dyna4.png"></div>	   
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="../Example-3" title="Creating a Simple onLineDraw Application with Struts">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="../Example-5" title="Creating a Simple Lottery Annotation Application with Struts">Next</a></td>
+  </tr> 
+</table>
+
+	<!-- Footer Start-->	
+		</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->

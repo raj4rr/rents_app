@@ -1,0 +1,126 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<HTML><HEAD><TITLE>Source Code Insert Form</TITLE>
+
+    <SCRIPT language=JavaScript src="../js/wysiwyg.js" type=text/javascript></SCRIPT>
+    <LINK href=".../styles/style.css" type=text/css rel=stylesheet>
+    <script type="text/javascript" src="../ide/scripts/jquery-1.3.2.min.js"></script>
+    <script type="text/javascript" src="../ide/scripts/jquery-ui-1.7.2.custom.min.js"></script>
+    <link rel="Stylesheet" type="text/css" href="../ide/style/jqueryui/ui-lightness/jquery-ui-1.7.2.custom.css">
+    <script type="text/javascript" src="../ide/scripts/jHtmlArea-0.7.0.js"></script>
+    <link rel="Stylesheet" type="text/css" href="../ide/style/jHtmlArea.css">
+    <script type="text/javascript" src="../ide/scripts/jHtmlArea.ColorPickerMenu-0.7.0.js"></script>
+    <link rel="Stylesheet" type="text/css" href="../ide/style/jHtmlArea.ColorPickerMenu.css" />
+
+</HEAD>
+<BODY>
+<FORM name=SForm method=post action="Insert_Source_Code.php" >
+<P align=center>&nbsp;<A href="/postcode/ShowAnswers.php">Show 
+Source Code</A></P>
+<P align=center><FONT size=5>&nbsp;</FONT><B><FONT size=5>Source Code Insert 
+Form </FONT></B></P>
+<TABLE id=AutoNumber1 style="BORDER-COLLAPSE: collapse" borderColor=#111111 
+cellSpacing=0 cellPadding=0 width="100%" border=1>
+  <TBODY>
+  <TR>
+    <TD width="25%">Title<FONT color=#ff0000>*</FONT></TD>
+    <TD width="75%"><INPUT tabIndex=1 size=50 name=title></TD></TR>
+  <TR>
+    <TD width="25%">Meta Data Keywords<FONT color=#ff0000>*</FONT></TD>
+    <TD width="75%"><INPUT tabIndex=2 size=50 name=keywords></TD></TR>
+  <TR>
+    <TD width="25%">Meta Data Descriptions<FONT color=#ff0000>*</FONT></TD>
+    <TD width="75%"><INPUT tabIndex=3 size=50 name=descriptions></TD></TR>
+  <TR>
+    <TD width="25%">Introduction<FONT color=#ff0000>*</FONT></TD>
+    <TD width="75%"><TEXTAREA tabIndex=4 id =introduction name=introduction rows=3 cols=69></TEXTAREA>
+      <SCRIPT language=JavaScript>generate_wysiwyg('introduction')</SCRIPT>
+
+    </TD></TR>
+  <TR>
+    <TD width="25%">Class/Library File&nbsp; Descriptions<FONT 
+      color=#ff0000>*</FONT></TD>
+    <TD width="75%"><TEXTAREA tabIndex=5 name=classdescription id=classdescription rows=5 cols=69></TEXTAREA>
+     <SCRIPT language=JavaScript>generate_wysiwyg('classdescription')</SCRIPT>
+
+    </TD></TR>
+  <TR>
+    <TD width="25%">Method Descriptions<FONT color=#ff0000>*</FONT></TD>
+    <TD width="75%"><TEXTAREA tabIndex=6 name=methoddescription id=methoddescription rows=10 cols=69></TEXTAREA>
+    <SCRIPT language=JavaScript>generate_wysiwyg('methoddescription')</SCRIPT>
+
+    </TD></TR>
+  <TR>
+    <TD width="25%">Source Code Descriptions <FONT color=#ff0000>*</FONT></TD>
+    <TD width="75%"><TEXTAREA tabIndex=7 id=sourcecodedescription name=sourcecodedescription rows=10 cols=69></TEXTAREA>
+    <SCRIPT language=JavaScript>generate_wysiwyg('sourcecodedescription')</SCRIPT>
+    </TD></TR>
+  <TR>
+    <TD width="25%">Source Code<FONT color=#ff0000>*</FONT>
+  <!--  
+        <input id="choosecolor" type="button" value="Choose Color..." />
+    <script type="text/javascript">
+        $(function() {
+            $("#choosecolor").click(function() {
+                jHtmlAreaColorPickerMenu(this, {
+                    colorChosen: function(color) {
+                        $(document.body).css('background-color', color);
+                    }
+                });
+            });
+        });
+    </script>
+
+-->
+   <script type="text/javascript">
+       $.ui.dialog.defaults.bgiframe = true;
+       $(function() {
+             $("#dialogShowButton").click(function() {
+               $("#dialog").dialog({width: 420});
+               $("#dialogEditor").htmlarea({
+                toolbar: ["html", "|",
+                            "forecolor",  // <-- Add the "forecolor" Toolbar Button
+                            "|", "bold", "italic", "underline", "|", "p", "h1", "h2", "h3", "|", "link", "unlink"] // Overrides/Specifies the Toolbar buttons to show
+            });
+        });
+	})
+
+	</script>
+
+<input id="dialogShowButton" value="Show Editor" type="button">
+
+ <div aria-labelledby="ui-dialog-title-dialog" role="dialog" tabindex="-1" class="ui-dialog ui-widget ui-widget-content ui-corner-all  ui-draggable ui-resizable" style="display: none; position: absolute; overflow: hidden; z-index: 1004; outline: 0px none; height: auto; width: 420px; top: 427.5px; left: 460px;"><div style="-moz-user-select: none;" unselectable="on" class="ui-dialog-titlebar ui-widget-header ui-corner-all ui-helper-clearfix"><span style="-moz-user-select: none;" unselectable="on" id="ui-dialog-title-dialog" class="ui-dialog-title">Basic dialog</span>
+ <a style="-moz-user-select: none;" unselectable="on" role="button" class="ui-dialog-titlebar-close ui-corner-all" href="#">
+ <span style="-moz-user-select: none;" unselectable="on" class="ui-icon ui-icon-closethick">close</span></a>
+ </div>
+ <div class="ui-dialog-content ui-widget-content" id="dialog" style="height: auto; min-height: 88px; width: auto;">
+
+  <div class="ui-dialog-content ui-widget-content" id="dialog" style="height: auto; min-height: 88px; width: auto;">
+
+	    <textarea id="dialogEditor" rows="10" style="width: 400px; display: none;"></textarea></div>
+    </div>
+    </div>
+
+    </TD>
+    <TD width="75%"><TEXTAREA tabIndex=8 name=sourcecode id=sourcecode rows=20 cols=69></TEXTAREA>
+    <SCRIPT language=JavaScript>generate_wysiwyg('sourcecode')</SCRIPT>
+    </TD></TR>
+  <TR>
+    <TD width="25%">Output</TD>
+    <TD width="75%"><TEXTAREA tabIndex=9 name=output id=output rows=5 cols=69></TEXTAREA>
+    <SCRIPT language=JavaScript>generate_wysiwyg('output')</SCRIPT>
+    </TD></TR>
+
+  <TR>
+    <TD width="25%">
+      <P align=left>Source Code Keyword<FONT color=#ff0000>*</FONT></P></TD>
+    <TD width="75%">
+      <P align=left><INPUT tabIndex=12 size=50 name=language></P></TD></TR>
+  <TR>
+    <TD width="25%">User Name<FONT color=#ff0000>*</FONT></TD>
+    <TD width="75%"><INPUT tabIndex=13 size=50 name=username></TD></TR>
+  <TR>
+    <TD width="100%" colSpan=2>
+      <P align=center><INPUT  tabIndex=14 type=submit value=Save name=save><INPUT tabIndex=15 type=reset value=Reset name=reset></P></TD></TR></TBODY></TABLE>
+<P>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</P></FORM></BODY></HTML>

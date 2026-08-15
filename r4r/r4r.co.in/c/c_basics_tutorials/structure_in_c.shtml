@@ -1,0 +1,128 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+
+<HTML><HEAD><TITLE>C tutorial on Structure</TITLE>
+<META content=r4r.co.in name=owner>
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="Learn about C structure,Defining structure,Declaring structure,Complex structure,Pointers,Array,Storage class,Loops,Functions,Data types,C constants,Union,Preprocessor,C interview questions and answers">
+<meta name="keywords" CONTENT="Introducing to C structure,Defining structure,Declaring structure,Complex structure,Examples on structre,Pointers,Array,Storage class,Loops,Functions,Data types,C constants,Union,Preprocessor,C interview questions and answers">
+<META content="Rajesh Kumar" name=author>
+<META http-equiv="expires" content="0"> 
+
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+     <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>C Programming language</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a><img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/c/">C </a>
+              <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/c/c_basics_tutorials/">Learn C in 9 days</a></div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/c/commonfiles/new-leftmenu.shtml'); ?></td>
+
+                       <td style="80%" valign="top">
+                        <div class="main_content">
+
+	 <!-- Header End--> 	
+
+     <div class="heading">Structure in C: Introduction</div> 
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="passing_string_to_function_in_c.shtml" title="Pointer in C">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="structure2.shtml" title="Accessing Structure Member">Next</a></td>
+  </tr>
+</table>	
+
+<h2>Introduction of C structure</h2>
+<p>In some programming contexts, you need to access multiple data types under asingle name for easy manipulation; for example you want to refer to address with multiple data like house number, street, zip code, country C supports structure which allows you to wrap one or more variables with different data types. A structure can contain any valid data types like int, char, float even arrays and other structures. Each variable in structure is called a structure member.</p>
+
+<h2>Defining structure</h2>
+<p>To define a structure, you can use struct keyword.</p>
+<div class="code">
+<PRE>
+<FONT COLOR="#000000">struct struct_name{ structure_member };</FONT>
+</PRE>
+</div>
+
+<p>The name of structure is followed the rule of variable name.</p>
+
+<h3>For example</h3>
+<div class="code">
+<PRE>
+<FONT COLOR="#800080">1</FONT><FONT COLOR="#000000">. struct address{ </FONT>
+<FONT COLOR="#800080">2</FONT><FONT COLOR="#000000">. unsigned </FONT><FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">house_number; </FONT>
+<FONT COLOR="#800080">3</FONT><FONT COLOR="#000000">. </FONT><FONT COLOR="#0000ff">char </FONT><FONT COLOR="#000000">street_name[</FONT><FONT COLOR="#800080">50</FONT><FONT COLOR="#000000">]; </FONT>
+<FONT COLOR="#800080">4</FONT><FONT COLOR="#000000">. </FONT><FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">zip_code; </FONT>
+<FONT COLOR="#800080">5</FONT><FONT COLOR="#000000">. </FONT><FONT COLOR="#0000ff">char </FONT><FONT COLOR="#000000">country[</FONT><FONT COLOR="#800080">50</FONT><FONT COLOR="#000000">]; </FONT>
+<FONT COLOR="#800080">6</FONT><FONT COLOR="#000000">. };</FONT>
+</PRE>
+</div>
+
+<p>It contains house number as an positive integer, street name as a string, zip code as an integer and country as a string.</p>
+
+<h2>Declaring structure</h2>
+<p>The above example only defines an address structure without create any instance of it. To create or declare a structure you have two ways:</p>
+
+<p>The first way is declare a structure follows by structure definition like this :</p>
+<div class="code">
+<PRE>
+<FONT COLOR="#000000">struct struct_name { structure_member; ... }<br>
+instance_1,instance_2 instance_n; </FONT>
+</PRE>
+</div>
+
+<p>In the second way you can declare your structure instance at a different location in your source code after structure definition.</p>
+<p>Here is structure declaration syntax :</p>
+<div class="code">
+<PRE>
+<FONT COLOR="#000000">struct struct_name instance_1,instance_2 instance_n; </FONT>
+</PRE>
+</div>
+
+<h2>Complex structure</h2>
+<p>Structure can contains arrays or other structures so it is sometimes called complex structure.</p>
+<p>For example address structure is a complex structure. We can define a complex structure which contains address structure as follows:</p>
+
+<div class="code">
+<PRE>
+<FONT COLOR="#800080"></FONT><FONT COLOR="#000000"> struct customer{ </FONT>
+<FONT COLOR="#800080"></FONT><FONT COLOR="#000000"></FONT><FONT COLOR="#0000ff">char </FONT><FONT COLOR="#000000">name[</FONT><FONT COLOR="#800080">50</FONT><FONT COLOR="#000000">]; </FONT>
+<FONT COLOR="#800080"></FONT><FONT COLOR="#000000">structure address billing_addr;
+ </FONT>
+ <FONT COLOR="#800080"></FONT><FONT COLOR="#000000">structure address shipping_addr; </FONT><FONT COLOR="#800080">5</FONT><FONT COLOR="#000000">. };</FONT>
+</PRE>
+</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="passing_string_to_function_in_c.shtml" title="Pointer in C">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="structure2.shtml" title="Accessing Structure Member">Next</a></td>
+  </tr>
+</table>	
+
+<!--Footer  --> 	
+</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/c/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>

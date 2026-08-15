@@ -1,0 +1,103 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>Class ActionForm in struts,DynaAction Form class</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="Class ActionForm in struts,DynaAction Form class" >
+<meta name="keywords" CONTENT="Class ActionForm in struts,DynaAction Form class">
+<!-- header start-->	
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>Struts</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+            <img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+            <a href="/java/">Java</a>
+              <img src="/images/left_menu_bullet.gif" width="11" height="6"/><A href="/java/struts/basic/tutorial/01">Struts1.3 Basic Tutorials </a>
+              </div>
+
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/struts/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	 
+
+<div class="heading">Class ActionForm in struts</div>
+<!-- header End-->
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="Class%20ActionServlet%20in%20struts.shtml" title="Class ActionServlet in struts">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="Class%20ActionMapping%20in%20struts-config%20xml%20Implementation.shtml" title="Class ActionMapping in struts-config.xml Implementation">Next</a></td>
+  </tr> 
+</table>
+<p>An ActionForm represents a JSP/ HTML form that the user interacts with over one or more pages. Also, an ActionForm is a JavaBean that extends org.apache.struts.action.ActionForm which  can be stored the form information in either the session (default) or request scope.The framework sets the ActionForm's properties from the request parameters and sends the validated form to the appropriate Action's execute method.</p>
+<p>When you code your ActionForm beans class, keep the following principles in mind:</p>
+<ul><li>Typically, an ActionForm bean will have only property of <i>setter </i> and <i>getter</i> methods, with no business logic so don't required any specific methods to be implemented. Basically, it is used to identify the role which particular beans play in the overall architecture.</li>
+<li>Define a property (with associated <i> setXxx </i> and <i> getXxx </i> methods) for each field that is present in the form. The field name and property name must match according to the usual JavaBeans conventions.</li>
+<li>The ActionForm object also offers a standard validation mechanism. If you override a "stub" method, and provide error messages in the standard application resource, The framework will automatically validate the input from the form (using your method).</li>
+<li>Remember, the ActionForm is meant to represent your data-entry form, not just the data beans. So, hyperlinks, buttons and other controls on form can also be defined as properties. This can help determine which button or control was selected when the form was submitted.</li>
+<li>An ActionForm that fails validation will not even be presented to the Action for handling.</li>
+<li>Beans may also activated by a bean instance in the form, also use nested property references. If you nest an existing bean instance on your form, think about the properties it exposes because any public property(<i> setXxx</i> and <i> getXxx </i>) on an ActionForm that accepts a single String value can be set with a query string.</li>
+<h3>DynaAction Form class</h3>
+<p>DynaActionForms relieve developers of maintaining simple ActionForms, because it is almost similar to the DynaBeans. In which just create the get/set methods for each of your bean's properties and list its properties in the framework's configuration( struts-config.xml) file. </p>
+<div class="code"><pre>
+<font color="#0000ff">&lt;</font><font color="#808000">?xml </font><font color="#ff0000">version</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;1.0&quot; </font><font color="#ff0000">encoding</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;UTF-8&quot; </font><font color="#800080">?</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;!DOCTYPE </font><font color="#800080">struts-config PUBLIC</font><font color="#000000">&quot;</font><font color="#800080">-</font>
+<font color="#000000">//</font><font color="#800080">Apache Software Foundation</font>
+<font color="#000000">//</font><font color="#800080">DTD Struts Configuration 1</font><font color="#000000">.</font><font color="#800080">3</font><font color="#000000">//</font><font color="#800080">EN</font><font color="#000000">&quot;</font>
+<font color="#000000">&quot;</font><font color="#800080">http:</font><font color="#000000">//</font><font color="#800080">jakarta</font><font color="#000000">.</font><font color="#800080">apache</font><font color="#000000">.</font><font color="#800080">org</font><font color="#000000">/</font><font color="#800080">struts</font><font color="#000000">/</font><font color="#800080">dtds</font>
+<font color="#000000">/</font><font color="#800080">struts-config_1_3</font><font color="#000000">.</font><font color="#800080">dtd</font><font color="#000000">&quot;</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">struts-config</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">form-bean </font><font color="#ff0000">name</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;LoginForm&quot; </font>
+<font color="#ff0000">type</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;org.apache.struts.action.DynaActionForm&quot;</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">form-property </font><font color="#ff0000">name</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;name&quot; </font><font color="#ff0000">type</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;java.lang.String&quot;</font>
+<font color="#800080">initial</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;consumer1&quot; </font><font color="#0000ff">&gt;&lt;/</font><font color="#808000">form-property</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">form-property </font><font color="#ff0000">name</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;name&quot; </font><font color="#ff0000">type</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;java.lang.String&quot; </font>
+<font color="#800080">initial</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;consumer2&quot; </font><font color="#0000ff">&gt;&lt;/</font><font color="#808000">form-property</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">form-property </font><font color="#ff0000">name</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;name&quot; </font><font color="#ff0000">type</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;java.lang.String&quot;</font>
+<font color="#800080">initial</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;consumer3&quot; </font><font color="#0000ff">&gt;&lt;/</font><font color="#808000">form-property</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">form-property </font><font color="#ff0000">name</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;name&quot; </font><font color="#ff0000">type</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;java.lang.String&quot;</font>
+<font color="#800080">initial</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;consumer4&quot; </font><font color="#0000ff">&gt;&lt;/</font><font color="#808000">form-property</font><font color="#0000ff">&gt;</font>
+<font color="#000000"> </font><font color="#0000ff">&lt;/</font><font color="#808000">form-bean</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">struts-config</font><font color="#0000ff">&gt;</font>
+</pre>
+</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="Class%20ActionServlet%20in%20struts.shtml" title="Class ActionServlet in struts">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="Class%20ActionMapping%20in%20struts-config%20xml%20Implementation.shtml" title="Class ActionMapping in struts-config.xml Implementation">Next</a></td>
+  </tr> 
+</table>
+<!-- Footer Start-->	
+
+		</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->

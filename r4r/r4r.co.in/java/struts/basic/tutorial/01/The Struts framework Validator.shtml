@@ -1,0 +1,162 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>The Struts framework Valuators,Exception Handler in struts,Struts are efficient more than other Framework.</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="The Struts framework Valuators,Exception Handler in struts,Struts are efficient more than other Framework." >
+<meta name="keywords" CONTENT="The Struts framework Valuators,Exception Handler in struts,Struts are efficient more than other Framework.">
+
+<!-- header start-->	
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>Struts</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+            <img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+            <a href="/java/">Java</a>
+              <img src="/images/left_menu_bullet.gif" width="11" height="6"/><A href="/java/struts/basic/tutorial/01">Struts1.3 Basic Tutorials </a>
+              </div>
+
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/struts/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	 
+
+<div class="heading">The Struts framework Valuators</div>
+<!-- header End-->
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="Class%20ActionForward%20in%20struts.shtml" title="Class ActionForward in Struts">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="First%20Struts%20Application%20Using%20NetBeans%20IDE.shtml" title="First Struts Application Using NetBeans IDE">Next</a></td>
+  </tr> 
+</table>
+<p>Valuators is basically used to perform validation in the project/application, it is configure into .xml file and used into:-</p>
+<ul><li>The ActionForm bean must extend ValidatorForm.</li>
+<li>The form's JSP/HTML must include the <i>"html:javascript /" </i> tag for client side validation.   </li>
+<li>The Validator Framework uses two XML configuration files</li>
+<li>validation.xml- This file are used to defines the validations applied to a form bean.</li>
+<li>validator-rules.xml- This file are used to defines the standard validation routines, due to reusable purpose used in the validation.xml to define the specific validations.</li>
+<div class="code"><pre>
+<font color="#000000">//Validator mapping into struts-config.xml file</font>
+<font color="#0000ff">&lt;</font><font color="#808000">?xml </font><font color="#ff0000">version</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;1.0&quot; </font><font color="#ff0000">encoding</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;UTF-8&quot; </font><font color="#800080">?</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;!DOCTYPE </font><font color="#800080">struts-config PUBLIC</font>
+<font color="#000000">&quot;</font><font color="#800080">-</font><font color="#000000">//</font><font color="#800080">Apache Software Foundation</font>
+<font color="#000000">//</font><font color="#800080">DTD Struts Configuration 1</font><font color="#000000">.</font><font color="#800080">3</font><font color="#000000">//</font><font color="#800080">EN</font><font color="#000000">&quot;</font>
+<font color="#000000">&quot;</font><font color="#800080">http:</font><font color="#000000">//</font><font color="#800080">jakarta</font><font color="#000000">.</font><font color="#800080">apache</font><font color="#000000">.</font><font color="#800080">org</font><font color="#000000">/</font><font color="#800080">struts</font>
+<font color="#000000">/</font><font color="#800080">dtds</font><font color="#000000">/</font><font color="#800080">struts-config_1_3</font><font color="#000000">.</font><font color="#800080">dtd</font><font color="#000000">&quot;</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">struts-config</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">form-beans</font><font color="#0000ff">&gt;</font>
+<font color="#000000"> </font><font color="#008000">&lt;!-- Model of your application or Beans map here --&gt;</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">form-beans</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">global-exceptions</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">global-exceptions</font><font color="#0000ff">&gt;</font>
+<font color="#008000">&lt;!-- Forward page map here--&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">global-forwards</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">forward </font><font color="#ff0000">name</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;welcome&quot;  </font><font color="#800080">path</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;/Welcome.do&quot;</font><font color="#0000ff">/&gt;</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">global-forwards</font><font color="#0000ff">&gt;</font>
+<font color="#008000">&lt;!-- Action class, success page, failure page, </font>
+<font color="#008000">and all the action related stuff map here --&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">action-mappings</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">action </font><font color="#800080">path</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;/Welcome&quot; </font><font color="#800080">forward</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;/welcomeStruts.jsp&quot;</font><font color="#0000ff">/&gt;</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">action-mappings</font><font color="#0000ff">&gt;</font>
+<font color="#000000">	</font><font color="#008000">&lt;!-- Validator only work on form or</font>
+<font color="#008000">	where validity is required--&gt;</font>
+<font color="#000000">	</font><font color="#0000ff">&lt;</font><font color="#808000">form-validation</font><font color="#0000ff">&gt;</font>
+<font color="#000000"> </font><font color="#0000ff">&lt;</font><font color="#808000">formset</font><font color="#0000ff">&gt;</font>
+<font color="#000000"> </font><font color="#0000ff">&lt;form </font><font color="#ff0000">name</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;welcomeStruts&quot;</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">field </font><font color="#ff0000">property</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;username&quot; </font><font color="#800080">depends</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;required&quot;</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">msg </font><font color="#ff0000">name</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;required&quot; </font><font color="#800080">key</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;error.username&quot;</font><font color="#0000ff">/&gt;</font>
+<font color="#000000">		  </font><font color="#0000ff">&lt;/</font><font color="#808000">field</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">field </font><font color="#ff0000">property</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;password&quot; </font><font color="#800080">depends</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;required&quot;</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">msg </font><font color="#ff0000">name</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;required&quot; </font><font color="#800080">key</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;error.password&quot;</font><font color="#0000ff">/&gt;</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">field</font><font color="#0000ff">&gt;</font>
+<font color="#000000"> </font><font color="#0000ff">&lt;/form&gt;</font>
+<font color="#000000">  </font><font color="#0000ff">&lt;/</font><font color="#808000">formset</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">form-validation</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">controller </font><font color="#800080">processorClass</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;org.apache.struts</font>
+<font color="#ff00ff">.tiles.TilesRequestProcessor&quot;</font><font color="#0000ff">/&gt;</font>
+<font color="#000000"> </font><font color="#008000">&lt;!--ApplicationResource file map here --&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">message-resources </font><font color="#800080">parameter</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;com/myapp/struts</font>
+<font color="#ff00ff">/ApplicationResource&quot;</font><font color="#0000ff">/&gt;</font>
+<font color="#008000">&lt;!-- ====== Tiles plugin ============--&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">plug-in </font><font color="#800080">className</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;org.apache.struts</font>
+<font color="#ff00ff">.tiles.TilesPlugin&quot; </font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">set-property </font><font color="#ff0000">property</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;definitions-config&quot;</font>
+<font color="#ff0000">value</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;/WEB-INF/tiles-defs.xml&quot; </font><font color="#0000ff">/&gt;</font><font color="#000000">  </font>
+<font color="#0000ff">&lt;</font><font color="#808000">set-property </font><font color="#ff0000">property</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;moduleAware&quot; </font><font color="#ff0000">value</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;true&quot; </font><font color="#0000ff">/&gt;</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">plug-in</font><font color="#0000ff">&gt;</font>
+<font color="#008000">&lt;!-- ========== Validator plugin ============== --&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">plug-in </font><font color="#800080">className</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;org.apache.struts</font>
+<font color="#ff00ff">.validator.ValidatorPlugIn&quot;</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">set-property</font>
+  <font color="#ff0000">property</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;pathnames&quot;</font>
+  <font color="#ff0000">value</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;/WEB-INF/validator-rules.xml,</font>
+<font color="#ff00ff">  /WEB-INF/validation.xml&quot;</font><font color="#0000ff">/&gt;</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">plug-in</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">struts-config</font><font color="#0000ff">&gt;</font>
+</pre>
+</div>
+<p><li>Exception Handler in struts:</li> When an Action's class execute a method that throws an exception, then an ExceptionHandler is define to handle the execute. Class ExceptionHandler is define in the package of org.apache.struts.action.ExceptionHandler and override the execute method. Now the execute method should proceed the Exception and return an ActionForward object, which configure your handler in struts-config.xml like this-</p>
+<div class="code"><pre>
+<font color="#0000ff">&lt;</font><font color="#808000">?xml </font><font color="#ff0000">version</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;1.0&quot; </font><font color="#ff0000">encoding</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;UTF-8&quot;</font><font color="#800080">?</font><font color="#0000ff">&gt;</font>
+<font color="#008000">&lt;!-- ExceptionHandler define here --&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">global-exceptions</font><font color="#0000ff">&gt;</font>
+<font color="#000000">    </font><font color="#0000ff">&lt;</font><font color="#808000">exception  </font><font color="#800080">key</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;ABC.key&quot;  </font>
+	<font color="#ff0000">type</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;java.io.Exception&quot;</font>
+<font color="#800080">handler</font><font color="#0000ff">=</font><font color="#ff00ff">&quot; com.myapp.struts.ExceptionHandler&quot;</font><font color="#0000ff">/&gt;</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">global-exceptions</font><font color="#0000ff">&gt;</font>
+</pre>
+</div>
+
+<p>Above configuration element says that com.myapp.struts.ExceptionHandler.execute will be called when any Exception is thrown by an Action. and the key is a key into your message resources properties file that can be used to retrieve an error message. If the handler attribute is not specified so, the default handler stores the exception in the request attribute under the value of the Globals.EXCEPTION_KEY global key.
+A common use of ExceptionHandlers is to configure one for java.lang.Exception so it's called for any exception and log the exception to some data store.</p>
+<h3>Struts are efficient more than other Framework.</h3>
+<p>Struts framework is more efficient than other framework like <i> Spring web WVC, JavaServer Faces </i> and <i> Hibernate </i> etc.</p>
+<ul><li>The Struts is not only thread-safe but thread-dependent (instantiates each Action once and allows other requests to be threaded through the original object).</li>
+<li>The Struts tag libraries provide general-purpose functionality.</li>
+<li>The Struts components are reusable by the application.</li>
+<li>ActionForm beans minimize subclass code and shorten subclass hierarchies.</li>
+<li>The Struts localization strategies reduce the need for redundant JSPs. </li>
+<li>The Struts is lightweight (5 core packages, 5 tag libraries).</li>
+<li>The Struts is open source and well documented (code to be examined easily)</li>
+<li>The Struts is neutral model and easier integrated with other framework like Struts with Hibernate, Struts with Spring web MCV, and Struts with JSF.</li></ul>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="Class%20ActionForward%20in%20struts.shtml" title="Class ActionForward in Struts">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="First%20Struts%20Application%20Using%20NetBeans%20IDE.shtml" title="First Struts Application Using NetBeans IDE">Next</a></td>
+  </tr> 
+</table>
+<!-- Footer Start-->	
+
+		</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->

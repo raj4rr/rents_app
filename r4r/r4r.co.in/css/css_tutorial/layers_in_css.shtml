@@ -1,0 +1,126 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Language" content="en-us" />
+<title>CSS(cascading style sheet) layers|Layers in css|how to use layer in css</title>
+<meta content="Rajesh Kumar" name="author" />
+<meta http-equiv="Expires" content="0" />
+<meta content="r4r.co.in" name="owner" />
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<meta name="Description" content="CSS(cascading style sheet) -Learn how to use layers in css with r4r 
+css best tutorial which provides complete solution of css to learn easily and shortly">
+<meta name="Keywords" content="CSS layers,Backgrounds In CSS,Fonts In CSS, Links In CSS
+Tables In CSS, Box Model In CSS, Border In CSS,Images In CSS, Colors In CSS, Types of CSS, CSS ID and Class, Padding In CSS 
+Outlines In CSS, Positioning In CSS,Dimensions In CSS, Scrollbars In CSS, Layouts In CSS, Cursor In CSS, Unit In CSS
+Pesudo Classes In CSS, Margin In CSS, Visibitlity In CSS, Validations In CSS" />
+
+<!-- header start-->	
+		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+		<meta http-equiv="Content-Language" content="en-us" />
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON" />
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+</head>
+
+	<body>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>CSS Tutorials</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+
+              <img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+
+			  <a href="/css/">CSS </a>
+
+              </div>
+
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/css/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	 
+
+<div class="heading">Layers In CSS</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="validations_in_css.shtml" title="Validations In CSS">Previous</a>
+	</td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="media_types_in_css.shtml" title="Media Types In CSS">Next</a></td>
+  </tr> 
+</table>
+
+<p>With CSS, it is possible to work with layers: pieces of HTML that are placed on top of the regular page with pixel precision.CSS gives you opportunity to create layers of various divisions. The CSS layers refer to applying the z-index property to elements that overlap with each other.The z-index property is used alongwith position property to create an effect of layers. You can specify which element should come on top and which element should come at bottom.</p>
+<p>The advantages of this are obvious - but once again Netscape has very limited support of CSS layers - and to top it off: the limited support it offers is quite often executed with failures.n CSS, each element is given a priority. HTML elements that appear later in the source code than others will have a higher priority by default. If there are two overlapping CSS positioned elements, the element with the higher priority will appear on top of the other.To manually define a priority, set the z-index value. The larger the value, the higher the priority the element will have.</p>
+
+<div class="heading">Simple Example</div>
+
+<div class="code">
+<pre>
+<font color="#0000ff">&lt;html&gt;</font>
+<font color="#0000ff">&lt;head&gt;</font>
+<font color="#0000ff">&lt;style&gt;</font>
+<font color="#800000">h4{ </font><font color="#0000ff">position: </font><font color="#ff0000">relative</font><font color="#800000">; </font>
+<font color="#0000ff">top: </font><font color="#800000">30px;</font>
+<font color="#0000ff">left: </font><font color="#800000">50px;</font>
+<font color="#0000ff">z-index: </font><font color="#800000">2;</font>
+<font color="#0000ff">background-color: </font><font color="#800000">#336699;}</font>
+<font color="#800000">p { </font><font color="#0000ff">position: </font><font color="#ff0000">relative</font><font color="#800000">; </font>
+<font color="#0000ff">z-index: </font><font color="#800000">1; </font>
+<font color="#0000ff">background-color: </font><font color="#800000">#FFCCCC;} </font>
+<font color="#0000ff">&lt;/style&gt;</font>
+<font color="#0000ff">&lt;/head&gt;</font>
+<font color="#0000ff">&lt;body&gt;</font>
+<font color="#0000ff">&lt;h4&gt;</font><font color="#000000">Header Z-Index = 2</font><font color="#0000ff">&lt;br&gt;</font>
+<font color="#000000">This is used to show first part</font><font color="#0000ff">&lt;/h4&gt;</font>
+<font color="#0000ff">&lt;p&gt;</font><font color="#000000">You probably can't read this part,</font>
+<font color="#000000"> so I will fill it in with useless text for </font>
+<font color="#000000">the time being.</font><font color="#0000ff">&lt;br&gt;</font><font color="#000000">This paragraph has a z-index</font>
+<font color="#000000"> of 1, which is less than</font>
+<font color="#000000">the header.</font><font color="#0000ff">&lt;br&gt;</font><font color="#000000">As you can see, the header has </font>
+<font color="#000000">been moved down, using positioning, and is</font>
+<font color="#000000">now resting on top of this paragraph.</font><font color="#0000ff">&lt;br&gt;</font><font color="#000000">If we</font>
+<font color="#000000"> had not defined the z-index, by default the </font>
+<font color="#000000"> paragraph would have been on top</font><font color="#0000ff">&lt;br&gt;</font><font color="#000000"> of the header </font>
+<font color="#000000"> because it appears later in our HTML code.</font><font color="#0000ff">&lt;/p&gt;</font>
+<font color="#0000ff">&lt;/body&gt;</font>
+<font color="#0000ff">&lt;/html&gt;</font>
+</pre>
+</div>
+
+<p>Output</p>
+<div class="output">
+<div class="image">
+<img src="images/layers_in-css.gif" >
+</div>
+</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="validations_in_css.shtml" title="Validations In CSS">Previous</a>
+	</td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="media_types_in_css.shtml" title="Media Types In CSS">Next</a></td>
+  </tr> 
+</table>
+
+		</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/webtechnology/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+</body>
+</html>
+<!-- Footer End-->

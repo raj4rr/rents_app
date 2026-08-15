@@ -1,0 +1,632 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>Creating a Struts Application used <logic:iterate> in Struts</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="Creating a Struts Application used <logic:iterate> in Struts" >
+<meta name="keywords" CONTENT="Creating a Struts Application used <logic:iterate> in Struts">
+
+<!-- header start-->	
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>Struts</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+            <img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+            <a href="/java/">Java</a>
+              <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/java/struts">Struts</a>
+              </div>
+
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/struts/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	 
+<!-- header End-->
+
+<div class="heading">Application- 9 :Creating a Struts Application used in Struts</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="../Example-8" title="Creating a Login Application with DynaActionForm in Struts">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="../Example%2010" title="Creating a Struts Application for insert Data into DataBase in Struts">Next</a></td>
+  </tr> 
+</table>
+<h3>Creating a Struts Application with Struts</h3>
+<p>In this chapter, you create a  new Struts application  for the purpose of using <logic:iterate> tag with Struts from start to end. <Iterate> tag generally used to take data form collection into application.  For each piece of the application, we show you the code and then explain the code. This application design in NetBeans IDE- 6.8  with Struts 1.3.</p>	
+<h3>Requirement  for your struts application-</h3> 
+<ul><li>At least one view component is required in every Application.</li>
+<li>A subclass of ActionForm is used to submit the date as application needed.</li>
+<li>A subclass of Action class which provide specific processing functionality for the application.</li>
+<li>A web.xml file is required for calling ActionServlet and struts-config.xml.</li>
+<li>A struts-config.xml file is required for updating and mapping the update.  </li></ul>
+<p>Let's Start the application, this application provide a good understanding how struts framework works and also understanding the development of Struts applications.</p>
+<p>Now, Following the some steps for develop your first application name as GenException. GenException application contain following page-</p>
+<ul><li>Three View file name as index.jsp, search.jsp and sorry.jsp</li>
+<li>One JavaBeans file name as searchForm.java, used for store data as application need.</li>
+<li>one Action file name as searchAction.java, used for provide specific processing functionality.</li>
+<li>In this application two other page name as EmployeData.java and Employee.java, are also make for handle and flow the data</li>
+<li>Two XML file name as web.xml and struts-config.xml file, used for provide control, mapping and validation in application.</li></ul>
+<p><i>Step- 1 :</i> Start your IDE ( NetBeans 6.8 with struts 1.3).</p>
+<p><i>Step- 2 :</i> Open a new project( Crtl+Shift+N), name it , add server( Apache Tomcat 6.0.20 ), then add struts framework 1.3 , and don't forget to add Struts TLDs.</p>
+<p><i>Note:-</i> When you click Finish button, your NetBeans IDE configure everything in place and project open in your IDE.</p>
+<div class"image"><img src="images/genException.png"></div>
+<p><i>Step- 3:</i> Open index.jsp page, from your struts application and code it as describe below.</p>
+<div class"code"><pre>
+&lt;%--  Document: index.jsp
+Description : First Page of GenException Application--%&gt;
+&lt;<font color="#0000ff">%@page</font><font color="#000000"> contentType=&quot;text/html&quot;%&gt;</font>
+&lt;<font color="#0000ff">%@page</font><font color="#000000"> pageEncoding=&quot;UTF-8&quot;%&gt;</font>
+&lt;%@ taglib uri=&quot;<font color="#0000ff">http://struts.apache.org/tags-html</font><font color="#000000">&quot;</font>
+prefix=&quot;html&quot; %&gt;
+&lt;%@ taglib uri=&quot;<font color="#0000ff">http://struts.apache.org/tags-bean</font><font color="#000000">&quot; </font>
+prefix=&quot;bean&quot; %&gt;
+&lt;html:html xhtml=&quot;true&quot;&gt;
+&lt;head&gt;
+&lt;title&gt;&lt;bean:message key=&quot;welcome.title&quot;/&gt;&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;h1 align=&quot;center&quot;&gt;&lt;bean:message
+key=&quot;welcome.heading&quot;/&gt;&lt;/h1&gt;
+&lt;p align=&quot;center&quot;&gt;&lt;bean:message 
+key=&quot;welcome.message&quot;/&gt;&lt;/p&gt;
+&lt;hr width=&quot;100%&quot; size=&quot;+2&quot; noshade=&quot;groove&quot; 
+style=&quot;color: blue&quot;&gt;
+&lt;h2 align=&quot;center&quot;&gt; R4R Tech Soft Employee Partal&lt;/h2&gt;
+&lt;hr width=&quot;80%&quot; noshade=&quot;true&quot;&gt;
+&lt;ul type=&quot;square&quot;&gt;
+&lt;li&gt;&lt;html:link forward=&quot;sorry&quot;&gt; 
+Add an Employee Detail &lt;/html:link&gt;&lt;/li&gt;
+&lt;li&gt;&lt;html:link forward=&quot;search&quot;&gt; 
+Search for Employees Detail &lt;/html:link&gt;&lt;/li&gt;
+&lt;li&gt;&lt;html:link forward=&quot;sorry&quot;&gt; 
+Delete an Employee Delail &lt;/html:link&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/body&gt;
+&lt;/html:html&gt;
+</pre>
+</div>
+<p><i>Step- 4:</i> Open search.jsp page, from your struts application and code it as describe below.</p>
+<div class="code"><pre>
+&lt;%--   Document: search.jsp
+Description : Second Page of GenException Application--%&gt;
+&lt;%@ taglib uri=&quot;<font color="#0000ff">http://struts.apache.org/tags-bean</font><font color="#000000">&quot; </font>
+prefix=&quot;bean&quot; %&gt;
+&lt;%@ taglib uri=&quot;<font color="#0000ff">http://struts.apache.org/tags-html</font><font color="#000000">&quot; </font>
+prefix=&quot;html&quot; %&gt;
+&lt;%@ taglib uri=&quot;<font color="#0000ff">http://struts.apache.org/tags-logic</font><font color="#000000">&quot; </font>
+prefix=&quot;logic&quot; %&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;title&gt;&lt;bean:message key=&quot;welcome.title&quot;/&gt;&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;h1 align=&quot;center&quot;&gt;&lt;bean:message
+key=&quot;welcome.heading&quot;/&gt;&lt;/h1&gt;
+&lt;hr width=&quot;100%&quot; size=&quot;+2&quot; noshade=&quot;groove&quot;
+style=&quot;color: blue&quot;&gt;
+&lt;h2 align=&quot;center&quot;&gt; R4R Tech Soft Employee Partal- 
+Employee Search&lt;/h2&gt;
+&lt;hr align=&quot;center&quot; width=&quot;75%&quot; noshade=&quot;true&quot;&gt;
+&lt;html:errors/&gt;
+&lt;strong style=&quot;color: blue&quot;&gt; Detail Search by either employee
+name or employe Social Security Number&lt;/strong&gt;
+&lt;html:form  method=&quot;post&quot; action=&quot;/search&quot;&gt;
+&lt;ul&gt;
+&lt;table cellpadding=&quot;4&quot; cellspacing=&quot;4&quot;&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;bean:message key=&quot;welcome.first&quot;/&gt;&lt;/td&gt;
+&lt;td&gt;&lt;html:text property=&quot;name&quot; size=&quot;20&quot;/&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt; --- OR ---&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;bean:message key=&quot;welcome.number&quot;/&gt;&lt;/td&gt;
+&lt;td&gt;&lt;html:text property=&quot;ssNum&quot; size=&quot;20&quot;/&gt; &amp;equiv; 
+(x-xxx-xx-xxxx)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;html:submit value=&quot; Submit Query &quot;/&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+&lt;/ul&gt;
+&lt;/html:form&gt;
+
+&lt;logic:present name=&quot;searchForm&quot; property=&quot;results&quot;&gt;
+
+&lt;hr width=&quot;100%&quot; size=&quot;+1&quot; noshade=&quot;true&quot;&gt;
+&lt;hr width=&quot;100%&quot; size=&quot;+1&quot; noshade=&quot;true&quot;&gt;
+
+&lt;bean:size id=&quot;size&quot; name=&quot;searchForm&quot; property=&quot;results&quot;/&gt;
+
+&lt;%--  If Logic value&gt;0, then return the value  --%&gt;
+&lt;logic:greaterThan name=&quot;size&quot; value=&quot;0&quot;&gt;
+&lt;strong&gt;&lt;u&gt;Check Search Details&lt;/u&gt;&lt;/strong&gt;&lt;BR&gt;&lt;BR&gt;
+&lt;table border=&quot;1&quot;&gt;
+&lt;tr&gt;
+&lt;th&gt; Employee Name &lt;/th&gt;
+&lt;th&gt;Social Security Number&lt;/th&gt;
+&lt;th&gt; Department &lt;/th&gt;
+&lt;th&gt; Date Of Joining &lt;/th&gt;
+&lt;/tr&gt;
+&lt;logic:iterate id=&quot;result&quot; name=&quot;searchForm&quot;
+property=&quot;results&quot;&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;bean:write name=&quot;result&quot; property=&quot;name&quot;/&gt;&lt;/td&gt;
+&lt;td&gt;&lt;bean:write name=&quot;result&quot; property=&quot;ssNum&quot;/&gt;&lt;/td&gt;
+&lt;td&gt;&lt;bean:write name=&quot;result&quot; property=&quot;dept&quot; /&gt;&lt;/td&gt;
+&lt;td&gt;&lt;bean:write name=&quot;result&quot; property=&quot;dated&quot; /&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/logic:iterate&gt;
+&lt;/table&gt;
+&lt;p&gt; Query Search on &lt;strong&gt;&lt;bean:write
+name=&quot;searchForm&quot; property=&quot;date&quot; /&gt;&lt;/strong&gt;
+at the time &lt;strong&gt;&lt;bean:write 
+name=&quot;searchForm&quot; property=&quot;time&quot; /&gt;&lt;/strong&gt; &lt;/p&gt;
+&lt;/logic:greaterThan&gt;
+&lt;/logic:present&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</pre>
+</div>
+<p><i>Step- 5:</i> Open sorry.jsp page, from your struts application and code it as describe below.</p>
+<div class="code">
+<pre>
+&lt;%--  Document: search.jsp
+Description : Third Page of GenException Application--%&gt;
+&lt;<font color="#0000ff">%@page</font><font color="#000000"> contentType=&quot;text/html&quot; pageEncoding=&quot;UTF-8&quot;%&gt;</font>
+&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.01 Transitional//EN&quot;
+   &quot;<font color="#0000ff">http://www.w3.org/TR/html4/loose.dtd</font><font color="#000000">&quot;&gt;</font>
+&lt;%@ taglib uri=&quot;<font color="#0000ff">http://struts.apache.org/tags-html</font><font color="#000000">&quot;</font>
+prefix=&quot;html&quot; %&gt;
+&lt;%@ taglib uri=&quot;<font color="#0000ff">http://struts.apache.org/tags-bean</font><font color="#000000">&quot; </font>
+prefix=&quot;bean&quot; %&gt;
+&lt;html:html xhtml=&quot;true&quot;&gt;
+&lt;head&gt;
+&lt;title&gt;&lt;bean:message key=&quot;welcome.title&quot;/&gt;&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;h1 align=&quot;center&quot;&gt;&lt;bean:message 
+key=&quot;welcome.heading&quot;/&gt;&lt;/h1&gt;
+&lt;hr width=&quot;100%&quot; size=&quot;+2&quot; noshade=&quot;groove&quot; 
+style=&quot;color: blue&quot;&gt;
+&lt;h1&gt;We apologize for the inconvenience!
+Page not ready yet&lt;/h1&gt;
+&lt;ul&gt;
+Return to &lt;html:link forward=&quot;home&quot;&gt; home &lt;/html:link&gt; page
+&lt;/ul&gt;
+
+&lt;/body&gt; &lt;/html:html&gt;
+</pre>
+</div>
+<P><i>Step- 6: </i>Open web.xml file place in WEB-INF folder, this file is used to map the ActionServlet( work as backbone of application, every Action, Validation and ActionForm class control by this class) , struts-config.xml file, welcome file and five different TagLibrary.</P>
+<div class="code"><pre>
+&lt;!-- Save as a web.xml--&gt;
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;web-app version=&quot;2.5&quot;
+xmlns=&quot;<font color="#0000ff">http://java.sun.com/xml/ns/javaee</font><font color="#000000">&quot; </font>
+xmlns:xsi=&quot;<font color="#0000ff">http://www.w3.org/2001/XMLSchema-instance</font><font color="#000000">&quot; </font>
+xsi:schemaLocation=&quot;<font color="#0000ff">http://java.sun.com/xml/ns/javaee</font><font color="#000000"> </font>
+<font color="#0000ff">http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd</font><font color="#000000">&quot;&gt;</font>
+&lt;servlet&gt;
+&lt;!-- ActionServlet map here, however you can't find
+this class within the project but it work as a backbone 
+of the project --&gt;
+&lt;servlet-name&gt;action&lt;/servlet-name&gt;
+&lt;servlet-class&gt;org.apache.struts.action
+.ActionServlet&lt;/servlet-class&gt;
+&lt;!-- Your struts-config.xml file map here--&gt;
+&lt;init-param&gt;
+&lt;param-name&gt;config&lt;/param-name&gt;
+&lt;param-value&gt;/WEB-INF/struts-config.xml&lt;/param-value&gt;
+&lt;/init-param&gt;
+&lt;init-param&gt;
+&lt;param-name&gt;debug&lt;/param-name&gt;
+&lt;param-value&gt;2&lt;/param-value&gt;
+&lt;/init-param&gt;
+&lt;init-param&gt;
+&lt;param-name&gt;detail&lt;/param-name&gt;
+&lt;param-value&gt;2&lt;/param-value&gt;
+&lt;/init-param&gt;
+&lt;load-on-startup&gt;2&lt;/load-on-startup&gt;
+&lt;/servlet&gt;
+&lt;!-- Action class map with URL --&gt;
+&lt;servlet-mapping&gt;
+&lt;servlet-name&gt;action&lt;/servlet-name&gt;
+&lt;url-pattern&gt;*.do&lt;/url-pattern&gt;
+&lt;/servlet-mapping&gt;
+&lt;session-config&gt;
+&lt;session-timeout&gt;
+30
+&lt;/session-timeout&gt;
+&lt;/session-config&gt;
+&lt;!-- Welcome file map here: --&gt;
+&lt;welcome-file-list&gt;
+&lt;welcome-file&gt;index.jsp&lt;/welcome-file&gt;
+&lt;/welcome-file-list&gt;
+&lt;jsp-config&gt;
+&lt;!-- All the Tag Library which used with in the project --&gt;
+&lt;taglib&gt;
+&lt;taglib-uri&gt;/WEB-INF/struts-bean.tld&lt;/taglib-uri&gt;
+&lt;taglib-location&gt;/WEB-INF/struts-bean.tld
+&lt;/taglib-location&gt;
+&lt;/taglib&gt;
+&lt;taglib&gt;
+&lt;taglib-uri&gt;/WEB-INF/struts-html.tld&lt;/taglib-uri&gt;
+&lt;taglib-location&gt;/WEB-INF/struts-html.tld
+&lt;/taglib-location&gt;
+&lt;/taglib&gt;
+&lt;taglib&gt;
+&lt;taglib-uri&gt;/WEB-INF/struts-logic.tld&lt;/taglib-uri&gt;
+&lt;taglib-location&gt;/WEB-INF/struts-logic.tld
+&lt;/taglib-location&gt;
+&lt;/taglib&gt;
+&lt;taglib&gt;
+&lt;taglib-uri&gt;/WEB-INF/struts-nested.tld&lt;/taglib-uri&gt;
+&lt;taglib-location&gt;/WEB-INF/struts-nested.tld
+&lt;/taglib-location&gt;
+&lt;/taglib&gt;
+&lt;taglib&gt;
+&lt;taglib-uri&gt;/WEB-INF/struts-tiles.tld&lt;/taglib-uri&gt;
+&lt;taglib-location&gt;/WEB-INF/struts-tiles.tld
+&lt;/taglib-location&gt;
+&lt;/taglib&gt;
+&lt;/jsp-config&gt;
+&lt;/web-app&gt;
+</pre>
+</div>
+<p><i>Step- 7:</i> Open struts-config.xml  file place in WEB-INF folder, this file is used to map Model class, Exception class, Validation class, Action class( Action class further choose View class) and ApplicationResource class.</p>
+<div class="code"><pre>
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; ?&gt;
+&lt;!DOCTYPE struts-config PUBLIC
+&quot;-//Apache Software Foundation//
+DTD Struts Configuration 1.3//EN&quot;
+&quot;<font color="#0000ff">http://jakarta.apache.org/struts/dtds/struts-config_1_3.dtd</font><font color="#000000">&quot;&gt;</font>
+&lt;struts-config&gt;
+&lt;form-beans&gt;
+&lt;form-bean name=&quot;searchForm&quot; 
+type=&quot;r4r.searchForm&quot;/&gt;
+&lt;/form-beans&gt;
+&lt;global-exceptions&gt;
+&lt;/global-exceptions&gt;
+&lt;global-forwards&gt;
+&lt;forward name=&quot;search&quot; path=&quot;/search.jsp&quot;/&gt;
+&lt;forward name=&quot;sorry&quot; path=&quot;/Sorry.jsp&quot; /&gt;
+&lt;forward name=&quot;home&quot; path=&quot;/index.jsp&quot; /&gt;
+&lt;/global-forwards&gt;
+&lt;action-mappings&gt;
+&lt;action input=&quot;/search.jsp&quot; name=&quot;searchForm&quot; 
+path=&quot;/search&quot;
+scope=&quot;request&quot; type=&quot;r4r.SearchAction&quot;&gt;
+&lt;exception key=&quot;error.NoResultsFoundException&quot; 
+path=&quot;/exception.jsp&quot; 
+type=&quot;java.lang.NoResultsFoundException&quot;/&gt;
+&lt;/action&gt;
+&lt;/action-mappings&gt;
+&lt;controller processorClass=&quot;org.apache.struts
+.tiles.TilesRequestProcessor&quot;/&gt;
+&lt;message-resources parameter=&quot;com/myapp
+/struts/ApplicationResource&quot;/&gt;
+&lt;!-- ========== Tiles plugin ==========--&gt;
+&lt;plug-in className=&quot;org.apache.struts.tiles.TilesPlugin&quot; &gt;
+&lt;set-property property=&quot;definitions-config&quot; 
+value=&quot;/WEB-INF/tiles-defs.xml&quot; /&gt;
+&lt;set-property property=&quot;moduleAware&quot; value=&quot;true&quot; /&gt;
+&lt;/plug-in&gt;
+&lt;!-- ========== Validator plugin ========== --&gt;
+&lt;plug-in className=&quot;org.apache.struts.validator.ValidatorPlugIn&quot;&gt;
+&lt;set-property
+  property=&quot;pathnames&quot;
+  value=&quot;/WEB-INF/validator-rules.xml,/WEB-INF/validation.xml&quot;/&gt;
+&lt;/plug-in&gt;
+&lt;/struts-config&gt;
+</pre>
+</div>
+<p><i>Step- 8:</i> Now introduce Bean class into struts-config.xml file, As we define earlier, about how to introduce Bean and Action class in the struts-config.xml file. Now, Bean class of GenException application is</p>
+<div class="code"><pre>
+<font color="#008000">/* Save as a searchForm.java */</font>
+<font color="#0000ff">package </font><font color="#000000">r4r;</font>
+<font color="#0000ff">import </font><font color="#000000">java.util.</font><font color="#ff0000">Calendar</font><font color="#000000">;</font>
+<font color="#0000ff">import </font><font color="#000000">java.util.</font><font color="#ff0000">List</font><font color="#000000">;</font>
+<font color="#0000ff">import </font><font color="#000000">javax.servlet.http.HttpServletRequest;</font>
+<font color="#0000ff">import </font><font color="#000000">org.apache.struts.action.ActionErrors;</font>
+<font color="#0000ff">import </font><font color="#000000">org.apache.struts.action.ActionMapping;</font>
+<font color="#0000ff">import </font><font color="#000000">org.apache.struts.action.ActionMessage;</font>
+<font color="#008000">/* @author Sachin */</font>
+<font color="#0000ff">public class </font><font color="#000000">searchForm </font><font color="#0000ff">extends </font>
+	<font color="#000000">org.apache.struts.action.ActionForm {</font>
+ <font color="#0000ff">private </font><font color="#ff0000">String </font><font color="#000000">name = </font><font color="#0000ff">null</font><font color="#000000">;</font>
+    <font color="#0000ff">private </font><font color="#ff0000">String </font><font color="#000000">ssNum = </font><font color="#0000ff">null</font><font color="#000000">;</font>
+    <font color="#0000ff">private </font><font color="#ff0000">List </font><font color="#000000">results = </font><font color="#0000ff">null</font><font color="#000000">;</font>
+    <font color="#0000ff">private </font><font color="#ff0000">String </font><font color="#000000">date, time;</font>
+	<font color="#0000ff">public void </font><font color="#000000">setName(</font><font color="#ff0000">String </font><font color="#000000">name) {</font>
+        <font color="#0000ff">this</font><font color="#000000">.name = name;</font>
+ <font color="#000000">}</font>
+    <font color="#0000ff">public </font><font color="#ff0000">String </font><font color="#000000">getName() {</font>
+        <font color="#0000ff">return </font><font color="#000000">name;</font>
+    <font color="#000000">}</font>
+    <font color="#0000ff">public void </font><font color="#000000">setSsNum(</font><font color="#ff0000">String </font><font color="#000000">ssNum) {</font>
+        <font color="#0000ff">this</font><font color="#000000">.ssNum = ssNum;</font>
+    <font color="#000000">}</font>
+    <font color="#0000ff">public </font><font color="#ff0000">String </font><font color="#000000">getSsNum() {</font>
+        <font color="#0000ff">return </font><font color="#000000">ssNum;</font>
+    <font color="#000000">}</font>
+    <font color="#0000ff">public void </font><font color="#000000">setResults(</font><font color="#ff0000">List </font><font color="#000000">results) {</font>
+        <font color="#0000ff">this</font><font color="#000000">.results = results;</font>
+    <font color="#000000">}</font>
+    <font color="#0000ff">public </font><font color="#ff0000">List </font><font color="#000000">getResults() {</font>
+        <font color="#0000ff">return </font><font color="#000000">results;</font>
+    <font color="#000000">}</font>
+    <font color="#008000">//GET date in dd/mm/yyyy formate</font>
+    <font color="#0000ff">public </font><font color="#ff0000">String </font><font color="#000000">getDate() {</font>
+        <font color="#ff0000">StringBuffer </font><font color="#000000">date = </font><font color="#0000ff">new </font><font color="#ff0000">StringBuffer</font><font color="#000000">();</font>
+        <font color="#ff0000">Calendar </font><font color="#000000">calendar = </font><font color="#ff0000">Calendar</font><font color="#000000">.getInstance();</font>
+        <font color="#000000">date.append(calendar.get(</font><font color="#ff0000">Calendar</font><font color="#000000">.DAY_OF_MONTH));</font>
+        <font color="#000000">date.append(</font><font color="#ff00ff">&quot;/&quot;</font><font color="#000000">);</font>
+        <font color="#000000">date.append(calendar.get(</font><font color="#ff0000">Calendar</font><font color="#000000">.MONTH) + </font><font color="#800080">1</font><font color="#000000">);</font>
+        <font color="#000000">date.append(</font><font color="#ff00ff">&quot;/&quot;</font><font color="#000000">);</font>
+        <font color="#000000">date.append(calendar.get(</font><font color="#ff0000">Calendar</font><font color="#000000">.YEAR));</font>
+        <font color="#0000ff">return </font><font color="#000000">date.toString();</font>
+    <font color="#000000">}</font>
+    <font color="#0000ff">public void </font><font color="#000000">setDate(</font><font color="#ff0000">String </font><font color="#000000">date) {</font>
+        <font color="#0000ff">this</font><font color="#000000">.date = date;</font>
+    <font color="#000000">}</font>
+    <font color="#008000">//GET Time in HH/MM/SS formate</font>
+    <font color="#0000ff">public </font><font color="#ff0000">String </font><font color="#000000">getTime()</font>
+	<font color="#ff0000">StringBuffer </font><font color="#000000">time = </font><font color="#0000ff">new </font><font color="#ff0000">StringBuffer</font><font color="#000000">();</font>
+    <font color="#ff0000">Calendar </font><font color="#000000">calendar = </font><font color="#ff0000">Calendar</font><font color="#000000">.getInstance();</font>
+    <font color="#000000">time.append(calendar.get(</font><font color="#ff0000">Calendar</font><font color="#000000">.HOUR));</font>
+        <font color="#000000">time.append(</font><font color="#ff00ff">&quot;:&quot;</font><font color="#000000">);</font>
+        <font color="#000000">time.append(calendar.get(</font><font color="#ff0000">Calendar</font><font color="#000000">.MINUTE));</font>
+        <font color="#000000">time.append(</font><font color="#ff00ff">&quot;:&quot;</font><font color="#000000">);</font>
+        <font color="#000000">time.append(calendar.get(</font><font color="#ff0000">Calendar</font><font color="#000000">.SECOND));</font>
+    <font color="#0000ff">return </font><font color="#000000">time.toString();</font>
+    <font color="#000000">}</font>
+    <font color="#0000ff">public void </font><font color="#000000">setTime(</font><font color="#ff0000">String </font><font color="#000000">time) {</font>
+        <font color="#0000ff">this</font><font color="#000000">.time = time;</font>
+    <font color="#000000">}</font>
+    <font color="#008000">// Reset  all form fields.</font>
+    <font color="#000000">@</font><font color="#0000ff">Override</font>
+    <font color="#0000ff">public void </font><font color="#000000">reset(ActionMapping mapping,</font>
+	<font color="#000000">HttpServletRequest request) {</font>
+        <font color="#000000">name = </font><font color="#0000ff">null</font><font color="#000000">;</font>
+        <font color="#000000">ssNum = </font><font color="#0000ff">null</font><font color="#000000">;</font>
+        <font color="#000000">results = </font><font color="#0000ff">null</font><font color="#000000">;</font>
+    <font color="#000000">}</font>
+    <font color="#008000">// Validate form data.</font>
+    <font color="#000000">@</font><font color="#0000ff">Override</font>
+    <font color="#0000ff">public </font><font color="#000000">ActionErrors validate(ActionMapping mapping,</font>
+            <font color="#000000">HttpServletRequest request) {</font>
+        <font color="#000000">ActionErrors errors = </font><font color="#0000ff">new </font><font color="#000000">ActionErrors();</font>
+        <font color="#0000ff">boolean </font><font color="#000000">nameEntered = </font><font color="#0000ff">false</font><font color="#000000">;</font>
+        <font color="#0000ff">boolean </font><font color="#000000">ssNumEntered = </font><font color="#0000ff">false</font><font color="#000000">;</font>
+        <font color="#008000">// Determine if name has been entered.</font>
+        <font color="#0000ff">if </font><font color="#000000">(name != </font><font color="#0000ff">null </font><font color="#000000">&amp;&amp; name.length() &gt; </font><font color="#800080">0</font><font color="#000000">) {</font>
+            <font color="#000000">nameEntered = </font><font color="#0000ff">true</font><font color="#000000">;</font>
+        <font color="#000000">}</font>
+        <font color="#008000">/* Determine if social security number </font>
+<font color="#008000">		has been entered.*/</font>
+        <font color="#0000ff">if </font><font color="#000000">(ssNum != </font><font color="#0000ff">null </font><font color="#000000">&amp;&amp; ssNum.length() &gt; </font><font color="#800080">0</font><font color="#000000">) {</font>
+            <font color="#000000">ssNumEntered = </font><font color="#0000ff">true</font><font color="#000000">;</font>
+        <font color="#000000">}</font>
+        <font color="#008000">/* Validate that either name or social security</font>
+<font color="#008000">		number has been entered. */</font>
+        <font color="#0000ff">if </font><font color="#000000">(!nameEntered &amp;&amp; !ssNumEntered) {</font>
+           <font color="#000000">errors.add(</font><font color="#0000ff">null</font><font color="#000000">, </font><font color="#0000ff">new </font><font color="#000000">ActionMessage</font>
+			   <font color="#000000">(</font><font color="#ff00ff">&quot;error.search.criteria.missing&quot;</font><font color="#000000">));</font>
+        <font color="#000000">}</font>
+        <font color="#008000">/* Validate format of social security number if</font>
+<font color="#008000">        it has been entered. */</font>
+        <font color="#0000ff">if </font><font color="#000000">(ssNumEntered &amp;&amp; !isValidSsNum(ssNum.trim())) {</font>
+            <font color="#000000">errors.add(</font><font color="#ff00ff">&quot;ssNum&quot;</font><font color="#000000">, </font><font color="#0000ff">new </font><font color="#000000">ActionMessage</font>
+				<font color="#000000">(</font><font color="#ff00ff">&quot;error.search.ssNum.invalid&quot;</font><font color="#000000">));</font>
+        <font color="#000000">}</font>
+        <font color="#0000ff">return </font><font color="#000000">errors;</font>
+    <font color="#000000">}</font>
+    <font color="#008000">// Validate format of social security number.</font>
+           <font color="#0000ff">private static boolean </font><font color="#000000">isValidSsNum(</font><font color="#ff0000">String </font><font color="#000000">ssNum) {</font>
+        <font color="#0000ff">if </font><font color="#000000">(ssNum.length() &lt; </font><font color="#800080">13</font><font color="#000000">) {</font>
+            <font color="#0000ff">return false</font><font color="#000000">;</font>
+        <font color="#000000">}</font>
+        <font color="#0000ff">for </font><font color="#000000">(</font><font color="#0000ff">int </font><font color="#000000">i = </font><font color="#800080">0</font><font color="#000000">; i &lt; </font><font color="#800080">13</font><font color="#000000">; i++) {</font>
+            <font color="#0000ff">if </font><font color="#000000">(i == </font><font color="#800080">1 </font><font color="#000000">|| i == </font><font color="#800080">5 </font><font color="#000000">|| i == </font><font color="#800080">8</font><font color="#000000">) {</font>
+            <font color="#0000ff">if </font><font color="#000000">(ssNum.charAt(i) != </font><font color="#ff00ff">'-'</font><font color="#000000">) {</font>
+                    <font color="#0000ff">return false</font><font color="#000000">;</font>
+                <font color="#000000">}</font>
+            <font color="#000000">} </font><font color="#0000ff">else if </font>
+				<font color="#000000">(</font><font color="#ff00ff">&quot;0123456789&quot;</font><font color="#000000">.indexOf(ssNum.charAt(i)) == -</font><font color="#800080">1</font><font color="#000000">) {</font>
+                <font color="#0000ff">return false</font><font color="#000000">;</font>
+            <font color="#000000">}</font>
+        <font color="#000000">}</font>
+        <font color="#0000ff">return true</font><font color="#000000">;</font>
+    <font color="#000000">}</font>
+<font color="#000000">}            </font>
+</pre>
+</div>
+<p><i>Step- 9:</i> Action class of GenException application is</p>
+<div class="code"><pre>
+<font color="#008000">/*</font>
+<font color="#008000"> * Save as a SearchAction.java</font>
+<font color="#008000"> */</font>
+<font color="#0000ff">package </font><font color="#000000">r4r;</font>
+<font color="#0000ff">import </font><font color="#000000">java.util.</font><font color="#ff0000">ArrayList</font><font color="#000000">;</font>
+<font color="#0000ff">import </font><font color="#000000">javax.servlet.http.HttpServletRequest;</font>
+<font color="#0000ff">import </font><font color="#000000">javax.servlet.http.HttpServletResponse;</font>
+<font color="#0000ff">import </font><font color="#000000">org.apache.struts.action.ActionForm;</font>
+<font color="#0000ff">import </font><font color="#000000">org.apache.struts.action.ActionForward;</font>
+<font color="#0000ff">import </font><font color="#000000">org.apache.struts.action.ActionMapping;</font>
+<font color="#0000ff">public class </font><font color="#000000">SearchAction </font><font color="#0000ff">extends </font><font color="#000000">org.apache</font>
+	<font color="#000000">.struts.action.</font><font color="#ff0000">Action </font><font color="#000000">{</font>
+<font color="#008000">/* forward name=&quot;success&quot; path=&quot;&quot; */</font>
+<font color="#0000ff">private static final </font><font color="#ff0000">String</font>
+	<font color="#000000">SUCCESS = </font><font color="#ff00ff">&quot;success&quot;</font><font color="#000000">;</font>
+<font color="#008000">/* This is the action called from the Struts framework.</font>
+<font color="#008000"> * @return */</font>
+<font color="#000000">@</font><font color="#0000ff">Override</font>
+<font color="#0000ff">public </font><font color="#000000">ActionForward execute(ActionMapping mapping,</font>
+<font color="#000000">ActionForm form,HttpServletRequest request, </font>
+<font color="#000000">HttpServletResponse response)</font><font color="#0000ff">throws </font><font color="#ff0000">Exception </font><font color="#000000">{</font>
+<font color="#008000">//Create a new Employee data page</font>
+<font color="#000000">EmployeDate data = </font><font color="#0000ff">new </font><font color="#000000">EmployeDate();</font>
+<font color="#ff0000">ArrayList </font><font color="#000000">results;</font>
+<font color="#008000">//Call the search form here:</font>
+<font color="#000000">searchForm searchForm = (searchForm) form;</font>
+<font color="#ff0000">String </font><font color="#000000">name = searchForm.getName();</font>
+<font color="#008000">/*Perform employee search based on what </font>
+<font color="#008000">criteria was entered.*/</font>
+<font color="#0000ff">if </font><font color="#000000">(name != </font><font color="#0000ff">null </font><font color="#000000">&amp;&amp; name.trim().length() &gt; </font><font color="#800080">0</font><font color="#000000">) {</font>
+<font color="#000000">results = data.searchByName(name);</font>
+<font color="#000000">} </font><font color="#0000ff">else </font><font color="#000000">{</font>
+<font color="#000000">results = data.searchBySsNum(searchForm.getSsNum().trim());</font>
+<font color="#000000">}</font>
+<font color="#008000">/* Throw an application exception if results were</font>
+<font color="#008000">not found.*/</font>
+<font color="#0000ff">if </font><font color="#000000">(results.size() &lt; </font><font color="#800080">1</font><font color="#000000">) {</font>
+<font color="#0000ff">throw new </font><font color="#000000">NoResultsFoundException();</font>
+<font color="#000000">}</font>
+<font color="#008000">/* Now, Place search results in SearchForm,</font>
+<font color="#008000">and access by JSP page.*/</font>
+<font color="#000000">searchForm.setResults(results);</font>
+<font color="#008000">/* All condition true, then Forward control to</font>
+<font color="#008000">XML mapping.*/</font>
+<font color="#0000ff">return </font><font color="#000000">mapping.getInputForward();</font>
+<font color="#000000">}</font>
+<font color="#000000">}</font>
+<font color="#000000">--&gt; EmployeData.java page </font>
+<font color="#008000">/* Save as a EmployeDate.java</font>
+<font color="#008000"> * This page is call by Action class */</font>
+<font color="#0000ff">package </font><font color="#000000">r4r;</font>
+<font color="#0000ff">import </font><font color="#000000">java.util.</font><font color="#ff0000">ArrayList</font><font color="#000000">;</font>
+<font color="#0000ff">public class </font><font color="#000000">EmployeDate {</font>
+<font color="#008000">/* This is part of dataBase(insert, query and update)</font>
+<font color="#008000">/* Utilized collection part(List) for Hardcore data */</font>
+<font color="#0000ff">private static </font><font color="#000000">Employee[] employees = {</font>
+<font color="#0000ff">new </font><font color="#000000">Employee(</font><font color="#ff00ff">&quot;RituRaj Tyagi&quot;</font><font color="#000000">, </font><font color="#ff00ff">&quot;0-000-00-0000&quot;</font><font color="#000000">,</font>
+	<font color="#ff00ff">&quot;Computer&quot;</font><font color="#000000">, </font><font color="#ff00ff">&quot;10-01- 2010&quot;</font><font color="#000000">),</font>
+<font color="#0000ff">new </font><font color="#000000">Employee(</font><font color="#ff00ff">&quot;Rajesh Patel&quot;</font><font color="#000000">, </font><font color="#ff00ff">&quot;1-111-11-1111&quot;</font><font color="#000000">, </font>
+	<font color="#ff00ff">&quot;Computer&quot;</font><font color="#000000">, </font><font color="#ff00ff">&quot;10-01- 2010&quot;</font><font color="#000000">),</font>
+<font color="#0000ff">new </font><font color="#000000">Employee(</font><font color="#ff00ff">&quot;Ankit Tyagi&quot;</font><font color="#000000">, </font><font color="#ff00ff">&quot;2-222-22-2222&quot;</font><font color="#000000">, </font>
+	<font color="#ff00ff">&quot;IT &quot;</font><font color="#000000">, </font><font color="#ff00ff">&quot;08-05- 2010&quot;</font><font color="#000000">),</font>
+<font color="#0000ff">new </font><font color="#000000">Employee(</font><font color="#ff00ff">&quot;Sachin Tyagi&quot;</font><font color="#000000">, </font><font color="#ff00ff">&quot;4-444-44-4444&quot;</font><font color="#000000">,</font>
+	<font color="#ff00ff">&quot;Electronic&quot;</font><font color="#000000">, </font><font color="#ff00ff">&quot;12-06- 2010&quot;</font><font color="#000000">),</font>
+<font color="#0000ff">new </font><font color="#000000">Employee(</font><font color="#ff00ff">&quot;Sunny Tyagi&quot;</font><font color="#000000">, </font><font color="#ff00ff">&quot;5-555-55-5555&quot;</font><font color="#000000">, </font>
+	<font color="#ff00ff">&quot;Electronic&quot;</font><font color="#000000">, </font><font color="#ff00ff">&quot;22-09- 2010&quot;</font><font color="#000000">),</font>
+<font color="#0000ff">new </font><font color="#000000">Employee(</font><font color="#ff00ff">&quot;Binny Tyagi&quot;</font><font color="#000000">, </font><font color="#ff00ff">&quot;6-666-66-6666&quot;</font><font color="#000000">, </font>
+	<font color="#ff00ff">&quot;IT&quot;</font><font color="#000000">, </font><font color="#ff00ff">&quot;17-08- 2010&quot;</font><font color="#000000">)</font>
+<font color="#000000">};</font>
+<font color="#008000">// Search for employees by name.</font>
+<font color="#0000ff">public </font><font color="#ff0000">ArrayList </font><font color="#000000">searchByName(</font><font color="#ff0000">String </font><font color="#000000">name) {</font>
+<font color="#ff0000">ArrayList </font><font color="#000000">resultList = </font><font color="#0000ff">new </font><font color="#ff0000">ArrayList</font><font color="#000000">();</font>
+
+<font color="#0000ff">for </font><font color="#000000">(</font><font color="#0000ff">int </font><font color="#000000">i = </font><font color="#800080">0</font><font color="#000000">; i &lt; employees.length; i++) {</font>
+<font color="#0000ff">if </font><font color="#000000">(employees[i].getName().toUpperCase()</font>
+	<font color="#000000">.indexOf(name.toUpperCase()) != -</font><font color="#800080">1</font><font color="#000000">) {</font>
+<font color="#000000">resultList.add(employees[i]);</font>
+<font color="#000000">}</font>
+<font color="#000000">}</font>
+<font color="#0000ff">return </font><font color="#000000">resultList;</font>
+<font color="#000000">}</font>
+<font color="#008000">// Search for employee by social security number.</font>
+<font color="#0000ff">public </font><font color="#ff0000">ArrayList </font><font color="#000000">searchBySsNum(</font><font color="#ff0000">String </font><font color="#000000">ssNum) {</font>
+<font color="#ff0000">ArrayList </font><font color="#000000">resultList = </font><font color="#0000ff">new </font><font color="#ff0000">ArrayList</font><font color="#000000">();</font>
+<font color="#0000ff">for </font><font color="#000000">(</font><font color="#0000ff">int </font><font color="#000000">i = </font><font color="#800080">0</font><font color="#000000">; i &lt; employees.length; i++) {</font>
+<font color="#0000ff">if </font><font color="#000000">(employees[i].getSsNum().equals(ssNum)) {</font>
+<font color="#000000">resultList.add(employees[i]);</font>
+<font color="#000000">}</font>
+<font color="#000000">}</font>
+<font color="#0000ff">return </font><font color="#000000">resultList;</font>
+<font color="#000000">}</font>
+<font color="#000000">}</font>
+<font color="#000000">--&gt; Employee.java </font>
+<font color="#000000">/ *  Save as a Employee.java*/</font>
+<font color="#000000">/ * Page call by EmployeeData.java */</font>
+<font color="#0000ff">package </font><font color="#000000">r4r;</font>
+<font color="#008000">/* Getter/ Setter property of Employee data */</font>
+<font color="#0000ff">public class </font><font color="#000000">Employee {</font>
+<font color="#0000ff">private </font><font color="#ff0000">String </font><font color="#000000">name, ssNum, dept, dated;</font>
+<font color="#0000ff">public </font><font color="#000000">Employee(</font><font color="#ff0000">String </font><font color="#000000">name, </font><font color="#ff0000">String </font><font color="#000000">ssNum,</font>
+	<font color="#ff0000">String </font><font color="#000000">dept, </font><font color="#ff0000">String </font><font color="#000000">dated) {</font>
+<font color="#0000ff">this</font><font color="#000000">.name = name;</font>
+<font color="#0000ff">this</font><font color="#000000">.ssNum = ssNum;</font>
+<font color="#0000ff">this</font><font color="#000000">.dept = dept;</font>
+<font color="#0000ff">this</font><font color="#000000">.dated = dated;</font>
+<font color="#000000">}</font>
+<font color="#0000ff">public void </font><font color="#000000">setName(</font><font color="#ff0000">String </font><font color="#000000">name) {</font>
+<font color="#0000ff">this</font><font color="#000000">.name = name;</font>
+<font color="#000000">}</font>
+<font color="#0000ff">public </font><font color="#ff0000">String </font><font color="#000000">getName() {</font>
+<font color="#0000ff">return </font><font color="#000000">name;</font>
+<font color="#000000">}</font>
+<font color="#0000ff">public void </font><font color="#000000">setSsNum(</font><font color="#ff0000">String </font><font color="#000000">ssNum) {</font>
+<font color="#0000ff">this</font><font color="#000000">.ssNum = ssNum;</font>
+<font color="#000000">}</font>
+<font color="#0000ff">public </font><font color="#ff0000">String </font><font color="#000000">getSsNum() {</font>
+<font color="#0000ff">return </font><font color="#000000">ssNum;</font>
+<font color="#000000">}</font>
+<font color="#0000ff">public </font><font color="#ff0000">String </font><font color="#000000">getDept() {</font>
+<font color="#0000ff">return </font><font color="#000000">dept;</font>
+<font color="#000000">}</font>
+<font color="#0000ff">public void </font><font color="#000000">setDept(</font><font color="#ff0000">String </font><font color="#000000">dept) {</font>
+<font color="#0000ff">this</font><font color="#000000">.dept = dept;</font>
+<font color="#000000">}</font>
+<font color="#0000ff">public </font><font color="#ff0000">String </font><font color="#000000">getDated() {</font>
+<font color="#0000ff">return </font><font color="#000000">dated;</font>
+<font color="#000000">}</font>
+<font color="#0000ff">public void </font><font color="#000000">setDated(</font><font color="#ff0000">String </font><font color="#000000">dated) {</font>
+<font color="#0000ff">this</font><font color="#000000">.dated = dated;</font>
+<font color="#000000">}</font>
+<font color="#000000">}</font>
+</pre>
+</div>
+<p><u><i>Run your application: </i></u></p>
+<p>Now your application is complete, so now start run your application. Start your server( which you embedded when configure our struts application), then right click your application and click upon Run option or open your welcome( index.jsp) page and press shift+F6.</p>
+<div class="image"><img src="images/genException1.png"></div>
+<div class="image"><img src="images/genException2.png"></div>
+<div class="image"><img src="images/genException3.png"></div>
+<div class="image"><img src="images/genException4.png"></div>
+<div class="image"><img src="images/genException5.png"></div>
+<div class="image"><img src="images/genException6.png"></div>
+<div class="image"><img src="images/genException8.png"></div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="../Example-8" title="Creating a Login Application with DynaActionForm in Struts">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="../Example%2010" title="Creating a Struts Application for insert Data into DataBase in Struts">Next</a></td>
+  </tr> 
+</table>
+
+	<!-- Footer Start-->	
+		</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+
+<!-- Footer End-->

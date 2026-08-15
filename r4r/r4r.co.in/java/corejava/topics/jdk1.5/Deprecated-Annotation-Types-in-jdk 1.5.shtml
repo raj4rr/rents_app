@@ -1,0 +1,187 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>Deprecated Annotation Types in jdk 1.5</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="Deprecated Annotation Types in jdk 1.5">
+<meta name="keywords" CONTENT="Deprecated Annotation Types in jdk 1.5">
+
+<!-- header start-->	
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>Java Programing laungage</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+            <img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+            <a href="/java/">Java</a>
+              <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/java/corejava/">Core Java</a>
+                                   <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/java/corejava/topics/jdk1.5/">JDK1.5</a>
+              </div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/corejava/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	 
+<!-- header End-->
+
+<div class="heading">Deprecated Annotation Types in jdk 1.5</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="Deprecated-Exceptions-in-jdk 1.5.shtml" title="Deprecated Exceptions in jdk 1.5">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="Deprecated-Fields-in-jdk 1.5.shtml" title="Deprecated Fields in jdk 1.5">Next</a></td>
+  </tr> 
+</table>
+
+<p>There are two main components in annotations. First is annotation type and the 
+next is the annotation itself which we use in the code to add meaning. Every 
+annotation belongs to a annotation type.</p>
+<h2>Annotation Type:</h2>
+<div class="code">
+<PRE>
+<FONT FACE="Arial">
+<FONT COLOR="#000000">@interface {</FONT>
+<FONT COLOR="#000000">method declaration;</FONT>
+<FONT COLOR="#000000">}</FONT>
+</FONT>
+</PRE>
+</div>
+<ul>
+<p><li>Annotation type is very similar to an interface with little difference.</li></p>
+<p><li>We attach @ just before interface keyword.</li></p>
+<p><li>Methods will not have parameters.</li></p>
+<p><li>Methods will not have throws clause.</li></p>
+<p><li>Method return types are restricted to primitives, String, Class, enums, 
+annotations, and arrays of the preceding types.</li></p>
+<p><li>We can assign a default value to method.</li></p>
+</ul>
+
+<div class="heading">Meta Annotations:</div>
+Annotations itself is meta information then what is meta annotations? As you 
+have rightly guessed, it is information about annotation. When we annotate a 
+annotation type then it is called meta annotation. <font class="point_out">For example</font> we say that this 
+annotation can be used only for methods.</p>
+<div class="code">
+<PRE>
+<FONT FACE="Arial">
+<FONT COLOR="#000000">@Target(</FONT><FONT COLOR="#ff0000">ElementType</FONT><FONT COLOR="#000000">.METHOD)</FONT>
+<FONT COLOR="#0000ff">public </FONT><FONT COLOR="#000000">@interface MethodInfo { }</FONT>
+</FONT>
+</PRE>
+</div>
+<div class="heading">Annotation Type Deprecated</div>
+<ol>
+<li>
+<p><i>Documented</i>
+When a annotation type is annotated with @Documented then wherever this 
+annotation is used those elements should be documented using Javadoc tool.</p>
+</li>
+<li>
+<p><i>Inherited</i>
+This meta annotation denotes that the annotation type can be inherited from 
+super class. When a class is annotated with annotation of type that is annotated 
+with Inherited, then its super class will be queried till a matching annotation 
+is found.</p>
+</li>
+<li>
+<p><i>Retention</i>
+This meta annotation denotes the level till which this annotation will be 
+carried. When an annotation type is annotated with meta annotation Retention, 
+RetentionPolicy has three possible values:</p>
+<div class="code">
+<PRE>
+<FONT FACE="Arial">
+<FONT COLOR="#000000">@Retention(</FONT><FONT COLOR="#ff0000">RetentionPolicy</FONT><FONT COLOR="#000000">.RUNTIME)</FONT>
+<FONT COLOR="#0000ff">public </FONT><FONT COLOR="#000000">@interface Developer {</FONT>
+<FONT COLOR="#ff0000">String </FONT><FONT COLOR="#000000">value();</FONT>
+<FONT COLOR="#000000">}</FONT>
+</FONT>
+</PRE>
+</div>
+<p><i>Class</i>
+When the annotation value is given as class then this annotation will be 
+compiled and included in the class file.</p>
+<p><i>Runtime
+</i>The value name itself says, when the retention value is Runtime this 
+annotation will be available in JVM at runtime. We can write custom code using 
+reflection package and parse the annotation. I have give an example below.</p>
+<p><i>Source</i>
+This annotation will be removed at compile time and will not be available at 
+compiled class.</p>
+</li>
+<li>
+<p><i>Target</i>
+This meta annotation says that this annotation type is applicable for only the 
+element (ElementType) listed. Possible values for ElementType are, CONSTRUCTOR, 
+FIELD, LOCAL_VARIABLE, METHOD, PACKAGE, PARAMETER, TYPE.</p>
+<div class="code">
+<PRE>
+<FONT FACE="Arial">
+<FONT COLOR="#000000">@Target(</FONT><FONT COLOR="#ff0000">ElementType</FONT><FONT COLOR="#000000">.FIELD)</FONT>
+<FONT COLOR="#0000ff">public </FONT><FONT COLOR="#000000">@interface FieldInfo { }</FONT>
+</FONT>
+</PRE>
+</div>
+</li>
+</ol>
+
+<div class="heading">Built-in Java Annotations</div>
+<p>
+@Documented, @Inherited, @Retention and @Target are the four available meta 
+annotations that are built-in with Java.
+Apart from these meta annotations we have the following annotations.</p>
+
+<p><i>@Override</i>
+When we want to override a method, we can use this annotation to say to the 
+compiler we are overriding an existing method. If the compiler finds that there 
+is no matching method found in super class then generates a warning. This is not 
+mandatory to use @Override when we override a method. But I have seen Eclipse 
+IDE automatically adding this @Override annotation. Though it is not mandatory, 
+it is considered as a best practice.</p>
+<p><i>@Deprecated</i>
+When we want to inform the compiler that a method is deprecated we can use this. 
+So, when a method is annotated with @Deprecated and that method is found used in 
+some place, then the compiler generates a warning.</p>
+<p><i>@SuppressWarnings</i>
+This is like saying, I know what I am doing, so please shut up! We want the 
+compiler not to raise any warnings and then we use this annotation.</p>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="Deprecated-Exceptions-in-jdk 1.5.shtml" title="Deprecated Exceptions in jdk 1.5">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="Deprecated-Fields-in-jdk 1.5.shtml" title="Deprecated Fields in jdk 1.5">Next</a></td>
+  </tr> 
+</table>
+
+            <!-- Footer Start-->	
+
+		</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->

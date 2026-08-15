@@ -1,0 +1,30 @@
+/*
+Structure:-
+	1)It is a kind of value type
+	---------------
+	Data Type :-
+	1)Value Type(normal data type(int/byte/short/long/float/char)/structure/enum
+	2)Reference Type (Array/Class/ Object / Interface/DElegates)
+	--------------
+	2)It is more or less like a class
+	3)It can contain constructor  but that must be  parameterzied
+	4)Structure is by default sealed(we cant inherit)
+	5)we can create object with or without new
+*/
+struct a
+{
+	public void display()
+	{
+		System.Console.WriteLine("R4R");
+	}
+}
+class b
+{
+	public static void Main()
+	{
+		a t=new a();
+		t.display();
+	}
+}
+	
+	

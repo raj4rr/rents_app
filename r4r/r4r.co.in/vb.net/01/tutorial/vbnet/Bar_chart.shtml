@@ -1,0 +1,138 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>Creating Bar Chart in windows using C#,Code for DrawBarChart</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="Creating Bar Chart in windows using VB.Net,Code for DrawBarChart" >
+<meta name="keywords" CONTENT="Creating Bar Chart in windows using VB.Net,Code for DrawBarChart">
+<!-- header start-->	
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>VB.NET Technology</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+            <img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+            <a href="/vb.net/">VB.net</a>
+              <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/vb.net/01/tutorial/vbnet/">VB.NET Tutorial</a>
+
+              </div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/vb.net/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	 
+
+<div class="heading">Creating Bar Chart in windows using VB.Net </div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="socket.shtml" title="Introduction of Socket">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="dll.shtml" title="What is DLL">Next</a></td>
+  </tr> 
+</table>
+<!-- header End-->	
+
+<h3>
+Introduction </h3><p> For making bar chart we will make use of DrawRectangle in built function. because we have to first create a big rectangle defining the boundary of bar graphs. Parameters of DrawRectangle is
+</p>
+
+<ol>
+	<li><p><b>Pen</b>  This defines the color and style of border</p></li>
+	</li><p><b>Rectangle </b> Rectangle object to be created</p></li>
+</ol>
+<div class="code">
+<pre>
+<font face="Arial"><font color="#0000ff">Private Sub </font><font color="#000000">New(x As Integer, y As Integer, width As Integer, height As Integer)</font>
+<font color="#0000ff">End Sub</font></font>
+</pre>
+</div>
+
+<p>X and y are the co-ordinates of top left corner of rectangle. Width and height are width and height of rectangle.</p>
+<b>Height = (weight of current array element *height of outer rectangle )/ maximum weight. </b>
+<p>X coordinate is incremented by width of bars everytime a new bar is created.</p>
+
+<p>Y co-ordinate is calculated by the following formula: </p>
+<b>y = y coordinate of outer rectangle + height of outer rectangle  height of bar </b>
+
+<h3>Code for DrawBarChart</h3>
+
+<div class="code">
+<pre>
+<font face="Arial"><font color="#0000ff">Private Sub </font><font color="#000000">DrawBarChart(</font><font color="#0000ff">ByVal </font><font color="#000000">e As PaintEventArgs, </font><font color="#0000ff">ByVal </font><font color="#000000">alWeight As Integer())</font>
+        <font color="#0000ff">Dim </font><font color="#000000">numberOfSections As Integer = alWeight.Length</font>
+        <font color="#0000ff">Dim </font><font color="#000000">lengthArea As Integer = </font><font color="#800080">330</font>
+        <font color="#0000ff">Dim </font><font color="#000000">heightArea As Integer = </font><font color="#800080">280</font>
+        <font color="#0000ff">Dim </font><font color="#000000">topX As Integer = </font><font color="#800080">20</font>
+        <font color="#0000ff">Dim </font><font color="#000000">topY As Integer = </font><font color="#800080">20</font>
+        <font color="#0000ff">Dim </font><font color="#000000">maxWeight As Integer = MaxValue(alWeight)</font>
+        <font color="#0000ff">Dim </font><font color="#000000">height As Integer() = New Integer(numberOfSections - </font><font color="#800080">1</font><font color="#000000">) {}</font>
+        <font color="#0000ff">Dim </font><font color="#000000">total As Integer = SumOfArray(alWeight)</font>
+        <font color="#0000ff">Dim </font><font color="#ff0000">rnd </font><font color="#000000">As New Random()</font>
+        <font color="#0000ff">Dim </font><font color="#000000">brush As New SolidBrush(Color.Aquamarine)</font>
+        <font color="#0000ff">Dim </font><font color="#000000">pen As New Pen(Color.Gray)</font>
+        <font color="#0000ff">Dim </font><font color="#000000">rec As New Rectangle(topX, topY, lengthArea, heightArea)</font>
+        <font color="#000000">e.Graphics.DrawRectangle(pen, rec)</font>
+        <font color="#000000">pen.Color = Color.Black</font>
+        <font color="#0000ff">Dim </font><font color="#000000">smallX As Integer = topX</font>
+        <font color="#0000ff">Dim </font><font color="#000000">smallY As Integer = </font><font color="#800080">0</font>
+        <font color="#0000ff">Dim </font><font color="#000000">smallLength As Integer = (lengthArea \ alWeight.Length)</font>
+        <font color="#0000ff">Dim </font><font color="#000000">smallHeight As Integer = </font><font color="#800080">0</font>
+        <font color="#0000ff">For </font><font color="#000000">i As Integer = </font><font color="#800080">0 </font><font color="#0000ff">To </font><font color="#000000">numberOfSections - </font><font color="#800080">1</font>
+            <font color="#000000">brush.Color = Color.FromArgb(</font><font color="#ff0000">rnd</font><font color="#000000">.[</font><font color="#0000ff">Next</font><font color="#000000">](</font><font color="#800080">200</font><font color="#000000">, </font><font color="#800080">255</font><font color="#000000">), </font>
+	    <font color="#ff0000">rnd</font><font color="#000000">.[</font><font color="#0000ff">Next</font><font color="#000000">](</font><font color="#800080">255</font><font color="#000000">), </font><font color="#ff0000">rnd</font><font color="#000000">.[</font><font color="#0000ff">Next</font><font color="#000000">](</font><font color="#800080">255</font><font color="#000000">), </font><font color="#ff0000">rnd</font><font color="#000000">.[</font><font color="#0000ff">Next</font><font color="#000000">](</font><font color="#800080">255</font><font color="#000000">))</font>
+            <font color="#000000">smallHeight = ((alWeight(i) * heightArea) \ maxWeight)</font>
+            <font color="#000000">smallY = topY + heightArea - smallHeight</font>
+            <font color="#0000ff">Dim </font><font color="#000000">rectangle As New Rectangle(smallX, smallY, smallLength, smallHeight)</font>
+            <font color="#000000">e.Graphics.DrawRectangle(pen, rectangle)</font>
+            <font color="#000000">e.Graphics.FillRectangle(brush, rectangle)</font>
+            <font color="#000000">brush.Color = Color.FromKnownColor(KnownColor.Black)</font>
+            <font color="#000000">e.Graphics.DrawRectangle(pen, rectangle)</font>
+            <font color="#000000">smallX = smallX + smallLength</font>
+        <font color="#0000ff">Next</font>
+    <font color="#0000ff">End Sub</font></font>
+</pre>
+</div>
+
+<div class="image">
+<img src="Bar_chart.PNG ">
+</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="socket.shtml" title="Introduction of Socket">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="dll.shtml" title="What is DLL">Next</a></td>
+  </tr> 
+</table>
+<!-- Footer Start-->		
+
+		</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/dotnet/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->

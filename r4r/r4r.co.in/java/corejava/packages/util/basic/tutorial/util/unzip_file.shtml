@@ -1,0 +1,145 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD>
+<meta http-equiv="Content-Language" content="en-us">
+<TITLE>Creating a zip file,unzip file</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name="description" CONTENT="Creating a zip file,unzip file" >
+<meta name="keywords" CONTENT="Creating a zip file,unzip file">
+
+<!-- header start-->	
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>Java Programing laungage</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+            <img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+            <a href="/java/">Java</a>
+              <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/java/corejava">Core Java</a>
+               <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/java/corejava/packages">Package</a>
+                     <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/java/corejava/packages/lang">Java Util Package</a>
+              </div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/corejava/packages/util/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	 
+
+<div class="heading">Unzip a ZIP File</div>
+<p>In this page of the tutorials, we are going to learn How to extract a zip file? and How to retrieve elements from a zip format file. All questions related to ZIP file are solved through the following program.</p>
+
+<table id="indexing">
+  <tr>
+ <td style="width:33%; text-align:left;"><a href="leap_year.shtml" title="leap year">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="sort_element.shtml" title="sort element">Next</a></td>
+  </tr> 
+</table>
+<!-- header End-->
+
+<p> This program shows you how to extract files from a zip file in which many different files are stored in compressed format and make a single zip file. In this operation There are many type methods and APIs are used, which are explained as follow.</p>
+<p><b>ZipEntry:</b> This is the class of java.util.zip.*; package of Java, which is used to zip file entries.</p>
+<p><b>ZipFile.entries():</b> This method of the Zip File class is used to get the files entries of the zip file format.</p>
+<p><b>Enumeration.hasMoreElement():</b> This method is used to check whether more that one element are present or not for the zip file which is enumerated.</p>
+<p><b>Enumeration.nextElement():</b> This method is used to give us the next elements from the list of the ZIP files.</p>
+<h3>Example</h3>
+<div class="code">
+<PRE>
+<FONT FACE="Arial">
+<FONT COLOR="#0000ff">package </FONT><FONT COLOR="#000000">r4r;</FONT>
+<FONT COLOR="#0000ff">import </FONT><FONT COLOR="#000000">java.io.</FONT><FONT COLOR="#ff0000">BufferedReader</FONT><FONT COLOR="#000000">;</FONT>
+<FONT COLOR="#0000ff">import </FONT><FONT COLOR="#000000">java.io.</FONT><FONT COLOR="#ff0000">File</FONT><FONT COLOR="#000000">;</FONT>
+<FONT COLOR="#0000ff">import </FONT><FONT COLOR="#000000">java.io.</FONT><FONT COLOR="#ff0000">FileInputStream</FONT><FONT COLOR="#000000">;</FONT>
+<FONT COLOR="#0000ff">import </FONT><FONT COLOR="#000000">java.io.</FONT><FONT COLOR="#ff0000">FileOutputStream</FONT><FONT COLOR="#000000">;</FONT>
+<FONT COLOR="#0000ff">import </FONT><FONT COLOR="#000000">java.io.</FONT><FONT COLOR="#ff0000">IOException</FONT><FONT COLOR="#000000">;</FONT>
+<FONT COLOR="#0000ff">import </FONT><FONT COLOR="#000000">java.io.</FONT><FONT COLOR="#ff0000">InputStreamReader</FONT><FONT COLOR="#000000">;</FONT>
+<FONT COLOR="#0000ff">import </FONT><FONT COLOR="#000000">java.io.</FONT><FONT COLOR="#ff0000">OutputStream</FONT><FONT COLOR="#000000">;</FONT>
+<FONT COLOR="#0000ff">import </FONT><FONT COLOR="#000000">java.util.*;</FONT>
+<FONT COLOR="#0000ff">import </FONT><FONT COLOR="#000000">java.util.zip.</FONT><FONT COLOR="#ff0000">ZipEntry</FONT><FONT COLOR="#000000">;</FONT>
+<FONT COLOR="#0000ff">import </FONT><FONT COLOR="#000000">java.util.zip.</FONT><FONT COLOR="#ff0000">ZipFile</FONT><FONT COLOR="#000000">;</FONT>
+<FONT COLOR="#0000ff">import </FONT><FONT COLOR="#000000">java.util.zip.</FONT><FONT COLOR="#ff0000">ZipInputStream</FONT><FONT COLOR="#000000">;</FONT>
+<FONT COLOR="#0000ff">public class </FONT><FONT COLOR="#000000">unzipfiletest {</FONT>
+<FONT COLOR="#0000ff">public static void </FONT><FONT COLOR="#000000">main(</FONT><FONT COLOR="#ff0000">String</FONT><FONT COLOR="#000000">[] args){</FONT>
+<FONT COLOR="#000000">unzipfiletest uzt = </FONT><FONT COLOR="#0000ff">new </FONT><FONT COLOR="#000000">unzipfiletest();</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#0000ff">public </FONT><FONT COLOR="#000000">unzipfiletest() {</FONT>
+<FONT COLOR="#ff0000">OutputStream </FONT><FONT COLOR="#000000">ops = </FONT><FONT COLOR="#0000ff">null</FONT><FONT COLOR="#000000">;</FONT>
+<FONT COLOR="#ff0000">BufferedReader </FONT><FONT COLOR="#000000">br = </FONT>
+<FONT COLOR="#0000ff">new </FONT><FONT COLOR="#ff0000">BufferedReader</FONT><FONT COLOR="#000000">(</FONT><FONT COLOR="#0000ff">new </FONT><FONT COLOR="#ff0000">InputStreamReader</FONT><FONT COLOR="#000000">(</FONT><FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.in));</FONT>
+<FONT COLOR="#0000ff">try </FONT><FONT COLOR="#000000">{</FONT>
+<FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.print(</FONT><FONT COLOR="#ff00ff">"Eneter zip file name for unzip: "</FONT><FONT COLOR="#000000">);</FONT>
+<FONT COLOR="#ff0000">String </FONT><FONT COLOR="#000000">sourcefilename = br.readLine();</FONT>
+<FONT COLOR="#0000ff">if</FONT><FONT COLOR="#000000">(!sourcefilename.endsWith(</FONT><FONT COLOR="#ff00ff">".zip"</FONT><FONT COLOR="#000000">)){</FONT>
+<FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.println(</FONT><FONT COLOR="#ff00ff">"Wrong file name!"</FONT><FONT COLOR="#000000">);</FONT>
+<FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.exit(</FONT><FONT COLOR="#800080">0</FONT><FONT COLOR="#000000">);</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#0000ff">else if</FONT><FONT COLOR="#000000">(!</FONT><FONT COLOR="#0000ff">new </FONT><FONT COLOR="#ff0000">File</FONT><FONT COLOR="#000000">(sourcefilename).exists()){</FONT>
+<FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.println(</FONT><FONT COLOR="#ff00ff">"File not exist!"</FONT><FONT COLOR="#000000">);</FONT>
+<FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.exit(</FONT><FONT COLOR="#800080">0</FONT><FONT COLOR="#000000">);</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#ff0000">ZipInputStream </FONT><FONT COLOR="#000000">in = </FONT>
+<FONT COLOR="#0000ff">new </FONT><FONT COLOR="#ff0000">ZipInputStream</FONT><FONT COLOR="#000000">(</FONT><FONT COLOR="#0000ff">new </FONT><FONT COLOR="#ff0000">FileInputStream</FONT><FONT COLOR="#000000">(sourcefilename));</FONT>
+<FONT COLOR="#ff0000">ZipFile </FONT><FONT COLOR="#000000">zf = </FONT><FONT COLOR="#0000ff">new </FONT><FONT COLOR="#ff0000">ZipFile</FONT><FONT COLOR="#000000">(sourcefilename);</FONT>
+<FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">a = </FONT><FONT COLOR="#800080">0</FONT><FONT COLOR="#000000">;</FONT>
+<FONT COLOR="#0000ff">for</FONT><FONT COLOR="#000000">(</FONT><FONT COLOR="#ff0000">Enumeration </FONT><FONT COLOR="#000000">enm = zf.entries(); enm.hasMoreElements();){</FONT>
+<FONT COLOR="#ff0000">String </FONT><FONT COLOR="#000000">targetfile = enm.nextElement().toString();</FONT>
+<FONT COLOR="#ff0000">ZipEntry </FONT><FONT COLOR="#000000">ze = in.getNextEntry();</FONT>
+<FONT COLOR="#000000">ops = </FONT><FONT COLOR="#0000ff">new </FONT><FONT COLOR="#ff0000">FileOutputStream</FONT><FONT COLOR="#000000">(targetfile);</FONT>
+<FONT COLOR="#0000ff">byte</FONT><FONT COLOR="#000000">[] buf = </FONT><FONT COLOR="#0000ff">new byte</FONT><FONT COLOR="#000000">[</FONT><FONT COLOR="#800080">1024</FONT><FONT COLOR="#000000">];</FONT>
+<FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">len;</FONT>
+<FONT COLOR="#0000ff">while </FONT><FONT COLOR="#000000">((len = in.read(buf)) &gt; </FONT><FONT COLOR="#800080">0</FONT><FONT COLOR="#000000">) {</FONT>
+<FONT COLOR="#000000">ops.write(buf, </FONT><FONT COLOR="#800080">0</FONT><FONT COLOR="#000000">, len);</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#000000">a = a + </FONT><FONT COLOR="#800080">1</FONT><FONT COLOR="#000000">;</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#0000ff">if</FONT><FONT COLOR="#000000">(a &gt; </FONT><FONT COLOR="#800080">0</FONT><FONT COLOR="#000000">) </FONT><FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.println(</FONT><FONT COLOR="#ff00ff">"Files unzipped."</FONT><FONT COLOR="#000000">);</FONT>
+<FONT COLOR="#000000">ops.close();</FONT>
+<FONT COLOR="#000000">in.close();</FONT>
+<FONT COLOR="#000000">} </FONT><FONT COLOR="#0000ff">catch </FONT><FONT COLOR="#000000">(</FONT><FONT COLOR="#ff0000">IOException </FONT><FONT COLOR="#000000">e) {</FONT>
+<FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.println(</FONT><FONT COLOR="#ff00ff">"Error: Unzip Operation failed!"</FONT><FONT COLOR="#000000">);</FONT>
+<FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.exit(</FONT><FONT COLOR="#800080">0</FONT><FONT COLOR="#000000">);</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#000000">}</FONT>
+</FONT>
+</PRE>
+</div>
+
+<table id="indexing">
+  <tr>
+ <td style="width:33%; text-align:left;"><a href="leap_year.shtml" title="leap year">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="sort_element.shtml" title="sort element">Next</a></td>
+  </tr> 
+</table>
+
+<!-- Footer Start-->
+		</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->

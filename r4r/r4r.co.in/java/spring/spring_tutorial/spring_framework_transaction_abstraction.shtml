@@ -1,0 +1,134 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD>
+<meta http-equiv="Content-Language" content="en-us">
+<TITLE>Spring Tutorials</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name="description" CONTENT="spring tutorial covers all topics of spring live spring examples spring interview questions" >
+<meta name="keywords" CONTENT="starting from environment setup, inversion of control (IoC), dependency injection, bean scopes, bean life cycle, inner beans,
+ autowiring, different modules, aspect oriented programming (AOP)">
+
+		<!-- header start-->	
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+     <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>Spring Tutorials</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+			<img src="/images/left_menu_bullet.gif"/> <a href="/java/spring/">Spring</a>
+
+       </div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/spring/commonfiles/leftmenucore.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content">
+<!-- LEGACY BANNER START -->
+<div style="background: rgba(255, 244, 229, 0.9); border-left: 5px solid #ff9800; padding: 20px; margin-bottom: 25px; border-radius: 8px; font-family: 'Inter', sans-serif; box-shadow: 0 4px 6px rgba(0,0,0,0.05);">
+    <h3 style="margin-top: 0; color: #e65100; font-size: 1.2rem; display: flex; align-items: center; gap: 8px;">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+        Legacy Spring Framework Warning
+    </h3>
+    <p style="margin-bottom: 0; color: #5d4037; font-size: 1.05rem; line-height: 1.5;">
+        This tutorial teaches an outdated version of Spring using <strong>legacy XML configuration</strong> (<code>applicationContext.xml</code>). Modern Spring applications rely on <strong>Spring Boot</strong> and <strong>Java Annotations</strong>. This page is preserved for historical context and maintaining legacy systems.
+    </p>
+</div>
+<!-- LEGACY BANNER END -->
+ 	 
+
+<div class="heading">Spring Framework Transaction Abstraction</div>
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="introduction_of_transaction_management.shtml" title="introduction_of_transaction_management">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="spring_declarative_transaction_management.shtml" title="spring_declarative_transaction_management">Next</a></td>
+  </tr> 
+</table>
+<p>The key to the Spring transaction abstraction is defined by the <font class="point_out">org.springframework.transaction. PlatformTransactionManager</font> interface.which shows the following code:</p>
+<div class="code">
+<pre>
+<font color="#0000ff">public interface </font><font color="#000000">PlatformTransactionManager {</font>
+<font color="#000000">TransactionStatus getTransaction(</font>
+<font color="#000000">TransactionDefinition definition) </font><font color="#0000ff">throws </font><font color="#000000">TransactionException;</font>
+<font color="#0000ff">void </font><font color="#000000">commit(TransactionStatus status) </font><font color="#0000ff">throws </font><font color="#000000">TransactionException;</font>
+<font color="#0000ff">void </font><font color="#000000">rollback(TransactionStatus status) </font><font color="#0000ff">throws </font><font color="#000000">TransactionException;</font>
+<font color="#000000">}</font>
+</pre>
+</div>
+
+<p>This is primarily a<font class="point_out"> service provider interface (SPI)</font>, although it can be used programmatically from your application code. Because PlatformTransactionManager is an interface, it can be easily mocked or stubbed as necessary.</p>
+<p>The<font class="point_out"> getTransaction(..)</font> method returns a<font class="point_out"> TransactionStatus object</font>, depending on a TransactionDefinition parameter. The returned TransactionStatus might represent a new transaction, or can represent an existing transaction if a matching transaction exists in the current call stack.</p>
+
+<div class="heading">TransactionDefinition interface Element</div>
+<p><i>Isolation:</i> The degree to which this transaction is isolated from the work of other transactions.</p>
+<p><i>Propagation:</i> Typically, all code executed within a transaction scope will run in that transaction. However, you have the option of specifying the behavior in the event that a transactional method is executed when a transaction context already exists.</p>
+<p><i>Timeout:</i> How long this transaction runs before timing out and being rolled back automatically by the underlying transaction infrastructure.</p>
+<p><i>Read-only status:</i> A read-only transaction can be used when your code reads but does not modify data. Read-only transactions can be a useful optimization in some cases, such as when you are using Hibernate.</p>
+<p>The<font class="point_out"> TransactionStatus interface</font> provides a simple way for transactional code to control transaction execution and query transaction status as given below:</p>
+<div class="code">
+<pre>
+<font color="#0000ff">public interface </font><font color="#000000">TransactionStatus </font><font color="#0000ff">extends </font><font color="#000000">SavepointManager {</font>
+<font color="#0000ff">boolean </font><font color="#000000">isNewTransaction();</font>
+<font color="#0000ff">boolean </font><font color="#000000">hasSavepoint();</font>
+<font color="#0000ff">void </font><font color="#000000">setRollbackOnly();</font>
+<font color="#0000ff">boolean </font><font color="#000000">isRollbackOnly();</font>
+<font color="#0000ff">void </font><font color="#000000">flush();</font>
+<font color="#0000ff">boolean </font><font color="#000000">isCompleted();</font>
+<font color="#000000">}</font>
+</pre>
+</div>
+<div class="heading">Method & Description</div>
+<ol>
+<li>
+<i>boolean hasSavepoint()</i>-
+This method returns whether this transaction internally carries a savepoint, that is, has been created as nested transaction based on a savepoint.</li>
+<li>
+<i>boolean isCompleted()</i>-
+This method returns whether this transaction is completed, that is, whether it has already been committed or rolled back.</li>
+<li>
+<i>boolean isNewTransaction()</i>-
+This method returns true in case the present transaction is new.</li>
+<li>
+<i>boolean isRollbackOnly()</i>-
+This method returns whether the transaction has been marked as rollback-only.</li>
+<li>
+<i>void setRollbackOnly()</i>- 
+This method sets the transaction rollback-only.</li>
+</ol>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="introduction_of_transaction_management.shtml" title="introduction_of_transaction_management">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="spring_declarative_transaction_management.shtml" title="spring_declarative_transaction_management">Next</a></td>
+  </tr> 
+</table>
+
+		</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->

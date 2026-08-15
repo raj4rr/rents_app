@@ -1,0 +1,147 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>Font In VC++|VC++ Fonts </TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="Font In VC++ tutorial learn covers all topics of vc++ best examples of each and every topics Introduction,  History of Visual C++, App Wizard, Data Type, Variables, Function, Structure, Classes, Construtors, Statements and Expression In VC++, Operators In VC++
+Dialog Boxes In VC++, OOps Concept In VC++, Identifier and Scope" >
+<meta name="keywords" CONTENT="Font In VC++, History of Visual C++,Visual C++ includes the tools , App Wizard, Data Type In VC++, Variables In VC++
+Function In VC++, Structure In VC++, Classes In VC++, Construtors In VC++, Statements and Expression In VC++, Operators In VC++
+Dialog Boxes In VC++, OOps Concept In VC++, Message and Driven In VC++">
+
+<!-- header start-->	
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>VC++ tutorial</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+            <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/vcpp/">VC++</a>
+
+              </div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/vcpp/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 
+
+<div class="heading">Font In VC++ </div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="message_and_driven_in_vc++.shtml" title="message and driven in vc++">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="icon_cursor_In_vc++.shtml" title="icon cursor In vc++">Next</a></td>
+  </tr> 
+</table>
+
+<p>A font is a list of symbols that can be drawn on a device context to produce a readable message. A font is designed by an artist but usually follows a specific pattern. Fonts are GDI objects, A collection of characters and other symbols that share the same attributes is a font.</p>
+<p>Although this is the general principle of a font, it is possible for a font to be made of a series of non-readable symbols.</p>
+<h3>Selection of Fonts:</h3>
+<p>Before using a font to draw text in a device, the font must have been installed on the computer. Microsoft Windows installs many fonts during setup. To handle its various assignments, the operating system uses a particular font known as the System Font. If you want to use a different font to draw text in your application, you must select it.</p>
+<p>Selecting a font, as well as selecting any other GDI object, is equivalent to specifying the characteristics of a GDI object you want to use.  If you want to use a different font to draw text in your application, you must select it. To select a font, pass it as a pointer to the CDC::SelectObject method. </p>
+
+<p><i>CFONT:</i> A font is created as a variable of the CFont class (of course, you can also use the Win32 API's HFONT class). The CFont class is based on the CGdiObject. To declare a CFont variable, you can use the default constructor of this class. This can be easily done as follows:</p>
+<h3>Syntax:</h3> 
+<div class="code">
+<pre>
+<font color="#0000ff">virtual </font><font color="#000000">CFont* SelectObject(CFont* pFont);</font>
+</pre>
+</div>
+
+<h3>Example:</h3>
+<div class="code">
+<pre>
+<font color="#0000ff">void </font><font color="#000000">CExoView::OnDraw(CDC* pDC)</font>
+<font color="#000000">{</font>
+	<font color="#000000">CExoDoc* pDoc = GetDocument();</font>
+	<font color="#000000">ASSERT_VALID(pDoc);</font>
+
+	<font color="#000000">CFont font;</font>
+
+	<font color="#000000">font.CreatePointFont(</font><font color="#800080">780</font><font color="#000000">, </font><font color="#ff00ff">&quot;TimeRoman&quot;</font><font color="#000000">);</font>
+	<font color="#000000">CFont *pFont = pDC-&gt;SelectObject(&amp;font);</font>
+	<font color="#000000">pDC-&gt;TextOut(</font><font color="#800080">30</font><font color="#000000">, </font><font color="#800080">35</font><font color="#000000">, </font><font color="#ff00ff">&quot;programming&quot;</font><font color="#000000">, </font><font color="#800080">15</font><font color="#000000">);</font>
+
+	<font color="#000000">pDC-&gt;SelectObject(pFont);</font>
+	<font color="#000000">font.DeleteObject();</font>
+<font color="#000000">}</font>
+</pre>
+</div> 
+
+<p><i>LOGFONT:</i>The CFont::CreateFont() method is used to specify all characteristics of a font in one step. Alternatively, if you want to specify each font property, you can declare a LOGFONT variable and initialize it. After initializing the LOGFONT variable, call the CFont::CreateFontIndirect() method. Its syntax is:</p>
+<h3>Syntax:</h3>
+<div class="code">
+<pre>
+<font color="#000000">BOOL CreateFontIndirect(</font><font color="#0000ff">const </font><font color="#000000">LOGFONT* lpLogFont);</font>
+</pre>
+</div>
+
+<h3>Example:</h3>
+<div class="code">
+<pre>
+<font color="#0000ff">void </font>
+<font color="#000000">CDCTestView::OnDraw(CDC*PDC)</font>
+<font color="#000000">{</font>
+<font color="#000000">CRect rcClint;</font>
+<font color="#000000">GetClientRect;</font>
+<font color="#000000">GetClientRect(rcClient);</font>
+<font color="#000000">pDC-&gt;DPtoLP(rcClient);</font>
+<font color="#000000">COLORREF clrOld = PDC-&gt;SetTextColor(m_clrChoice);</font>
+<font color="#0000ff">int </font><font color="#000000">nOldMode = PDC-&gt;SetBkMode(TRANSPARENT);</font>
+<font color="#000000">CFont fntTimeRoman, fntBoldSwiss;</font>
+<font color="#000000">fntArial.CreateFont(</font><font color="#800080">1</font><font color="#000000">,</font><font color="#800080">1</font><font color="#000000">,</font><font color="#800080">1</font><font color="#000000">,</font><font color="#800080">1</font><font color="#000000">,</font><font color="#800080">1</font><font color="#000000">,</font><font color="#800080">1</font><font color="#000000">,</font><font color="#800080">1</font><font color="#000000">,</font><font color="#800080">1</font><font color="#000000">,</font><font color="#800080">1</font><font color="#000000">,</font><font color="#800080">1</font><font color="#000000">,</font><font color="#ff00ff">&quot;TimeRoman&quot;</font><font color="#000000">);</font>
+<font color="#000000">ftnBoldSwiss.CreateFont(rcClient.Height()/</font><font color="#800080">40</font><font color="#000000">,</font><font color="#800080">0</font><font color="#000000">,FW_BOLD,TRUE,FALSE,</font><font color="#800080">10</font><font color="#000000">,ANSI_CHARSET, </font>
+<font color="#000000">OUT_TT_PRECIS,CLIP_DEFAULT_PRECIS,DEFAULT_QUALITY,DEFAULT_PITCH | FF_SWISS,NULL);</font>
+<font color="#000000">CString szMsg = </font><font color="#ff00ff">&quot;Hello ! change the color and mpping mod&quot;</font><font color="#000000">;</font>
+<font color="#000000">CFont* pOldFont = PDC-&gt;SelectObject(&amp;fnt Arial);</font>
+<font color="#0000ff">int </font><font color="#000000">cy = rcClient.Height()/</font><font color="#800080">4</font><font color="#000000">;</font>
+<font color="#000000">PDC-&gt;TextOut(</font><font color="#800080">0</font><font color="#000000">,cy,szMsg);</font>
+<font color="#000000">PDC-&gt;SelectObject(&amp;fntBoldSwiss);</font>
+<font color="#000000">TEXTMETRIC tm;</font>
+<font color="#000000">PDC-&gt;GetTextMetrices(&amp;tm);</font>
+<font color="#000000">cy +=tm.tmHeight + tm.tmExternalLeading;</font>
+<font color="#000000">PDC-&gt;TextOut(</font><font color="#800080">0</font><font color="#000000">,cy szMsg);</font>
+<font color="#000000">pDC-&gt;SelectObject(pOldFont);</font>
+<font color="#000000">pDC-&gt;SelectTextColor(clrOld);</font>
+<font color="#000000">pDC-&gt;SelectObject(nOldFont);</font>
+<font color="#000000">}</font>
+</pre>
+
+</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="message_and_driven_in_vc++.shtml" title="message and driven in vc++">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="icon_cursor_In_vc++.shtml" title="icon cursor In vc++">Next</a></td>
+  </tr> 
+</table>
+
+		</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->

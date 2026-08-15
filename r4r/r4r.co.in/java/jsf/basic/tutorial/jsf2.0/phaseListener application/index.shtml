@@ -1,0 +1,242 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>PhaseListener Application</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="JSF Application Tag phaseListenerExample" >
+<meta name="keywords" CONTENT="JSF Application Tag phaseListenerExample">
+
+<!-- header start-->	
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>JAVA SERVER FACES (JSF)</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+            <img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+            <a href="/java/">Java</a>
+              <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/java/jsf/">JSF</a>
+
+              </div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/jsf/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	 
+
+<!-- header End-->
+<div class="heading">PhaseListener Application</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="../paramapplication/index.shtml" title="Param Application">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="../index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="../subview application/index.shtml" title="Subview Application">Next</a></td>
+  </tr> 
+</table>
+
+<p><i>Code for phaseListener Example: </i>For run this example following step is required.</p>
+<p><i>Step 1: </i>Welcome page of Example </p>
+
+<div class="code">
+<pre>
+<font color="#800000">&lt;%</font><font color="#800000">--</font>
+<font color="#800000">Name= welcomeJSF.jsp</font>
+<font color="#800000">--%&gt;</font>
+<font color="#800000">&lt;%</font><font color="#800000">@page contentType=</font><font color="#ff00ff">&quot;text/html&quot; </font><font color="#800000">pageEncoding=</font><font color="#ff00ff">&quot;UTF-8&quot;</font><font color="#800000">%&gt;</font>
+<font color="#800000">&lt;%</font><font color="#800000">@taglib prefix=</font><font color="#ff00ff">&quot;f&quot; </font><font color="#800000">uri=</font><font color="#ff00ff">&quot;http://java.sun.com/jsf/core&quot;</font><font color="#800000">%&gt;</font>
+<font color="#800000">&lt;%</font><font color="#800000">@taglib prefix=</font><font color="#ff00ff">&quot;h&quot; </font><font color="#800000">uri=</font><font color="#ff00ff">&quot;http://java.sun.com/jsf/html&quot;</font><font color="#800000">%&gt;</font>
+<font color="#0000ff">&lt;!DOCTYPE </font><font color="#800080">HTML PUBLIC </font><font color="#000000">&quot;</font><font color="#800080">-</font><font color="#000000">//</font><font color="#800080">W3C</font><font color="#000000">//</font><font color="#800080">DTD HTML 4</font><font color="#000000">.</font><font color="#800080">01 Transitional</font><font color="#000000">//</font><font color="#800080">EN</font><font color="#000000">&quot;</font>
+<font color="#000000">&quot;</font><font color="#800080">http:</font><font color="#000000">//</font><font color="#800080">www</font><font color="#000000">.</font><font color="#800080">w3</font><font color="#000000">.</font><font color="#800080">org</font><font color="#000000">/</font><font color="#800080">TR</font><font color="#000000">/</font><font color="#800080">html4</font><font color="#000000">/</font><font color="#800080">loose</font><font color="#000000">.</font><font color="#800080">dtd</font><font color="#000000">&quot;</font><font color="#0000ff">&gt;</font>
+<font color="#800000">&lt;%</font><font color="#800000">--</font>
+<font color="#800000">This file </font><font color="#0000ff">is </font><font color="#800000">an entry point </font><font color="#0000ff">for </font><font color="#800000">JavaServer Faces application.</font>
+<font color="#800000">--%&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">f:view</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">html</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">head</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">meta </font><font color="#800080">http-equiv</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;Content-Type&quot; </font><font color="#800080">content</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;text/html; charset=UTF-8&quot;</font><font color="#0000ff">/&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">title</font><font color="#0000ff">&gt;</font><font color="#000000">r4r.co.in-phaseListener</font><font color="#0000ff">&lt;/</font><font color="#808000">title</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">head</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">body</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">h1</font><font color="#0000ff">&gt;&lt;</font><font color="#808000">h:outputText </font><font color="#800080">value</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;Tag phaseListener Example&quot;</font><font color="#0000ff">/&gt;&lt;/</font><font color="#808000">h1</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">h:form </font><font color="#800080">id</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;form&quot;</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">h:messages </font><font color="#800080">globalOnly</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;true&quot; </font><font color="#800080">showDetail</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;true&quot; </font>
+<font color="#800080">errorStyle</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;color:red&quot; </font><font color="#800080">infoStyle</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;color:green&quot; </font><font color="#0000ff">/&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">h:panelGrid </font><font color="#800080">columns</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;3&quot; </font><font color="#800080">cellpadding</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;2&quot; </font><font color="#800080">cellspacing</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;2&quot;</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">h:outputLabel </font><font color="#800080">value</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;Enter username&quot;</font><font color="#0000ff">/&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">h:inputText </font><font color="#800080">id</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;user&quot; </font><font color="#800080">value</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;#{listenerBean.user}&quot; </font><font color="#ff0000">size</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;20&quot; </font>
+<font color="#800080">maxlength</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;10&quot; </font><font color="#800080">required</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;true&quot; </font><font color="#800080">requiredMessage</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;*&quot; </font><font color="#0000ff">/&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">h:message </font><font color="#800080">for</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;user&quot; </font><font color="#800080">errorStyle</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;color:red&quot; </font><font color="#0000ff">/&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">h:outputLabel </font><font color="#800080">value</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;Enter Password&quot; </font><font color="#0000ff">/&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">h:inputText </font><font color="#800080">id</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;pass&quot; </font><font color="#800080">value</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;#{listenerBean.pass}&quot; </font><font color="#ff0000">size</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;20&quot; </font>
+<font color="#800080">maxlength</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;10&quot; </font><font color="#800080">required</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;true&quot; </font><font color="#800080">requiredMessage</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;*&quot;</font><font color="#0000ff">/&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">h:message </font><font color="#800080">for</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;pass&quot; </font><font color="#800080">errorStyle</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;color:red&quot; </font><font color="#0000ff">/&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">h:commandButton </font><font color="#800080">value</font><font color="#0000ff">=</font><font color="#ff00ff">&quot; Submit &quot; </font><font color="#800080">action</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;#{listenerBean.checkLogin()}&quot; </font><font color="#0000ff">/&gt;</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">h:panelGrid</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">p</font><font color="#0000ff">&gt;</font><font color="#000000">Username== user || password== pass</font><font color="#0000ff">&lt;/</font><font color="#808000">p</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">h:form</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">body</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">html</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">f:view</font><font color="#0000ff">&gt;</font>
+</pre>
+</div>
+
+<p><i>Step 2: </i>faces-config.xml file </p>
+<div class="code">
+<pre>
+<font color="#0000ff">&lt;?xml </font><font color="#ff0000">version</font><font color="#0000ff">=</font><font color="#ff00ff">'1.0' </font><font color="#ff0000">encoding</font><font color="#0000ff">=</font><font color="#ff00ff">'UTF-8'</font><font color="#800080">?</font><font color="#0000ff">&gt;</font>
+<font color="#008000">&lt;!-- =========== FULL CONFIGURATION FILE ======= --&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">faces-config </font><font color="#ff0000">version</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;2.0&quot;</font>
+ <font color="#ff0000">xmlns</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;http://java.sun.com/xml/ns/javaee&quot; </font>
+ <font color="#800080">xmlns:xsi</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;http://www.w3.org/2001/XMLSchema-instance&quot; </font>
+ <font color="#800080">xsi:schemaLocation</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;http://java.sun.com/xml/ns/javaee </font>
+<font color="#ff00ff"> http://java.sun.com/xml/ns/javaee/web-facesconfig_2_0.xsd&quot;</font><font color="#0000ff">&gt;</font>
+<font color="#000000"> </font><font color="#0000ff">&lt;</font><font color="#808000">lifecycle</font><font color="#0000ff">&gt;</font>
+<font color="#000000">  </font><font color="#0000ff">&lt;</font><font color="#808000">phase-listener</font><font color="#0000ff">&gt;</font><font color="#000000">r4r.jsf.listenerClass</font><font color="#0000ff">&lt;/</font><font color="#808000">phase-listener</font><font color="#0000ff">&gt;</font><font color="#000000"> </font>
+<font color="#000000"> </font><font color="#0000ff">&lt;/</font><font color="#808000">lifecycle</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">managed-bean</font><font color="#0000ff">&gt;</font>
+<font color="#000000">  </font><font color="#0000ff">&lt;</font><font color="#808000">managed-bean-name</font><font color="#0000ff">&gt;</font><font color="#000000">listenerBean</font><font color="#0000ff">&lt;/</font><font color="#808000">managed-bean-name</font><font color="#0000ff">&gt;</font>
+<font color="#000000">  </font><font color="#0000ff">&lt;</font><font color="#808000">managed-bean-class</font><font color="#0000ff">&gt;</font><font color="#000000">r4r.jsf.listenerBean</font><font color="#0000ff">&lt;/</font><font color="#808000">managed-bean-class</font><font color="#0000ff">&gt;</font>
+<font color="#000000">  </font><font color="#0000ff">&lt;</font><font color="#808000">managed-bean-scope</font><font color="#0000ff">&gt;</font><font color="#000000">request</font><font color="#0000ff">&lt;/</font><font color="#808000">managed-bean-scope</font><font color="#0000ff">&gt;</font>
+<font color="#000000"> </font><font color="#0000ff">&lt;/</font><font color="#808000">managed-bean</font><font color="#0000ff">&gt;</font>
+<font color="#000000"> </font><font color="#0000ff">&lt;</font><font color="#808000">navigation-rule</font><font color="#0000ff">&gt;</font>
+<font color="#000000">  </font><font color="#0000ff">&lt;</font><font color="#808000">navigation-case</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">from-outcome</font><font color="#0000ff">&gt;</font><font color="#000000">success</font><font color="#0000ff">&lt;/</font><font color="#808000">from-outcome</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">to-view-id</font><font color="#0000ff">&gt;</font><font color="#000000">/success.jsp</font><font color="#0000ff">&lt;/</font><font color="#808000">to-view-id</font><font color="#0000ff">&gt;</font>
+<font color="#000000">  </font><font color="#0000ff">&lt;/</font><font color="#808000">navigation-case</font><font color="#0000ff">&gt;</font><font color="#000000"> </font>
+<font color="#000000">  </font><font color="#0000ff">&lt;</font><font color="#808000">navigation-case</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">from-outcome</font><font color="#0000ff">&gt;</font><font color="#000000">login</font><font color="#0000ff">&lt;/</font><font color="#808000">from-outcome</font><font color="#0000ff">&gt;</font><font color="#000000"> </font>
+<font color="#0000ff">&lt;</font><font color="#808000">to-view-id</font><font color="#0000ff">&gt;</font><font color="#000000">/welcomeJSF.jsp</font><font color="#0000ff">&lt;/</font><font color="#808000">to-view-id</font><font color="#0000ff">&gt;</font>
+<font color="#000000">  </font><font color="#0000ff">&lt;/</font><font color="#808000">navigation-case</font><font color="#0000ff">&gt;</font>
+<font color="#000000"> </font><font color="#0000ff">&lt;/</font><font color="#808000">navigation-rule</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">faces-config</font><font color="#0000ff">&gt;</font>
+</pre>
+</div>
+
+<p><i>step 3: </i>ManagedBean class for provide logic in program.</p>
+<div class="code">
+<pre>
+<font color="#008000">/*</font>
+<font color="#008000"> * Save as a listenerBean.java</font>
+<font color="#008000"> */</font>
+<font color="#0000ff">package </font><font color="#000000">r4r.jsf;</font>
+<font color="#0000ff">import </font><font color="#000000">javax.faces.application.FacesMessage;</font>
+<font color="#0000ff">import </font><font color="#000000">javax.faces.context.FacesContext;</font>
+<font color="#0000ff">public class </font><font color="#000000">listenerBean {</font>
+<font color="#0000ff">private </font><font color="#ff0000">String </font><font color="#000000">user;</font>
+<font color="#0000ff">private </font><font color="#ff0000">String </font><font color="#000000">pass;</font>
+<font color="#0000ff">public </font><font color="#ff0000">String </font><font color="#000000">checkLogin() {</font>
+<font color="#0000ff">if </font><font color="#000000">(user.equals(</font><font color="#ff00ff">&quot;user&quot;</font><font color="#000000">) &amp;&amp; pass.equals(</font><font color="#ff00ff">&quot;pass&quot;</font><font color="#000000">)) {</font>
+<font color="#0000ff">return </font><font color="#ff00ff">&quot;success&quot;</font><font color="#000000">;</font>
+<font color="#000000">} </font><font color="#0000ff">else </font><font color="#000000">{</font>
+<font color="#000000">FacesContext.getCurrentInstance().addMessage(</font><font color="#0000ff">null</font><font color="#000000">, </font><font color="#0000ff">new </font><font color="#000000">FacesMessage</font>
+<font color="#000000">(FacesMessage.SEVERITY_ERROR, </font><font color="#ff00ff">&quot;Login Failure! &quot;</font><font color="#000000">,</font>
+<font color="#ff00ff">&quot;Enter Username [&quot; </font><font color="#000000">+ user + </font><font color="#ff00ff">&quot;] &amp;&amp; Password [&quot; </font><font color="#000000">+ pass + </font><font color="#ff00ff">&quot;] doesn't match&quot;</font><font color="#000000">));</font>
+<font color="#0000ff">return null</font><font color="#000000">;</font>
+<font color="#000000">}</font>
+<font color="#000000">}</font>
+<font color="#008000">//------------ getter/setter</font>
+<font color="#0000ff">public </font><font color="#ff0000">String </font><font color="#000000">getPass() {</font>
+<font color="#0000ff">return </font><font color="#000000">pass;</font>
+<font color="#000000">}</font>
+<font color="#0000ff">public void </font><font color="#000000">setPass(</font><font color="#ff0000">String </font><font color="#000000">pass) {</font>
+<font color="#0000ff">this</font><font color="#000000">.pass = pass;</font>
+<font color="#000000">}</font>
+<font color="#0000ff">public </font><font color="#ff0000">String </font><font color="#000000">getUser() {</font>
+<font color="#0000ff">return </font><font color="#000000">user;</font>
+<font color="#000000">}</font>
+<font color="#0000ff">public void </font><font color="#000000">setUser(</font><font color="#ff0000">String </font><font color="#000000">user) {</font>
+<font color="#0000ff">this</font><font color="#000000">.user = user;</font>
+<font color="#000000">}</font>
+<font color="#000000">}</font>
+</pre>
+
+</div>
+
+<p><i>step 4: </i>Client Class for provide PhaseListener logic</p>
+<div class="code">
+<pre>
+<font color="#008000">/*</font>
+<font color="#008000"> * Save as a listenerClass.java</font>
+<font color="#008000"> */</font>
+<font color="#0000ff">package </font><font color="#000000">r4r.jsf;</font>
+<font color="#0000ff">import </font><font color="#000000">javax.faces.context.ExternalContext;</font>
+<font color="#0000ff">import </font><font color="#000000">javax.faces.context.FacesContext;</font>
+<font color="#0000ff">import </font><font color="#000000">javax.faces.event.PhaseEvent;</font>
+<font color="#0000ff">import </font><font color="#000000">javax.faces.event.PhaseId;</font>
+<font color="#0000ff">import </font><font color="#000000">javax.faces.event.PhaseListener;</font>
+<font color="#0000ff">public class </font><font color="#000000">listenerClass </font><font color="#0000ff">implements </font><font color="#000000">PhaseListener {</font>
+<font color="#0000ff">private final </font><font color="#ff0000">String </font><font color="#000000">LOGIN_OUTCOME = </font><font color="#ff00ff">&quot;login&quot;</font><font color="#000000">;</font>
+<font color="#000000">@</font><font color="#0000ff">Override</font>
+<font color="#0000ff">public void </font><font color="#000000">afterPhase(PhaseEvent pe) {</font>
+<font color="#ff0000">System</font><font color="#000000">.out.println(</font><font color="#ff00ff">&quot;After phase&quot; </font><font color="#000000">+ getPhaseId()); </font><font color="#008000">// Print to console</font>
+<font color="#000000">FacesContext context = pe.getFacesContext();</font>
+<font color="#0000ff">if </font><font color="#000000">(requestPage(context)) {</font>
+<font color="#000000">context.renderResponse();</font>
+<font color="#000000">context.getApplication().getNavigationHandler()</font>
+<font color="#000000">.handleNavigation(context, </font><font color="#0000ff">null</font><font color="#000000">, LOGIN_OUTCOME);</font>
+<font color="#000000">}</font>
+<font color="#000000">}</font>
+<font color="#000000">@</font><font color="#0000ff">Override</font>
+<font color="#0000ff">public void </font><font color="#000000">beforePhase(PhaseEvent pe) {</font>
+<font color="#ff0000">System</font><font color="#000000">.out.println(</font><font color="#ff00ff">&quot;Before phase&quot; </font><font color="#000000">+ getPhaseId());</font>
+<font color="#000000">}</font>
+<font color="#000000">@</font><font color="#0000ff">Override</font>
+<font color="#0000ff">public </font><font color="#000000">PhaseId getPhaseId() {</font>
+<font color="#0000ff">return </font><font color="#000000">PhaseId.ANY_PHASE;</font>
+<font color="#000000">}</font>
+<font color="#0000ff">private boolean </font><font color="#000000">requestPage(FacesContext context) {</font>
+<font color="#000000">ExternalContext ec = context.getExternalContext();</font>
+<font color="#ff0000">String </font><font color="#000000">path = ec.getRequestPathInfo();</font>
+<font color="#0000ff">return </font><font color="#000000">(!</font><font color="#ff00ff">&quot;/welcomeJSF.jsp&quot;</font><font color="#000000">.equals(path) &amp;&amp; !</font><font color="#ff00ff">&quot;/success.jsp&quot;</font><font color="#000000">.equals(path));</font>
+<font color="#000000">}</font>
+<font color="#000000">}</font>
+</pre>
+
+</div>
+
+<p><i>Output :</i></p>
+<div class="output">
+<div class="image">
+<img src="phaseListener%20pic/phaseListener.png">
+<img src="phaseListener%20pic/phaseListener1.png">
+</div>
+</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="../paramapplication/index.shtml" title="Param Application">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="../index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="../subview application/index.shtml" title="Subview Application">Next</a></td>
+  </tr> 
+</table>
+
+<!-- Footer Start-->	
+
+		</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->

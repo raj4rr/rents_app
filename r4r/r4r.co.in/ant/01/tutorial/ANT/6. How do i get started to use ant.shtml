@@ -1,0 +1,175 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD>
+<meta http-equiv="Content-Language" content="en-us">
+<TITLE>How do i get started to use ant </TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name="description" CONTENT="Statement of the JDBC,Statement,PreparedStatement,CallableStatement" >
+<meta name="keywords" CONTENT="Statement of the JDBC,Statement,PreparedStatement,CallableStatement">
+<!-- header start-->	
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>Ant</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+            <img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+            <a href="/ant/">Ant</a>
+
+                                   <img src="/images/left_menu_bullet.gif" width="11" height="6"/>
+								    <a href="/ant/01/tutorial/ANT/">Ant tutorials</a>
+              </div>
+
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/ant/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	 
+
+<div class="heading"><p>How do I get started to use ant, Can you give me a &quot;Hello World&quot; ant Script?</p></div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="5.the%20simple%20hello%20program.shtml" title="To Create the Simple Hello Program">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="7.%20to%20create%20the%20jar%20files.shtml" title="How you can create a jar file with the using of Ant.">Next</a></td>
+  </tr> 
+</table>	   
+<!-- header End-->
+
+<p>when you using Apache ant then first time you must download the most recent version of ant and after you download the ant, then you can use to unzip the file .The 
+following are the steps :-</p>
+<ol>
+<li> After you install the j2sdk 1.4 or above. Actually the initial java 
+version is using in Ant 1.4 and above.</li>
+<li> Set to JAVA_HOME an ANT_HOME to the directory your installed them 
+respectively.</li>
+<li>Put %JAVA_HOME%/bin;%ANT_HOME%/bin on your Path. Use ${JAVA_HOME}/bin:${ANT_HOME}/bin 
+on UNIX. yes, you can use forward slash on windows.</li></ol>
+
+<div class="heading">How to create a program of ANT.</div>
+<p>Create a Simple program to calculate a multipale of two variables.</p>
+
+	<div class="image">
+		<img src="image/6.gif"> 
+	</div>
+
+<div class="heading">Use of Build.xml files.</div>
+<p><i> Step1:</i> If you want to test the build.xml file then you using to the Junit Liabrary files and compile file code is</p>
+<div class="code">
+<pre>
+<font color="#008000">&lt;!-- Creates Javadoc --&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">target </font><font color="#ff0000">name</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;docs&quot; </font><font color="#800080">depends</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;compile&quot;</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">javadoc </font><font color="#800080">packagenames</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;src&quot; </font><font color="#800080">sourcepath</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;${src.dir}&quot;</font>
+<font color="#800080">destdir</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;${docs.dir}&quot;</font><font color="#0000ff">&gt;</font>
+<font color="#008000">&lt;!-- Define which files / directory should get </font>
+<font color="#008000">		  included, we include all --&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">fileset </font><font color="#800080">dir</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;${src.dir}&quot;</font><font color="#0000ff">&gt;</font>
+<font color="#000000">	</font><font color="#0000ff">&lt;</font><font color="#808000">include </font><font color="#ff0000">name</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;**&quot; </font><font color="#0000ff">/&gt;</font>
+<font color="#000000">		</font><font color="#0000ff">&lt;/</font><font color="#808000">fileset</font><font color="#0000ff">&gt;</font>
+<font color="#000000">		</font><font color="#0000ff">&lt;/</font><font color="#808000">javadoc</font><font color="#0000ff">&gt;</font>
+<font color="#000000">	</font><font color="#0000ff">&lt;/</font><font color="#808000">target</font><font color="#0000ff">&gt;</font>
+</pre>
+</div>
+
+<p><i>Step2:</i> If you create a documet file then you using xml code is</p>
+
+<div class="code">
+<pre>
+
+<font color="#008000">&lt;!-- Creates Javadoc --&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">target </font><font color="#ff0000">name</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;docs&quot; </font><font color="#800080">depends</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;compile&quot;</font><font color="#0000ff">&gt;</font>
+<font color="#000000">	</font><font color="#0000ff">&lt;</font><font color="#808000">javadoc </font><font color="#800080">packagenames</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;src&quot; </font><font color="#800080">sourcepath</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;${src.dir}&quot;</font>
+	   <font color="#800080">destdir</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;${docs.dir}&quot;</font><font color="#0000ff">&gt;</font><font color="#008000">&lt;!-- Define which files / </font>
+<font color="#008000">	   directory should get included,we include all --&gt;</font>
+<font color="#000000">		 </font><font color="#0000ff">&lt;</font><font color="#808000">fileset </font><font color="#800080">dir</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;${src.dir}&quot;</font><font color="#0000ff">&gt;</font>
+<font color="#000000">			</font><font color="#0000ff">&lt;</font><font color="#808000">include </font><font color="#ff0000">name</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;**&quot; </font><font color="#0000ff">/&gt;</font>
+<font color="#000000">				</font><font color="#0000ff">&lt;/</font><font color="#808000">fileset</font><font color="#0000ff">&gt;</font>
+<font color="#000000">     </font><font color="#0000ff">&lt;/</font><font color="#808000">javadoc</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">target</font><font color="#0000ff">&gt;</font>
+
+</pre>
+</div>
+
+<p><i>Step3:</i> If you create a jar file then you using code</p>
+<div class="code">
+<pre>
+
+<font color="#008000">&lt;!--Creates the deployable jar file  --&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">target </font><font color="#ff0000">name</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;jar&quot; </font><font color="#800080">depends</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;compile&quot;</font><font color="#0000ff">&gt;</font>
+<font color="#000000">	</font><font color="#0000ff">&lt;</font><font color="#808000">jar </font><font color="#800080">destfile</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;${dist.dir}\program1.jar&quot; </font><font color="#800080">basedir</font><font color="#0000ff">=</font>
+<font color="#ff00ff">&quot;${build.dir}&quot;</font><font color="#0000ff">&gt;</font>
+<font color="#000000">	 </font><font color="#0000ff">&lt;</font><font color="#808000">manifest</font><font color="#0000ff">&gt;</font>
+<font color="#000000">		</font><font color="#0000ff">&lt;</font><font color="#808000">attribute </font><font color="#ff0000">name</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;Main-Class&quot; </font><font color="#800080">value</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;test.Main&quot;</font><font color="#0000ff">/&gt;</font>
+<font color="#000000">			 </font><font color="#0000ff">&lt;/</font><font color="#808000">manifest</font><font color="#0000ff">&gt;</font>
+<font color="#000000">	</font><font color="#0000ff">&lt;/</font><font color="#808000">jar</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">target</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">target </font><font color="#ff0000">name</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;main&quot; </font><font color="#800080">depends</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;compile, jar, docs&quot;</font><font color="#0000ff">&gt;</font>
+<font color="#000000">		</font><font color="#0000ff">&lt;description&gt;</font><font color="#000000">Main target</font><font color="#0000ff">&lt;/description&gt;</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">target</font><font color="#0000ff">&gt;</font>
+
+</pre>
+</div>
+
+<p><i>Step4: </i>If you create a mkdir file then using to the code:</p>
+<div class="code">
+<pre>
+<font color="#008000">&lt;!-- Creates the  build, docs and dist directory--&gt;</font>
+<font color="#000000">  </font><font color="#0000ff">&lt;</font><font color="#808000">target </font><font color="#ff0000">name</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;makedir&quot;</font><font color="#0000ff">&gt;</font>
+<font color="#000000">	  </font><font color="#0000ff">&lt;</font><font color="#808000">mkdir </font><font color="#800080">dir</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;${build.dir}&quot; </font><font color="#0000ff">/&gt;</font>
+<font color="#000000">		</font><font color="#0000ff">&lt;</font><font color="#808000">mkdir </font><font color="#800080">dir</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;${docs.dir}&quot; </font><font color="#0000ff">/&gt;</font>
+<font color="#000000">		</font><font color="#0000ff">&lt;</font><font color="#808000">mkdir </font><font color="#800080">dir</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;${dist.dir}&quot; </font><font color="#0000ff">/&gt;</font>
+<font color="#000000">  </font><font color="#0000ff">&lt;/</font><font color="#808000">target</font><font color="#0000ff">&gt;</font>
+</pre>
+</div>
+
+<div class="code">
+<pre>
+
+<font color="#008000">&lt;!-- Creates the  build, docs and dist directory--&gt;</font>
+<font color="#000000">	</font><font color="#0000ff">&lt;</font><font color="#808000">target </font><font color="#ff0000">name</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;makedir&quot;</font><font color="#0000ff">&gt;</font>
+<font color="#000000">		</font><font color="#0000ff">&lt;</font><font color="#808000">mkdir </font><font color="#800080">dir</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;${build.dir}&quot; </font><font color="#0000ff">/&gt;</font>
+<font color="#000000">		</font><font color="#0000ff">&lt;</font><font color="#808000">mkdir </font><font color="#800080">dir</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;${docs.dir}&quot; </font><font color="#0000ff">/&gt;</font>
+<font color="#000000">		</font><font color="#0000ff">&lt;</font><font color="#808000">mkdir </font><font color="#800080">dir</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;${dist.dir}&quot; </font><font color="#0000ff">/&gt;</font>
+<font color="#000000">	</font><font color="#0000ff">&lt;/</font><font color="#808000">target</font><font color="#0000ff">&gt;</font>
+</pre>
+</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="5.the%20simple%20hello%20program.shtml" title="To Create the Simple Hello Program">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="7.%20to%20create%20the%20jar%20files.shtml" title="How you can create a jar file with the using of Ant." ant Script?">Next</a></td>
+  </tr> 
+</table>	   
+
+<!-- Footer Start-->	
+
+		</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->

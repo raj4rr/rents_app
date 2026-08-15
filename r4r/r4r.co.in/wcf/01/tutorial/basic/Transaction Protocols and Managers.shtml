@@ -1,0 +1,93 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>Transaction Protocols and Managers,Lightweight protocol,OleTx Protocol,WSAT Protocol,Resources and promotion,LTM promotion,KTM promotion</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="Transaction Protocols and Managers,Lightweight protocol,OleTx Protocol,WSAT Protocol,Resources and promotion,LTM promotion,KTM promotion" >
+<meta name="keywords" CONTENT="Transaction Protocols and Managers,Lightweight protocol,OleTx Protocol,WSAT Protocol,Resources and promotion,LTM promotion,KTM promotion">
+
+<!--Header start-->
+
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>WCF</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a><img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+			<a href="/wcf">WCF with C# </a>
+              <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/wcf/01/tutorial/basic/">WCF Tutorials</a></div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/wcf/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	  
+
+<!-- Header End-->
+<div class="heading">Transaction Protocols and Managers</div>
+
+  <table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="Transactions%20in%20WCF.shtml" title="Transactions in WCF
+">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="Requiring%20transaction%20flow.shtml" title="Requiring transaction flow">Next</a></td>
+  </tr>
+</table>
+<p>WCF supports the two-phase commit process but the transaction protocol that is used varies based on the situation. WCF supports the following three types of transaction protocols: </p>
+
+<ol>
+<li><p><h3>Lightweight protocol:</h3>Lightweight protocol  is used in a local context only, inside the same app domain to manage transactions . Under this protocol, Transaction must be within a single AppDomain. There should not be any cross calls for other AppDomains, so logically no client-service calls are allowed..The lightweight protocol is used only inside a service or outside services.</p>
+<p>Lightweight protocol  cannot propagate the transaction across the app domain boundary  nor can it flow the transaction across any service boundary .  The Lightweight protocol yields the best performance compared with the other protocols</p></li>
+
+<li><p><h3>OleTx Protocol: </h3>OleTx protocol is used to propagate transactions across app domain, process, and machine boundaries, and to manage the two-phase commit protocol.he OLE Transaction (OleTx) protocol is the standard for use with distributed transactions in a homogeneous environment.The protocol uses RPC calls, and the exact binary format of the calls is Windows-specific.</p>
+<p> As a result of the use of both the RPC and the Windows-specific format, it cannot go across firewalls or interoperate with non-Windows parties. Under this protocal communication through firewalls is now allowed and cross-platform communications are also not allowed. Because of this, it is typically used in a Windows intranet scenario.This is usually not a problem because the primary use for the OleTx protocol is for managing transactions in an intranet, in a homogenous Windows environment, and when a single transaction manager is involved</p></li>
+
+<li><p><h3>WSAT ProtocoL: </h3>WS-Atomic (WS-AT) protocol is not different from OleTx in terms of its capabilities.This protocol is similar to the OleTx protocol in that it too can propagate the transaction across app domain, process, and machine boundaries, and manage the two-phase commit protocol.</p>
+<p>It is a two-phase protocol that can propagate transactions across process, App-Domain, and computer boundaries.the WSAT protocol is based on an industry standard and, when used over HTTP with text encoding, can go across firewalls.</p>
+<p>The main difference is that although OleTx is limited to computers running Windows behind a firewall, WS-AT is an industry standard that can be used over HTTP</p>
+</li>
+</ol>
+
+<div class="heading">Resources and promotion </div>
+
+<p><i>LTM promotion: </i>LTM is the Lightweight Transaction Manager.if the transaction tries to enlist a second durable resource or the transaction is propagated to a service, WCF will promote the transaction from the LTM to the DTC</p>
+
+<p><i>KTM promotion: </i>The KTM can manage a transaction as long as it interacts with a single KRM and as long as the transaction is local.</p>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="Transactions%20in%20WCF.shtml" title="Transactions in WCF
+">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="Requiring%20transaction%20flow.shtml" title="Requiring transaction flow">Next</a></td>
+  </tr>
+</table>
+
+ <!--Footer  -->
+</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/dotnet/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>

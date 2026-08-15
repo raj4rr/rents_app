@@ -1,0 +1,246 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+:root {
+  /* Color Scheme Support */
+  color-scheme: light dark;
+
+  /* Modern typography */
+  --font-family-sans-serif: 'Inter', system-ui, -apple-system, sans-serif;
+  
+  /* Light Mode Colors (Glassmorphism base) */
+  --bg-gradient: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  --glass-bg: rgba(255, 255, 255, 0.45);
+  --glass-border: rgba(255, 255, 255, 0.4);
+  --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.1);
+  --text-main: #2c3e50;
+  --text-muted: #596a7a;
+  --accent-color: #3498db;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    /* Dark Mode Colors */
+    --bg-gradient: linear-gradient(135deg, #0f2027 0%, #203a43 50%, #2c5364 100%);
+    --glass-bg: rgba(16, 25, 40, 0.65);
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+    --text-main: #f5f6fa;
+    --text-muted: #a4b0be;
+    --accent-color: #4cd137;
+  }
+}
+
+body {
+  font-family: var(--font-family-sans-serif);
+  background: var(--bg-gradient);
+  background-attachment: fixed;
+  color: var(--text-main);
+  min-height: 100vh;
+  margin: 0;
+  padding-top: 80px; /* Space for sticky nav */
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+/* Glassmorphism Navigation */
+.glass-nav {
+  background: var(--glass-bg) !important;
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border-bottom: 1px solid var(--glass-border);
+  box-shadow: var(--glass-shadow);
+  transition: all 0.3s ease;
+}
+
+.glass-nav .nav-link,
+.glass-nav .navbar-brand {
+  color: var(--text-main) !important;
+  font-weight: 500;
+}
+
+/* Glassmorphism Cards */
+.glass-card {
+  background: var(--glass-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--glass-border);
+  border-radius: 16px;
+  box-shadow: var(--glass-shadow);
+  padding: 24px;
+  margin-bottom: 24px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  overflow: hidden;
+}
+
+.glass-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 40px 0 rgba(31, 38, 135, 0.2);
+}
+
+.glass-card h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.glass-card h2 a {
+  color: var(--text-main);
+  text-decoration: none;
+  background-image: linear-gradient(transparent 90%, var(--accent-color) 10%);
+  background-repeat: no-repeat;
+  background-size: 0% 100%;
+  transition: background-size 0.3s ease;
+}
+
+.glass-card h2 a:hover {
+  background-size: 100% 100%;
+}
+
+.glass-card .meta-time {
+  display: block;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-bottom: 1rem;
+}
+
+.glass-card .category-pill {
+  display: inline-block;
+  background: rgba(52, 152, 219, 0.2);
+  color: var(--accent-color);
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  margin-right: 6px;
+  margin-bottom: 12px;
+}
+
+.glass-card img {
+  border-radius: 12px;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  margin-bottom: 1rem;
+  max-height: 250px;
+}
+
+.glass-card p {
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+
+/* Article Hero View */
+.article-hero {
+  border-radius: 24px;
+  padding: 40px;
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.article-content {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: var(--text-main);
+}
+
+/* Scroll-Driven Animations (Entry Effects) */
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(40px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.animate-on-scroll {
+  /* Using view timeline for scroll driven animation natively */
+  /* Fallback for browsers that don't support view() is just no animation, which is fine */
+  animation: fade-in-up linear both;
+  animation-timeline: view();
+  animation-range: entry 10% cover 30%;
+}
+
+/* Pagination Glass */
+.pagination .page-link {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  color: var(--text-main);
+  backdrop-filter: blur(8px);
+}
+.pagination .page-item.active .page-link {
+  background: var(--accent-color);
+  border-color: var(--accent-color);
+  color: #fff;
+}
+
+/* MCQ Specific Styles */
+.mcq-option {
+  display: flex;
+  align-items: center;
+  padding: 16px 20px;
+  margin-bottom: 12px;
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  color: var(--text-main);
+  font-weight: 500;
+}
+
+.mcq-option:hover {
+  background: rgba(52, 152, 219, 0.1);
+  border-color: var(--accent-color);
+  transform: translateX(4px);
+}
+
+.mcq-option input[type="radio"] {
+  margin-right: 16px;
+  width: 20px;
+  height: 20px;
+  accent-color: var(--accent-color);
+  cursor: pointer;
+}
+
+.mcq-submit-btn {
+  background: linear-gradient(135deg, #a6c0fe 0%, #f68084 100%);
+  color: #1a1a1a;
+  border: none;
+  padding: 12px 30px;
+  border-radius: 25px;
+  font-weight: 700;
+  font-size: 1.1rem;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+  transition: transform 0.2s, box-shadow 0.2s;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.mcq-submit-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+}
+
+/* Glass Footer */
+.glass-footer {
+  background: var(--glass-bg);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border-top: 1px solid var(--glass-border);
+  padding: 40px 0;
+  margin-top: 60px;
+  color: var(--text-main);
+}
+.glass-footer a {
+  color: var(--accent-color);
+  text-decoration: none;
+}
+.glass-footer a:hover {
+  text-decoration: underline;
+}
+.glass-footer .text-white {
+  color: var(--text-main) !important;
+}

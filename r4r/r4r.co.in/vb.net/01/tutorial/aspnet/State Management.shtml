@@ -1,0 +1,158 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>ASP.NET state management|State Management in ASP.NET|HOw to use state management</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="ASP.NET State Management learn how to work with state management in
+ASP.Net Client  Side State Management with live examples and interview questions of asp.net state management" >
+<meta name="keywords" CONTENT="State Management in ASP.NET,Client  Side State Management,HTML Server Controls,Web Server Controls,Validation Server Controls, dropdowlist in asp.net,gridview, gridview update, hyperlink, image button, label, link button,
+Validators in ASP.Net, Database Access, ASP.Net with ADO.Net, File uploading in ASP.Net">
+
+<!--Header start-->
+
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>VB.net Tutorials with Examples</h1>
+           <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a><img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+			<a href="/vb.net/">vb.net</a><img src="/images/left_menu_bullet.gif" width="11" height="6"/>
+			<a href="/vb.net/01/tutorial/aspnet/">ASP.net using VB.net</a>
+              </div>
+
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/vb.net/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	  
+
+<!-- Header End-->	
+<div class="heading">State Management in ASP.NET </div>   
+ <table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="life_cycle_of_asp.shtml" title="Life Cycle of Web pages And">previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="cookies.shtml" title="Cookies in Asp.net">Next</a></td>
+  </tr>
+</table>
+
+<p>State management is the process by which you maintain state and page 
+information over multiple requests for the same or different pages.</p>
+<h2>Types of State Management</h2> 
+<p dir="ltr" align="justify">
+<font class="point_out">Client  Side State Management</font>
+<p>ASP.NET provides 
+various client side state management options like Cookies, Query Strings (URL), 
+Hidden fields, View State and Control state (ASP.NET 2.0).This stores 
+information on the client's computer by embedding the information into a Web 
+page, a uniform resource locator (url), or a cookie. The techniques available to 
+store the state information at the client computer.</p>
+<p>a. View State  Asp .Net uses View State to track the values in the Controls. 
+You can add custom values to the view state. It is used by the Asp .net page 
+framework to automatically save the values of the page and of each control just 
+prior to rendering to the page. When the page is posted, one of the first tasks 
+performed by page processing is to restore view state. </font> </p>
+<h2>Example of View state</h2>
+
+<div class="code">
+<pre>
+<font color="#000000">&lt;%@ </font><font color="#808000">Page </font><font color="#000000">Language=</font><font color="#ff00ff">&quot;VB&quot; </font><font color="#000000">AutoEventWireup=</font><font color="#ff00ff">&quot;true&quot;  </font>
+<font color="#000000">CodeFile=</font><font color="#ff00ff">&quot;Default.aspx.vb&quot; </font><font color="#000000">Inherits=</font><font color="#ff00ff">&quot;_Default&quot; </font><font color="#000000">%&gt;</font>
+<font color="#000000">&lt;!DOCTYPE html PUBLIC </font><font color="#ff00ff">&quot;-//W3C//DTD XHTML 1.0 </font>
+<font color="#000000">Transitional</font><font color="#008000">//EN&quot; &quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd&quot;&gt;</font>
+<font color="#000000">&lt;html xmlns=</font><font color="#ff00ff">&quot;http://www.w3.org/1999/xhtml&quot; </font><font color="#000000">&gt;</font>
+<font color="#000000">&lt;head runat=</font><font color="#ff00ff">&quot;server&quot;</font><font color="#000000">&gt;</font>
+    <font color="#000000">&lt;title&gt;ViewState&lt;/title&gt;</font>
+<font color="#000000">&lt;/head&gt;</font>
+<font color="#000000">&lt;body&gt;</font>
+    <font color="#000000">&lt;form id=</font><font color="#ff00ff">&quot;form1&quot; </font><font color="#000000">runat=</font><font color="#ff00ff">&quot;server&quot;</font><font color="#000000">&gt;</font>
+        <font color="#000000">&lt;asp:</font><font color="#808000">TextBox </font><font color="#000000">runat=</font><font color="#ff00ff">&quot;server&quot; </font><font color="#000000">id=</font><font color="#ff00ff">&quot;NameField&quot; </font><font color="#000000">/&gt;</font>
+        <font color="#000000">&lt;asp:</font><font color="#808000">Button </font><font color="#000000">runat=</font><font color="#ff00ff">&quot;server&quot; </font><font color="#000000">id=</font><font color="#ff00ff">&quot;SubmitForm&quot; </font><font color="#000000">onclick=</font><font color="#ff00ff">&quot;SubmitForm_Click&quot; </font>
+<font color="#000000">text=</font><font color="#ff00ff">&quot;Submit &amp; set name&quot; </font><font color="#000000">/&gt;</font>
+        <font color="#000000">&lt;asp:</font><font color="#808000">Button </font><font color="#000000">runat=</font><font color="#ff00ff">&quot;server&quot; </font><font color="#000000">id=</font><font color="#ff00ff">&quot;RefreshPage&quot; </font><font color="#000000">text=</font><font color="#ff00ff">&quot;Just submit&quot; </font><font color="#000000">/&gt;</font>
+        <font color="#000000">&lt;br /&gt;&lt;br /&gt;</font>
+        <font color="#000000">Name retrieved from ViewState: &lt;asp:</font><font color="#808000">Label </font><font color="#000000">runat=</font><font color="#ff00ff">&quot;server&quot; </font><font color="#000000">id=</font><font color="#ff00ff">&quot;NameLabel&quot; </font><font color="#000000">/&gt;</font>
+    <font color="#000000">&lt;/form&gt; </font>
+<font color="#000000">&lt;/body&gt;</font>
+<font color="#000000">&lt;/html&gt;</font>
+</pre>
+</div>
+
+<h3>.vb Code</h3>
+<div class="code">
+<pre>
+<font color="#000000">Partial Class _Default</font>
+    <font color="#000000">Inherits </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Web</font><font color="#000000">.</font><font color="#008080">UI</font><font color="#000000">.</font><font color="#808000">Page</font>
+    <font color="#000000">Protected Sub Page_Load(ByVal sender As </font><font color="#808000">Object</font><font color="#000000">, </font>
+	<font color="#000000">ByVal e As </font><font color="#008080">System</font><font color="#000000">.</font><font color="#808000">EventArgs</font><font color="#000000">) Handles Me.Load</font>
+    <font color="#000000">If ViewState(</font><font color="#ff00ff">&quot;NameOfUser&quot;</font><font color="#000000">) IsNot Nothing Then</font>
+    <font color="#000000">NameLabel.</font><font color="#008080">Text </font><font color="#000000">= ViewState(</font><font color="#ff00ff">&quot;NameOfUser&quot;</font><font color="#000000">).ToString()</font>
+    <font color="#000000">Else</font>
+    <font color="#000000">NameLabel.</font><font color="#008080">Text </font><font color="#000000">= </font><font color="#ff00ff">&quot;Not set yet...&quot;</font>
+    <font color="#000000">End If</font>
+    <font color="#000000">End Sub</font>
+<font color="#000000">End Class</font>
+</pre>
+</div>
+
+<div class="heading">Advantages</div>
+<p>The main advantage of view state is persisting controls properties without any 
+programming and memory will not be occupied on the client system or on the server system.
+</p>
+<h2>Disadvantage</h2>
+
+<p>The disadvantage can be 
+considered as a lot amount of data transmission between client and server.</p>
+<ol>
+  <li>
+<i>Control State</i>  If you create a custom control that requires view state to 
+work properly, you should use control state to ensure other developers dont 
+break your control by disabling view state.
+  </li>
+  <li><i>Hidden fields </i> Like view state, hidden fields store data in an HTML form 
+without displaying it in the user's browser. The data is available only when the 
+form is processed.
+  </li>
+  <li><i>Cookies</i>  Cookies store a value in the user's browser that the browser sends 
+with every page request to the same server. Cookies are the best way to store 
+state data that must be available for multiple Web pages on a web site.</li>
+<li><i>Query Strings</i> - Query strings store values in the URL that are visible to the 
+user. Use query strings when you want a user to be able to e-mail or instant 
+message state data with a URL.
+  </li>
+</ol>
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="life_cycle_of_asp.shtml" title="Life Cycle of Web pages And">previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="cookies.shtml" title="Cookies in Asp.net">Next</a></td>
+  </tr>
+</table>
+
+<!--Footer  -->
+</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>

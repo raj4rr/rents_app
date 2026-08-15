@@ -1,0 +1,157 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD>
+<meta http-equiv="Content-Language" content="en-us">
+<TITLE>Spring AOP(aspect object programming) Examples|Spring Examples</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name="description" CONTENT="Spring AOP(aspect object programming) Examples learn spring aop with 
+best examples and interview questions" >
+<meta name="keywords" CONTENT="Spring AOP(aspect object programming) Examples,Declaration AOP(aspect oriented programming)Spring, tutorial, fresher,beginners, inversion of control (IoC), dependency injection, bean scopes, bean life cycle, inner beans,
+ autowiring, different modules">
+
+		<!-- header start-->	
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+     <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>Spring Tutorials</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+			<img src="/images/left_menu_bullet.gif"/> <a href="/spring/">Spring</a>
+
+       </div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/spring/commonfiles/leftmenucore.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	 
+
+<div class="heading">Example of Declaring AOP Advices</div>
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="example_of_declaring_aop_element.shtml" title="example_of_declaring_aop_element">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="spring_aop_aspectj_annotation_with_example.shtml" title="spring_aop_aspectj_annotation_with_example">Next</a></td>
+  </tr> 
+</table>
+<p>There are five types of Advices as given below:</p>
+<ol>
+<li>
+<i>before advice:</i> It is applied before calling the actual business logic.<font class="point_out">&lt;aop:before&gt;&lt;/aop:before&gt;</font></li>
+<li><i>after-returning advice:</i> It is applied after calling the actual business logic . It can be used to intercept the return value in advice.<font class="point_out"> &lt;aop:after-returning&gt;&lt;/aop:after-returning&gt;</font></li>
+<li><i>after-throwing advice:</i> It is applied if actual business logic method throws exception.<font class="point_out">&lt;aop:after-throwing&gt;&lt;/aop:after-throwing&gt;</font></li>
+<li><i>after advice:</i> It is applied after calling the actual business logic.<font class="point_out">&lt;aop:after&gt;&lt;/aop:after&gt;</font></li>
+<li><i>around advice:</i> It is applied before and after calling the actual business logic.<font class="point_out">&lt;aop:around&gt;&lt;/aop:around&gt;</font></li>
+</ol>
+
+ <div class="heading">Before advice</div>
+<p>You can declare any of the five advices inside an &lt;aop:aspect&gt;...&lt;/aop:aspect&gt; using the &lt;aop: name="name"&gt;...&lt;/aop:&gt;element as given below:
+Before advice runs before a matched method execution. It is declared inside an &lt;aop:aspect&gt; using the &lt;aop:before&gt; element.</p>
+<div class="code">
+<pre>
+<font color="#0000ff">&lt;</font><font color="#808000">aop:aspect </font><font color="#800080">id</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;beforeExample&quot; </font><font color="#800080">ref</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;loginAspect&quot;</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">aop:before </font><font color="#800080">pointcut-ref</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;businessService&quot;</font>
+<font color="#800080">method</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;logRequiredTask&quot;</font><font color="#0000ff">&gt;</font>
+<font color="#000000">...</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">aop:before</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">aop:aspect</font><font color="#0000ff">&gt;</font>
+</pre>
+</div>
+<div class="heading">After returning advice</div>
+<p>After returning advice runs when a matched method execution completes normally. It is declared inside an &lt;aop:aspect&gt; in the same way as before advice.</p>
+<div class="code">
+<pre>
+<font color="#0000ff">&lt;</font><font color="#808000">aop:aspect </font><font color="#800080">id</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;afterReturningExample&quot; </font><font color="#800080">ref</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;loginAspect&quot;</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">aop:after-returning</font>
+<font color="#800080">pointcut-ref</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;businessService&quot;</font>
+<font color="#800080">returning</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;retVal&quot;</font>
+<font color="#800080">method</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;logRequiredTask&quot;</font><font color="#0000ff">/&gt;</font>
+<font color="#000000">...</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">aop:aspect</font><font color="#0000ff">&gt;</font>
+</pre>
+</div>
+<p>The logRequiredTask method must declare a parameter named retVal. For example, the method signature may be declared as:</p>
+
+<div class="code">
+<pre>
+ <font color="#0000ff">public void </font><font color="#000000">logRequiredTask(</font><font color="#ff0000">Object </font><font color="#000000">retVal) {...</font>
+</pre>
+</div>
+<div class="heading">After throwing advice</div>
+<p>After throwing advice executes when a matched method execution exits by throwing an exception. It is declared inside an &lt;aop:aspect&gt; using the after-throwing element:</p>
+<div class="code">
+<pre>
+<font color="#0000ff">&lt;</font><font color="#808000">aop:aspect </font><font color="#800080">id</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;afterThrowingExample&quot; </font><font color="#800080">ref</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;loginAspect&quot;</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">aop:after-throwing</font>
+<font color="#800080">pointcut-ref</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;businessService&quot;</font>
+<font color="#800080">throwing</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;ex&quot;</font>
+<font color="#800080">method</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;logRequiredTask&quot;</font><font color="#0000ff">/&gt;</font>
+<font color="#000000">...</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">aop:aspect</font><font color="#0000ff">&gt;</font>
+</pre>
+</div>
+<p>The logRequiredTask method must declare a parameter named ex. For example, the method signature may be declared as:</p>
+<div class="code">
+<pre>
+<font color="#0000ff">public void </font><font color="#000000">logRequiredTask(DataAccessException ex) {...</font>
+</pre>
+</div>
+<div class="heading">After (finally) advice</div>
+<p>After (finally) advice runs however a matched method execution exits. It is declared using the after element:</p>
+<div class="code">
+<pre>
+<font color="#0000ff">&lt;</font><font color="#808000">aop:aspect </font><font color="#800080">id</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;afterExample&quot; </font><font color="#800080">ref</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;loginAspect&quot;</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">aop:after</font>
+<font color="#800080">pointcut-ref</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;businessService&quot;</font>
+<font color="#800080">method</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;logRequiredTask&quot;</font><font color="#0000ff">/&gt;</font>
+<font color="#000000">...</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">aop:aspect</font><font color="#0000ff">&gt;</font>
+</pre>
+</div>
+<div class="heading">Around advice</div>
+<p>The final kind of advice is around advice. Around advice runs "around" a matched method execution. It has the opportunity to do work both before and after the method executes, and to determine when, how, and even if, the method actually gets to execute at all. Around advice is often used if you need to share state before and after a method execution in a thread-safe manner.</p>
+<div class="code">
+<pre>
+<font color="#0000ff">&lt;</font><font color="#808000">aop:aspect </font><font color="#800080">id</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;aroundExample&quot; </font><font color="#800080">ref</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;loginAspect&quot;</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">aop:around</font>
+<font color="#800080">pointcut-ref</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;businessService&quot;</font>
+<font color="#800080">method</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;logRequiredTask&quot;</font><font color="#0000ff">/&gt;</font>
+<font color="#000000">...</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">aop:aspect</font><font color="#0000ff">&gt;</font>
+</pre>
+</div>
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="example_of_declaring_aop_element.shtml" title="example_of_declaring_aop_element">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="spring_aop_aspectj_annotation_with_example.shtml" title="spring_aop_aspectj_annotation_with_example">Next</a></td>
+  </tr> 
+</table>
+
+		</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->

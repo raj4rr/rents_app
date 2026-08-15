@@ -1,0 +1,472 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>Further Feature Of Structure</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="Learn Further Feature Of Structure in C Language,string,constants,variables,decisions making,c unions,c memory allocation, " >
+<meta name="keywords" CONTENT="c tutorial,c basics,programming language,examples,pointer,function,loop,else,if else,while,array,pre processor,post processor,structures,memory menagement,string,constants,variables,decisions making,c unions,c memory allocation, c operators, C pointers,c error handling, c file handling">
+   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>C Programming language</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a><img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/c/">C </a>
+              <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/c/c_topics/c_array_basics">C Array Basics</a></div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/c/commonfiles/leftmenu.shtml'); ?></td>
+
+                       <td style="80%" valign="top">
+                        <div class="main_content"> 	
+
+                        		<!-- Header End-->	
+
+<div class="heading">What is an Array ?</div> 
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="struct4.shtml">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="struct6.shtml">Next</a></td>
+  </tr>
+</table>
+
+<!-- End Header  -->
+
+<p ><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<font size="3" color="#3399FF">&nbsp;</font><u><font size="2" color="#3399FF" face="Verdana">ADDITIONAL FEATURES OF STRUCTURE</font></u></b></p>
+<p ><font size="2" color="#000000" face="Verdana">The values of a structure variable can be assigned to 
+another structure variable of the same type using the assignment operator. It is not necessary to copy the structure 
+elements piece-meal. Obviously, programmers prefer assignment to piece-meal copying. This is shown in the following example.
+</font><font size="2" FACE="Verdana">&nbsp;</font></p>
+	<table border="1" width="61%">
+		<tr>
+			<td><font face="Verdana" size="2">
+<FONT COLOR="#000000">main( ) </FONT>
+<br>
+<FONT COLOR="#000000">{ </FONT>
+<br>
+<FONT COLOR="#0000ff">struct </FONT><FONT COLOR="#000000">employee </FONT>
+<br>
+<FONT COLOR="#000000">{ </FONT>
+<br>
+<FONT COLOR="#0000ff">char&nbsp;  </FONT><FONT COLOR="#000000">name[</FONT><FONT COLOR="#800080">10</FONT><FONT COLOR="#000000">] ; </FONT>
+<br>
+<FONT COLOR="#0000ff">int&nbsp;  </FONT><FONT COLOR="#000000">age ; </FONT>
+<br>
+<FONT COLOR="#0000ff">float&nbsp;  </FONT><FONT COLOR="#000000">salary ; </FONT>
+<br>
+<FONT COLOR="#000000">} ; </FONT>
+<br>
+<FONT COLOR="#0000ff">struct </FONT><FONT COLOR="#000000">employee&nbsp; e1 = { </FONT><FONT COLOR="#ff00ff">"Sanjay"</FONT><FONT COLOR="#000000">, </FONT><FONT COLOR="#800080">30</FONT><FONT COLOR="#000000">, </FONT><FONT COLOR="#800080">5500</FONT><FONT COLOR="#000000">.</FONT><FONT COLOR="#800080">50 </FONT><FONT COLOR="#000000">} ; </FONT>
+<br>
+<FONT COLOR="#0000ff">struct </FONT><FONT COLOR="#000000">employee&nbsp; e2, e3 ; </FONT>
+
+<br>
+<br>
+
+<FONT COLOR="#008000">/* piece-meal copying */ </FONT>
+<br>
+<FONT COLOR="#000000">strcpy ( e2.name, e1.name ) ; </FONT>
+<br>
+<FONT COLOR="#000000">e2.age = e1.age ;</FONT><br>
+<FONT COLOR="#000000">e2.salary = e1.salary ; </FONT>
+
+<br>
+<br>
+
+<FONT COLOR="#008000">/* copying all elements at one go */ </FONT>
+<br>
+<FONT COLOR="#000000">e3 = e2 ; </FONT>
+
+<br>
+<br>
+
+<FONT COLOR="#000000">printf ( </FONT><FONT COLOR="#ff00ff">"\n%s %d %f"</FONT><FONT COLOR="#000000">, e1.name, e1.age, e1.salary ) ; </FONT>
+<br>
+<FONT COLOR="#000000">printf ( </FONT><FONT COLOR="#ff00ff">"\n%s %d %f"</FONT><FONT COLOR="#000000">, e2.name, e2.age, e2.salary ) ; </FONT>
+<br>
+<FONT COLOR="#000000">printf ( </FONT><FONT COLOR="#ff00ff">"\n%s %d %f"</FONT><FONT COLOR="#000000">, e3.name, e3.age, e3.salary ) ; </FONT>
+<br>
+<FONT COLOR="#000000">}; </FONT>
+
+			</font></td>
+		</tr>
+	</table>
+	<p ><b><font size="2" FACE="Verdana" color="#000000">Output</font></b><font size="2" FACE="Verdana" color="#000000">: The output of the program would be...
+    </font> 
+</p>
+<p ><font color="#000000" face="Verdana" size="2">Sanjay&nbsp;&nbsp; 30&nbsp;&nbsp; 5500.500000 </font> </p>
+<p ><font color="#000000" face="Verdana" size="2">Sanjay&nbsp;&nbsp; 30&nbsp;&nbsp; 5500.500000 </font> </p>
+<p ><font color="#000000" face="Verdana" size="2">Sanjay&nbsp;&nbsp; 30&nbsp;&nbsp; 5500.500000 </font> </p>
+<p >&nbsp;</p>
+	<p ><font color="#000000" face="Verdana" size="2">Ability to copy the contents of all structure elements of 
+one variable into the corresponding elements of another structure variable is rather surprising, since C does not allow 
+assigning the contents of one array to another just by equating the two. As we 
+saw earlier, for copying arrays we have to copy the contents of the array 
+element by element. </font> </p>
+<p ><font color="#000000" face="Verdana" size="2">This copying of all structure elements at one go has been 
+possible only because the structure elements are stored in contiguous memory locations. </font> </p>
+<p ><font face="Verdana" size="2"><font color="#000000">One structure can be nested within another structure. Using 
+this facility complex data types can be created. The following program shows 
+nested structures at work.&nbsp;</font> </font> </p>
+	<table border="1" width="64%">
+		<tr>
+			<td><font face="Verdana" size="2">
+<FONT COLOR="#000000">main( ) </FONT>
+<br>
+<FONT COLOR="#000000">{ </FONT>
+<br>
+<FONT COLOR="#0000ff">struct </FONT><FONT COLOR="#000000">address</FONT><br>
+<FONT COLOR="#000000">{ </FONT>
+<br>
+<FONT COLOR="#0000ff">char&nbsp;  </FONT><FONT COLOR="#000000">phone[</FONT><FONT COLOR="#800080">15</FONT><FONT COLOR="#000000">] ; </FONT>
+<br>
+<FONT COLOR="#0000ff">char&nbsp;  </FONT><FONT COLOR="#000000">city[</FONT><FONT COLOR="#800080">25</FONT><FONT COLOR="#000000">] ; </FONT>
+<br>
+<FONT COLOR="#0000ff">int&nbsp;  </FONT><FONT COLOR="#000000">pin ; </FONT>
+<br>
+<FONT COLOR="#000000">} ; </FONT>
+
+<br>
+<br>
+
+<FONT COLOR="#0000ff">struct </FONT><FONT COLOR="#000000">emp </FONT>
+<br>
+<FONT COLOR="#000000">{ </FONT>
+<br>
+<FONT COLOR="#0000ff">char&nbsp;  </FONT><FONT COLOR="#000000">name[</FONT><FONT COLOR="#800080">25</FONT><FONT COLOR="#000000">] ; </FONT>
+<br>
+<FONT COLOR="#0000ff">struct </FONT><FONT COLOR="#000000">address&nbsp; a ; </FONT>
+<br>
+<FONT COLOR="#000000">} ; </FONT>
+<br>
+<FONT COLOR="#0000ff">struct </FONT><FONT COLOR="#000000">emp&nbsp; e = { </FONT><FONT COLOR="#ff00ff">"jeru"</FONT><FONT COLOR="#000000">, </FONT><FONT COLOR="#ff00ff">"531046"</FONT><FONT COLOR="#000000">, </FONT><FONT COLOR="#ff00ff">"nagpur"</FONT><FONT COLOR="#000000">, </FONT><FONT COLOR="#800080">10 </FONT><FONT COLOR="#000000">};&nbsp;  </FONT>
+
+<br>
+<br>
+
+<FONT COLOR="#000000">printf ( </FONT><FONT COLOR="#ff00ff">"\nname = %s phone = %s"</FONT><FONT COLOR="#000000">, e.name, e.a.phone ) ; </FONT>
+<br>
+<FONT COLOR="#000000">printf ( </FONT><FONT COLOR="#ff00ff">"\ncity = %s pin = %d"</FONT><FONT COLOR="#000000">, e.a.city, e.a.pin ) ; </FONT>
+<br>
+<FONT COLOR="#000000">};</FONT></font></td>
+		</tr>
+	</table>
+<p >
+<font face="Verdana" size="2">
+<font color="#000000"><b>Output</b>:</font> <font color="#000000">output of the 
+above program </font>
+</font>
+</p>
+<p ><font color="#000000" face="Verdana" size="2">name = jeru phone = 531046 <br>
+city = nagpur pin = 10 </font> </p>
+	<p >&nbsp;</p>
+<p ><font color="#000000" face="Verdana" size="2">Notice the method used to access the element of a structure 
+that is part of another structure. For this the dot operator is used twice, as in the expression,&nbsp;
+</font> </p>
+<p ><font color="#000000" face="Verdana" size="2">e.a.pin&nbsp; or&nbsp; e.a.city
+</font> </p>
+<p ><font color="#000000" face="Verdana" size="2">Of course, the nesting process need not stop at this level. 
+We can nest a structure within a structure, within another structure, for example: </font> </p>
+<p ><font color="#000000" face="Verdana" size="2">maruti.engine.bolt.large.qty </font> </p>
+<p ><font face="Verdana" size="2"><font color="#000000">Like an ordinary variable, a structure variable can also be 
+passed to a function. We may either pass individual structure elements or the 
+entire structure variable at one go. Let us examine both the approaches one by 
+one using suitable programs.</font> </font> </p>
+	<table border="1" width="53%">
+		<tr>
+			<td><font face="Verdana" size="2">
+<FONT COLOR="#008000">/* Passing individual structure elements */ </FONT>
+<br>
+<FONT COLOR="#000000">main( ) </FONT>
+<br>
+<FONT COLOR="#000000">{ </FONT>
+<br>
+<FONT COLOR="#0000ff">struct </FONT><FONT COLOR="#000000">book&nbsp;  </FONT>
+<br>
+<FONT COLOR="#000000">{ </FONT>
+<br>
+<FONT COLOR="#0000ff">char&nbsp;  </FONT><FONT COLOR="#000000">name[</FONT><FONT COLOR="#800080">25</FONT><FONT COLOR="#000000">] ; </FONT>
+<br>
+<FONT COLOR="#0000ff">char&nbsp;  </FONT><FONT COLOR="#000000">author[</FONT><FONT COLOR="#800080">25</FONT><FONT COLOR="#000000">] ; </FONT>
+<br>
+<FONT COLOR="#0000ff">int&nbsp;  </FONT><FONT COLOR="#000000">callno ; </FONT>
+<br>
+<FONT COLOR="#000000">} ; </FONT>
+<br>
+<FONT COLOR="#0000ff">struct </FONT><FONT COLOR="#000000">book b1 = { </FONT><FONT COLOR="#ff00ff">"Let us C"</FONT><FONT COLOR="#000000">, </FONT><FONT COLOR="#ff00ff">"YPK"</FONT><FONT COLOR="#000000">, </FONT><FONT COLOR="#800080">101 </FONT><FONT COLOR="#000000">} ; </FONT>
+
+<br>
+<br>
+
+<FONT COLOR="#000000">display ( b1.name, b1.author, b1.callno ) ; </FONT>
+<br>
+<FONT COLOR="#000000">} </FONT>
+
+<br>
+<br>
+
+<FONT COLOR="#000000">display ( </FONT><FONT COLOR="#0000ff">char&nbsp;  </FONT><FONT COLOR="#000000">*s, </FONT><FONT COLOR="#0000ff">char&nbsp;  </FONT><FONT COLOR="#000000">*t, </FONT><FONT COLOR="#0000ff">int&nbsp;  </FONT><FONT COLOR="#000000">n ) </FONT>
+<br>
+<FONT COLOR="#000000">{ </FONT>
+<br>
+<FONT COLOR="#000000">printf ( </FONT><FONT COLOR="#ff00ff">"\n%s %s %d"</FONT><FONT COLOR="#000000">, s, t, n ) ; </FONT>
+<br>
+<FONT COLOR="#000000">} </FONT>
+
+			</font></td>
+		</tr>
+	</table>
+<p >
+<font face="Verdana" size="2">
+<font color="#000000"><b>Output</b>:</font> <font color="#000000">output of the 
+above program </font> 
+
+<br>
+
+</font>
+
+</p>
+<p ><font color="#000000" face="Verdana" size="2">Let us C YPK 101 </font> </p>
+	<p ><font face="Verdana" size="2"><br>
+	<font color="#000000">Observe that in the declaration of the structure,&nbsp; name and 
+author have been declared as arrays. Therefore, when we call the function display( ) using, </font> 
+    </font> </p>
+	<table border="1" width="49%">
+		<tr>
+			<td><font color="#000000" size="2" face="Verdana">display ( b1.name, b1.author, b1.callno ) ;</font></td>
+		</tr>
+	</table>
+<p ><font color="#000000" face="Verdana" size="2">we are passing the base addresses of the arrays&nbsp; name and 
+author, but the value stored in callno. Thus, this is a mixed call&#8212;a call by reference as well as a call by value. It can 
+be immediately realized that to pass individual elements would become more tedious as the number of structure 
+elements go on increasing. A better way would be to pass the entire structure variable at a time. This method is shown 
+in the following program. </font> </p>
+	<table border="1" width="62%">
+		<tr>
+			<td><font face="Verdana" size="2">
+<FONT COLOR="#0000ff">struct </FONT><FONT COLOR="#000000">book&nbsp;  </FONT>
+<br>
+<FONT COLOR="#000000">{ </FONT>
+<br>
+<FONT COLOR="#0000ff">char&nbsp;  </FONT><FONT COLOR="#000000">name[</FONT><FONT COLOR="#800080">25</FONT><FONT COLOR="#000000">] ; </FONT>
+<br>
+<FONT COLOR="#0000ff">char&nbsp;  </FONT><FONT COLOR="#000000">author[</FONT><FONT COLOR="#800080">25</FONT><FONT COLOR="#000000">] ; </FONT>
+<br>
+<FONT COLOR="#0000ff">int&nbsp;  </FONT><FONT COLOR="#000000">callno ; </FONT>
+<br>
+<FONT COLOR="#000000">} ; </FONT>
+
+<br>
+<br>
+
+<FONT COLOR="#000000">main( ) </FONT>
+<br>
+<FONT COLOR="#000000">{ </FONT>
+<br>
+<FONT COLOR="#0000ff">struct </FONT><FONT COLOR="#000000">book&nbsp; b1 = { </FONT><FONT COLOR="#ff00ff">"Let us C"</FONT><FONT COLOR="#000000">, </FONT><FONT COLOR="#ff00ff">"YPK"</FONT><FONT COLOR="#000000">, </FONT><FONT COLOR="#800080">101 </FONT><FONT COLOR="#000000">} ; </FONT>
+<br>
+<FONT COLOR="#000000">display ( b1 ) ; </FONT>
+<br>
+<FONT COLOR="#000000">} </FONT>
+
+<br>
+<br>
+
+<FONT COLOR="#000000">display ( </FONT><FONT COLOR="#0000ff">struct </FONT><FONT COLOR="#000000">book&nbsp; b ) </FONT>
+<br>
+<FONT COLOR="#000000">{ </FONT>
+<br>
+<FONT COLOR="#000000">printf ( </FONT><FONT COLOR="#ff00ff">"\n%s %s %d"</FONT><FONT COLOR="#000000">, b.name, b.author, b.callno ) ; </FONT>
+<br>
+<FONT COLOR="#000000">};</FONT></font></td>
+		</tr>
+	</table>
+	<p >
+<font face="Verdana" size="2">
+<font color="#000000"><b>Output</b>:</font> <font color="#000000">output of the 
+above program</font><br>
+</font>
+</p>
+</p>
+<p ><font color="#000000" face="Verdana" size="2">Note that here the calling of function display( ) becomes 
+quite compact, </font> </p>
+<p ><font face="Verdana" color="#000000" size="2">display ( b1 ); </font> </p>
+<p ><font color="#000000" face="Verdana" size="2">Having collected what is being passed to the&nbsp; display( ) 
+function, the question comes, how do we define the formal arguments in the function. We cannot say,
+</font> </p>
+<p ><font color="#000000" face="Verdana" size="2">struct book b1; </font> </p>
+<p ><font color="#000000" face="Verdana" size="2">because the data type&nbsp; struct&nbsp; book is not known to the 
+function display( ). Therefore, it becomes necessary to define the structure type&nbsp; struct&nbsp; book outside&nbsp; main( ), so that 
+it becomes known to all functions in the program. The way we can have a pointer pointing to an int, or a 
+pointer pointing to a char, similarly we can have a pointer pointing to a 
+struct. Such pointers are known as &#8216;structure pointers&#8217;.</font></p>
+<p ><font color="#000000" face="Verdana" size="2">Let us look at a program that demonstrates the usage of a 
+structure pointer. </font>
+ </p>
+	<table border="1" width="64%">
+		<tr>
+			<td><font face="Verdana" size="2">
+<FONT COLOR="#000000">main( ) </FONT>
+<br>
+<FONT COLOR="#000000">{ </FONT>
+<br>
+<FONT COLOR="#0000ff">struct </FONT><FONT COLOR="#000000">book&nbsp;  </FONT>
+<br>
+<FONT COLOR="#000000">{ </FONT>
+<br>
+<FONT COLOR="#0000ff">char&nbsp;  </FONT><FONT COLOR="#000000">name[</FONT><FONT COLOR="#800080">25</FONT><FONT COLOR="#000000">] ; </FONT>
+<br>
+<FONT COLOR="#0000ff">char&nbsp;  </FONT><FONT COLOR="#000000">author[</FONT><FONT COLOR="#800080">25</FONT><FONT COLOR="#000000">] ; </FONT>
+<br>
+<FONT COLOR="#0000ff">int&nbsp;  </FONT><FONT COLOR="#000000">callno ; </FONT>
+<br>
+<FONT COLOR="#000000">} ; </FONT>
+<br>
+<FONT COLOR="#0000ff">struct </FONT><FONT COLOR="#000000">book&nbsp; b1 = { </FONT><FONT COLOR="#ff00ff">"Let us C"</FONT><FONT COLOR="#000000">, </FONT><FONT COLOR="#ff00ff">"YPK"</FONT><FONT COLOR="#000000">, </FONT><FONT COLOR="#800080">101 </FONT><FONT COLOR="#000000">} ; </FONT>
+<br>
+<FONT COLOR="#0000ff">struct </FONT><FONT COLOR="#000000">book&nbsp; *ptr ; </FONT>
+
+<br>
+<br>
+
+<FONT COLOR="#000000">ptr = &amp;b1 ; </FONT>
+<br>
+<FONT COLOR="#000000">printf ( </FONT><FONT COLOR="#ff00ff">"\n%s %s %d"</FONT><FONT COLOR="#000000">, b1.name, b1.author, b1.callno ) ; </FONT>
+<br>
+<FONT COLOR="#000000">printf ( </FONT><FONT COLOR="#ff00ff">"\n%s %s %d"</FONT><FONT COLOR="#000000">, ptr-&gt;name, ptr-&gt;author, ptr-&gt;callno ) ; </FONT>
+<br>
+<FONT COLOR="#000000">} </FONT>
+			</font></td>
+		</tr>
+	</table>
+	<p >
+<font face="Verdana" size="2">
+<br>
+	<font color="#000000">The first printf( ) is as usual. The second printf( ) 
+however is peculiar. We can&#8217;t use ptr.name or ptr.callno because ptr is not a structure variable but a pointer to a structure, and 
+the dot&nbsp; operator requires a structure variable on its left. In such cases C 
+provides an operator -&gt;, called an arrow operator to refer to the structure 
+elements. Remember that on the left hand side of the&nbsp; &#8216;.&#8217; structure operator, 
+there must always be&nbsp; a structure variable, whereas on the left hand side of the 
+&#8216;-&gt;&#8217; operator there must always be a pointer to a structure. </font>
+ </font>
+ </p>
+	<table border="1" width="58%">
+		<tr>
+			<td><font face="Verdana" size="2">
+<FONT COLOR="#008000">/* Passing address of a structure variable */&nbsp;  </FONT>
+<br>
+<FONT COLOR="#0000ff">struct </FONT><FONT COLOR="#000000">book&nbsp;  </FONT>
+<br>
+<FONT COLOR="#000000">{ </FONT>
+<br>
+<FONT COLOR="#0000ff">char&nbsp;  </FONT><FONT COLOR="#000000">name[</FONT><FONT COLOR="#800080">25</FONT><FONT COLOR="#000000">] ; </FONT>
+<br>
+<FONT COLOR="#0000ff">char&nbsp;  </FONT><FONT COLOR="#000000">author[</FONT><FONT COLOR="#800080">25</FONT><FONT COLOR="#000000">] ; </FONT>
+<br>
+<FONT COLOR="#0000ff">int&nbsp;  </FONT><FONT COLOR="#000000">callno ; </FONT>
+<br>
+<FONT COLOR="#000000">} ; </FONT>
+
+<br>
+<br>
+
+<FONT COLOR="#000000">main( ) </FONT>
+<br>
+<FONT COLOR="#000000">{ </FONT>
+<br>
+<FONT COLOR="#0000ff">struct </FONT><FONT COLOR="#000000">book&nbsp; b1 = { </FONT><FONT COLOR="#ff00ff">"Let us C"</FONT><FONT COLOR="#000000">, </FONT><FONT COLOR="#ff00ff">"YPK"</FONT><FONT COLOR="#000000">, </FONT><FONT COLOR="#800080">101 </FONT><FONT COLOR="#000000">} ; </FONT>
+<br>
+<FONT COLOR="#000000">display ( &amp;b1 ) ;</FONT><br>
+<FONT COLOR="#000000">} </FONT>
+
+<br>
+<br>
+
+<FONT COLOR="#000000">display ( </FONT><FONT COLOR="#0000ff">struct </FONT><FONT COLOR="#000000">book&nbsp; *b ) </FONT>
+<br>
+<FONT COLOR="#000000">{ </FONT>
+<br>
+<FONT COLOR="#000000">printf ( </FONT><FONT COLOR="#ff00ff">"\n%s %s %d"</FONT><FONT COLOR="#000000">, b-&gt;name, b-&gt;author, b-&gt;callno ) ; </FONT>
+<br>
+<FONT COLOR="#000000">} </FONT>
+
+<br>
+&nbsp;</font></td>
+		</tr>
+	</table>
+<p ><font color="#000000" face="Verdana" size="2">And here is the output... </font> </p>
+<p ><font color="#000000" face="Verdana" size="2">Let us C YPK 101 </font> </p>
+<p ><font color="#000000" face="Verdana" size="2">Again note that to access the structure elements using 
+pointer to a structure we have to use the &#8216;-&gt;&#8217; operator. Also, the structure&nbsp; struct&nbsp; book should be declared 
+outside main( ) such that this data type is available to display( ) while declaring pointer to the structure.
+</font> </p>
+<p ><font color="#000000" face="Verdana" size="2">Consider the following code snippet:&nbsp;
+</font> </p>
+	<table border="1" width="53%">
+		<tr>
+			<td><font face="Verdana" size="2">
+<FONT COLOR="#0000ff">struct </FONT><FONT COLOR="#000000">emp </FONT>
+<br>
+<FONT COLOR="#000000">{&nbsp;  </FONT>
+<br>
+<FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">a ;&nbsp;&nbsp;   </FONT>
+<br>
+<FONT COLOR="#0000ff">char </FONT><FONT COLOR="#000000">ch ; </FONT>
+<br>
+<FONT COLOR="#0000ff">float </FONT><FONT COLOR="#000000">s ;&nbsp;&nbsp;   </FONT>
+<br>
+<FONT COLOR="#000000">} ;&nbsp;  </FONT>
+<br>
+<FONT COLOR="#0000ff">struct </FONT><FONT COLOR="#000000">emp e ; </FONT>
+<br>
+<FONT COLOR="#000000">printf ( </FONT><FONT COLOR="#ff00ff">"%u %u %u"</FONT><FONT COLOR="#000000">, &amp;e.a, &amp;e.ch, &amp;e.s ) ; </FONT>
+
+			</font></td>
+		</tr>
+	</table>
+	<p >
+
+<font face="Verdana" size="2">
+
+<br>
+<FONT COLOR="#000000">If we execute </FONT><FONT COLOR="#0000ff">this </FONT><FONT COLOR="#000000">program using TC/TC++ compiler we get the addresses as:&nbsp;  </FONT><br>
+
+<FONT COLOR="#800080">65518&nbsp; 65520&nbsp; 65521 <br>
+<br>
+&nbsp;</FONT></font></p>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="struct4.shtml">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="struct6.shtml">Next</a></td>
+  </tr>
+</table>
+
+<!--Footer  --> 	
+
+		</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>

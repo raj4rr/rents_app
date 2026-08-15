@@ -1,0 +1,185 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>Implementation of Stack using Pointer in C Language</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="How Implement of Stack using Pointer in C With example or linked list implementation of Stack,c memory allocation, c operators, C pointers,c error handling" >
+<meta name="keywords" CONTENT="c tutorial,c basics,programming language,examples,pointer,function,loop,else,if else,while,array,pre processor,post processor,structures,memory menagement,string,constants,variables,decisions making,c unions,c memory allocation, c operators, C pointers,c error handling, c file handling">
+<link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+    <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>C Programming language</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a><img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/c/">C </a>
+              <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/c/c_topics/c_data_structures">C Data structures</a></div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/c/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 
+
+    <div class="heading">Example  of Dynamic Implementation of Stack (Linked List Implementation)</div>
+<table id="indexing">
+  <tr>
+   <td style="width:33%; text-align:left;">
+   	<a href="operations_static_implemented_stack.shtml" title="Static Implementation of Stack (Using Array)">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="wat_is_Queue.shtml" title="C - Queue in Data Structure">Next</a></td>
+  </tr>
+</table>
+
+<p><i>As we know apart from static implementation, the stacks can be implemented by using pointers as follows:</i></p>
+<div class="code">
+<FONT>
+<FONT COLOR="#ff0000">#include </FONT><FONT>&lt;stdio.h&gt;</FONT><br>
+<FONT COLOR="#ff0000">#include</FONT><FONT>&lt;conio.h&gt;</FONT><br>
+<FONT COLOR="#ff0000">#define</FONT><FONT>&lt;stdlib.h&gt;</FONT><br>
+<FONT COLOR="#0000ff">void </FONT><FONT>push();</FONT><br>
+<FONT COLOR="#0000ff">void </FONT><FONT>pop();</FONT><br>
+<FONT COLOR="#0000ff">void </FONT><FONT>display();</FONT><br>
+<FONT COLOR="#0000ff">struct </FONT><FONT>stack</FONT><br>
+<FONT>{</FONT><br>
+&nbsp;<FONT COLOR="#0000ff">int </FONT><FONT>num;</FONT><br>
+&nbsp;<FONT COLOR="#0000ff">struct </FONT><FONT>stack *next;</FONT><br>
+<FONT>};</FONT><br>
+<FONT COLOR="#0000ff">typedef struct </FONT><FONT>stack stck;</FONT><br>
+<FONT>stck *head==NULL;</FONT><br>
+<FONT>stck *temp, first;</FONT><br>
+<FONT COLOR="#0000ff">void </FONT><FONT>main()</FONT><br>
+<FONT>{</FONT><br>
+<FONT COLOR="#0000ff">int </FONT><FONT>choice;</FONT><br>
+<FONT COLOR="#0000ff">char </FONT><FONT>ch;</FONT><br>
+<FONT>clrscr();</FONT><br>
+<FONT>printf(</FONT><FONT COLOR="#ff00ff">"Program for various operations on stack using arrays"</FONT><FONT>);</FONT><br>
+<FONT COLOR="#0000ff">do</FONT><br>
+<FONT>{</FONT><br>
+&nbsp;<FONT>printf(</FONT><FONT COLOR="#ff00ff">"\n1. PUSH"</FONT><FONT>);</FONT><br>
+&nbsp;<FONT>printf(</FONT><FONT COLOR="#ff00ff">"\n2. POP"</FONT><FONT>);</FONT><br>
+&nbsp;<FONT>printf(</FONT><FONT COLOR="#ff00ff">"\n3. Display"</FONT><FONT>);</FONT><br>
+&nbsp;<FONT>printf(</FONT><FONT COLOR="#ff00ff">"Enter your choice :"</FONT><FONT>);</FONT><br>
+&nbsp;<FONT>scanf(</FONT><FONT COLOR="#ff00ff">"%d"</FONT><FONT>,&amp;choice);</FONT><br>
+&nbsp;<FONT COLOR="#0000ff">switch</FONT><FONT>(choice)</FONT><br>
+				<FONT>{</FONT><br>
+&nbsp;&nbsp;&nbsp;&nbsp;
+     <FONT COLOR="#0000ff">case </FONT><FONT COLOR="#800080">1</FONT><FONT>: push();</FONT><br>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	         <FONT COLOR="#0000ff">break</FONT><FONT>;</FONT><br>
+&nbsp;&nbsp;&nbsp;&nbsp;
+     <FONT COLOR="#0000ff">case </FONT><FONT COLOR="#800080">2</FONT><FONT>: pop();</FONT><br>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	         <FONT COLOR="#0000ff">break</FONT><FONT>;</FONT><br>
+&nbsp;&nbsp;&nbsp;&nbsp;
+     <FONT COLOR="#0000ff">case </FONT><FONT COLOR="#800080">3</FONT><FONT>: display();</FONT><br>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	         <FONT COLOR="#0000ff">break</FONT><FONT>;</FONT><br>
+				&nbsp;<FONT COLOR="#0000ff">default </FONT><FONT>: printf(</FONT><FONT COLOR="#ff00ff">"\nwrong choice made"</FONT><FONT>);</FONT><br>
+&nbsp;&nbsp;&nbsp;
+    <FONT>}</FONT><br>
+<FONT>printf(</FONT><FONT COLOR="#ff00ff">"\ndo you want to continue y/n"</FONT><FONT>);</FONT><br>
+<FONT>fflush(stdin);</FONT><br>
+<FONT>scanf(</FONT><FONT COLOR="#ff00ff">"%c"</FONT><FONT>,&amp;ch);</FONT><br>
+<FONT>}</FONT><br>
+<FONT COLOR="#0000ff">while </FONT><FONT>((</FONT><FONT COLOR="#0000ff">char</FONT><FONT>==</FONT><FONT COLOR="#ff00ff">'y'</FONT><FONT>)||(</FONT><FONT COLOR="#0000ff">char</FONT><FONT>==</FONT><FONT COLOR="#ff00ff">'Y'</FONT><FONT>));</FONT><br>
+<FONT>getch();</FONT><br>
+<FONT>}</FONT><br>
+<FONT COLOR="#0000ff">void </FONT><FONT>push()</FONT><br>
+<FONT>{</FONT><br>
+<FONT COLOR="#0000ff">int </FONT><FONT>info;</FONT><br>
+<FONT>temp=(stck *)malloc(</FONT><FONT COLOR="#0000ff">sizeof</FONT><FONT>(stck));</FONT><br>
+<FONT>printf(</FONT><FONT COLOR="#ff00ff">"\nEnter the element in the&nbsp; stack :"</FONT><FONT>);</FONT><br>
+<FONT>scanf(</FONT><FONT COLOR="#ff00ff">"%d"</FONT><FONT>,&amp;info);</FONT><br>
+<FONT>temp-&gt;num=info;</FONT><br>
+<FONT>temp-&gt;next=NULL</FONT><br>
+<FONT COLOR="#0000ff">if</FONT><FONT>(head==NULL)</FONT><br>
+				<FONT>{</FONT><br>
+&nbsp;&nbsp;&nbsp;
+    <FONT>printf(</FONT><FONT COLOR="#ff00ff">"\nStack is empty"</FONT><FONT>);</FONT><br>
+				<FONT>head=temp;</FONT><br>
+				<FONT>}</FONT><br>
+<FONT COLOR="#0000ff">else</FONT><br>
+				<FONT>{</FONT><br>
+&nbsp;&nbsp;&nbsp;&nbsp;
+     <FONT>first=head;</FONT><br>
+				&nbsp;<FONT COLOR="#0000ff">while</FONT><FONT>(first!=NULL)</FONT><br>
+					&nbsp;<FONT>first=first-&gt;next;</FONT><br>
+				&nbsp;<FONT>first-&gt;next=temp;</FONT><br>
+&nbsp;&nbsp;&nbsp;
+    <FONT>}</FONT><br>
+<FONT>}</FONT><br>
+<FONT COLOR="#0000ff">void </FONT><FONT>pop()</FONT><br>
+<FONT>{</FONT><br>
+<FONT COLOR="#0000ff">if</FONT><FONT>(head==NULL)</FONT><br>
+				<FONT>{</FONT><br>
+&nbsp;&nbsp;&nbsp;&nbsp;
+     <FONT>printf(</FONT><FONT COLOR="#ff00ff">"\n the stack is empty"</FONT><FONT>);</FONT><br>
+				<FONT>}</FONT><br>
+<FONT COLOR="#0000ff">else</FONT><br>
+				<FONT>{</FONT><br>
+&nbsp;&nbsp;&nbsp;&nbsp;
+     <FONT>temp=head;</FONT><br>
+				&nbsp;<FONT COLOR="#0000ff">while</FONT><FONT>(temp-&gt;next!=NULL)</FONT><br>
+					<FONT>{</FONT><br>
+				&nbsp;&nbsp;&nbsp;&nbsp;
+	     <FONT>first=temp;</FONT><br>
+					&nbsp;<FONT>temp=temp-&gt;next;</FONT><br>
+				&nbsp;&nbsp;&nbsp;
+	    <FONT>}</FONT><br>
+&nbsp;&nbsp;&nbsp;&nbsp;
+     <FONT>first-&gt;next=NULL;</FONT><br>
+				&nbsp;<FONT>free(temp);</FONT><br>
+				&nbsp;<FONT>}</FONT><br>
+<FONT>}</FONT><br>
+<FONT COLOR="#0000ff">void </FONT><FONT>display()</FONT><br>
+<FONT>{</FONT><br>
+&nbsp;<FONT COLOR="#0000ff">int </FONT><FONT>i;</FONT><br>
+&nbsp;<FONT COLOR="#0000ff">if</FONT><FONT>(head==NULL)</FONT><br>
+				&nbsp;<FONT>printf(</FONT><FONT COLOR="#ff00ff">"\n stack is empty"</FONT><FONT>);</FONT><br>
+&nbsp;<FONT COLOR="#0000ff">else</FONT><br>
+				<FONT>{</FONT><br>
+&nbsp;&nbsp;&nbsp;&nbsp;
+     <FONT>temp=head;</FONT><br>
+				&nbsp;<FONT>printf(</FONT><FONT COLOR="#ff00ff">"\nThe status of the stack is :"</FONT><FONT>);</FONT><br>
+				&nbsp;<FONT COLOR="#0000ff">while</FONT><FONT>(temp!=NULL)</FONT><br>
+					<FONT>{</FONT><br>
+				&nbsp;&nbsp;&nbsp;&nbsp;
+	     <FONT>printf(</FONT><FONT COLOR="#ff00ff">"%d"</FONT><FONT>,temp-&gt;num);</FONT><br>
+				&nbsp;&nbsp;&nbsp;
+	    <FONT>}</FONT><br>
+				<FONT>}</FONT><br>
+<FONT>}</FONT></FONT>
+</div>
+
+<table id="indexing">
+  <tr>
+   <td style="width:33%; text-align:left;">
+   	<a href="operations_static_implemented_stack.shtml" title="Static Implementation of Stack (Using Array)">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="wat_is_Queue.shtml" title="C - Queue in Data Structure">Next</a></td>
+  </tr>
+</table>
+
+ <!--Footer  --> 
+</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>

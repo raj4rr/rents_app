@@ -1,0 +1,107 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>Caching  in ASP.Net,Output Caching,Programmatic Page Caching,Fragment Caching</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="Caching  in ASP.Net,Output Caching,Programmatic Page Caching,Fragment Caching" >
+<meta name="keywords" CONTENT="Caching  in ASP.Net,Output Caching,Programmatic Page Caching,Fragment Caching">
+
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+     <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>C# Tutorial</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a><img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/c1/">C#</a>
+
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/c1/commonfiles/leftmenu.shtml'); ?></td>
+
+                       <td style="80%" valign="top">
+                        <div class="main_content"> 
+
+	<!-- Header End-->	
+	<div class="heading">Caching in ASP.Net</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="advantage_of_remoting.shtml" 
+    title="Advantage of Remoting,Advantage over Web Services,Advantage over COM/DCOM">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="how_to_save_data_in_xml_file.shtml" 
+    title="How to Save Data in XML File">Next</a></td>
+  </tr>
+</table>
+<p>Caching is one of the coolest features in Asp.net. Caching is a technique of persisting the data in memory for immediate 
+access to requesting program calls. Many in the developer community consider caching as one of the features available to
+ improve performance of Web applications.</p>
+ <h3>Output Caching</h3>
+ <p>Output caching is used for pages and is also known as Page-level caching. This requires one to specify Duration of cache
+  and Attribute of caching.</p>
+  <h3>Syntax:</h3> <font class="point_out"><%@ OutputCache Duration="60" VaryByParam="none" %></font>
+  <p>The above syntax specifies the page be cached for duration of 60 seconds and the value "none" for VaryByParam* attribute
+   makes sure that there is a single cached page available for this duration specified. if the first user requested page 
+   which contains item1 than the second user will also see item1 even if he is requesting item2.</p>
+   <p>VaryByParam can take various "key" parameter names in query string.</p>
+   <h3>Programmatic Page Caching</h3>
+   <p>You can also use caching programmatically, meaning that you can change the value of cache depending upon the tasks
+    performed by the user. The Response.Cache class let's you access the functionality to work with the cache object.</p>
+    <p>You can change the expiration time on the Cache 
+      <p>using the SetExpires method of the <font class="point_out">Response.Cache class.Response.Cache.SetExpires
+      (System.DateTime.Now.AddMinutes(10));</font></p>
+<p>In the same way you can also use Response.Cache.VaryByParams to set the Params programmatically.</p>
+
+<h3>Fragment Caching</h3>
+<p>Fragment Caching refers to caching the sections of the page. These sections are most commonly UserControls. Page fragment 
+caching allows you to cache the small portion of the page instead of caching the whole page.juuy</p>
+<p>Let's see some examples of fragment caching and how it can be used.</p>
+
+<font class="point_out">@ OutputCache Duration="120" VaryByParam="CategoryID;SelectedID"</font>
+
+<p>In the Page directive above we have cached CategoryID and SelectedID for 120 seconds. Both of these are the query 
+string parameters.</p>
+
+<p>This means that if the first user request CategoryID = 2 and the second user request the same CategoryID than the second 
+user will recieve the contents from the cache object instead of going to the database and pulling records.</p>
+
+<font class="point_out">@ OutputCache Duration="120" VaryByParam="none" VaryByControl="Category"</font>
+
+<p>The VaryByControl attribute can only be used in fragment caching. You can use this to cache the value of the controls. These controls can be any server controls like dropdownlist or datagrid.
+When using fragment caching you only need to put the cache directive in the user control and not on the page.</p>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="advantage_of_remoting.shtml" 
+    title="Advantage of Remoting,Advantage over Web Services,Advantage over COM/DCOM<">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="how_to_save_data_in_xml_file.shtml" 
+    title="How to Save Data in XML File">Next</a></td>
+  </tr>
+</table>
+
+ <!--Footer-->
+   </div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/dotnet/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+     <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>

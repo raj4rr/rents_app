@@ -1,0 +1,115 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>How to get IP Address of Websites in C# application</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="How to get IP Address of Websites in C# application" >
+<meta name="keywords" CONTENT="How to get IP Address of Websites in C# application">
+
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+     <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>C# Tutorial</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a><img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/c1/">C#</a>
+
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/c1/commonfiles/leftmenu.shtml'); ?></td>
+
+                       <td style="80%" valign="top">
+                        <div class="main_content"> 
+
+	<!-- Header End-->
+
+	<div class="heading">IP Address of Websites in C# application</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="ip%20address.shtml" title="Access IP Address of LAN Connected Computers">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="linechart.shtml" title="Creating Line Chart in windows using C#">Next</a></td>
+  </tr>
+</table>
+
+<p>In C# with the help of Namespace <font class="point_out">System.Net.Sockets</font> and System.Net we can build an application through which we can
+ find ID address of the websites Program code is given below</p>
+ <p><i>IPHostEntry -</i> Provides a container class for internet host address information .</p>
+ <p><i>Dns.GetHostEntry("Hostname")- </i>Resolve a DNS hostname or IP Address to an System.Net.IPHostEntry instance.</p>
+
+ <div class="code">
+<pre>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Net</font><font color="#000000">;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Net</font><font color="#000000">.</font><font color="#008080">Sockets</font><font color="#000000">;</font>
+
+<font color="#0000ff">class </font><font color="#000000">ip{</font>
+<font color="#0000ff">public static void </font><font color="#000000">Main(){</font>
+<font color="#808000">String </font><font color="#000000">HostName ;</font>
+<font color="#808000">Console</font><font color="#000000">.WriteLine(</font><font color="#ff00ff">&quot;Enter Web Address:&quot;</font><font color="#000000">);</font>
+<font color="#000000">HostName = </font><font color="#808000">Console</font><font color="#000000">.ReadLine();</font>
+<font color="#808000">Console</font><font color="#000000">.WriteLine(</font><font color="#ff00ff">&quot;Looking up: {0}&quot;</font><font color="#000000">, HostName);</font>
+
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Net</font><font color="#000000">;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Net</font><font color="#000000">.</font><font color="#008080">Sockets</font><font color="#000000">;</font>
+
+<font color="#0000ff">class </font><font color="#000000">ip{</font>
+<font color="#0000ff">public static void </font><font color="#000000">Main(){</font>
+<font color="#808000">String </font><font color="#000000">HostName ;</font>
+<font color="#808000">Console</font><font color="#000000">.WriteLine(</font><font color="#ff00ff">&quot;Enter Web Address:&quot;</font><font color="#000000">);</font>
+<font color="#000000">HostName = </font><font color="#808000">Console</font><font color="#000000">.ReadLine();</font>
+<font color="#808000">Console</font><font color="#000000">.WriteLine(</font><font color="#ff00ff">&quot;Looking up: {0}&quot;</font><font color="#000000">, HostName);</font>
+<font color="#808000">IPHostEntry </font><font color="#000000">NameToIpAddress;</font>
+<font color="#000000">NameToIpAddress = </font><font color="#808000">Dns</font><font color="#000000">.GetHostEntry(HostName);</font>
+<font color="#0000ff">int </font><font color="#000000">AddressCount = </font><font color="#800080">0</font><font color="#000000">;</font>
+<font color="#0000ff">foreach </font><font color="#000000">(</font><font color="#808000">IPAddress </font><font color="#000000">Address </font><font color="#0000ff">in </font><font color="#000000">NameToIpAddress.AddressList)</font>
+<font color="#808000">Console</font><font color="#000000">.WriteLine(</font><font color="#ff00ff">&quot;IP Address {0}: {1}&quot;</font><font color="#000000">, ++AddressCount, Address.ToString());</font>
+<font color="#808000">Console</font><font color="#000000">.ReadLine();</font>
+<font color="#000000">}</font>
+<font color="#000000">}</font>
+</pre>
+</div>
+
+<div class="image">
+<img src="webip.PNG">
+</div>
+<i>IP Address of Gmail.com</i>
+<div class="image">
+<img src="webip1.PNG">
+</div>
+<i>IP Address of Facebook.com</i>
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="ip%20address.shtml" title="Access IP Address of LAN Connected Computers">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="linechart.shtml" title="Creating Line Chart in windows using C#">Next</a></td>
+  </tr>
+</table>
+ <!--Footer-->
+   </div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/dotnet/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+     <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>

@@ -1,0 +1,291 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD>
+<meta http-equiv="Content-Language" content="en-us">
+<TITLE>Example Of Many To Many Mapping</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name="description" CONTENT="Example Of Many To Many Mapping" >
+<meta name="keywords" CONTENT="Example Of Many To Many Mapping">
+
+<!-- header start-->	
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>Hibernate</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+			<img border="0" src="/images/left_menu_bullet.gif" width="11" height="6"><a href="/java/">Java</a><img border="0" src="/images/left_menu_bullet.gif" width="11" height="6"><a href="/java/hibernate/">Hibernate 3.0</a>
+
+              </div>
+
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/hibernate/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	 
+<!-- header End-->
+
+<div class="heading">Example Of Many To Many Mapping</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="page34.shtml" title="Many-To-Many Mapping">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="page36.shtml" title="HQL (Hibernate Query Language)">Next</a></td>
+  </tr> 
+</table>
+
+<h3>hibernate.cfg.xml</h3>
+<div class="code">
+<pre>
+<font color="#0000ff">&lt;?xml </font><font color="#ff0000">version</font><font color="#0000ff">=</font><font color="#ff00ff">'1.0' </font><font color="#ff0000">encoding</font><font color="#0000ff">=</font><font color="#ff00ff">'UTF-8'</font><font color="#800080">?</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;!DOCTYPE </font><font color="#800080">hibernate-configuration PUBLIC</font>
+<font color="#000000">&quot;</font><font color="#800080">-</font><font color="#000000">//</font><font color="#800080">Hibernate</font><font color="#000000">/</font><font color="#800080">Hibernate Configuration DTD 3</font><font color="#000000">.</font><font color="#800080">0</font><font color="#000000">//</font><font color="#800080">EN</font><font color="#000000">&quot;</font>
+<font color="#000000">&quot;</font><font color="#800080">http:</font><font color="#000000">//</font><font color="#800080">hibernate</font><font color="#000000">.</font><font color="#800080">sourceforge</font><font color="#000000">.</font><font color="#800080">net</font><font color="#000000">/</font><font color="#800080">hibernate-configuration-3</font><font color="#000000">.</font><font color="#800080">0</font><font color="#000000">.</font><font color="#800080">dtd</font><font color="#000000">&quot;</font><font color="#0000ff">&gt;</font>
+
+<font color="#008000">&lt;!-- R4r.co.in. --&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">hibernate-configuration</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">session-factory</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">property </font><font color="#ff0000">name</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;dialect&quot;</font><font color="#0000ff">&gt;</font><font color="#000000">org.hibernate.dialect.Oracle9Dialect</font><font color="#0000ff">&lt;/</font><font color="#808000">property</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">property </font><font color="#ff0000">name</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;connection.url&quot;</font><font color="#0000ff">&gt;</font><font color="#000000">jdbc:oracle:thin:@localhost:1521:xe</font><font color="#0000ff">&lt;/</font><font color="#808000">property</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">property </font><font color="#ff0000">name</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;connection.username&quot;</font><font color="#0000ff">&gt;</font><font color="#000000">system</font><font color="#0000ff">&lt;/</font><font color="#808000">property</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">property </font><font color="#ff0000">name</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;connection.password&quot;</font><font color="#0000ff">&gt;</font><font color="#000000">system</font><font color="#0000ff">&lt;/</font><font color="#808000">property</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">property </font><font color="#ff0000">name</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;connection.driver_class&quot;</font><font color="#0000ff">&gt;</font><font color="#000000">oracle.jdbc.driver.OracleDriver</font><font color="#0000ff">&lt;/</font><font color="#808000">property</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">mapping </font><font color="#800080">resource</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;m-to-m.hbm.xml&quot;</font><font color="#0000ff">/&gt;</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">session-factory</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">hibernate-configuration</font><font color="#0000ff">&gt;</font>
+</pre>
+</div>
+
+<h3>Emp.java</h3>
+<div class="code">
+<pre>
+<font color="#0000ff">package </font><font color="#000000">r4r;</font>
+<font color="#0000ff">import </font><font color="#000000">java.util.*;</font>
+<font color="#0000ff">public class </font><font color="#000000">Emp {</font>
+<font color="#0000ff">int </font><font color="#000000">id;</font>
+<font color="#ff0000">String </font><font color="#000000">name,job;</font>
+<font color="#0000ff">int </font><font color="#000000">salary;</font>
+<font color="#ff0000">Set</font><font color="#000000">&lt;Privilage&gt; privilages;</font>
+
+<font color="#0000ff">public </font><font color="#000000">Emp() {</font>
+<font color="#0000ff">super</font><font color="#000000">();</font>
+<font color="#008000">// TODO Auto-generated constructor stub</font>
+<font color="#000000">}</font>
+<font color="#0000ff">public </font><font color="#000000">Emp(</font><font color="#ff0000">String </font><font color="#000000">name, </font><font color="#ff0000">String </font><font color="#000000">job, </font><font color="#0000ff">int </font><font color="#000000">salary, </font><font color="#ff0000">Set</font><font color="#000000">&lt;Privilage&gt; privilages) {</font>
+<font color="#0000ff">super</font><font color="#000000">();</font>
+<font color="#0000ff">this</font><font color="#000000">.name = name;</font>
+<font color="#0000ff">this</font><font color="#000000">.job = job;</font>
+<font color="#0000ff">this</font><font color="#000000">.salary = salary;</font>
+<font color="#0000ff">this</font><font color="#000000">.privilages = privilages;</font>
+<font color="#000000">}</font>
+<font color="#0000ff">public int </font><font color="#000000">getId() {</font>
+<font color="#0000ff">return </font><font color="#000000">id;</font>
+<font color="#000000">}</font>
+<font color="#0000ff">public void </font><font color="#000000">setId(</font><font color="#0000ff">int </font><font color="#000000">id) {</font>
+<font color="#0000ff">this</font><font color="#000000">.id = id;</font>
+<font color="#000000">}</font>
+<font color="#0000ff">public </font><font color="#ff0000">String </font><font color="#000000">getName() {</font>
+<font color="#0000ff">return </font><font color="#000000">name;</font>
+<font color="#000000">}</font>
+<font color="#0000ff">public void </font><font color="#000000">setName(</font><font color="#ff0000">String </font><font color="#000000">name) {</font>
+<font color="#0000ff">this</font><font color="#000000">.name = name;</font>
+<font color="#000000">}</font>
+<font color="#0000ff">public </font><font color="#ff0000">String </font><font color="#000000">getJob() {</font>
+<font color="#0000ff">return </font><font color="#000000">job;</font>
+<font color="#000000">}</font>
+<font color="#0000ff">public void </font><font color="#000000">setJob(</font><font color="#ff0000">String </font><font color="#000000">job) {</font>
+<font color="#0000ff">this</font><font color="#000000">.job = job;</font>
+<font color="#000000">}</font>
+<font color="#0000ff">public int </font><font color="#000000">getSalary() {</font>
+<font color="#0000ff">return </font><font color="#000000">salary;</font>
+<font color="#000000">}</font>
+<font color="#0000ff">public void </font><font color="#000000">setSalary(</font><font color="#0000ff">int </font><font color="#000000">salary) {</font>
+<font color="#0000ff">this</font><font color="#000000">.salary = salary;</font>
+<font color="#000000">}</font>
+<font color="#0000ff">public </font><font color="#ff0000">Set</font><font color="#000000">&lt;Privilage&gt; getPrivilages() {</font>
+<font color="#0000ff">return </font><font color="#000000">privilages;</font>
+<font color="#000000">}</font>
+<font color="#0000ff">public void </font><font color="#000000">setPrivilages(</font><font color="#ff0000">Set</font><font color="#000000">&lt;Privilage&gt; privilages) {</font>
+<font color="#0000ff">this</font><font color="#000000">.privilages = privilages;</font>
+<font color="#000000">}</font>
+<font color="#000000">}</font>
+</pre>
+</div>
+
+<h3>Privilage.java</h3>
+<div class="code">
+<pre>
+<font color="#0000ff">package </font><font color="#000000">r4r;</font>
+
+<font color="#0000ff">import </font><font color="#000000">java.util.</font><font color="#ff0000">Set</font><font color="#000000">;</font>
+<font color="#0000ff">public class </font><font color="#000000">Privilage {</font>
+<font color="#0000ff">int </font><font color="#000000">id;</font>
+<font color="#ff0000">String </font><font color="#000000">name;</font>
+<font color="#0000ff">int </font><font color="#000000">cost;</font>
+<font color="#ff0000">Set</font><font color="#000000">&lt;Emp&gt; employees;</font>
+
+<font color="#0000ff">public </font><font color="#000000">Privilage() {</font>
+<font color="#0000ff">super</font><font color="#000000">();</font>
+<font color="#008000">// TODO Auto-generated constructor stub</font>
+<font color="#000000">}</font>
+<font color="#0000ff">public </font><font color="#000000">Privilage(</font><font color="#ff0000">String </font><font color="#000000">name, </font><font color="#0000ff">int </font><font color="#000000">cost, </font><font color="#ff0000">Set</font><font color="#000000">&lt;Emp&gt; employees) {</font>
+<font color="#0000ff">super</font><font color="#000000">();</font>
+<font color="#0000ff">this</font><font color="#000000">.name = name;</font>
+<font color="#0000ff">this</font><font color="#000000">.cost = cost;</font>
+<font color="#0000ff">this</font><font color="#000000">.employees = employees;</font>
+<font color="#000000">}</font>
+<font color="#0000ff">public int </font><font color="#000000">getId() {</font>
+<font color="#0000ff">return </font><font color="#000000">id;</font>
+<font color="#000000">}</font>
+<font color="#0000ff">public void </font><font color="#000000">setId(</font><font color="#0000ff">int </font><font color="#000000">id) {</font>
+<font color="#0000ff">this</font><font color="#000000">.id = id;</font>
+<font color="#000000">}</font>
+<font color="#0000ff">public </font><font color="#ff0000">String </font><font color="#000000">getName() {</font>
+<font color="#0000ff">return </font><font color="#000000">name;</font>
+<font color="#000000">}</font>
+<font color="#0000ff">public void </font><font color="#000000">setName(</font><font color="#ff0000">String </font><font color="#000000">name) {</font>
+<font color="#0000ff">this</font><font color="#000000">.name = name;</font>
+<font color="#000000">}</font>
+<font color="#0000ff">public int </font><font color="#000000">getCost() {</font>
+<font color="#0000ff">return </font><font color="#000000">cost;</font>
+<font color="#000000">}</font>
+<font color="#0000ff">public void </font><font color="#000000">setCost(</font><font color="#0000ff">int </font><font color="#000000">cost) {</font>
+<font color="#0000ff">this</font><font color="#000000">.cost = cost;</font>
+<font color="#000000">}</font>
+<font color="#0000ff">public </font><font color="#ff0000">Set</font><font color="#000000">&lt;Emp&gt; getEmployees() {</font>
+<font color="#0000ff">return </font><font color="#000000">employees;</font>
+<font color="#000000">}</font>
+<font color="#0000ff">public void </font><font color="#000000">setEmployees(</font><font color="#ff0000">Set</font><font color="#000000">&lt;Emp&gt; employees) {</font>
+<font color="#0000ff">this</font><font color="#000000">.employees = employees;</font>
+<font color="#000000">}</font>
+<font color="#000000">}</font>
+</pre>
+</div>
+
+<h3>m-to-m.hbm.xml</h3>
+<div class="code">
+<pre>
+<font color="#0000ff">&lt;?xml </font><font color="#ff0000">version</font><font color="#0000ff">=</font><font color="#ff00ff">'1.0' </font><font color="#ff0000">encoding</font><font color="#0000ff">=</font><font color="#ff00ff">'UTF-8'</font><font color="#800080">?</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;!DOCTYPE </font><font color="#800080">hibernate-mapping PUBLIC</font>
+<font color="#000000">&quot;</font><font color="#800080">-</font><font color="#000000">//</font><font color="#800080">Hibernate</font><font color="#000000">/</font><font color="#800080">Hibernate Mapping DTD 3</font><font color="#000000">.</font><font color="#800080">0</font><font color="#000000">//</font><font color="#800080">EN</font><font color="#000000">&quot;</font>
+<font color="#000000">&quot;</font><font color="#800080">http:</font><font color="#000000">//</font><font color="#800080">hibernate</font><font color="#000000">.</font><font color="#800080">sourceforge</font><font color="#000000">.</font><font color="#800080">net</font><font color="#000000">/</font><font color="#800080">hibernate-mapping-3</font><font color="#000000">.</font><font color="#800080">0</font><font color="#000000">.</font><font color="#800080">dtd</font><font color="#000000">&quot;</font><font color="#0000ff">&gt;</font>
+
+<font color="#008000">&lt;!-- Generated by MyEclipse Hibernate Tools. --&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">hibernate-mapping</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">class </font><font color="#ff0000">name</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;r4r.Privilage&quot;</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">id </font><font color="#ff0000">name</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;id&quot; </font><font color="#ff0000">type</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;int&quot;</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">generator </font><font color="#800080">class</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;increment&quot;</font><font color="#0000ff">&gt;&lt;/</font><font color="#808000">generator</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">id</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">property </font><font color="#ff0000">name</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;name&quot;</font><font color="#0000ff">/&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">property </font><font color="#ff0000">name</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;cost&quot; </font><font color="#ff0000">type</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;int&quot;</font><font color="#0000ff">/&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">set </font><font color="#ff0000">name</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;employees&quot; </font><font color="#800080">table</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;empprivilage&quot; </font><font color="#800080">inverse</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;true&quot;</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">key </font><font color="#800080">column</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;privilageid&quot;</font><font color="#0000ff">/&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">many-to-many </font><font color="#800080">column</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;empid&quot; </font><font color="#800080">class</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;r4r.Emp&quot;</font><font color="#0000ff">/&gt;</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">set</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">class</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">class </font><font color="#ff0000">name</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;r4r.Emp&quot;</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">id </font><font color="#ff0000">name</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;id&quot; </font><font color="#ff0000">type</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;int&quot;</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">generator </font><font color="#800080">class</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;increment&quot;</font><font color="#0000ff">/&gt;</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">id</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">property </font><font color="#ff0000">name</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;name&quot;</font><font color="#0000ff">/&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">property </font><font color="#ff0000">name</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;job&quot;</font><font color="#0000ff">/&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">property </font><font color="#ff0000">name</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;salary&quot;</font><font color="#0000ff">/&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">set </font><font color="#ff0000">name</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;privilages&quot; </font><font color="#800080">inverse</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;true&quot; </font><font color="#800080">cascade</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;all&quot; </font><font color="#800080">table</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;empprivilage&quot;</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">key </font><font color="#800080">column</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;empid&quot;</font><font color="#0000ff">/&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">many-to-many </font><font color="#800080">column</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;privilageid&quot; </font><font color="#800080">class</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;r4r.Privilage&quot;</font><font color="#0000ff">/&gt;</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">set</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">class</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">hibernate-mapping</font><font color="#0000ff">&gt;</font>
+</pre>
+</div>
+
+<h3>Selecttest.java</h3>
+<div class="code">
+<pre>
+<font color="#000000">packager4r;</font>
+
+<font color="#000000">importjava.util.</font><font color="#ff0000">Iterator</font><font color="#000000">;</font>
+<font color="#000000">importjava.util.</font><font color="#ff0000">Scanner</font><font color="#000000">;</font>
+<font color="#000000">importjava.util.</font><font color="#ff0000">Set</font><font color="#000000">;</font>
+<font color="#000000">importorg.hibernate.Session;</font>
+<font color="#000000">importorg.hibernate.SessionFactory;</font>
+<font color="#000000">importorg.hibernate.cfg.</font><font color="#ff0000">Configuration</font><font color="#000000">;</font>
+<font color="#000000">publicclassSelecttest{</font>
+<font color="#000000">publicstaticvoidmain(</font><font color="#ff0000">String</font><font color="#000000">[]args){</font>
+
+<font color="#000000">Configurationcfg=newConfiguration().configure();</font>
+<font color="#000000">SessionFactoryf=cfg.buildSessionFactory();</font>
+<font color="#000000">Sessionsession=f.openSession();</font>
+<font color="#000000">Scannerin=newScanner(</font><font color="#ff0000">System</font><font color="#000000">.in);</font>
+<font color="#ff0000">System</font><font color="#000000">.out.println(</font><font color="#ff00ff">&quot;enterempid&quot;</font><font color="#000000">);</font>
+<font color="#000000">intempid=in.nextInt();</font>
+<font color="#000000">Empemp=(Emp)session.load(Emp.</font><font color="#0000ff">class</font><font color="#000000">,empid);</font>
+<font color="#ff0000">System</font><font color="#000000">.out.println(</font><font color="#ff00ff">&quot;employeesdetails&quot;</font><font color="#000000">);</font>
+<font color="#ff0000">System</font><font color="#000000">.out.println(emp.getName()+</font><font color="#ff00ff">&quot;\t&quot;</font><font color="#000000">+emp.getJob()+</font><font color="#ff00ff">&quot;\t&quot;</font><font color="#000000">+emp.getSalary());</font>
+<font color="#ff0000">System</font><font color="#000000">.out.println(</font><font color="#ff00ff">&quot;followingprivilagesareenjoyed:&quot;</font><font color="#000000">);</font>
+<font color="#ff0000">Set</font><font color="#000000">&lt;privilage&gt;pr=emp.getPrivilages();</font>
+<font color="#ff0000">Iterator</font><font color="#000000">&lt;privilage&gt;itr=pr.iterator();</font>
+<font color="#0000ff">while</font><font color="#000000">(itr.hasNext())</font>
+<font color="#000000">{</font>
+<font color="#000000">Privilagepre=itr.next();</font>
+<font color="#ff0000">System</font><font color="#000000">.out.println(pre.getId()+</font><font color="#ff00ff">&quot;\t&quot;</font><font color="#000000">+pre.getName()+</font><font color="#ff00ff">&quot;\t&quot;</font><font color="#000000">+pre.getCost());</font>
+<font color="#000000">}</font>
+<font color="#ff0000">System</font><font color="#000000">.out.println(</font><font color="#ff00ff">&quot;enterprivilageid:&quot;</font><font color="#000000">);</font>
+<font color="#000000">intprivilageid=in.nextInt();</font>
+<font color="#000000">Privilageprivilages=(Privilage)session.load(Privilage.</font><font color="#0000ff">class</font><font color="#000000">,privilageid);</font>
+<font color="#ff0000">System</font><font color="#000000">.out.println(</font><font color="#ff00ff">&quot;followingprivilagedetais:&quot;</font><font color="#000000">);</font>
+<font color="#ff0000">System</font><font color="#000000">.out.println(privilages.getName()+</font><font color="#ff00ff">&quot;\t&quot;</font><font color="#000000">+privilages.getCost());</font>
+<font color="#ff0000">System</font><font color="#000000">.out.println(</font><font color="#ff00ff">&quot;employeebenifitedare:-&quot;</font><font color="#000000">);</font>
+<font color="#ff0000">Set</font><font color="#000000">&lt;emp&gt;emp11=privilages.getEmployees();</font>
+<font color="#ff0000">System</font><font color="#000000">.out.println(</font><font color="#ff00ff">&quot;followingemployeesarebenifited:&quot;</font><font color="#000000">);</font>
+<font color="#ff0000">Iterator</font><font color="#000000">&lt;emp&gt;eitr=emp11.iterator();</font>
+<font color="#0000ff">while</font><font color="#000000">(eitr.hasNext())</font>
+<font color="#000000">{</font>
+<font color="#000000">Empe=eitr.next();</font>
+<font color="#ff0000">System</font><font color="#000000">.out.println(e.getName()+</font><font color="#ff00ff">&quot;\t&quot;</font><font color="#000000">+e.getJob()+</font><font color="#ff00ff">&quot;\t&quot;</font><font color="#000000">+e.getSalary());</font>
+<font color="#000000">}</font>
+<font color="#000000">session.close();</font>
+<font color="#000000">}</font>
+<font color="#000000">}</font>
+</pre>
+</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="page34.shtml" title="Many-To-Many Mapping">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="page36.shtml" title="HQL (Hibernate Query Language)">Next</a></td>
+  </tr> 
+</table>
+
+<!-- Footer Start-->
+
+		</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->		

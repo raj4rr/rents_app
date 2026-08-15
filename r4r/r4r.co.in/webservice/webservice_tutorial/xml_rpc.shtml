@@ -1,0 +1,152 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<HTML>
+<HEAD>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>XML-RPC webservices|web services XML-RPC|web services tutorial|web service basics|webservices examples</title>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv="content-type" content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="XML-RPC in webservice learn with this tutorial with basics of webservice
+with examples and interview question of webservices topics xml, soap, http, web services architecture, components, examples,
+ security issues, and available standards" >
+<meta name="keywords" CONTENT="XML-RPC, Introduction Of Web services,Why use Web services , Characteristic of Web services,Components
+Architecture,Flow,System Requirements,XML-RPC,RDF In Web Services, UDDI In Web services, WSDL In Web services,
+Advantage and Disadvantage,How To make a Web Services, How to Use web Services (in ASP. NET), Elements In 
+RDF, Containers In RDF, Collection In RDF,Schema In RDF, RDF Reference, Rules In RDF
+Security In Web services,Standard of Web services, How to Use web Services (in Console Application)">
+<!-- header start-->	
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>Web Services</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+            <img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+             <a href="/webservice/">Web Services</a>
+
+              </div>
+
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/webservice/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	 
+<!-- Header End--> 
+<div class="heading">XML-RPC</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="system_requirements.shtml" title="System Requirements">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="soap_in_web_services.shtml" title="Soap In Web Services">Next</a></td>
+  </tr> 
+</table>
+<h2>Introduction</h2>
+<p>XML-RPC is a Remote Procedure Calling protocol that works over the Internet. XML-RPC can be used with  Java, C, C++, PHP and many other programming languages. XML-RPC protocol was created in 1998 by Dave Winer.</p>
+<div class="image">
+<img src="images/xml_rpc.gif"/>
+</div>
+<p>Actually Extensible Markup Language (XML) provides a vocabulary for describing Remote Procedure Calls (RPC) which is  transmitted between computers using the Hyper Text Transfer Protocol (HTTP). XML-RPC allows two or more computers running different operating systems and programs and also that are written in different languages  to share  and process. For example, a Java application could written in a Perl program, which in turn can be written in Python application and so on.XML-RPC works by sending a HTTP request to a server.</p>
+<h3>Example of an xml request</h3>
+<div class="code">
+<pre>
+<font color="#0000ff">&lt;?xml </font><font color="#ff0000">version</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;1.0&quot;</font><font color="#800080">?</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">methodResponse</font><font color="#0000ff">&gt;</font>
+<font color="#000000">  </font><font color="#0000ff">&lt;</font><font color="#808000">params</font><font color="#0000ff">&gt;</font>
+<font color="#000000">    </font><font color="#0000ff">&lt;</font><font color="#808000">param</font><font color="#0000ff">&gt;</font>
+<font color="#000000">        </font><font color="#0000ff">&lt;</font><font color="#808000">value</font><font color="#0000ff">&gt;&lt;</font><font color="#808000">string</font><font color="#0000ff">&gt;</font><font color="#000000">South Delhi India </font><font color="#0000ff">&lt;/</font><font color="#808000">string</font><font color="#0000ff">&gt;&lt;/</font><font color="#808000">value</font><font color="#0000ff">&gt;</font>
+<font color="#000000">    </font><font color="#0000ff">&lt;/</font><font color="#808000">param</font><font color="#0000ff">&gt;</font>
+<font color="#000000">  </font><font color="#0000ff">&lt;/</font><font color="#808000">params</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">methodResponse</font><font color="#0000ff">&gt;</font>
+</pre>
+</div>
+<h3>Example of an xml response</h3>
+<div class="code">
+<pre>
+<font color="#0000ff">&lt;?xml </font><font color="#ff0000">version</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;1.0&quot;</font><font color="#800080">?</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">methodCall</font><font color="#0000ff">&gt;</font>
+<font color="#000000">  </font><font color="#0000ff">&lt;</font><font color="#808000">methodName</font><font color="#0000ff">&gt;</font><font color="#000000">examples.getCountryName</font><font color="#0000ff">&lt;/</font><font color="#808000">methodName</font><font color="#0000ff">&gt;</font>
+<font color="#000000">  </font><font color="#0000ff">&lt;</font><font color="#808000">params</font><font color="#0000ff">&gt;</font>
+<font color="#000000">    </font><font color="#0000ff">&lt;</font><font color="#808000">param</font><font color="#0000ff">&gt;</font>
+<font color="#000000">        </font><font color="#0000ff">&lt;</font><font color="#808000">value</font><font color="#0000ff">&gt;&lt;</font><font color="#808000">int</font><font color="#0000ff">&gt;</font><font color="#000000">30</font><font color="#0000ff">&lt;/</font><font color="#808000">int</font><font color="#0000ff">&gt;&lt;/</font><font color="#808000">value</font><font color="#0000ff">&gt;</font>
+<font color="#000000">    </font><font color="#0000ff">&lt;/</font><font color="#808000">param</font><font color="#0000ff">&gt;</font>
+<font color="#000000">  </font><font color="#0000ff">&lt;/</font><font color="#808000">params</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">methodCall</font><font color="#0000ff">&gt;</font>
+</pre>
+</div>
+<h2>XML-RPC Tag Format</h2>
+<div  class="table_content">
+<table>
+<tr>
+<td class="heading" style="width:30%;">Tag</td>
+<td class="heading" style="width:40%;">Description</td>
+<td class="heading" style="width:30%;">Example</td>
+</tr>
+<tr>
+<td class="alternate_heading1">&lt;int&gt;</td>
+<td class="alternate_heading1">Whole Numbers and Integer</td>
+<td class="alternate_heading1">2,-1</td>
+</tr>
+<tr>
+<td class="alternate_heading2">&lt;boolean&gt;</td>
+<td class="alternate_heading2">False(0) or True(1)</td>
+<td class="alternate_heading2">1</td>
+</tr>
+<tr>
+<td class="alternate_heading1">&lt;string&gt;</td>
+<td class="alternate_heading1">String of characters</td>
+<td class="alternate_heading1">hello world</td>
+</tr>
+<tr>
+<td class="alternate_heading2">&lt;double&gt;</td>
+<td class="alternate_heading2">Double precision floating point</td>
+<td class="alternate_heading1">-12.23</td>
+</tr>
+</table>
+</div>
+<h2>Advantage Of XML-RPC</h2>
+<p>XML-RPC has various advantages.Some of the advantages are given below:-
+<ol>
+<li>Can call remote procedures on a machine with different operating system.</li>
+<li>XML-RPC can be used with Java, PHP, C, C++, and many other programming languages.</li>
+<li>XML-RPC not only call remote procedures but allows two or more computers running different operating systems and programs written in different languages to share processing.
+</li>
+<li>Web services allow the reuse of services and components within an infrastructure.</li>
+</ol>
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="system_requirements.shtml" title="System Requirements">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="soap_in_web_services.shtml" title="Soap In Web Services">Next</a></td>
+  </tr> 
+</table>
+
+<!--Footer start -->	
+
+		</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/webtechnology/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->

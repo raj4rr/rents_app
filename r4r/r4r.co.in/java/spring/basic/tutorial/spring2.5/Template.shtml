@@ -1,0 +1,130 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD>
+<meta http-equiv="Content-Language" content="en-us">
+<TITLE>Template Design Pattern in Spring</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name="description" CONTENT="Show in a Message Box using Validation Summary,spring tutorials,spring framework,spring mvc,spring interview question,spring framework tutorials,spring aop" >
+<meta name="keywords" CONTENT="Show in a Message Box using Validation Summary,spring tutorials,spring framework,spring mvc,spring interview question,spring framework tutorials,spring aop">
+
+<!-- header start-->	
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>Spring Framework</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+           <img src="/images/left_menu_bullet.gif" width="11" height="6"/>  <a href="/java/">Java</a>    
+		      <img src="/images/left_menu_bullet.gif" width="11" height="6"/><a href="/java/spring/">Spring</a>
+
+              </div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/spring/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	 
+
+<!-- header End--> 
+
+<div class="heading">Template Design Pattern in Spring</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="NameMatchMethodPointcutAdvice.shtml" title="Name Match Method Pointcut Advice ">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="withoutTemplate.shtml" title="without Template">Next</a></td>
+  </tr> 
+</table>
+
+<p><i>Introduction:</i> Template is a behavior design pattern i.e used to implement such method which invoked predefine  sequence of steps. Implementation some of all the steps can be varies but that sequence can not be varies but that sequence can not be change.</p>
+<p>Database operation implemented by JDBC are the candidate for template design pattern because each database operation as following steps:</p>
+<ol>
+<li>
+Connection is created / obtained.
+</li>
+<li>
+Statement is created.
+</li>
+<li>
+Query is Executed
+</li>
+<li>
+Connection close
+</li>
+</ol>
+<p>This sequence can not be altered but individual steps can be implemented in multiple ways.</p>
+<h3> Example</h3>
+<ol>
+<li>
+Connection can be created using DriverManager, It can be obtained from a pool or can be obtained from a directory server.
+</li>
+<li>
+Statement can be created in multiple ways using Statement, PreparedStatement  and CallableStatement interface.
+</li>
+<li>
+Usualy method which involves the predefine sequence of steps out of which some step can be varies are implemented in such a way that common steps are repeated in multiple implementation.
+</li>
+<li>
+Template design pattern tries to be remove this problem to facilities definition of common steps only one in a template method and by allowing individual develop to provide the own implementation to the variable steps following example demonstrate the concept of template design pattern.
+</li>
+</ol>
+
+ <p>This is a template method that facilitate of two number can be read from the keyboard from a file or from the network. Result can be displayed on the console, can be saved to a file or can be sent over the network i.e out of these steps two are variable.</p>
+
+<div class="code">
+<PRE>
+<FONT COLOR="#0000ff">abstract class </FONT><FONT COLOR="#000000">Adder</FONT>
+<FONT COLOR="#000000">{</FONT>
+<FONT COLOR="#0000ff">public void </FONT><FONT COLOR="#000000">add()</FONT>
+<FONT COLOR="#008000">//template method that uses method steps to define the sequence</FONT>
+<FONT COLOR="#000000">{</FONT>
+<FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">numArray[]=getNumber();</FONT>
+<FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">result=numArray[</FONT><FONT COLOR="#800080">0</FONT><FONT COLOR="#000000">]+numArray[</FONT><FONT COLOR="#800080">1</FONT><FONT COLOR="#000000">];</FONT>
+<FONT COLOR="#000000">manageResult(result);</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#0000ff">public abstract int</FONT><FONT COLOR="#000000">[] getNumber();</FONT><FONT COLOR="#008000">//stub method representing.</FONT>
+<FONT COLOR="#0000ff">public void </FONT><FONT COLOR="#000000">manageResult(</FONT><FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">r);</FONT><FONT COLOR="#008000">//variable step.</FONT>
+<FONT COLOR="#000000">}</FONT>
+</PRE>
+</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="NameMatchMethodPointcutAdvice.shtml" title="Name Match Method Pointcut Advice ">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="withoutTemplate.shtml" title="without Template">Next</a></td>
+  </tr> 
+</table>
+
+<!-- Footer Start-->
+
+		</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->
+

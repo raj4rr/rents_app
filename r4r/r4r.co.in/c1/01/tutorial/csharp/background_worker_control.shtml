@@ -1,0 +1,122 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>Background Worker Control Using C#</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="Background Worker Control Using C#" >
+<meta name="keywords" CONTENT="Background Worker Control Using C#">
+
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+     <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>C# Tutorial</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup>
+            </a><img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/c1/">C#</a>
+
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/c1/commonfiles/leftmenu.shtml'); ?></td>
+
+                       <td style="80%" valign="top">
+                        <div class="main_content"> 
+
+	<!-- Header End-->
+
+	<div class="heading">Background Worker Control</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="menus_and_toolbar_controls.shtml" title="Menus and ToolBar Controls">Previous</a></td>
+    <td style="wi,dth:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="Slicechart.shtml" title="Creating Slice Chart in windows using C#">Next</a></td>
+  </tr>
+</table>
+
+<P>The BackgroundWorker Component allows a form to run an operation asynchronously. This is very useful when we deal with 
+such kind of operations as database transactions, image downloads etc.</P>
+<div class="image">
+<img src="image/background.JPG">
+</div>
+<h3>Adding DoWork</h3>
+<p>The DoWork method is like any other event handler. Here we must look at the C# view of your file,
+where we will see the DoWork method. You should see that the backgroundWorker1_DoWork event is generated
+when you double-click on DoWork. For testing, let's add a Thread.Sleep command there. The Thread.Sleep
+method will pause the execution of the BackgroundWorker, but does not consume the entire CPU.</p>
+
+  <div class="image">
+  <img src="image/background.1JPG.JPG">
+  </div>
+
+  <p>Code For DoWork Event is Given Below</p>
+
+<div class="code">
+<pre>
+<font color="#0000ff">private void </font><font color="#000000">backgroundWorker1_DoWork(</font><font color="#0000ff">object </font><font color="#000000">sender,</font>
+<font color="#808000">DoWorkEventArgs </font><font color="#000000">e) {</font>
+
+<font color="#000000">TestObject argumentTest = e.Argument </font><font color="#0000ff">as </font><font color="#000000">TestObject;</font>
+
+<font color="#808000">Thread</font><font color="#000000">.Sleep(</font><font color="#800080">100</font><font color="#000000">);</font>
+
+<font color="#000000">argumentTest.OneValue = </font><font color="#800080">12</font><font color="#000000">;</font>
+<font color="#000000">argumentTest.TwoValue = </font><font color="#800080">14</font><font color="#000000">;</font>
+<font color="#000000">e.Result = argumentTest;</font>
+<font color="#000000">}</font>
+</pre>
+</div>
+
+<div class="code">
+<pre>
+<font color="#0000ff">public </font><font color="#000000">Form1()</font>
+<font color="#000000">{</font>
+<font color="#000000">InitializeComponent();</font>
+<font color="#000000">InitializeComponent();</font>
+
+<font color="#000000">TestObject test = </font><font color="#0000ff">new </font><font color="#000000">TestObject</font>
+<font color="#000000">{OneValue = </font><font color="#800080">15</font><font color="#000000">,TwoValue = </font><font color="#800080">4</font><font color="#000000">};</font>
+
+<font color="#000000">backgroundWorker1.RunWorkerAsync(test);</font>
+
+<font color="#000000">}</font>
+<font color="#0000ff">class </font><font color="#000000">TestObject {</font>
+<font color="#0000ff">public int </font><font color="#000000">OneValue { get; set; }</font>
+<font color="#0000ff">public int </font><font color="#000000">TwoValue { get; set; }</font>
+<font color="#000000">}</font>
+</pre>
+</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="menus_and_toolbar_controls.shtml" title="Menus and ToolBar Controls">Previous</a></td>
+    <td style="wi,dth:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="Slicechart.shtml" title="Creating Slice Chart in windows using C#">Next</a></td>
+  </tr>
+</table>
+
+ <!--Footer-->
+   </div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/dotnet/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+     <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>

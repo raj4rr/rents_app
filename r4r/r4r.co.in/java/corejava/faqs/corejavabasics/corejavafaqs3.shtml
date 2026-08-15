@@ -1,0 +1,155 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>Creating an Object Instance in Java,What is Overloading in Java Programming?,Explain the role of Constructors in Java Programming.,Explain Overriding in Java Programming.,Overriding Member Methods</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="Creating an Object Instance in Java,What is Overloading in Java Programming?,Explain the role of Constructors in Java Programming.,Explain Overriding in Java Programming.,Overriding Member Methods" >
+<meta name="keywords" CONTENT="Creating an Object Instance in Java,What is Overloading in Java Programming?,Explain the role of Constructors in Java Programming.,Explain Overriding in Java Programming.,Overriding Member Methods">
+
+<!-- header start-->
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+	<BODY>
+		<?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+        <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>Core Java FAQ Tutorials</h1>
+            <div class="link_menu"><br><div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+            <img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+            <a href="/java/">Java</a>
+			<img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/java/corejava/">Core Java</a>
+  <img src="/images/left_menu_bullet.gif" width="11" height="6"> <a href="/java/corejava/faqs/">FAQS</a>
+  </div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/corejava/collections/commonfiles/leftmenu.shtml'); ?></td>                                           
+                        <td style="80%" valign="top">
+
+                        <div class="main_content"> 	 
+
+	<!-- header End-->	
+
+<div class="heading">Creating an Object Instance in Java</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="corejavafaqs2.shtml" title="Encapsulation in Java Programming">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="corejavafaqs4.shtml" title="Important Core Classes( javaString, Wrappers)">Next</a></td>
+  </tr> 
+</table>
+
+<p>Allows an object instance to be created given an object name and the full class name, including the package name.
+Creating an Instance of an Object To create an instance of the Book object <b>(save it as BookTracker.java )</b>:</p>
+
+<div class="code">
+<PRE>
+<FONT COLOR="#0000ff">public class </FONT><FONT COLOR="#000000">BookTracker </FONT><FONT COLOR="#008000">//public is a keyworld {</FONT>
+<FONT COLOR="#0000ff">public static void </FONT><FONT COLOR="#000000">main(</FONT><FONT COLOR="#ff0000">String</FONT><FONT COLOR="#000000">[] args) {</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#000000">}</FONT>
+</PRE>
+</div>
+
+<div class="heading">To create an instance of the Book object we use the "new" keyword as follows: </div>
+
+<div class="code">
+<PRE>
+<FONT COLOR="#0000ff">public class </FONT><FONT COLOR="#000000">BookTracker {</FONT>
+<FONT COLOR="#0000ff">public static void </FONT><FONT COLOR="#000000">main(</FONT><FONT COLOR="#ff0000">String</FONT><FONT COLOR="#000000">[] args) {</FONT>
+<FONT COLOR="#ff0000">Book </FONT><FONT COLOR="#000000">firstBook = </FONT><FONT COLOR="#0000ff">new </FONT><FONT COLOR="#ff0000">Book</FONT><FONT COLOR="#000000">(</FONT><FONT COLOR="#ff00ff">"Horton Hears A Who!"</FONT><FONT COLOR="#000000">,</FONT><FONT COLOR="#ff00ff">"Dr. Seuss"</FONT><FONT COLOR="#000000">,</FONT><FONT COLOR="#ff00ff">"Random House"</FONT><FONT COLOR="#000000">); </FONT>
+<FONT COLOR="#008000">//new key world create firstBook object in memory</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#000000">Now let</FONT><FONT COLOR="#ff00ff">'s display the data in firstBook to prove that we really did create a new Book object.</FONT>
+<FONT COLOR="#0000ff">public class </FONT><FONT COLOR="#000000">BookTracker {</FONT>
+<FONT COLOR="#0000ff">public static void </FONT><FONT COLOR="#000000">main(</FONT><FONT COLOR="#ff0000">String</FONT><FONT COLOR="#000000">[] args) {</FONT>
+<FONT COLOR="#ff0000">Book </FONT><FONT COLOR="#000000">firstBook = </FONT><FONT COLOR="#0000ff">new </FONT><FONT COLOR="#ff0000">Book</FONT><FONT COLOR="#000000">(</FONT><FONT COLOR="#ff00ff">"Horton Hears A Who!"</FONT><FONT COLOR="#000000">,</FONT><FONT COLOR="#ff00ff">"Dr. Seuss"</FONT><FONT COLOR="#000000">,</FONT><FONT COLOR="#ff00ff">"Random House"</FONT><FONT COLOR="#000000">);</FONT>
+<FONT COLOR="#000000">firstBook.displayBookData(); </FONT><FONT COLOR="#008000">// display method is call for display</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#000000">}</FONT>
+</PRE>
+</div>
+
+<p><h3>Output:</h3></p>
+<div class="output">
+<pre>
+Title: Horton Hears A Who!
+Author: Dr. Seuss
+Publisher: Random House
+</pre>
+</div>
+
+<div class="heading">Overloading in Java Programming</div>
+<p>when two methods and operator (within different class) have the same name and same arguments , but different signature, it is known as overloading in Object oriented concepts. Two types of are:</p>
+<ol><li>
+<i>Operator overloading:</i> It is a specific case of polymorphism in which some or all of operators like +, =, or == have different implementations depending on the types of their arguments.</li>
+<li>
+<i>Function overloading or method overloading :</i> It allows to creation the several methods with the same name which differ from each other in terms of the type of the input and the type of the output of the function. Method overloading is usually associated with statically-typed programming languages which enforce type checking in function calls.
+</li>
+</ol>
+
+<div class="heading">Role of Constructors in Java Programming</div>
+<p>Constructors are used to assign initial values to instance variables of the class. A default constructor with no arguments will be called automatically by the Java Virtual Machine (JVM).</p> <p>Constructor is always called by new operator. Constructor is declared just like as we declare methods, except that the constructor doesnt have any return type. Constructor can be overloaded provided they should have different arguments because JVM differentiates constructors on the basis of arguments passed in the constructor.</p>
+
+<div class="code">
+<PRE>
+<FONT COLOR="#ff0000">Object </FONT><FONT COLOR="#000000">variable1= </FONT><FONT COLOR="#0000ff">new </FONT><FONT COLOR="#000000">variable (co-ordinates); </FONT>
+<FONT COLOR="#008000">//initialize constructor </FONT>
+</PRE>
+</div>
+
+<div class="heading">Overriding in Java Programming</div>
+<p>In overriding, a method in a super class is overridden in the subclass. The method in the subclass will have the same signature as that of the superclass. Since the method in the subclass has the same signature & name as the method of its super class, it is termed as overriding.</p>
+
+<div class="code">
+<PRE>
+<FONT COLOR="#0000ff">public class </FONT><FONT COLOR="#000000">Demo {</FONT>
+<FONT COLOR="#0000ff">public void </FONT><FONT COLOR="#000000">message() {</FONT>
+<FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.println(</FONT><FONT COLOR="#ff00ff">"A very simple example of overriding"</FONT><FONT COLOR="#000000">);</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#0000ff">public class </FONT><FONT COLOR="#000000">Advice </FONT><FONT COLOR="#0000ff">extends </FONT><FONT COLOR="#000000">Demo {</FONT>
+<FONT COLOR="#000000">@Override </FONT><FONT COLOR="#008000">// @Override annotation in Java 5 is optional but helpful.</FONT>
+<FONT COLOR="#0000ff">public void </FONT><FONT COLOR="#000000">message() {</FONT>
+<FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.println(</FONT><FONT COLOR="#ff00ff">"Warning: overriding can be done."</FONT><FONT COLOR="#000000">);</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#000000">}</FONT>
+</PRE>
+</div>
+
+<div class="heading">Overriding Member Methods</div>
+<p>Member method overriding in java means a subclass method overriding a superclass method. Superclass method should be non-static. Subclass uses extends keyword to extend the super class.</p>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="corejavafaqs2.shtml" title="Encapsulation in Java Programming">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="corejavafaqs4.shtml" title="Important Core Classes( javaString, Wrappers)">Next</a></td>
+  </tr> 
+</table>
+
+<!-- Footer Start-->	   
+
+		</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->

@@ -1,0 +1,135 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD>
+<meta http-equiv="Content-Language" content="en-us">
+<TITLE>GenericServlet class</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name="description" CONTENT="GenericServlet class" >
+<meta name="keywords" CONTENT="GenericServlet class">
+
+<!-- header start-->	
+
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+
+<?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+     <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>Servlet Tutorials</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+			<img src="/images/left_menu_bullet.gif"  width="11" height="6"/> <a href="/java/">Java</a>
+			<img src="/images/left_menu_bullet.gif"  width="11" height="6"/> <a href="/java/servlet/">Servlet</a>
+
+			      </div>
+
+            	<table>
+                    <tr>
+
+                         <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/servlet/servlet_basics/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 
+
+<div class="heading">GenericServlet class</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="cookies.shtml" title=" Cookies in Servlet">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="war.shtml" title="War File">Next</a></td>
+  </tr> 
+</table>
+<!-- header End-->	
+
+<p>GenericServlet class implements Servlet, ServletConfig and Serializable interfaces. which is provides a implementaion of all the methods of these interfaces except the service method.
+</p>
+<p>
+GenericServlet can handle any type of request so it is protocol-independent.
+</p>
+
+<p>We can be create a generic servlet by inheriting the GenericServlet class which providing the implementation of the service method.
+</p>
+
+<p>
+ GenericServlet class as follows:
+</p>
+
+<div class="code">
+<pre>
+<font face="Courier New">    <font color="#0000ff">public void </font><font color="#000000">init(ServletConfig config) is used to initialize the servlet.</font>
+    <font color="#0000ff">public abstract void </font><font color="#000000">service(ServletRequest request, ServletResponse response)</font>
+	<font color="#000000">provides service </font><font color="#0000ff">for </font><font color="#000000">the incoming request. It is invoked at each time when user</font>
+	<font color="#000000">requests </font><font color="#0000ff">for </font><font color="#000000">a servlet.</font>
+    <font color="#0000ff">public void </font><font color="#000000">destroy() is invoked only once throughout the life cycle</font>
+	<font color="#000000">and indicates that servlet is being destroyed.</font>
+    <font color="#0000ff">public </font><font color="#000000">ServletConfig getServletConfig() returns the object of ServletConfig.</font>
+    <font color="#0000ff">public </font><font color="#ff0000">String </font><font color="#000000">getServletInfo() returns information about servlet such</font>
+	<font color="#000000">as writer, copyright, version etc.</font>
+    <font color="#0000ff">public void </font><font color="#000000">init() it is a convenient method </font><font color="#0000ff">for </font><font color="#000000">the servlet programmers, </font>
+	<font color="#000000">now there is no need to call </font><font color="#0000ff">super</font><font color="#000000">.init(config)</font>
+    <font color="#0000ff">public </font><font color="#000000">ServletContext getServletContext() returns the object of ServletContext.</font>
+    <font color="#0000ff">public </font><font color="#ff0000">String </font><font color="#000000">getInitParameter(</font><font color="#ff0000">String </font><font color="#000000">name) returns the parameter value</font>
+	<font color="#0000ff">for </font><font color="#000000">the given parameter name.</font>
+    <font color="#0000ff">public </font><font color="#ff0000">Enumeration </font><font color="#000000">getInitParameterNames() returns all the parameters</font>
+	<font color="#000000">defined in the web.xml file.</font>
+    <font color="#0000ff">public </font><font color="#ff0000">String </font><font color="#000000">getServletName() returns the name of the servlet object.</font>
+    <font color="#0000ff">public void </font><font color="#000000">log(</font><font color="#ff0000">String </font><font color="#000000">msg) writes the given message in the servlet log file.</font>
+    <font color="#0000ff">public void </font><font color="#000000">log(</font><font color="#ff0000">String </font><font color="#000000">msg,</font><font color="#ff0000">Throwable </font><font color="#000000">t) writes the explanatory message</font>
+	<font color="#000000">in the servlet log file and a stack trace.</font>
+</font></pre>
+</div>
+
+<h3>Example</h3>
+<div class="code">
+<pre>
+<font face="Arial"><font color="#0000ff">import </font><font color="#000000">java.io.*;</font>
+<font color="#0000ff">import </font><font color="#000000">javax.servlet.*;</font>
+<font color="#0000ff">public class </font><font color="#000000">First </font><font color="#0000ff">extends </font><font color="#000000">GenericServlet{</font>
+<font color="#0000ff">public void </font><font color="#000000">service(ServletRequest req,ServletResponse res)</font>
+<font color="#0000ff">throws </font><font color="#ff0000">IOException</font><font color="#000000">,ServletException{</font>
+<font color="#000000">res.setContentType(</font><font color="#ff00ff">&quot;text/html&quot;</font><font color="#000000">);</font>
+<font color="#ff0000">PrintWriter </font><font color="#000000">out=res.getWriter();</font>
+<font color="#000000">out.print(</font><font color="#ff00ff">&quot;&lt;html&gt;&lt;body&gt;&quot;</font><font color="#000000">);</font>
+<font color="#000000">out.print(</font><font color="#ff00ff">&quot;&lt;b&gt;hello generic servlet&lt;/b&gt;&quot;</font><font color="#000000">);</font>
+<font color="#000000">out.print(</font><font color="#ff00ff">&quot;&lt;/body&gt;&lt;/html&gt;&quot;</font><font color="#000000">);</font>
+<font color="#000000">}</font>
+<font color="#000000">}</font>
+</font></pre>
+</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="cookies.shtml" title=" Cookies in Servlet">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="war.shtml" title="War File">Next</a></td>
+  </tr> 
+</table>
+
+<!-- Footer Start-->		
+
+		</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+   </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->

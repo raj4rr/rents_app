@@ -1,0 +1,118 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD>
+<meta http-equiv="Content-Language" content="en-us">
+<TITLE>struts,struts 2.0,struts tutorial,struts 2.0 tutorial,The Struts2.0 Model:- System State Business Logic JavaBeans</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name="description" CONTENT="struts,struts 2.0,struts tutorial,struts 2.0 tutorial,The Struts2.0 Model:- System State Business Logic JavaBeans" >
+<meta name="keywords" CONTENT="struts,struts 2.0,struts tutorial,struts 2.0 tutorial,The Struts2.0 Model:- System State Business Logic JavaBeans">
+<!-- header start-->	
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>Struts</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+            <img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+            <a href="/java/">Java</a>
+              <img src="/images/left_menu_bullet.gif" width="11" height="6"/><A href="/java/struts/basic/tutorial/struts2.0">Struts 2.0 Basic Tutorial</a>
+              </div>
+
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/struts/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	 
+
+<div class="heading">The Struts2.0 Model:- System State and Business Logic JavaBeans</div>
+<!-- header End-->
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="page10.shtml" title="Struts2.0 and Model-View-Controller (MVC) Design Pattern">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="page12.shtml" title="The Struts2.0 View: -JSP Pages and Presentation Components">Next</a></td>
+  </tr> 
+</table>
+<h3>Introduction:</h3>
+<p>The model is the internal state of the application. This state is composed of both the data model and the business logic. From the high-level black box view, the data and the business logic merge together into the monolithic <i> state </i> of the application. For instance, if you are logging in to an application, both business logic and data from the database will be involved in the authentication process. Most likely, the business logic will provide an authentication method that will take the username and password and verify them against some persisted data from the database.</p>
+<h3>Class/Library File  Descriptions:-</h3>
+<p>Actions do three things. </p>
+<ul><li><i>Actions Encapsulate The Unit of Work: </i> The action fulfills the role of the MVC model for the framework. responsibilities of this role is business logic; actions use the execute() method for this purpose. The code inside this method should concern itself only with the logic of the work associated with the request.</li>
+ <li><i> Actions Provide Locus For Data Transfer: </i>Being the model component of the framework also means that the action is expected to carry the data around .Since the data is held local to the action, its always conveniently available during the execution of the business logic. There might be a bunch of JavaBeans properties adding lines of code to the action, but when the execute() method references the data in those properties, the proximity of the data makes that code all the more succinct.</li>
+<li><i> Actions Return Control String For Result Routing: </i> The final duty of an action component is to return a control string that selects the result that should be rendered. </li></ul>
+<h3>Source Code Example:</h3>
+<P>Actions Encapsulate The Unit of Work:-</p>
+<div class="code"><pre>
+<font color="#000000">public String execute() {</font>
+<font color="#000000">setCustomGreeting( GREETING + getName() );</font>
+<font color="#000000">return &quot;SUCCESS&quot;;</font>
+<font color="#000000">}</font>
+<font color="#000000">Actions Provide Locus For Data Transfer:-</font>
+<font color="#000000">private String name;</font>
+<font color="#000000">public String getName() {</font>
+<font color="#000000">return name;</font>
+<font color="#000000">}</font>
+<font color="#000000">public void setName(String name) {</font>
+<font color="#000000">this.name = name;</font>
+<font color="#000000">}</font>
+<font color="#000000">private String customGreeting;</font>
+<font color="#000000">public String getCustomGreeting()</font>
+<font color="#000000">{</font>
+<font color="#000000">return customGreeting;</font>
+<font color="#000000">}</font>
+<font color="#000000">public void setCustomGreeting( String </font>
+<font color="#000000">customGreeting ){</font>
+<font color="#000000">this.customGreeting = customGreeting;</font>
+<font color="#000000">}</font>
+</pre>
+</div>
+<p>Actions Return Control String For Result Routong:</p>
+<div class="code"><pre>
+<font color="#0000ff">&lt;</font><font color="#808000">action </font><font color="#ff0000">name</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;HelloWorld&quot; </font>
+<font color="#ff0000">class</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;manning.chapterOne.HelloWorld&quot;</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">result </font><font color="#ff0000">name</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;SUCCESS&quot;</font><font color="#0000ff">&gt;</font><font color="#000000">/chapterTwo/HelloWorld.jsp</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">result</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">result </font><font color="#ff0000">name</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;ERROR&quot;</font><font color="#0000ff">&gt;</font><font color="#000000">/chapterTwo/Error.jsp</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">result</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">action</font><font color="#0000ff">&gt;</font>
+</pre>
+</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="page10.shtml" title="Struts2.0 and Model-View-Controller (MVC) Design Pattern">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="page12.shtml" title="The Struts2.0 View: -JSP Pages and Presentation Components">Next</a></td>
+  </tr> 
+</table>
+<!-- Footer Start-->	
+
+		</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->

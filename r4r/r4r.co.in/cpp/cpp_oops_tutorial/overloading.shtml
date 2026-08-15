@@ -1,0 +1,178 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>overloading in c++|c++ tutorial|c++ basics</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="Overloading in C++ tutorial provide description about overloading 
+how o use overloading in c++" >
+<meta name="keywords" CONTENT="Overloading in C++,method overloading,how to use overloading in c++,object oriented language,basics, learner,Overriding,
+inheritance, Polymorphism,overloading,multiple inheritance,multi threading">
+
+<link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>C++ language</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+            <img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+            <a href="/cpp/">C++</a>
+
+              </div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/cpp/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	 
+<!-- header End-->
+<div class="heading">Overloading in C++</div>
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="Inheritance.shtml" title=" Inherentance In C++">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="polymorphism.shtml" title="Polymorphism in C++">Next</a></td>
+  </tr> 
+</table>
+
+<p>overloading comes under compile time polymorphism. In Compile time polymorphism compiler is able to select the appropriate function for a particular call at the compile time itself.</p>
+<p> In Compile time polymorphism there are two types of Overloading:</p>
+<ol><li>Operator Overloading</li>
+<li> Function overloading</li></ol>
+<ol><li><i>Operator Overloading : </i> Operator Overloading gives flexiable operation for the creation of new meeaning to operators used in C++ .
+In Operator Overloading  , To operload an operator , a operator function is created which define the operation that the operator overload function will perform.</li>
+<div class="image">
+<pre>
+<font color="#008000">// Example of operator overloading (- operator)</font>
+
+<font color="#ff0000">#include </font><font color="#000000">&lt;iostream&gt;</font>
+<font color="#0000ff">class </font><font color="#000000">example</font>
+<font color="#000000">{</font>
+<font color="#0000ff">int </font><font color="#000000">a,b,c;</font>
+<font color="#0000ff">public</font><font color="#000000">:</font>
+<font color="#0000ff">void </font><font color="#000000">inputdata(</font><font color="#0000ff">int </font><font color="#000000">x, </font><font color="#0000ff">int </font><font color="#000000">y, </font><font color="#0000ff">int </font><font color="#000000">z);</font>
+<font color="#0000ff">void </font><font color="#000000">display();</font>
+<font color="#0000ff">void operator </font><font color="#000000">-();</font>
+<font color="#000000">};</font>
+<font color="#0000ff">void </font><font color="#000000">counter :: inputdata(</font><font color="#0000ff">int </font><font color="#000000">x, </font><font color="#0000ff">int </font><font color="#000000">y, </font><font color="#0000ff">int </font><font color="#000000">z)</font>
+<font color="#000000">{</font>
+	<font color="#000000">a=x;</font>
+	<font color="#000000">b=y;</font>
+	<font color="#000000">c=z;</font>
+<font color="#000000">}</font>
+<font color="#0000ff">void </font><font color="#000000">counter :: display()</font>
+<font color="#000000">{</font>
+	<font color="#0000ff">cout</font><font color="#000000">&lt;&lt;</font><font color="#ff00ff">&quot;x=&quot;</font><font color="#000000">&lt;&lt;a&lt;&lt;endl;</font>
+	<font color="#0000ff">cout</font><font color="#000000">&lt;&lt;</font><font color="#ff00ff">&quot;y=&quot;</font><font color="#000000">&lt;&lt;b&lt;&lt;endl;</font>
+	<font color="#0000ff">cout</font><font color="#000000">&lt;&lt;</font><font color="#ff00ff">&quot;z=&quot;</font><font color="#000000">&lt;&lt;c&lt;&lt;endl;</font>
+<font color="#000000">}</font>
+<font color="#0000ff">void </font><font color="#000000">counter :: </font><font color="#0000ff">operator </font><font color="#000000">-()</font>
+<font color="#000000">{</font>
+	<font color="#000000">a=-a;</font>
+	<font color="#000000">b=-b;</font>
+	<font color="#000000">c=-c;</font>
+<font color="#000000">}</font>
+<font color="#0000ff">void </font><font color="#000000">main()</font>
+<font color="#000000">{</font>
+	<font color="#000000">counter obj1;</font>
+	<font color="#000000">clrscr();</font>
+	<font color="#0000ff">cout</font><font color="#000000">&lt;&lt;</font><font color="#ff00ff">&quot;abj1:&quot;</font><font color="#000000">&lt;&lt;endl;</font>
+	<font color="#000000">obj1.inputdata(</font><font color="#800080">30</font><font color="#000000">,</font><font color="#800080">20</font><font color="#000000">,-</font><font color="#800080">10</font><font color="#000000">);</font>
+	<font color="#000000">obj1.display();</font>
+	<font color="#000000">-obj1;</font>
+	<font color="#0000ff">cout</font><font color="#000000">&lt;&lt;</font><font color="#ff00ff">&quot;obj1:&quot;</font><font color="#000000">&lt;&lt;endl;</font>
+	<font color="#000000">obj1.display();</font>
+<font color="#000000">}</font>
+</pre>
+</div> 
+<div class="output"><i>Output</i><pre>
+obj1;
+x=30
+y=20
+z=-10
+obj1;
+x=-30
+y=-20
+z=10
+</pre></div>
+<li> <i>Function overloading</i> Function overloading means two or more functions can have the same name but either the number of arguments or the data type of arguments has to be different. Return type has no role because function will return a value when it is called and at compile time compiler will not be able to determine which function to call. </li>
+<div class="comment">Example</div>
+<pre>
+int add(int a, int b);
+int add(int a, int b , int c);
+int add(float a, float b);
+</pre>
+
+<div class="code">
+<pre>
+<font color="#008000">// function Overloading Example</font>
+
+<font color="#ff0000">#include </font><font color="#000000">&lt;iostream&gt;</font>
+<font color="#ff0000">#include</font><font color="#000000">&lt;conio.h&gt;</font>
+<font color="#ff0000">#include </font><font color="#000000">&lt;math.h&gt;</font>
+
+<font color="#0000ff">long </font><font color="#000000">add(</font><font color="#0000ff">long</font><font color="#000000">, </font><font color="#0000ff">long</font><font color="#000000">);</font>
+<font color="#0000ff">float </font><font color="#000000">add(</font><font color="#0000ff">float</font><font color="#000000">, </font><font color="#0000ff">float</font><font color="#000000">);</font>
+
+<font color="#0000ff">int </font><font color="#000000">main()</font>
+<font color="#000000">{</font>
+   <font color="#0000ff">long </font><font color="#000000">a, b, x;</font>
+   <font color="#0000ff">float </font><font color="#000000">c, d, y;</font>
+
+   <font color="#0000ff">cout </font><font color="#000000">&lt;&lt; </font><font color="#ff00ff">&quot;Enter two integers\n&quot;</font><font color="#000000">;</font>
+   <font color="#0000ff">cin </font><font color="#000000">&gt;&gt; a &gt;&gt; b;</font>
+    <font color="#000000">x = add(a, b);</font>
+    <font color="#0000ff">cout </font><font color="#000000">&lt;&lt; </font><font color="#ff00ff">&quot;Sum of integers: &quot; </font><font color="#000000">&lt;&lt; x &lt;&lt; endl;</font>
+    <font color="#0000ff">cout </font><font color="#000000">&lt;&lt; </font><font color="#ff00ff">&quot;Enter two floating point numbers\n&quot;</font><font color="#000000">;</font>
+   <font color="#0000ff">cin </font><font color="#000000">&gt;&gt; c &gt;&gt; d;</font>
+    <font color="#000000">y = add(c, d);</font>
+    <font color="#0000ff">cout </font><font color="#000000">&lt;&lt; </font><font color="#ff00ff">&quot;Sum of floats: &quot; </font><font color="#000000">&lt;&lt; y &lt;&lt; endl;</font>
+    <font color="#0000ff">return </font><font color="#800080">0</font><font color="#000000">;</font>
+<font color="#000000">}</font>
+ <font color="#0000ff">long </font><font color="#000000">add(</font><font color="#0000ff">long </font><font color="#000000">x, </font><font color="#0000ff">long </font><font color="#000000">y)</font>
+<font color="#000000">{</font>
+   <font color="#0000ff">long </font><font color="#000000">sum;</font>
+    <font color="#000000">sum = x + y;</font>
+    <font color="#0000ff">return </font><font color="#000000">sum;</font>
+<font color="#000000">}</font>
+ <font color="#0000ff">float </font><font color="#000000">add(</font><font color="#0000ff">float </font><font color="#000000">x, </font><font color="#0000ff">float </font><font color="#000000">y)</font>
+<font color="#000000">{</font>
+   <font color="#0000ff">float </font><font color="#000000">sum;</font>
+    <font color="#000000">sum = x + y;</font>
+    <font color="#0000ff">return </font><font color="#000000">sum;</font>
+<font color="#000000">}</font>
+</pre>
+</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="Inheritance.shtml" title=" Inherentance In C++">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="polymorphism.shtml" title="Polymorphism in C++">Next</a></td>
+  </tr> 
+</table>
+
+<!-- Footer Start-->
+		</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->

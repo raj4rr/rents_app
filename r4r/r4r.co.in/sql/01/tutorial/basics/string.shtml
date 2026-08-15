@@ -1,0 +1,162 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>Using String Operator</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="Using String Operator,STRING OPERATOR" >
+<meta name="keywords" CONTENT="Using String Operator,STRING OPERATOR">
+
+<!--header start-->
+
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>DATABASE & SQL/PLSQL</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a><img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+			<a href="/sql/">SQL </a>
+              </div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/sql/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	  
+
+                        	                        	<!-- Header End-->	
+    <div class="heading">Displaying Rows Using String Operator</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="comparison.shtml" title="Displaying Rows Using Comparison & Range Operators">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="Is_null.shtml" title="IS NULL and IS NOT NULL keywords & ORDER BY Clause">Next</a></td>
+  </tr>
+</table>
+
+<h3>Using String Operator</h3>
+<p>String operator provide a LIKE keyword to search for a string with wild card mechanism.</p>
+
+<div class="table_content">
+<table>
+<tr><td class="heading" style="width:40%;">Dtatype</td><td class="heading" style="width:60%;">Range</td>
+</tr>
+ <tr>
+    <td class="alternate_heading1" >%</td><td class="alternate_heading1">Represents any string of Zero or more character</td>
+  </tr>
+   <tr>
+   <td class="alternate_heading2">_</td><td class="alternate_heading2">Represent the single character</td></tr>
+  <tr>
+     <td class="alternate_heading1">[]</td><td class="alternate_heading1">Represent any single character within the specified range</td>
+  </tr>
+  <tr>
+    <td class="alternate_heading2">[^]</td><td class="alternate_heading2">Represent any single character not within the specified range</td>
+  </tr>
+</table>
+</div>
+
+<h3>Example:</h3>
+
+<div class="code">
+<pre>
+SELECT *
+FROM titles
+WHERE type LIKE 'bus%'
+</pre>
+</div>
+
+<p>Return all attribute from the titles table in which the type starts with 'bus'</p>
+
+<div class="code">
+<pre>
+SELECT *
+FROM titles
+WHERE type LIKE 'bu_'
+</pre>
+</div>
+
+<p>Return all attribute from the titles table in which the type of book is the 
+three character long and&nbsp; starts with 'bu'. Increase the '_' keyword 
+increase the number of characters.</p>
+
+<div class="code">
+<pre>
+SELECT *
+FROM titles
+WHERE type LIKE 'b[us]%'
+</pre>
+</div>
+
+<p>Return all attribute from the titles table in which the type of book is 
+starts with 'b' and contain u and s on the second position followed by any 
+number of character.</p>
+
+<div class="code">
+<pre>
+SELECT *
+FROM titles
+WHERE type LIKE 'b[^s]%'
+</pre>
+</div>
+
+<p>Return all attribute from the titles table in which the type of book is 
+starts with 'b' and does not contain s on the second position followed by any 
+number of character.</p>
+
+<h3>Some Example</h3>
+
+<div class="table_content">
+<table>
+<tr>
+<td class="heading" >Expression</td><td class="heading">Returns</td>
+</tr>
+
+  <tr>
+    <td class="alternate_heading1">LIKE '%ty%'</td> <td class="alternate_heading1">All names that have the letters 'ty' in them</td>
+  </tr>
+
+  <tr>
+    <td class="alternate_heading2">LIKE '_ty'</td><td class="alternate_heading2">All three letter names ending with 'ty'</td>
+  </tr>
+  <tr>
+
+     <td class="alternate_heading1">LIKE '[AD]%'</td><td class="alternate_heading1">All name that begin with &quot;A&quot; or &quot;K&quot;</td>
+  </tr>
+</table>
+</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="comparison.shtml" title="Displaying Rows Using Comparison & Range Operators">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="Is_null.shtml" title="IS NULL and IS NOT NULL keywords & ORDER BY Clause">Next</a></td>
+  </tr>
+</table>
+
+                       <!--Footer  -->
+
+</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>

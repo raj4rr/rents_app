@@ -1,0 +1,177 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>Calling Function In C Language</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="Learn: Calling Function In C Langauge,c tutorial,c basics,programming language,examples,pointer,function,loop,else,if else,while,array,pre processor" >
+<meta name="keywords" CONTENT="c tutorial,c basics,programming language,examples,pointer,function,loop,else,if else,while,array,pre processor,post processor,structures,memory menagement,string,constants,variables,decisions making,c unions,c memory allocation, c operators, C pointers,c error handling, c file handling">
+<link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>C Programming language</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a><img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/c/">C </a>
+              <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/c/c_topics/c_function">C Functions </a></div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/c/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 
+
+		<!-- Header End-->	
+
+<div class="heading">Calling Function in C</div>
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="5_nesting_of_function.shtml">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="7_recurtion_in_c.shtml">Next</a></td>
+  </tr>
+</table>
+
+	<ul>
+		<li>Call by value</li>
+		<li>Call by reference</li>
+	</ul>
+
+<h2>Call by value</h2>
+<p>Whenever we called a function and passed something to it we have always passed the 'Values' of variables to the called function. Such function is called <i>Call By Value</i>.</p>
+<h2>Example</h2>
+<div class="code">
+<FONT><span style="color: #000080"> 
+<FONT COLOR="#ff0000">#include </FONT><FONT >&lt;stdio.h&gt;<br>
+</FONT>
+<FONT COLOR="#ff0000">#include </FONT><FONT >&lt;conio.h&gt;</FONT><br>
+<FONT >main() </FONT><br><FONT >{ </FONT><br>
+<FONT COLOR="#0000ff">int </FONT></span>a<span style="color: #000080"><FONT >=</FONT><FONT COLOR="#800080">50</FONT><FONT >, 
+		b=</FONT><FONT COLOR="#800080">70</FONT><FONT >; </FONT><br>
+<FONT >interchange (a, b); </FONT><br><FONT >
+		printf (&#8220;</FONT></span><font color="#FF00FF">a=%d b=%d</font><span style="color: #000080"><FONT >&#8221;, 
+		a, b); </FONT><br><FONT >} </FONT><br><br><FONT >
+		interchange(a1,b1) 
+</FONT><br><FONT COLOR="#0000ff">int </FONT></span>a<span style="color: #000080"><FONT >1,b1; 
+</FONT><br><FONT >{ </FONT><br><FONT COLOR="#0000ff">int </FONT>
+</span>t<span style="color: #000080"><FONT >; </FONT><br></span>t<span style="color: #000080"><FONT >=a1; 
+</FONT><br></span>a<span style="color: #000080"><FONT >1=b1; 
+</FONT><br></span>b<span style="color: #000080"><FONT >1=t; 
+</FONT><br><FONT >printf(&#8220;</FONT></span><font color="#FF00FF">a1=%d 
+		b1=%d</font><FONT ><span style="color: #000080">&#8221;,a1,b1); 
+</span></FONT><span style="color: #000080"><br><FONT >} </FONT></span></FONT>
+</div>
+<div class="output"><p><i>Output</i> : </p><p>a=50 b=70</p><p>a1=70 b1=50</p></div>
+
+<h2>Call by reference</h2>
+<p>We know that variables are stored somewhere in memory. So instead of passing the value of a variable to a function, can we not pass the location number ? If we are able to do so, then it is called <i>'Call By Reference'.</i></p>
+
+<h2>Example</h2>
+<div class="code">
+		<pre><font ><font color="#ff0000">#include </font><font >&lt;stdio.h&gt;</font>
+
+<font color="#0000ff">void </font><font >swap (</font><font color="#0000ff">int </font><font >&amp;a, </font><font color="#0000ff">int </font><font >&amp;b) </font><font color="#008000">// a and b are reference variables</font>
+<font >{</font>
+<font color="#0000ff">int </font><font >t=a;</font>
+<font >a=b;</font>
+<font >b=t;</font>
+<font >}</font>
+<font >This is also accomplished </font><font color="#0000ff">using </font><font >pointers.</font>
+<font >For Example :</font>
+<font color="#0000ff">void </font><font >swap1(</font><font color="#0000ff">int </font><font >t *a, </font><font color="#0000ff">int </font><font >*b) </font>
+<font >{</font>
+<font color="#0000ff">int </font><font >t;</font>
+<font >t= *a;</font>
+<font >*a=*b;</font>
+<font >*b=t;</font>
+<font >}</font>
+
+swap1(&amp;x, &amp;y);<font class="comment">// This function can be called as following </font> 
+
+</font></pre>
+</div>
+<h2>Example</h2>
+<div class="code">	
+    <FONT ><span style="color: #000080"> 
+		<font COLOR="#ff0000">#include </font><font><FONT >&lt;stdio.h&gt;<br>
+</FONT>
+<FONT COLOR="#ff0000">#include </FONT><FONT >&lt;conio.h&gt;</FONT><br>
+		</font>
+</span></FONT><span style="font-family: ">
+		<font>
+<font color="#000080"><FONT >main() <br>
+		{ </FONT><br>
+<FONT COLOR="#0000ff">int </FONT><FONT >num1=</FONT></font><font color="#800080">2</font><font color="#000080"><FONT COLOR="#800080">0</FONT><FONT >, 
+		num2=</FONT></font><font color="#800080">3</font></font><font color="#000080"><font><FONT COLOR="#800080">0</FONT><FONT >; 
+</FONT><br>
+<FONT >interchange(&amp;num1,&amp;num2); </FONT><br>
+<FONT >printf(</FONT><FONT COLOR="#ff00ff">&quot;num1=%d num2=%d&quot;</FONT><FONT >,num1,num2); 
+</FONT><br>
+<FONT >} </FONT><br>
+<FONT >interchange(num3,num4) </FONT><br>
+<FONT COLOR="#0000ff">int </FONT><FONT >*num3,*num4; </FONT><br>
+<FONT >{ </FONT><br>
+<FONT COLOR="#0000ff">int </FONT><FONT >t; </FONT><br>
+<FONT >t=*num3; </FONT><br>
+<FONT >*num3=*num4; </FONT><br>
+<FONT >*y1num4=t; </FONT><br>
+<FONT >printf(</FONT><FONT COLOR="#ff00ff">&quot;*num1=%d *num2=%d&quot;</FONT><FONT >,num3,num4); 
+</FONT><br>
+		</font><font >};</font></font></span>
+</div>
+<div class="output"><p><i>Output</i>:</p><p>*num1=70 *num2=50</p><p>num1=70 num2=50</p></div>
+
+<p>In case of call by reference address of the variable got passed and therefore what ever changes that happened in function interchange got reflected in the address location and therefore the got reflected in original function call in main also without explicit return value. </p>
+<div class="code">
+<FONT><span style="color: #000080"> 
+<FONT COLOR="#ff0000">#include </FONT><FONT >&lt;stdio.h&gt;<br>
+</FONT>
+<FONT COLOR="#ff0000">#include </FONT><FONT >&lt;conio.h&gt;</FONT><br>
+<FONT COLOR="#0000ff">int </FONT><FONT >factorial (</FONT><FONT COLOR="#0000ff">int</FONT><FONT >);</FONT><br>
+<FONT COLOR="#0000ff">void </FONT><FONT >main</FONT><br>
+<FONT >{</FONT><br><FONT COLOR="#0000ff">int </FONT>
+<FONT >a, fact;<br>
+		clrscr();</FONT><br><FONT >printf(</FONT><FONT COLOR="#ff00ff">&quot;\n 
+		Enter any number&quot;</FONT><FONT >);</FONT><br>
+<FONT >scanf (</FONT><FONT COLOR="#ff00ff">&quot;%d&quot;</FONT><FONT >,&amp;a);</FONT><br>
+<FONT >fact=fatorial(a);</FONT><br><FONT >printf(</FONT><FONT COLOR="#ff00ff">&quot;factorial 
+		value=%d&quot;</FONT><FONT >,fact);</FONT><br>
+<FONT >}</FONT><br><FONT COLOR="#0000ff">int </FONT>
+<FONT >factorial(</FONT><FONT COLOR="#0000ff">int </FONT>
+<FONT >x)</FONT><br><FONT >{</FONT><br>
+<FONT COLOR="#0000ff">int </FONT><FONT >f=</FONT><FONT COLOR="#800080">1</FONT><FONT >,i;</FONT><br>
+<FONT COLOR="#0000ff">for</FONT><FONT >(i=x; i&gt;=</FONT><FONT COLOR="#800080">1</FONT><FONT >; 
+		i--)</FONT><br>
+<FONT >f=f*i;</FONT><br><FONT COLOR="#0000ff">return</FONT><FONT >(f);</FONT><br>
+<FONT >}<b>;</b></FONT></span></FONT>
+</div>
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="5_nesting_of_function.shtml">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="7_recurtion_in_c.shtml">Next</a></td>
+  </tr>
+</table>
+
+ <!--Footer  --> 
+</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>

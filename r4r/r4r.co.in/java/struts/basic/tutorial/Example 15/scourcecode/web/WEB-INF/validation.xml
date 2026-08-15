@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE form-validation PUBLIC
+"-//Apache Software Foundation//DTD Commons Validator Rules Configuration 1.1.3//EN"
+"http://jakarta.apache.org/commons/dtds/validator_1_1_3.dtd">
+
+<form-validation>
+
+    <!--
+     This is a minimal Validator form file with a couple of examples.
+-->
+
+    <global>
+
+        <!-- An example global constant
+        <constant>
+            <constant-name>postalCode</constant-name>
+            <constant-value>^\d{5}\d*$</constant-value>
+        </constant>
+        end example-->
+
+    </global>
+
+    <!-- Add Validation into JSP page in ValidationEx_2 application -->
+    <formset>
+        <form name="RegisterForm" >
+            <field property="name" depends="required">
+                <arg0 key="RegisterForm.name" />
+            </field>
+
+            <field property="number" depends="required,minlength">
+                <arg0 key="RegisterForm.number" />
+                <arg1 key="${var:minlength}" name="minlength" resource="false" />
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>9</var-value>
+                </var>
+            </field>
+
+            <field property="age" depends="required,intRange">
+                <arg0 key="RegisterForm.age" />
+                <arg1 key="${var:min}" name="intRange" resource="false" />
+                <arg2 key="${var:max}" name="intRange" resource="false" />
+                <var>
+                    <var-name>min</var-name>
+                    <var-value>11</var-value>
+                </var>
+                 <var>
+                    <var-name>max</var-name>
+                    <var-value>60</var-value>
+                </var>
+            </field>
+
+            <field property="email" depends="required,email" >
+                <arg0 key="RegisterForm.email" />
+                <arg1 key="${var:email}" name="email" resource="false" />
+                <var>
+                    <var-name>email</var-name>
+                    <var-value>^([a-bA-B0_9]*@([A-Za-b0-9])+(\\.com)||(\\.net)||(\\.co.in)$)</var-value>
+                </var>
+            </field>
+
+            <field property="gender" depends="required" >
+                <arg0 key="RegisterForm.gender" />
+            </field>
+        </form>
+    </formset>
+
+</form-validation>

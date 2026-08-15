@@ -1,0 +1,126 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+
+<HTML><HEAD><TITLE>C tutorial on String</TITLE>
+
+<META content=r4r.co.in name=owner>
+
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+
+<meta name="description" CONTENT="Learn about String Definition in C,Null-terminated String,Declaring String,Declaring a string in two ways,Looping Through a String,Passing a String to Function,Pointers,Array,Storage class,Loops,Functions,Data types,C constants,Union,Preprocessor,C interview questions and answers">
+
+<meta name="keywords" CONTENT="String Definition in C,Null-terminated String,Declaring String,Declaring a string in two ways,Looping Through a String,Passing a String to Function,Pointers,Array,Storage class,Loops,Functions,Data types,C constants,Union,Preprocessor,C interview questions and answers">
+
+<META content="Rajesh Kumar" name=author>
+
+<META http-equiv="expires" content="0"> 
+
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+     <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>C Programming language</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a><img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/c/">C </a>
+              <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/c/basic_tutorials/01/">Learn C in 15 days</a></div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/c/commonfiles/leftmenu.shtml'); ?></td>
+
+                       <td style="80%" valign="top">
+                        <div class="main_content">
+
+	<!-- Header End-->	
+
+     <div class="heading">String in C</div> 
+    <table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="structure4.shtml" title="Structure in C: Example">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="dma1.shtml" title="Dynamic Memory Allocation in C: Introduction and Example">Next</a></td>
+  </tr>
+</table>	
+
+<h2>String Definition </h2>
+<p>does not have a string type as other modern programming languages. C only has character type so a C string is defined as an array of characters or a pointer to characters.</p>
+
+<h2>Null-terminated String</h2>
+<p>String is terminated by a special character which is called as null terminator or null parameter (/0). So when you define a string you should be sure to have sufficient space for the null terminator. In ASCII table, the null terminator has value 0.</p>
+
+<h2>Declaring String</h2>
+<p>As in string definition, we have two ways to declare a string.</p>
+<p>The first way is, we declare an array of characters as follows:</p>
+<div class="code">
+<PRE>
+<FONT COLOR="#800080">1</FONT><FONT COLOR="#000000">. </FONT><FONT COLOR="#0000ff">char </FONT><FONT COLOR="#000000">s[] = </FONT><FONT COLOR="#ff00ff">"string"</FONT><FONT COLOR="#000000">; </FONT>
+</PRE>
+</div>
+
+<p>And in the second way, we declare a string as a pointer point to characters:</p>
+<div class="code">
+<PRE>
+<FONT COLOR="#800080">1</FONT><FONT COLOR="#000000">. </FONT><FONT COLOR="#0000ff">char</FONT><FONT COLOR="#000000">* s = </FONT><FONT COLOR="#ff00ff">"string"</FONT><FONT COLOR="#000000">;</FONT>
+</PRE>
+</div>
+
+<h2>Declaring a string in two ways</h2>
+<p>looks similar but they are actually different. In the first way, you declare a string as an array of character, the size of string is 7 bytes including a null terminator. But in the second way, the compiler will allocate memory space for the string and the base address of the string is assigned to the pointer variables.</p>
+
+<h2>Looping Through a String</h2>
+<p>loop through a string by using a subscript.</p>
+<div class="code">
+<PRE>
+<FONT COLOR="#0000ff">char </FONT><FONT COLOR="#000000">s[] = </FONT><FONT COLOR="#ff00ff">"C string"</FONT><FONT COLOR="#000000">;</FONT>
+<FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">i;</FONT>
+<FONT COLOR="#0000ff">for</FONT><FONT COLOR="#000000">(i = </FONT><FONT COLOR="#800080">0</FONT><FONT COLOR="#000000">; i &lt; sizeof(s);i++)</FONT>
+<FONT COLOR="#000000">{</FONT>
+<FONT COLOR="#000000">printf(</FONT><FONT COLOR="#ff00ff">"%c"</FONT><FONT COLOR="#000000">,s[i]); </FONT>
+</PRE>
+</div>
+
+<p>You can also use a pointer to loop through a string. You use a char pointer and point it to the first location of the string, then you iterate it until the null terminator reached.</p>
+<p>loop through a string using a pointer.</p>
+<div class="code">
+<PRE>
+<FONT COLOR="#0000ff">char</FONT><FONT COLOR="#000000">* ps = s;</FONT>
+<FONT COLOR="#0000ff">while</FONT><FONT COLOR="#000000">(*ps != </FONT><FONT COLOR="#ff00ff">'\0'</FONT><FONT COLOR="#000000">){</FONT>
+<FONT COLOR="#000000">printf(</FONT><FONT COLOR="#ff00ff">"%c"</FONT><FONT COLOR="#000000">,*ps);</FONT>
+<FONT COLOR="#000000">ps++;</FONT>
+<FONT COLOR="#000000">} </FONT>
+</PRE>
+</div>
+
+<h2>Passing a String to Function</h2>
+<p>A formal way to pass a string to a function is passing it as a normal array.</p>
+
+ <table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="structure4.shtml" title="Structure in C: Example">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="dma1.shtml" title="Dynamic Memory Allocation in C: Introduction and Example">Next</a></td>
+  </tr>
+</table>	
+
+<!--Footer  --> 
+</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>

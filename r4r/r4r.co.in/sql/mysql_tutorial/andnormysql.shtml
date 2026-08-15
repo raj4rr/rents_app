@@ -1,0 +1,197 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http:///www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML>
+	<HEAD>
+
+	<meta http-equiv="Content-Language" content="en-us">
+	<TITLE>AND and OR in MySQL</TITLE>
+		<META content="Rajesh Kumar" name="author">
+		<META http-equiv="expires" content="0">
+		<META content="r4r.co.in" name="owner">
+		<META http-equiv=Content-Type content="text/html; charset=windows-1252">
+		<meta name="description" CONTENT="AND and OR in MySQL-Learn mysql with r4r tutorial provides you sql tutorial from basic level concept to higher 
+		level concept sql interview questions and sql examples">
+		<meta name="keywords" CONTENT="AND and OR in MySQL,Introduction Of ,Start with  Server ,Syntax In  ,Select In ,Distinct In  ,Where In ,And & Or In ,Order By In ,Insert Into
+ In ,Update In ,Delete In ,Injection In ,Select Limit In ,Like In ,Wildcards">
+
+	<!-- header start-->	
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>MySQL </h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+			<img src="/images/left_menu_bullet.gif" width="11" height="6"><a href="/sql/mysql_tutorial/">MySQL</a>
+
+              </div>
+
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/sql/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	 
+
+<div class="heading">And and Or in MySQL</div>
+
+<table id="indexing">
+	<tr>
+	<td style="width:33%; text-align:left;"><a href="whemysql.shtml" title="Where in MySQL">Previous</a></td>
+	<td style="width:34%; text-align:center"><a href="index.shtml" title="Home">Home</a></td>
+	<td style="width:33%; text-align:right"><a href="odrbymysql.shtml" title="OrderBy in MySQL">Next</a></td>
+	</tr>
+</table>
+
+<h3>And </h3>
+<p>This can be used as dependently with where clause commands. And keyword can be used where we need to satisfy more than one condition or atleast two 
+conditions(options) simultaneously need to satisfy within a command to get the desired output.
+Syntax of And with Where clause</p>
+<div class="code">
+<pre>
+SELECTexpressions
+FROMtables
+WHEREcolumnname optionalvalue1 
+AND column optionalvalue2;
+</pre>
+</div>
+
+<p>so lets see some examples given below while using the previous database and its tables.</p>
+<p><h3>Example</h3></p>
+<div class="code">
+<pre>
+<font color="#000000">SELECT * </font>					//show all values
+<font color="#000000">FROM studadr</font>					//studadr is a tablename
+<font color="#000000">WHERE  country='India' </font>				//AND condition is given
+<font color="#000000">AND locatn ='central' ;</font>
+</pre>
+</div>
+
+<p><h3>output become</h3></p>
+<div class="output"><div class="image"><img src="images/andnor1.gif"></div></div>
+<p><h3>Note:</h3> In the above code both optional value should lie in same row if they are in
+different row then no output will be shown as below.</p>
+<p><h3>Example</h3></p>
+<div class="code">
+<pre>
+<font color="#000000">SELECT * </font>					//show all values
+<font color="#000000">FROM studadr</font>					//studadr is a tablename
+<font color="#000000">WHERE  street = 'laxminagar'</font> 			//Both condition not satisfy	
+<font color="#000000">AND locatn = 'central' ;</font>			
+</pre>
+</div>
+
+<p><h3>output become</h3></p>
+<div class="output"><div class="image"><img src="images/andnor2.gif"></div></div>
+
+<h3>Or</h3>
+<p>This also can be used as dependently with where clause commands.</p>
+<p>Or keyword can be used where we need to satisfy any of one condition from minimum of 
+two conditions simultaneously within a command. Syntax of Or with Where clause is define below</p>
+<ul><li>SELECTexpressions</li>
+<li>FROMtables</li>
+<li>WHEREcolumnname optionalvalue1 or column optionalvalue2;</li></ul>
+
+<p><h3>Example</h3></p>
+<div class="code">
+<pre>
+<font color="#000000">SELECT *</font>					//all values show
+<font color="#000000">FROM studadr</font>					//studadr is a tablename
+<font color="#000000">WHERE locatn = 'central' </font>
+<font color="#000000">OR country = 'india' ;</font>				//OR conditions is given
+</pre>
+</div>
+<p><h3>output become</h3></p>
+<div class="output"><div class="image"><img src="images/andnor3.gif"></div></div>
+
+<p><h3>Note:</h3> In the above example we wrote two different column value and 
+output will print on the basis of its each condition.</p>
+
+<p><h3>Example</h3> Another example of different variations in conditions.</p>
+<div class="code">
+<pre>
+<font color="#000000">SELECT * </font>					//all value show
+<font color="#000000">FROM studadr</font>					//studadr is a tablename
+<font color="#000000">WHERE  locatn = 'central'</font> 
+<font color="#000000">OR locatn = 'saket';</font>				//any condition need to follow
+</pre>
+</div>
+
+<p><h3>output become</h3></p>
+<div class="output"><div class="image"><img src="images/andnor4.gif"></div></div>
+
+<p><h3>Example</h3></p>
+<div class="code">
+<pre>
+<font color="#000000">SELECT * </font>					//show all values
+<font color="#000000">FROM studadr</font>					//studadr is a tablename
+<font color="#000000">WHERE locatn='central'</font>				//any conditions write here
+<font color="#000000">OR aid &gt; 107</font>
+</pre>
+</div>
+
+<p><h3>output become</h3></p>
+<div class="output"><div class="image"><img src="images/andnor5.gif"></div></div>
+
+<h3>Combination of And and Or within Where clause</h3>
+<p>Here we have define some example of combination of both condition in where clause.
+
+<p><h3>Example</h3></p>
+<div class="code">
+<pre>
+<font color="#000000">SELECT *</font>					//show all values
+<font color="#000000">FROM studadr</font>					//studadr is a tablename
+<font color="#000000">WHERE  locatn='central' </font>
+<font color="#000000">AND ( country ='pakistan'</font> 
+<font color="#000000">OR country = 'india' );</font>				//both condition is written here
+</pre>
+</div>
+
+<p><h3>output become</h3></p>
+<div class="output"><div class="image"><img src="images/andnor6.gif"></div></div>
+
+<p><h3>Example</h3>Or vice-versa can be done</p>
+<div class="code">
+<pre>
+<font color="#000000">SELECT *</font>					//show all values
+<font color="#000000">FROM studadr</font>				//studadr is a table name
+<font color="#000000">WHERE locatn='central' </font>			//condition specified
+<font color="#000000">OR ( country = 'india'</font>
+<font color="#000000"> AND country = 'pakistan')</font>
+</pre>
+</div>
+
+<p><h3>Note</h3> It gives the similar output as given by previous example, but it will show desire 
+result according to the optional value or conditions specified.</p>
+
+<table id="indexing">
+	<tr>
+	<td style="width:33%; text-align:left;"><a href="whemysql.shtml" title="Where in MySQL">Previous</a></td>
+	<td style="width:34%; text-align:center"><a href="index.shtml" title="Home">Home</a></td>
+	<td style="width:33%; text-align:right"><a href="odrbymysql.shtml" title="OrderBy in MySQL">Next</a></td>
+	</tr>
+</table>
+
+		</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->

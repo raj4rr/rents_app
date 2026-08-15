@@ -1,0 +1,493 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<HTML><HEAD><TITLE>Update data form the database table using Hibernate|Hibernate Exmaples</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv="content-type" content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="Hibernate Update data form the database table using Hibernate tutorial learn easily and shortly with hibernate tutorial,hibernate
+Examples,hibernate interview questions Step by step covers all topics of hibernate" >
+<meta name="keywords" CONTENT="Hibernate tutorial, Hibernate Examples, object relation mapping(ORM), 
+hibernate query language(HQl), Presistent classes">
+
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<META http-equiv="Content-Language" content="en-us">
+<link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+<link href="/css/main.css" rel="stylesheet" type="text/css" />
+</HEAD>
+<BODY>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>Hibernate</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+            <img src="/images/left_menu_bullet.gif"/> <a href="/java/hibernate/">Hibernate</a>
+             </div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top">
+                            <?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/hibernate/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                       <div class="main_content">  	 
+
+      <div class="heading">Update data form the database table using Hibernate and jsp page</div>
+
+      <table id="indexing">
+
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="example8.shtml" title="Fetch Data from Database">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="example10.shtml" title="Delete Data from Database">Next</a></td>
+  </tr> 
+</table>
+      <p>
+          In the session of the Hibernate and struts2 integration tutorial we will learn how to Update 
+          data from the table using User Interfaces. Struts support the all operation which we want to 
+          perform. It can understand using the small example on the struts integration with Hibernate. 
+          For making the application we need to remember the all concept of hibernate and struts also 
+          then we can integrate together the all fame work. For making on this application we need to 
+          go through the some basic step which is discussed below:
+      </p>
+      <p>
+          For making these type of application we need to use anyIDE like as netbeans or it can be 
+          eclipse. Database will used here for both mysql.
+      </p>
+      <p>
+          Step 1. First of all we take a simple Project in the Netbeans. First i would recommend to go 
+          in the Meny Bar -> the select to New Project (shift+ctrl+n) and follow the step and put the 
+          required name as we want to use of our application We will use here Struts2_Update application 
+          name and then if we you have install the struts framework into the struts the you can select 
+          other wise click on finish. later you will need to add the jar library of the struts famework. 
+          Link to download the application framework jar click here.Download jar file of this Framework
+      </p>
+      <p>
+          Step 2. Now first of all we need to a database and a table also will be in that data which 
+          have data into that table. Because without data into the table we can't perform the action 
+          which we want to use. That table data will be fetched on the jsp page for performing the 
+          action.
+      </p>
+      <p>
+          Step 3. Create a database into the mysql database other wise we can use a single database 
+          which we have created as before.
+      </p>
+      <div class="code">
+          <pre><code class="language-java">
+create database R4R_Database;
+use database R4R_Database;
+</code></pre>
+      </div>
+      <p>Step 4. Create table inside the database.</p>
+      <div class="code">
+          <pre><code class="language-sql">
+create table UpdateData
+(
+id int(4) primary key,
+fname varchar(50),
+lname varchar(50),
+email varchar(50),
+addr varchar(50)
+);
+</code></pre>
+      </div>
+      <p>
+          Above given table we will use in first for fetching the database stored into the table. 
+          Now we manually insert the data into the database.
+      </p>
+
+      <div class="code">
+          <pre><code class="language-java">
+insert into UpdateData values(1,'Rahul','kumar','rahl@test.com','ghaziabad');
+</code></pre>
+      </div>
+      <p>the above query we will use to insert data into the table.</p>
+      <p>
+          Step 5. Here we will design that page which first fetch table data into the jsp page then 
+          we will perform our action using struts.xml mapping file.
+      </p>
+      <h3>FetchData.jsp</h3>
+      <div class="code">
+         <pre><code class="language-java">
+ &lt;%@taglib uri="/struts-tags" prefix="s"%&gt;
+&lt;%@ page import="java.util.*,R4R_Pojo.MyBean" %&gt;
+&lt;% MyBean b; %&gt;
+&lt;body bgcolor="lightyellow"&gt;
+&lt;center&gt;
+    &lt;h1&gt;Struts2 Show The Fetch Record Without Action Using Hibernate Example&lt;/h1&gt;
+&lt;table width="1000" border="1"&gt;
+&lt;tr&gt;&lt;td&gt;&lt;b&gt;SNO&lt;/b&gt;&lt;/td&gt;&lt;td&gt;&lt;b&gt;SName&lt;/b&gt;&lt;/td&gt;&lt;td&gt;&lt;b&gt;Country&lt;/b&gt;&lt;/td&gt;&lt;td&gt;&lt;b&gt;Operation&lt;/b&gt;&lt;/td&gt;&lt;/tr&gt;
+
+&lt;% 
+List l=(List)request.getAttribute("rec");
+if(l!=null)
+{
+	Iterator it=l.iterator();
+
+	while(it.hasNext())
+	{		
+		b=(R4R_Pojo.MyBean)it.next();
+
+%&gt;
+&lt;tr&gt;&lt;td&gt;&lt;%= b.getSno() %&gt;&lt;/td&gt;&lt;td&gt;&lt;%= b.getSname() %&gt;&lt;/td&gt;&lt;td&gt;&lt;%= b.getScountry() %&gt;
+	&lt;/td&gt;&lt;td&gt;&lt;a href=update.action?fid=&lt;%= b.getSno() %&gt;&gt;Click Here for Update&lt;/a&gt;&lt;/tr&gt; 
+
+&lt;% 		
+
+	}	
+}
+
+%&gt; 
+
+&lt;/table&gt;
+&lt;/center&gt;
+&lt;/body&gt;
+</code></pre>
+      </div>
+<h3>index.jsp</h3>  
+<div class="code">
+    <pre><code class="language-java">
+&lt;%@ taglib prefix="s" uri="/struts-tags" %&gt;
+&lt;META HTTP-EQUIV="Refresh" CONTENT="1;URL=verify.action"&gt;
+</code></pre>
+</div>   
+<h3>Success.jsp</h3>
+<div class="code">
+   <pre><code class="language-java">
+ &lt;%@ taglib prefix="s" uri="/struts-tags" %&gt;
+
+Executed successfully....!!!!!
+&lt;META HTTP-EQUIV="Refresh" CONTENT="1;URL=verify.action"&gt;
+</code></pre>
+</div>
+    <h3>EditIntoTable.jsp</h3>   
+    <div class="code">
+        <pre><code class="language-java">
+&lt;%@ taglib prefix="s" uri="/struts-tags" %&gt;
+&lt;%@ page import="java.util.*;" %&gt;
+
+&lt;html&gt;
+
+&lt;body bgcolor="lightyellow"&gt;
+&lt;center&gt;
+&lt;s:form action="updateRecInDB" method="post" name="fom"&gt; 	
+    &lt;table bgcolor="pink"&gt;
+    &lt;h1&gt;Struts2 Show The Fetch Record With Delete Action Using Hibernate Example&lt;/h1&gt;
+&lt;tr&gt;&lt;td&gt;
+
+			&lt;s:textfield label="Number" value="%{#application.x}" readonly="true" name="b.sno" /&gt;
+			&lt;s:textfield label="Name" value="%{#application.y}" name="b.sname"/&gt;
+			&lt;s:textfield label="Country" value="%{#application.z}" name="b.scountry"/&gt;
+
+&lt;s:submit value="Update" /&gt;
+
+&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;/table&gt;    
+
+&lt;/s:form&gt;
+&lt;/center&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+    </div> 
+<p>
+    Step 6. Now we will attatch the hibernate configuration the connectivity of database. For this we 
+    need to go into the File menu wizard then select new file and search to hibernate and click on 
+    hibernate configuration file and click next and now here select the your database if now showing 
+    in the list then click on new connection and here write the name of your database and click on finish.
+</p> 
+<h3>hibernate cfg file code</h3>
+<p>Instead of using legacy <code>.hbm.xml</code> mapping files, map the entity directly using JPA annotations like <code>@Entity</code> and <code>@Table</code>.</p>
+<h3>MyBean.java</h3>  
+<div class="code">
+    <pre><code class="language-java">
+package R4R_Pojo;
+// Generated 23 Feb, 2015 8:19:58 PM by Hibernate Tools 4.3.1
+/**
+ * MyBean generated by hbm2java
+ */
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="MyBean")
+public class MyBean  implements java.io.Serializable {
+     private int sno;
+     private String sname;
+     private String scountry;
+    public MyBean() {
+    }
+    public MyBean(int sno) {
+        this.sno = sno;
+    }
+    public MyBean(int sno, String sname, String scountry) {
+       this.sno = sno;
+       this.sname = sname;
+       this.scountry = scountry;
+    }
+    public int getSno() {
+        return this.sno;
+    }
+    public void setSno(int sno) {
+        this.sno = sno;
+    }
+    public String getSname() {
+        return this.sname;
+    }
+    public void setSname(String sname) {
+        this.sname = sname;
+    }
+    public String getScountry() {
+        return this.scountry;
+    }
+    public void setScountry(String scountry) {
+        this.scountry = scountry;
+    }
+}
+</code></pre>
+</div>
+<p>
+    Step 10. Now we need to take an another java class for performing the action. 
+    For this we need to go into the File menu wizard then select new file and search 
+    to java and click on java class file put the required name and select package and 
+    click on finish.
+</p>
+<h3>ApplicationController.java</h3> 
+<div class="code">
+   <pre><code class="language-java">
+ /*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package R4R_Dao;
+
+/**
+ *
+ * @author sarvesh
+ */
+import static com.opensymphony.xwork2.Action.SUCCESS;
+import java.util.List;
+import java.util.Map;
+import javax.servlet.http.HttpServletRequest;
+import org.apache.struts2.interceptor.ApplicationAware;
+import org.apache.struts2.interceptor.ServletRequestAware;
+import com.opensymphony.xwork2.ActionSupport;
+import R4R_Pojo.MyBean;
+import java.util.Iterator;
+
+public class ApplicationController extends ActionSupport implements ServletRequestAware,ApplicationAware{	
+	private static final long serialVersionUID = 1L;
+	ApplicationMainOperation ma = new ApplicationMainOperation();	
+	private List&lt;MyBean&gt; recordsFromDB;
+        MyBean b;
+    public MyBean getB() {
+		return b;
+	}
+	public void setB(MyBean b) {
+		this.b = b;
+	}
+
+    //For RequestAware Interface
+	HttpServletRequest request;	
+        @Override
+	public void setServletRequest(HttpServletRequest request) {
+        this.request = request;
+    }
+    public HttpServletRequest getServletRequest() {
+        return request;
+    }	
+
+    //For Bean, while selecting..
+	public List&lt;MyBean&gt; getRecordsFromDB()
+	{
+		  return this.recordsFromDB;
+	}		
+	// for ApplicationAware Interface
+	Map m;
+        @Override
+    public void setApplication(Map m)
+	{
+		this.m=m;
+	} 
+
+    // *******     For select query  ********
+	public String getRecords()
+	{
+
+		recordsFromDB = ma.retrieveRecords();
+		request.setAttribute("rec", recordsFromDB);
+		return SUCCESS;
+	}
+         public String getRecordToUpdate()
+	{		
+		recordsFromDB = ma.retrieveRecord(request.getParameter("fid"));		
+
+		Iterator&lt;MyBean&gt; it = recordsFromDB.iterator();
+		while(it.hasNext())
+		{			
+			   Object o = it.next();
+			   b = (MyBean)o;			
+		}		
+
+		        m.put("x",b.getSno());
+			m.put("y", b.getSname());
+			m.put("z",b.getScountry());
+
+		return SUCCESS;
+	}
+	  public String updateRec()
+	{			
+		ma.upRecord(b);			
+		return SUCCESS;
+	}      
+}
+</code></pre>
+</div>
+<h3>ApplicationMainOperation.java</h3>
+<div class="code">
+   <pre><code class="language-java">
+ /*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package R4R_Dao;
+
+/**
+ *
+ * @author sarvesh
+ */
+import java.util.List;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import R4R_Pojo.MyBean;
+import org.hibernate.Query;
+import org.hibernate.Transaction;
+public class ApplicationMainOperation{	
+
+    SessionFactory factory = HibernatePlug.getFactory();
+	Session session = factory.openSession();		
+	MyBean p;
+	List recList = null;
+
+	public List retrieveRecords() {	
+
+		recList = (List&lt;MyBean&gt;) session.createQuery("from MyBean b").list();		
+		System.out.println("got size"+recList.size());		
+		return recList;
+	}
+	public List retrieveRecord(String val) {		
+		  recList = (List&lt;MyBean&gt;) session.createQuery("from MyBean b where b.sno="+val).list();		
+			System.out.println("got size"+recList.size());	
+		  return recList;				
+		}
+        public void upRecord(MyBean p) {			
+		 Transaction tx = session.beginTransaction();	
+		    Query qry = session.createQuery("update MyBean b set b.sname=?, b.scountry=? where b.sno="+p.getSno());			
+		    qry.setParameter(0,p.getSname());
+		    qry.setParameter(1,p.getScountry());
+            qry.executeUpdate();
+            System.out.println("Object updated successfully...");
+	     tx.commit();				
+	}
+
+}
+</code></pre>
+</div>
+<h3>HibernatePlug.java</h3>
+<div class="code">
+   <pre><code class="language-java">
+ package R4R_Dao;
+import org.hibernate.SessionFactory;
+import org.hibernate.cfg.Configuration;
+
+public class HibernatePlug 
+{
+    private static final SessionFactory factory = getSessionFactory();
+    public static synchronized SessionFactory getSessionFactory() 
+     {		
+	try {					    
+	       Configuration cfg = new Configuration();
+	       cfg.configure("hibernate.cfg.xml"); 
+		SessionFactory sessionFactory = cfg.buildSessionFactory();
+	    	System.out.println(" ----------   Factory Object Created  ------------");
+	        return sessionFactory;
+	      }catch (Throwable ex) 
+                {
+
+                  System.err.println("Initial SessionFactory creation failed." + ex);
+		   throw new ExceptionInInitializerError(ex);
+		}
+	  }
+
+	public static SessionFactory getFactory() {
+		return factory;
+	}
+
+}
+</code></pre>
+</div>
+<p>Step 11. Now we need to configure action of the application in the struts.xml file. 
+    if should be always in default package.
+</p>
+<h3>code of strust.xml file</h3>
+<div class="code">
+    <pre><code class="language-java">
+&lt;!DOCTYPE struts PUBLIC
+"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+"http://struts.apache.org/dtds/struts-2.0.dtd"&gt;
+
+&lt;struts&gt;
+    &lt;include file="example.xml"/&gt;
+    &lt;!-- Configuration for the default package. --&gt;
+    &lt;package name="default" extends="struts-default"&gt;
+        &lt;action name="verify" class="R4R_Dao.ApplicationController" method="getRecords"&gt;
+            &lt;result name="success"&gt;/FetchData.jsp&lt;/result&gt;
+            &lt;result name="error"&gt;/Error.jsp&lt;/result&gt;
+        &lt;/action&gt;
+        &lt;action name="update" class="R4R_Dao.ApplicationController" method="getRecordToUpdate"&gt;
+            &lt;result name="success"&gt;/EditIntoTable.jsp&lt;/result&gt;
+            &lt;result name="error"&gt;/Error.jsp&lt;/result&gt;
+        &lt;/action&gt;
+        &lt;action name="updateRecInDB" class="R4R_Dao.ApplicationController" method="updateRec"&gt;
+            &lt;result name="success"&gt;/Success.jsp&lt;/result&gt;
+            &lt;result name="error"&gt;/Error.jsp&lt;/result&gt;
+        &lt;/action&gt;
+    &lt;/package&gt;
+&lt;/struts&gt;
+</code></pre>
+</div>
+<p>Step 12. Now build the application and run the application.</p>
+  <table id="indexing">
+
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="example8.shtml" title="Fetch Data from Database">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="example10.shtml" title="Delete Data from Database">Next</a></td>
+  </tr> 
+</table>
+
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+
+                <?php @include($_SERVER['DOCUMENT_ROOT'] . '/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>

@@ -1,0 +1,439 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>The ListView Control,ListView Control Property,ListView Methods,ListViewItem,Example of Listview Control</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="The ListView Control,ListView Control Property,ListView Methods,ListViewItem,Example of Listview Control" >
+<meta name="keywords" CONTENT="The ListView Control,ListView Control Property,ListView Methods,ListViewItem,Example of Listview Control">
+
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+     <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>C# Tutorial</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a><img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/c1/">C#</a>
+
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/c1/commonfiles/leftmenu.shtml'); ?></td>
+
+                       <td style="80%" valign="top">
+                        <div class="main_content"> 
+
+	<!-- Header End-->
+
+  <div class="heading">Listview Control</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="ComboBox.shtml" title="ComboBox Controls">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="StatusBar.shtml" title="StatusBar Control">Next</a></td>
+  </tr>
+</table>
+<p>The list from which you select files to open in the standard dialog boxes in Windows is a ListView control Everything you
+ can do to the view in the standard list view dialog (large icons, details view, and so on). The list view is usually used to 
+ present data where the user is allowed some control over the detail and style of the presentation.</p>
+ <p>It is possible to display the data contained in the control as columns and rows much like in a grid, as a single column or 
+ in with varying icon representations. The most commonly used list view is like the one seen above which is used to navigate
+ the folders on a computer.</p>
+ <h3>ListView Control Property </h3>
+  <div class="table_content">
+ <table>
+ <tr>
+ <td class="heading" style="width:15%;">Name</td>
+ <td class="heading" style="width:15%;">Availability</td>
+ <td class="heading" style="width:70%;">Description</td>
+ </tr>
+ <tr>
+ <td class="alternate_heading2">Activation</td><td class="alternate_heading2">  Read/Write</td><td class="alternate_heading2"> 
+ By using this property, you can control how a user activates an item in the list view. You should not change the default 
+ setting unless you have a good reason for doing so, because you will be altering a setting that the user have set for his or
+  her entire system. The possible values are: Standard: This setting is that which the user has chosen for his or her machine.
+<ul><li><i>OneClick:</i> Clicking an item activates it.</li>
+<li><i>TwoClick:</i> Double-clicking an item activates it.</li></ul></td></tr>
+ <tr><td class="alternate_heading1">Alignment</td><td class="alternate_heading1">  Read/Write</td><td class="alternate_heading1">
+ his property allows you to control how the items in the list view are aligned. The four possible values are:
+<ol><li><i>Default:</i> If the user drags and drops an item it remains where he or she dropped it.</li>
+<li><i>Left:</i> Items are aligned to the left edge of the ListView control.</li>
+<li><i>Top:</i> Items are aligned to the top edge of the ListView control.</li>
+<li><i>SnapToGrid:</i> The ListView control contains an invisible grid to which the items will snap.</li><ol></td></tr>
+ <tr><td class="alternate_heading2">AllowColumn Reorder</td><td class="alternate_heading2"> Read/Write</td><td class="alternate_heading2">If you set this property to true, items will automatically arrange themselves according to the Alignment property. If the user drags an item to the center of the list view, and Alignment is Left, then the item will automatically jump to the left of the list view. This property is only meaningful if the View property is LargeIcon or SmallIcon.</td></tr>
+ <tr><td class="alternate_heading1">AutoArrange</td><td class="alternate_heading1"> Read/Write</td><td class="alternate_heading1">If you set this property to true, items will automatically arrange themselves according to the Alignment property. If the user drags an item to the center of the list view, and Alignment is Left, then the item will automatically jump to the left of the list view. This property is only meaningful if the View property is LargeIcon or SmallIcon.</td></tr>
+ <tr><td class="alternate_heading2">CheckBoxes</td><td class="alternate_heading2"> Read/Write</td><td class="alternate_heading2">If you set this property to true, every item in the list view will have a CheckBox displayed to the left of it. This property is only meaningful if the View property is Details or List.</td></tr>
+ <tr><td class="alternate_heading1">CheckedIndices CheckedItems</td><td class="alternate_heading1"> Read-only</td><td class="alternate_heading1">These two properties gives you access to a collection of indices and items, respectively, containing the checked items in the list.</td> </tr>
+ <tr><td class="alternate_heading2">Columns</td><td class="alternate_heading2"> Read-only</td><td class="alternate_heading2">A list view can contain columns. This property gives you access to the collection of columns through which you can add or remove columns.</td> </tr>
+ <tr><td class="alternate_heading1">FocusedItem</td><td class="alternate_heading1">  Read-only</td><td class="alternate_heading1">This property holds the item that has focus in the list view. If nothing is selected, it is null.</td> </tr>
+ <tr><td class="alternate_heading2">FullRowSelect</td><td class="alternate_heading2">  Read/Write</td><td class="alternate_heading2"> When this property is true, and an item is clicked, the entire row in which the item resides will be highlighted. If it is false, only the item itself will be highlighted.</td> </tr>
+ <tr><td class="alternate_heading1">GridLines</td><td class="alternate_heading1"> Read/Write</td><td class="alternate_heading1"> Setting this property to true will cause the list view to draw grid lines between rows and columns. This property is only meaningful when the View property is Details.</td></tr>
+  <tr><td class="alternate_heading2">HeaderStyle</td><td class="alternate_heading2"> Read/Write</td><td class="alternate_heading2">You can control how the column headers are displayed. There are three styles:
+<ol><li><i>Clickable:</i> The column header works like a button.</li>
+<li><i>NonClickable:</i> The column headers do not respond to mouse clicks.</li>
+<li><i>None:</i> The column headers are not displayed.</li></ol></td> </tr></td> </tr>
+  <tr><td class="alternate_heading1">HoverSelection</td><td class="alternate_heading1"> Read/Write</td><td class="alternate_heading1">When this property is true, the user can select an item in the list view by hovering the mouse pointer over it.</td> </tr>
+ <tr><td class="alternate_heading2">Items</td><td class="alternate_heading2"> Read-only</td><td class="alternate_heading2">The collection of items in the list view.</td> </tr>
+ <tr><td class="alternate_heading1">LabelEdit</td><td class="alternate_heading1"> Read/Write</td><td class="alternate_heading1">When this property is true, the user can edit the content of the first column in a Details view.</td> </tr>
+ <tr><td class="alternate_heading2">LabelWrap</td><td class="alternate_heading2"> Read/Write</td><td class="alternate_heading2">If this property is true, labels will wrap over as many lines is needed to display all of the text.</td> </tr>
+ <tr><td class="alternate_heading1">LargeImageList</td><td class="alternate_heading1"> Read/Write</td><td class="alternate_heading1">This property holds the ImageList, which holds large images. These images can be used when the View property is LargeIcon.</td> </tr>
+ <tr><td class="alternate_heading2">MultiSelect</td><td class="alternate_heading2"> Read/Write</td><td class="alternate_heading2">Set this property to true to allow the user to select multiple items.</td> </tr>
+ <tr><td class="alternate_heading1">SelectedIndices ,SelectedItems</td><td class="alternate_heading1"> Read-only</td><td class="alternate_heading1">These two properties contain the collections
+that hold the indices and items that are selected, respectively.</td> </tr>
+ <tr><td class="alternate_heading2">SmallImageList	</td><td class="alternate_heading2"> Read/Write</td><td class="alternate_heading2">When the View property is SmallIcon this property holds the ImageList that contain the images used.</td> </tr>
+ <tr><td class="alternate_heading1">Sorting</td><td class="alternate_heading1"> Read/Write</td><td class="alternate_heading1">
+You can allow the list view to sort the items it contains. There are three possible modes:
+<ol><li>Ascending</li>
+<li>Descending</li>
+<li>None</li></ol></td> </tr>
+ <tr><td class="alternate_heading2">StateImageList</td><td class="alternate_heading2"> Read/Write</td><td class="alternate_heading2">The ImageList contains masks for images that are used as overlays on the LargeImageList and SmallImageList images to represent custom states.</td> </tr>
+  <tr><td class="alternate_heading1">Scrollable</td><td class="alternate_heading1"> Read/Write</td><td class="alternate_heading1">Set this property to true to display scrollbars.</td> </tr>
+
+ <tr><td class="alternate_heading2">TopItem</td><td class="alternate_heading2"> Read-only</td><td class="alternate_heading2">Returns the item at the top of the list view.</td> </tr>
+ <tr><td class="alternate_heading1">View</td><td class="alternate_heading1"> Read/Write</td><td class="alternate_heading1">
+ list view can display its items in four different modes:
+<ol><li><i>LargeIcon:</i> All items are displayed with a large icon (32x32) and a label.</li>
+<li><i>SmallIcon:</i> All items are displayed with a small icon (16x16) and a label.</li>
+<li><i>List:</i> Only one column is displayed. That column can contain an icon and a label</li>
+<li><i>Details:</i> Any number of columns can be displayed. Only the first column can contain an icon.</li></ol>
+
+</td> </tr>
+ </table>
+ </div>
+ <div class="heading">ListView Methods</div>
+ <div class="table_content">
+ <table>
+ <tr>
+ <td class="heading" style="width:30%;">Name</td>
+ <td class="heading" style="width:60%;">Description</td>
+ </tr>
+ <tr>
+ <td class="alternate_heading2">BeginUpdate</td><td class="alternate_heading2">By calling this method, you tell the list view to stop drawing updates until EndUpdate is called. This is useful when you are inserting many items at once, because it stops the view from flickering and dramatically increases speed.</td></tr>
+ <tr><td class="alternate_heading1">Clear</td><td class="alternate_heading1">Clears the list view completely. All items and columns are removed.</td></tr>
+  <td class="alternate_heading2">EndUpdate</td><td class="alternate_heading2">Call this method after calling BeginUpdate. When you call this method, the list view will draw all of its items.</td></tr>
+ <td class="alternate_heading1">EnsureVisible</td><td class="alternate_heading1">When you call this method, the list view will scroll itself to make the item with the index you specified visible.</td></tr>
+  <td class="alternate_heading2">GetItemAt</td><td class="alternate_heading2">Returns the item at position x, y in the list view.</td></tr>
+</table>
+ </div>
+ <div class="heading">ListView Events</div>
+ <div class="table_content">
+ <table>
+ <tr>
+ <td class="heading" style="width:30%;">Name</td>
+ <td class="heading" style="width:60%;">Description</td>
+ </tr>
+ <tr>
+ <td class="alternate_heading2">AfterLabelEdit</td><td class="alternate_heading2">This event occurs after a label have been edited</td></tr>
+ <tr><td class="alternate_heading1">BeforeLabelEdit</td><td class="alternate_heading1">This event occurs before a user begins editing a label</td></tr>
+  <td class="alternate_heading2">ColumnClick</td><td class="alternate_heading2">This event occurs when a column is clicked</td></tr>
+ <td class="alternate_heading1">ItemActivate</td><td class="alternate_heading1">Occurs when an item is activated</td></tr>
+</table>
+</div>
+
+ <h3>ListViewItem</h3>
+ <p>The ListViewItem holds information such as text and the index of the icon to display. ListViewItems have a collection 
+ called SubItems that holds instances of another class, ListViewSubItem. These sub items are displayed if the ListView control
+  is in Details mode.</p>
+  <h3>ColumnHeader</h3>
+  <p>To make a list view display column headers, you add instances of a class called ColumnHeader to the Columns collection
+   of the ListView. ColumnHeaders provide a caption for the columns that can be displayed when the ListView is in Details 
+   mode.</p>
+ <h3>The ImageList Control</h3>
+ <p>The ImageList control provides a collection that can be used to store images that is used in other controls on your form.
+  You can store images of any size in an image list, but within each control every image must be of the same size. In the case 
+  of the ListView, which means that you need two ImageList controls to be able to display both large and small images.</p>
+  <h3>Example of Listview Control</h3>
+  <p>For using Listview Control make your window form design view like following image. And change controls property according 
+  to your choice. Take 2 listimage Control name as Large_Image and small_image and add images in that collection property 
+  and set large_image size 32X32.</p>
+  <div class="image">
+  <img src="images/listview4.JPG">
+  </div>
+  <p><h3>Example:-</h3> to write code on Form Loading for holding folders like below</p>
+
+  <div class="code">
+<pre>
+<font color="#0000ff">private </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Collections</font><font color="#000000">.</font><font color="#008080">Specialized</font><font color="#000000">.</font><font color="#808000">StringCollection </font><font color="#000000">folderCol;</font>
+<font color="#0000ff">public </font><font color="#000000">Form1() {</font>
+<font color="#000000">InitializeComponent();</font>
+<font color="#000000">}</font>
+
+<font color="#0000ff">private void </font><font color="#000000">Form1_Load(</font><font color="#0000ff">object </font><font color="#000000">sender, </font><font color="#808000">EventArgs </font><font color="#000000">e) {</font>
+<font color="#000000">folderCol = </font><font color="#0000ff">new </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Collections</font><font color="#000000">.</font><font color="#008080">Specialized</font><font color="#000000">.</font><font color="#808000">StringCollection</font><font color="#000000">();</font>
+<font color="#000000">CreateHeadersAndFillListView();</font>
+<font color="#000000">PaintListView(@</font><font color="#ff00ff">&quot;D:\&quot;);</font>
+<font color="#000000">folderCol.Add(@</font><font color="#ff00ff">&quot;D:\&quot;);</font>
+<font color="#0000ff">this</font><font color="#000000">.lwFilesAndFolders.ItemActivate += </font><font color="#0000ff">new </font><font color="#008080">System</font><font color="#000000">.EventHandler(</font>
+ <font color="#0000ff">this</font><font color="#000000">.lwFilesAndFolders_ItemActivate);</font>
+<font color="#000000">}</font>
+</pre>
+</div>
+
+ <p><h3>Example:-</h3>Code for Creating Header and ListView in ListView Control</p>
+ <div class="image">
+ <img src="images/listview3.JPG">
+ </div>
+ <div class="code">
+<pre>
+<font color="#0000ff">private void </font><font color="#000000">CreateHeadersAndFillListView() {</font>
+<font color="#808000">ColumnHeader </font><font color="#000000">colHead;</font>
+<font color="#008000">// First header</font>
+
+<font color="#000000">colHead = </font><font color="#0000ff">new </font><font color="#808000">ColumnHeader</font><font color="#000000">();</font>
+<font color="#000000">colHead.</font><font color="#008080">Text </font><font color="#000000">= </font><font color="#ff00ff">&quot;Filename&quot;</font><font color="#000000">;</font>
+<font color="#0000ff">this</font><font color="#000000">.lwFilesAndFolders.Columns.Add(colHead); </font>
+<font color="#008000">// Insert the header</font>
+
+<font color="#008000">// Second header</font>
+<font color="#000000">colHead = </font><font color="#0000ff">new </font><font color="#808000">ColumnHeader</font><font color="#000000">();</font>
+<font color="#000000">colHead.</font><font color="#008080">Text </font><font color="#000000">= </font><font color="#ff00ff">&quot;Size&quot;</font><font color="#000000">;</font>
+<font color="#0000ff">this</font><font color="#000000">.lwFilesAndFolders.Columns.Add(colHead); </font>
+<font color="#008000">// Insert the header</font>
+<font color="#008000">// Third header</font>
+
+<font color="#000000">colHead = </font><font color="#0000ff">new </font><font color="#808000">ColumnHeader</font><font color="#000000">();</font>
+<font color="#000000">colHead.</font><font color="#008080">Text </font><font color="#000000">= </font><font color="#ff00ff">&quot;Last accessed&quot;</font><font color="#000000">;</font>
+<font color="#0000ff">this</font><font color="#000000">.lwFilesAndFolders.Columns.Add(colHead); </font>
+<font color="#008000">// Insert the header</font>
+<font color="#000000">}</font>
+</pre>
+</div>
+
+<p><h3>Example:-</h3> Code for ListView</p>
+<div class="code">
+<pre>
+<font color="#0000ff">private void </font><font color="#000000">PaintListView(</font><font color="#0000ff">string </font><font color="#000000">root) {</font>
+<font color="#0000ff">try </font><font color="#000000">{</font>
+<font color="#008000">// Two local variables that is used to create </font>
+<font color="#008000">//the items to insert</font>
+
+<font color="#808000">ListViewItem </font><font color="#000000">lvi;</font>
+<font color="#808000">ListViewItem</font><font color="#000000">.ListViewSubItem lvsi;</font>
+
+<font color="#008000">// If there's no root folder, we can't insert anything</font>
+
+<font color="#0000ff">if </font><font color="#000000">(root.CompareTo(</font><font color="#ff00ff">&quot;&quot;</font><font color="#000000">) == </font><font color="#800080">0</font><font color="#000000">)</font>
+<font color="#0000ff">return</font><font color="#000000">;</font>
+
+<font color="#008000">// Get information about the root folder.</font>
+
+<font color="#008080">System</font><font color="#000000">.</font><font color="#008080">IO</font><font color="#000000">.</font><font color="#808000">DirectoryInfo </font><font color="#000000">dir = </font><font color="#0000ff">new </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">IO</font><font color="#000000">.</font><font color="#808000">DirectoryInfo</font><font color="#000000">(root);</font>
+
+<font color="#008000">// Retrieve the files and folders from </font>
+<font color="#008000">//the root folder.</font>
+
+<font color="#808000">DirectoryInfo</font><font color="#000000">[] dirs = dir.GetDirectories(); </font>
+<font color="#008000">// Folders</font>
+
+<font color="#808000">FileInfo</font><font color="#000000">[] files = dir.GetFiles();   </font>
+<font color="#008000">// Files</font>
+
+<font color="#008000">// Clear the ListView. Note that we call the Clear method on the</font>
+
+<font color="#008000">// Items collection rather than on the ListView itself.</font>
+
+<font color="#008000">// The Clear method of the ListView remove everything, </font>
+<font color="#008000">//including column</font>
+
+<font color="#008000">// headers, and we only want to remove the items from the view.</font>
+
+<font color="#0000ff">this</font><font color="#000000">.lwFilesAndFolders.Items.Clear();</font>
+
+<font color="#008000">// Set the label with the current path</font>
+
+<font color="#0000ff">this</font><font color="#000000">.lblCurrentPath.</font><font color="#008080">Text </font><font color="#000000">= root;</font>
+
+<font color="#008000">// Lock the ListView for updates</font>
+<font color="#0000ff">this</font><font color="#000000">.lwFilesAndFolders.BeginUpdate();</font>
+
+<font color="#008000">// Loop through all folders in the root folder and insert them</font>
+
+<font color="#0000ff">foreach </font><font color="#000000">(</font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">IO</font><font color="#000000">.</font><font color="#808000">DirectoryInfo </font><font color="#000000">di </font><font color="#0000ff">in </font><font color="#000000">dirs) {</font>
+<font color="#008000">// Create the main ListViewItem</font>
+
+<font color="#000000">lvi = </font><font color="#0000ff">new </font><font color="#808000">ListViewItem</font><font color="#000000">();</font>
+<font color="#000000">lvi.</font><font color="#008080">Text </font><font color="#000000">= di.Name; </font><font color="#008000">// Folder name</font>
+
+<font color="#000000">lvi.ImageIndex = </font><font color="#800080">0</font><font color="#000000">; </font><font color="#008000">// The folder icon has index 0</font>
+
+<font color="#000000">lvi.Tag = di.FullName; </font>
+<font color="#008000">// Set the tag to the qualified path of the folder</font>
+<font color="#008000">// Create the two ListViewSubItems.</font>
+
+<font color="#000000">lvsi = </font><font color="#0000ff">new </font><font color="#808000">ListViewItem</font><font color="#000000">.ListViewSubItem();</font>
+<font color="#000000">lvsi.</font><font color="#008080">Text </font><font color="#000000">= </font><font color="#ff00ff">&quot;&quot;</font><font color="#000000">; </font>
+<font color="#008000">// Size - a folder has no size and so this column</font>
+
+<font color="#008000">// is empty</font>
+
+<font color="#000000">lvi.SubItems.Add(lvsi); </font>
+<font color="#008000">// Add the sub item to the ListViewItem</font>
+
+<font color="#000000">lvsi = </font><font color="#0000ff">new </font><font color="#808000">ListViewItem</font><font color="#000000">.ListViewSubItem();</font>
+<font color="#000000">lvsi.</font><font color="#008080">Text </font><font color="#000000">= di.LastAccessTime.ToString(); </font>
+<font color="#008000">// Last accessed column</font>
+
+<font color="#000000">lvi.SubItems.Add(lvsi); </font>
+<font color="#008000">// Add the sub item to the ListViewItem</font>
+
+<font color="#008000">// Add the ListViewItem to the Items collection of </font>
+<font color="#008000">//the ListView</font>
+
+<font color="#0000ff">this</font><font color="#000000">.lwFilesAndFolders.Items.Add(lvi);</font>
+<font color="#000000">}</font>
+
+<font color="#008000">// Loop through all the files in the root folder</font>
+
+<font color="#0000ff">foreach </font><font color="#000000">(</font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">IO</font><font color="#000000">.</font><font color="#808000">FileInfo </font><font color="#000000">fi </font><font color="#0000ff">in </font><font color="#000000">files) {</font>
+<font color="#008000">// Create the main ListViewItem</font>
+
+<font color="#000000">lvi = </font><font color="#0000ff">new </font><font color="#808000">ListViewItem</font><font color="#000000">();</font>
+<font color="#000000">lvi.</font><font color="#008080">Text </font><font color="#000000">= fi.Name; </font><font color="#008000">// Filename</font>
+
+<font color="#000000">lvi.ImageIndex = </font><font color="#800080">1</font><font color="#000000">; </font><font color="#008000">// The icon we use to represent a folder has</font>
+
+<font color="#008000">// index 1</font>
+
+<font color="#000000">lvi.Tag = fi.FullName; </font>
+<font color="#008000">// Set the tag to the qualified path of the file</font>
+
+<font color="#008000">// Create the two sub items</font>
+
+<font color="#000000">lvsi = </font><font color="#0000ff">new </font><font color="#808000">ListViewItem</font><font color="#000000">.ListViewSubItem();</font>
+<font color="#000000">lvsi.</font><font color="#008080">Text </font><font color="#000000">= fi.Length.ToString(); </font><font color="#008000">// Length of the file</font>
+
+<font color="#000000">lvi.SubItems.Add(lvsi); </font>
+<font color="#008000">// Add to the SubItems collection</font>
+
+<font color="#000000">lvsi = </font><font color="#0000ff">new </font><font color="#808000">ListViewItem</font><font color="#000000">.ListViewSubItem();</font>
+<font color="#000000">lvsi.</font><font color="#008080">Text </font><font color="#000000">= fi.LastAccessTime.ToString(); </font>
+<font color="#008000">// Last Accessed Column</font>
+
+<font color="#000000">lvi.SubItems.Add(lvsi); </font>
+<font color="#008000">// Add to the SubItems collection</font>
+<font color="#008000">// Add the item to the Items collection of the ListView</font>
+
+<font color="#0000ff">this</font><font color="#000000">.lwFilesAndFolders.Items.Add(lvi);</font>
+<font color="#000000">}</font>
+
+<font color="#008000">// Unlock the ListView. The items that have been inserted </font>
+<font color="#008000">//will now be displayed</font>
+
+<font color="#0000ff">this</font><font color="#000000">.lwFilesAndFolders.EndUpdate();</font>
+
+<font color="#000000">}</font>
+<font color="#0000ff">catch </font><font color="#000000">(</font><font color="#008080">System</font><font color="#000000">.</font><font color="#808000">Exception </font><font color="#000000">err)</font>
+<font color="#000000">{</font>
+ <font color="#808000">MessageBox</font><font color="#000000">.Show( </font><font color="#ff00ff">&quot;Error: &quot; </font><font color="#000000">+ err.</font><font color="#808000">Message</font><font color="#000000">);</font>
+<font color="#000000">}</font>
+
+<font color="#000000">}</font>
+</pre>
+</div>
+
+ <div class="image">
+ <img src="images/listview2.JPG">
+ </div>
+
+ <p><h3>Example:-</h3> Code for Listview Control for activating items</p>
+ <div class="code">
+<pre>
+<font color="#0000ff">private void </font><font color="#000000">lwFilesAndFolders_ItemActivate(</font><font color="#0000ff">object </font><font color="#000000">sender, </font>EventArgs </font><font color="#000000">e)</font>
+<font color="#000000">{</font>
+<font color="#008000">// Cast the sender to a ListView and get the tag of the  </font>
+<font color="#008000">//first selected item.</font>
+
+<font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Windows</font><font color="#000000">.</font><font color="#008080">Forms</font><font color="#000000">.</font><font color="#808000">ListView </font><font color="#000000">lw = (</font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Windows</font><font color="#000000">.</font><font color="#008080">Forms</font><font color="#000000">.</font><font color="#808000">ListView</font>
+<font color="#000000">)sender;</font>
+<font color="#0000ff">string </font><font color="#000000">filename = lw.SelectedItems[</font><font color="#800080">0</font><font color="#000000">].Tag.ToString();</font>
+
+<font color="#0000ff">if </font><font color="#000000">(lw.SelectedItems[</font><font color="#800080">0</font><font color="#000000">].ImageIndex != </font><font color="#800080">0</font><font color="#000000">) {</font>
+<font color="#0000ff">try </font><font color="#000000">{</font>
+<font color="#008000">// Attempt to run the file</font>
+
+<font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Diagnostics</font><font color="#000000">.</font><font color="#808000">Process</font><font color="#000000">.Start(filename);</font>
+<font color="#000000">}</font>
+<font color="#0000ff">catch </font><font color="#000000">{</font>
+<font color="#008000">// If the attempt fails we simply exit the method</font>
+
+<font color="#0000ff">return</font><font color="#000000">;</font>
+<font color="#000000">}</font>
+<font color="#000000">}</font>
+<font color="#0000ff">else </font><font color="#000000">{</font>
+<font color="#008000">// Insert the items</font>
+
+<font color="#000000">PaintListView(filename);</font>
+<font color="#000000">folderCol.Add(filename);</font>
+<font color="#000000">}</font>
+<font color="#000000">}</font>
+</pre>
+</div>
+
+<div class="image">
+<img src="images/listview1.JPG">
+</div>
+
+<p><h3>Example:-</h3> Code for making small icons view. Write below code on radio button named small icon</p>
+<div class="code">
+<pre>
+
+<font color="#0000ff">private void </font><font color="#000000">rdoSmallIcon_CheckedChanged(</font><font color="#0000ff">object </font><font color="#000000">sender, </font><font color="#808000">EventArgs </font><font color="#000000">e)</font>
+<font color="#000000">{</font>
+<font color="#808000">RadioButton </font><font color="#000000">rdb = (</font><font color="#808000">RadioButton</font><font color="#000000">)sender;</font>
+<font color="#0000ff">if </font><font color="#000000">(rdb.Checked)</font>
+<font color="#0000ff">this</font><font color="#000000">.lwFilesAndFolders.</font><font color="#808000">View </font><font color="#000000">= </font><font color="#808000">View</font><font color="#000000">.</font><font color="#808000">List</font><font color="#000000">;</font>
+<font color="#000000">}</font>
+</pre>
+</div>
+
+<p><h3>Example:-</h3>Code for making large icons view. Write below code on radio button 
+named large icon</p>
+
+<div class="code">
+<pre>
+<font color="#0000ff">private void </font><font color="#000000">rdoLargeIcon_CheckedChanged(</font><font color="#0000ff">object </font><font color="#000000">sender, </font><font color="#808000">EventArgs </font><font color="#000000">e)</font>
+<font color="#000000">{</font>
+<font color="#808000">RadioButton </font><font color="#000000">rdb = (</font><font color="#808000">RadioButton</font><font color="#000000">)sender;</font>
+<font color="#0000ff">if </font><font color="#000000">(rdb.Checked)</font>
+<font color="#0000ff">this</font><font color="#000000">.lwFilesAndFolders.</font><font color="#808000">View </font><font color="#000000">= </font><font color="#808000">View</font><font color="#000000">.LargeIcon;</font>
+<font color="#000000">}</font>
+</pre>
+</div>
+
+<h3>Final Output</h3>
+<div class="output">
+<div class="image">
+<img src="images/listview.JPG">
+</div>
+</div>
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="ComboBox.shtml" title="ComboBox Controls">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="StatusBar.shtml" title="StatusBar Control">Next</a></td>
+  </tr>
+</table>
+						 <!--Footer-->
+   </div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/dotnet/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+     <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>

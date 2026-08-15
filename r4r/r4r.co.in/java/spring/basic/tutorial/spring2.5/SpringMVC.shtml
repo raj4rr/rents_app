@@ -1,0 +1,190 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD>
+<meta http-equiv="Content-Language" content="en-us">
+<TITLE>Spring MVC Implementation</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name="description" CONTENT="Spring 
+MVC Implementation" >
+<meta name="keywords" CONTENT="Spring 
+MVC Implementation">
+
+<!-- header start-->	
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>Spring Framework</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+           <img src="/images/left_menu_bullet.gif" width="11" height="6"/>  <a href="/java/">Java</a>    
+		      <img src="/images/left_menu_bullet.gif" width="11" height="6"/><a href="/java/spring/">Spring</a>
+
+              </div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/spring/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	 
+
+<!-- header End--> 
+
+<div class="heading">Spring MVC Implementation</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="WithTemplate.shtml" title="With Template">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="ExampleSpringMVC.shtml" title="Example of Spring MVC Implementation">Next</a></td>
+  </tr> 
+</table>
+
+<p><i>Introduction:</i> In Spring MVC implementation the controller is an application component. Which is 
+responsible for processing the request. It does not controlled the workflow of 
+request processing as done by struts controller.</p>
+
+<p>Workflow of request is controlled by front controller which is implemented by 
+servlet name "DispatcherServlet" is provides a single entry point in to the 
+application.</p>
+
+<h3>Model View Controller (MVC):</h3>
+
+<p><i>Model:</i> Model component represent a data for spring MVC usually a map of model object is used 
+as Model component.</p>
+
+<p><i>View:</i> View is a generic component of the framework which is responsible for presenting data 
+to the end user. Multiple implementation of view are provided the framework to support different 
+presentation technique.</p>
+
+<p><i>Controller:</i> Controller component provide the facility to change the state and flow the data.
+ Controller component is responsible for the controlled the workflow of the web application 
+in the spring framework.</p>
+
+<h3>How can we implement spring MVC:</h3>
+
+<p>Following steps are required to used spring MVC implementation:</p>
+
+<p><i>Step 1:</i> First select the web project in our IDE and add the capability of 
+spring framework (it means that add the jar file). The following jar file are 
+add before implement the spring MVC application.</p>
+
+<ol><li>Spring 2.5 core Library</li>
+
+<li>Spring 2.5 web Library </li></ol>
+
+<p><i>Step 2:</i> Servlet entry is to be made in web.xml file for DispatcherServlet class.</p>
+
+<div class="code">
+<pre>
+<font color="#0000ff">&lt;?xml </font><font color="#ff0000">version</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;1.0&quot; </font><font color="#ff0000">encoding</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;UTF-8&quot;</font><font color="#800080">?</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">web-app </font><font color="#ff0000">version</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;2.5&quot; </font><font color="#ff0000">xmlns</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;http://java.sun.com/xml/ns/javaee&quot;</font>
+ <font color="#800080">xmlns:xsi</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;http://www.w3.org/2001/XMLSchema-instance&quot; </font>
+ <font color="#800080">xsi:schemaLocation</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;http://java.sun.com/xml/ns/javaee  </font>
+<font color="#ff00ff"> http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd&quot;</font><font color="#0000ff">&gt;</font>
+<font color="#000000"> </font><font color="#0000ff">&lt;</font><font color="#808000">welcome-file-list</font><font color="#0000ff">&gt;</font>
+<font color="#000000">  </font><font color="#0000ff">&lt;</font><font color="#808000">welcome-file</font><font color="#0000ff">&gt;</font><font color="#000000">index.jsp</font><font color="#0000ff">&lt;/</font><font color="#808000">welcome-file</font><font color="#0000ff">&gt;</font>
+<font color="#000000"> </font><font color="#0000ff">&lt;/</font><font color="#808000">welcome-file-list</font><font color="#0000ff">&gt;</font>
+<font color="#000000"> </font><font color="#0000ff">&lt;</font><font color="#808000">servlet</font><font color="#0000ff">&gt;</font>
+<font color="#000000"> </font><font color="#0000ff">&lt;</font><font color="#808000">servlet-name</font><font color="#0000ff">&gt;</font><font color="#000000">login</font><font color="#0000ff">&lt;/</font><font color="#808000">servlet-name</font><font color="#0000ff">&gt;</font>
+<font color="#000000"> </font><font color="#0000ff">&lt;</font><font color="#808000">servlet-class</font><font color="#0000ff">&gt;</font>
+<font color="#000000"> org.springframework.web.servlet.DispatcherServlet</font>
+<font color="#000000"> </font><font color="#0000ff">&lt;/</font><font color="#808000">servlet-class</font><font color="#0000ff">&gt;</font>
+<font color="#000000"> </font><font color="#0000ff">&lt;/</font><font color="#808000">servlet</font><font color="#0000ff">&gt;</font>
+<font color="#000000"> </font><font color="#0000ff">&lt;</font><font color="#808000">servlet-mapping</font><font color="#0000ff">&gt;</font>
+<font color="#000000"> </font><font color="#0000ff">&lt;</font><font color="#808000">servlet-name</font><font color="#0000ff">&gt;</font><font color="#000000">login</font><font color="#0000ff">&lt;/</font><font color="#808000">servlet-name</font><font color="#0000ff">&gt;</font>
+<font color="#000000"> </font><font color="#0000ff">&lt;</font><font color="#808000">url-pattern</font><font color="#0000ff">&gt;</font><font color="#000000">*.spring</font><font color="#0000ff">&lt;/</font><font color="#808000">url-pattern</font><font color="#0000ff">&gt;</font>
+<font color="#000000"> </font><font color="#0000ff">&lt;/</font><font color="#808000">servlet-mapping</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">web-app</font><font color="#0000ff">&gt;</font>
+</pre>
+</div>
+
+<p><i>step 3:</i> Define in xml file to specified a mapping requested url and controller of spring application.
+ This file is conventionally name as follows</p>
+
+<p><h3> Example:</h3> <i>ServletName-servlet.xml</i></p>
+<p><i>step 4:</i> If DispatcherServlet is assign <font class="point_out">"frontController"</font> name in web.xml then this file must be named as<font class="point_out">"frontController-servlet.xml"</font></p>
+<p><i>step 5:</i> The file "frontController-servlet.xml" used the bean element to mapped request url and controller Class</p>
+
+<div class="code">
+<pre>
+<font color="#0000ff">&lt;?xml </font><font color="#ff0000">version</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;1.0&quot; </font><font color="#ff0000">encoding</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;UTF-8&quot;</font><font color="#800080">?</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">beans</font>
+<font color="#ff0000">xmlns</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;http://www.springframework.org/schema/beans&quot;</font>
+<font color="#800080">xmlns:xsi</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</font>
+<font color="#800080">xmlns:p</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;http://www.springframework.org/schema/p&quot;</font>
+<font color="#800080">xsi:schemaLocation</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;http://www.springframework.org/schema/beans</font>
+<font color="#ff00ff">http://www.springframework.org/schema/beans/spring-beans-2.5.xsd&quot;</font><font color="#0000ff">&gt;</font>
+
+<font color="#0000ff">&lt;</font><font color="#808000">bean </font><font color="#800080">id</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;datasource&quot; </font><font color="#800080">class</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;org.apache.commons.dbcp.BasicDataSource&quot;</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">property </font><font color="#ff0000">name</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;driverClassName&quot;</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">value</font><font color="#0000ff">&gt;</font><font color="#000000">com.mysql.jdbc.Driver</font><font color="#0000ff">&lt;/</font><font color="#808000">value</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">property</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">property </font><font color="#ff0000">name</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;url&quot;</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">value</font><font color="#0000ff">&gt;</font><font color="#000000">jdbc:mysql://localhost/tableone</font><font color="#0000ff">&lt;/</font><font color="#808000">value</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">property</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">property </font><font color="#ff0000">name</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;username&quot;</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">value</font><font color="#0000ff">&gt;</font><font color="#000000">root</font><font color="#0000ff">&lt;/</font><font color="#808000">value</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">property</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">property </font><font color="#ff0000">name</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;password&quot;</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">value</font><font color="#0000ff">&gt;</font><font color="#000000">root</font><font color="#0000ff">&lt;/</font><font color="#808000">value</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">property</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">bean</font><font color="#0000ff">&gt;</font>
+
+<font color="#0000ff">&lt;</font><font color="#808000">bean </font><font color="#800080">id</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;jdbcTemp&quot; </font><font color="#800080">class</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;org.springframework.jdbc.core.JdbcTemplate&quot;</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">constructor-arg</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">ref </font><font color="#800080">local</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;datasource&quot;</font><font color="#0000ff">/&gt;</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">constructor-arg</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">bean</font><font color="#0000ff">&gt;</font>
+
+<font color="#0000ff">&lt;</font><font color="#808000">bean </font><font color="#800080">id</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;loginModel&quot; </font><font color="#800080">class</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;org.r4r.LoginModel&quot;</font><font color="#0000ff">/&gt;</font>
+</pre>
+</div>
+
+<p><i>step 6:</i> Define controller class, Controller is a subclass of AbstractController class. 
+AbstractController class provides an abstract method name </p>
+<div class="code">
+<pre>
+<font color="#000000">handleRequestInternal(HttpServletRequest request,HttpServletResponse response); </font>
+</pre>
+</div>
+
+<p>which is invoked each time a request of the controller received. This method returned a ModelAndView object.</p>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="WithTemplate.shtml" title="With Template">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="ExampleSpringMVC.shtml" title="Example of Spring MVC Implementation">Next</a></td>
+  </tr> 
+</table>
+
+<!-- Footer Start-->
+
+		</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->
+

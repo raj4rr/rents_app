@@ -1,0 +1,216 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>C Tutorial on FILE INCLUSION,CONDITIONAL COMPILATION,#IF AND #ELIF DIRECTIVES,MISCELLANEOUS DIRECTIVES</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="Learn about FILE INCLUSION,CONDITIONAL COMPILATION,#IF AND #ELIF DIRECTIVES,MISCELLANEOUS DIRECTIVES,Arrays,Structures,Pointers,Storage class,Loops,Functions,Data types,C constants,Union,Preprocessor,Interview questions and answers " >
+<meta name="keywords" CONTENT="FILE INCLUSION,CONDITIONAL COMPILATION,#IF AND #ELIF DIRECTIVES,MISCELLANEOUS DIRECTIVES,C examples,Arrays,Structures,Pointers,Storage class,Loops,Functions,Data types,C constants,Union,Preprocessor,Interview questions and answers ">
+
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+     <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>C Programming language</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a><img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/c/">C </a>
+              <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/c/basic_tutorials/06/">C Tutorial</a></div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/c/commonfiles/leftmenu.shtml'); ?></td>
+
+                       <td style="80%" valign="top">
+                        <div class="main_content"> 
+
+	<!-- header End-->	
+
+     <div class="heading">File inclusion in C</div>
+
+<table id="indexing">
+  <tr>
+   <td style="width:33%; text-align:left;"><a href="MACROS_WITH_ARGUMENT.shtml" title="Macros in C">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="index.shtml" title="Basic C Tutorials with Examples ">Next</a></td>
+  </tr>
+</table>
+
+<h2>File inclusion</h2>
+<p>The second pre-processor directive well explore in this chapter is  file inclusion. This directive causes one file to be included in another. The pre-processor command for file inclusion looks like this:</p>
+<div class="code">
+<PRE>
+<FONT COLOR="#000000">#include </FONT><FONT COLOR="#ff00ff">"filename"</FONT>
+</PRE>
+</div>
+
+<p>If we have a very large program, the code is best divided into several different files, each containing a set of related functions. It is a good programming practice to keep different sections of a large program separate. These files are #included at the beginning of main program file.</p>
+
+<h2>Conditional compilation</h2>
+<p>We can, if we want, have the compiler skip over part of a source code by inserting the preprocessing commands #ifdef and #endif,
+which have the general form:</p>
+<div class="code">
+<PRE>
+<FONT COLOR="#000000">#ifdef macroname</FONT>
+<FONT COLOR="#000000">statement </FONT><FONT COLOR="#800080">1 </FONT><FONT COLOR="#000000">;</FONT>
+<FONT COLOR="#000000">statement </FONT><FONT COLOR="#800080">2 </FONT><FONT COLOR="#000000">;</FONT>
+<FONT COLOR="#000000">statement </FONT><FONT COLOR="#800080">3 </FONT><FONT COLOR="#000000">;</FONT>
+<FONT COLOR="#000000">#endif</FONT>
+</PRE>
+</div>
+
+<p>If macroname has been #defined, the block of code will be processed as usual; otherwise not.</p>
+
+<p>A simple example of #if directive is shown below:</p>
+<div class="code">
+<PRE>
+<FONT COLOR="#000000">main( )</FONT>
+<FONT COLOR="#000000">{</FONT>
+<FONT COLOR="#000000">#if TEST &lt;= </FONT><FONT COLOR="#800080">5</FONT>
+<FONT COLOR="#000000">statement </FONT><FONT COLOR="#800080">1 </FONT><FONT COLOR="#000000">;</FONT>
+<FONT COLOR="#000000">statement </FONT><FONT COLOR="#800080">2 </FONT><FONT COLOR="#000000">;</FONT>
+<FONT COLOR="#000000">statement </FONT><FONT COLOR="#800080">3 </FONT><FONT COLOR="#000000">;</FONT>
+<FONT COLOR="#000000">#else</FONT>
+<FONT COLOR="#000000">statement </FONT><FONT COLOR="#800080">4 </FONT><FONT COLOR="#000000">;</FONT>
+<FONT COLOR="#000000">statement </FONT><FONT COLOR="#800080">5 </FONT><FONT COLOR="#000000">;</FONT>
+<FONT COLOR="#000000">statement </FONT><FONT COLOR="#800080">6 </FONT><FONT COLOR="#000000">;</FONT>
+<FONT COLOR="#000000">#endif</FONT>
+<FONT COLOR="#000000">}</FONT>
+</PRE>
+</div>
+
+<p>If the expression, TEST <= 5 evaluates to true then statements 1, 2 and 3 are compiled otherwise statements 4, 5 and 6 are compiled. In place of the expression TEST <= 5 other expressions like ( LEVEL == HIGH || LEVEL == LOW ) or ADAPTER == CGA can also be used.</p>
+<p>program using #elif directive can be rewritten as shown below:</p>
+<div class="code">
+<PRE>
+<FONT COLOR="#000000">#if ADAPTER == VGA</FONT>
+<FONT COLOR="#000000">code </FONT><FONT COLOR="#0000ff">for </FONT><FONT COLOR="#000000">video graphics array</FONT>
+<FONT COLOR="#000000">#elif ADAPTER == SVGA</FONT>
+<FONT COLOR="#000000">code </FONT><FONT COLOR="#0000ff">for super </FONT><FONT COLOR="#000000">video graphics array</FONT>
+<FONT COLOR="#000000">#else</FONT>
+<FONT COLOR="#000000">code </FONT><FONT COLOR="#0000ff">for </FONT><FONT COLOR="#000000">extended graphics adapter</FONT>
+<FONT COLOR="#000000">#endif</FONT>
+</PRE>
+</div>
+
+<h2>Miscellaneous directives</h2>
+<p>There are two more preprocessor directives available, though they are not very commonly used. They are:</p>
+
+<ol>
+   <li>#undef</li>
+   <li>#pragma</li>
+</ol>
+
+<h2>#Undef</h2>
+<p>On some occasions it may be desirable to cause a defined name to become undefined. This can be accomplished by means of the #undef directive. In order to undefine a macro that has been earlier #defined, the directive, #undef macro template can be used. Thus the statement, #undef PENTIUM would cause the definition of PENTIUM to be removed from the system. All subsequent #ifdef PENTIUM statements would evaluate to false.</p>
+
+<h2>#Pragma</h2>
+<p>This directive is another special-purpose directive that you can use to turn on or off certain features. Pragmas vary from one compiler to another. There are certain pragmas available with Microsoft C compiler that deal with formatting source listings and placing comments in the object file generated by the compiler.</p>
+
+<h2>#pragma startup and #pragma exit</h2>
+<p>These directives allow us to specify functions that are called upon program startup (before main( )) or program exit (just before the program terminates). Their     usage is as follows:</p>
+
+<div class="code">
+<PRE>
+<FONT COLOR="#0000ff">void </FONT><FONT COLOR="#000000">fun1( ) ;</FONT>
+
+<FONT COLOR="#0000ff">void </FONT><FONT COLOR="#000000">fun2( ) ;</FONT>
+<FONT COLOR="#000000">#pragma startup fun1</FONT>
+<FONT COLOR="#000000">#pragma exit fun2</FONT>
+<FONT COLOR="#000000">main( )</FONT>
+<FONT COLOR="#000000">{</FONT>
+<FONT COLOR="#000000">printf ( </FONT><FONT COLOR="#ff00ff">"\nInside maim" </FONT><FONT COLOR="#000000">) ;</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#0000ff">void </FONT><FONT COLOR="#000000">fun1( )</FONT>
+<FONT COLOR="#000000">{</FONT>
+<FONT COLOR="#000000">printf ( </FONT><FONT COLOR="#ff00ff">"\nInside fun1" </FONT><FONT COLOR="#000000">) ;</FONT>
+
+<FONT COLOR="#000000">}</FONT>
+
+<FONT COLOR="#0000ff">void </FONT><FONT COLOR="#000000">fun2( )</FONT>
+
+<FONT COLOR="#000000">{</FONT>
+<FONT COLOR="#000000">printf ( </FONT><FONT COLOR="#ff00ff">"\nInside fun2" </FONT><FONT COLOR="#000000">) ;</FONT>
+
+<FONT COLOR="#000000">}</FONT>
+
+<FONT COLOR="#000000">And here is the output of the program.</FONT>
+<FONT COLOR="#000000">Inside fun1</FONT>
+<FONT COLOR="#000000">Inside main</FONT>
+<FONT COLOR="#000000">Inside fun2</FONT>
+</PRE>
+</div>
+
+<p>Note that the functions fun1( ) and fun2( ) should neither receive nor return any value. If we want two functions to get executed at startup then their pragmas should be defined in the reverse order in which you want to get them called.</p>
+
+<h2>#pragma warn</h2>
+<p>This directive tells the compiler whether or not we want to suppress a specific warning. Usage of this pragma is shown below.</p>
+
+<div class="code">
+<PRE>
+<FONT COLOR="#000000">#pragma warn rvl </FONT><FONT COLOR="#008000">/* return value */</FONT>
+<FONT COLOR="#000000">#pragma warn par </FONT><FONT COLOR="#008000">/* parameter not used */</FONT>
+<FONT COLOR="#000000">#pragma warn rch </FONT><FONT COLOR="#008000">/* unreachable code */</FONT>
+<FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">f1( )</FONT>
+<FONT COLOR="#000000">{</FONT>
+<FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">a = </FONT><FONT COLOR="#800080">5 </FONT><FONT COLOR="#000000">;</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#0000ff">void </FONT><FONT COLOR="#000000">f2 ( </FONT><FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">x )</FONT>
+<FONT COLOR="#000000">{</FONT>
+<FONT COLOR="#000000">printf ( </FONT><FONT COLOR="#ff00ff">"\nInside f2" </FONT><FONT COLOR="#000000">) ;</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">f3( )</FONT>
+<FONT COLOR="#000000">{</FONT>
+<FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">x = </FONT><FONT COLOR="#800080">6 </FONT><FONT COLOR="#000000">;</FONT>
+<FONT COLOR="#0000ff">return </FONT><FONT COLOR="#000000">x ;</FONT>
+<FONT COLOR="#000000">x++ ;</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#0000ff">void </FONT><FONT COLOR="#000000">main( )</FONT>
+<FONT COLOR="#000000">{</FONT>
+<FONT COLOR="#000000">f1( ) ;</FONT>
+<FONT COLOR="#000000">f2 ( </FONT><FONT COLOR="#800080">7 </FONT><FONT COLOR="#000000">) ;</FONT>
+<FONT COLOR="#000000">f3( ) ;</FONT>
+<FONT COLOR="#000000">}</FONT>
+</PRE>
+</div>
+
+<p>If you go through the program you can notice three problems immediately. These are:</p>
+
+<ol>
+   <li>Though promised, f1( ) doesnt return a value.</li>
+   <li>The parameter x that is passed to f2( ) is not being used anywhere in f2( ).</li>
+   <li>The control can never reach x++ in f3( ).</li>
+</ol>
+
+<p>If we compile the program we should expect warnings indicating the above problems.</p>
+
+<table id="indexing">
+  <tr>
+   <td style="width:33%; text-align:left;"><a href="MACROS_WITH_ARGUMENT.shtml" title="Macros in C">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="index.shtml" title="Basic C Tutorials with Examples ">Next</a></td>
+  </tr>
+</table>
+
+<!--Footer  --> 
+   </div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>

@@ -1,0 +1,270 @@
+<div class="main_content">
+<div class="heading">Java Servlet Technology</div>
+<p>A Servlet is a Java programming language class used to extend the capabilities of servers that host applications accessed 
+via a request-response programming model.  Although servlets can respond to any type of request, they are commonly used to 
+extend the applications hosted by Web servers. For such applications, Java Servlet technology defines HTTP-specific servlet 
+classes. The <i>javax.servlet and javax.http.servlet </i>are two packages which provided interface and classes for writing 
+servlets. All the servlet must implement servlet interface ,which defines life cycle method.</p>
+<p>When implementing a generic service, you can use or extend the GenericServlet class provided with the Java Servlet API. 
+The HttpServlet class provides methods, such as doGet and doPost, for handling HTTP-specific services.
+<a href="/java/servlet/servlet_basics/"><b>Servlet basics</b></a>
+</p>
+<div class="heading">Servlet Tutorials and Interview Question</div>
+                        <div class="content_link">
+                        	<p><a href="/java/servlet/servlet_basics/">Servlet basics</a></p>
+                        	<p><a href="basic/tutorial/Servlet/">Servlet Basic Tutorials</a></p>
+                            <p><a href="basic/tutorial/GenericServlet/">Generic Servlet Eaxmple</a></p>
+                            <p><a href="basic/tutorial/Servlet Advance/">Advance Servlet Examples</a></p>
+                            <p><a href="basic/tutorial/Servlet Filter">Servlet Filter Examples</a></p>
+                            <p><a href="basic/tutorial/servlet new/">Servlet Basic Example</a></p>
+                            <p><a href="Servlet_Interview_Questions_And_Answers/">Servlet FAQS</a></p>
+
+                       </div>
+                           <div class="heading">Servlet Hot Topics</div>
+                        <div class="content_link">
+                        	<p><a href="topics/basics/servlets">Servlet Basic</a></p>
+                           </div>
+                           <div class="heading">Servlet Hot Links</div>
+                        <div class="content_link">
+                        	<p><a href="basic/tutorial/Servlet/">Servlet Basic</a></p>
+                           </div>
+
+<div class="heading">HTTP Servlet typically used to</div>
+<ol>
+<li>Provide the dynamically contents which get the result from the server.</li>
+
+<li>Process are used to  store the data which is submitted by the HTML.</li>
+
+<li>Manage information about the state of a stateless HTTP. e.g. an online shopping car manages request for multiple 
+concurrent customers.</li>
+</ol>
+<div class="heading">Methods of Generic Servlets</div>
+<p>The generic servlet is the base class of servlet which contains five methods</p>
+<ol>
+<li><b>init() method- </b> Init() is called only once by the servlet container in its whole lofecycle the life of a servlet.
+ The init() method takes a ServletConfig object that contains the initialization parameters and servlet's configuration and 
+ throws a ServletException if an exception has occurred.</li>
+
+<li><b>Service() method -</b> This method defined as public void service as (ServletRequest req, ServletResponse res) which  
+throws ServletException, as IOException .If once  the servlet starting  getting the requests, the service() method is called 
+by the 
+servlet container to respond.</li>
+
+<li><b>getservlet config()-</b> This method is defined as public ServletConfig getServletConfig() this method contain 
+initialization and startup of the servlet and returns the Servlet Config object.</li> 
+
+<li><b>getservlet info()-</b> This method is defined as public String getServletInfo() The information about the servlet is 
+returned by this method like version, author etc. This method returns a string which should be in the form of plain text and
+ not any kind of markup.</li>
+
+<li><b>destroy()-</b> This method is defined as public destroy().this method is called when want to close the servlet.</li>
+</ol>
+
+<div class="heading">Life cycle of Servlet</div>
+<p>The life cycle of a servlet is controlled by the container in which the servlet has been deployed. The life cycle of a servlet 
+can be categorized into four parts</p>
+<ol>
+<li><b>Loading and instantiation -</b>The servlet container loads the servlet during startup or when the first request is made .
+After loading of servlet container create the instance of the servlet.</li>
+
+<li><b>Initialization:-</b>When creating the instances,after that the servlet container calls the init() method .then passes the servlet initialization parameters to the init() method. init() method is called once through out the life cycle of servlet.</li>
+
+<li><b>Servicing the request -</b>After successfully initialization ,servlet container  call the service method for servising any request. The service() method determines the kind of request and calls the appropriate method (doGet() or doPost()) for handling
+ the request and sends response to the client using the methods of the response object.</li>
+
+<li><b>The servlet Destroying -</b>If  the servlet is no longer required for servicing any request, the servlet container 
+will  calls the destroy() method .</li></ol>
+<div class="heading">Advantage of Java Servlet</div>
+<ol>
+<p>Java servlet provide various advantages to build a server side programming. Following are the advantages of java</p>
+<li><b>Portable- </b>As servlets are written in java and follow  APIs of java so they are very high portable over operating
+ systems and serve implementations.</li>
+
+<li><b>Efficient-</b> As compared to CGI applications servlet is more efficient.</li>
+
+<li><b>Extensibility-</b>The servlet API is designed in such a way that it can be easily extensible. As for now   the servlet API support Http Servlets, but in later  it can be extended for another type of servlet</li>
+
+<li><b>Safety- </b>as java is safe servlets are also safe ,garbage collection prevent the leakage of memory and exception handling throws the exceptions for the errors.</li>
+</ol>
+
+<div class="heading">Basic Servlet Structure</div>
+<div class="code">
+<pre>
+<font color="#0000ff">import </font><font color="#000000">java.io.*;</font>
+<font color="#0000ff">import  </font><font color="#000000">javax.servlet.*;</font>
+<font color="#0000ff">import </font><font color="#000000">javax.servlet.http.*;</font>
+<font color="#0000ff">public class </font><font color="#000000">Servletname </font><font color="#0000ff">extends
+ </font><font color="#000000">HttpServlet</font>
+
+<font color="#000000">{</font>
+	<font color="#0000ff">public void </font><font color="#000000">doGet (HttpRequest request,HttpResponse response)
+     </font><font color="#0000ff">throws </font><font color="#000000">ServletException, </font><font color="#ff0000">
+     IOException</font>
+	<font color="#000000">{</font>
+		<font color="#008000">//code for business logic</font>
+		<font color="#008000">//use request object to read client request</font>
+		<font color="#008000">//user response object to throw output back to the client</font>
+	<font color="#000000">}</font><font color="#008000">//close do get</font>
+<font color="#000000">}</font>
+
+<font color="#000000">Servlet life cycle include mainly four steps init()---&gt;service()---&gt;doGet()
+ or doPost()---&gt;destroy</font>
+</pre>
+</div>
+<div class="heading">A Servlet Program (using its life cycle)</div>
+<div class="code">
+<pre>
+<font color="#008000">//servlet program using its life-cycle</font>
+<font color="#0000ff">import </font><font color="#000000">java.io.*;</font>
+<font color="#0000ff">import </font><font color="#000000">javax.servlet.*;</font>
+<font color="#0000ff">import </font><font color="#000000">javax.servlet.http.*;</font>
+<font color="#0000ff">public class </font><font color="#000000">Testservlet </font>
+<font color="#0000ff">extends </font><font color="#000000">HttpServlet</font>
+<font color="#000000">{</font>
+	<font color="#0000ff">int </font><font color="#000000">i;</font>
+	<font color="#0000ff">public void </font><font color="#000000">init() trows ServletException</font>
+	<font color="#000000">{</font>
+		<font color="#000000">i=</font><font color="#800080">0</font><font color="#000000">;
+         </font><font color="#008000">//initializing i value</font>
+	<font color="#000000">}</font>
+	<font color="#008000">//incrementing i value in doGet method</font>
+	<font color="#0000ff">public void </font><font color="#000000">doGet(HttpServletRequest request, 
+    HttpServletReponse response)
+    </font>
+		<font color="#0000ff">throws </font><font color="#000000">IOEXception ,ServletException</font>
+	<font color="#000000">{</font>
+
+	<font color="#000000">response.setContentType(</font><font color="#ff00ff">&quot;text/html&quot;
+    </font><font color="#000000">);</font>
+	<font color="#ff0000">PrintWriter </font><font color="#000000">out= resonse.getWriter():</font>
+		<font color="#0000ff">if </font><font color="#000000">(i==</font><font color="#800080">0</font
+        ><font color="#000000">)</font>
+		<font color="#000000">{ </font>
+		<font color="#000000">out.println(</font><font color="#ff00ff">&quot;&lt;html&gt;&quot;
+        </font><font color="#000000">);</font>
+		<font color="#000000">out.prinln (</font><font color="#ff00ff">&quot;&lt;head&gt;&quot;
+        </font><font color="#000000">);</font>
+		<font color="#000000">out.println (</font><font color="#ff00ff">&quot;&lt;title&gt; 
+        Hello world &lt;/title&gt;&quot;</font><font color="#000000">);</font>
+		<font color="#000000">out.println (</font><font color="#ff00ff">&quot;&lt;/head&gt;&quot;
+        </font><font color="#000000">);</font>
+		<font color="#000000">out.println (</font><font color="#ff00ff">&quot;&lt;body&gt;&quot
+        ;</font><font color="#000000">);</font>
+		<font color="#000000">out.println (</font><font color="#ff00ff">&quot;&lt;h1&gt; value of i is initialized
+         in init method &lt;/h1&gt;&quot;</font><font color="#000000">+</font><font color="#ff00ff">&quot;&lt;h1&gt;&quot; 
+        </font><font color="#000000">+ i + </font><font color="#ff00ff">&quot;&lt;/h1&gt;&quot;</font>
+		<font color="#000000">out.println(</font><font color="#ff00ff">&quot;&lt;/body&gt;&quot;
+        </font><font color="#000000">);</font>
+		<font color="#000000">out.println (</font><font color="#ff00ff">&quot;&lt;/html&gt;&quot;
+        </font><font color="#000000">);</font>
+
+		<font color="#000000">}</font>
+
+		<font color="#000000">i = i+;</font>
+		<font color="#0000ff">if </font><font color="#000000">((i == </font><font color="#800080">10
+        </font><font color="#000000">)</font>
+		<font color="#000000">{</font>
+			<font color="#000000">out.println(</font><font color="#ff00ff">&quot;&lt;html&gt;&quot;
+            </font><font color="#000000">);</font>
+			<font color="#000000">out.println(</font><font color="#ff00ff">&quot;&lt;head&gt;&quot;
+            </font><font color="#000000">);</font>
+			<font color="#000000">out.println (</font><font color="#ff00ff">&quot;&lt;title&gt;
+             HEllo world&lt;/title&gt;&quot;</font><font color="#000000">);</font>
+			<font color="#000000">out.println (</font><font color="#ff00ff">&quot;&lt;/head&gt;&quot;
+            </font><font color="#000000">);</font>
+			<font color="#000000">out.println (</font><font color="#ff00ff">&quot;&lt;body&gt;&quot;</font>
+            <font color="#000000">);</font>
+			<font color="#000000">out.println (</font><font color="#ff00ff">&quot;&lt;h1&gt; i's value 
+            reaches 10 hence calling destroy method to reset it &lt;/h1&gt;' + &quot;</font><font color="#000000">
+            &lt;h1&gt;</font><font color="#ff00ff">&quot; + &quot;</font><font color="#000000">&lt;/h1&gt;
+            </font><font color="#ff00ff">&quot;);</font>
+			<font color="#000000">out.println (</font><font color="#ff00ff">&quot;&lt;/body&gt;&quot;</font
+            ><font color="#000000">)</font>
+				<font color="#000000">out.println (</font><font color="#ff00ff">&quot;&lt;html&gt;&quot;
+                </font><font color="#000000">);</font>
+			<font color="#000000">destroy(); </font><font color="#008000">//call destroy method if i=10</font>
+		<font color="#000000">}</font>
+            <font color="#0000ff">if </font><font color="#000000">(i&lt;</font><font color="#800080">10
+            </font><font color="#000000">) </font><font color="#008000">//display increment value of i</font>
+            <font color="#000000">{</font>
+				<font color="#000000">out.prinln(</font><font color="#ff00ff">&quot;&lt;html&gt;&quot;
+                </font><font color="#000000">);</font>
+				<font color="#000000">out.prinln(</font><font color="#ff00ff">&quot;&lt;head&gt;&quot;
+                </font><font color="#000000">);</font>
+				<font color="#000000">out.prinln(</font><font color="#ff00ff">&quot;&lt;title&gt; Hello world
+                 &lt;/title&gt;&quot;</font><font color="#000000">);</font>
+			    <font color="#000000">out.prinln(</font><font color="#ff00ff">&quot;&lt;head&gt;&quot;
+                </font><font color="#000000">);</font>
+				<font color="#000000">out.prinln(</font><font color="#ff00ff">&quot;&lt;body&gt;&quot;
+                </font><font color="#000000">);</font>
+    			<font color="#000000">out.prinln(</font><font color="#ff00ff">&quot;&lt;h1&gt;
+                 value of i incremented in doGet &lt;/h1&gt;&quot;  </font><font color="#000000">+
+                  </font><font color="#ff00ff">&quot;&lt;h1&gt;&quot; </font><font color="#000000">+ i + 
+                  </font><font color="#ff00ff">&quot;&lt;h1&gt;&quot;</font><font color="#000000">);</font>
+				<font color="#000000">out.prinln(</font><font color="#ff00ff">&quot;&lt;/body&gt;&quot;
+                </font><font color="#000000">);</font>
+				<font color="#000000">out.prinln(</font><font color="#ff00ff">&quot;&lt;/html&gt;&quot;
+                </font><font color="#000000">);</font>
+            <font color="#000000">}</font>
+<font color="#000000">}</font>
+
+<font color="#0000ff">public void </font><font color="#000000">destroy()</font><font color="#008000">
+//reset i value here</font>
+
+	<font color="#000000">{</font>
+		<font color="#000000">i=</font><font color="#800080">0
+        </font><font color="#000000">;</font>
+
+	<font color="#000000">}</font>
+	<font color="#000000">}</font>
+</pre>
+</div>
+<h3>Running servlet</h3>
+<p>To run servlet first install and configure the server on your system. web server is required to install to run the servlet.
+</p>
+<h3>To compileAnd Run</h3>
+<i>javac ExampServlet.java</i>
+<p>Servlets can be called directly by typing their uniform resource locator (URL) into a browser's location window after you've 
+started the server.</p>
+<p>Servlets can also be invoked from an HTML form by specifying their URL in the definition for a Submit button, for example.
+Servlets can be called by any program that can open an hypertext transfer protocol (HTTP) request</p>
+<div class="heading">What is web.xml file?</div>
+<p>Web. xml file also called<i> "web Deployment descriptor"</i> allows us to configure our web application inside the Servlet containerHere we can specify the name of our web application, define our Java Servlets, specify initialization parameters 
+for Servlets, define tag libraries, and a whole lot more. This file is placed inside the /WEB-INF folder. we use two of the 
+features of 'web.xml' file; name of Servlet and the Servlet mapping to a URL. This will allow us to access our Servlet using a 
+URL like /TestServlet.</p>
+<div class="code">
+<pre>
+
+<font color="#000000">&lt;?xml version=</font><font color="#ff00ff">&quot;1.0&quot;</font><font color="#000000">?
+&gt;</font>
+
+<font color="#000000">&lt;web-app xmlns=</font><font color="#ff00ff">&quot;http://java.sun.com/xml/ns/javaee&quot;
+</font>
+	<font color="#000000">xmlns:xsi=</font><font color="#ff00ff">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
+    </font>
+	<font color="#000000">xsi:schemaLocation=</font><font color="#ff00ff">&quot;http://java.sun.com/xml/ns/javaee
+    </font>
+		<font color="#000000">http:</font><font color="#008000">//java.sun.com/xml/ns/javaee/web-app_2_5.xsd&quot;
+        </font>
+	<font color="#000000">version=</font><font color="#ff00ff">&quot;2.5&quot;</font><font color="#000000">&gt; </font>
+
+	<font color="#000000">&lt;servlet&gt;</font>
+		<font color="#000000">&lt;servlet-name&gt;TestServlet&lt;/servlet-name&gt;</font>
+		<font color="#000000">&lt;servlet-</font><font color="#0000ff">class</font><font color="#000000">
+        &gt;servlets.TestServlet&lt;/servlet-</font><font color="#0000ff">class</font><font color="#000000">&gt;
+        </font>
+	<font color="#000000">&lt;/servlet&gt;</font>
+
+	<font color="#000000">&lt;servlet-mapping&gt;</font>
+		<font color="#000000">&lt;servlet-name&gt;TestServlet&lt;/servlet-name&gt;</font>
+		<font color="#000000">&lt;url-pattern&gt;/TestServlet&lt;/url-pattern&gt;</font>
+	<font color="#000000">&lt;/servlet-mapping&gt;</font>
+<font color="#000000">&lt;/web-app&gt;</font>
+</pre>
+</div>
+<div class="heading">To run a Servlet</div>
+<p>Now we need to start Tomcat server. Type the following command at DOS prompt and hit Enter to start the Tomcat server:
+<i>C:\apache_tomcat_6.0.14\bin\</i>startup Now open your browser and point to this address:<i> http://localhost:8080/star/
+Testservlet</i>. You should a get response like following image in your browser window:</p>
+

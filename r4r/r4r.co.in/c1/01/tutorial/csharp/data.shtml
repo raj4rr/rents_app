@@ -1,0 +1,209 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>Data Controls in C#</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="Data Controls in C#" >
+<meta name="keywords" CONTENT="Data Controls in C#">
+
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+     <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>C# Tutorial</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a><img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/c1/">C#</a>
+
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/c1/commonfiles/leftmenu.shtml'); ?></td>
+
+                       <td style="80%" valign="top">
+                        <div class="main_content"> 
+
+	<!-- Header End-->
+
+  <div class="heading">Data Controls</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="Printing.shtml" title="Printing Controls">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="error_provider_control.shtml" title="Error Provider Control">Next</a></td>
+  </tr>
+</table>
+<p>For understanding data controls design form like shown in below picture and take datagrid view control from toolbox. And 
+add new database from solution explorer by choosing new item.   </p>
+<p><h3>Example</h3>Add namespace-</p>
+<div class="code">
+<pre>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Data</font><font color="#000000">.SqlClient;</font>
+
+<font color="#000000">SqlConnection con = </font><font color="#0000ff">new </font><font color="#000000">SqlConnection(@</font><font color="#ff00ff">&quot;
+Data Source=.\SQLEXPRESS;AttachDbFilename= D:\Documents </font>
+<font color="#000000">and Settings\R4R\My </font><font color="#008080">Documents</font><font color="#000000">\Visual Studio </font><font color="#800080">2008</font>
+<font color="#000000">\Projects\WindowsFormsApplication14</font><font color="#000000">\WindowsFormsApplication14\r4r.mdf;Integrated </font>
+<font color="#008080">Security</font><font color="#000000">=True;User Instance=True</font><font color="#ff00ff">&quot;);</font>
+</pre>
+</div>
+
+<div class="image">
+<img src="image/data.JPG">
+</div>
+
+<p>Now i want to insert record in database by clicking on insert button. Code for this is given below-</p>
+<p><h3>Example</h3>Code for inserting Data in Database</p>
+<div class="code">
+<pre>
+<font color="#0000ff">private void </font><font color="#000000">button1_Click(</font><font color="#0000ff">object </font><font color="#000000">sender, </font><font color="#808000">EventArgs </font><font color="#000000">e)</font>
+<font color="#000000">{</font>
+<font color="#000000">SqlCommand com = </font><font color="#0000ff">new </font><font color="#000000">SqlCommand(</font>
+<font color="#ff00ff">&quot;insert into emp_detail values('&quot;</font><font color="#000000">+textBox1.</font><font color="#008080">Text</font>
+<font color="#000000">+</font><font color="#ff00ff">&quot;','&quot;</font><font color="#000000">+textBox2.</font>
+<font color="#008080">Text</font><font color="#000000">+</font><font color="#ff00ff">&quot;','&quot;</font><font color="#000000">+textBox3.</font>
+<font color="#008080">Text</font><font color="#000000">+</font><font color="#ff00ff">&quot;','&quot;</font>
+<font color="#000000">+textBox4.</font><font color="#008080">Text</font><font color="#000000">+</font>
+<font color="#ff00ff">&quot;','&quot;</font><font color="#000000">+textBox5.</font><font color="#008080">Text</font><font color="#000000">+</font><font color="#ff00ff">&quot;')&quot;</font><font color="#000000">,con);</font>
+<font color="#000000">con.Open();</font>
+<font color="#000000">com.ExecuteNonQuery();</font>
+<font color="#000000">con.Close();</font>
+<font color="#000000">}</font>
+</pre>
+</div>
+
+<div class="image">
+<img src="image/data1.JPG">
+</div>
+<p>Code for viewing the total record in DataGridview by clicking the view button</p>
+
+<div class="code">
+<pre>
+<font color="#0000ff">private void </font><font color="#000000">button4_Click(</font><font color="#0000ff">object </font><font color="#000000">sender, </font><font color="#808000">EventArgs </font><font color="#000000">e)</font>
+<font color="#000000">{</font>
+<font color="#000000">SqlCommand com2 = </font><font color="#0000ff">new </font><font color="#000000">SqlCommand(</font>
+<font color="#ff00ff">&quot;select * from emp_detail&quot;</font><font color="#000000">,con);</font>
+
+<font color="#000000">SqlDataAdapter da = </font><font color="#0000ff">new </font><font color="#000000">SqlDataAdapter(com2);</font>
+<font color="#808000">DataSet </font><font color="#000000">ds = </font><font color="#0000ff">new </font><font color="#808000">DataSet</font><font color="#000000">();</font>
+<font color="#000000">con.Open(); </font>
+<font color="#000000">da.Fill(ds, </font><font color="#ff00ff">&quot;emp_detail&quot;</font><font color="#000000">);</font>
+<font color="#000000">con.Close();</font>
+<font color="#000000">dataGridView1.DataSource = ds.Tables[</font><font color="#800080">0</font><font color="#000000">];</font>
+
+<font color="#000000">}</font>
+</pre>
+</div>
+
+<div class="image">
+<img src="image/data2.JPG">
+</div>
+<p>Code for Updating the record from dataGrid View</p>
+
+<div class="code">
+<pre>
+<font color="#0000ff">string </font><font color="#000000">name, address, sal, cont;</font>
+<font color="#0000ff">private void </font><font color="#000000">button2_Click(</font><font color="#0000ff">object </font><font color="#000000">sender, </font><font color="#808000">EventArgs </font><font color="#000000">e)</font>
+<font color="#000000">{</font>
+
+<font color="#0000ff">foreach </font><font color="#000000">(</font><font color="#808000">DataGridViewRow </font><font color="#000000">row </font>
+<font color="#0000ff">in </font><font color="#000000">dataGridView1.SelectedRows)</font>
+<font color="#000000">{</font>
+<font color="#0000ff">if </font><font color="#000000">(row.Index != dataGridView1.Rows.Count)</font>
+<font color="#000000">{</font>
+<font color="#000000">id = dataGridView1.SelectedRows[</font><font color="#800080">0</font><font color="#000000">].Cells[</font><font color="#800080">0</font><font color="#000000">].Value.ToString();</font>
+<font color="#000000">name= dataGridView1.SelectedRows[</font><font color="#800080">0</font><font color="#000000">].Cells[</font><font color="#800080">1</font><font color="#000000">].Value.ToString();</font>
+<font color="#000000">address = dataGridView1.SelectedRows[</font><font color="#800080">0</font><font color="#000000">].Cells[</font><font color="#800080">2</font><font color="#000000">].Value.ToString();</font>
+<font color="#000000">sal = dataGridView1.SelectedRows[</font><font color="#800080">0</font><font color="#000000">].Cells[</font><font color="#800080">3</font><font color="#000000">].Value.ToString();</font>
+<font color="#000000">cont = dataGridView1.SelectedRows[</font><font color="#800080">0</font><font color="#000000">].Cells[</font><font color="#800080">4</font><font color="#000000">].Value.ToString();</font>
+<font color="#000000">dataGridView1.Rows.RemoveAt(row.Index);</font>
+
+<font color="#000000">}</font>
+
+<font color="#000000">}</font>
+<font color="#000000">SqlCommand com3 = </font><font color="#0000ff">new </font><font color="#000000">SqlCommand</font>
+<font color="#000000">(</font><font color="#ff00ff">&quot;update emp_detail set emp_name='&quot;</font>
+<font color="#000000">+name+</font><font color="#ff00ff">&quot;',emp_address='&quot;</font>
+<font color="#000000">+</font>
+<font color="#000000">address+</font><font color="#ff00ff">&quot;',emp_sal='&quot;</font>
+<font color="#000000">+sal+</font><font color="#ff00ff">&quot;',emp_cont='&quot;</font>
+<font color="#000000">+cont+</font><font color="#ff00ff">&quot;'  where emp_id ='&quot; </font>
+<font color="#000000">+ id + </font><font color="#ff00ff">&quot;'&quot;</font><font color="#000000">, con);</font>
+<font color="#000000">con.Open();</font>
+<font color="#000000">com3.ExecuteNonQuery();</font>
+<font color="#000000">con.Close();</font>
+<font color="#000000">}</font>
+</pre>
+</div>
+
+<div class="image">
+<img src="image/data3.JPG">
+<img src="image/data4.JPG">
+</div>
+
+<p>Code for Deleting the recording from Datagridview control</p>
+
+<div class="code">
+<pre>
+<font color="#0000ff">private void </font><font color="#000000">button3_Click(</font><font color="#0000ff">object </font><font color="#000000">sender, </font><font color="#808000">EventArgs </font><font color="#000000">e)</font>
+<font color="#000000">{</font>
+
+<font color="#0000ff">foreach </font><font color="#000000">(</font><font color="#808000">DataGridViewRow </font><font color="#000000">row </font>
+<font color="#0000ff">in </font><font color="#000000">dataGridView1.SelectedRows)</font>
+<font color="#000000">{</font>
+<font color="#0000ff">if </font><font color="#000000">(row.Index != dataGridView1.Rows.Count)</font>
+<font color="#000000">{</font>
+<font color="#000000">id = dataGridView1.SelectedRows[</font><font color="#800080">0</font><font color="#000000">].Cells[</font>
+<font color="#800080">0</font><font color="#000000">].Value.ToString();</font><font color="#000000">dataGridView1.Rows.RemoveAt(row.Index);</font>
+
+<font color="#000000">}</font>
+
+<font color="#000000">}</font>
+<font color="#000000">SqlCommand com3 = </font><font color="#0000ff">new </font><font color="#000000">SqlCommand(</font><font color="#ff00ff">&quot;delete from </font>
+<font color="#000000">emp_detail where emp_id =</font><font color="#ff00ff">'&quot;+id+&quot;'</font><font color="#ff00ff">&quot;,con);</font>
+<font color="#000000">con.Open();</font>
+<font color="#000000">com3.ExecuteNonQuery();</font>
+<font color="#000000">con.Close();</font>
+<font color="#000000">}</font>
+</pre>
+</div>
+
+<p><h3>output becomes</h3></p>
+<div class="output">
+<div class="image">
+<img src="image/data5.JPG">
+<img src="image/data6.JPG">
+</div>
+</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="Printing.shtml" title="Printing Controls">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="error_provider_control.shtml" title="Error Provider Control">Next</a></td>
+  </tr>
+</table>
+  <!--Footer-->
+   </div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/dotnet/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+     <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>

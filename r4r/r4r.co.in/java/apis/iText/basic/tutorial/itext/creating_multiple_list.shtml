@@ -1,0 +1,198 @@
+<!DOCTYPE HTML PUBLIC "-/W3C/DTD HTML 4.01 Transitional/EN" "http:/www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD>
+<meta http-equiv="Content-Language" content="en-us">
+<TITLE>Creating Multiple List Using iText</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name="description" CONTENT="Creating Multiple List Using iText" >
+<meta name="keywords" CONTENT="Creating Multiple List Using iText">
+
+<!-- header start-->	
+
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>Java Programing laungage</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+            <img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+            <a href="/java/">Java</a>
+                     <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/java/apis/iText/">iText</a>
+
+              </div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/apis/iText/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	 
+
+	   	   <div class="heading">Creating multiple list in PDF file</div>
+
+		  <table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="change_background.shtml" title="Change Background Color in PDF file">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="space_ratio_alignment.shtml" title="Set Space Ratio and Alignment">Next</a></td>
+  </tr>
+</table>
+	<!-- Footer Start-->		
+
+<p>The iText is a very power full Application programming language which is used for the creating the PDF file and manipulating them. Actually the iText is a library of the file in which many class and interface is included. These class and interfaces are provide the help to complete the task of creation of PDF file in easy way. </p>
+<p>By help of this program we are trying to tell you that how we can make multiple list into a PDF file. We can make lists and also sublist into the PDF file. We can make symbolic or ordered list.</p> 
+<p>In java iText API provides facility to make list into the PDF file. It List may be ordered or unordered. It is Depending our requirement. we can create both type of list.</p>
+<p>For performing this action some package used in the program . These are listed bellow:</p>
+<ol>
+<li>import com.lowagie.text.Listt;</li>
+<li>import com.lowagie.text.Listitem;</li>
+
+<h3>Example:</h3>
+<div class="code">
+<pre>
+<font color="#0000ff">package </font><font color="#000000">r4r;</font>
+<font color="#0000ff">import </font><font color="#000000">java.io.</font><font color="#ff0000">FileOutputStream</font><font color="#000000">;</font>
+<font color="#0000ff">import </font><font color="#000000">com.lowagie.text.Chunk;</font>
+<font color="#0000ff">import </font><font color="#000000">com.lowagie.text.</font><font color="#ff0000">Document</font><font color="#000000">;</font>
+<font color="#0000ff">import </font><font color="#000000">com.lowagie.text.</font><font color="#ff0000">Font</font><font color="#000000">;</font>
+<font color="#0000ff">import </font><font color="#000000">com.lowagie.text.FontFactory;</font>
+<font color="#0000ff">import </font><font color="#000000">com.lowagie.text.</font><font color="#ff0000">List</font><font color="#000000">;</font>
+<font color="#0000ff">import </font><font color="#000000">com.lowagie.text.ListItem;</font>
+<font color="#0000ff">import </font><font color="#000000">com.lowagie.text.Paragraph;</font>
+<font color="#0000ff">import </font><font color="#000000">com.lowagie.text.pdf.PdfWriter;</font>
+
+<font color="#0000ff">public class </font><font color="#000000">multilelisttest </font>
+	<font color="#000000">{</font>
+<font color="#0000ff">public static void </font><font color="#000000">main(</font><font color="#ff0000">String</font><font color="#000000">[] args)</font><font color="#0000ff">throws </font><font color="#ff0000">Exception </font>
+	<font color="#000000">{</font>
+<font color="#ff0000">System</font><font color="#000000">.out.println(</font><font color="#ff00ff">&quot;Creation object of List&quot;</font><font color="#000000">);</font>
+
+<font color="#ff0000">Document </font><font color="#000000">doc = </font><font color="#0000ff">new </font><font color="#ff0000">Document</font><font color="#000000">();</font>
+<font color="#000000">PdfWriter.getInstance(doc, </font><font color="#0000ff">new </font><font color="#ff0000">FileOutputStream</font>
+<font color="#000000">(</font><font color="#ff00ff">&quot;multiplelisttest.pdf&quot;</font><font color="#000000">));</font>
+
+<font color="#000000">doc.open();</font>
+<font color="#ff0000">List </font><font color="#000000">lt = </font><font color="#0000ff">new </font><font color="#ff0000">List</font><font color="#000000">(</font><font color="#0000ff">true</font><font color="#000000">, </font><font color="#800080">20</font><font color="#000000">);</font>
+<font color="#000000">lt.add(</font><font color="#0000ff">new </font><font color="#000000">ListItem(</font><font color="#ff00ff">&quot;Java&quot;</font><font color="#000000">));</font>
+<font color="#000000">lt.add(</font><font color="#0000ff">new </font><font color="#000000">ListItem(</font><font color="#ff00ff">&quot;Dot net&quot;</font><font color="#000000">));</font>
+<font color="#000000">lt.add(</font><font color="#0000ff">new </font><font color="#000000">ListItem(</font><font color="#ff00ff">&quot;SEO&quot;</font><font color="#000000">));</font>
+<font color="#000000">doc.add(lt);</font>
+<font color="#000000">doc.add(</font><font color="#0000ff">new </font><font color="#000000">Paragraph(</font>
+<font color="#ff00ff">&quot;This Tutorials Provided By R4R&quot;</font><font color="#000000">));</font>
+
+<font color="#000000">ListItem lItem;</font>
+<font color="#000000">lt = </font><font color="#0000ff">new </font><font color="#ff0000">List</font><font color="#000000">(</font><font color="#0000ff">true</font><font color="#000000">, </font><font color="#800080">15</font><font color="#000000">);</font>
+<font color="#000000">lItem = </font><font color="#0000ff">new </font><font color="#000000">ListItem(</font><font color="#ff00ff">&quot;Java&quot;</font><font color="#000000">, </font>
+<font color="#000000">FontFactory.getFont(FontFactory.TIMES_ROMAN, </font><font color="#800080">13</font><font color="#000000">));</font>
+
+<font color="#000000">lItem.add(</font><font color="#0000ff">new </font><font color="#000000">Chunk(</font><font color="#ff00ff">&quot; By R4R&quot;</font><font color="#000000">, FontFactory.getFont(</font>
+<font color="#000000">FontFactory.TIMES_ROMAN, </font><font color="#800080">13</font><font color="#000000">, </font><font color="#ff0000">Font</font><font color="#000000">.ITALIC)));</font>
+
+<font color="#000000">lt.add(lItem);</font>
+<font color="#000000">lItem = </font><font color="#0000ff">new </font><font color="#000000">ListItem(</font><font color="#ff00ff">&quot;Dot net&quot;</font><font color="#000000">, FontFactory.getFont(</font>
+<font color="#000000">FontFactory.TIMES_ROMAN, </font><font color="#800080">12</font><font color="#000000">));</font>
+
+<font color="#000000">lItem.add(</font><font color="#0000ff">new </font><font color="#000000">Chunk(</font><font color="#ff00ff">&quot; By R4R&quot;</font><font color="#000000">, FontFactory.getFont(</font>
+<font color="#000000">FontFactory.TIMES_ROMAN, </font><font color="#800080">13</font><font color="#000000">, </font><font color="#ff0000">Font</font><font color="#000000">.ITALIC)));</font>
+
+<font color="#000000">lt.add(lItem);</font>
+<font color="#000000">lItem = </font><font color="#0000ff">new </font><font color="#000000">ListItem(</font><font color="#ff00ff">&quot;SEO&quot;</font><font color="#000000">, </font>
+<font color="#000000">FontFactory.getFont(FontFactory.TIMES_ROMAN, </font><font color="#800080">12</font><font color="#000000">));</font>
+
+<font color="#000000">lItem.add(</font><font color="#0000ff">new </font><font color="#000000">Chunk(</font><font color="#ff00ff">&quot; By R4R&quot;</font><font color="#000000">, FontFactory.getFont(</font>
+<font color="#000000">FontFactory.TIMES_ROMAN, </font><font color="#800080">13</font><font color="#000000">, </font><font color="#ff0000">Font</font><font color="#000000">.ITALIC)));</font>
+
+<font color="#000000">lt.add(lItem);</font>
+<font color="#000000">doc.add(lt);</font>
+<font color="#000000">Paragraph par = </font><font color="#0000ff">new </font><font color="#000000">Paragraph(</font><font color="#ff00ff">&quot;Open source&quot;</font><font color="#000000">);</font>
+<font color="#000000">lt = </font><font color="#0000ff">new </font><font color="#ff0000">List</font><font color="#000000">(</font><font color="#0000ff">false</font><font color="#000000">, </font><font color="#800080">10</font><font color="#000000">);</font>
+<font color="#000000">lt.add(</font><font color="#ff00ff">&quot;server net bean&quot;</font><font color="#000000">);</font>
+<font color="#000000">lt.add(</font><font color="#ff00ff">&quot;java&quot;</font><font color="#000000">);</font>
+<font color="#000000">lt.add(</font><font color="#ff00ff">&quot;My SQL&quot;</font><font color="#000000">);</font>
+<font color="#000000">par.add(lt);</font>
+<font color="#000000">doc.add(par);</font>
+<font color="#000000">doc.add(</font><font color="#0000ff">new </font><font color="#000000">Paragraph(</font><font color="#ff00ff">&quot;iText Example&quot;</font><font color="#000000">));</font>
+<font color="#000000">lt = </font><font color="#0000ff">new </font><font color="#ff0000">List</font><font color="#000000">(</font><font color="#0000ff">false</font><font color="#000000">, </font><font color="#800080">20</font><font color="#000000">);</font>
+<font color="#000000">lt.setListSymbol(</font><font color="#0000ff">new </font><font color="#000000">Chunk(</font><font color="#ff00ff">&quot;\u2021&quot;</font><font color="#000000">, FontFactory.getFont(</font>
+<font color="#000000">FontFactory.HELVETICA, </font><font color="#800080">21</font><font color="#000000">, </font><font color="#ff0000">Font</font><font color="#000000">.BOLD)));</font>
+
+<font color="#000000">lItem = </font><font color="#0000ff">new </font><font color="#000000">ListItem(</font>
+<font color="#ff00ff">&quot;Generates a simple 'Hello Java' PDF file&quot;</font><font color="#000000">);</font>
+
+<font color="#000000">lt.add(lItem);</font>
+<font color="#ff0000">List </font><font color="#000000">slist;</font>
+<font color="#000000">slist = </font><font color="#0000ff">new </font><font color="#ff0000">List</font><font color="#000000">(</font><font color="#0000ff">false</font><font color="#000000">, </font><font color="#0000ff">true</font><font color="#000000">, </font><font color="#800080">10</font><font color="#000000">);</font>
+<font color="#000000">slist.setListSymbol(</font><font color="#0000ff">new </font><font color="#000000">Chunk(</font><font color="#ff00ff">&quot;&quot;</font><font color="#000000">, FontFactory.getFont(</font>
+<font color="#000000">FontFactory.HELVETICA, </font><font color="#800080">7</font><font color="#000000">)));</font>
+
+<font color="#000000">slist.add(</font><font color="#ff00ff">&quot;Creating Paragraph using iText&quot;</font><font color="#000000">);</font>
+<font color="#000000">slist.add(</font><font color="#ff00ff">&quot;Insert Image using iText&quot;</font><font color="#000000">);</font>
+<font color="#000000">slist.add(</font><font color="#ff00ff">&quot;Rotate image using iText.&quot;</font><font color="#000000">);</font>
+<font color="#000000">slist.add(</font><font color="#ff00ff">&quot;alignment to test Using iText&quot;</font><font color="#000000">);</font>
+<font color="#000000">lt.add(slist);</font>
+<font color="#000000">lItem = </font><font color="#0000ff">new </font><font color="#000000">ListItem(</font><font color="#ff00ff">&quot;Craeting table object using iText&quot;</font><font color="#000000">);</font>
+<font color="#000000">lt.add(lItem);</font>
+<font color="#000000">slist = </font><font color="#0000ff">new </font><font color="#ff0000">List</font><font color="#000000">(</font><font color="#0000ff">false</font><font color="#000000">, </font><font color="#0000ff">true</font><font color="#000000">, </font><font color="#800080">10</font><font color="#000000">);</font>
+<font color="#000000">slist.setFirst(</font><font color="#ff00ff">'a'</font><font color="#000000">);</font>
+<font color="#000000">slist.setListSymbol(</font><font color="#0000ff">new </font><font color="#000000">Chunk(</font><font color="#ff00ff">&quot;&quot;</font><font color="#000000">, FontFactory.getFont(</font>
+<font color="#000000">FontFactory.HELVETICA, </font><font color="#800080">7</font><font color="#000000">)));</font>
+
+<font color="#000000">slist.add(</font><font color="#ff00ff">&quot;Creating Table object using iText &quot;</font><font color="#000000">);</font>
+<font color="#000000">slist.add(</font><font color="#ff00ff">&quot;creating a table with title using iText&quot;</font><font color="#000000">);</font>
+<font color="#000000">slist.add(</font><font color="#ff00ff">&quot;Creating list object using iText &quot;</font><font color="#000000">);</font>
+<font color="#000000">slist.add(</font><font color="#ff00ff">&quot;Creating multiplelist object using iText &quot;</font><font color="#000000">);</font>
+<font color="#000000">lt.add(slist);</font>
+<font color="#000000">lItem = </font><font color="#0000ff">new </font><font color="#000000">ListItem(</font><font color="#ff00ff">&quot;Creating list object using iText &quot;</font><font color="#000000">);</font>
+<font color="#000000">lt.add(lItem);</font>
+<font color="#000000">slist = </font><font color="#0000ff">new </font><font color="#ff0000">List</font><font color="#000000">(</font><font color="#0000ff">false</font><font color="#000000">, </font><font color="#0000ff">true</font><font color="#000000">, </font><font color="#800080">10</font><font color="#000000">);</font>
+<font color="#000000">slist.setListSymbol(</font><font color="#0000ff">new </font><font color="#000000">Chunk(</font><font color="#ff00ff">&quot;&quot;</font><font color="#000000">, FontFactory.getFont(</font>
+<font color="#000000">FontFactory.HELVETICA, </font><font color="#800080">7</font><font color="#000000">)));</font>
+
+<font color="#000000">slist.add(</font><font color="#ff00ff">&quot;Core java &quot;</font><font color="#000000">);</font>
+<font color="#000000">slist.add(</font><font color="#ff00ff">&quot;Advanced java &quot;</font><font color="#000000">);</font>
+<font color="#000000">slist.add(</font><font color="#ff00ff">&quot;struts &quot;</font><font color="#000000">);</font>
+<font color="#000000">slist.add(</font><font color="#ff00ff">&quot;hibernate&quot;</font><font color="#000000">);</font>
+<font color="#000000">lt.add(slist);</font>
+<font color="#000000">doc.add(lt); </font>
+<font color="#000000">doc.close();</font>
+<font color="#000000">}</font>
+<font color="#000000">}</font>
+</pre>
+</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="change_background.shtml" title="Change Background Color in PDF file">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="space_ratio_alignment.shtml" title="Set Space Ratio and Alignment">Next</a></td>
+  </tr>
+</table>
+
+<!-- Footer Start-->		
+
+</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->

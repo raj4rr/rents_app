@@ -1,0 +1,177 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<HTML><HEAD><TITLE>Delete the Data through jsp page from the database using servlet in the Hibernate</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv="content-type" content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="Hibernate Delete the Data through jsp page from the database tutorial learn easily and shortly with hibernate tutorial,hibernate
+Examples,hibernate interview questions Step by step covers all topics of hibernate" >
+<meta name="keywords" CONTENT="Hibernate tutorial, Delete the Data through jsp page, Hibernate Examples, object relation mapping(ORM), 
+hibernate query language(HQl)">
+
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<META http-equiv="Content-Language" content="en-us">
+<link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+<link href="/css/main.css" rel="stylesheet" type="text/css" />
+</HEAD>
+<BODY>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>Hibernate</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+            <img src="/images/left_menu_bullet.gif"/> <a href="/java/hibernate/">Hibernate</a>
+             </div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top">
+                            <?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/hibernate/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                       <div class="main_content">  	 
+
+      <div class="heading">Deletion the Data through jsp page from the database using servlet in the Hibernate</div>
+
+      <table id="indexing">
+
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="example2.shtml" title="Fetch Data from Database">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="example4.shtml" title="Update Data into Database">Next</a></td>
+  </tr> 
+</table>
+      <p>
+          For making these application we are using the NetBeans and appache tomcat server and mysql server. 
+          Here we will discuss how to update data into the database table without go in the database. 
+          Yes it can be possible when we work with the hibernate. For this we will take as we discussed 
+          in the last example how to fetch data form the database table data into the jsp page. It will 
+          help us to delete data because here we will use that jsp page to delete link we will provide 
+          into that jsp page. For doing the delete action using hibernate we will need to follow the 
+          some basic step which is given below:
+      </p>
+      <p>
+          Step 1. Here we will take the same appliation(HibernateApplicationUsingServlet) and database(hibernate_pro) 
+          for the update and delete data directely from the database.
+      </p>
+      <p>
+          Step 2. Take a jsp file (FetchDataListWithAction) which is as given in last application 
+          activity. Now we need to edit to the code here will edit and provide the link of delete 
+          in a column. so we need to add a column.
+      </p>
+      <div class="code">
+         <pre><code class="language-java">
+ &lt;%@page import="org.hibernate.criterion.Restrictions" %&gt;
+&lt;%@page import="org.hibernate.*" %&gt;
+&lt;body&gt;
+    &lt;table width="900" border="2"&gt;&lt;tr&gt;&lt;th&gt;Sr. No&lt;/th&gt;&lt;th&gt;First Name&lt;/th&gt;&lt;th&gt;Last Name&lt;/th&gt;
+	&lt;th&gt;Age&lt;/th&gt;&lt;th&gt;Last Update&lt;/th&gt;&lt;th&gt;Operation&lt;/th&gt;&lt;/tr&gt;
+        &lt;%
+        SessionFactory sf = r4r.HibernateUtil.getSessionFactory();
+        Session s = sf.openSession();
+        Transaction tr = s.beginTransaction();
+        Criteria cr = s.createCriteria(r4r.InsertData.class);
+        java.util.List&lt;r4r.InsertData&gt; ds = cr.list();
+        for(r4r.InsertData dd : ds)
+        {
+            out.println("&lt;tr&gt;&lt;td&gt;"+dd.getId()+"&lt;td&gt;"+dd.getFirstName()+
+				"&lt;td&gt;"+dd.getLastName()+"&lt;td&gt;"+dd.getAge()+"&lt;td&gt;"+dd.getLastUpdate()+
+                    "&lt;td&gt;&lt;a href=Delete.jsp?t="+dd.getId()+"&gt;Delete&lt;/a&gt; "+" ");
+        }
+        %&gt;   
+    &lt;/table&gt;
+&lt;/body&gt;
+</code></pre>
+      </div>
+
+    <p>
+        After build and run the project we found as we given below:
+    </p>
+    <p>
+        Step 3. Now we create a jsp page for action on Delete the data from the database. 
+        For this we take jsp file by going into the file menu wizard -> click on the new 
+        file -> put the file name (Delete) -> click on finish.
+    </p>
+    <div class="code">
+        <pre><code class="language-java">
+&lt;%@page import="org.hibernate.criterion.Restrictions" %&gt;
+&lt;%@page import="org.hibernate.*" %&gt;
+&lt;%
+    int n = Integer.parseInt(request.getParameter("t"));
+    SessionFactory sf = r4r.HibernateUtil.getSessionFactory();
+    Session s = sf.openSession();
+    Transaction tr= s.beginTransaction();
+    r4r.InsertData r = (r4r.InsertData)s.get(r4r.InsertData.class, n);
+    s.delete(r);
+    tr.commit();
+    response.sendRedirect("FetchListAfterDeletion.jsp");
+
+%&gt;
+</code></pre>
+    </div>
+    <p>
+        Step 4. Now we create a jsp page for delete the data from the database for this we take 
+        jsp file by going into the file menu wizard -> click on the new file -> put the file name 
+        (FetchDataListAfterDeletion) -> click on finish.
+    </p>
+    <div class="code">
+       <pre><code class="language-java">
+ &lt;%@page import="org.hibernate.criterion.Restrictions" %&gt;
+&lt;%@page import="org.hibernate.*" %&gt;
+&lt;body bgcolor="lightyellow"&gt;
+    &lt;table width="500" border="1"&gt;&lt;tr&gt;&lt;th&gt;Sr. No&lt;/th&gt;&lt;th&gt;First Name&lt;/th&gt;&lt;th&gt;Last Name&lt;/th&gt;
+	&lt;th&gt;Age&lt;/th&gt;&lt;th&gt;When Inserted&lt;/th&gt;&lt;/tr&gt;
+        &lt;%
+            SessionFactory sf = r4r.HibernateUtil.getSessionFactory();
+            Session s = sf.openSession();
+            Transaction tr = s.beginTransaction();
+            Criteria cr = s.createCriteria(r4r.InsertData.class);
+            java.util.List&lt;r4r.InsertData&gt; us = cr.list();
+            for(r4r.InsertData dr : us)
+            {
+
+                out.println("&lt;tr&gt;&lt;td&gt;"+dr.getId()+"&lt;/td&gt;&lt;td&gt;"+dr.getFirstName()+
+					"&lt;/td&gt;&lt;td&gt;"+dr.getLastName()+"&lt;/td&gt;&lt;td&gt;"+dr.getAge()+"&lt;/td&gt;&lt;td&gt;"
+				+dr.getLastUpdate()+"&lt;/td&gt;&lt;tr&gt;");
+            }
+
+        %&gt; 
+    &lt;/table&gt;
+    &lt;%out.println("&lt;h2&gt;Record Successfully deleted");%&gt;
+&lt;/body&gt;
+</code></pre>
+    </div>
+<p>
+    Step 5. Now we build the application and run.
+</p>
+<p>
+    When we click on the action delete then we delete the record from the database as given in below:
+</p>
+<table id="indexing">
+
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="example2.shtml" title="Fetch Data from Database">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="example4.shtml" title="Update Data into Database">Next</a></td>
+  </tr> 
+</table>
+
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+
+                <?php @include($_SERVER['DOCUMENT_ROOT'] . '/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>

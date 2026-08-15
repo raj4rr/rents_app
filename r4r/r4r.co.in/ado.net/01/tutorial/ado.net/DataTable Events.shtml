@@ -1,0 +1,120 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>DataTable Events,System.Data.DataTable Events,DataColumnChangeEventArgs Properties,DataRowChangeEventArgs Properties</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="DataTable Events,System.Data.DataTable Events,DataColumnChangeEventArgs Properties,DataRowChangeEventArgs Properties" >
+<meta name="keywords" CONTENT="DataTable Events,System.Data.DataTable Events,DataColumnChangeEventArgs Properties,DataRowChangeEventArgs Properties">
+
+<!-- header start-->	
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>ADO.NET</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+            <img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+            <a href="/ado.net">ADO.Net</a>
+              <img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+
+			  <a href="/ado.net/01/tutorial/ado.net/">ADO.NET Tutorials</a>
+
+              </div>
+
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/ado.net/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	 
+<!-- header End-->	
+<div class="heading">DataTable Events</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="Copy%20a%20DataTable.shtml" title="Copy a DataTable">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="Usage%20of%20DataTable%20Events.shtml" title="Usage of DataTable Events">Next</a></td>
+  </tr> 
+</table>
+
+<p>DataTable exposes a set of events and  the events can be captured and handled in order to update the user interface, or to validate edits or deletes before they are committed. Not including the event inherited  from MarshalByValueComponent.Disposed, there are nine events in all, and they all work in more-or-less the same way, with similar arguments.</p>
+
+<h3>System.Data.DataTable Events</h3>
+<p>
+<div class="table_content">
+<table>
+<tr><td class="heading" style="width:30;">Event</td> <td class="heading" style="width:70;">Description</td></tr>
+<tr><td class="alternate_heading1">ColumnChanging</td> <td class="alternate_heading1">Occurs when a value is being changed in the specified DataColumn in DataRow.</td></tr>
+<tr><td class="alternate_heading2">ColumnChanged</td> <td class="alternate_heading2">Occurs after a value has been changed in the specified DataColumn in a DataRow.</td></tr>
+<tr><td class="alternate_heading1">RowChanging</td> <td class="alternate_heading1">Occurs when a DataRow is changing. This event will fire each time a change is made to the DataRow, after the ColumnChanging event has fired.</td></tr>
+<tr><td class="alternate_heading2">RowChanged</td> <td class="alternate_heading2">Occurs after a DataRow has been changed successfully.</td></tr>
+<tr><td class="alternate_heading1">TableClearing</td> <td class="alternate_heading1">Occurs when the table is being cleared.</td></tr>
+<tr><td class="alternate_heading2">TableCleared</td> <td class="alternate_heading2">Occurs after the table has been cleared.</td></tr>
+<tr><td class="alternate_heading1">RowDeleting</td> <td class="alternate_heading1"> Occurs when a DataRow is about to be deleted.</td></tr>
+<tr><td class="alternate_heading2">TableNew Row</td> <td class="alternate_heading2"> Occurs right after a new row has been generated.</td></tr>
+<tr><td class="alternate_heading1">RowDeleted</td> <td class="alternate_heading1">Occurs after a DataRow is successfully deleted from the DataTable.</td></tr>
+</table>
+</div>
+</p>
+
+<p>Each of the DataTable events works in the same fashion. Handlers for the column-related events (ColumnChanging and ColumnChanged) receive a DataColumnChangeEventArgs object, which exposes three properties.</p>
+<h3>DataColumnChangeEventArgs Properties</h3>
+<p>
+<div class="table_content">
+<table>
+<tr><td class="heading" style="width:30;">Property</td> <td class="heading" style="width:70;">Description</td></tr>
+<tr><td class="alternate_heading1">Column</td> <td class="alternate_heading1">Get  DataColumn object with the changing value.</td></tr>
+<tr><td class="alternate_heading2">Proposed Value</td> <td class="alternate_heading2">Gets or sets the proposed valuethat is, the new value being assigned to the column. In a ColumnChanging event handler</td></tr>
+<tr><td class="alternate_heading1">Row</td> <td class="alternate_heading1">Gets the DataRow object with the changing value</td></tr>
+</table>
+</div>
+</p>
+<p>The handlers for the row-related events other than the TableNewRow (i.e., RowChanging, RowChanged, RowDeleting, and RowDeleted) take a DataRowChangeEventArgs object, which exposes just two properties</p>
+<h3>DataRowChangeEventArgs Properties</h3>
+<p>
+<div class="table_content">
+<table>
+<tr><td class="heading" style="width:30;">Property</td> <td class="heading" style="width:70;">Description</td></tr>
+<tr><td class="alternate_heading1">Action</td> <td class="alternate_heading1">Gets the action (added, changed, deleted, etc.) that will occur/has occurred on the DataRow.</td></tr>
+<tr><td class="alternate_heading2">Row</td> <td class="alternate_heading2"> Gets the DataRow object upon which the action will occur/has occurred.</td></tr>
+</table>
+</div>
+</p>
+s
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="Copy%20a%20DataTable.shtml" title="Copy a DataTable">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="Usage%20of%20DataTable%20Events.shtml" title="Usage of DataTable Events">Next</a></td>
+  </tr> 
+</table>
+
+<!-- Footer Start-->		
+		</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/dotnet/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->

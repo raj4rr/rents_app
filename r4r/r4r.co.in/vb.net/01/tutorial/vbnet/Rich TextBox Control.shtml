@@ -1,0 +1,309 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>Rich TextBox Control,RichTextBox Properties,RichTextBox Events,Example of Rich TextBox</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="Rich TextBox Control,RichTextBox Properties,RichTextBox Events,Example of Rich TextBox" >
+<meta name="keywords" CONTENT="Rich TextBox Control,RichTextBox Properties,RichTextBox Events,Example of Rich TextBox">
+<!-- header start-->	
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>VB.NET Technology</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+            <img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+            <a href="/vb.net/">VB.net</a>
+              <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/vb.net/01/tutorial/vbnet/">VB.NET Tutorial</a>
+
+              </div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/vb.net/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	 
+
+<div class="heading">Rich TextBox Control</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="GroupBox%20Control.shtml" title="GroupBox Control">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="ListBox.shtml" title="ListBox Controls">Next</a></td>
+  </tr> 
+</table>
+<!-- header End-->	
+
+<p>
+Like the normal TextBox, the RichTextBox control is derived from TextBoxBase. Because of this, it shares a number of features with the TextBox, but is much more diverse. Where a TextBox is commonly used with the purpose of obtaining short text strings from the user, the RichTextBox is used to display and enter formatted text (for example bold, underline, and italic). It does so using a standard for formatted text called Rich Text Format or RTF.</p>
+
+<h3>RichTextBox Properties</h3>
+<div class="table_content">
+ <table>
+ <tr><td class="heading" style="width:20%;">Name</td><td class="heading" style="width:20%;">Availability</td><td class="heading" style="width:60%;">Description </td></tr>
+
+<tr><td class="alternate_heading1">CanRedo</td><td class="alternate_heading1">Read/Write</td><td class="alternate_heading1">This property is true if something has been undone, that can be reapplied,otherwise false. </td></tr>
+
+<tr><td class="alternate_heading1">CanUndo</td><td class="alternate_heading1">Read/Write</td><td class="alternate_heading1">This property is true if it is possible to perform an undo action on the RichTextBox, otherwise it is false. </td></tr>
+
+<tr><td class="alternate_heading1">RedoActionName</td><td class="alternate_heading1">Read/Write</td><td class="alternate_heading1">This property holds the name of an action that be used to redo something that has been undone in the RichTextBox. </td></tr>
+
+<tr><td class="alternate_heading1">DetectUrls</td><td class="alternate_heading1">Read/Write</td><td class="alternate_heading1">Set this property to true to make the control detect URLs and format them (underline as in
+a browser). </td></tr>
+
+<tr><td class="alternate_heading1">Rtf</td><td class="alternate_heading1">Read/Write</td><td class="alternate_heading1">This corresponds to the Text property, except that this holds the text in RTF. </td></tr>
+
+<tr><td class="alternate_heading1">SelectedRtf</td><td class="alternate_heading1">Read/Write</td><td class="alternate_heading1">Use this property to get or set the selected text in the control, in RTF. If you copy this text to another application, for example, MS Word, it will retain all formatting. </td></tr>
+
+<tr><td class="alternate_heading1">SelectedText</td><td class="alternate_heading1">Read/Write</td><td class="alternate_heading1">Like SelectedRtf you can use this property to get or set the selected text. Unlike the RTF version of the property however, all formatting is lost. </td></tr>
+
+<tr><td class="alternate_heading1">SelectionAlignment</td><td class="alternate_heading1">Read/Write</td><td class="alternate_heading1">This represents the alignment of the selected text. It can be Center, Left, or Right. </td></tr>
+
+<tr><td class="alternate_heading1">SelectionBullet</td><td class="alternate_heading1">Read/Write</td><td class="alternate_heading1">Use this property to find out if the selection is formatted with a bullet in front of it, or use it to insert or remove bullets.</td></tr>
+
+<tr><td class="alternate_heading1">BulletIndent</td><td class="alternate_heading1">Read/Write</td><td class="alternate_heading1">Use this property to specify the number of pixels a bullet should be indented. </td></tr>
+
+<tr><td class="alternate_heading1">SelectionColor</td><td class="alternate_heading1">Read/Write</td><td class="alternate_heading1">Allow you to change the color of the text in
+the selection. </td></tr>
+
+<tr><td class="alternate_heading1">SelectionFont</td><td class="alternate_heading1">Read/Write</td><td class="alternate_heading1">Allow you to change to font of the text in the selection. </td></tr>
+
+<tr><td class="alternate_heading1">SelectionLength</td><td class="alternate_heading1">Read/Write</td><td class="alternate_heading1">Using this property, you either set or retrieve the length of a selection. </td></tr>
+
+<tr><td class="alternate_heading1">SelectionType</td><td class="alternate_heading1">Read/Write</td><td class="alternate_heading1">This property holds information about the selection. It will tell you if one or more OLE objects are selected or if only text is selected. </td></tr>
+
+<tr><td class="alternate_heading1">ShowSelectionMargin</td><td class="alternate_heading1">Read/Write</td><td class="alternate_heading1">If you set this property to true, a margin will be shown at the left of the RichTextBox. This will make it easier for the user to select text. </td></tr>
+
+<tr><td class="alternate_heading1">UndoActionName</td><td class="alternate_heading1">Read/Write</td><td class="alternate_heading1"> 	Gets the name of the action that will be used if the user chooses to undo something. </td></tr>
+
+<tr><td class="alternate_heading1">SelectionProtected</td><td class="alternate_heading1">Read/Write</td><td class="alternate_heading1">You can specify that certain parts of the text should not be changed by setting this property to true. </td></tr>
+  </table> 
+ </div>
+
+<h3>RichTextBox Events</h3>
+
+<div class="table_content">
+ <table>
+ <tr><td class="heading" style="width:20%;">Name</td><td class="heading" style="width:80%;">Description </td></tr>
+
+<tr><td class="alternate_heading1">LinkedClick</td><td class="alternate_heading1"> 	This event is sent when a user clicks on a link within the text. </td></tr>
+
+<tr><td class="alternate_heading1">Protected</td><td class="alternate_heading1">This event is sent when a user attempts to modify text that has been marked as protected. </td></tr>
+
+<tr><td class="alternate_heading1">SelectionChanged</td><td class="alternate_heading1">This event is sent when the selection changes. If for some reason you don't want the user to change the selection, you can prevent the change here. </td></tr>
+
+  </table> 
+ </div>
+
+<h3>Example of Rich TextBox</h3>
+<p>To implement rich textbox create new application and design form like below image, and change properties according to your choice.</p>
+
+<div class="image">
+<img src="images/RICH1.JPG ">
+</div>
+
+<p>In following image i am making selected text bold on clicking the bold Button. Coding for bold button is given below.</p>
+
+<div class="image">
+<img src="images/RICH2.JPG ">
+</div>
+
+<h3>Code for Bold Button</h3>
+<div class="code">
+<pre>
+<font face="Arial"><font color="#0000ff">Private Sub </font><font color="#000000">Button1_Click_1(</font><font color="#0000ff">ByVal </font><font color="#000000">sender As System.Object, </font>
+<font color="#0000ff">ByVal </font><font color="#000000">e As System.EventArgs) Handles Button1.Click</font>
+        <font color="#0000ff">Dim </font><font color="#000000">oldFont As Font</font>
+        <font color="#0000ff">Dim </font><font color="#000000">newFont As Font</font>
+        <font color="#008000">' Get the font that is being used in the selected text</font>
+        <font color="#000000">oldFont = Me.richTextBox1.SelectionFont</font>
+        <font color="#008000">' If the font is using bold style now, we should remove the</font>
+        <font color="#008000">' Formatting</font>
+        <font color="#0000ff">If </font><font color="#000000">oldFont.Bold </font><font color="#0000ff">Then</font>
+            <font color="#000000">newFont = New Font(oldFont, oldFont.Style </font><font color="#0000ff">And Not </font><font color="#000000">FontStyle.Bold)</font>
+        <font color="#0000ff">Else</font>
+            <font color="#000000">newFont = New Font(oldFont, oldFont.Style </font><font color="#0000ff">Or </font><font color="#000000">FontStyle.Bold)</font>
+        <font color="#0000ff">End If</font>
+        <font color="#008000">' Insert the new font and return focus to the RichTextBox</font>
+        <font color="#000000">Me.richTextBox1.SelectionFont = newFont</font>
+        <font color="#000000">Me.richTextBox1.Focus()</font>
+    <font color="#0000ff">End Sub</font></font>
+</pre>
+</div>
+
+<p>In following image i am making selected text Italic on clicking the italic Button. Coding for italic button is given below.</p>
+
+<div class="image">
+<img src=" images/RICH3.JPG">
+</div>
+
+<h3>Code for Italic Button</h3>
+
+<div class="code">
+<pre>
+<font face="Arial"><font color="#0000ff">Private Sub </font><font color="#000000">Button2_Click_1(</font><font color="#0000ff">ByVal </font><font color="#000000">sender As System.Object, </font>
+<font color="#0000ff">ByVal </font><font color="#000000">e As System.EventArgs) Handles Button2.Click</font>
+        <font color="#0000ff">Dim </font><font color="#000000">oldFont As Font</font>
+        <font color="#0000ff">Dim </font><font color="#000000">newFont As Font</font>
+        <font color="#008000">' Get the font that is being used in the selected text</font>
+        <font color="#000000">oldFont = Me.richTextBox1.SelectionFont</font>
+        <font color="#008000">' If the font is using Italic style now, we should remove it</font>
+        <font color="#0000ff">If </font><font color="#000000">oldFont.Italic </font><font color="#0000ff">Then</font>
+            <font color="#000000">newFont = New Font(oldFont, oldFont.Style </font><font color="#0000ff">And Not </font><font color="#000000">FontStyle.Italic)</font>
+        <font color="#0000ff">Else</font>
+            <font color="#000000">newFont = New Font(oldFont, oldFont.Style </font><font color="#0000ff">Or </font><font color="#000000">FontStyle.Italic)</font>
+        <font color="#0000ff">End If</font>
+        <font color="#008000">' Insert the new font</font>
+        <font color="#000000">Me.richTextBox1.SelectionFont = newFont</font>
+        <font color="#000000">Me.richTextBox1.Focus()</font>
+    <font color="#0000ff">End Sub</font></font>
+</pre>
+</div>
+<p>In following image i am making selected text Underline on clicking the Underline Button. Coding for Underline Button is given below.</p>
+
+<div class="image">
+<img src="images/RICH5.JPG ">
+</div>
+
+<h3>Coding for Underline Button</h3>
+
+<div class="code">
+<pre>
+<font face="Arial"><font color="#0000ff">Private Sub </font><font color="#000000">Button2_Click_1(</font><font color="#0000ff">ByVal </font><font color="#000000">sender As System.Object, </font>
+<font color="#0000ff">ByVal </font><font color="#000000">e As System.EventArgs) Handles Button2.Click</font>
+        <font color="#0000ff">Dim </font><font color="#000000">oldFont As Font</font>
+        <font color="#0000ff">Dim </font><font color="#000000">newFont As Font</font>
+        <font color="#008000">' Get the font that is being used in the selected text</font>
+        <font color="#000000">oldFont = Me.richTextBox1.SelectionFont</font>
+        <font color="#008000">' If the font is using Italic style now, we should remove it</font>
+        <font color="#0000ff">If </font><font color="#000000">oldFont.Italic </font><font color="#0000ff">Then</font>
+            <font color="#000000">newFont = New Font(oldFont, oldFont.Style </font><font color="#0000ff">And Not </font><font color="#000000">FontStyle.Italic)</font>
+        <font color="#0000ff">Else</font>
+            <font color="#000000">newFont = New Font(oldFont, oldFont.Style </font><font color="#0000ff">Or </font><font color="#000000">FontStyle.Italic)</font>
+        <font color="#0000ff">End If</font>
+        <font color="#008000">' Insert the new font</font>
+        <font color="#000000">Me.richTextBox1.SelectionFont = newFont</font>
+        <font color="#000000">Me.richTextBox1.Focus()</font>
+    <font color="#0000ff">End Sub</font></font>
+</pre>
+</div>
+<p>In following image i am making selected text Center on clicking the Center Button. Coding for Center Button is given below. </p>
+<div class="image">
+<img src="images/RICH5.JPG ">
+</div>
+
+<h3>Coding for Center Button</h3>
+
+<div class="code">
+<pre>
+<font face="Arial"> <font color="#0000ff">Private Sub </font><font color="#000000">Button4_Click(</font><font color="#0000ff">ByVal </font><font color="#000000">sender As System.Object, </font>
+	<font color="#0000ff">ByVal </font><font color="#000000">e As System.EventArgs) Handles Button4.Click</font>
+        <font color="#0000ff">If </font><font color="#000000">Me.richTextBox1.SelectionAlignment = HorizontalAlignment.Center </font><font color="#0000ff">Then</font>
+            <font color="#000000">Me.richTextBox1.SelectionAlignment = HorizontalAlignment.</font><font color="#ff0000">Left</font>
+        <font color="#0000ff">Else</font>
+            <font color="#000000">Me.richTextBox1.SelectionAlignment = HorizontalAlignment.Center</font>
+        <font color="#0000ff">End If</font>
+        <font color="#000000">Me.richTextBox1.Focus()</font>
+    <font color="#0000ff">End Sub</font></font>
+</pre>
+</div>
+<p>In following image i am making selected text size large and small by putting the value in size textbox. Coding for this is given below.   </p>
+
+<div class="image">
+<img src="images/RICH6.JPG ">
+</div>
+
+<h3>Coding for Size Change</h3>
+
+<p>for this you have to write following code on <b>textbox validating event</b>.</p>
+<div class="code">
+<pre>
+<font face="Arial"><font color="#0000ff">Private Sub </font><font color="#000000">txtSize_Validating(</font><font color="#0000ff">ByVal </font><font color="#000000">sender As System.Object, </font>
+	<font color="#0000ff">ByVal </font><font color="#000000">e As System.ComponentModel.CancelEventArgs) Handles txtSize.Validating</font>
+        <font color="#0000ff">Dim </font><font color="#000000">txt As TextBox = DirectCast(sender, TextBox)</font>
+        <font color="#000000">ApplyTextSize(txt.Text)</font>
+        <font color="#000000">Me.richTextBox1.Focus()</font>
+    <font color="#0000ff">End Sub</font></font>
+</pre>
+</div>
+
+<p>And then you have to write <b>keypress event </b>on textbox event.</p>
+
+<div class="code">
+<pre>
+<font face="Arial"><font color="#0000ff">Private Sub </font><font color="#000000">txtSize_KeyPress(</font><font color="#0000ff">ByVal </font><font color="#000000">sender As System.Object, </font>
+	<font color="#0000ff">ByVal </font><font color="#000000">e As System.Windows.Forms.KeyPressEventArgs) Handles txtSize.KeyPress</font>
+        <font color="#0000ff">If </font><font color="#000000">(e.KeyChar &lt; </font><font color="#800080">48 </font><font color="#000000">OrElse e.KeyChar &gt; </font><font color="#800080">57</font><font color="#000000">) AndAlso e.KeyChar &lt;&gt; </font><font color="#800080">8 </font>
+	<font color="#000000">AndAlso e.KeyChar &lt;&gt; </font><font color="#800080">13 </font><font color="#0000ff">Then</font>
+            <font color="#000000">e.Handled = </font><font color="#0000ff">True</font>
+        <font color="#0000ff">ElseIf </font><font color="#000000">e.KeyChar = </font><font color="#800080">8 </font><font color="#0000ff">Then</font>
+            <font color="#000000">MessageBox.Show(</font><font color="#ff00ff">&quot;Please input valid size&quot;</font><font color="#000000">)</font>
+        <font color="#0000ff">ElseIf </font><font color="#000000">e.KeyChar = </font><font color="#800080">13 </font><font color="#0000ff">Then</font>
+            <font color="#008000">' Apply size if the user hits enter</font>
+            <font color="#0000ff">Dim </font><font color="#000000">txt As TextBox = DirectCast(sender, TextBox)</font>
+            <font color="#0000ff">If </font><font color="#000000">txt.Text.Length &gt; </font><font color="#800080">0 </font><font color="#0000ff">Then</font>
+                <font color="#000000">ApplyTextSize(txt.Text)</font>
+            <font color="#0000ff">End If</font>
+            <font color="#000000">e.Handled = </font><font color="#0000ff">True</font>
+            <font color="#000000">Me.richTextBox1.Focus()</font>
+        <font color="#0000ff">End If</font>
+    <font color="#0000ff">End Sub</font></font>
+</pre>
+</div>
+
+<p>
+and then make a method for <b>applytextsize</b> method</p>
+
+<div class="code">
+<pre>
+<font face="Arial"><font color="#0000ff">Private Sub </font><font color="#000000">ApplyTextSize(textSize As </font><font color="#ff0000">String</font><font color="#000000">)</font>
+	<font color="#008000">' Convert the text to a float because we'll be needing a float shortly</font>
+	<font color="#0000ff">Dim </font><font color="#000000">newSize As Single = Convert.ToSingle(textSize)</font>
+	<font color="#0000ff">Dim </font><font color="#000000">currentFontFamily As FontFamily</font>
+	<font color="#0000ff">Dim </font><font color="#000000">newFont As Font</font>
+	<font color="#008000">' Create a new font of the same family but with the new size</font>
+	<font color="#000000">currentFontFamily = Me.richTextBox1.SelectionFont.FontFamily</font>
+	<font color="#000000">newFont = New Font(currentFontFamily, newSize)</font>
+	<font color="#008000">' Set the font of the selected text to the new font</font>
+	<font color="#000000">Me.richTextBox1.SelectionFont = newFont</font>
+<font color="#0000ff">End Sub</font></font>
+</pre>
+</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="GroupBox%20Control.shtml" title="GroupBox Control">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="ListBox.shtml" title="ListBox Controls">Next</a></td>
+  </tr> 
+</table>
+
+<!-- Footer Start-->		
+
+		</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/dotnet/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->

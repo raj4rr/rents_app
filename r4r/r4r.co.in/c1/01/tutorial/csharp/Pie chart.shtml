@@ -1,0 +1,145 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>Creating Pie Chart in windows using C#</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="Creating Pie Chart in windows using C#" >
+<meta name="keywords" CONTENT="Creating Pie Chart in windows using C#">
+
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+     <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>C# Tutorial</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a><img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/c1/">C#</a>
+
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/c1/commonfiles/leftmenu.shtml'); ?></td>
+
+                       <td style="80%" valign="top">
+                        <div class="main_content"> 
+
+	<!-- Header End-->
+
+	<div class="heading">Pie chart</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="linechart.shtml" title="Creating Line Chart in windows using C#">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="setup.shtml" title="Creating Line Chart in windows using C#">Next</a></td>
+  </tr>
+</table>
+
+<h3>Introduction</h3>
+<p>Pie Chart is  another chart which also uses the buil in functions. In this chart, angle of slice remains the same for all 
+slices but the radius varies based on the weight. For this we first find out maximum weight MaxWeight. Then MaxWeight will be
+ equal to the radius and other slices will have radius proportionally lesser then MaxWeight.</p>
+ <pre>
+ let weight is 30&minus;    MaxWeight = 30;
+                            width = (30*radius)/MaxWeight;
+                            sweepAngle = 360/TotalNumberOfWeights;
+
+startAngle will start from 0 and is incremented by sweepAngle.
+ &minus; startAngle += sweepAngle;
+ </pre>
+ <h3>Code for DrawPie Chart</h3>
+ <div class="code">
+ <pre>
+<font color="#0000ff">private void </font><font color="#000000">DrawPieChart(</font><font color="#808000">PaintEventArgs </font><font color="#000000">e, </font><font color="#0000ff">int</font><font color="#000000">[] alWeight)</font>
+<font color="#000000">{</font>
+<font color="#0000ff">int </font><font color="#000000">numberOfSections = alWeight.Length;</font>
+<font color="#0000ff">int </font><font color="#000000">x0 = </font><font color="#800080">180</font><font color="#000000">;</font>
+<font color="#0000ff">int </font><font color="#000000">y0 = </font><font color="#800080">120</font><font color="#000000">;</font>
+<font color="#0000ff">int </font><font color="#000000">radius = </font><font color="#800080">200</font><font color="#000000">;</font>
+<font color="#0000ff">int </font><font color="#000000">startAngle = </font><font color="#800080">0</font><font color="#000000">;</font>
+<font color="#0000ff">int </font><font color="#000000">sweepAngle = </font><font color="#800080">360 </font><font color="#000000">/ numberOfSections;</font>
+<font color="#0000ff">int</font><font color="#000000">[] height = </font><font color="#0000ff">new int</font><font color="#000000">[numberOfSections];</font>
+<font color="#0000ff">int </font><font color="#000000">maxWeight = MaxValue(alWeight);</font>
+<font color="#808000">Random </font><font color="#000000">rnd = </font><font color="#0000ff">new </font><font color="#808000">Random</font><font color="#000000">(</font><font color="#800080">10</font><font color="#000000">);</font>
+<font color="#808000">SolidBrush </font><font color="#000000">brush = </font><font color="#0000ff">new </font>
+<font color="#808000">SolidBrush</font><font color="#000000">(Color.Aquamarine);</font>
+<font color="#808000">Pen </font><font color="#000000">pen = </font><font color="#0000ff">new </font><font color="#808000">Pen</font><font color="#000000">(Color.Black);</font>
+<font color="#0000ff">for </font><font color="#000000">(</font><font color="#0000ff">int </font><font color="#000000">i = </font><font color="#800080">0</font><font color="#000000">; i &lt; numberOfSections; i++)</font>
+<font color="#000000">{</font>
+<font color="#000000">height[i] = ((</font><font color="#808000">Convert</font><font color="#000000">.ToInt32(alWeight[i])) * radius) / maxWeight;</font>
+<font color="#000000">brush.Color = Color.FromArgb(rnd.Next(</font><font color="#800080">200</font><font color="#000000">, </font><font color="#800080">255</font><font color="#000000">), </font>
+<font color="#000000">rnd.Next(</font><font color="#800080">255</font><font color="#000000">), rnd.Next(</font><font color="#800080">255</font><font color="#000000">), rnd.Next(</font><font color="#800080">255</font><font color="#000000">));</font>
+<font color="#000000">e.</font><font color="#808000">Graphics</font><font color="#000000">.FillPie(brush, x0 - height[i], y0 - height[i], </font>
+<font color="#800080">2 </font><font color="#000000">* height[i], </font><font color="#800080">2 </font><font color="#000000">* height[i], (startAngle + i * </font><font color="#800080">45</font><font color="#000000">), sweepAngle);</font>
+
+<font color="#000000">e.</font><font color="#808000">Graphics</font><font color="#000000">.DrawPie(pen, x0 - height[i], y0 - height[i],</font>
+<font color="#800080">2 </font><font color="#000000">* height[i], </font><font color="#800080">2  </font><font color="#000000">* height[i], (startAngle + i * </font><font color="#800080">45</font><font color="#000000">), sweepAngle);</font>
+<font color="#000000">}</font>
+<font color="#000000">}</font>
+</pre>
+</div>
+
+<h3>Code for Calculating MaxValue</h3>
+<div class="code">
+<pre>
+<font color="#0000ff">private static int </font>
+<font color="#000000">MaxValue(</font><font color="#0000ff">int</font><font color="#000000">[] intArray)</font>
+<font color="#000000">{</font>
+<font color="#0000ff">int </font><font color="#000000">maxVal = intArray[</font><font color="#800080">0</font><font color="#000000">];</font>
+<font color="#0000ff">for </font><font color="#000000">(</font><font color="#0000ff">int </font><font color="#000000">i = </font><font color="#800080">0</font><font color="#000000">; i &lt; intArray.Length; i++)</font>
+<font color="#000000">{</font>
+<font color="#0000ff">if </font><font color="#000000">(intArray[i] &gt; maxVal)</font>
+<font color="#000000">maxVal = intArray[i];</font>
+<font color="#000000">}</font>
+<font color="#0000ff">return </font><font color="#000000">maxVal;</font>
+<font color="#000000">}</font>
+</pre>
+</div>
+
+<h3>Calling DrawPieChart Method</h3>
+
+<div class="code">
+<pre>
+<font color="#0000ff">private void </font><font color="#000000">Form1_Paint_1(</font><font color="#0000ff">object </font><font color="#000000">sender, </font><font color="#808000">PaintEventArgs </font><font color="#000000">e)</font>
+<font color="#000000">{  </font>
+<font color="#000000">DrawPieChart(e, alWeight);</font>
+<font color="#000000">}</font>
+</pre>
+</div>
+
+<div class="image">
+<img src="pie.PNG">
+</div>
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="linechart.shtml" title="Creating Line Chart in windows using C#">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="setup.shtml" title="Creating Line Chart in windows using C#">Next</a></td>
+  </tr>
+</table>
+
+ <!--Footer-->
+   </div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/dotnet/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+     <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+s

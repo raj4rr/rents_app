@@ -1,0 +1,155 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE> Java abstract Modifier</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT=" The  abstract Modifier" >
+<meta name="keywords" CONTENT=" The  abstract Modifier">
+
+<!-- header start-->
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>Java Programing laungage</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+            <img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+            <a href="/java/">Java</a>
+              <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/java/corejava">Core Java</a>
+               <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/java/corejava/topics/basics/">Basics</a>
+
+              </div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/corejava/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	 
+<!-- header End-->	
+
+<div class="heading">Java abstract Modifier</div>
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="21java_UsageModifiers.shtml" title="What are Usage Modifiers in java, final Modifier, static Modifier">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="23java_UsageModifiersContd.shtml" title="Java Modifiers native modifier, transient Modifier , volatile Modifier, synchronized Modifier">Next</a></td>
+  </tr> 
+</table>
+<p>The abstract modifier may be applied to a class or a method, but not to a variable. A class which is declared abstract cannot be instantiated .i.e. its object cannot be created because it is not fully implemented.</p>
+
+<p> There is a relationship between an abstract class and an abstract method which is, if a class has one or more abstract methods, it must be declared abstract. A class may define abstract methods in any of the following ways:</p> 
+<ol>
+<li>
+<p>A class may have one or more abstract methods defined in it.</p>
+</li>
+<li>
+<p>A class might have inherited one or more abstract methods from its superclass, and has not provided implementation for all or some of them.</p>
+</li>
+<li>
+<p>A class declares that it implements an interface, but does not provide implementation for at least one method in the interface.</p>
+</li>
+</ol>
+<p>In above shown cases, the class must be declared abstract.But, if there is no abstract method in the class, it could still be declared abstract but in this case the class cannot be instantiated. Following code snippet will give a good idea about the abstract modifier,</p>
+
+<h3>Example</h3>
+<div class="code">
+<PRE>
+<FONT FACE="Arial">
+<FONT COLOR="#0000ff">abstract class </FONT><FONT COLOR="#ff0000">Shape              </FONT>
+<FONT COLOR="#008000">// declaring an abstract class</FONT>
+<FONT COLOR="#000000">{</FONT>
+ <FONT COLOR="#0000ff">abstract void </FONT><FONT COLOR="#ff0000">Area</FONT><FONT COLOR="#000000">();            </FONT>
+ <FONT COLOR="#008000">// an abstract method with no body</FONT>
+ <FONT COLOR="#0000ff">void </FONT><FONT COLOR="#000000">Printanything()             </FONT>
+	 <FONT COLOR="#008000">// a simple method</FONT>
+  <FONT COLOR="#000000">{</FONT>
+   <FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.println(</FONT><FONT COLOR="#ff00ff">"hello!! Shashi Chaudhary @ r4r"</FONT><FONT COLOR="#000000">);</FONT>
+  <FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#000000">Java Tutorialslass </FONT><FONT COLOR="#ff0000">Rectangle </FONT><FONT COLOR="#0000ff">extends </FONT><FONT COLOR="#ff0000">Shape       </FONT>
+<FONT COLOR="#008000">// defined a class which is inheriting Shape class</FONT>
+<FONT COLOR="#000000">{</FONT>
+<FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">length;</FONT>
+<FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">breadth;</FONT>
+ <FONT COLOR="#ff0000">Rectangle</FONT><FONT COLOR="#000000">(</FONT><FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">length, </FONT><FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">breadth)</FONT>
+  <FONT COLOR="#000000">{</FONT>
+   <FONT COLOR="#0000ff">this</FONT><FONT COLOR="#000000">.length=length;</FONT>
+   <FONT COLOR="#0000ff">this</FONT><FONT COLOR="#000000">.breadth=breadth;</FONT>
+  <FONT COLOR="#000000">}</FONT>
+ <FONT COLOR="#0000ff">void </FONT><FONT COLOR="#ff0000">Area</FONT><FONT COLOR="#000000">()                       </FONT>
+	 <FONT COLOR="#008000">// implementing the Area() method defined in Shape class</FONT>
+ <FONT COLOR="#000000">{</FONT>
+  <FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.println(</FONT><FONT COLOR="#ff00ff">"The area of rectangle is given by :"</FONT><FONT COLOR="#000000">+(length*breadth));      </FONT>
+  <FONT COLOR="#008000">// displaying area of rectangle</FONT>
+ <FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#000000">Java Tutorialslass Java Tutorialsircle </FONT><FONT COLOR="#0000ff">extends </FONT><FONT COLOR="#ff0000">Shape</FONT>
+<FONT COLOR="#000000">{</FONT>
+  <FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">radius;</FONT>
+  <FONT COLOR="#000000">Java Tutorialsircle(</FONT><FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">radius)</FONT>
+  <FONT COLOR="#000000">{[an error occurred </FONT><FONT COLOR="#0000ff">while </FONT><FONT COLOR="#000000">processing </FONT><FONT COLOR="#0000ff">this </FONT><FONT COLOR="#000000">directive]</FONT>
+   <FONT COLOR="#0000ff">this</FONT><FONT COLOR="#000000">.radius=radius;</FONT>
+  <FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#0000ff">void </FONT><FONT COLOR="#ff0000">Area</FONT><FONT COLOR="#000000">()                         </FONT>
+	<FONT COLOR="#008000">// Implementing the Area() method defined in class Shape</FONT>
+ <FONT COLOR="#000000">{</FONT>
+  <FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.println(</FONT><FONT COLOR="#ff00ff">"The area of circle is given by :"</FONT><FONT COLOR="#000000">+(</FONT><FONT COLOR="#ff0000">Math</FONT><FONT COLOR="#000000">.PI*radius*radius));    </FONT>
+  <FONT COLOR="#008000">// displaying  area of circle</FONT>
+ <FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#000000">Java Tutorialslass AbstractModifierExample</FONT>
+<FONT COLOR="#000000">{</FONT>
+ <FONT COLOR="#0000ff">public static void </FONT><FONT COLOR="#000000">main(</FONT><FONT COLOR="#ff0000">String </FONT><FONT COLOR="#000000">args[])</FONT>
+ <FONT COLOR="#000000">{</FONT>
+<FONT COLOR="#008000">// Shape shp = new Shape(); /* will cause compilation error as Shape is defined abstract</FONT>
+     <FONT COLOR="#ff0000">Rectangle </FONT><FONT COLOR="#000000">objrect = </FONT><FONT COLOR="#0000ff">new </FONT><FONT COLOR="#ff0000">Rectangle</FONT><FONT COLOR="#000000">(</FONT><FONT COLOR="#800080">7</FONT><FONT COLOR="#000000">,</FONT><FONT COLOR="#800080">5</FONT><FONT COLOR="#000000">);</FONT>
+     <FONT COLOR="#000000">Java Tutorialsircle objcirc = </FONT><FONT COLOR="#0000ff">new </FONT><FONT COLOR="#000000">Java Tutorialsircle(</FONT><FONT COLOR="#800080">7</FONT><FONT COLOR="#000000">);</FONT>
+     <FONT COLOR="#000000">objrect.</FONT><FONT COLOR="#ff0000">Area</FONT><FONT COLOR="#000000">();</FONT>
+     <FONT COLOR="#000000">objcirc.</FONT><FONT COLOR="#ff0000">Area</FONT><FONT COLOR="#000000">();</FONT>
+     <FONT COLOR="#000000">objcirc.Printanything();         </FONT>
+	 <FONT COLOR="#008000">// accessing the  method defined in class Shape through Circle's instance</FONT>
+     <FONT COLOR="#000000">objrect.Printanything();        </FONT>
+	 <FONT COLOR="#008000">// accessing the method defined in class Shape through Rectangle's instance</FONT>
+ <FONT COLOR="#000000">} </FONT>
+<FONT COLOR="#000000">}</FONT>
+</FONT>
+</PRE>
+</div>
+<p> A abstract class is some what opposite to the final class. A final class cannot be extended or inherited, whereas an abstract class must be extended, before it can be instantiated. An abstract class or an abstract method means its not fully implemented .i.e if you want to use it, you have to implement it.</p>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="21java_UsageModifiers.shtml" title="What are Usage Modifiers in java, final Modifier, static Modifier">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="23java_UsageModifiersContd.shtml" title="Java Modifiers native modifier, transient Modifier , volatile Modifier, synchronized Modifier">Next</a></td>
+  </tr> 
+</table>
+
+<!-- Footer Start-->	
+
+		</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->

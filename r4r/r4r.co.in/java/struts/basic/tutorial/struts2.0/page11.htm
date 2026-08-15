@@ -1,0 +1,307 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD>
+<meta http-equiv="Content-Language" content="en-us">
+<TITLE>struts,struts 2.0,struts tutorial,struts 2.0 tutorial,The Struts2.0 Model:- System State Business Logic JavaBeans</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name="description" CONTENT="struts,struts 2.0,struts tutorial,struts 2.0 tutorial,The Struts2.0 Model:- System State Business Logic JavaBeans" >
+<meta name="keywords" CONTENT="struts,struts 2.0,struts tutorial,struts 2.0 tutorial,The Struts2.0 Model:- System State Business Logic JavaBeans">
+<script type="text/javascript" src="/js/main.js"></script>
+		<link rel="stylesheet" type="text/css" href="/css/style.css" />
+	    <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+
+	</HEAD>
+	<BODY>
+		<table class="wrap" align="center"  cellpadding="0" cellspacing="0">
+			<tr>
+				<td class="m" align="left" valign="top">
+					<!--#include virtual="/common-files/topheader.shtml" -->
+				</td>
+						</tr>
+						<tr class="headerTR1">
+							<td>
+							<!--#include virtual="/common-files/header.shtml" -->
+							</td>
+						</tr>
+						<tr>
+							<td class="headerTR2">
+								<!--#include virtual="/common-files/bottomheader.shtml" -->
+							</td>
+						</tr>
+
+						<tr>
+							<td class="headerTR3">
+								<!--#include virtual="/common-files/menu.shtml" -->
+							</td>
+							</td>
+
+						</tr>
+						<tr>
+							<td>
+								<!--#include virtual="/common-files/gaps.shtml" -->
+							</td>
+						</tr>
+						
+						<tr>
+						
+			               <td class="content">
+								<table>
+									<tr>
+									
+								  <!--#include virtual="/common-files/tdgaps.shtml" -->
+								<td class="td1"   valign="top" >
+							    <!--#include virtual="/common-files/ads1.shtml" -->
+							     <DIV style="margin-left:15px;">
+			<table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse"  width="100%">
+  <tr>
+    <td width="100%">
+    <A href="/">R4R</A>
+<img border="0" src="/images/left_menu_bullet.gif" width="11" height="6"> <A href="/java">Java</A><img border="0" src="/images/left_menu_bullet.gif" width="11" height="6"> <A href="/java/struts">Struts</A><img border="0" src="/images/left_menu_bullet.gif" width="11" height="6">  <A href="/java/struts/basic/tutorial/struts2.0">Struts2.0</A><img border="0" src="/images/left_menu_bullet.gif" width="11" height="6"><A href=" ">Struts 
+    2.0 Model Introduction</A></td>
+</td>
+  </td>
+  </td>
+  </td>
+  </tr>
+</table>
+
+
+	   
+ <table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="100%" id="AutoNumber1">
+  <tr>
+    <td width="33%">
+<a href="page10.shtml">
+<img border="0" src="/images/previous.gif" alt="previous" width="46" height="25"></a></td>
+    <td width="33%">
+    <p align="center">
+<a href="index.shtml">
+<img border="0" src="/images/home.gif" alt="Home" width="46" height="25"></a></td>
+    <td width="34%">
+    <p align="right">
+<a href="page12.htm">
+<img border="0" src="/images/next.gif" alt="Next" width="46" height="25"></a></td>
+  </tr>
+</table>
+
+<p><b><font color="#0066FF" face="Verdana">The Struts2.0 Model:- System State &amp; 
+Business Logic JavaBeans</font></b></p>
+
+<p><font color="#0066FF" face="Verdana" size="2"><b>Introduction:-</b></font><span class="Apple-style-span" style="border-collapse: separate; color: rgb(0, 0, 0); font-family: 'Verdana'; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-align: -webkit-auto; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-border-horizontal-spacing: 0px; -webkit-border-vertical-spacing: 0px; -webkit-text-decorations-in-effect: none; -webkit-text-size-adjust: auto; -webkit-text-stroke-width: 0px; "><span class="Apple-style-span" style="text-align: justify; "><font size="2">The 
+model is the internal state of the application. This state is composed of both 
+the data model and the business logic. From the high-level black box view, the 
+data and the business logic merge together into the monolithic<span class="Apple-converted-space">&nbsp;</span><i>state<span class="Apple-converted-space">&nbsp;</span></i>of 
+the application. For instance, if you are logging in to an application, both 
+business logic and data from the database will be involved in the authentication 
+process. Most likely, the business logic will provide an authentication method 
+that will take the username and password and verify them against some persisted 
+data from the database.</font></span></span></p>
+
+<p>
+<span class="Apple-style-span" style="border-collapse: separate; color: #0066FF; font-family: Verdana; font-style: normal; font-variant: normal; font-weight: 700; letter-spacing: normal; line-height: normal; orphans: 2; text-align: -webkit-auto; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-border-horizontal-spacing: 0px; -webkit-border-vertical-spacing: 0px; -webkit-text-decorations-in-effect: none; -webkit-text-size-adjust: auto; -webkit-text-stroke-width: 0px; ">
+<span class="Apple-style-span" style="border-collapse: collapse; ">
+<font size="2">Class/Library 
+File&nbsp; Descriptions:-</font></span></span></p>
+
+<span class="Apple-style-span" style="border-collapse: separate; color: rgb(0, 0, 0); font-family: Verdana; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-align: -webkit-auto; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-border-horizontal-spacing: 0px; -webkit-border-vertical-spacing: 0px; -webkit-text-decorations-in-effect: none; -webkit-text-size-adjust: auto; -webkit-text-stroke-width: 0px">
+<p  style="margin-bottom: 0.0001pt; text-align: justify; line-height: normal; ">
+<font class="Apple-style-span" size="2">Actions do three things.&nbsp;</font></p>
+</span>
+<span class="Apple-style-span" style="border-collapse: separate; font-family: Times New Roman; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-align: -webkit-auto; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-border-horizontal-spacing: 0px; -webkit-border-vertical-spacing: 0px; -webkit-text-decorations-in-effect: none; -webkit-text-size-adjust: auto; -webkit-text-stroke-width: 0px">
+<p  style="margin-bottom: 0.0001pt; line-height: normal; ">
+</span><font class="Apple-style-span" size="2"><font color="#0066FF">
+<span class="Apple-style-span" style="border-collapse: separate; font-family: Verdana; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-align: -webkit-auto; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-border-horizontal-spacing: 0px; -webkit-border-vertical-spacing: 0px; -webkit-text-decorations-in-effect: none; -webkit-text-size-adjust: auto; -webkit-text-stroke-width: 0px">
+<u>Actions Encapsulate The Unit of Work</u></span><span class="Apple-style-span" style="border-collapse: separate; font-family: Verdana; font-style: normal; font-variant: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-align: -webkit-auto; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-border-horizontal-spacing: 0px; -webkit-border-vertical-spacing: 0px; -webkit-text-decorations-in-effect: none; -webkit-text-size-adjust: auto; -webkit-text-stroke-width: 0px">:</span><span class="Apple-style-span" style="border-collapse: separate; font-family: Verdana; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-align: -webkit-auto; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-border-horizontal-spacing: 0px; -webkit-border-vertical-spacing: 0px; -webkit-text-decorations-in-effect: none; -webkit-text-size-adjust: auto; -webkit-text-stroke-width: 0px">-</span></font><span class="Apple-style-span" style="border-collapse: separate; color: rgb(0, 0, 0); font-family: Verdana; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-align: -webkit-auto; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-border-horizontal-spacing: 0px; -webkit-border-vertical-spacing: 0px; -webkit-text-decorations-in-effect: none; -webkit-text-size-adjust: auto; -webkit-text-stroke-width: 0px"> 
+The action fulfills the role of the MVC model for the framework. 
+responsibilities of this role is business logic; actions use the execute() 
+method for this purpose. The code inside this&nbsp;</span></font><span class="Apple-style-span" style="border-collapse: separate; color: rgb(0, 0, 0); font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-align: -webkit-auto; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-border-horizontal-spacing: 0px; -webkit-border-vertical-spacing: 0px; -webkit-text-decorations-in-effect: none; -webkit-text-size-adjust: auto; -webkit-text-stroke-width: 0px; "><span class="Apple-style-span"><font face="Verdana" size="2">method 
+should concern itself only with the logic of the work associated with the 
+request.</font></span></p>
+            </span>
+            <span class="Apple-style-span" style="border-collapse: separate; color: rgb(0, 0, 0); font-family: 'Times New Roman'; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-align: -webkit-auto; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-border-horizontal-spacing: 0px; -webkit-border-vertical-spacing: 0px; -webkit-text-decorations-in-effect: none; -webkit-text-size-adjust: auto; -webkit-text-stroke-width: 0px; ">
+<span class="Apple-style-span" style="border-collapse: separate; color: rgb(0, 0, 0); font-family: Verdana; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-align: -webkit-auto; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-border-horizontal-spacing: 0px; -webkit-border-vertical-spacing: 0px; -webkit-text-decorations-in-effect: none; -webkit-text-size-adjust: auto; -webkit-text-stroke-width: 0px">
+<p  style="margin-bottom: 0.0001pt; line-height: normal; ">
+<font class="Apple-style-span" size="2">&nbsp;</font></span></span><span class="Apple-style-span"><span class="Apple-style-span" style="border-collapse: separate; font-family: Verdana; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-align: -webkit-auto; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-border-horizontal-spacing: 0px; -webkit-border-vertical-spacing: 0px; -webkit-text-decorations-in-effect: none; -webkit-text-size-adjust: auto; -webkit-text-stroke-width: 0px"><font color="#0066FF"><u><font size="2">Actions 
+Provide Locus For Data Transfer:-</font></u></font></span><span class="Apple-style-span" style="border-collapse: separate; color: rgb(0, 0, 0); font-family: Verdana; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-align: -webkit-auto; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-border-horizontal-spacing: 0px; -webkit-border-vertical-spacing: 0px; -webkit-text-decorations-in-effect: none; -webkit-text-size-adjust: auto; -webkit-text-stroke-width: 0px"><font size="2"><span class="Apple-converted-space">&nbsp;</span>Being 
+the model component of the framework also means that the action is expected to 
+carry the data around .Since the data is held local to the action, it’s always 
+conveniently available during the execution of the business logic. There might 
+be a bunch of JavaBeans properties adding lines of code to the action, but when 
+the execute() method references the data in those properties, the proximity of 
+the data makes that code all the more succinct.</font></span></span></p>
+            <span class="Apple-style-span" style="border-collapse: separate; color: rgb(0, 0, 0); font-family: 'Times New Roman'; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-align: -webkit-auto; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-border-horizontal-spacing: 0px; -webkit-border-vertical-spacing: 0px; -webkit-text-decorations-in-effect: none; -webkit-text-size-adjust: auto; -webkit-text-stroke-width: 0px; ">
+<span class="Apple-style-span" style="border-collapse: separate; color: rgb(0, 0, 0); font-family: Verdana; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-align: -webkit-auto; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-border-horizontal-spacing: 0px; -webkit-border-vertical-spacing: 0px; -webkit-text-decorations-in-effect: none; -webkit-text-size-adjust: auto; -webkit-text-stroke-width: 0px">
+<p  style="margin-bottom: 0.0001pt; line-height: normal; ">
+<font class="Apple-style-span" size="2">&nbsp;</font></span></span><font class="Apple-style-span"><span class="Apple-style-span"><span class="Apple-style-span" style="border-collapse: separate; font-family: Verdana; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-align: -webkit-auto; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-border-horizontal-spacing: 0px; -webkit-border-vertical-spacing: 0px; -webkit-text-decorations-in-effect: none; -webkit-text-size-adjust: auto; -webkit-text-stroke-width: 0px"><font color="#0066FF"><u><font size="2">Actions 
+Return Control String For Result Routing:-</font></u></font></span></span><span class="Apple-style-span" style="border-collapse: separate; color: rgb(0, 0, 0); font-family: Verdana; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-align: -webkit-auto; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-border-horizontal-spacing: 0px; -webkit-border-vertical-spacing: 0px; -webkit-text-decorations-in-effect: none; -webkit-text-size-adjust: auto; -webkit-text-stroke-width: 0px"><span class="Apple-style-span"><span class="Apple-converted-space"><font size="2">&nbsp;</font></span><font size="2">The 
+final duty of an action component is to return a control string that selects the 
+result that should be rendered.&nbsp;</font></span></span></font></p>
+<br><!--#include virtual="/common-files/ads6.shtml" --><br>
+
+<p  style="margin-bottom: 0.0001pt; line-height: normal; ">
+<span class="Apple-style-span">
+<span style="font-family: Verdana; letter-spacing: normal; font-weight: 700">
+<font size="2" color="#0066FF">Source Code Example:-</font></span></span></p>
+
+<p  style="margin-bottom: 0.0001pt; line-height: normal;">
+<font face="Verdana" size="2">Actions Encapsulate The Unit of Work:-</font></p>
+
+<pre style="background:#B0ECFF; "><font face="Courier New">
+</font><font face="Verdana"><font size="2" color="#0000ff">public </font><font size="2"><font color="#ff0000">String </font><font color="#000000">execute() {</font>
+<font color="#000000">setCustomGreeting( GREETING + getName() );</font>
+<font color="#0000ff">return </font><font color="#ff00ff">&quot;SUCCESS&quot;</font><font color="#000000">;</font>
+<font color="#000000">}</font>
+<font color="#000000">Actions Provide Locus For Data Transfer:-</font>
+<font color="#0000ff">private </font><font color="#ff0000">String </font><font color="#000000">name;</font>
+<font color="#0000ff">public </font><font color="#ff0000">String </font><font color="#000000">getName() {</font>
+<font color="#0000ff">return </font><font color="#000000">name;</font>
+<font color="#000000">}</font>
+<font color="#0000ff">public void </font><font color="#000000">setName(</font><font color="#ff0000">String </font><font color="#000000">name) {</font>
+<font color="#0000ff">this</font><font color="#000000">.name = name;</font>
+<font color="#000000">}</font>
+<font color="#0000ff">private </font><font color="#ff0000">String </font><font color="#000000">customGreeting;</font>
+<font color="#0000ff">public </font><font color="#ff0000">String </font><font color="#000000">getCustomGreeting()</font>
+<font color="#000000">{</font>
+<font color="#0000ff">return </font><font color="#000000">customGreeting;</font>
+<font color="#000000">}</font>
+<font color="#0000ff">public void </font><font color="#000000">setCustomGreeting( </font><font color="#ff0000">String </font><font color="#000000">customGreeting ){</font>
+<font color="#0000ff">this</font><font color="#000000">.customGreeting = customGreeting;</font>
+</font><font size="2" color="#000000">}</font>
+</font>
+</pre>
+<p  style="margin-bottom: 0.0001pt; line-height: normal;">
+<font face="Verdana" size="2">Actions Return Control String For Result Routong:-</font></p>
+<pre style="background:#B0ECFF; "><font face="Verdana">
+<font size="2" color="#0000ff">&lt;</font><font size="2"><font color="#808000">action </font><font color="#ff0000">name</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;HelloWorld&quot; </font><font color="#800080">class</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;manning.chapterOne.HelloWorld&quot;</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">result </font><font color="#ff0000">name</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;SUCCESS&quot;</font><font color="#0000ff">&gt;</font><font color="#000000">/chapterTwo/HelloWorld.jsp</font><font color="#0000ff">&lt;/</font><font color="#808000">result</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">result </font><font color="#ff0000">name</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;ERROR&quot;</font><font color="#0000ff">&gt;</font><font color="#000000">/chapterTwo/Error.jsp</font><font color="#0000ff">&lt;/</font><font color="#808000">result</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">action</font></font><font size="2" color="#0000ff">&gt;</font></font><font face="Courier New">
+</font>
+</pre>
+
+
+<table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="100%" id="AutoNumber1">
+  <tr>
+    <td width="33%">
+<a href="page10.shtml">
+<img border="0" src="/images/previous.gif" alt="previous" width="46" height="25"></a></td>
+    <td width="33%">
+    <p align="center">
+<a href="index.shtml">
+<img border="0" src="/images/home.gif" alt="Home" width="46" height="25"></a></td>
+    <td width="34%">
+    <p align="right">
+<a href="page12.htm">
+<img border="0" src="/images/next.gif" alt="Next" width="46" height="25"></a></td>
+  </tr>
+</table>
+
+<!-- Footer Start-->	
+		
+		<!--#include virtual="/common-files/ads2.shtml" -->								
+										
+									</td>
+											
+										<td class="td2"  valign="top">
+											
+											<table>
+											<!--#include virtual="/java/struts/common-files/news1.shtml" -->	
+												<tr>
+													<td class="colorChange">
+													<!--#include virtual="/common-files/ads3.shtml" -->	
+														
+													</td>
+												</tr>
+		
+												<!--#include virtual="/common-files/adsnewsgaps.shtml" -->												
+												
+												<!--#include virtual="/java/struts/common-files/news3.shtml" -->	
+												
+												<tr>
+													<td class="colorChange">
+													<!--#include virtual="/common-files/ads4.shtml" -->	
+													
+													
+													</td>
+												</tr>
+												<!--#include virtual="/common-files/adsnewsgaps.shtml" -->	
+												
+												<!--#include virtual="/java/struts/common-files/news3.shtml" -->	
+												
+												<tr>
+													<td class="colorChange">
+													<!--#include virtual="/common-files/ads5.shtml" -->	
+														
+													</td>
+												</tr>
+												<!--#include virtual="/common-files/adsnewsgaps.shtml" -->
+													
+												<!--#include virtual="/java/struts/common-files/news4.shtml" -->	
+												
+		</table>
+
+											
+											
+											
+										</td>
+										<!--#include virtual="/common-files/tdgaps.shtml" -->
+									</tr>
+								 </table>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<!--#include virtual="/common-files/gaps.shtml" -->
+							</td>
+						</tr>		
+						<tr>
+							<td>
+								<!--#include virtual="/common-files/row.shtml" -->
+							</td>
+						</tr>
+						
+						<tr>
+							<td>
+								<!--#include virtual="/java/struts/common-files/mainlinks.shtml" -->
+							
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<!--#include virtual="/common-files/gaps.shtml" -->
+							</td>
+						</tr>
+						
+								<tr>
+							<td>
+								<!--#include virtual="/common-files/row.shtml" -->
+							</td>
+						</tr>
+						
+						
+						<tr >
+							<td>
+								<!--#include virtual="/common-files/hotlinks.shtml" -->
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<!--#include virtual="/common-files/gaps.shtml" -->
+							</td>
+						</tr>
+						
+						
+						<tr>
+							<td>
+								<!--#include virtual="/common-files/footer.shtml" -->
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+		</table>
+
+	</BODY>
+</HTML>
+</BODY></HTML>

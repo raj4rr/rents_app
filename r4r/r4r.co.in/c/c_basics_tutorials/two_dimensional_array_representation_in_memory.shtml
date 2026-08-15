@@ -1,0 +1,153 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>Arrays represented in c, array tutorial in c,array examples,array programs</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="How arrays are represented in the memory ? 2 dimensional array, 3 dimensional array,array malloc,c array memory,array pointer, array examples, array string in c language," >
+<meta name="keywords" CONTENT="arrays represented in c, array calloc, array malloc,c array memory,array pointer, array examples, array string in c language, arrays questions in c, 2 dimensional array, 3 dimensional array  ">
+
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>C Programming language</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a><img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/c/">C </a>
+              <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/c/c_basics_tutorials/">Learn C in 9 days</a></div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/c/commonfiles/new-leftmenu.shtml'); ?></td>
+
+                       <td style="80%" valign="top">
+                        <div class="main_content"> 	
+
+                        	 <!-- Header End--> 		
+
+<div class="heading"><font style="background:#FF9966; padding:7px 0px 7px 7px;">Day <font style="background:#E95409; padding:7px;">5</font></font> Array representation in memory using C Programming language</div> 
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="one_dimensional_array_representation_in_memory.shtml" title="One dimensional Array representation in memory using C Programming language">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="multi_dimensional_array.shtml" title="Multi dimensional Array in C Programming language">Next</a></td>
+  </tr>
+</table>
+
+<h2># Two dimensional Array representation in memory</h2>
+
+<p><b>Two dimensional arrays</b> are often known as array of the array. In multidimensional arrays the array is divided into rows and columns, mainly while considering multidimensional arrays we will be discussing mainly about two dimensional arrays and a bit about three dimensional 
+arrays. In 2-D array we can declare an array as :</p>
+
+<div class="code">
+<pre>
+<font color="#0000ff">int </font><font color="#000000">arr[</font><font color="#800080">3</font><font color="#000000">][</font><font color="#800080">3</font><font color="#000000">];</font>
+</pre>
+</div>
+
+<p>where first index value shows the number of the rows and second index value shows the no. of the columns in the array. We will learn about the 2-D array in detail in the next section, but now emphasize more on how these are stored in the memory.</font></p>
+<p>Mainly multidimensional arrays are stored in the memory in the following two ways :</p>
+
+<ul>
+	<li>
+		<b># Row-Major order Implementation</b>
+		<p> The arrays are stored in the memory in terms of the row design, i.e. first the first row of the array is stored in the memory then second and so on. Suppose we have an array named arr having 3 rows and 3 columns then it can be stored in the memory in the following manner :</p>
+		<table cellpadding="5" cellspacing="5">
+		<tr>
+			<td style="width:33%; background:#FBFBFB; text-align:center;">arr[0][0]</td>
+			<td style="width:34%; background:#FBFBFB; text-align:center;">arr[0][1]</td>
+			<td style="width:33%; background:#FBFBFB; text-align:center;">arr[0][2]</td>
+		</tr>
+		<tr>
+			<td style="width:33%; background:#FBFBFB; text-align:center;">arr[1][0]</td>
+			<td style="width:34%; background:#FBFBFB; text-align:center;">arr[1][1]</td>
+			<td style="width:33%; background:#FBFBFB; text-align:center;">arr[1][2]</td>
+		</tr>
+		<tr>
+			<td style="width:33%; background:#FBFBFB; text-align:center;">arr[2][0]</td>
+			<td style="width:34%; background:#FBFBFB; text-align:center;">arr[2][1]</td>
+			<td style="width:33%; background:#FBFBFB; text-align:center;">arr[2][2]</td>
+		</tr>
+		</table>
+		<p>Thus an array of 3*3 can be declared as follows :</p>
+		<div class="code">
+<pre>
+<font color="#000000">arr[</font><font color="#800080">3</font><font color="#000000">][</font><font color="#800080">3</font><font color="#000000">] = { </font><font color="#800080">1</font><font color="#000000">, </font><font color="#800080">2</font><font color="#000000">, </font><font color="#800080">3</font><font color="#000000">, </font><font color="#800080">4</font><font color="#000000">, </font><font color="#800080">5</font><font color="#000000">, </font><font color="#800080">6</font><font color="#000000">, </font><font color="#800080">7</font><font color="#000000">, </font><font color="#800080">8</font><font color="#000000">, </font><font color="#800080">9 </font><font color="#000000">};</font>
+</pre>
+		</div>
+	</li>
+	<li>
+		<b># Column-Major order Implementation</b>
+		<p>Thus an array of 3*3 can be declared as follows :</p>
+		<div class="code">
+		<pre>
+<font color="#000000">arr[</font><font color="#800080">3</font><font color="#000000">][</font><font color="#800080">3</font><font color="#000000">] = { </font><font color="#800080">1</font><font color="#000000">, </font><font color="#800080">2</font><font color="#000000">, </font><font color="#800080">3</font><font color="#000000">, </font><font color="#800080">4</font><font color="#000000">, </font><font color="#800080">5</font><font color="#000000">, </font><font color="#800080">6</font><font color="#000000">, </font><font color="#800080">7</font><font color="#000000">, </font><font color="#800080">8</font><font color="#000000">, </font><font color="#800080">9 </font><font color="#000000">};</font>
+</pre>
+		</div>
+		<p>It will be represented in the memory with row major implementation as follows :</p>
+		<table cellpadding="5" cellspacing="5">
+			<tr>
+				<td style="background:#FBFBFB; text-align:center;">1</td>
+				<td style="background:#FBFBFB; text-align:center;">2</td>
+				<td style="background:#FBFBFB; text-align:center;">3</td>
+				<td style="background:#FBFBFB; text-align:center;">4</td>
+				<td style="background:#FBFBFB; text-align:center;">5</td>
+				<td style="background:#FBFBFB; text-align:center;">6</td>
+				<td style="background:#FBFBFB; text-align:center;">7</td>
+				<td style="background:#FBFBFB; text-align:center;">8</td>
+				<td style="background:#FBFBFB; text-align:center;">9</td>
+			</tr>
+		</table>
+		<p>In Column-Major Implementation of the arrays, the arrays are stored in the memory in the term of the column design, i.e. the first column of the array is stored in the memory then the second and so on. By taking above eg. we can show it as follows :</p>
+		<div class="code">
+		<pre>
+<font color="#000000">arr[</font><font color="#800080">3</font><font color="#000000">][</font><font color="#800080">3</font><font color="#000000">] = { </font><font color="#800080">1</font><font color="#000000">, </font><font color="#800080">2</font><font color="#000000">, </font><font color="#800080">3</font><font color="#000000">, </font><font color="#800080">4</font><font color="#000000">, </font><font color="#800080">5</font><font color="#000000">, </font><font color="#800080">6</font><font color="#000000">, </font><font color="#800080">7</font><font color="#000000">, </font><font color="#800080">8</font><font color="#000000">, </font><font color="#800080">9 </font><font color="#000000">};</font>
+</pre>
+		</div>
+		<p>It will be represented in the memory with column major implementation as follows :</p>
+		<table cellpadding="5" cellspacing="5">
+			<tr>
+				<td style="background:#FBFBFB; text-align:center;">1</td>
+				<td style="background:#FBFBFB; text-align:center;">4</td>
+				<td style="background:#FBFBFB; text-align:center;">7</td>
+				<td style="background:#FBFBFB; text-align:center;">2</td>
+				<td style="background:#FBFBFB; text-align:center;">5</td>
+				<td style="background:#FBFBFB; text-align:center;">8</td>
+				<td style="background:#FBFBFB; text-align:center;">3</td>
+				<td style="background:#FBFBFB; text-align:center;">6</td>
+				<td style="background:#FBFBFB; text-align:center;">9</td>
+			</tr>
+		</table>
+	</li>
+</ul>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="one_dimensional_array_representation_in_memory.shtml" title="One dimensional Array representation in memory using C Programming language">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="multi_dimensional_array.shtml" title="Multi dimensional Array in C Programming language">Next</a></td>
+  </tr>
+</table>
+
+ </div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/c/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>

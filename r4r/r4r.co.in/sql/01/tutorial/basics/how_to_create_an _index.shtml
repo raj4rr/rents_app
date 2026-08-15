@@ -1,0 +1,145 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>HOW TO CREATE AN INDEX</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="HOW TO CREATE AN INDEX,FEATURES OF INDEXES,VERIFY THAT INDEXES HAS BEEN CREATED" >
+<meta name="keywords" CONTENT="HOW TO CREATE AN INDEX,FEATURES OF INDEXES,VERIFY THAT INDEXES HAS BEEN CREATED">
+
+<!--header start-->
+
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>DATABASE & SQL/PLSQL</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a><img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+			<a href="/sql/">SQL </a>
+              </div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/sql/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	  
+
+                        	                        	<!-- Header End-->	
+ <div class="heading">How to Create an INDEX</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="nonclustered.shtml" title="NONCLUSTERED Index">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="Programming_in_SQL_server.shtml" title="Programming in SQL Server">Next</a></td>
+  </tr>
+</table>
+
+<ol type="1">
+<li>Identify the tables on which the index will be 
+created.</li>
+
+<li> Identify the attribute on which the index will be 
+created.</li>
+
+<li>Identify the type of index will be created.</li>
+
+<li> Identify the name of the index to be created. 
+(Prefix an 'idx' to the name of the index to help in locating/identifying the 
+index.)</li>
+
+<li> Create the index.</li>
+</ol>
+
+<h3>Syntax:</h3>
+<div class="code">
+<pre>
+CREATE  [UNIQUE] [CLUSTERED or UNCLUSTERED]  INDEX  index_name
+ON  table_name (column_name...)
+</pre>
+</div>
+
+<p>where, UNIQUE creates an index in which each row should contain a
+different index value.</p>
+<p>CLUSTERED specifies a clustered index in which data is 
+sorted on the index attribute.</p>
+
+<p>NONCLUSTERED specifies a nonclustered index that 
+organizes data only logically. the data is not sorted physically.</p>
+
+<p><i>index_name </i>specifies the name of the index.
+</p>
+
+<p>The index name should be unique in the table, but it 
+may not be unique within a database.</p>
+
+<p><i>table_name</i> specifies the name of 
+table and <i>column_name </i>is the name of columns on which the index would be 
+created.</p>
+
+<div class="code">
+<pre>
+CREATE CLUSTERED INDEX  ad_name
+ON employee (emp_id)
+</pre>
+</div>
+
+<div class="image">
+<img src="Image/nonclu.gif">
+</div>
+
+<p>How to Verify that Indexes has been created</p>
+
+<h3>Syntax:</h3>
+<div class="code">
+<pre>
+sp_helpindex  table_name
+
+CREATE NONCLUSTERED INDEX  INemp_name
+ON  employee (emp_name)
+
+sp_helpindex  employee
+</pre>
+</div>
+
+<p><i>output</i></p>
+<div class="output">
+<div class="image">
+<img src="Image/verify.gif">
+</div>
+</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="nonclustered.shtml" title="NONCLUSTERED Index">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="Programming_in_SQL_server.shtml" title="Programming in SQL Server">Next</a></td>
+  </tr>
+</table>
+
+                       <!--Footer  -->
+
+</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>

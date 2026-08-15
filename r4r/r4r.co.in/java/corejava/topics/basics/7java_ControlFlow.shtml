@@ -1,0 +1,165 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>Java TutorialsONTROL FLOW IN JAVA</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="CONTROL FLOW IN JAVA" >
+<meta name="keywords" CONTENT="CONTROL FLOW IN JAVA">
+
+<!-- header start-->
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>Java Programing laungage</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+            <img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+            <a href="/java/">Java</a>
+              <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/java/corejava">Core Java</a>
+               <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/java/corejava/topics/basics/">Basics</a>
+
+              </div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/corejava/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	 
+<!-- header End-->
+
+<div class="heading">Control Flow In Java</div>
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="6java_operators_contd1.shtml" title="Bitwise Operators">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="8java_ControlFlow_contd.shtml" title="Loop Control In Java">Next</a></td>
+  </tr> 
+</table>
+<p>Java supports both conditional statements and loops to determine control flow just like C and C++. First we deal with the conditional statements and then move on to loops. In end we discuss the somewhat cumbersome switch statement that we can use when we have to test for many values of a single expression.</p>
+
+<h2>Block Scope</h2>
+<p>A block or compound statement is any number of simple Java statements that are surrounded by a pair of braces. Blocks define the scope of your variables and can be nested inside one another. Here is a block that is nested inside the block of the main method.</p>
+<h3>Example</h3>
+<div class="code">
+<PRE>
+<FONT FACE="Arial">
+<FONT COLOR="#0000ff">public static void </FONT><FONT COLOR="#000000">main(</FONT><FONT COLOR="#ff0000">String</FONT><FONT COLOR="#000000">[] args)</FONT>
+<FONT COLOR="#000000">{</FONT>
+<FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">p;</FONT>
+<FONT COLOR="#000000">. . .</FONT>
+<FONT COLOR="#000000">{</FONT>
+<FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">q;</FONT>
+<FONT COLOR="#000000">. . .</FONT>
+<FONT COLOR="#000000">} </FONT><FONT COLOR="#008000">// q's scope is upto here</FONT>
+<FONT COLOR="#000000">}</FONT>
+</FONT>
+</PRE>
+</div>
+<p>It is not possible to declare same named variables in two nested blocks.</p>
+<div class="heading">Conditional Statement</div>
+<p>he conditional statement in Java has the form if (condition) statement, just like in C and C++. In Java you will often  execute multiple statements when a single condition is true. For this you use a block statement that takes the form.</p>
+<h3>Example</h3>
+<div class="code">
+<PRE>
+<FONT FACE="Arial">
+<FONT COLOR="#000000">{</FONT>
+<FONT COLOR="#000000">statement1;</FONT>
+<FONT COLOR="#000000">statement2;</FONT>
+<FONT COLOR="#000000">. . .</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#000000">For instance,</FONT>
+   <FONT COLOR="#0000ff">if </FONT><FONT COLOR="#000000">(num &gt;= </FONT><FONT COLOR="#800080">10</FONT><FONT COLOR="#000000">)</FONT>
+     <FONT COLOR="#000000">{</FONT>
+       <FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.println(</FONT><FONT COLOR="#ff00ff">"The value of num is :"</FONT><FONT COLOR="#000000">+num);</FONT>
+     <FONT COLOR="#000000">}</FONT>
+</FONT>
+</PRE>
+</div>
+
+<p>In above example the statements surrounded by the braces will be executed when num is greater than or equal to 10.</p>
+
+<div class="heading">if-else Statement</div>
+<p>Java, like C and C++ also has if-else conditional statements which takes the form</p>
+<h3>Example</h3>
+<div class="code">
+<PRE>
+<FONT FACE="Arial">
+<FONT COLOR="#000000">(condition is </FONT><FONT COLOR="#0000ff">true</FONT><FONT COLOR="#000000">)</FONT>
+     <FONT COLOR="#000000">{</FONT>
+<FONT COLOR="#008000">//will execute statements if condition is true otherwise control passes to else block</FONT>
+   <FONT COLOR="#000000">statment1;</FONT>
+    <FONT COLOR="#000000">statement2;</FONT>
+      <FONT COLOR="#000000">}</FONT>
+  <FONT COLOR="#0000ff">else</FONT>
+     <FONT COLOR="#000000">{</FONT>
+ <FONT COLOR="#008000">// will execute if condition is false</FONT>
+    <FONT COLOR="#000000">statement3;</FONT>
+     <FONT COLOR="#000000">}</FONT>
+</FONT>
+</PRE>
+</div>
+<div class="heading">if-else-if Statement</div>
+<p>Java uses this statement for the  execution of the multiple alternatives and is quite common,</p> 
+<h3>Example</h3>
+<div class=" code">
+<PRE>
+<FONT FACE="Arial">
+<FONT COLOR="#000000">f (totalmarks &gt;= </FONT><FONT COLOR="#800080">400</FONT><FONT COLOR="#000000">)</FONT>
+<FONT COLOR="#000000">{</FONT>
+<FONT COLOR="#000000">Grade = </FONT><FONT COLOR="#ff00ff">"A"</FONT><FONT COLOR="#000000">;</FONT>
+<FONT COLOR="#000000">result = </FONT><FONT COLOR="#ff00ff">"Excellent"</FONT><FONT COLOR="#000000">;</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#0000ff">else if</FONT><FONT COLOR="#000000">(totalmarks&gt;=</FONT><FONT COLOR="#800080">300</FONT><FONT COLOR="#000000">)</FONT>
+<FONT COLOR="#000000">{</FONT>
+<FONT COLOR="#000000">Grade = </FONT><FONT COLOR="#ff00ff">"B"</FONT><FONT COLOR="#000000">;</FONT>
+<FONT COLOR="#000000">result = </FONT><FONT COLOR="#ff00ff">"Good"</FONT><FONT COLOR="#000000">;</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#0000ff">else if </FONT><FONT COLOR="#000000">(totalmarks&gt;=</FONT><FONT COLOR="#800080">200</FONT><FONT COLOR="#000000">)</FONT>
+<FONT COLOR="#000000">{</FONT>
+<FONT COLOR="#000000">Grade = </FONT><FONT COLOR="#ff00ff">"C"</FONT><FONT COLOR="#000000">;</FONT>
+<FONT COLOR="#000000">result = </FONT><FONT COLOR="#ff00ff">"Average"</FONT><FONT COLOR="#000000">;</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#0000ff">else</FONT>
+<FONT COLOR="#000000">{</FONT>
+<FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.println(</FONT><FONT COLOR="#ff00ff">"Failed"</FONT><FONT COLOR="#000000">);</FONT>
+<FONT COLOR="#000000">}</FONT>
+</FONT>
+</PRE>
+</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="6java_operators_contd1.shtml" title="Bitwise Operators">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="8java_ControlFlow_contd.shtml" title="Loop Control In Java">Next</a></td>
+  </tr> 
+</table>
+
+<!-- Footer Start-->	
+
+		</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->

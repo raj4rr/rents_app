@@ -1,0 +1,172 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>What is DLL?,Creating DLL in VB.Net,Using DLL in VB.Net Application</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="What is DLL?,Creating DLL in VB.Net,Using DLL in VB.Net Application" >
+<meta name="keywords" CONTENT="What is DLL?,Creating DLL in VB.Net,Using DLL in VB.Net Application">
+<!-- header start-->	
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>VB.NET Technology</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+            <img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+            <a href="/vb.net/">VB.net</a>
+              <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/vb.net/01/tutorial/vbnet/">VB.NET Tutorial</a>
+
+              </div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/vb.net/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	 
+
+<div class="heading">What is DLL </div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="Bar_chart.shtml" title="Creating Bar Chart in windows using VB.Net ">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="ip%20address.shtml" title="How to Access IP Address of LAN Connected Computers">Next</a></td>
+  </tr> 
+</table>
+<!-- header End-->	
+
+<p>
+A dynamic linking library (DLL) is linked to your program at run time. DLL is similar to an EXE but is not directly executable. Functions in the dll are called from the main exe. It provides a way to split what would be a very large exe into an exe plus one or more dlls. 
+</p>
+
+<h3>
+Creating DLL in VB.Net
+</h3>
+<p>
+To creating DLL in VB.Net just follow next steps-
+</p>
+<p>
+Goto File -> New Project then choose Class Library you will see window like below.
+</p>
+
+<div class="image">
+<img src="dll1.PNG ">
+</div>
+
+<p>
+Here i am going to show DLL for addition, subtraction, multiplication, and division. Code for this is given below
+</p>
+
+<div class="code">
+<pre>
+<font face="Arial"><font color="#0000ff">Public Class </font><font color="#000000">Class1</font>
+    <font color="#0000ff">Public Function </font><font color="#000000">add(</font><font color="#0000ff">ByVal </font><font color="#000000">x As Integer, </font><font color="#0000ff">ByVal </font><font color="#000000">y As Integer) As Integer</font>
+        <font color="#0000ff">Dim </font><font color="#000000">z As Integer = x + y</font>
+        <font color="#000000">Return z</font>
+    <font color="#0000ff">End Function</font>
+    <font color="#0000ff">Public Function </font><font color="#000000">[</font><font color="#0000ff">sub</font><font color="#000000">](</font><font color="#0000ff">ByVal </font><font color="#000000">x As Integer, </font><font color="#0000ff">ByVal </font><font color="#000000">y As Integer) As Integer</font>
+        <font color="#0000ff">Dim </font><font color="#000000">z As Integer = x - y</font>
+        <font color="#000000">Return z</font>
+    <font color="#0000ff">End Function</font>
+    <font color="#0000ff">Public Function </font><font color="#000000">mul(</font><font color="#0000ff">ByVal </font><font color="#000000">x As Integer, </font><font color="#0000ff">ByVal </font><font color="#000000">y As Integer) As Integer</font>
+        <font color="#0000ff">Dim </font><font color="#000000">z As Integer = x * y</font>
+        <font color="#000000">Return z</font>
+    <font color="#0000ff">End Function</font>
+    <font color="#0000ff">Public Function </font><font color="#000000">div(</font><font color="#0000ff">ByVal </font><font color="#000000">x As Integer, </font><font color="#0000ff">ByVal </font><font color="#000000">y As Integer) As Integer</font>
+        <font color="#0000ff">Dim </font><font color="#000000">z As Integer = x \ y</font>
+        <font color="#000000">Return z</font>
+    <font color="#0000ff">End Function</font>
+<font color="#0000ff">End Class</font></font>
+</pre>
+</div>
+
+<p>
+After this Build this class by pressing F6 and dll will generate this class library now you can use this in any other application where you want to use this dll.
+</p>
+<h3>
+Using DLL in VB.Net Application
+</h3>
+<p>
+For using DLL in application you have to make add reference of the dll that you 
+</p>
+
+<div class="image">
+<img src="dll2.PNG ">
+</div>
+
+<h3>Design the form as shown in below picture 
+</h3>
+
+<div class="image">
+<img src="dll3.PNG ">
+</div>
+
+<div class="code">
+<pre>
+<font face="Arial"><font color="#0000ff">Private Sub </font><font color="#000000">Button1_Click(</font><font color="#0000ff">ByVal </font><font color="#000000">sender As System.Object, </font>
+	<font color="#0000ff">ByVal </font><font color="#000000">e As System.EventArgs) Handles Button1.Click</font>
+        <font color="#0000ff">Dim </font><font color="#000000">c1 As ClassLibrary1.Class1 = New Class1()</font>
+        <font color="#0000ff">Dim </font><font color="#000000">result As Integer = c1.add(Integer.Parse(textBox1.Text), Integer.Parse(textBox2.Text))</font>
+        <font color="#000000">textBox3.Text = result.ToString()</font>
+    <font color="#0000ff">End Sub</font>
+<font color="#0000ff">Private Sub </font><font color="#000000">Button2_Click(</font><font color="#0000ff">ByVal </font><font color="#000000">sender As System.Object, </font>
+	<font color="#0000ff">ByVal </font><font color="#000000">e As System.EventArgs) Handles Button2.Click</font>
+        <font color="#0000ff">Dim </font><font color="#000000">c2 As ClassLibrary1.Class1 = New Class1()</font>
+        <font color="#0000ff">Dim </font><font color="#000000">result As Integer = c2.[</font><font color="#0000ff">sub</font><font color="#000000">](Integer.Parse(textBox1.Text), Integer.Parse(textBox2.Text))</font>
+        <font color="#000000">textBox3.Text = result.ToString()</font>
+    <font color="#0000ff">End Sub</font>
+<font color="#0000ff">Private Sub </font><font color="#000000">Button3_Click(</font><font color="#0000ff">ByVal </font><font color="#000000">sender As System.Object, </font>
+	<font color="#0000ff">ByVal </font><font color="#000000">e As System.EventArgs) Handles Button3.Click</font>
+        <font color="#0000ff">Dim </font><font color="#000000">c3 As ClassLibrary1.Class1 = New Class1()</font>
+        <font color="#0000ff">Dim </font><font color="#000000">result As Integer = c3.mul(Integer.Parse(textBox1.Text), Integer.Parse(textBox2.Text))</font>
+        <font color="#000000">textBox3.Text = result.ToString()</font>
+    <font color="#0000ff">End Sub</font>
+<font color="#0000ff">Private Sub </font><font color="#000000">Button4_Click(</font><font color="#0000ff">ByVal </font><font color="#000000">sender As System.Object, </font>
+	<font color="#0000ff">ByVal </font><font color="#000000">e As System.EventArgs) Handles Button4.Click</font>
+        <font color="#0000ff">Dim </font><font color="#000000">c4 As ClassLibrary1.Class1 = New Class1()</font>
+        <font color="#0000ff">Dim </font><font color="#000000">result As Integer = c4.div(Integer.Parse(textBox1.Text), Integer.Parse(textBox2.Text))</font>
+        <font color="#000000">textBox3.Text = result.ToString()</font>
+    <font color="#0000ff">End Sub</font></font>
+</pre>
+</div>
+
+<div class="image">
+<img src="dll4.PNG ">
+</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="Bar_chart.shtml" title="Creating Bar Chart in windows using VB.Net ">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="ip%20address.shtml" title="How to Access IP Address of LAN Connected Computers">Next</a></td>
+  </tr> 
+</table>
+<!-- Footer Start-->		
+
+		</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/dotnet/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->

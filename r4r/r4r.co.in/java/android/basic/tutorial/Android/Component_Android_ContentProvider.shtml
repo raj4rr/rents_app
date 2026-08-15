@@ -1,0 +1,95 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD>
+<meta http-equiv="Content-Language" content="en-us">
+<TITLE>Android content provider||Android tutorial||android examples||Android interview question||Android Basics</TITLE>
+<META content="Vinit Tyagi" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name="description" CONTENT="Android tutorial learn with r4r tutorial covers all topics of android
+with android examples, android inetrview questions ,lifecyle, architecture, application architecture, advantage, android platform,
+layout, datastorage, android api, What is Content Provider component in Android, What is Content Provider in Andriod,Conten Provider " >
+<meta name="keywords" CONTENT="How many type component in Android, What is Activity in Andriod,how to setup environment of android, 
+architecture, lifecycle, application lifecycle, user interface, android api, multithread, broadcast receivers, types of component, layout, datastorage, control, style,
+themes, send email, send sms, beginners, freshers, experienced" >
+
+<!-- header start-->	
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>Android</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+            <img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+            <a href="/java/">Java</a>
+              <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/java/android/">Android</a>
+              </div>
+
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/android/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	 
+
+<div class="heading">Type of Android Component: ContentProvider </div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="Component_Android_Services.shtml" title="Type of Android Component: Service">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="Component_Android_BroadCasrReciver.shtml" title="Broadcast Receivers">Next</a></td>
+  </tr> 
+</table>
+<p>Data is available to all application. ContentProvider usually the backend is SQLite. They are loosely linked to clients </p>
+<p>ContentProvider are object that can</p>
+<ul><li>retrieve data</li>
+<li> store data</li></ul>
+<p>You can think of content providers as a database server. A content provider's job is to manage access to persisted data, such as a SQLite database. there's no common storage area that all Android packages can access.</p>
+<p>If your application is very simple, you might not necessarily create a content provider. If you're building a larger application, or one that makes data available to multiple activities or applications, a content provider is the means of accessing your data.A content provider is implemented as a subclass of ContentProvider. We can modify the data with the help of ContentProvider.</p>
+<p><i>public abstract class ContentProvider extends Object implements ComponentCallbacks</i></p>
+<p><i>Note : </i>Content providers are also useful for reading and writing data that is private to your application and not shared. if you want to share data. You have two options:</p>
+<ol><li> You can create your own content provider and extends the ContentProvider class</li>
+<li>  You can add the data to an existing provider and gives permission to write to it.</li></ol>
+<h3>Creating a Content Provider :</h3>
+<p>Firstly, you will set up a system for storing the data. You can store your data any way you want in SQLite database .  SQLiteOpenHelper class is helpful for creation of a database and SQLiteDatabase to manage it.</p>
+<p>This class extend the ContentProvider class to provide access to the data and must be declare in 
+AndroidManifest.xml.</p>
+<p>Content providers encapsulate data and provide it to applications through the single ContentResolver interface. The client use indirectly the ContentResolver object.You get a ContentResolver by calling getContentResolver() from within the implementation of an Activity or other application component.</p>
+<p>The system inspects the authority of the given URI when a request is made via a ContentResolver and after that  passing the request to the content provider registered with the authority. The UriMatcher class is very useful class for parsing URIs.</p>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="Component_Android_Services.shtml" title="Type of Android Component: Service">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="Component_Android_BroadCasrReciver.shtml" title="Broadcast Receivers">Next</a></td>
+  </tr> 
+</table>
+
+<!-- Footer Start-->	
+
+		</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->

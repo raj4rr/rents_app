@@ -1,0 +1,148 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD>
+<meta http-equiv="Content-Language" content="en-us">
+<TITLE>ServletRequest Interface</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name="description" CONTENT="ServletRequest Interface" >
+<meta name="keywords" CONTENT="ServletRequest Interface">
+
+<!-- header start-->	
+
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+
+<?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+     <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>Servlet Tutorials</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+			<img src="/images/left_menu_bullet.gif"  width="11" height="6"/> <a href="/java/">Java</a>
+			<img src="/images/left_menu_bullet.gif"  width="11" height="6"/> <a href="/java/servlet/">Servlet</a>
+
+			      </div>
+
+            	<table>
+                    <tr>
+
+                         <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/servlet/servlet_basics/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 
+
+<div class="heading">ServletRequest Interface</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="config.shtml" title="ServletConfig Interface">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="loginsession.shtml" title="Servlet HttpSession Login and Logout Example">Next</a></td>
+  </tr> 
+</table>
+<!-- header End-->	
+
+<p>Here we can be used to provide the client request information to a servlet such as content type, content length, parameter names and values, header informations, attributes etc.
+</p>
+<p>
+ ServletRequest interface Methods as follows :
+</p><p>
+Some methods defined in the ServletRequest interface as follows:
+</p>
+
+<div class="table_content">
+ <table>
+ <tr><td class="heading" style="width:50%;"> Method</td><td class="heading" style="width:50%;">Description </td></tr>
+<tr><td class="alternate_heading1">public String getParameter(String name)</td><td class="alternate_heading1">	is used to obtain the value of a parameter by name. </td></tr>
+
+<tr><td class="alternate_heading1">public String[] getParameterValues(String name)</td><td class="alternate_heading1">	returns an array of String containing all values of given parameter name. It is mainly used to obtain values of a Multi select list box.</td></tr>
+
+<tr><td class="alternate_heading1">java.util.Enumeration getParameterNames()</td><td class="alternate_heading1">		returns an enumeration of all of the request parameter names.</td></tr>
+
+<tr><td class="alternate_heading1">public int getContentLength()</td><td class="alternate_heading1">	Returns the size of the request entity data, or -1 if not known.</td></tr>
+
+<tr><td class="alternate_heading1">public String getCharacterEncoding()</td><td class="alternate_heading1">		Returns the character set encoding for the input of this request. </td></tr>
+
+<tr><td class="alternate_heading1">public String getContentType()</td><td class="alternate_heading1">		Returns the Internet Media Type of the request entity data, or null if not known.</td></tr>
+
+<tr><td class="alternate_heading1">public ServletInputStream getInputStream() throws IOException</td><td class="alternate_heading1">	Returns an input stream for reading binary data in the request body. </td></tr>
+
+<tr><td class="alternate_heading1">public abstract String getServerName()</td><td class="alternate_heading1">	Returns the host name of the server that received the request.</td></tr>
+
+<tr><td class="alternate_heading1">public int getServerPort()</td><td class="alternate_heading1">		Returns the port number on which this request was received.</td></tr>
+
+</table>
+</div>
+
+<h3>Example of ServletRequest to display the name of the user
+</h3>
+<p>
+We are displaying the name of the user in the servlet. For this purpose, we have used the getParameter method that returns the value for the given request parameter name. 
+</p>
+
+<i>index.html</i>
+
+<div class="code">
+<pre>
+<font face="Courier New"><font color="#0000ff">&lt;form </font><font color="#ff0000">action</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;welcome&quot; </font><font color="#ff0000">method</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;get&quot;</font><font color="#0000ff">&gt;</font>
+<font color="#000000">Enter your name</font><font color="#0000ff">&lt;input </font><font color="#ff0000">type</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;text&quot; </font><font color="#ff0000">name</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;name&quot;</font><font color="#0000ff">&gt;&lt;br&gt;</font>
+<font color="#0000ff">&lt;input </font><font color="#ff0000">type</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;submit&quot; </font><font color="#ff0000">value</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;login&quot;</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;/form&gt;</font>
+</font></pre>
+</div>
+
+<i>Serv.java</i>
+
+<div class="code">
+<pre>
+<font face="Courier New"><font color="#0000ff">import </font><font color="#000000">javax.servlet.http.*;</font>
+<font color="#0000ff">import </font><font color="#000000">javax.servlet.*;</font>
+<font color="#0000ff">import </font><font color="#000000">java.io.*;</font>
+<font color="#0000ff">public class </font><font color="#000000">DemoServ </font><font color="#0000ff">extends </font><font color="#000000">HttpServlet{</font>
+<font color="#0000ff">public void </font><font color="#000000">doGet(HttpServletRequest req,HttpServletResponse res)</font>
+<font color="#0000ff">throws </font><font color="#000000">ServletException,</font><font color="#ff0000">IOException</font>
+<font color="#000000">{</font>
+<font color="#000000">res.setContentType(</font><font color="#ff00ff">&quot;text/html&quot;</font><font color="#000000">);</font>
+<font color="#ff0000">PrintWriter </font><font color="#000000">pw=res.getWriter();</font>
+<font color="#ff0000">String </font><font color="#000000">name=req.getParameter(</font><font color="#ff00ff">&quot;name&quot;</font><font color="#000000">);</font><font color="#008000">//will return value</font>
+<font color="#000000">pw.println(</font><font color="#ff00ff">&quot;Welcome &quot;</font><font color="#000000">+name);</font>
+<font color="#000000">pw.close();</font>
+<font color="#000000">}}</font>
+</font></pre>
+</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="config.shtml" title="ServletConfig Interface">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="loginsession.shtml" title="Servlet HttpSession Login and Logout Example">Next</a></td>
+  </tr> 
+</table>
+
+<!-- Footer Start-->		
+
+		</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+   </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->

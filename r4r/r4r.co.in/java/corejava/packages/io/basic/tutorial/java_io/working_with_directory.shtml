@@ -1,0 +1,145 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD>
+<meta http-equiv="Content-Language" content="en-us">
+<TITLE>working with directory,an example of the directory,mkdir,mkdirs</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name="description" CONTENT="working with directory,an example of the directory,mkdir,mkdirs" >
+<meta name="keywords" CONTENT="working with directory,an example of the directory,mkdir,mkdirs">
+<!-- header start-->	
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>Java Programing laungage</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+            <img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+            <a href="/java/">Java</a>
+              <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/java/corejava">Core Java</a>
+               <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/java/corejava/packages">Package</a>
+                     <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/java/corejava/packages/io">Java IO Package</a>
+              </div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/corejava/packages/io/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	 
+
+<div class="heading">Working With Directory</div>
+<p>There are many method is provided by the file for working the operation on the directory.</p>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="File_input_output.shtml" title="File input output">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="Exam_Random_access_file.shtml" title="Exam Random access file">Next</a></td>
+  </tr> 
+</table>
+<!-- header End-->  
+
+<p>In which the first method is <b>mkdir()</b>. that is used for create the directory. and the second is <b>mkdirs()</b> method .both method is different with each other. the <b>mkdirs </b>method is used to create the Subdirectory of the directory.</p>
+<p>The List() and ListFiles() method is used to list all the content of the directory. but the List() method return the an array string file name and the ListFiles() method is return an object of an array file.</p>  	
+
+<h3>Example</h3>
+<div class="code">
+<PRE>
+<FONT FACE="Courier New">
+<FONT COLOR="#0000ff">import </FONT><FONT COLOR="#000000">java.io.</FONT><FONT COLOR="#ff0000">File</FONT><FONT COLOR="#000000">;</FONT>
+<FONT COLOR="#0000ff">public class </FONT><FONT COLOR="#000000">CreateDir</FONT>
+<FONT COLOR="#000000">{</FONT>
+<FONT COLOR="#0000ff">public static void </FONT><FONT COLOR="#000000">main(</FONT><FONT COLOR="#ff0000">String</FONT><FONT COLOR="#000000">[] args)</FONT>
+<FONT COLOR="#000000">{</FONT>
+<FONT COLOR="#ff0000">File </FONT><FONT COLOR="#000000">file = </FONT><FONT COLOR="#0000ff">new </FONT><FONT COLOR="#ff0000">File</FONT><FONT COLOR="#000000">(</FONT><FONT COLOR="#ff00ff">"C:\\Directory3"</FONT><FONT COLOR="#000000">);</FONT>
+<FONT COLOR="#0000ff">if</FONT><FONT COLOR="#000000">(file.mkdir())</FONT>
+<FONT COLOR="#000000">{</FONT>
+<FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.println(</FONT><FONT COLOR="#ff00ff">"Directory is created!"</FONT><FONT COLOR="#000000">);</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#0000ff">else</FONT><FONT COLOR="#000000">{</FONT>
+<FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.println(</FONT><FONT COLOR="#ff00ff">"Failed to create directory!"</FONT><FONT COLOR="#000000">);</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#000000">}</FONT>
+</FONT>
+</PRE>
+</div>   
+
+<h2>Random Accessing of Files</h2>
+<p>The random access file is allow to access the file with nonsequential. consider the file format is ZIP. A ZIP archive contain the file and compress it in the save space. it is contain to the directory entry at the end that indicate that the file is store in ZIP archive begin.</p>
+<p>If we are want to extract the file from ZIP archive then we are used the sequence access stream.</p>
+
+<p><i>you have to:</i></p>
+<ul>
+<li>
+Firstly open the ZIP archive.
+</li>
+<li>
+Search the file which you want to extract through the ZIP archive.
+</li>
+<li>
+Extract the file.
+</li>
+<li>
+ close the ZIP archive.
+</li>
+</ul>
+
+<p>By this procedure, we can not read the file before extract but if we can use the seek feature then we are read the file before extraction more efficiently. for this procedure follow the <i>steps: </b></i>
+
+<ul>
+<li>
+Open the ZIP archive.
+</li>
+<li>
+Then Seek to the directory entry and locate the file which we want to extract with the ZIP archive.
+</li>
+<li>
+Seek within the ZIP archive for extracted file position.
+</li>
+<li>
+Extract the file which you selected.
+</li>
+<li>
+at lost close the ZIP archive.
+</li>
+</ul>
+
+<p>for Example of random access file goto the next page.....</p>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="File_input_output.shtml" title="File input output">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="Exam_Random_access_file.shtml" title="Exam Random access file">Next</a></td>
+  </tr> 
+</table>
+
+<!-- Footer Start-->
+
+		</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->

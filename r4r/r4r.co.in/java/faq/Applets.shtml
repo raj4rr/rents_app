@@ -1,0 +1,236 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE> Applets Java interview questions</TITLE>
+<META content=r4r.co.in name=owner>
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="Applets Java ebooks,Applets Java example, Applets Java interview questions ,Applets Java interview answers,Applets Java interview questions and answers" >
+
+<meta name="keywords" CONTENT="Applets Java ebooks,Applets Java example, Applets Java interview questions ,Applets Java interview answers,Applets Java interview questions and answers">
+
+<!--Header start-->
+
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>FAQ</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a><img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+			<a href="/java/">Java </a>
+              <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/java/faq">Faqs</a>
+
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/corejava/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	  
+
+<!-- header End-->
+
+<div class="heading">Java Applet Interview Questions With Answers</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="index.shtml" title=" Home
+">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="AWT_Controls_Layout_Managers_and_Menus.shtml" title="Java AWT: Controls, Layout Managers and Menus Interview Questions With Answers">Next</a></td>
+  </tr>
+</table>
+<p>	
+<div class="heading">Q.1	What is an Applet? Should applets have constructors?</div>
+<p><i>ANSWER:</i>Applet is a dynamic and interactive program that runs inside a Web 
+page displayed by a Java capable browser. We dont have the concept of 
+Constructors in Applets.</p>
+</p>
+
+<p>
+<div class="heading">Q.2	How do we read number information from my applets parameters, given that Applets getParameter() method returns a string? </div>
+<p><i>ANSWER:</i>Use the parseInt() method in the Integer Class, the Float(String) 
+constructor in the Class Float, or the Double(String) constructor in the 
+class Double. </p>
+
+</p>
+<p>
+<div class="heading">Q.3	How can I arrange for different applets on a web page to communicate with each other?</div>
+<p><i>ANSWER: </i>Name your applets inside the Applet tag and invoke AppletContexts 
+getApplet() method in your applet code to obtain references to the other 
+applets on the page.</p>
+</p>
+
+<p>
+<div class="heading">Q.4	How do I select a URL from my Applet and send the browser to that page?</div>
+<p><i>ANSWER: </i>Ask the applet for its applet context and invoke showDocument() on 
+that context object. </p>
+<div class="code">
+<pre>
+<font color="#ff0000">URL </font><font color="#000000">targetURL;</font>
+<font color="#ff0000">String </font><font color="#000000">URLString</font>
+<font color="#ff0000">AppletContext </font><font color="#000000">context = getAppletContext();</font>
+<font color="#0000ff">try</font><font color="#000000">{</font>
+<font color="#000000">targetUR L = </font><font color="#0000ff">new </font><font color="#ff0000">URL</font><font color="#000000">(URLString);</font>
+<font color="#000000">} </font><font color="#0000ff">catch </font><font color="#000000">(Malformed URLException e){</font>
+
+<font color="#008000">// Code for recover from the exception</font>
+
+<font color="#000000">}</font>
+<font color="#000000">context. showDocument (targetURL);</font>
+</pre>
+</div>
+</p>
+
+<p>
+<div class="heading">Q.5	Can applets on different pages communicate with each other? </div>
+<p><i>ANSWER:</i> No. Not Directly. The applets will exchange the information at one 
+ meeting place either on the local file system or at remote system. </p>
+ </p>
+
+<div class="heading">Q.6	How do Applets differ from Applications? </div>
+<h3>ANSWER:</h3>
+<p>Applet: Stand Alone</p> 
+<p>Applet: Needs no explicit installation on local m/c. </p>
+<p>Appln: Execution starts with main() method. </p>
+<p>Applet: Execution starts with init() method. </p>
+<p>Appln: May or may not be a GUI </p>
+<p>Applet: Must run within a GUI (Using AWT) </p>
+
+	  <p>
+	  <div class="heading">Q.7	How do I determine the width and height of my application? </div>
+<p><i>ANSWER: </i>Use the getSize() method, which the Applet class inherits from the 
+Component class in the Java.awt package. The getSize() method returns the size of 
+the applet as a Dimension object, from which you extract separate width, height fields.
+<i>Eg.</i> Dimension dim = getSize (); int appletwidth = dim.width ();
+</p>
+</p>
+
+<p>
+<div class="heading">Q.8	What is AppletStub Interface? </div>
+
+<p><i>Answer: </i>The applet stub interface provides the means by which an applet and 
+the browser communicate. Your code will not typically implement this 
+interface. </p>
+</p>
+<h3>Q.9	It is essential to have both the .java file and the .shtmll file of an applet in the same directory.</h3>
+<p>True. </p>
+<p>False. </p>
+<p><i>Answer: </i>false</p>
+
+<div class="heading">Q.10	The &lt;PARAM&gt; tag contains two attributes namely _________ and _______.</div>
+
+<p><i>Answer: </i>Name , value. </p>
+
+<div class="heading">Q.11	Passing values to parameters is done in the _________ file of an applet. </div>
+<p><i>Answer: </i>.shtml. </p>
+
+<div class="heading">Q.12	What tags are mandatory when creating HTML to display an applet </div>
+
+<ol>
+<li> name, height, width </li>
+<li>code, name </li>
+<li>codebase, height, width </li>
+<li>code, height, width </li>
+</ol>
+<p><i>Answer: </i>code, height, width</p>
+
+<p>
+<div class="heading">Q.13	Applets getParameter( ) method can be used to get parameter values.</div>
+<p><i>(a). True </i></p>
+<p><i>(b). False </i></p>
+<p><i>Answer: </i>(a). True</p>
+
+     <p>
+	 <div class="heading">Q.14	What are the Applets Life Cycle methods? Explain them? </div>
+	 <h3>Answer: </h3>
+	 <p><i>init() method: </i>Can be called when an applet is first loaded. </p>
+	 <p><i>start( ) method: </i> Can be called each time an applet is started. </p>
+	 <p><i>paint( ) method: </i> Can be called when the applet is minimized or refreshed.</p>
+	 <p><i>stop( ) method: </i> Can be called when the browser moves off the applets page. </p>
+	 <p><i>destroy( ) method: </i> Can be called when the browser is finished with the applet. </p>
+
+	 <div class="heading">Q.15	What are the Applets information methods? </div>
+	 <h3>Answer: </h3>
+	 <p><i>getAppletInfo( ) method: </i> Returns a string describing the applet, its author ,copy right information, etc. </p>
+	 <p><i>getParameterInfo( ) method:</i> Returns an array of string describing the applets parameters. </p>
+
+<div class="heading">Q.16	All Applets are subclasses of Applet. </div>
+<p><i>(a). True</i></p>
+<p><i>(b). False</i></p>
+<p><i>Answer: </i>(a). True</p>
+
+<div class="heading">Q.17	All Applets must import java.applet and java.awt. </div>
+<p><i>(a). True</i></p>
+<p><i>(b). False</i></p>
+<p><i>Answer: </i>(a). True</p>
+
+<div class="heading">Q.18	 What are the steps involved in Applet development? </div>
+<h3>Answer: </h3>
+<p>(a). Edit a Java source file, </p>
+<p>(b). Compile your program and </p>
+<p>(c). Execute the appletviewer, specifying the name of your applets source file. </p>
+<div class="heading">Q.19	Applets are executed by the console based Java run-time interpreter.</div>
+<p><i>(a). True</i></p>
+<p><i>(b). False</i></p>
+<p><i>Answer: </i>(b). False</p>
+
+<div class="heading">Q.20	Which classes and interfaces does Applet class consist? </div>
+<h3>Answer: </h3>
+<p>Applet class consists of a single class, the Applet class and three interfaces:</p>
+<ol><li> AppletContext, </li>
+<li>AppletStub</li>
+<li>AudioClip. </li>
+</ol>
+
+<div class="heading">Q.21	What is the sequence for calling the methods by AWT for applets? </div>
+<h3>Answer:</h3>
+<p>When an applet begins, the AWT calls the following methods, in this sequence. </p>
+<p><i>init( ) </i></p>
+<p><i>start( ) </i></p>
+<p><i> paint( ) </i></p>
+
+<div class="heading">Q.22	When an applet is terminated, the following sequence of method cals takes place : </div>
+<h3>Answer:</h3>
+<p><i>stop( ) </i></p>
+<p><i>destroy( )</i></p>
+
+<div class="heading">Q.23	Which method is used to output a string to an applet? </div>
+<p><i>Answer: </i>drawString ( ) method. </p>
+
+<div class="heading">Q.24	Every color is created from an RGB value. </div>
+<p><i>(a). True</i></p>
+<p><i>(b). False</i></p>
+<p><i>Answer: </i>(a). True</p>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="index.shtml" title=" Home
+">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="AWT_Controls_Layout_Managers_and_Menus.shtml" title="Java AWT: Controls, Layout Managers and Menus Interview Questions With Answers">Next</a></td>
+  </tr>
+</table>
+
+<!-- Footer Start-->
+
+</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>

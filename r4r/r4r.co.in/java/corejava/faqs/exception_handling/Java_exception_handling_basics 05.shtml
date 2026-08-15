@@ -1,0 +1,135 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>How an Exception is Rethrowing in Java Programming</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="How an Exception is Rethrowing in Java Programming?;Writing Custom Exception Handlers in Java Programming." >
+<meta name="keywords" CONTENT="How an Exception is Rethrowing in Java Programming?;Writing Custom Exception Handlers in Java Programming.">
+
+<!-- header start-->
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+	<BODY>
+		<?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+        <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>Java Exception FAQ Tutorials</h1>
+            <div class="link_menu"><br><div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+            <img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+            <a href="/java/">Java</a>
+			<img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/java/corejava/">Core Java</a>
+  <img src="/images/left_menu_bullet.gif" width="11" height="6"> <a href="/java/corejava/faqs/">FAQS</a>
+  </div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/corejava/collections/commonfiles/leftmenu.shtml'); ?></td>                                           
+                        <td style="80%" valign="top">
+
+                        <div class="main_content"> 	 
+
+	<!-- header End-->
+
+<div class="heading">Exception is Rethrowing in Java Programming</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="Java_exception_handling_basics%2004.shtml" title="Try, catch and finally in Java Programming">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="index.shtml" title="Home">Next</a></td>
+  </tr> 
+</table>
+
+<p>Rethrowing is a concept in which exception should be throw again and again. Lets consider an example.</p>
+<div class="code">
+<PRE>
+<FONT COLOR="#008000">// This program create for ReThrowing exception.</FONT>
+<FONT COLOR="#0000ff">package </FONT><FONT COLOR="#000000">r4r.co.in;</FONT>
+<FONT COLOR="#0000ff">class </FONT><FONT COLOR="#000000">MyException </FONT><FONT COLOR="#0000ff">extends </FONT><FONT COLOR="#ff0000">Exception </FONT><FONT COLOR="#000000">{</FONT>
+<FONT COLOR="#000000">MyException(</FONT><FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">x) {</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#0000ff">class </FONT><FONT COLOR="#000000">MyException1 {</FONT>
+<FONT COLOR="#0000ff">static void </FONT><FONT COLOR="#000000">note(</FONT><FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">t) </FONT><FONT COLOR="#0000ff">throws </FONT><FONT COLOR="#000000">MyException {</FONT>
+<FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.println(</FONT><FONT COLOR="#ff00ff">"Called note(" </FONT><FONT COLOR="#000000">+ t + </FONT><FONT COLOR="#ff00ff">")"</FONT><FONT COLOR="#000000">);</FONT>
+<FONT COLOR="#0000ff">if </FONT><FONT COLOR="#000000">(t &gt; </FONT><FONT COLOR="#800080">10</FONT><FONT COLOR="#000000">) {</FONT>
+<FONT COLOR="#0000ff">throw new </FONT><FONT COLOR="#000000">MyException(t);                       </FONT>
+<FONT COLOR="#008000">//overhear exception should be Rethowing. by using keyword throw</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.println(</FONT><FONT COLOR="#ff00ff">"Does Exception generate"</FONT><FONT COLOR="#000000">);</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#0000ff">public static void </FONT><FONT COLOR="#000000">main(</FONT><FONT COLOR="#ff0000">String </FONT><FONT COLOR="#000000">args[]) {</FONT>
+<FONT COLOR="#0000ff">try </FONT><FONT COLOR="#000000">{</FONT>
+<FONT COLOR="#000000">note(</FONT><FONT COLOR="#800080">5</FONT><FONT COLOR="#000000">);</FONT>
+<FONT COLOR="#000000">note(</FONT><FONT COLOR="#800080">20</FONT><FONT COLOR="#000000">);</FONT>
+<FONT COLOR="#000000">} </FONT><FONT COLOR="#0000ff">catch </FONT><FONT COLOR="#000000">(MyException e) {</FONT>
+<FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.println(</FONT><FONT COLOR="#ff00ff">"Exception Caught " </FONT><FONT COLOR="#000000">+ e);</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#000000">}</FONT>
+</PRE>
+</div>
+
+<div class="heading">Custom Exception Handlers in Java Programming</div>
+<p>This is quite easy to generate the custom exception by define a subclass of Exception (which is  a subclass of Throwable). That subclasses no need to actually implement anything the used as a exception .The exception class doesn't define any methods of its own and don't inherit any methods provided by Throwable class.</p>
+<div class="code">
+<PRE>
+<FONT COLOR="#008000">// This program creates a custom exception.</FONT>
+<FONT COLOR="#0000ff">package </FONT><FONT COLOR="#000000">r4r.co.in;</FONT>
+<FONT COLOR="#0000ff">class </FONT><FONT COLOR="#000000">MyException </FONT><FONT COLOR="#0000ff">extends </FONT><FONT COLOR="#ff0000">Exception</FONT>
+<FONT COLOR="#000000">{</FONT>
+<FONT COLOR="#000000">MyException(</FONT><FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">x) {</FONT>
+<FONT COLOR="#008000">//create a exception called MyException</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#0000ff">class </FONT><FONT COLOR="#000000">MyException1 {</FONT>
+<FONT COLOR="#0000ff">public static void </FONT><FONT COLOR="#000000">note(</FONT><FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">t) </FONT><FONT COLOR="#0000ff">throws </FONT><FONT COLOR="#000000">MyException {</FONT>
+<FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.println(</FONT><FONT COLOR="#ff00ff">"Called note(" </FONT><FONT COLOR="#000000">+ t + </FONT><FONT COLOR="#ff00ff">")"</FONT><FONT COLOR="#000000">);</FONT>
+<FONT COLOR="#0000ff">if</FONT><FONT COLOR="#000000">(t &gt; </FONT><FONT COLOR="#800080">10</FONT><FONT COLOR="#000000">)</FONT>
+<FONT COLOR="#0000ff">throw new </FONT><FONT COLOR="#000000">MyException(t);</FONT>
+<FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.println(</FONT><FONT COLOR="#ff00ff">"Does Exception generate"</FONT><FONT COLOR="#000000">);</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#0000ff">public static void </FONT><FONT COLOR="#000000">main(</FONT><FONT COLOR="#ff0000">String </FONT><FONT COLOR="#000000">args[]) {</FONT>
+<FONT COLOR="#0000ff">try </FONT><FONT COLOR="#000000">{</FONT>
+<FONT COLOR="#000000">note(</FONT><FONT COLOR="#800080">5</FONT><FONT COLOR="#000000">);</FONT>
+<FONT COLOR="#000000">note(</FONT><FONT COLOR="#800080">12</FONT><FONT COLOR="#000000">);</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#0000ff">catch </FONT><FONT COLOR="#000000">(MyException e)</FONT>
+<FONT COLOR="#000000">{</FONT>
+<FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.println(</FONT><FONT COLOR="#ff00ff">"Exception Caught " </FONT><FONT COLOR="#000000">+ e);</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#000000">}</FONT>
+</PRE>
+</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="Java_exception_handling_basics%2004.shtml" title="Try, catch and finally in Java Programming">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="index.shtml" title="Home">Next</a></td>
+  </tr> 
+</table>
+
+  <!-- Footer Start-->
+    </div>
+		           </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!--footer end-->

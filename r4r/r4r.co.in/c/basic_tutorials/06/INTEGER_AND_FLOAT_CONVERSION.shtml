@@ -1,0 +1,113 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>C Tutorial on INTEGER AND FLOAT CONVERSION,TYPE CONVERSION IN ASSIGNMENT</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="Learn INTEGER AND FLOAT CONVERSION,TYPE CONVERSION IN ASSIGNMENT,Arrays,Structures,Pointers,Storage class,Loops,Functions,Data types,C constants,Union,Preprocessor,Interview questions and answers " >
+<meta name="keywords" CONTENT="INTEGER AND FLOAT CONVERSION,TYPE CONVERSION IN ASSIGNMENT,Conversions in C,Data type conversion in c,Arrays,Structures,Pointers,Storage class,Loops,Functions,Data types,C constants,Union,Preprocessor,Interview questions and answers ">
+
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+     <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>C Programming language</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a><img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/c/">C </a>
+              <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/c/basic_tutorials/06/">C Tutorial</a></div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/c/commonfiles/leftmenu.shtml'); ?></td>
+
+                       <td style="80%" valign="top">
+                        <div class="main_content"> 
+
+	<!-- header End-->	
+
+     <div class="heading">Integer and Float conversion in c</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="C_INSTRUCTION.shtml" title="C Instruction">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="OPERATORS.shtml" title="Operators in c">Next</a></td>
+  </tr>
+</table>
+
+<h2>Integer and float conversion</h2>
+<p>In order to effectively develop C programs, it will be necessary to understand the rules that are used for the implicit conversion of floating 
+ point and integer values in C. These are mentioned below:</p>
+<ol>
+   <li>An arithmetic operation between an integer and integer always yields an integer result.</li>
+   <li>An operation between a real and real always yields a real result.</li>
+   <li>An operation between an integer and real always yields a real result. In this operation the integer is first promoted to a real and then the operation is performed. Hence the result is real.</li>
+</ol>
+
+ <h3>Example</h3>
+ <div class="table_content">
+<table>
+<tr>
+  <td class="heading" style="width:50%;">Operation</td> 
+  <td class="heading" style="width:50%;">Result</td>
+</tr>
+<tr><td class="alternate_heading2">5/2</td><td class="alternate_heading1">2</td></tr>
+<tr><td class="alternate_heading2">5.0/2</td><td class="alternate_heading1">2.5</td></tr>
+</table>
+</div>
+
+<h2>Type conversion in assignment</h2>
+<p>It may so happen that the type of the expression and the type of the variable on the left-hand side of the assignment operator may not be same.In such a case the value of the expression is promoted or demoted depending on the type of the variable on left-hand side of =.</p>
+<p>For example, consider the following assignment statements.</p>
+<div class="code">
+<PRE>
+<FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">i ;</FONT>
+<FONT COLOR="#0000ff">float </FONT><FONT COLOR="#000000">b ;</FONT>
+<FONT COLOR="#000000">i = </FONT><FONT COLOR="#800080">3</FONT><FONT COLOR="#000000">.</FONT><FONT COLOR="#800080">5 </FONT><FONT COLOR="#000000">;</FONT>
+<FONT COLOR="#000000">b = </FONT><FONT COLOR="#800080">30 </FONT><FONT COLOR="#000000">;</FONT>
+</PRE>
+</div>
+
+<p>Here in the first assignment statement though the expression's value is a float (3.5) it cannot be stored in i since it is an int. In such a case the float is demoted to an int and then its value is stored. Hence what gets stored in i is 3. Exactly opposite happens in the next statement. Here, 30 is promoted to 30.000000 and then stored in b, since b being a float variable cannot hold anything except a float value.</p>
+<p>Instead of a simple expression used in the above examples if a complex expression occurs, still the same rules apply. For example, consider the following program fragment:</p>
+<div class="code">
+<PRE>
+<FONT COLOR="#0000ff">float </FONT><FONT COLOR="#000000">a, b, c ;</FONT>
+<FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">s ;</FONT>
+<FONT COLOR="#000000">s = a * b * c / </FONT><FONT COLOR="#800080">100 </FONT><FONT COLOR="#000000">+ </FONT><FONT COLOR="#800080">32 </FONT><FONT COLOR="#000000">/ </FONT><FONT COLOR="#800080">4 </FONT><FONT COLOR="#000000">- </FONT><FONT COLOR="#800080">3 </FONT><FONT COLOR="#000000">* </FONT><FONT COLOR="#800080">1</FONT><FONT COLOR="#000000">.</FONT><FONT COLOR="#800080">1 </FONT><FONT COLOR="#000000">;</FONT>
+</PRE>
+</div>
+
+<p>Here, in the assignment statement some operands are ints whereas others are floats. As we know, during evaluation of the expression the int would be promoted to floats and the result of the expression would be a float. But when this float value is assigned to s it is again demoted to an int and then stored in s.</p>
+
+ <table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="C_INSTRUCTION.shtml" title="C Instruction">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="OPERATORS.shtml" title="Operators in c">Next</a></td>
+  </tr>
+</table>
+
+<!--Footer  --> 
+   </div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>

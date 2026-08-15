@@ -1,0 +1,163 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>ASP.NET gridview||how to edit ,update, delete in gridview||</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="Simple Code For Edit Update And Delete In Gridview,Design of EDIT
+ Gridview,How to Edit Gridview,Design of Update in Gridview,How to Update Gridview,How to Delete 
+ Gridview,How to Delete Particular Row From Gridview,Design of Delete Row from Gridview,
+ How to cancel editable mode" >
+<meta name="keywords" CONTENT="Simple Code For Edit Update And Delete In Gridview,Design of EDIT 
+Gridview,How to Edit Gridview,Design of Update in Gridview,How to Update Gridview,How to 
+Delete Gridview,How to Delete Particular Row From Gridview,Design of Delete Row from Gridview,
+How to cancel editable mode">
+
+<!--Header start-->
+
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>VB.net Tutorials with Examples</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a><img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+			<a href="/vb.net/">vb.net</a><img src="/images/left_menu_bullet.gif" width="11" height="6"/>
+			<a href="/vb.net/01/tutorial/aspnet/">ASP.net using VB.net</a>
+              </div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/vb.net/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	  
+
+<!-- Header End-->	
+<div class="heading">Simple Code For Edit Update And Delete In Gridview</div>	   
+  <table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="simple%20Databind%20to%20gridview.shtml" title="All Gridview Code In Asp.net">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="all%20code%20of%20gridview%20edit%20update%20and%20delete.shtml" title="All Gridview Code In Asp.net">Next</a></td>
+  </tr>
+</table>
+
+<h3>Design of EDIT Gridview</h3>
+<div class="image"><img src="editgrid.GIF"></div>
+
+<h2>How to Edit Gridview</h2>
+
+<div class="code">
+<pre>
+<font color="#000000">Protected Sub GridView1_RowEditing(ByVal sender As </font><font color="#808000">Object</font><font color="#000000">, </font>
+<font color="#000000">ByVal e As </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Web</font><font color="#000000">.</font><font color="#008080">UI</font><font color="#000000">.</font><font color="#008080">WebControls</font><font color="#000000">.</font><font color="#808000">GridViewEditEventArgs</font><font color="#000000">) </font>
+<font color="#000000">Handles GridView1.RowEditing</font>
+<font color="#000000">GridView1.EditIndex = e.NewEditIndex</font>
+<font color="#000000">bindgrid()</font>
+ <font color="#000000">End Sub</font>
+</pre>
+</div>
+
+<h2>Design of Update in Gridview</h2>
+<div class="image"><img src="update.GIF"></div>
+
+<h2>How to Update Gridview</h2>
+<div class="code">
+<pre>
+<font color="#000000">Protected </font><font color="#0000ff">Sub </font><font color="#000000">GridView1_RowUpdating(</font><font color="#0000ff">ByVal </font><font color="#000000">sender As Object, </font>
+<font color="#0000ff">ByVal </font><font color="#000000">e As System.Web.UI.WebControls.GridViewUpdateEventArgs) </font>
+<font color="#000000">Handles GridView1.RowUpdating</font>
+<font color="#0000ff">Dim </font><font color="#000000">UserID As </font><font color="#ff0000">String </font><font color="#000000">= GridView1.DataKeys(e.RowIndex).Value.ToString()</font>
+<font color="#0000ff">Dim </font><font color="#000000">l As </font><font color="#ff0000">String </font><font color="#000000">= DirectCast(GridView1.Rows(e.RowIndex).Cells(</font><font color="#800080">1</font><font color="#000000">).Controls(</font><font color="#800080">0</font><font color="#000000">), </font>
+<font color="#000000">TextBox).Text</font>
+<font color="#0000ff">Dim </font><font color="#000000">k As </font><font color="#ff0000">String </font><font color="#000000">= DirectCast(GridView1.Rows(e.RowIndex).Cells(</font><font color="#800080">2</font><font color="#000000">).Controls(</font><font color="#800080">0</font><font color="#000000">), </font>
+<font color="#000000">TextBox).Text</font>
+<font color="#0000ff">Dim </font><font color="#000000">can As New OleDbConnection(</font><font color="#ff00ff">&quot;provider=microsoft.jet.oledb.4.0;</font>
+<font color="#000000">Data source=D:\invent.mdb</font><font color="#ff00ff">&quot;)</font>
+<font color="#000000">can.Open()</font>
+<font color="#0000ff">Dim </font><font color="#000000">com1 As New OleDbCommand(</font><font color="#ff00ff">&quot;update purchase set purchase1='&quot; </font><font color="#000000">&amp; l </font>
+<font color="#000000">&amp; </font><font color="#ff00ff">&quot;',tax='&quot; </font><font color="#000000">&amp; k &amp; </font><font color="#ff00ff">&quot;' where item_id='&quot; </font><font color="#000000">&amp; UserID &amp; </font><font color="#ff00ff">&quot;'&quot;</font><font color="#000000">, can)</font>
+<font color="#000000">com1.ExecuteNonQuery()</font>
+<font color="#000000">can.Close()</font>
+<font color="#008000">'to go back to the previous position</font>
+<font color="#000000">GridView1.EditIndex = -</font><font color="#800080">1</font>
+<font color="#008000">' // fetch and rebind the data.</font>
+<font color="#000000">bindgrid()</font>
+<font color="#0000ff">End Sub</font>
+</pre>
+</div>
+<p><i>Note:</i> item_id must be primary key
+And right click on gridview go to property datakey names=item_id(primary key)</p>
+
+<h2>Design of Delete Row from Gridview</h2>
+<div class="image"><img src="delete.GIF"></div>
+
+<h3>How to Delete Particular Row From Gridview</h3>
+<p>This event shows how to delete a row from datebase</p>
+<div class="code">
+<pre>
+<font color="#000000">Protected Sub GridView1_RowDeleting(ByVal sender As </font><font color="#808000">Object</font><font color="#000000">, </font>
+<font color="#000000">ByVal e As </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Web</font><font color="#000000">.</font><font color="#008080">UI</font><font color="#000000">.</font><font color="#008080">WebControls</font><font color="#000000">.</font><font color="#808000">GridViewDeleteEventArgs</font><font color="#000000">) </font>
+<font color="#000000">Handles GridView1.RowDeleting</font>
+<font color="#000000">Dim UserID As </font><font color="#808000">String </font><font color="#000000">= GridView1.DataKeys(e.RowIndex).Value.ToString()</font>
+<font color="#000000">Dim can As New OleDbConnection(</font><font color="#ff00ff">&quot;provider=microsoft.jet.oledb.4.0;</font>
+<font color="#008080">Data </font><font color="#000000">source=D:\invent.mdb</font><font color="#ff00ff">&quot;)</font>
+<font color="#000000">can.Open()</font>
+<font color="#000000">Dim com1 As New OleDbCommand(</font><font color="#ff00ff">&quot;delete from purchase where item_id ='&quot; </font>
+<font color="#000000">&amp; UserID &amp; </font><font color="#ff00ff">&quot;'&quot;</font><font color="#000000">, can)</font>
+<font color="#000000">com1.ExecuteNonQuery()</font>
+<font color="#000000">can.Close()</font>
+<font color="#ff00ff">'to go back to the previous position</font>
+<font color="#000000">GridView1.EditIndex = -</font><font color="#800080">1</font>
+<font color="#ff00ff">' // fetch and rebind the data.</font>
+<font color="#000000">bindgrid()</font>
+<font color="#000000">End Sub</font>
+</pre>
+</div>
+
+<h3>How to cancel editable mode.</h3>
+<div class="code">
+<pre>
+<font color="#000000">Protected Sub GridView1_RowEditing(ByVal sender As </font><font color="#808000">
+Object</font><font color="#000000">, </font>
+<font color="#000000">ByVal e As </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">
+Web</font><font color="#000000">.</font><font color="#008080">UI</font><font color="#000000">.</font><font color="#008080">
+WebControls</font><font color="#000000">.</font><font color="#808000">GridViewEditEventArgs</font><font color="#000000">) </font>
+<font color="#000000">Handles GridView1.RowEditing</font>
+ <font color="#000000">GridView1.EditIndex = e.NewEditIndex</font>
+ <font color="#000000">bindgrid()</font>
+ <font color="#000000">End Sub</font>
+</pre>
+</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="index.shtml" title="index">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="life_cycle_of_asp.shtml" title="life_cycle_of_asp">Next</a></td>
+  </tr>
+</table>
+<!--Footer  -->
+</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>

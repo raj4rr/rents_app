@@ -1,0 +1,170 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>Editing Disconnected Data,Add New Rows,Modify Existing Rows,Delete Existing Rows,The DataRowVersion Enumeration</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="Editing Disconnected Data,Add New Rows,Modify Existing Rows,Delete Existing Rows,The DataRowVersion Enumeration" >
+<meta name="keywords" CONTENT="Editing Disconnected Data,Add New Rows,Modify Existing Rows,Delete Existing Rows,The DataRowVersion Enumeration">
+
+<!-- header start-->	
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>ADO.NET</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+            <img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+            <a href="/ado.net">ADO.Net</a>
+              <img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+
+			  <a href="/ado.net/01/tutorial/ado.net/">ADO.NET Tutorials</a>
+
+              </div>
+
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/ado.net/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	 
+<!-- header End-->	
+<div class="heading">Editing Disconnected Data</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="Moving%20Large%20Amounts%20of%20Data%20using%20SqlBulkCopy.shtml" title="Moving Large Amounts of Data Using SqlBulkCopy">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="Copy%20a%20DataTable.shtml" title="Copy a DataTable">Next</a></td>
+  </tr> 
+</table>
+
+<p>The various objects in ADO.NET that compose the disconnected part of ADO.NET  , have  ability to make edits or modifications to themselves.
+there are mainly three kinds of modification  operations that can  be  perform on disconnected data:</p>
+<ul>
+<li>Add new rows</li>
+<li>Modify existing rows</li>
+<li>Delete existing rows</li>
+</ul>
+
+<h3>Add New Rows</h3>
+<p>There are two ways to add a new row to a DataTable, and two ways to add existing rows (from
+other DataTables or Detached rows) to a DataTable.</p>
+<ol>
+<li>The first way assumes thate we have a schema or at least  a structure preloaded to the DataTable.
+<h2>example:</h2>
+<div class="code">
+<pre>
+<font color="#000000">rowInQuestion = StudentTable.NewRow();</font>
+<font color="#000000">rowInQuestion[</font><font color="#ff00ff">&quot;StudentID&quot;</font><font color="#000000">] = </font><font color="#800080">4</font><font color="#000000">;</font>
+<font color="#000000">rowInQuestion[</font><font color="#ff00ff">&quot;SudentName&quot;</font><font color="#000000">] = </font><font color="#ff00ff">&quot;Ashish&quot;</font><font color="#000000">;</font>
+<font color="#000000">studentTable.Rows.Add(rowInQuestion);</font>
+</pre>
+</div>
+</li>
+<li>The second method to add a new DataRow into a DataTable is to use the LoadDataRow
+method. Load data row  method allows you to add a new DataRow and set its various values in one convenient
+method call.
+<h2>Example:</h2>
+<div class="code">
+<pre>
+<font color="#0000ff">object</font><font color="#000000">[] rowVals = {</font><font color="#ff00ff">&quot;4&quot;</font><font color="#000000">, </font><font color="#ff00ff">&quot;Ashish&quot;</font><font color="#000000">} ;</font>
+<font color="#000000">StudentTable.LoadDataRow(rowVals, </font><font color="#0000ff">false</font><font color="#000000">);</font>
+</pre>
+</div>
+</li>
+</ol>
+
+<h3>Modify Existing Rows</h3>
+<p>Two methods exist for adding existing DataRows to a DataTable. The first is the  ImportRow method, which simply takes a DataRow as a parameter, and the second is the Merge
+method, which merges two sets of disconnected data (DataSet, DataTable, DataRow array, etc.)</p>
+<ol>
+<li>The first way of  modifying rows, DataRowState at the end of this edit would be Modified
+<h2>Example:</h2>
+<div class="code">
+<pre>
+<font color="#000000">rowInQuestion = StudentTable.Rows[</font><font color="#800080">0</font><font color="#000000">];</font>
+<font color="#000000">rowInQuestion[</font><font color="#ff00ff">&quot;StudentName&quot;</font><font color="#000000">] = </font><font color="#ff00ff">&quot;Anil&quot;</font><font color="#000000">;</font>
+</pre>
+</div>
+</li>
+<li>There second  way of  modifying rows, The DataRow object has a method called BeginEdit,and a matching method called EndEdit.we can  modify the rows between these two method
+calls and difference  is that all the changes are buffered until you call EndEdit. If, in case you change your mind, you call CancelEdit instead, all the changes are rolled back.
+<h2>Example:</h2>
+<div class="code">
+<pre>
+<font color="#000000">rowInQuestion = StudentTable.Rows[</font><font color="#800080">0</font><font color="#000000">];</font>
+<font color="#000000">rowInQuestion.BeginEdit();</font>
+<font color="#000000">rowInQuestion[</font><font color="#ff00ff">&quot;StudentName&quot;</font><font color="#000000">] = </font><font color="#ff00ff">&quot;Aditya&quot;</font><font color="#000000">;</font>
+<font color="#000000">rowInQuestion.EndEdit() ;</font>
+<font color="#000000">rowInQuestion = StudentTable.Rows[</font><font color="#800080">0</font><font color="#000000">];</font>
+<font color="#000000">rowInQuestion.ItemArray = </font><font color="#0000ff">new object</font><font color="#000000">[] {</font><font color="#0000ff">null</font><font color="#000000">, </font><font color="#ff00ff">&quot;kamal&quot;</font><font color="#000000">} ;</font>
+</pre>
+</div>
+</li>
+</ol>
+
+<h3>Delete Existing Rows</h3>
+<p>using delete method we can delete the row</p>
+<div class="code">
+<pre>
+<font color="#000000">rowInQuestion = StudentTable.Rows[</font><font color="#800080">1</font><font color="#000000">];</font>
+<font color="#000000">rowInQuestion.Delete()</font>
+</pre>
+</div>
+<p>Another way of removing a row is by using either the Remove or RemoveAt method on the
+DataRowCollection object (DataTable.Rows is of DataRowCollection type)</p>
+
+<div class="code">
+<pre>
+<font color="#000000">StudentTable.Remove(rowInQuestion) ;</font>
+<font color="#008000">// or</font>
+<font color="#000000">StudentTable.RemoveAt(</font><font color="#800080">1</font><font color="#000000">) ;</font>
+</pre>
+</div>
+
+<h3>The DataRowVersion Enumeration</h3>
+<div class="table_content">
+<table>
+<tr><td class="heading" style="width:30;">Constado.net</td> <td class="heading" style="width:70;">Description</td></tr>
+<tr><td class="alternate_heading1">Current</td> <td class="alternate_heading1">This constado.net will give you the current value stored inside a column.</td></tr>
+<tr><td class="alternate_heading2">Original</td> <td class="alternate_heading2">This constado.net allows you to fetch the original value stored inside a column.</td></tr>
+<tr><td class="alternate_heading1">Proposed</td> <td class="alternate_heading1">This constado.net allows you to fetch the proposed value after a BeginEdit and update  but before an EndEdit.</td></tr>
+<tr><td class="alternate_heading2">Default</td> <td class="alternate_heading2"> This constado.net retrieves the value as if the constado.net wasnt specified</td></tr>
+</table>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="Moving%20Large%20Amounts%20of%20Data%20using%20SqlBulkCopy.shtml" title="Moving Large Amounts of Data Using SqlBulkCopy">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="Copy%20a%20DataTable.shtml" title="Copy a DataTable">Next</a></td>
+  </tr> 
+</table>
+
+<!-- Footer Start-->		
+		</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/dotnet/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->

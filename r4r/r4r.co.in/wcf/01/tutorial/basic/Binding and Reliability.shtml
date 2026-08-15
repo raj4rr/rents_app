@@ -1,0 +1,207 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>Binding and Reliability in WCF,Reliability and binding,Ordered Messages,Enabling reliability with the TCP binding</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="Binding and Reliability in WCF,Reliability and binding,Ordered Messages,Enabling reliability with the TCP binding" >
+<meta name="keywords" CONTENT="Binding and Reliability in WCF,Reliability and binding,Ordered Messages,Enabling reliability with the TCP binding">
+
+<!--Header start-->
+
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>WCF</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a><img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+			<a href="/wcf">WCF with C# </a>
+              <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/wcf/01/tutorial/basic/">WCF Tutorials</a></div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/wcf/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	  
+
+<!-- Header End-->
+<div class="heading">Binding and Reliability in WCF</div>
+
+  <table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="wcf_hosting.shtml" title="WCF Hosting">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="WCF%20%20Channels%20%20Working.shtml" title="WCF Channels Working">Next</a></td>
+  </tr>
+</table>
+
+<p>WCF make a distinction between transport reliability and message reliability.
+Transport reliability describes point-to-point guaranteed delivery at the network packet level, as well as 
+guarantees the order of the packets. Transport reliability is not resilient to 
+dropping network connections and a variety of other communication problems.</p>
+<p>Message reliability deals with managing the connection itself via connection 
+verification and cleanup when no longer needed also deals with reliability at 
+the message level independent of how many packets are required to deliver the 
+message and provides for end-to-end guaranteed delivery and order of 
+messages, regardless of how many intermediaries are involved, and how many 
+network hops are required to deliver the message from the client to the service.
+</p>
+
+<p>Message reliability is based on an industry standard for 
+reliable message-based communication that maintains a session at the transport 
+level.Message reliability offers retries in case of transport failures such as 
+dropping a wireless connection; it automatically deals with congestion, message 
+buffering, and flow control; and it can adjust the number of messages 
+accordingly.</p>
+  <h3>Reliability and binding:</h3>
+
+  <div class="table_content">
+  <table>
+  <tr>
+  <td class="heading" style="width:20;">Name</td>
+  <td class="heading" style="width:20;">Supports reliability</td>
+  <td class="heading" style="width:20;">Default reliability</td>
+    <td class="heading" style="width:20;">Supports ordered</td>
+    <td class="heading" style="width:20;">Default ordered</td>
+	</tr>
+	<tr>
+  <td class="alternate_heading1" >BasicHttpBinding</td>
+  <td class="alternate_heading1" >No</td>
+  <td class="alternate_heading1" >N/A</td>
+    <td class="alternate_heading1" >No</td>
+    <td class="alternate_heading1" >N/A</td>
+	</tr>
+
+	<tr>
+  <td class="alternate_heading2" >BasicHttpBinding</td>
+  <td class="alternate_heading2" >Yes</td>
+  <td class="alternate_heading2" >Off</td>
+    <td class="alternate_heading2" >Yes</td>
+    <td class="alternate_heading2" >On</td>
+	</tr>
+
+	<tr>
+  <td class="alternate_heading1" >BasicHttpBinding</td>
+  <td class="alternate_heading1" >No</td>
+  <td class="alternate_heading1" >N/A</td>
+    <td class="alternate_heading1" >No</td>
+    <td class="alternate_heading1" >N/A</td>
+	</tr>
+
+		<tr>
+  <td class="alternate_heading2" >NetNamedPipeBinding</td>
+  <td class="alternate_heading2" >No</td>
+  <td class="alternate_heading2" >N/A (On)</td>
+    <td class="alternate_heading2" >Yes</td>
+    <td class="alternate_heading2" >N/A(On)</td>
+	</tr>
+
+	<tr>
+  <td class="alternate_heading1" >WSHttpBinding</td>
+  <td class="alternate_heading1" >Yes</td>
+  <td class="alternate_heading1" >Off</td>
+    <td class="alternate_heading1" >Yes</td>
+    <td class="alternate_heading1" >On</td>
+</tr>	
+
+<tr>
+  <td class="alternate_heading2" >WSFederationHttpBinding</td>
+  <td class="alternate_heading2" >Yes</td>
+  <td class="alternate_heading2" >Off</td>
+    <td class="alternate_heading2" >Yes</td>
+    <td class="alternate_heading2" >On</td>
+</tr>
+
+<tr>
+  <td class="alternate_heading1" >WSDualHttpBinding</td>
+  <td class="alternate_heading1" >Yes</td>
+  <td class="alternate_heading1" >On</td>
+    <td class="alternate_heading1" >Yes</td>
+    <td class="alternate_heading1" >On<br></td>
+</tr>
+
+<tr>
+  <td class="alternate_heading2" >NetMsmqBinding</td>
+  <td class="alternate_heading2" >No</td>
+  <td class="alternate_heading2" >N/A</td>
+    <td class="alternate_heading2" >No</td>
+    <td class="alternate_heading2" >N/A</td>
+</tr>
+
+<tr>
+  <td class="alternate_heading1" >MsmqIntegrationBinding</td>
+  <td class="alternate_heading1" >No</td>
+  <td class="alternate_heading1" >N/A</td>
+    <td class="alternate_heading1" >No</td>
+    <td class="alternate_heading1" >N/A</td>
+</tr>
+
+</table>
+</div>
+<div class="heading">Ordered Messages </div>
+<p>Message reliability provides ordered delivery 
+assurance, which allow messages to be executed in the order they were sent, not 
+in the order in which they were delivered. It guarantees that messages are 
+delivered exactly once.</p>
+<p>WCF enable reliability but not ordered delivery, 
+in which case messages are delivered in the order in which they were received. 
+The default for all bindings that support reliability is that when reliability 
+is enabled, ordered delivery is enabled as well.</p>
+<h3>Enabling reliability with the TCP binding</h3>
+
+<div class="code">
+<pre>
+<font color="#0000ff">&lt;</font><font color="#808000">system</font><font color="#000000">.</font><font color="#800080">serviceModel</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">services</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">service </font><font color="#ff0000">name </font><font color="#0000ff">= </font><font color="#ff00ff">&quot;MyService&quot;</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">endpoint </font><font color="#800080">address  </font><font color="#0000ff">= </font><font color="#ff00ff">&quot;net.tcp://localhost:8000/MyService&quot;</font>
+          <font color="#800080">binding  </font><font color="#0000ff">= </font><font color="#ff00ff">&quot;netTcpBinding&quot; </font><font color="#800080">bindingConfiguration </font><font color="#0000ff">= </font><font color="#ff00ff">&quot;ReliableTCP&quot;</font>
+          <font color="#800080">contract </font><font color="#0000ff">= </font><font color="#ff00ff">&quot;IMyContract&quot;</font><font color="#0000ff">/&gt;</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">service</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">services</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">bindings</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">netTcpBinding</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">binding </font><font color="#ff0000">name </font><font color="#0000ff">= </font><font color="#ff00ff">&quot;ReliableTCP&quot;</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">reliableSession </font><font color="#800080">enabled </font><font color="#0000ff">= </font><font color="#ff00ff">&quot;true&quot;</font><font color="#0000ff">/&gt;</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">binding</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">netTcpBinding</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">bindings</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">system</font><font color="#000000">.</font><font color="#800080">serviceModel</font><font color="#0000ff">&gt;</font>
+</pre>
+</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="wcf_hosting.shtml" title="WCF Hosting
+">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="WCF%20%20Channels%20%20Working.shtml" title="WCF Channels Working">Next</a></td>
+  </tr>
+</table>
+
+<!--Footer  -->
+</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/dotnet/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>

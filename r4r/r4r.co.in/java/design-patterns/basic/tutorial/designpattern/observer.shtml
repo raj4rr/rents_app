@@ -1,0 +1,170 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD>
+<meta http-equiv="Content-Language" content="en-us">
+<TITLE>Observer Design Pattern Pattern</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name="description" CONTENT="Observer Design Pattern Pattern" >
+<meta name="keywords" CONTENT="Observer Design Pattern Pattern">
+
+<!-- header start-->	
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>Design Pattern Basic Tutorial</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+
+         		 <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/java/">java</a>           
+
+              <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/java/design-patterns/">Design Pattern</a>
+
+              </div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/design-patterns/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	 
+<!-- header end--> 
+
+<div class="heading">Observer Pattern</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="memento.shtml" title="memento">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="state_pattern.shtml" title="state_pattern">Next</a></td>
+  </tr> 
+</table>
+
+<!-- header End-->
+<p>The Observer pattern is used in GUI Application. in this if any object change the state of itself then the other dependents object automatically update itself according to the object.
+</p>
+<div class="heading">Benefit and Use of Observer Pattern</div>	   
+ <ol>
+ <li>
+The dependent object can change the state automatically.
+
+  </li><li>
+The One object change affects on one or many objects.
+
+ </li><li>
+It is maintain consistent between objects.
+</li><li>
+It is Need broadcast communication.
+  </li></ol>
+
+ <h3>Example</h3>
+ <p>As we know that Observer pattern is even used in GUI application. For example, We can define an one-to-many relational dependency between objects by this when an object changes our state, then all dependent object are automatically update. The Java API is provide a built-in interface Observer and class Observable for dependency between the objects.</p>
+
+<div class="code">
+<pre>
+<font color="#0000ff">package </font><font color="#000000">r4r;</font>
+<font color="#0000ff">import </font><font color="#000000">java.util.</font><font color="#ff0000">Observable</font><font color="#000000">; </font>
+<font color="#008000">//Observable class is here</font>
+<font color="#0000ff">import </font><font color="#000000">java.io.</font><font color="#ff0000">BufferedReader</font><font color="#000000">;</font>
+<font color="#0000ff">import </font><font color="#000000">java.io.</font><font color="#ff0000">IOException</font><font color="#000000">;</font>
+<font color="#0000ff">import </font><font color="#000000">java.io.</font><font color="#ff0000">InputStreamReader</font><font color="#000000">;</font>
+
+<font color="#0000ff">public class </font><font color="#000000">obj2 </font><font color="#0000ff">extends </font><font color="#ff0000">Observable </font><font color="#0000ff">implements </font><font color="#ff0000">Runnable </font><font color="#000000">{</font>
+<font color="#0000ff">public void </font><font color="#000000">run() {</font>
+<font color="#0000ff">try </font><font color="#000000">{</font>
+<font color="#0000ff">final </font><font color="#ff0000">InputStreamReader </font><font color="#000000">ISR = </font><font color="#0000ff">new </font><font color="#ff0000">InputStreamReader</font><font color="#000000">( </font><font color="#ff0000">System</font><font color="#000000">.in );</font>
+<font color="#0000ff">final </font><font color="#ff0000">BufferedReader </font><font color="#000000">bu = </font><font color="#0000ff">new </font><font color="#ff0000">BufferedReader</font><font color="#000000">( ISR );</font>
+<font color="#0000ff">while</font><font color="#000000">( </font><font color="#0000ff">true </font><font color="#000000">) {</font>
+<font color="#ff0000">String </font><font color="#000000">response = bu.readLine();</font>
+<font color="#000000">setChanged();</font>
+<font color="#000000">notifyObservers( response );</font>
+<font color="#000000">}</font>
+<font color="#000000">}</font>
+<font color="#0000ff">catch </font><font color="#000000">(</font><font color="#ff0000">IOException </font><font color="#000000">e) {</font>
+<font color="#000000">e.printStackTrace();</font>
+<font color="#000000">}</font>
+<font color="#000000">}</font>
+
+<font color="#000000">}</font>
+
+<font color="#0000ff">package </font><font color="#000000">r4r;</font>
+<font color="#0000ff">import </font><font color="#000000">java.util.</font><font color="#ff0000">Observable</font><font color="#000000">;</font>
+<font color="#0000ff">import </font><font color="#000000">java.util.</font><font color="#ff0000">Observer</font><font color="#000000">;</font>
+<font color="#008000">// this is Event Handler class </font>
+
+<font color="#0000ff">public class </font><font color="#000000">obj1 </font><font color="#0000ff">implements </font><font color="#ff0000">Observer </font><font color="#000000">{</font>
+<font color="#0000ff">private </font><font color="#ff0000">String </font><font color="#000000">res;</font>
+<font color="#0000ff">public void </font><font color="#000000">update (</font><font color="#ff0000">Observable </font><font color="#000000">obj, </font><font color="#ff0000">Object </font><font color="#000000">arg) {</font>
+<font color="#0000ff">if </font><font color="#000000">(arg </font><font color="#0000ff">instanceof </font><font color="#ff0000">String</font><font color="#000000">) {</font>
+<font color="#000000">res = (</font><font color="#ff0000">String</font><font color="#000000">) arg;</font>
+<font color="#ff0000">System</font><font color="#000000">.out.println(</font><font color="#ff00ff">&quot;\nReceiving the Response: &quot;</font><font color="#000000">+ res );</font>
+<font color="#000000">}</font>
+<font color="#000000">}</font>
+
+<font color="#000000">}</font>
+
+<font color="#008000">//Create the Main class</font>
+
+<font color="#0000ff">package </font><font color="#000000">r4r;</font>
+<font color="#0000ff">import </font><font color="#000000">java.util.</font><font color="#ff0000">Observable</font><font color="#000000">;</font>
+<font color="#0000ff">import </font><font color="#000000">java.util.*; </font>
+<font color="#0000ff">import </font><font color="#000000">java.io.</font><font color="#ff0000">BufferedReader</font><font color="#000000">;</font>
+<font color="#0000ff">import </font><font color="#000000">java.io.</font><font color="#ff0000">IOException</font><font color="#000000">;</font>
+<font color="#0000ff">import </font><font color="#000000">java.io.</font><font color="#ff0000">InputStreamReader</font><font color="#000000">;</font>
+<font color="#0000ff">public class </font><font color="#000000">observertest {</font>
+<font color="#0000ff">public static void </font><font color="#000000">main(</font><font color="#ff0000">String </font><font color="#000000">args[]) {</font>
+<font color="#ff0000">System</font><font color="#000000">.out.println(</font><font color="#ff00ff">&quot;Enter The Text here&gt;&quot;</font><font color="#000000">);</font>
+
+<font color="#008000">// create an event source - reads from stdin</font>
+<font color="#0000ff">final </font><font color="#000000">obj1 ob1 = </font><font color="#0000ff">new </font><font color="#000000">obj1();</font>
+
+<font color="#008000">// create an observer</font>
+<font color="#0000ff">final </font><font color="#000000">obj2 ob2 = </font><font color="#0000ff">new </font><font color="#000000">obj2();</font>
+
+<font color="#008000">// subscribe the observer to the event source</font>
+<font color="#000000">ob1.addObserver(ob2);</font>
+
+<font color="#008000">// starts the event thread</font>
+<font color="#ff0000">Thread </font><font color="#000000">thread = </font><font color="#0000ff">new </font><font color="#ff0000">Thread</font><font color="#000000">(ob2);</font>
+<font color="#000000">thread.start();</font>
+    <font color="#000000">}</font>
+<font color="#000000">}</font>
+</pre>
+</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="memento.shtml" title="memento">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="state_pattern.shtml" title="state_pattern">Next</a></td>
+  </tr> 
+</table>
+
+<!-- Footer Start-->	   	
+
+		</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->
+

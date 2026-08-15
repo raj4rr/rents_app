@@ -1,0 +1,145 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD>
+<meta http-equiv="Content-Language" content="en-us">
+<TITLE>PHP-FORMS,Using PHP Forms with HTML Forms,how can use PHP Forms with HTML,What is PHP Form Processor,php form preprocessorls</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name="description" CONTENT="PHP-FORMS,Using PHP Forms with HTML Forms,how can use PHP Forms with HTML,What is PHP Form Processor,php form preprocessorls" >
+<meta name="keywords" CONTENT="PHP-FORMS,Using PHP Forms with HTML Forms,how can use PHP Forms with HTML,What is PHP Form Processor,php form preprocessorls">
+<!-- header start-->	
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>PHP Programing language</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+            <img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+            <a href="/php/">PHP</a>
+
+              </div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/php/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	 
+
+	   	   <div class="heading">PHP FORMS</div>
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="php_switch.shtml" title="PHP Switch Statement">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="php_Function.shtml" title="PHP Function">Next</a></td>
+</table>
+
+<!-- header End-->		   
+
+<p><i>Using PHP Forms with HTML Forms</i></p>
+<p>The PHP using with HTML File .it is time to apply the knowledge you have obtained thus far and put it to real use. The very common application of PHP is to have an HTML form gather information from a website's visitor and then use PHP to do process that information.</p>
+<p>If you want to using PHP with HTML form then imagine we are a Stationary supply store that sells Pencil, Color, and Books. To gather order information from our prospective customers we will have to make a page with an HTML form to gather the customer's order.
+</p>
+<h3>Creating the HTML Form</h3>
+<p>We want to create a HTML form so, first create an HTML form that will let our customer and after choose what they would like to purchase. This file should be saved as &quot;order.html&quot;</p>
+<div class="code">
+<pre>
+<font color="#0000ff">&lt;html&gt;&lt;body&gt;</font>
+<font color="#0000ff">&lt;h1&gt;</font><font color="#000000"> BOOK Stationary Order Form</font><font color="#0000ff">&lt;/h1&gt;</font>
+<font color="#0000ff">&lt;form&gt;</font><font color="#000000"> </font>
+<font color="#0000ff">&lt;select&gt;</font><font color="#000000"> </font>
+<font color="#0000ff">&lt;option&gt;</font><font color="#000000">Pencil</font><font color="#0000ff">&lt;/option&gt;</font>
+<font color="#0000ff">&lt;option&gt;</font><font color="#000000">Color</font><font color="#0000ff">&lt;/option&gt;</font>
+<font color="#0000ff">&lt;option&gt;</font><font color="#000000">Book</font><font color="#0000ff">&lt;/option&gt;</font>
+<font color="#0000ff">&lt;/select&gt;</font>
+<font color="#000000">Quantity: </font><font color="#0000ff">&lt;input </font><font color="#ff0000">type</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;text&quot; </font><font color="#0000ff">/&gt;</font><font color="#000000"> </font>
+<font color="#0000ff">&lt;input </font><font color="#ff0000">type</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;submit&quot; </font><font color="#0000ff">/&gt;</font>
+<font color="#0000ff">&lt;/form&gt;</font>
+<font color="#0000ff">&lt;/body&gt;&lt;/html&gt;</font>
+</pre>
+</div>
+
+<p><i>Output:</i></p>
+<div class="output">
+BOOk Stationary Order Form
+</div>
+<p>Remember to review HTML Forms if you do not understand any of the above HTML code. Next we must alter our HTML form to specify the PHP page we wish to send this information to. Also, we set the method to &quot;post&quot;.</p>
+
+<div class="code">
+<pre>
+<font color="#000000">html&gt;</font><font color="#0000ff">&lt;body&gt;</font>
+<font color="#0000ff">&lt;h1&gt;</font><font color="#000000">BOOk Stationary Order Form</font><font color="#0000ff">&lt;/h1&gt;</font>
+<font color="#0000ff">&lt;form </font><font color="#ff0000">action</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;pro.php&quot; </font><font color="#ff0000">method</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;post&quot;</font><font color="#0000ff">&gt;</font><font color="#000000"> </font>
+<font color="#0000ff">&lt;select </font><font color="#ff0000">name</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;items&quot;</font><font color="#0000ff">&gt;</font><font color="#000000"> </font>
+<font color="#0000ff">&lt;option&gt;</font><font color="#000000">Pencil</font><font color="#0000ff">&lt;/option&gt;</font>
+<font color="#0000ff">&lt;option&gt;</font><font color="#000000">Color</font><font color="#0000ff">&lt;/option&gt;</font>
+<font color="#0000ff">&lt;option&gt;</font><font color="#000000">Book</font><font color="#0000ff">&lt;/option&gt;</font>
+<font color="#0000ff">&lt;/select&gt;</font>
+<font color="#000000">Quantity: </font><font color="#0000ff">&lt;input </font><font color="#ff0000">name</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;quantity&quot; </font><font color="#ff0000">type</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;text&quot; </font><font color="#0000ff">/&gt;</font><font color="#000000"> </font>
+<font color="#0000ff">&lt;input </font><font color="#ff0000">type</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;submit&quot; </font><font color="#0000ff">/&gt;</font>
+<font color="#0000ff">&lt;/form&gt;</font>
+<font color="#0000ff">&lt;/body&gt;&lt;/html&gt;</font>
+</pre>
+</div>
+<p>Now that our &quot;order.html&quot; is complete, let us continue on and create the &quot;pro.php&quot; file which will process 
+the HTML form information.</p>
+
+<h3>What is PHP Form Processor</h3>
+<p>In HTML Form specified into the &quot;item&quot; and &quot;quantity&quot; inputs. and the using an associative array , we can get this information from the $_POST associative array.</p>
+<p>So, proper way to get this information would be to creating in two new variables, First one is $item and another $quantity and set them equal to the values that have been &quot;posted&quot;. The name of this file is &quot;pro.php&quot;.</p>
+<div class="code">
+<pre>
+<font color="#0000ff">&lt;html&gt;&lt;body&gt;</font>
+<font color="#800000">&lt;?php</font>
+<font color="#0000ff">$</font><font color="#008080">quantity </font><font color="#800000">= </font><font color="#0000ff">$</font><font color="#008080">_POST </font><font color="#800000">[</font><font color="#ff00ff">'quantity'</font><font color="#800000">];</font>
+<font color="#0000ff">$</font><font color="#008080">item </font><font color="#800000">= </font><font color="#0000ff">$</font><font color="#008080">_POST </font><font color="#800000">[</font><font color="#ff00ff">'item'</font><font color="#800000">];</font>
+<font color="#0000ff">echo </font><font color="#ff00ff">&quot;You ordered &quot;</font><font color="#800000">. </font><font color="#0000ff">$</font><font color="#008080">quantity </font><font color="#800000">. </font><font color="#ff00ff">&quot; &quot; </font><font color="#800000">. </font><font color="#0000ff">$</font><font color="#008080">item </font><font color="#800000">. </font><font color="#ff00ff">&quot;.&lt;br /&gt;&quot;</font><font color="#800000">;</font>
+<font color="#0000ff">echo </font><font color="#ff00ff">&quot;this is the best way for selling!&quot;</font><font color="#800000">;</font>
+<font color="#800000">?&gt;</font>
+<font color="#0000ff">&lt;/body&gt;&lt;/html&gt;</font>
+</pre>
+</div>
+
+<p>As you probably noticed, the name in $_POST ['name'] corresponds to the name that we specified in our HTML form.</p>
+<h3>PHP &amp; HTML Form Review</h3>
+<ol>
+<li>We first created an HTML form &quot;order.html&quot; that had two input fields specified, &quot;item&quot; and &quot;quantity&quot;.</li>
+<li>We added two attributes to the form tag to point to &quot;process.php&quot; and set the method to &quot;post&quot;.</li>
+<li>We had &quot;process.php&quot; get the information that was posted by setting new variables equal to the values in the $_POST 
+associative array.</li>
+<li>We used the PHP echo function to output the customers order.</li>
+</ol>
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="php_switch.shtml" title="PHP Switch Statement">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="php_Function.shtml" title="PHP Function">Next</a></td>
+</table>
+
+<!-- Footer Start-->	
+
+</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/php/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->

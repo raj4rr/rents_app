@@ -1,0 +1,130 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD>
+<meta http-equiv="Content-Language" content="en-us">
+<TITLE>Connecting to MS Access Database in ASP .NET</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name="description" CONTENT="Connecting to MS Access Database in ASP .NET" >
+<meta name="keywords" CONTENT="Connecting to MS Access Database in ASP .NET">
+
+<!-- header start-->	
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>ADO.NET</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+            <img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+            <a href="/ado.net">ADO.Net</a>
+              <img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+
+			  <a href="/ado.net/01/tutorial/ado.net/">ADO.NET Tutorials</a>
+
+              </div>
+
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/ado.net/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	 
+<!-- header End-->	
+<div class="heading">Connecting to MS Access Database in ASP 
+.NET</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="Using%20ADOX%20in%20the%20.NET%20Framework.shtml" title="Using ADOX in the .NET Framework">Previous</a>
+	</td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="MSaccess.shtml" title="Read Data from table using OleDBDataReader">Next</a></td>
+  </tr> 
+</table>
+
+<h3>Code for Connecting to Access</h3>
+<div class="code">
+<pre>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Configuration</font><font color="#000000">;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Data</font><font color="#000000">;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.Linq;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Web</font><font color="#000000">;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Web</font><font color="#000000">.</font><font color="#008080">Security</font><font color="#000000">;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Web</font><font color="#000000">.</font><font color="#008080">UI</font><font color="#000000">;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Web</font><font color="#000000">.</font><font color="#008080">UI</font><font color="#000000">.</font><font color="#008080">HtmlControls</font><font color="#000000">;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Web</font><font color="#000000">.</font><font color="#008080">UI</font><font color="#000000">.</font><font color="#008080">WebControls</font><font color="#000000">;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Web</font><font color="#000000">.</font><font color="#008080">UI</font><font color="#000000">.</font><font color="#008080">WebControls</font><font color="#000000">.</font><font color="#008080">WebParts</font><font color="#000000">;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Xml</font><font color="#000000">.Linq;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Data</font><font color="#000000">.OleDb;</font>
+<font color="#0000ff">public </font><font color="#000000">partial </font><font color="#0000ff">class </font><font color="#000000">_Default : </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Web</font><font color="#000000">.</font><font color="#008080">UI</font><font color="#000000">.</font><font color="#808000">Page </font>
+<font color="#000000">{</font>
+<font color="#0000ff">protected void </font><font color="#000000">Page_Load(</font><font color="#0000ff">object </font><font color="#000000">sender, </font><font color="#808000">EventArgs </font><font color="#000000">e)</font>
+<font color="#000000">{   </font>
+<font color="#008000">//Connection String</font>
+<font color="#000000">OleDbConnection NewConnection = </font><font color="#0000ff">new</font>
+<font color="#000000">OleDbConnection</font>
+<font color="#000000">(@</font><font color="#ff00ff">&quot;Provider=Microsft.Jet.OLEDB.4.0; Data Source = c:\newDtabse.mdb&quot;</font><font color="#000000">);</font>
+<font color="#000000">NewConnection.Open();   </font><font color="#008000">//Connection Open </font>
+<font color="#000000">}</font>
+<font color="#000000">}</font>
+</pre>
+</div>
+<p><i>newDtabse.mdb</i> is the name of database.</p>
+
+<div class="heading">How to know about your OleDBConnection</div>
+<div class="code">
+<pre>
+<font color="#0000ff">public </font><font color="#000000">partial </font><font color="#0000ff">class </font><font color="#000000">_Default : </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Web</font><font color="#000000">.</font><font color="#008080">UI</font><font color="#000000">.</font><font color="#808000">Page </font>
+<font color="#000000">{</font>
+<font color="#0000ff">protected void </font><font color="#000000">Page_Load(</font><font color="#0000ff">object </font><font color="#000000">sender, </font><font color="#808000">EventArgs </font><font color="#000000">e)</font>
+<font color="#000000">{</font>
+<font color="#000000">OleDbConnection NewConnection = </font><font color="#0000ff">new</font>
+<font color="#000000">OleDbConnection</font>
+<font color="#000000">(@</font><font color="#ff00ff">&quot;Provider=Microsoft.Jet.OLEDB.4.0; Data Source = D:\newDtabse.mdb&quot;</font><font color="#000000">);</font>
+<font color="#000000">NewConnection.Open();</font>
+<font color="#000000">Label1.</font><font color="#008080">Text </font><font color="#000000">= NewConnection.State.ToString();</font>
+<font color="#000000">Label2.</font><font color="#008080">Text </font><font color="#000000">= NewConnection.ServerVersion.ToString();</font>
+<font color="#000000">Label3.</font><font color="#008080">Text </font><font color="#000000">= NewConnection.</font><font color="#008080">Provider</font><font color="#000000">.ToString();</font>
+<font color="#000000">}</font>
+<font color="#000000">}</font>
+</pre>
+</div>
+<p><i>emp_tbl</i> table data show in a gridview.</p>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="Using%20ADOX%20in%20the%20.NET%20Framework.shtml" title="Using ADOX in the .NET Framework">Previous</a>
+	</td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="MSaccess.shtml" title="Read Data from table using OleDBDataReader">Next</a></td>
+  </tr> 
+</table>
+
+<!-- Footer Start-->		
+		</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/dotnet/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->

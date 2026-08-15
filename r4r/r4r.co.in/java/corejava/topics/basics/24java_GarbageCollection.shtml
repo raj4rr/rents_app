@@ -1,0 +1,148 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>Garbage Collection in java,What is Garbage Collection in java?,Garbage Collector,What is a Garbage Collector ?</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="Garbage Collection in java,What is Garbage Collection in java?,Garbage Collector,What is a Garbage Collector ?" >
+<meta name="keywords" CONTENT="Garbage Collection in java,What is Garbage Collection in java?,Garbage Collector,What is a Garbage Collector ?">
+
+<!-- header start-->
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>Java Programing laungage</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+            <img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+            <a href="/java/">Java</a>
+              <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/java/corejava">Core Java</a>
+               <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/java/corejava/topics/basics/">Basics</a>
+
+              </div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/corejava/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	 
+<!-- header End-->	
+
+<div class="heading">Garbage Collection in Java</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="23java_UsageModifiersContd.shtml" title="Java Modifiers native modifier, transient Modifier , volatile Modifier, synchronized Modifier">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="25java_GarbageCollection_finalize().shtml" title="What is finalize() method regarding Garbage Collection">Next</a></td>
+  </tr> 
+</table>
+<p> An application running on a system computer uses some memory, which makes memory management a significant issue for any programming language. As Java is comparatively high-level language, the memory management in Java is automatic. To make it more efficient, we need to understand garbage collection, i.e. freeing memory from objects that are no longer in use.</p>
+
+ <p><font class="point_out">Garbage collection</font> is the process of automatically freeing objects that are no longer referenced by the program. This frees a programmer from having to keep track of when to free allocated memory, thus preventing many potential bugs and problems.</p>   
+ <h2>What is a Garbage Collector ?</h2>
+<p>When we create an object by instantiating a class, the object is put on the heap, that is, it uses some memory. A Java application creates and uses objects. After an object in memory has been used and is no longer needed, it is sensible to free memory from that object.The Garbage Collector in Java initiates the memory management by freeing up the memory from objects that are no longer referenced.</p>
+<p> The importance of this is that you do not need to code the memory management into your application program, also you have no control over when the garbage collector runs. While coding in some application we can do following things in order to help the memory management through the garbage collector :</p>
+<ol>
+<li>
+<p>Firstly, make an object eligible for the garbage collection, as garbage collector will only free memory from an eligible object.</p>   
+    </li>
+    <li>
+    <p> Also make a request for garbage collection by making a system call to the garbage collector via, <font class="point_out">System.gc();</font>. </p> 
+    </li>
+    </ol>
+
+ <p>We can also invoke the gc() method by using an instance of the Runtime class that a running program always has. It is contained in java.lang package, we can get hold of this instance by calling the static method getRuntime() of the Runtime class. The following example will show how we can invoke gc() method via Runtime class and some other runtime tasks,</p>
+ <h3>Example</h3>
+ <div class="code">
+<PRE>
+<FONT FACE="Arial">
+<FONT COLOR="#000000">Java Tutorialslass garc</FONT>
+<FONT COLOR="#000000">{</FONT>
+   <FONT COLOR="#0000ff">public static void </FONT>
+   <FONT COLOR="#000000">main(</FONT><FONT COLOR="#ff0000">String </FONT>
+   <FONT COLOR="#000000">args[])</FONT>
+<FONT COLOR="#000000">{</FONT>
+ <FONT COLOR="#ff0000">Runtime </FONT><FONT COLOR="#000000">runtimeobject = </FONT>
+ <FONT COLOR="#ff0000">Runtime</FONT><FONT COLOR="#000000">.getRuntime();  </FONT>
+	 <FONT COLOR="#008000">// creating an object of Runtime class</FONT>
+ <FONT COLOR="#008000">
+ // this statement returns the total memory  available in bytes to jvm</FONT>
+ <FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.println(</FONT>
+ <FONT COLOR="#ff00ff">"The value of total memory of jvm is :"</FONT>
+ <FONT COLOR="#000000">+runtimeobject.totalMemory());  </FONT>
+ <FONT COLOR="#008000">
+ // this statement returns the free memory available in bytes to jvm</FONT>
+ <FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.println(</FONT>
+ <FONT COLOR="#ff00ff">"The value of free memory availabe to jvm is :"</FONT>
+ <FONT COLOR="#000000">+runtimeobject.freeMemory());  </FONT>
+ <FONT COLOR="#000000">runtimeobject.gc();   </FONT><FONT COLOR="#008000">
+ // calling gc method on Runtime object</FONT>
+ <FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.println(</FONT>
+ <FONT COLOR="#ff00ff">"The amount of memory allocated to jvm after calling gc is :"</FONT>
+ <FONT COLOR="#000000">+runtimeobject.freeMemory());</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#000000">}</FONT>
+</FONT>
+</PRE>
+ </div>
+
+<p>It should be noted that a call to the garbage collector gives no guarantee that the memory will be free. There can be a situation that the JVM in which your program is running did not even implement the gc() method. The Java language also allows a dummy gc() method, the basic requirement for garbage collection is that you must make your object eligible for garbage collection. An object is considered eligible for garbage collection if there is no reference pointing to it. We can remove the references to an object in two ways:</p>
+<ol>
+<li>
+<p>By setting the object reference variable pointing to the object to null, such as,</p>
+
+<div class="code">
+<pre>
+<font color="#000000">GCclass object = </font><font color="#0000ff">new </font><font color="#000000">GCclass();</font>
+<font color="#000000">object = </font><font color="#0000ff">null</font><font color="#000000">;</font>
+</pre>
+</div>
+
+</li>
+<li>
+<p>Secondly by reassign a reference variable of an object to another object i.e. if a reference variable object is pointing to an object of the GCclass, you can free this object from this reference by pointing the reference to another object by the following statement</p>
+<div class="code">
+<pre>
+<font color="#000000">myObject = </font><font color="#0000ff">new </font><font color="#000000">GC2class();</font>
+</pre>
+</div>
+
+<p>Now, the object reference GCobject is pointing to an object of the class GC2class and not to an object of GCclass, to which it was pointing earlier.</p>
+</li>
+</ol>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="23java_UsageModifiersContd.shtml" title="Java Modifiers native modifier, transient Modifier , volatile Modifier, synchronized Modifier">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="25java_GarbageCollection_finalize().shtml" title="What is finalize() method regarding Garbage Collection">Next</a></td>
+  </tr> 
+</table>
+<!-- Footer Start-->	
+
+		</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->

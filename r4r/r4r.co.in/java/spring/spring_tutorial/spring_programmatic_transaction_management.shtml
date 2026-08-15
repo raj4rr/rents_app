@@ -1,0 +1,376 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD>
+<meta http-equiv="Content-Language" content="en-us">
+<TITLE>Spring Tutorials</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name="description" CONTENT="spring tutorial covers all topics of spring live spring examples spring interview questions" >
+<meta name="keywords" CONTENT="starting from environment setup, inversion of control (IoC), dependency injection, bean scopes, bean life cycle, inner beans,
+ autowiring, different modules, aspect oriented programming (AOP)">
+
+		<!-- header start-->	
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+     <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>Spring Tutorials</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+			<img src="/images/left_menu_bullet.gif"/> <a href="/java/spring/">Spring</a>
+
+       </div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/spring/commonfiles/leftmenucore.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content">
+<!-- LEGACY BANNER START -->
+<div style="background: rgba(255, 244, 229, 0.9); border-left: 5px solid #ff9800; padding: 20px; margin-bottom: 25px; border-radius: 8px; font-family: 'Inter', sans-serif; box-shadow: 0 4px 6px rgba(0,0,0,0.05);">
+    <h3 style="margin-top: 0; color: #e65100; font-size: 1.2rem; display: flex; align-items: center; gap: 8px;">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+        Legacy Spring Framework Warning
+    </h3>
+    <p style="margin-bottom: 0; color: #5d4037; font-size: 1.05rem; line-height: 1.5;">
+        This tutorial teaches an outdated version of Spring using <strong>legacy XML configuration</strong> (<code>applicationContext.xml</code>). Modern Spring applications rely on <strong>Spring Boot</strong> and <strong>Java Annotations</strong>. This page is preserved for historical context and maintaining legacy systems.
+    </p>
+</div>
+<!-- LEGACY BANNER END -->
+ 	 
+
+<div class="heading">Spring Programmatic Transaction Management</div>
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="spring_declarative_transaction_management.shtml" title="spring_declarative_transaction_management">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="introduction_of_oxm_in_spring.shtml" title="introduction_of_oxm_in_spring">Next</a></td>
+  </tr> 
+</table>
+<p>Programmatic transaction management approach allows you to manage the transaction with the help of programming in your source code. That gives you extreme flexibility, but it is difficult to maintain.</p>
+<p>Programmatic transaction management is usually a good idea only if you have a small number of transactional operations. For example, if you have a web application that require transactions only for certain update operations, you may not want to set up transactional proxies using Spring or any other technology. In this case, using the TransactionTemplate may be a good approach. that can only be done using the programmatic approach to transaction management. </p>
+<div class="heading">Spring Programmatic Transaction Management Example</div>
+<p>First you make a table in Database Mysql Workbench like employee. The code of table as given below:</p>
+<div class="code">
+<pre>
+<font color="#000000">CREATE TABLE `employee` (</font>
+  <font color="#000000">`id` </font><font color="#0000ff">int</font><font color="#000000">(</font><font color="#800080">10</font><font color="#000000">) unsigned NOT NULL AUTO_INCREMENT,</font>
+  <font color="#000000">`name` varchar(</font><font color="#800080">45</font><font color="#000000">) NOT NULL,</font>
+  <font color="#000000">`salary` </font><font color="#0000ff">int</font><font color="#000000">(</font><font color="#800080">10</font><font color="#000000">) unsigned NOT NULL,</font>
+  <font color="#000000">PRIMARY KEY (`id`)</font>
+<font color="#000000">) </font>
+</pre>
+</div>
+<div class="heading">Technologies used to run this Application.</div>
+<ol>
+<li>
+Spring 3.0
+</li><li>
+Eclipse IDE
+</li><li>
+JDK 1.6
+</li><li>
+MySql Workbench 6.2
+</li>
+</ol>
+<p>Let us have working Eclipse IDE in place and follow the following steps to create a Spring application:</p>
+<p><i>Step1.</i> Now you create a simple Java Project using Eclipse IDE. Follow the option<font class="point_out"> File -> New -> Project </font>and finally select Java Project wizard from the wizard list. Now name your project as <font class="point_out">SpringProgrammaticTransaction</font> using the wizard window as given below.</p>
+<div class="image">
+<img src="images/spring_programmatic_example.png">
+</div>
+<div class="heading">Add spring jar files</div>
+<p><i>Step2.</i> Now add spring jar in your project, To do this, right click on your project name<font class="point_out"> SpringProgrammaticTransaction</font> and then follow the following option available in context menu:<font class="point_out">  Build Path -> Configure Build Path</font> to display the Java Build Path window as given below. There are some jar files required to run this application, To load the jar files in eclipse IDE,<font class="point_out">  Right click on your project - Build Path - Add external archives - select all the required jar files - finish.</font></p>
+<ol>
+<li>
+antlr-runtime-3.0.1
+</li><li>
+org.springframework.aop-3.1.0
+</li><li>
+org.springframework.asm-3.1.0.
+</li><li>
+org.springframework.aspects-3.1.0.
+</li><li>
+org.springframework.beans-3.1.0.
+</li><li>
+org.springframework.context.support-3.1.0.
+</li><li>
+org.springframework.context-3.1.0.
+</li><li>
+org.springframework.core-3.1.0.
+</li><li>
+spring-expression-3.1.0.RELEASE.jar
+</li><li>
+com.springsource.org.aopalliance-1.0.0.jar
+</li><li>
+org.apache.commons.logging-1.1.1.jar
+</li><li>
+org.springframework.jdbc-3.0.0.M2.jar
+</li><li>
+org.springframework.transaction-3.1.0.RELEASE.jar
+</li><li>
+mysql-connector-java-5.1.23-bin.jar
+</li><li>
+commons-dbcp-1.4.jar
+</li><li>
+ojdbc14.jar
+</li>
+<li>
+aspectjweaver-1.6.8.jar
+</li><li>
+commons-pool-1.4.jar
+</li><li>
+hibernate-core.jar
+</li><li>
+spring-hibernate3-2.0.5.jar
+</li>
+</ol>
+
+<div class="heading">Create Java class file</div>
+<p><i>Step3.</i> Now you create simply java file with any name. First we need to create a package with any name like<font class="point_out"> com.r4r.</font> To do this,<font class="point_out">  Right click on src in package </font>explorer section and follow the option :<font class="point_out">  New -> Package.</font> and then <font class="point_out"> Right click on package(com.r4r) - New - class - Write the class name e.g. Employee - finish.</font> Write the following code:</p>
+<div class="code">
+<pre>
+<font color="#0000ff">package </font><font color="#000000">com.r4r;</font>
+<font color="#0000ff">public class </font><font color="#000000">Employee {</font>
+	<font color="#0000ff">private int </font><font color="#000000">id;  </font>
+	<font color="#0000ff">private </font><font color="#ff0000">String </font><font color="#000000">name;  </font>
+	<font color="#0000ff">private int </font><font color="#000000">salary;</font>
+
+	<font color="#0000ff">public int </font><font color="#000000">getId() {</font>
+		<font color="#0000ff">return </font><font color="#000000">id;</font>
+	<font color="#000000">}</font>
+	<font color="#0000ff">public void </font><font color="#000000">setId(</font><font color="#0000ff">int </font><font color="#000000">id) {</font>
+		<font color="#0000ff">this</font><font color="#000000">.id = id;</font>
+	<font color="#000000">}</font>
+	<font color="#0000ff">public </font><font color="#ff0000">String </font><font color="#000000">getName() {</font>
+		<font color="#0000ff">return </font><font color="#000000">name;</font>
+	<font color="#000000">}</font>
+	<font color="#0000ff">public void </font><font color="#000000">setName(</font><font color="#ff0000">String </font><font color="#000000">name) {</font>
+		<font color="#0000ff">this</font><font color="#000000">.name = name;</font>
+	<font color="#000000">}</font>
+	<font color="#0000ff">public int </font><font color="#000000">getSalary() {</font>
+		<font color="#0000ff">return </font><font color="#000000">salary;</font>
+	<font color="#000000">}</font>
+	<font color="#0000ff">public void </font><font color="#000000">setSalary(</font><font color="#0000ff">int </font><font color="#000000">salary) {</font>
+		<font color="#0000ff">this</font><font color="#000000">.salary = salary;</font>
+	<font color="#000000">}</font>
+<font color="#000000">}</font>
+</pre>
+</div>
+<p><i>Step4.</i> Now you create another Java class named <font class="point_out">EmployeeDao.java</font>.</p>
+<div class="code">
+<pre>
+<font color="#0000ff">package </font><font color="#000000">com.r4r;</font>
+<font color="#0000ff">import </font><font color="#000000">java.util.</font><font color="#ff0000">List</font><font color="#000000">;</font>
+<font color="#0000ff">import </font><font color="#000000">javax.sql.</font><font color="#ff0000">DataSource</font><font color="#000000">;</font>
+
+<font color="#0000ff">public interface </font><font color="#000000">EmployeeDao {</font>
+   <font color="#0000ff">public void </font><font color="#000000">setDataSource(</font><font color="#ff0000">DataSource </font><font color="#000000">ds);</font>
+
+ <font color="#008000">//Insert Method to save data in Database.</font>
+ <font color="#0000ff">public void </font><font color="#000000">create(</font><font color="#ff0000">Integer </font><font color="#000000">id, </font><font color="#ff0000">String </font><font color="#000000">name,  </font><font color="#ff0000">Integer </font><font color="#000000">salary);</font>
+
+  <font color="#008000">//Delete data into the Database.</font>
+   <font color="#0000ff">void </font><font color="#000000">delete(</font><font color="#ff0000">Integer </font><font color="#000000">id); </font>
+
+   <font color="#008000">//Show all data in Database table.</font>
+   <font color="#0000ff">public </font><font color="#ff0000">List</font><font color="#000000">&lt;Employee&gt; listEmployees();</font>
+<font color="#000000">}</font>
+</pre>
+</div>
+<p><i>Step5.</i> Now you create another Java class named <font class="point_out">EmployeeMapper.java</font>.</p>
+<div class="code">
+<pre>
+<font color="#0000ff">package </font><font color="#000000">com.r4r;</font>
+
+<font color="#0000ff">import </font><font color="#000000">java.sql.</font><font color="#ff0000">ResultSet</font><font color="#000000">;</font>
+<font color="#0000ff">import </font><font color="#000000">java.sql.</font><font color="#ff0000">SQLException</font><font color="#000000">;</font>
+<font color="#0000ff">import </font><font color="#000000">org.springframework.jdbc.core.</font><font color="#ff0000">RowMapper</font><font color="#000000">;</font>
+
+<font color="#0000ff">public class </font><font color="#000000">EmployeeMapper </font><font color="#0000ff">implements </font><font color="#ff0000">RowMapper</font><font color="#000000">&lt;Employee&gt; {</font>
+<font color="#0000ff">public </font><font color="#000000">Employee mapRow(</font><font color="#ff0000">ResultSet </font><font color="#000000">rs, </font><font color="#0000ff">int </font><font color="#000000">rowNum) </font><font color="#0000ff">throws </font><font color="#ff0000">SQLException </font><font color="#000000">{</font>
+
+	   <font color="#000000">Employee employee = </font><font color="#0000ff">new </font><font color="#000000">Employee();</font>
+	   <font color="#000000">employee.setId(rs.getInt(</font><font color="#ff00ff">&quot;id&quot;</font><font color="#000000">));</font>
+	   <font color="#000000">employee.setName(rs.getString(</font><font color="#ff00ff">&quot;name&quot;</font><font color="#000000">));</font>
+	   <font color="#000000">employee.setSalary(rs.getInt(</font><font color="#ff00ff">&quot;salary&quot;</font><font color="#000000">));</font>
+       <font color="#0000ff">return </font><font color="#000000">employee;</font>
+   <font color="#000000">}</font>
+<font color="#000000">}</font>
+</pre>
+</div>
+<p><i>Step6.</i> Now you create another Java class named <font class="point_out">EmployeeJdbcTemplate.java</font>.</p>
+<div class="code">
+<pre>
+<font color="#0000ff">package </font><font color="#000000">com.r4r;</font>
+<font color="#0000ff">import </font><font color="#000000">java.util.</font><font color="#ff0000">List</font><font color="#000000">;</font>
+<font color="#0000ff">import </font><font color="#000000">javax.sql.</font><font color="#ff0000">DataSource</font><font color="#000000">;</font>
+<font color="#0000ff">import </font><font color="#000000">org.springframework.dao.DataAccessException;</font>
+<font color="#0000ff">import </font><font color="#000000">org.springframework.jdbc.core.JdbcTemplate;</font>
+<font color="#0000ff">import </font><font color="#000000">org.springframework.transaction.PlatformTransactionManager;</font>
+<font color="#0000ff">import </font><font color="#000000">org.springframework.transaction.TransactionDefinition;</font>
+<font color="#0000ff">import </font><font color="#000000">org.springframework.transaction.TransactionStatus;</font>
+<font color="#0000ff">import </font><font color="#000000">org.springframework.transaction.support.DefaultTransactionDefinition;</font>
+
+<font color="#0000ff">public class </font><font color="#000000">EmployeeJdbcTemplate </font><font color="#0000ff">implements </font><font color="#000000">EmployeeDao{</font>
+
+   <font color="#0000ff">private </font><font color="#000000">JdbcTemplate jdbcTemplateObject;</font>
+   <font color="#0000ff">private </font><font color="#000000">PlatformTransactionManager transactionManager;</font>
+
+   <font color="#0000ff">public void </font><font color="#000000">setDataSource(</font><font color="#ff0000">DataSource </font><font color="#000000">dataSource) {</font>
+	      <font color="#0000ff">this</font><font color="#000000">.jdbcTemplateObject = </font><font color="#0000ff">new </font><font color="#000000">JdbcTemplate(dataSource);</font>
+	   <font color="#000000">}</font>
+
+   <font color="#0000ff">public void </font><font color="#000000">setTransactionManager(</font>
+		      <font color="#000000">PlatformTransactionManager transactionManager) {</font>
+		      <font color="#0000ff">this</font><font color="#000000">.transactionManager = transactionManager;</font>
+		   <font color="#000000">}</font>
+
+   <font color="#0000ff">public void </font><font color="#000000">create(</font><font color="#ff0000">Integer </font><font color="#000000">id, </font><font color="#ff0000">String </font><font color="#000000">name, </font><font color="#ff0000">Integer </font><font color="#000000">salary){</font>
+	   <font color="#000000">TransactionDefinition def = </font><font color="#0000ff">new </font><font color="#000000">DefaultTransactionDefinition();</font>
+	      <font color="#000000">TransactionStatus status = transactionManager.getTransaction(def);</font>
+
+ <font color="#0000ff">try </font><font color="#000000">{</font>
+      <font color="#ff0000">String </font><font color="#000000">SQL1 = </font><font color="#ff00ff">&quot;insert into employee (id, name, salary) values (?, ?, ?)&quot;</font><font color="#000000">;</font>
+      <font color="#000000">jdbcTemplateObject.update( SQL1, id, name, salary);</font>
+
+   <font color="#ff0000">System</font><font color="#000000">.out.println</font>
+	   <font color="#000000">(</font><font color="#ff00ff">&quot;Created Id = &quot;</font><font color="#000000">+ id + </font><font color="#ff00ff">&quot;, Name = &quot; </font><font color="#000000">+ name + </font><font color="#ff00ff">&quot;, Salary = &quot; </font><font color="#000000">+ salary);</font>
+          <font color="#000000">transactionManager.commit(status);</font>
+   <font color="#000000">}</font><font color="#0000ff">catch </font><font color="#000000">(DataAccessException e) {</font>
+       <font color="#ff0000">System</font><font color="#000000">.out.println(</font><font color="#ff00ff">&quot;Error in creating record&quot;</font><font color="#000000">);</font>
+       <font color="#000000">transactionManager.rollback(status);</font>
+       <font color="#0000ff">throw </font><font color="#000000">e;</font>
+    <font color="#000000">}</font>
+    <font color="#0000ff">return</font><font color="#000000">;</font>
+ <font color="#000000">}</font>
+
+   <font color="#0000ff">public void </font><font color="#000000">delete(</font><font color="#ff0000">Integer </font><font color="#000000">id) {  </font>
+	   <font color="#ff0000">String </font><font color="#000000">SQL = </font><font color="#ff00ff">&quot;DELETE FROM employee WHERE id = ?&quot;</font><font color="#000000">;  </font>
+	   <font color="#000000">jdbcTemplateObject.update(SQL, </font><font color="#0000ff">new </font><font color="#ff0000">Object</font><font color="#000000">[]{id});  </font>
+	   <font color="#ff0000">System</font><font color="#000000">.out.println(</font><font color="#ff00ff">&quot;Deleted Record with ID = &quot; </font><font color="#000000">+ id );  </font>
+	  <font color="#000000">} </font>
+  <font color="#0000ff">public </font><font color="#ff0000">List</font><font color="#000000">&lt;Employee&gt; listEmployees() {</font>
+  <font color="#ff0000">String </font><font color="#000000">SQL = </font><font color="#ff00ff">&quot;select * from employee &quot;</font><font color="#000000">;</font>
+  <font color="#ff0000">List </font><font color="#000000">&lt;Employee&gt; employee=jdbcTemplateObject.query(SQL, </font><font color="#0000ff">new </font><font color="#000000">EmployeeMapper());</font>
+      <font color="#0000ff">return </font><font color="#000000">employee;</font>
+   <font color="#000000">}</font>
+<font color="#000000">}</font>
+</pre>
+</div>
+<p><i>Step7.</i> Now create the xml file click on <font class="point_out"> src- new -file -give the file name like applicationContext.xml </font>then finish.</p>
+<div class="code">
+<pre>
+<font color="#0000ff">&lt;?xml </font><font color="#ff0000">version</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;1.0&quot; </font><font color="#ff0000">encoding</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;UTF-8&quot;</font><font color="#800080">?</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">beans </font><font color="#ff0000">xmlns</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;http://www.springframework.org/schema/beans&quot;</font>
+    <font color="#800080">xmlns:xsi</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;http://www.w3.org/2001/XMLSchema-instance&quot; </font>
+    <font color="#800080">xsi:schemaLocation</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;http://www.springframework.org/schema/beans</font>
+<font color="#ff00ff">    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd &quot;</font><font color="#0000ff">&gt;</font>
+
+<font color="#000000">   </font><font color="#008000">&lt;!-- Initialization for data source --&gt;</font>
+<font color="#000000">   </font><font color="#0000ff">&lt;</font><font color="#808000">bean </font><font color="#800080">id</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;dataSource&quot; </font>
+      <font color="#800080">class</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;org.springframework.jdbc.datasource.DriverManagerDataSource&quot;</font><font color="#0000ff">&gt;</font>
+<font color="#000000">      </font><font color="#0000ff">&lt;</font><font color="#808000">property </font><font color="#ff0000">name</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;driverClassName&quot; </font><font color="#800080">value</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;com.mysql.jdbc.Driver&quot;</font><font color="#0000ff">/&gt;</font>
+<font color="#000000">      </font><font color="#0000ff">&lt;</font><font color="#808000">property </font><font color="#ff0000">name</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;url&quot; </font><font color="#800080">value</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;jdbc:mysql://localhost:3306/amit&quot;</font><font color="#0000ff">/&gt;</font>
+<font color="#000000">      </font><font color="#0000ff">&lt;</font><font color="#808000">property </font><font color="#ff0000">name</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;username&quot; </font><font color="#800080">value</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;root&quot;</font><font color="#0000ff">/&gt;</font>
+<font color="#000000">      </font><font color="#0000ff">&lt;</font><font color="#808000">property </font><font color="#ff0000">name</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;password&quot; </font><font color="#800080">value</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;&quot;</font><font color="#0000ff">/&gt;</font>
+<font color="#000000">   </font><font color="#0000ff">&lt;/</font><font color="#808000">bean</font><font color="#0000ff">&gt;</font>
+<font color="#000000">  </font>
+<font color="#000000">   </font>
+<font color="#000000">	</font>
+<font color="#000000">   </font><font color="#008000">&lt;!-- Initialization for TransactionManager --&gt;</font>
+<font color="#000000">   </font><font color="#0000ff">&lt;</font><font color="#808000">bean </font><font color="#800080">id</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;transactionManager&quot; </font>
+   <font color="#800080">class</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;org.springframework.jdbc.datasource.DataSourceTransactionManager&quot;</font><font color="#0000ff">&gt;</font>
+<font color="#000000">      </font><font color="#0000ff">&lt;</font><font color="#808000">property </font><font color="#ff0000">name</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;dataSource&quot;  </font><font color="#800080">ref</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;dataSource&quot; </font><font color="#0000ff">/&gt;</font><font color="#000000">    </font>
+<font color="#000000">   </font><font color="#0000ff">&lt;/</font><font color="#808000">bean</font><font color="#0000ff">&gt;</font>
+
+<font color="#000000">   </font><font color="#008000">&lt;!-- Definition for employeeJDBCTemplate bean --&gt;</font>
+<font color="#000000">   </font><font color="#0000ff">&lt;</font><font color="#808000">bean </font><font color="#800080">id</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;employeeJdbcTemplate&quot; </font><font color="#800080">class</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;com.r4r.EmployeeJdbcTemplate&quot;</font><font color="#0000ff">&gt;</font>
+<font color="#000000">      </font><font color="#0000ff">&lt;</font><font color="#808000">property </font><font color="#ff0000">name</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;dataSource&quot;  </font><font color="#800080">ref</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;dataSource&quot; </font><font color="#0000ff">/&gt;</font><font color="#000000">  </font>
+<font color="#000000">      </font><font color="#0000ff">&lt;</font><font color="#808000">property </font><font color="#ff0000">name</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;transactionManager&quot;  </font><font color="#800080">ref</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;transactionManager&quot; </font><font color="#0000ff">/&gt;</font><font color="#000000"> </font>
+<font color="#000000">   </font><font color="#0000ff">&lt;/</font><font color="#808000">bean</font><font color="#0000ff">&gt;</font>
+
+<font color="#0000ff">&lt;/</font><font color="#808000">beans</font><font color="#0000ff">&gt;</font>
+</pre>
+</div>
+<p><i>Step8.</i> Now Create the java Main class (Test.java). </p>
+<div class="code">
+<pre>
+<font color="#0000ff">package </font><font color="#000000">com.r4r;</font>
+<font color="#0000ff">import </font><font color="#000000">java.util.</font><font color="#ff0000">List</font><font color="#000000">;</font>
+<font color="#0000ff">import </font><font color="#000000">org.springframework.context.ApplicationContext;</font>
+<font color="#0000ff">import </font><font color="#000000">org.springframework.context.support.ClassPathXmlApplicationContext;</font>
+<font color="#0000ff">public class </font><font color="#000000">Test {</font>
+   <font color="#0000ff">public static void </font><font color="#000000">main(</font><font color="#ff0000">String</font><font color="#000000">[] args) {</font>
+      <font color="#000000">ApplicationContext context = </font>
+        <font color="#0000ff">new </font><font color="#000000">ClassPathXmlApplicationContext(</font><font color="#ff00ff">&quot;applicationContext.xml&quot;</font><font color="#000000">);</font>
+
+      <font color="#000000">EmployeeDao employeeJdbcTemplate = </font>
+      <font color="#000000">(EmployeeDao)context.getBean(</font><font color="#ff00ff">&quot;employeeJdbcTemplate&quot;</font><font color="#000000">);</font>
+
+      <font color="#ff0000">System</font><font color="#000000">.out.println(</font><font color="#ff00ff">&quot;------Records creation--------&quot; </font><font color="#000000">);</font>
+      <font color="#000000">employeeJdbcTemplate.create(</font><font color="#800080">98</font><font color="#000000">, </font><font color="#ff00ff">&quot;Aryan&quot; </font><font color="#000000">, </font><font color="#800080">10000</font><font color="#000000">);</font>
+      <font color="#000000">employeeJdbcTemplate.create(</font><font color="#800080">99</font><font color="#000000">, </font><font color="#ff00ff">&quot;Roy&quot; </font><font color="#000000">, </font><font color="#800080">9000</font><font color="#000000">);  </font>
+
+      <font color="#ff0000">System</font><font color="#000000">.out.println(</font><font color="#ff00ff">&quot;------Records Deletion--------&quot; </font><font color="#000000">);</font>
+      <font color="#000000">employeeJdbcTemplate.delete(</font><font color="#800080">100</font><font color="#000000">);</font>
+      <font color="#000000">employeeJdbcTemplate.delete(</font><font color="#800080">101</font><font color="#000000">);</font>
+
+      <font color="#ff0000">System</font><font color="#000000">.out.println(</font><font color="#ff00ff">&quot;------Listing all the records--------&quot; </font><font color="#000000">);</font>
+      <font color="#ff0000">List</font><font color="#000000">&lt;Employee&gt; employee = employeeJdbcTemplate.listEmployees();</font>
+      <font color="#0000ff">for </font><font color="#000000">(Employee record : employee) {</font>
+         <font color="#ff0000">System</font><font color="#000000">.out.print(</font><font color="#ff00ff">&quot;ID : &quot; </font><font color="#000000">+ record.getId() );</font>
+         <font color="#ff0000">System</font><font color="#000000">.out.print(</font><font color="#ff00ff">&quot;, Name : &quot; </font><font color="#000000">+ record.getName() );</font>
+         <font color="#ff0000">System</font><font color="#000000">.out.print(</font><font color="#ff00ff">&quot;, Salary : &quot; </font><font color="#000000">+ record.getSalary());</font>
+
+      <font color="#000000">}</font>
+   <font color="#000000">}</font>
+<font color="#000000">}</font>
+</pre>
+</div>
+<div class="heading">Run Application</div>
+<p>Now run the Application you see the following output:</p>
+<div class="output">
+<div class="image">
+<img src="images/spring_programmatic_output.png">
+</div>
+</div>
+<p>And this is the Database Output of the above Program.</p>
+<div class="output">
+<div class="image">
+<img src="images/spring_programmatic_database.png">
+</div>
+</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="spring_declarative_transaction_management.shtml" title="spring_declarative_transaction_management">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="introduction_of_oxm_in_spring.shtml" title="introduction_of_oxm_in_spring">Next</a></td>
+  </tr> 
+</table>
+
+		</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->

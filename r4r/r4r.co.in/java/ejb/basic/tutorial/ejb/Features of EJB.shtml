@@ -1,0 +1,214 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+
+<HTML><HEAD>
+
+<meta http-equiv="Content-Language" content="en-us">
+
+<TITLE>Features of EJB</TITLE>
+
+<META content="Rajesh Kumar" name="author">
+
+<META http-equiv="expires" content="0">
+
+<META content="r4r.co.in" name="owner">
+
+<META http-equiv=Content-Type content="text/html; charset=windows-1252">
+
+<meta name="description" CONTENT="Features for Enterprise Java Beans,Features of EJB,EJB Context,Dependency Injection,Simplified Access to Environment,Elimination of Component Interface,Elimination of Home and Remote Interfaces,Enhanced Lifecycle Methods and Callback Listener Classes,Interceptors,Simple JNDI lookup of EJB" >
+
+<meta name="keywords" CONTENT="Features for Enterprise Java Beans,Features of EJB,EJB Context,Dependency Injection,Simplified Access to Environment,Elimination of Component Interface,Elimination of Home and Remote Interfaces,Enhanced Lifecycle Methods and Callback Listener Classes,Interceptors,Simple JNDI lookup of EJB">
+
+<!--Header start-->
+
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>EJB</h1>
+            <div class="link_menu"><A href="/">R4R</A>
+
+<img border="0" src="/images/left_menu_bullet.gif" width="11" height="6"> <A href="/java">Java</A><img border="0" src="/images/left_menu_bullet.gif" width="11" height="6"><A href="/java/ejb/">EJB</A></font> </div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/ejb/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	  
+
+<!-- header End-->
+<div class="heading">	Features for Enterprise Java Beans:</div> 
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="IntroductionEJB.shtml" title=" Introduction of EJB
+">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="Enterprise%20container.shtml" title="Introduction of Enterprise Container">Next</a></td>
+  </tr>
+</table>
+
+<p>The new features using or including EJB 3.0 that providing some simplification over the previous EJB API.</p>
+
+<h3>
+There are various simplification made in EJB 3.0 like:</h3>
+
+<ul>
+<li>It's no need of home and object interface. it means in EJB 3.0 is not using home and object interface.
+</li>
+
+<li>
+It's no need of any component interface. it means in EJB 3.0 not using for any 
+component interface.</li>
+
+<li>
+Made use of java annotations.</li>
+<li>
+Simplifies APIs to make flexible for bean's environment.</li>
+</ul>
+<p>Now we will discuss all the above aspects of EJB3.0 that makes the EJB 
+programming model simple and more efficient.</p>
+
+<div class="heading">
+Elimination of Home and Remote Interfaces: </div>
+
+<p>Deprecation of home and remote interfaces simplifies the development. The new session beans contain all 
+the business methods inside the business interface. The bean provider designates 
+the business interface as local business interface or the remote business 
+interface or both according to the client whether it is local or remote. 
+Business methods on remote interface can throw arbitrary application exceptions, 
+while they are not allowed to throw java.rmi.RemoteException. </p>
+<p>While in case of 
+EJB 2.1 all the methods of home and object interface throws the 
+java.rmi.RemoteException. Package javax.ejb.EJBException encapsulates exceptions 
+such as protocols, system level problems, or otherwise that the container 
+returns to the client. Since EJBException is the subclass of the 
+java.rmi.RemoteException therefore we did not include it in throws clause of 
+business methods.</p>
+
+<p>
+A message driven bean does not need to include the business interface as there 
+is no direct interaction of the client with the message driven bean. Whenever a 
+MDB has an unexpected problem then the container logs the error and communicate 
+it with the help of javax.ejb.EJBException to the corresponding resource adapter 
+rather than the client.</p>
+
+<h3>Elimination of Component Interface:</h3>
+
+<p>Component interface in EJB2.1 or in earlier versions are used to provide a way through which the 
+container notifies the bean instances of various life cycles they are affecting 
+it. The previous versions of the component interface are used to stay in the 
+events in its lifecycle.</p> 
+<p>These component interfaces includes the various life 
+cycles methods implemented by the bean class. The container used to call the 
+appropriate method of the component interface to handle the bean's instance life 
+cycle events according to the way it wants. </p>
+
+<p>
+For example, the container notifies the message driven bean instance that it is 
+about to destroy, simply by invoking ejbDestroy() method on the corresponding 
+class of the message driven bean. Bean class can close the JDBC database 
+connection within the ejbDestroy() method to free up the resources. </p>
+<p>Similarly 
+the container that is going to associate a client in case of stateful notifies 
+the bean instance by calling the ejbCreate() method on the bean class and the 
+bean class instantiates the bean instance. Consider the situation, when the bean 
+does not receive the notification from the container about its life cycle's 
+methods then the bean has to implement the component interfaces regardless 
+whether it is needed or not. </p>
+<p>In case of session bean, the bean class does not 
+need to implement the <font class="point_out">javax.ejb.SessionBean</font> or <font class="point_out">javax.ejb.MessageDrivenBean</font> in 
+case of message driven bean.</p>
+
+<h3>Simplified Access to Environment: </h3>
+
+<p>Almost all the EJBs are required to access the environment to gain access to external resources, 
+enterprise beans and other entries like properties. To get hold of these entries 
+EJB mainly relies on JNDI API. EJB 3.0 also includes the features like lookup 
+method on the EJBContest and dependency injection to access the bean's 
+dependencies.</p>
+
+<h3>Dependency Injection: </h3>
+
+<p>Dependency injection is the mechanism through which the container injects the requested environmental entry 
+to make available to the bean instance before any bean instance is invoked on 
+that particular instance. Then the container injects these entries into bean 
+variables or methods.</p>
+<p> It is bean provider's duty to tell the container that 
+which method or variables should be injected at runtime. The bean provider can 
+do this by using the deployment descriptor or annotations. Bean methods used for 
+dependency injection should follow the java naming convention for properties in 
+that they should follow the setXXX() convention. </p>
+<p>
+Consider the situations like dependency injection fails due to some reasons, the 
+container can not make available the environmental entries due to which the bean 
+is functioning properly, in such situations the container discards the bean 
+instances and creates new instances.</p>
+
+<div class="heading">EJB Context: </div>
+
+<p>Bean must know about its environment at runtime such as security principle, transaction context in which 
+its method is invoked and so on. javax.ejb.EJBContext API works like a window 
+for the bean to the outside world through which it is interacting to the 
+container. EJBContext is further categorized into SessionContext and 
+MessageDrivenContext for the session beans and message driven beans 
+respectively. </p>
+<p>Bean instances may use the dependency injection to access 
+EJBContext instance. Another way through which a JNDI accesses the environment 
+variables is the lookup() method of the EJBContext interface. Bean must use the 
+JNDI API to access the environmental dependencies. </p>
+
+<h3>
+Enhanced Lifecycle Methods and Callback Listener Classes: </h3>
+<p>EJB 3.0 does not enforce to implement all unnecessary callback methods but can designate any other method to 
+receive the notification for life cycle events. We can also use the callback 
+listener class instead of callback methods defined in the same bean class.</p>
+
+<h3>
+Interceptors: </h3>
+
+<p>An intercept is a method used to intercept a business method invocation. Stateless session beans, 
+Stateful session beans and message driven beans may includes the interceptors. 
+We can also define an interceptor class instead of defining the interceptor 
+methods in the bean class</p>
+
+<h3>
+Simple JNDI lookup of EJB: </h3>
+
+<p>Lookup of the EJB has been simplified so that the client can directly invoke methods on EJB rather than 
+
+creating the bean instance simply by invoking create method on EJB.</p>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="IntroductionEJB.shtml" title=" Introduction of EJB
+">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="Enterprise%20container.shtml" title="Introduction of Enterprise Container">Next</a></td>
+  </tr>
+</table>
+
+<!-- Footer Start-->
+</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>

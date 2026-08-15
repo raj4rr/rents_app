@@ -1,0 +1,129 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>DataTableHelper.ToArray( ),Instance Management,Behaviors,Type of Behaviors,ServiceBehaviorAttribute,OperationBehaviorAttribute</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="DataTableHelper.ToArray( ),Instance Management,Behaviors,Type of Behaviors,ServiceBehaviorAttribute,OperationBehaviorAttribute" >
+<meta name="keywords" CONTENT="DataTableHelper.ToArray( ),Instance Management,Behaviors,Type of Behaviors,ServiceBehaviorAttribute,OperationBehaviorAttribute">
+
+<!--Header start-->
+
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>WCF</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a><img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+			<a href="/wcf">WCF with C# </a>
+              <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/wcf/01/tutorial/basic/">WCF Tutorials</a></div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/wcf/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	  
+
+<!-- Header End-->
+<div class="heading">DataTableHelper.ToArray( )</div>
+
+  <table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="Data%20Sets%20and%20Tables%20.shtml" title="Data Sets and Tables
+">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="Per-Call%20Services.shtml" title="Per-Call Services">Next</a></td>
+  </tr>
+</table>
+
+<h3>DataTableHelper.ToArray ( )</h3>
+<p>DataTableHelper used for add some type safety . at compile time, DataTableHelper places constraints on the type 
+parameter R to be a data row and at runtime, the method returns an empty array if the table is empty.</p>
+<p><font class="point_out">DataTableHelper.ToArray( ) </font> use the myCollection 
+helper class to invoke the converter on every row in the table, converting every row to a single Contact 
+and returning the resulted array and It verifies that the type parameter 
+T is decorated either with the DataContract attribute or the Serializable 
+attribute.</p>
+
+<h3>Instance Management:</h3>
+<p>Instance managementis the name for a set of 
+techniques used by WCF to bind client requests to service instances, governing 
+which service instance handles which client request.</p>
+
+<div class="heading">Behaviors </div>
+<p>Behavior is a local attribute of a 
+service that does not affect its communication patterns. Clients should be 
+unaware of behaviors, and behaviors do not manifest themselves in the service's 
+binding or published metadata.</p>
+
+<h3>Type of Behaviors: </h3>
+<p>Two type of behaviors</p>
+
+<ol>
+<li>ServiceBehaviorAttribute</li>
+<li>OperationBehaviorAttribute</li>
+</ol>
+<ol>
+<li><h3>ServiceBehaviorAttribute</h3>
+<p>The ServiceBehavior attribute is used to configure the service instance mode.</p>
+<h3>Example of The ServiceBehaviorAttribute used to configure instance context mode</h3>
+
+<div class="code">
+<pre>
+<font color="#0000ff">public enum </font><font color="#000000">InstanceContextMode</font>
+<font color="#000000">{</font>
+   <font color="#000000">PerCall,</font>
+   <font color="#000000">PerSession,</font>
+   <font color="#000000">Single</font>
+<font color="#000000">}</font>
+<font color="#000000">[AttributeUsage(AttributeTargets.Class)]</font>
+<font color="#0000ff">public sealed class </font><font color="#808000">ServiceBehaviorAttribute </font><font color="#000000">: </font><font color="#808000">Attribute</font><font color="#000000">,...</font>
+<font color="#000000">{</font>
+   <font color="#0000ff">public </font><font color="#000000">InstanceContextMode InstanceContextMode</font>
+   <font color="#000000">{get;set;}</font>
+   <font color="#008000">//More members</font>
+<font color="#000000">}</font>
+</pre>
+</div>
+</li>
+
+<li>
+<h3>OperationBehaviorAttribute</h3>
+<p>The OperationBehaviorAttribute is used to configure operation behaviors, and it  can be applied only on a method that implements a contract operation, never on the operation definition in the contract itself.</p>
+</li>
+</ol>
+
+ <table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="Data%20Sets%20and%20Tables%20.shtml" title="Data Sets and Tables">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="Per-Call%20Services.shtml" title="Per-Call Services">Next</a></td>
+  </tr>
+</table>
+
+ <!--Footer  -->
+</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/dotnet/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>

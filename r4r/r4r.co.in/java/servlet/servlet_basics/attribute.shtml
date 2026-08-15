@@ -1,0 +1,178 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD>
+<meta http-equiv="Content-Language" content="en-us">
+<TITLE>Attribute in Servlet</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name="description" CONTENT="Attribute in Servlet">
+<meta name="keywords" CONTENT="Attribute in Servlet">
+
+<!-- header start-->	
+
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+
+<?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+     <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>Servlet Tutorials</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+			<img src="/images/left_menu_bullet.gif"  width="11" height="6"/> <a href="/java/">Java</a>
+			<img src="/images/left_menu_bullet.gif"  width="11" height="6"/> <a href="/java/servlet/">Servlet</a>
+
+			      </div>
+
+            	<table>
+                    <tr>
+
+                         <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/servlet/servlet_basics/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 
+
+<div class="heading">Attribute in Servlet</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="dispatcher.shtml" title="Introduction to Request Dispatcher">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="cookies.shtml" title="Cookies in Servlet">Next</a></td>
+  </tr> 
+</table>
+<!-- header End-->	
+
+<p>In servlet an object that can be set, get or removed from one of the following scopes</p>
+
+<ol>
+    <li>request </li>
+	<li>session </li>
+    <li>application </li>
+
+</ol>
+
+<p>In the servlet programmer which can  be a pass informations of servlet to another using attributes. </p>
+
+<p>Servlet attributes is provided a passing object from one class to another so that we can reuse the same object again and again.
+</p>
+
+<p>Servlet attribute specific methods of ServletRequest, HttpSession and ServletContext interface
+</p>
+<p>Servlet attribute specific four methods as follows:
+</p>
+
+	<ol>
+	<li><i>public void setAttribute(String name,Object object):</i>It is sets the given object in the application scope.</li>
+    <li><i>public Object getAttribute(String name):</i>It is returns the attribute for the specified name.</li>
+    <li><i>public Enumeration getInitParameterNames():</i>It is returns the names of the context's initialization parameters as an Enumeration of String objects.</li>
+    <li><i>public void removeAttribute(String name):</i>It is removes the attribute with the given name from the servlet context.</li>
+
+</ol>
+
+<h3>Example of ServletContext to set and get attribute</h3>
+
+<i>Servlet1.java</i>
+
+<div class="code">
+<pre>
+<font face="Arial"><font color="#0000ff">import </font><font color="#000000">java.io.*;</font>
+<font color="#0000ff">import </font><font color="#000000">javax.servlet.*;</font>
+<font color="#0000ff">import </font><font color="#000000">javax.servlet.http.*;</font>
+<font color="#0000ff">public class </font><font color="#000000">DemoServlet1 </font><font color="#0000ff">extends </font><font color="#000000">HttpServlet{</font>
+<font color="#0000ff">public void </font><font color="#000000">doGet(HttpServletRequest req,HttpServletResponse res)</font>
+<font color="#000000">{</font>
+<font color="#0000ff">try</font><font color="#000000">{</font>
+<font color="#000000">res.setContentType(</font><font color="#ff00ff">&quot;text/html&quot;</font><font color="#000000">);</font>
+<font color="#ff0000">PrintWriter </font><font color="#000000">out=res.getWriter();</font>
+<font color="#000000">ServletContext context=getServletContext();</font>
+<font color="#000000">context.setAttribute(</font><font color="#ff00ff">&quot;company&quot;</font><font color="#000000">,</font><font color="#ff00ff">&quot;IBM&quot;</font><font color="#000000">);</font>
+<font color="#000000">out.println(</font><font color="#ff00ff">&quot;Welcome to first servlet&quot;</font><font color="#000000">);</font>
+<font color="#000000">out.println(</font><font color="#ff00ff">&quot;&lt;a href=&apos;servlet2&apos;&gt;visit&lt;/a&gt;&quot;</font><font color="#000000">);</font>
+<font color="#000000">out.close();</font>
+<font color="#000000">}</font><font color="#0000ff">catch</font><font color="#000000">(</font><font color="#ff0000">Exception </font><font color="#000000">e){out.println(e);}</font>
+<font color="#000000">}}</font>
+</font></pre>
+</div>
+
+<i>Servlet2.java</i>
+
+<div class="code">
+<pre>
+<font face="Arial"><font color="#0000ff">import </font><font color="#000000">java.io.*;</font>
+<font color="#0000ff">import </font><font color="#000000">javax.servlet.*;</font>
+<font color="#0000ff">import </font><font color="#000000">javax.servlet.http.*;</font>
+<font color="#0000ff">public class </font><font color="#000000">DemoServlet2 </font><font color="#0000ff">extends </font><font color="#000000">HttpServlet{</font>
+<font color="#0000ff">public void </font><font color="#000000">doGet(HttpServletRequest req,HttpServletResponse res)</font>
+<font color="#000000">{</font>
+<font color="#0000ff">try</font><font color="#000000">{</font>
+<font color="#000000">res.setContentType(</font><font color="#ff00ff">&quot;text/html&quot;</font><font color="#000000">);</font>
+<font color="#ff0000">PrintWriter </font><font color="#000000">out=res.getWriter();</font>
+<font color="#000000">ServletContext context=getServletContext();</font>
+<font color="#ff0000">String </font><font color="#000000">n=(</font><font color="#ff0000">String</font><font color="#000000">)context.getAttribute(</font><font color="#ff00ff">&quot;company&quot;</font><font color="#000000">);</font>
+<font color="#000000">out.println(</font><font color="#ff00ff">&quot;Welcome to &quot;</font><font color="#000000">+n);</font>
+<font color="#000000">out.close();</font>
+<font color="#000000">}</font><font color="#0000ff">catch</font><font color="#000000">(</font><font color="#ff0000">Exception </font><font color="#000000">e){out.println(e);}</font>
+<font color="#000000">}}</font>
+</font></pre>
+</div>
+
+<i>web.xml</i>
+
+<div class="code">
+<pre>
+<font face="Arial"><font color="#000000">&lt;web-app&gt;</font>
+<font color="#000000">&lt;servlet&gt;</font>
+<font color="#000000">&lt;servlet-name&gt;s1&lt;/servlet-name&gt;</font>
+<font color="#000000">&lt;servlet-</font><font color="#0000ff">class</font><font color="#000000">&gt;DemoServlet1&lt;/servlet-</font><font color="#0000ff">class</font><font color="#000000">&gt;</font>
+<font color="#000000">&lt;/servlet&gt;</font>
+<font color="#000000">&lt;servlet-mapping&gt;</font>
+<font color="#000000">&lt;servlet-name&gt;s1&lt;/servlet-name&gt;</font>
+<font color="#000000">&lt;url-pattern&gt;/servlet1&lt;/url-pattern&gt;</font>
+<font color="#000000">&lt;/servlet-mapping&gt;</font>
+<font color="#000000">&lt;servlet&gt;</font>
+<font color="#000000">&lt;servlet-name&gt;s2&lt;/servlet-name&gt;</font>
+<font color="#000000">&lt;servlet-</font><font color="#0000ff">class</font><font color="#000000">&gt;DemoServlet2&lt;/servlet-</font><font color="#0000ff">class</font><font color="#000000">&gt;</font>
+<font color="#000000">&lt;/servlet&gt;</font>
+<font color="#000000">&lt;servlet-mapping&gt;</font>
+<font color="#000000">&lt;servlet-name&gt;s2&lt;/servlet-name&gt;</font>
+<font color="#000000">&lt;url-pattern&gt;/servlet2&lt;/url-pattern&gt;</font>
+<font color="#000000">&lt;/servlet-mapping&gt;</font>
+<font color="#000000">&lt;/web-app&gt;</font>
+</font></pre>
+</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="dispatcher.shtml" title="Introduction to Request Dispatcher">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="cookies.shtml" title="Cookies in Servlet">Next</a></td>
+  </tr> 
+</table>
+
+<!-- Footer Start-->		
+
+		</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+   </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->

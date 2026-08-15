@@ -1,0 +1,153 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+
+<HTML><HEAD>
+
+<meta http-equiv="Content-Language" content="en-us">
+
+<TITLE>Creating a session beans</TITLE>
+
+<META content="Rajesh Kumar" name="author">
+
+<META http-equiv="expires" content="0">
+
+<META content="r4r.co.in" name="owner">
+
+<META http-equiv=Content-Type content="text/html; charset=windows-1252">
+
+<meta name="description" CONTENT="Creating A Session Bean example" >
+
+<meta name="keywords" CONTENT="Creating A Session Bean example">
+
+<!--Header start-->
+
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>EJB</h1>
+            <div class="link_menu"><A href="/">R4R</A>
+
+<img border="0" src="/images/left_menu_bullet.gif" width="11" height="6"> <A href="/java">Java</A><img border="0" src="/images/left_menu_bullet.gif" width="11" height="6"><A href="/java/ejb/">EJB</A></font> </div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/ejb/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	  
+
+<!-- header End-->
+
+<div class="heading">Creating A Session Bean</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="Session%20bean.shtml" title=" Session Beans
+">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="Implementation%20of%20Session%20Beans.shtml" title="Implementation of Session Beans">Next</a></td>
+  </tr>
+</table>
+<p>Session beans have a very simple framework and it's similar to entity beans. In 
+Session bean contain have a remote interface and a home interface, but no 
+primary key. </p>
+
+<p>They also do not need to be backed by a database or other form of 
+permanent storage. Again, we will be using Blizzard to generate our basic framework.</p>
+
+<p>
+Our session bean will be a stock-price quoting agent. It will live on a machine 
+
+where current stock prices are available. The clients of the session bean will 
+
+be able to specified a stock and obtain its current price.</p>
+<p>
+It's create the session bean, and run the Blazix EJB wizard Blizzard, and select 
+
+<font class="point_out">Create a Session bean</font>. Fill in the bean name, package name and directory name. 
+
+Select <font class="point_out">stateful</font> and <font class="point_out">let the container manage transaction boundaries</font>. Add 
+
+data items <font class="point_out">stock</font>(String) and <font class="point_out">price</font> (float). We do not want a <font class="point_out">setter</font> for 
+
+<font class="point_out">price</font>, but make sure to provide a setter for <font class="point_out">stock</font>. </p>
+<p>
+
+After that to build the framework examine the files created by the wizard. It's 
+
+Look in the remote interface, the home interface and the bean class. Everything 
+
+is similar to the entity beans, but there is no primary key and therefore no 
+
+find ByPrimary key.</p>
+<p>
+
+In the bean have implementation file StockQuotesBean.java, add an import for 
+
+java.io.* and delete the member variable <font class="point_out">price</font>. Also remove the <font class="point_out">price</font>
+
+argument to the <font class="point_out">ejbCreate</font> method and remove the statement where the </font>price</font> 
+
+member variable is getting set.</p>
+<div class="code">
+<pre>
+<font color="#0000ff">public float </font><font color="#000000">gettingPrice() </font><font color="#0000ff">throws </font><font color="#000000">java.rmi.</font><font color="#ff0000">RemoteException</font><font color="#000000">, </font>
+<font color="#000000">java.io.</font><font color="#ff0000">IOException </font>
+<font color="#000000">{ </font>
+ <font color="#ff0000">BufferedReader </font><font color="#000000">br; </font>
+     <font color="#000000">br = </font><font color="#0000ff">new </font><font color="#ff0000">BufferedReader</font><font color="#000000">( </font>
+             <font color="#0000ff">new </font><font color="#ff0000">FileReader</font><font color="#000000">( </font><font color="#ff00ff">&quot;C:\\StockPrices.txt&quot; </font><font color="#000000">)); </font>
+	 <font color="#ff0000">String </font><font color="#000000">line; </font>
+     <font color="#ff0000">String </font><font color="#000000">prefix = stock.toLowerCase() + </font><font color="#ff00ff">&quot;:&quot;</font><font color="#000000">; </font>
+     <font color="#0000ff">while </font><font color="#000000">(( line = reader.readLine()) != </font><font color="#0000ff">null </font><font color="#000000">) { </font>
+         <font color="#0000ff">if </font><font color="#000000">( line.toLowerCase().startsWith( prefix )) { </font>
+             <font color="#000000">line = line.substring( prefix.length()); </font>
+             <font color="#000000">reader.close(); </font>
+             <font color="#0000ff">return </font><font color="#ff0000">Float</font><font color="#000000">.parseFloat( line.trim()); </font>
+         <font color="#000000">} </font>
+     <font color="#000000">} </font>
+     <font color="#000000">reader.close(); </font>
+     <font color="#0000ff">throw new </font><font color="#000000">java.rmi.</font><font color="#ff0000">RemoteException</font><font color="#000000">( </font><font color="#ff00ff">&quot;Not found&quot; </font><font color="#000000">); </font>
+
+     <font color="#008000">// In product-level coding we would define an exception </font>
+
+     <font color="#008000">// class for this, but for this sample we </font>
+
+     <font color="#008000">// will just put RemoteException to dual use! </font>
+ <font color="#000000">}</font>
+</pre>
+</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="Session%20bean.shtml" title=" Session Beans
+">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="Implementation%20of%20Session%20Beans.shtml" title="Implementation of Session Beans">Next</a></td>
+  </tr>
+</table>
+
+<!-- Footer Start-->
+</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>

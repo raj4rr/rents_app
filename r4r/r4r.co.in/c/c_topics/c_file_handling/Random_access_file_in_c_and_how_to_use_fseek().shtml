@@ -1,0 +1,133 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>fseek() function in C Library</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="How to use  fseek() functin in c Language with examples,How to use Random access File in C,pre processor,post processor,structures,memory menagement,string,constants,variables,decisions making" >
+<meta name="keywords" CONTENT="c tutorial,c basics,programming language,examples,pointer,function,loop,else,if else,while,array,pre processor,post processor,structures,memory menagement,string,constants,variables,decisions making,c unions,c memory allocation, c operators, C pointers,c error handling, c file handling">
+<link href="/css/main.css" rel="stylesheet" type="text/css" />
+        <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+
+	</HEAD>
+	<BODY>
+	<?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style="padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>C Programming language</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a><img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/c/">C</a><img src="/images/left_menu_bullet.gif" width="11" height="6"/><a href="/c/c_topics/c_file_handling/">C File Handling</a></div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/c/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 
+
+		<!-- Header End-->	
+<div class="heading">How to use random access File in C: fseek( ) Function</div> 
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;">
+    	<a href="How_to_use_fread_function_in_c.shtml" title="Record I/O : How to use fread( ) Function in C">Previous</a>
+    </td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="how_to_use_ftell()inc.shtml" title="How to use Random access File in C: ftell( ) Function">Next</a></td>
+  </tr>
+</table>
+
+<h3>Random Access to file in C</h3>
+<p>Random access means we can move to any part of a file and read or write data from it without having to read through the entire file. we can access the data stored in the file in two ways.</p>
+	<ol>
+		<li>Sequentially</li>
+		<li>Randomly</li>
+	</ol>
+<p><i>Some points about Sequentially and Randomly accessing of Files</i></p>
+<ul>
+	<li>If we want to access the forty fourth record then first forty three record read sequentially to reach forty four record</li>
+    <li>In Random access data can be accessed  and processed directly</li>
+    <li>If there is no need to read each record sequentially then use Randomly access</li>
+    <li>If we want to access a particular record random access takes less time than the Sequential access</li>
+</ul>
+<p>C supports these function for random access file.</p>
+	<ol>
+		<li>fseek( ) Function</li>
+		<li><a href="how_to_use_ftell()inc.shtml">ftell ( ) Function</a></li>
+	</ol>
+<div class="heading">fseek() Function</div>
+<p>This function is used for setting the file position pointer at the specified bytes . fseek is a function  belonging to the ANCI C standard Library and included in the file <font class="point_out">&lt;stdio.h&gt;</font>. Its purpose is to change the file position indicator for the specified stream.</p>
+<div class="code">
+<PRE><FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">fseek(FILE *stream_pointer, </FONT><FONT COLOR="#0000ff">long </FONT><FONT COLOR="#000000">offset, </FONT><FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">origin);</FONT></PRE>
+</div>
+
+<h3>Argument meaning</h3>
+<p><i>stream_pointer</i> is a pointer to the stream FILE structure of which the position indicator should be changed;</p>
+<p><i>offset</i> is a long integer which specifies the number of bytes from origin where the position indicator should be placed;</p>
+<p><i>origin</i> is an integer which specifies the origin position.<i> It can be:</i>
+	<ul>
+    	<li><i>SEEK_SET</i>: origin is the start of the stream</li>
+		<li><i>SEEK_CUR</i>: origin is the current position</li>
+		<li><i>SEEK_END</i>: origin is the end of the stream</li>
+    </ul>
+
+</p>
+<div class="code">
+<PRE><FONT COLOR="#008000">/* * Program to understand the use of fseek function */</FONT>
+<FONT COLOR="#ff0000">#include</FONT><FONT COLOR="#000000">&lt;stdio.h&gt;</FONT>
+<FONT COLOR="#ff0000">#include</FONT><FONT COLOR="#000000">&lt;conio.h&gt;</FONT>
+<FONT COLOR="#ff0000">#include</FONT><FONT COLOR="#000000">&lt;stdlib.h&gt;</FONT>
+<FONT COLOR="#0000ff">struct </FONT><FONT COLOR="#000000">emprecord</FONT>
+<FONT COLOR="#000000">{</FONT>
+	<FONT COLOR="#0000ff">char </FONT><FONT COLOR="#000000">name[</FONT><FONT COLOR="#800080">30</FONT><FONT COLOR="#000000">];</FONT>
+	<FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">age;</FONT>
+	<FONT COLOR="#0000ff">float </FONT><FONT COLOR="#000000">sal;</FONT>
+<FONT COLOR="#000000">}emp;</FONT>
+<FONT COLOR="#0000ff">void </FONT><FONT COLOR="#000000">main()</FONT>
+<FONT COLOR="#000000">{</FONT>
+	<FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">n;</FONT>
+	<FONT COLOR="#000000">FILE *fp;</FONT>
+	<FONT COLOR="#000000">fp=fopen(</FONT><FONT COLOR="#ff00ff">"employee.dat"</FONT><FONT COLOR="#000000">,</FONT><FONT COLOR="#ff00ff">"rb"</FONT><FONT COLOR="#000000">);</FONT>
+	<FONT COLOR="#0000ff">if </FONT><FONT COLOR="#000000">(fp==NULL)</FONT>
+	<FONT COLOR="#000000">{</FONT>
+	<FONT COLOR="#000000">printf(</FONT><FONT COLOR="#ff00ff">"/n error in opening file"</FONT><FONT COLOR="#000000">);</FONT>
+	<FONT COLOR="#000000">exit(</FONT><FONT COLOR="#800080">1</FONT><FONT COLOR="#000000">);</FONT>
+	<FONT COLOR="#000000">}</FONT>
+	<FONT COLOR="#000000">printf(</FONT><FONT COLOR="#ff00ff">"enter the record no to be read"</FONT><FONT COLOR="#000000">);</FONT>
+	<FONT COLOR="#000000">scanf(</FONT><FONT COLOR="#ff00ff">"%d"</FONT><FONT COLOR="#000000">,&amp;n);</FONT>
+	<FONT COLOR="#000000">fseek(fp,(n-</FONT><FONT COLOR="#800080">1</FONT><FONT COLOR="#000000">)*</FONT><FONT COLOR="#0000ff">sizeof</FONT><FONT COLOR="#000000">(emp),</FONT><FONT COLOR="#800080">0</FONT><FONT COLOR="#000000">);</FONT>
+	<FONT COLOR="#000000">freed(&amp;emp,</FONT><FONT COLOR="#0000ff">sizeof</FONT><FONT COLOR="#000000">(emp),</FONT><FONT COLOR="#800080">1</FONT><FONT COLOR="#000000">,fp);</FONT>
+	<FONT COLOR="#000000">printf(</FONT><FONT COLOR="#ff00ff">"%s\t,emp.name);</FONT>
+	<FONT COLOR="#000000">printf(</FONT><FONT COLOR="#ff00ff">"%d\t"</FONT><FONT COLOR="#000000">,emp.age);</FONT>
+	<FONT COLOR="#000000">printf(</FONT><FONT COLOR="#ff00ff">"%f\n"</FONT><FONT COLOR="#000000">,emp.sal);</FONT>
+	<FONT COLOR="#000000">fclose(fp);</FONT>
+	<FONT COLOR="#000000">getch();</FONT>
+<FONT COLOR="#000000">};</FONT></PRE>
+</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;">
+    	<a href="How_to_use_fread_function_in_c.shtml" title="Record I/O : How to use fread( ) Function in C">Previous</a>
+    </td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="how_to_use_ftell()inc.shtml" title="How to use Random access File in C: ftell( ) Function">Next</a></td>
+  </tr>
+</table>
+<!--Footer  --> 
+</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>

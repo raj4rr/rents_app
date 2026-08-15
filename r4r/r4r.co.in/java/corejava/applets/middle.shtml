@@ -1,0 +1,129 @@
+   
+<div class="main_content">
+<div class="heading">Java Applet</div>
+  <p>Applet is introduce by Sun Microsystems in 1995. An Applet is the special kind of Java programming which typically embedded inside a web page and runs in the context of a browser.</p>
+  <p>The Applet class is contained in the java.applet package, contain several method that provide detailed control over the execution  of your applet. </p>
+  <p>The Applet class provides the standard interface between the applet and the browser environment, in addition java.applet also define the three main interface</p>
+ <div class="heading">Three main interface In Applet</div>
+ <ol><li>AppletContext</li>
+ <li>AudioClip</li>
+ <li>AppletStub</li></ol>
+
+<div class="content_link">
+           <p><a href="basic/tutorial/index.php">Applets Basic Tutorials</a></p>
+           <p><a href="basic/example/index.php">Applets Basic Example</a></p>
+           <p><a href="Applets_Interview_Questions_And_Answers/">Applets FAQs</a></p>
+</div>
+
+ <p>Since, Java applet is deliver to the user in the form of java's bytecode, so it is platform independent. Java applets can 
+    run in a Web browser using a Java Virtual Machine (JVM), or in Sun's AppletViewer( i.e. a stand-alone tool for testing applets), usually written in java programming language but can also written in another language that enable to compile Java bytecode such as JRuby, Jython or SmartEiffel.
+    </p>
+
+    <div class="heading">Applet Basics</div> 
+
+   <p>All the applet's class must implement java.applet package. Applet also import from java.awt package, AWT stand for Abstract Window Toolkit.  </p>
+<p>Since Applet also stand along application but it don't need main() method for execution and doesn't support system,out,print(); 
+   Rather it is handle various AWT method like JButton, JLevel, etc also handle with various location by drawString() method, 
+   which outputs a string to a specified X,Y location.</p>
+
+   <div class="heading">Lifecycle of Applet</div> 
+   <ol><li>init() method- use for  initialized and load the applet into applet viewer or browser.</li>
+   <li>start() method- use for start the applet in applet viewer or browser.</li>
+   <li>stop() method- use for stop the running applet.</li>
+   <li>destroy() method- use for final clean up or unload the the applet.</li></ol>
+
+   <p><h3>Note:</h3> That when webpage is refresh or reload the current instance of applet is stop and destroy( by calling stop() and 
+destroy() method itself), after that a new instance of same applet is generated automatically.Use the following program:</p>
+<div class="heading">First Applet Program</div>
+
+<div class="code">
+<pre>
+<font color="#000000">l</font><font color="#008000">/*</font>
+<font color="#008000"> * Save as a FirstApplet.java</font>
+<font color="#008000"> * Program define complete Life cycle of applet.</font>
+<font color="#008000"> */</font>
+<font color="#0000ff">package </font><font color="#000000">r4r.co.in;</font>
+
+<font color="#0000ff">import </font><font color="#000000">java.awt.*;</font>
+
+<font color="#0000ff">public class </font><font color="#000000">FirstApplet </font><font color="#0000ff">extends </font><font color="#000000">java.applet.</font><font color="#ff0000">Applet </font><font color="#000000">{</font>
+
+<font color="#008000">//define a private label</font>
+<font color="#0000ff">private </font><font color="#ff0000">Label </font><font color="#000000">label;</font>
+
+<font color="#008000">/*</font>
+<font color="#008000">* Initialization method that will be called after the applet is loaded</font>
+<font color="#008000">* into the browser.</font>
+<font color="#008000">*/</font>
+<font color="#0000ff">public void </font><font color="#000000">init() {</font>
+<font color="#000000">setBackground(</font><font color="#ff0000">Color</font><font color="#000000">.orange);</font>
+<font color="#000000">}</font>
+
+<font color="#0000ff">public void </font><font color="#000000">start() {</font>
+<font color="#008000">/*</font>
+<font color="#008000">* Start method is call after the applet is completely load</font>
+<font color="#008000">* inside a AppletViewer/Browser</font>
+<font color="#008000">*/</font>
+<font color="#000000">label = </font><font color="#0000ff">new </font><font color="#ff0000">Label</font><font color="#000000">(</font><font color="#ff00ff">&quot;R4R Tech Soft! Welcome:&quot;</font><font color="#000000">);</font>
+<font color="#000000">add(label);</font>
+<font color="#000000">}</font>
+
+<font color="#0000ff">public void </font><font color="#000000">stop() {</font>
+<font color="#008000">//Stop method is call when close button is click</font>
+<font color="#000000">}</font>
+
+<font color="#0000ff">public void </font><font color="#000000">destroy() {</font>
+<font color="#008000">//Method call After Stop method for Finally unload the applet</font>
+<font color="#000000">}</font>
+
+<font color="#0000ff">public void </font><font color="#000000">paint(</font><font color="#ff0000">Graphics </font><font color="#000000">g) {</font>
+<font color="#008000">/*</font>
+<font color="#008000">*Method used for providing Graphic in applet.</font>
+<font color="#008000">* Call at the run time</font>
+<font color="#008000">*/</font>
+<font color="#000000">label.update(g);</font>
+<font color="#000000">}</font>
+<font color="#000000">}</font>
+</pre>
+</div>
+
+<h3>Embedded Applet in HTML page</h3>
+<p>Use the following syntax for such operation.</p>
+<div class="code">
+<pre>
+<font color="#000000">&lt;!DOCTYPE </font><font color="#ff0000">HTML </font><font color="#000000">PUBLIC </font><font color="#ff00ff">&quot;-//W3C//DTD HTML 4.01 Transitional//EN&quot;</font><font color="#000000">&gt;</font>
+<font color="#000000">&lt;html&gt;</font>
+<font color="#000000">&lt;head&gt;</font>
+<font color="#000000">&lt;title&gt;R4R Tech Soft&lt;/title&gt;</font>
+<font color="#000000">&lt;meta http-equiv=</font><font color="#ff00ff">&quot;Content-Type&quot; </font><font color="#000000">content=</font><font color="#ff00ff">&quot;text/html; charset=UTF-8&quot;</font><font color="#000000">&gt;</font>
+<font color="#000000">&lt;/head&gt;</font>
+<font color="#000000">&lt;body&gt;</font>
+<font color="#000000">&lt;!-- </font>
+<font color="#000000">Use the following syntax </font><font color="#0000ff">for </font><font color="#000000">Embedded an applet into a </font><font color="#ff0000">HTML </font><font color="#000000">page</font>
+<font color="#000000">name= </font><font color="#ff0000">Name </font><font color="#000000">of </font><font color="#ff0000">Applet</font>
+<font color="#000000">code=Provide the path of .</font><font color="#0000ff">class </font><font color="#000000">file of the applet( not .java file)</font>
+<font color="#000000">height &amp;&amp; width= provide the context area of applet in </font><font color="#ff0000">HTML </font><font color="#000000">page</font>
+<font color="#000000">--&gt;</font>
+<font color="#000000">&lt;applet name=</font><font color="#ff00ff">&quot;CommApplet1&quot; </font><font color="#000000">code=</font><font color="#ff00ff">&quot;r4r.co.in.CommApplet1.class&quot; </font><font color="#000000">height=</font><font color="#ff00ff">&quot;200&quot; </font><font color="#000000">width=</font><font color="#ff00ff">&quot;200&quot; </font><font color="#000000">/&gt;</font>
+<font color="#000000">&lt;/body&gt;</font>
+<font color="#000000">&lt;/html&gt;</font>
+</pre>
+</div>
+
+<h3>AppletStub Interface</h3>
+
+<p>When an applet is first created, an applet stub is attached to it using the applet's setStub method because stub serves as the 
+interface between the applet and the browser or applet viewer in which the application is running. AppletStub interface contain some of method like-</p>
+<ol><li><i>void appletResize(int width, int height):</i> used to when the applet wants to be resized.</li>
+<li><i>getAppletContext():</i> use to handler the applet's context.</li>
+<li><i>getParameter(String name):</i> use to get the named/string  parameter from the HTML/Field tag.</li>
+<li><i>isActive():</i> use to determines the state of applet.</li>
+<li><i>getCodeBase():</i> use to gets the URL of applet.</li>
+<li><i>getDocumentBase():</i> use to gets the URL of the document in which the applet is embedded.</li></ol>
+
+<div class="heading">Limitation of Applet</div>
+<p> Applet have some limitation such as </p>
+<ol><li>Since, applet is the platform independent but for running condition it need Java Virtual machine (JVM) or sun's AppletViewer.</li>
+<li>Across internet, it is embedded into HTML page, very bulk process.</li>
+<li>Applets executes under security limitations( sandbox security model) that disallow certain operation and divide into two category-trusted and untrusted applet.</li></ol>
+</div>

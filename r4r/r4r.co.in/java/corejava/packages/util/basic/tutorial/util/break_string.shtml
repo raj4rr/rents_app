@@ -1,0 +1,141 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD>
+<meta http-equiv="Content-Language" content="en-us">
+<TITLE>Breaking the string,how to break string in two part</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name="description" CONTENT="Breaking the string,how to break string in two part" >
+<meta name="keywords" CONTENT="Breaking the string,how to break string in two part">
+
+<!-- header start-->	
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>Java Programing laungage</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+            <img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+            <a href="/java/">Java</a>
+              <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/java/corejava">Core Java</a>
+               <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/java/corejava/packages">Package</a>
+                     <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/java/corejava/packages/lang">Java Util Package</a>
+              </div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/corejava/packages/util/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	 
+
+<div class="heading">Break the String into Words</div>
+<p>In this program, we will be learn that how we can break string into the words. The <b>java.util.*;</b>package is provide a method to breaking the string into words.</p>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="associate_value_withobject.shtml" title="associate value with object">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="compare_array.shtml" title="compare array">Next</a></td>
+  </tr> 
+</table>
+<!-- header End-->	
+<p>This program takes a string from user and breaks it into words. The given string has been broken into words based on the blank spaces between the words. This program also counts the number of words present in the string. Following are some </p>
+
+<div class="heading">Methods and APIs Description</div>
+<br>
+<h3>StringTokenizer(String str)</h3>
+<p>This constructor is used to creates token of the given string. It is takeing a string type value as a parameter and tokenized it. The passed string is the collection of multiple sets like: Tab character ("\t"), blank space (" "), new line character ("\n") etc.</p>
+
+<h3>hasMoreTokens()</h3>
+<p>This method is used to check the token created by the StringTokenizer() methods. It returns Boolean type value either true or false. If the above method returns true then the nextToken() method is called.</p>
+
+<h3>nextToken()</h3>
+<p>This method returns the tokenized string which is the separate word of the given string. Through the help of the available spaces this method distinguish between words.</p>
+
+<h3>Example</h3>
+<div class="code">
+<PRE>
+<FONT FACE="Courier New">
+<FONT COLOR="#0000ff">package </FONT><FONT COLOR="#000000">r4r;</FONT>
+<FONT COLOR="#0000ff">import </FONT><FONT COLOR="#000000">java.util.*;</FONT>
+<FONT COLOR="#0000ff">import </FONT><FONT COLOR="#000000">java.io.*;</FONT>
+<FONT COLOR="#0000ff">public class </FONT><FONT COLOR="#000000">breakstringtest {</FONT>
+	<FONT COLOR="#ff0000">String </FONT><FONT COLOR="#000000">str;</FONT>
+	  <FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">count = </FONT><FONT COLOR="#800080">0</FONT><FONT COLOR="#000000">;</FONT>
+<FONT COLOR="#0000ff">public static void </FONT><FONT COLOR="#000000">main(</FONT><FONT COLOR="#ff0000">String</FONT><FONT COLOR="#000000">[] args)</FONT>
+<FONT COLOR="#000000">{</FONT>
+
+	<FONT COLOR="#000000">breakstringtest c = </FONT><FONT COLOR="#0000ff">new </FONT><FONT COLOR="#000000">breakstringtest();</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#0000ff">public </FONT><FONT COLOR="#000000">breakstringtest(){</FONT>
+<FONT COLOR="#0000ff">try</FONT><FONT COLOR="#000000">{</FONT>
+<FONT COLOR="#ff0000">InputStreamReader </FONT><FONT COLOR="#000000">isr = </FONT><FONT COLOR="#0000ff">new </FONT><FONT COLOR="#ff0000">InputStreamReader</FONT><FONT COLOR="#000000">(</FONT><FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.in);</FONT>
+<FONT COLOR="#ff0000">BufferedReader </FONT><FONT COLOR="#000000">br = </FONT><FONT COLOR="#0000ff">new </FONT><FONT COLOR="#ff0000">BufferedReader</FONT><FONT COLOR="#000000">(isr);</FONT>
+<FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.print(</FONT><FONT COLOR="#ff00ff">"Enter the String: "</FONT><FONT COLOR="#000000">);</FONT>
+<FONT COLOR="#000000">str = br.readLine();</FONT>
+<FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.println(</FONT><FONT COLOR="#ff00ff">"Enter String is : "</FONT><FONT COLOR="#000000">+ str);</FONT>
+<FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.println(</FONT><FONT COLOR="#ff00ff">"Break this string : "</FONT><FONT COLOR="#000000">);</FONT>
+<FONT COLOR="#ff0000">StringTokenizer </FONT><FONT COLOR="#000000">tok = </FONT><FONT COLOR="#0000ff">new </FONT><FONT COLOR="#ff0000">StringTokenizer</FONT><FONT COLOR="#000000">(str);</FONT>
+<FONT COLOR="#0000ff">while </FONT><FONT COLOR="#000000">(tok.hasMoreTokens()){</FONT>
+<FONT COLOR="#000000">count++;</FONT>
+<FONT COLOR="#000000">str = tok.nextToken();</FONT>
+<FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.println(str);</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.println(</FONT><FONT COLOR="#ff00ff">"Number of Words is : "</FONT><FONT COLOR="#000000">+ count);</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#0000ff">catch</FONT><FONT COLOR="#000000">(</FONT><FONT COLOR="#ff0000">IOException </FONT><FONT COLOR="#000000">e){}</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#000000">}</FONT>
+</FONT>
+</PRE>
+</div>
+<p><i>Output</i></p>
+<div class="output">
+<PRE>
+<FONT FACE="Courier New">
+<FONT COLOR="#000000">Enter the </FONT><FONT COLOR="#ff0000">String</FONT><FONT COLOR="#000000">: Ram is a god</FONT>
+<FONT COLOR="#000000">Enter </FONT><FONT COLOR="#ff0000">String </FONT><FONT COLOR="#000000">is : Ram is a god</FONT>
+<FONT COLOR="#000000">Break </FONT><FONT COLOR="#0000ff">this </FONT><FONT COLOR="#000000">string :</FONT>
+<FONT COLOR="#000000">Ram</FONT>
+<FONT COLOR="#000000">is</FONT>
+<FONT COLOR="#000000">a</FONT>
+<FONT COLOR="#000000">god</FONT>
+<FONT COLOR="#ff0000">Number </FONT><FONT COLOR="#000000">of Words is : </FONT><FONT COLOR="#800080">4</FONT>
+</FONT>
+</PRE>
+</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="associate_value_withobject.shtml" title="associate value with object">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="compare_array.shtml" title="compare array">Next</a></td>
+  </tr> 
+</table>
+<!-- Footer Start-->
+		</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->

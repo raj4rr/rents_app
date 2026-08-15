@@ -1,0 +1,149 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>Php fileinclusion|fileinclusion in php|php tutorial</TITLE>
+<META content=r4r.co.in name=owner>
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="Php fileinclusion-learn with r4r php tutorial covers all  topics of php from basics concept to higher level php
+best examples interview questions in easy and short way" >
+<meta name="keywords" CONTENT="Php fileinclusion, Introduction to PHP,How to Start PHP ,Syntax In PHP ,Variable Types In PHP,Constants In PHP ,Operator In PHP
+,Decision Making In PHP,Loop Types In PHP,Arrays In PHP,Arrays function,Strings In PHP,string function,GET & POST,File Inclusion In PHP
+Files & I/O In PHP,Functions In PHP">
+<META content="Rajesh Kumar" name=author>
+<!-- header start-->	
+
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>PHP Programing language</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+            <img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+            <a href="/php/">PHP</a>
+              </div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/php/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	 
+
+	   	   <div class="heading">File Inclusion in PHP</div>
+
+		   <table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="php_get&post.shtml" title="PHP Get&amp;Post">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="php_io.shtml" title="PHP I/O">Next</a></td>
+  </tr>
+</table>
+
+<h3>File Inclusion</h3>
+<p>In PHP, the content of php file include to another php file before the server execution. It help to create elements, functions, header or footers etc that can used again and again in multiple pages. If any changes are required then only included file changed this makes easier to the developer.</p>
+<i>There are two functions  that are used to include a file:</i>
+<ol>
+<li>The include() Function</li>
+<li>The require() Function</li>
+</ol>
+<p><i>Include() Function:</i> You can include the content of one PHP file into another PHP file. It only produce a warning (E_WARNING) and the script will continue. Including files is very useful when you want to include the same PHP, HTML, or text on multiple pages of a website.</p>
+<h3>Example:</h3>
+
+<div class="code">
+<pre>
+<font color="#000000">test.php code:</font>
+
+<font color="#0000ff">&lt;html&gt;</font>
+<font color="#0000ff">&lt;head&gt;&lt;title&gt;</font><font color="#000000">Include() in Php</font><font color="#0000ff">&lt;/title&gt;</font>
+<font color="#0000ff">&lt;/head&gt;</font>
+<font color="#0000ff">&lt;body </font><font color="#ff0000">bgcolor</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;#FFFF99&quot;</font><font color="#0000ff">&gt;</font>
+<font color="#800000">&lt;?php </font>
+<font color="#0000ff">include</font><font color="#800000">(</font><font color="#ff00ff">&quot;abc.php&quot;</font><font color="#800000">);</font>
+<font color="#800000">?&gt;</font>
+<font color="#0000ff">&lt;p&gt;</font><font color="#000000"> Other content of the file</font><font color="#0000ff">&lt;/p&gt;</font>
+<font color="#0000ff">&lt;/body&gt;</font>
+<font color="#0000ff">&lt;/html&gt;</font>
+</pre>
+
+<pre>
+<font color="#000000">abc.php code:</font>
+
+<font color="#0000ff">&lt;a </font><font color="#ff0000">href</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;/&quot;</font><font color="#0000ff">&gt;</font><font color="#000000">Home</font><font color="#0000ff">&lt;br/&gt;&lt;/a&gt;</font>
+<font color="#0000ff">&lt;a </font><font color="#ff0000">href</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;/profile/index.shtml&quot;</font><font color="#0000ff">&gt;</font><font color="#000000">About Us</font><font color="#0000ff">&lt;br/&gt;&lt;/a&gt;</font>
+<font color="#0000ff">&lt;a </font><font color="#ff0000">href</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;/profile/careers.shtml&quot;</font><font color="#0000ff">&gt;</font><font color="#000000">Careers</font><font color="#0000ff">&lt;br/&gt;&lt;/a&gt;</font>
+<font color="#0000ff">&lt;a </font><font color="#ff0000">href</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;/profile/contact_us.shtml&quot;</font><font color="#0000ff">&gt;</font><font color="#000000">Contact Us</font><font color="#0000ff">&lt;/a&gt;</font>
+</pre>
+</div>
+<p><i>Output:</i>
+<div class="output">
+<div class="image">
+<img src="images/include_file.gif">
+</div>
+</div>
+</p>
+
+<p><i>Require() Function:</i> It takes all the text/code/markup that exists in the specified file and copies it into the file that uses the include statement. It will produce a fatal error (E_COMPILE_ERROR) and stop the script.</p>
+<h3>Example:</h3>
+<div class="code">
+<pre>
+<font color="#000000">test.php code:</font>
+
+<font color="#0000ff">&lt;html&gt;</font>
+<font color="#0000ff">&lt;head&gt;&lt;title&gt;</font><font color="#000000">Require() in Php</font><font color="#0000ff">&lt;/title&gt;</font>
+<font color="#0000ff">&lt;/head&gt;</font>
+<font color="#0000ff">&lt;body  </font><font color="#ff0000">bgcolor</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;#FFCCFF&quot;</font><font color="#0000ff">&gt;</font>
+<font color="#800000">&lt;?php </font>
+<font color="#0000ff">require</font><font color="#800000">(</font><font color="#ff00ff">&quot;abc.php&quot;</font><font color="#800000">);</font>
+<font color="#800000">?&gt;</font>
+<font color="#0000ff">&lt;p&gt;</font><font color="#000000"> Other content of the file</font><font color="#0000ff">&lt;/p&gt;</font>
+<font color="#0000ff">&lt;/body&gt;</font>
+<font color="#0000ff">&lt;/html&gt;</font>
+</pre>
+
+<pre>
+<font color="#000000">abc.php code:</font>
+
+<font color="#0000ff">&lt;a </font><font color="#ff0000">href</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;/&quot;</font><font color="#0000ff">&gt;</font><font color="#000000">Home</font><font color="#0000ff">&lt;br/&gt;&lt;/a&gt;</font>
+<font color="#0000ff">&lt;a </font><font color="#ff0000">href</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;/profile/index.shtml&quot;</font><font color="#0000ff">&gt;</font><font color="#000000">About Us</font><font color="#0000ff">&lt;br/&gt;&lt;/a&gt;</font>
+<font color="#0000ff">&lt;a </font><font color="#ff0000">href</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;/profile/careers.shtml&quot;</font><font color="#0000ff">&gt;</font><font color="#000000">Careers</font><font color="#0000ff">&lt;br/&gt;&lt;/a&gt;</font>
+<font color="#0000ff">&lt;a </font><font color="#ff0000">href</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;/profile/contact_us.shtml&quot;</font><font color="#0000ff">&gt;</font><font color="#000000">Contact Us</font><font color="#0000ff">&lt;/a&gt;</font>
+</pre>
+</div>
+<p><i>Output:</i>
+<div class="output">
+<div class="image">
+<img src="images/require_file.gif">
+</div>
+</div>
+</p>
+
+ <table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="php_get&post.shtml" title="PHP Get&amp;Post">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="php_io.shtml" title="PHP I/O">Next</a></td>
+  </tr>
+</table>
+
+</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/webtechnology/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->

@@ -1,0 +1,152 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>Read Data from table using OleDBDataReader</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="Read Data from table using OleDBDataReader" >
+<meta name="keywords" CONTENT="Read Data from table using OleDBDataReader">
+
+<!-- header start-->	
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>ADO.NET</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+            <img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+            <a href="/ado.net">ADO.Net</a>
+              <img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+
+			  <a href="/ado.net/01/tutorial/ado.net/">ADO.NET Tutorials</a>
+
+              </div>
+
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/ado.net/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	 
+<!-- header End-->	
+<div class="heading">Read Data from table using OleDBDataReader</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="access.shtml" title="Connecting to MS Access Database in ASP .NET">Previous</a>
+	</td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="sql.shtml" title="Connecting to MS SQL Database in ASP .NET">Next</a></td>
+  </tr> 
+</table>
+
+<div class="code">
+<pre>
+<font color="#000000">protectedvoidPage_Load(objectsender,EventArgse)</font>
+<font color="#000000">{</font>
+<font color="#008000">//ConnectionString</font>
+<font color="#000000">OleDbConnectionNewConnection=</font><font color="#0000ff">new</font>
+<font color="#000000">OleDbConnection</font>
+<font color="#000000">(@</font><font color="#ff00ff">&quot;Provider=Microsoft.Jet.OLEDB.4.0;DataSource=D:\newDtabse.mdb&quot;</font><font color="#000000">);</font>
+<font color="#000000">NewConnection.Open();</font><font color="#008000">//ConnectionOpen</font>
+<font color="#008000">//CommandQuery</font>
+<font color="#000000">OleDbCommandcmd=newOleDbCommand</font>
+<font color="#000000">(</font><font color="#ff00ff">&quot;Select*fromemp_tbl&quot;</font><font color="#000000">,NewConnection);</font>
+<font color="#000000">OleDbDataReaderdr=cmd.ExecuteReader();</font>
+<font color="#0000ff">if</font><font color="#000000">(dr.HasRows)</font>
+<font color="#000000">{</font>
+<font color="#000000">GridView1.DataSource=dr;</font><font color="#008000">//UsingGridViewtoShowthedata.</font>
+<font color="#000000">GridView1.DataBind();</font>
+<font color="#000000">}</font>
+<font color="#000000">NewConnection.Close();</font><font color="#008000">//ConnectionClose</font>
+<font color="#000000">}</font>
+</pre>
+</div>
+
+<div class="heading">
+To read data from Access database using an OleDbCommand object</div>
+<div class="code">
+<pre>
+<font color="#000000">publicpartialclass_Default:</font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Web</font><font color="#000000">.</font><font color="#008080">UI</font><font color="#000000">.</font><font color="#808000">Page</font>
+<font color="#000000">{</font>
+<font color="#000000">protectedvoidPage_Load(objectsender,EventArgse)</font>
+<font color="#000000">{</font>
+<font color="#008000">//ConnectionString</font>
+<font color="#000000">OleDbConnectionNewConnection=</font><font color="#0000ff">new</font>
+<font color="#000000">OleDbConnection</font>
+<font color="#000000">(@</font><font color="#ff00ff">&quot;Provider=Microsoft.Jet.OLEDB.4.0;DataSource=D:\newDtabse.mdb&quot;</font><font color="#000000">);</font>
+<font color="#000000">OleDbCommandcmd=NewConnection.CreateCommand();</font><font color="#008000">//CreatingCommandObject</font>
+<font color="#000000">cmd.CommandText=</font><font color="#ff00ff">&quot;select*fromemp_tbl&quot;</font><font color="#000000">;</font><font color="#008000">//CommandText</font>
+<font color="#000000">NewConnection.Open();</font><font color="#008000">//ConnectionOpen</font>
+<font color="#000000">OleDbDataReaderdr=cmd.ExecuteReader();</font>
+<font color="#0000ff">if</font><font color="#000000">(dr.HasRows)</font>
+<font color="#000000">{</font>
+<font color="#000000">GridView1.DataSource=dr;</font><font color="#008000">//UsingGridViewtoShowthedata.</font>
+<font color="#000000">GridView1.DataBind();</font>
+<font color="#000000">}</font>
+<font color="#000000">NewConnection.Close();</font><font color="#008000">//ConnectionClose</font>
+<font color="#000000">}</font>
+<font color="#000000">}</font>
+</pre>
+</div>
+
+<div class="heading">ExecuteScaler</div>
+<p>ExecuteScalar() in SqlCommand Object is used for get a single value from Database after its execution.
+It executes SQL statements or Stored Procedure and returned a scalar value on first column of first row in the Result Set.
+If the Result Set is empty it will return a Null reference.
+It is very useful to use with aggregate functions like Count(*) or Sum() etc. When compare to ExecuteReader() , ExecuteScalar() uses fewer System resources.</p>
+
+<div class="code">
+<pre>
+<font color="#0000ff">public </font><font color="#000000">partial </font><font color="#0000ff">class </font><font color="#000000">_Default : </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Web</font><font color="#000000">.</font><font color="#008080">UI</font><font color="#000000">.</font><font color="#808000">Page </font>
+<font color="#000000">{</font>
+<font color="#0000ff">protected void </font><font color="#000000">Page_Load(</font><font color="#0000ff">object </font><font color="#000000">sender, </font><font color="#808000">EventArgs </font><font color="#000000">e)</font>
+<font color="#000000">{</font>
+<font color="#000000">OleDbConnection NewConnection = </font><font color="#0000ff">new</font>
+<font color="#000000">OleDbConnection</font>
+<font color="#000000">(@</font><font color="#ff00ff">&quot;Provider=Microsoft.Jet.OLEDB.4.0; Data Source = D:\newDtabse.mdb&quot;</font><font color="#000000">);</font>
+<font color="#000000">OleDbCommand cmd = NewConnection.CreateCommand();</font>
+<font color="#000000">cmd.CommandText = </font><font color="#ff00ff">&quot;select count(*) from emp_tbl&quot;</font><font color="#000000">;</font>
+<font color="#000000">NewConnection.Open();</font>
+<font color="#0000ff">int </font><font color="#000000">count =(</font><font color="#0000ff">int</font><font color="#000000">)cmd.ExecuteScalar();</font>
+<font color="#000000">Label1.</font><font color="#008080">Text </font><font color="#000000">= count.ToString();</font>
+<font color="#000000">}</font>
+<font color="#000000">}</font>
+</pre>
+</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="access.shtml" title="Connecting to MS Access Database in ASP .NET">Previous</a>
+	</td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="sql.shtml" title="Connecting to MS SQL Database in ASP .NET">Next</a></td>
+  </tr> 
+</table>
+
+<!-- Footer Start-->		
+		</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/dotnet/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->

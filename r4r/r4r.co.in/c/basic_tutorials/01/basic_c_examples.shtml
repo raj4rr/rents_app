@@ -1,0 +1,759 @@
+<html>
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>Programming fundamental</title>
+<meta name="description" CONTENT="Learn basic programming in C with examples,Arrays,Learn array basics in C with examples,Declaring the array,some rules on array declaration,Initializing the array,Character arrays in C,Passing value in array,Functions,Pointers,Union,Data types,Structures,Preprocessors">
+<meta name="keywords" CONTENT="Basic examples of C,C examples,Arrays,Declaring the array,Initializing the array,Passing value in array,array reprentation in memory,multidimensional array,array of pointers,array of structures,Loops,Functions,Data types,C constants,Union,Preprocessor">
+<META content="Rajesh Kumar" name=author>
+
+</head>
+<body>
+<p align="center"><font color="#000080"><u><b>Programming Fundamental<br></p>
+</b></u>
+<p align="left">Programming is a way to give the instruction to the computer to perform 
+specific tasks. We have to know that what output we want and what we should have 
+as input for that. We have to know that what logic we provide for better output.</p>
+<p align="center"><b> <u>1. History Of C Language</u></b></p>
+<p align="left">
+</font><font color="#FF0000">
+Ken Thompson </font><font color="#000080">developed </font>
+<font color="#FF0000">B language </font><font color="#000080">then </font>
+<font color="#FF0000">Dennis Ritchie</font><font color="#000080"> give some advance 
+features, functionality to B Language for developing C.
+C language is developed by Dennis Ritchie in 1972. C language depends on ANSI 
+(American National Standard Institute). ANSI is a standard that is made for 
+every compilers working in same manner. This standard tells what the language 
+should do and what is happening. 
+Some C programs are not portable such as if we make it on Microsoft windows then 
+we cant move it on Apple Macintosh or IBM operating system.</font></p>
+<p align="center"><font color="#000080"><b>2.</b> <u><b>About C languag</b></u>e</font></p>
+<ul>
+	<li>
+	<p align="left"><font color="#000080">Powerful features as simple syntax, 
+    portability and improvability etc.</font></p></li>
+	<li>
+	<p align="left"><font color="#000080">C is a <b>case-sensitive</b> language.</font></p>
+	</li>
+	<li>
+	<p align="left"><font color="#000080">C has 32 keywords.</font></p></li>
+	<li>
+	<p align="left"><font color="#000080">C language is widely used in the development of operating systems. An Operating 
+System (OS) is a software (collection of programs) that controls the various 
+functions of a computer.</font></p></li>
+	<li>
+	<p align="left"><font color="#000080">C is a <b>structured programming language</b>, which means that it allows you to 
+develop programs using well-defined control structures</font></p></li>
+	<li>
+	<p align="left"><font color="#000080">C is often called a middle-level language.</font></p>
+	</li>
+</ul>
+<p align="left"><font color="#000080"><u>Areas where C language is used</u>: <br>
+&nbsp;Embedded Systems <br>&nbsp;Computer Graphics<br>&nbsp;Game Programming <br>
+&nbsp;others</font></p>
+<p align="left"><font color="#000080"><u>Why you should learn C language</u>?
+<br>&nbsp;C is simple in syntax. <br>&nbsp;C programs run faster than programs written in most other languages.<br>&nbsp;C enables easy communication.</font></p>
+<p align="left"><font color="#000080"><u>Characteristics of C language</u> :<br>&nbsp;It is a portable language. Portable means we can run the programs on verity of 
+computers.<br>&nbsp;C is a structured language.<br>&nbsp;C is a small size programming language.<br>&nbsp;C language has pointer implementation.</font></p>
+<p align="center"><u><b><font color="#000080">Advantages Of C Language</font></b></u></p>
+<ul>
+<p align="left"><font color="#000080"><li>C is a building block for many other 
+currently known languages. Take a look at Python for example a fully 
+Object-Oriented High-Level programming language. It is written in C (perhaps C++ 
+too). That tells you if you ever want to know what is going on under the hood in 
+other languages; understanding C and how it works is essential.<p><li>C is a 
+compiled language versus an interpreted language. Explained simply, this means 
+that the code is compacted into executable instruction (in the case of windows 
+anyway) rather than being &quot;translated&quot; on the fly at run time. This feature also 
+lends heavily to the speed of C programs.</li><br>
+  <li>A lot of libraries are written in C.</li>
+  <li>The main advantages of C language is that there is not much 
+    vocabulary to learn, and that the programmer can arrange for the program is 
+    very fast. C programming language is very easier to learn. C  programming 
+    language is still a practical and compact language. It comprises a good 
+    semantic. Syntax is of C is clear also. C language is very near to assembly 
+    programming i.e. the hard use of pointers for example is a very powerful 
+    mechanism.</li> <br>
+<li>C has features that allow the programmer to organize programs in a 
+    clear, easy, logical way. For example, C allows meaningful names for 
+    variables without any loss of efficiency, yet it gives a complete freedom of 
+    programming style, including flexible ways of making decisions, and a set of 
+    flexible commands for performing tasks repetitively (<code>for</code>, <code>
+    while</code>, <code>do</code>).</li> <br>
+<li>C is a <b>portable</b> language.</ul>
+</font>
+<ul>
+<font color="#000080">
+<p align="center"><b><u>Disadvantages Of C 
+Language:</u></b><br>
+&nbsp;<li>
+<p align="left">C does not have OOPS feature that's why C++ is developed. If you 
+know any other modern programming language then you already know its 
+disadvantages.<br>
+<li>There is no runtime checking in C language.</li><br>
+<li>There is no strict type checking (<b>for ex:</b> we can pass an integer value for the 
+floating data type).</li><br>
+<li>C doesn't have the concept of namespace.</li><br>
+<li>C doesn't have the concept of constructors and destructors.</li></p>
+</font></p>
+</p>
+</li>
+</ul>
+<p align="center"><font color="#000080"><b>3.</b> <u><b>Understanding The Program 
+Flow</b></u> </font></p>
+<p align="left"><b><font color="#000080"><u>#include&lt; stdio.h&gt; :</u></font></b></p>
+<p align="left"><font color="#000080"><b><u>#include</u></b> :<br>
+The #include in the first line of the program is called a <b>preprocessor 
+directive</b>. A preprocessor is a program that processes the C program before the 
+compiler. All the lines in the C program beginning with a hash (#) sign are 
+processed by the preprocessor.</font></p>
+<p align="left"><b><u><font color="#000080">s</font></u></b><font color="#000080"><b><u>tdio.h</u> 
+:</b><br>stdio.h refers to a file supplied along with the C compiler. It contains 
+ordinary C statements. These statements give information about many other 
+functions that perform input-output roles.<br>OR<br>stdio.h, stands for &quot;<b>Standard 
+Input/Output Header</b>&quot;, is the header in the C 
+standard that contains macro definitions, constants, and declarations of 
+functions and types used for various standard input and output operations.<br>
+All library functions in C are declared in header 
+files. <br><u><b>For ex.</b></u> Stdio.h provide the information to printf() that what should it do.</font></p>
+<p align="left"><font color="#000080"><b><u>main() function</u> :</b><br>
+The next statement is the main() function. As you already know, this is the 
+place where the execution of the C program begins. Without this function, your C 
+program cannot execute. </font></p>
+<p align="left"><font color="#000080"><b><u>Open and closing brasses { }</u> :</b><br>Open brasses tells beginning of function and closing brasses perform ending of 
+that function.</font></p>
+<p align="center"><u><b><font color="#000080">Data Types In C Language&nbsp;
+</font></b></u></p>
+<p align="left"><font color="#000080">A C language programmer has to tell the 
+system before-hand, the type of numbers or characters he is using in his 
+program. these are data types. There are many data types in C language. Data 
+types are used to store various types of data that is processed by program. C 
+has a concept of '<i>data types</i>' which are used to define a variable before 
+its use.</font> <font color="#000080">A C programmer has to use appropriate data 
+type as per his requirement. A C programmer has to employ proper data type as 
+per his requirement. C supports various data types such as&nbsp;character, integer 
+and floating-point types. Please note that there is not a Boolean data type.<br>
+All the data types defined by C are made up of units of memory called <b>
+<i class="FIRSTTERM">bytes</i></b>.<br>
+In order of size, starting with the smallest, the integer types are
+<b class="COMMAND">char</b>, <b class="COMMAND">short</b>, <b class="COMMAND">
+int</b>, <b class="COMMAND">long</b> and <b class="COMMAND">long long</b>. The 
+smaller types have the advantage of taking up less memory, the larger types 
+incur a performance penalty.</font> <font color="#000080"><br>
+<br>
+C has different data types for different types of data and they are classified 
+as:</font></p>
+<ul>
+	<li>
+	<p align="left"><font color="#000080">Primary Data Type</font></p></li>
+	<li>
+	<p align="left"><font color="#000080">Secondary Data Types <br>
+    <br>
+	These data types are further divided as.</font></p></li>
+</ul>
+<p align="left"><font color="#000080">
+<img border="0" src="file:///C:/Documents%20and%20Settings/Administrator/Desktop/img%20modi.JPG" width="448" height="323"><br>
+<br>
+<b>Primary Data Types :<br>
+1.<u> Integer Data Type</u> : </b>Integers are whole numbers with a range of values,<b>
+</b>Generally an integer occupies 2 bytes memory space and its value range 
+limited to -32768 to +32768. To control the range of numbers and storage space, 
+C has three classes of integer storage namely short int, int and long int. All 
+three data types have signed and unsigned forms. Integer Data Types are denoted 
+by <b>int.</b>&nbsp; <br>
+<b><br>
+Syntax For Integer Data Types&nbsp; :<br>
+</b></font><font color="#FF0000"><b>Syntax</b> <b>:</b> int &lt;variable name&gt;;</font><font color="#000080"><b><br>
+<br>
+For Example :<br>
+</b>
+<FONT FACE="Times New Roman">
+<FONT COLOR="#0000ff">int<b> </b> </FONT><b><FONT COLOR="#000000">num1;</FONT><br>
+</b>
+<FONT COLOR="#0000ff">short int<b> </b> </FONT><b><FONT COLOR="#000000">num2;</FONT><br>
+</b>
+<FONT COLOR="#0000ff">long int<b> </b> </FONT><b><FONT COLOR="#000000">num3;</FONT></b></FONT></font><div id="container_wrap">
+	<div id="container">
+		<div id="content">
+			<div class="modfloat full">
+				<div class="module moduleImage" id="mod_2848407">
+					<h2 class="subtitle"><font size="3" color="#000080">Integer 
+					Data Type Memory Allocation :</font></h2>
+					<ul>
+						<li>
+						<p class="subtitle"><font color="#000080">short int (1 
+						Byte)</font></li>
+						<li>
+						<p class="subtitle"><font color="#000080">int (2 Bytes)</font></li>
+						<li>
+						<p class="subtitle"><font color="#000080">long int (4 
+						Bytes)</font></li>
+					</ul>
+					<p class="subtitle"><b><font color="#000080">2. <u>Floating Point 
+					Types</u> : </font></b><font color="#000080">The float data type is used to store 
+					fractional numbers (real numbers). Floating point numbers 
+					are denoted by the keyword float. The <b>double</b> is same as 
+					float but with longer precision and <b>takes double space</b> (8 
+					bytes) than float. </font> </p>
+					<p class="subtitle"><font color="#000080">
+<b>Syntax For Floating Point Types&nbsp; :<br>
+</b></font><font color="#FF0000"><b>Syntax</b> <b>: </b>float &lt;variable name&gt;;</font></p>
+					<p class="subtitle"><b><font color="#000080">For Example :<br>
+					</font></b><FONT FACE="Times New Roman">
+					<FONT COLOR="#0000ff">float </FONT><b>num1;</b><br>
+<FONT COLOR="#0000ff">double </FONT><b><FONT COLOR="#000000">num2;</FONT></b><br>
+<FONT COLOR="#0000ff">long double </FONT><b><FONT COLOR="#000000">num3;</FONT></b></FONT></p>
+					<p class="subtitle"><b><font color="#000080">Floating 
+					Point Data Type Memory Allocation :</font></b></p>
+					<ul>
+						<li>
+						<p class="subtitle">
+						<FONT FACE="Times New Roman" color="#000080">float (4 
+						bytes)</FONT></p></li>
+						<li>
+						<p class="subtitle">
+						<font color="#000080" face="Times New Roman">double (8 
+						bytes)</font></p></li>
+						<li>
+						<p class="subtitle">
+						<font color="#000080" face="Times New Roman">long double 
+						(10 bytes)</font></p></li>
+					</ul>
+					<p class="subtitle"><b>
+					<font face="Times New Roman" color="#000080">3.<u>Character 
+					Types</u> : </font></b><font color="#000080">Character type 
+					variable can hold a single character. As there are singed 
+					and unsigned int (either short or long), in the same way 
+					there are signed and unsigned chars; both occupy 1 byte 
+					each, but having different ranges. Unsigned characters have 
+					values between <b>0 and 255</b>, signed characters have 
+					values from <b>128 to 127</b>. Character is declared by <b>
+					char</b>.</font></p>
+					<p class="subtitle"><font color="#000080">
+<b>Syntax For Character Types&nbsp; :<br>
+</b></font><font color="#FF0000"><b>Syntax</b> <b>: </b>char &lt;variable name&gt;;</font><font color="#000080"><br>
+					<FONT FACE="Times New Roman"><br>
+					<b>For Example :<br>
+					</b></FONT></font><FONT FACE="Times New Roman"><b>
+					<font color="#0000FF">
+					char</font><font color="#000080">
+</font></b><font color="#000080">
+					<b>ch='m';<br>
+					</b></font><b><font color="#0000FF">
+					char</font><font color="#000080">
+					name='P';</font></b></FONT></p>
+					<p class="subtitle"><b>
+					<font face="Times New Roman" color="#000080"><u>Void Type</u> :<br>
+					</font></b><font color="#000080">The void type has no values 
+					therefore we cannot declare it as variable as we did in case 
+					of integer and float. The void data type is usually used 
+					with function to specify its type. Like in our first C 
+					program we declared <b>main()</b> as void type because it 
+					does not return any value.</font></p>
+					<p class="subtitle"><b><font color="#000080">Secondary Data 
+					Types :<br>
+					1. <u>Arrays</u> : </font></b><font color="#000080">An array in C 
+					language is a <b>collection of</b> <b>similar data-type,</b> 
+					means an array can hold value of a particular data type for 
+					which it has been declared. Arrays can be created from any 
+					of the C data-types int, float, and char. So an integer 
+					array can only hold integer values and cannot hold values 
+					other than integer. <br>
+                    <br>
+					<strong>Types of Arrays:</strong></font></p>
+					<ul>
+						<li>
+						<p class="subtitle"><font color="#000080">
+						<strong style="font-weight: 400">One Dimensional Array</strong></font></p>
+						</li>
+						<li>
+						<p class="subtitle"><font color="#000080">
+						<strong style="font-weight: 400">Two Dimensional Array</strong></font></p>
+						</li>
+						<li>
+						<p class="subtitle"><font color="#000080">
+						<strong style="font-weight: 400">Multi Dimensional Array</strong></li></ul>
+					<p><strong>Declaration Of Arrays :<br>
+					</strong>
+					</font><font color="#FF0000">
+						<b>Syntax :</b> type var_name[size];</font><font color="#000080"><br>
+					<br>
+					<b>2.</b></font><strong><font color="#000080"><u>Structures</u> : </font></strong><font color="#000080">We used variable in our C program to 
+											store value but one variable can 
+											store only single piece information 
+											(an integer can hold only one 
+											integer value) and to store similar 
+											type of values we had to declare 
+											many variables. To overcome this 
+											problem we used array which can hold 
+											numbers of similar data type. But 
+											array too have some limitations, 
+											like in our real world application 
+											we deal with set of dissimilar data 
+											types and single array cannot store 
+											dissimilar data.<br>
+					<b>For example :</b> Think about storing book information or 
+					product information, a product can have different 
+					information to store like <strong>product code (an integer), 
+					product name (a char array), product price (a float)</strong> 
+					etc. And to store 20 products information we can declare 
+					integer array for product code, 2D character array for 
+					storing product name and float array to store product price. 
+					This approach definitely achieves your goals, but try to 
+					consider these things too. What if you wanted to add 
+					more products than 20, what if you want to add more 
+					information on products like stock, discount, tax etc? It 
+					will become difficult to differentiate these variables with 
+					other variables declared for calculation etc.<br>
+
+											To solve this problem C language has 
+											a unique data type called <strong>
+											Structure</strong>. C structure is 
+											nothing but collection of different 
+											related data types. If we are using 
+											C structure then we are combining 
+											different related data types in one 
+											group so that we can use and manage 
+											those variables easily. Here related 
+											data type means, a structure holding 
+											information about book will contains 
+											variable and array related to book.</font></p>
+					<p class="subtitle"><b><font color="#000080">Syntax For 
+					Structures :&nbsp;<br>
+					</font></b><font color="#FF0000"><b>Syntax</b> <b>: <br>
+
+					</b><FONT FACE="Times New Roman">
+					<FONT COLOR="#0000ff">struct </FONT><FONT COLOR="#000080">structure_name </FONT>
+
+</FONT></font><FONT FACE="Times New Roman">
+					<font color="#000080"><br>
+					</font><font color="#FF0000">
+<FONT COLOR="#000080">{ <br>
+					data type member1; <br>
+					data type member2; <br>
+					 <br>
+					 <br>
+					};<br>
+					<b>For Example :<br>
+					</b>&nbsp;</FONT></font></FONT><div id="container_wrap0">
+						<div id="container0">
+							<div id="content0">
+								<div class="modfloat full">
+									<div class="module moduleText color0" id="mod_7133026">
+										<div class="txtd" id="txtd_7133026" style="WORD-WRAP: break-word">
+											<font color="#FF0000">
+											<FONT COLOR="#0000ff" face="Times New Roman">struct</FONT></font>
+											<b>products </b><br>
+											{ <br>
+											<font color="#0000FF">char</font> <b>
+											name[20];</b><br>
+											<font color="#0000FF">int </font><b>
+											stock;</b><br>
+											<font color="#0000FF">float </font>
+											<b>price;</b><br>
+											};<br>
+											<font color="#000080"><b>3. Pointers 
+											: </b>In C a pointer is a variable 
+											that points to or references a 
+											memory location in which data is 
+											stored. Each memory cell in the 
+											computer has an address that can be 
+											used to access that location so a 
+											pointer variable points to a memory 
+											location we can access and change 
+											the contents of this memory location 
+											via the pointer.</font><p><b>
+											<font color="#000080">Pointer 
+											Declaration : </font></b>A pointer 
+											is a variable that contains the 
+											memory location of another 
+											variable.The asterisk tells the 
+											compiler that you are creating a 
+											pointer variable. Finally you give 
+											the name of the variable. <br>
+											<b><font color="#000080"><br>
+											Syntax For 
+											Pointers :&nbsp;</font></b><br>
+											<font color="#FF0000"><b>Syntax :
+											</b></font>
+											<font face="Times New Roman" color="#FF0000">
+											type * variable name;<br>
+											</font>
+											<font face="Times New Roman" color="#000080">
+											<b>For Example :<br>
+
+											</b><FONT COLOR="#0000ff">int </FONT>
+											<b><FONT COLOR="#000000">*ptr; </FONT>
+											</b><br>
+<FONT COLOR="#0000ff">float </FONT><b><FONT COLOR="#000000">*string; </FONT>
+
+											</b><br>
+											<b><FONT FACE="Courier New">
+											<br>
+&nbsp;</FONT></b></font></div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div></div>
+
+					</div></div>
+			</div>
+		</div>
+	</div>
+</div>
+<p align="center"><b><font color="#000080">4. <u>Errors in languages</u></font></b></p>
+<p align="left"><font color="#000080"><u><b>Types Of Errors</b></u> <b>:</b></font></p>
+<ul>
+	<li>
+	<p align="left"><font color="#000080"><b>Syntax Error</b></font></p></li>
+	<li>
+	<p align="left"><font color="#000080"><b>Logical Error</b></font></p></li>
+	<li>
+	<p align="left"><font color="#000080"><b>Runtime Errors</b></font></p></li>
+</ul>
+<p align="left"><font color="#000080"><b>Syntax Errors :</b> If we are missing a semicolon then it is a syntax error.<br>
+<b>Logical Errors:</b> If we want to add two numbers but we are writing result=a*b then 
+this is called a logical error. <br><b>Runtime Errors: </b>When we want to divide a number by zero then the program 
+compiled but not run this is called Runtime Error.</font></p>
+<p align="center"><font color="#000080"><b>5. <u>Data in C</u></b></font></p>
+<p align="left"><font color="#000080"><br>Data is found in 2 forms in C language</font></p>
+<ul>
+	<li>
+	<p align="left"><font color="#000080">Constant</font></p></li>
+	<li>
+	<p align="left"><font color="#000080">Variable</font></p></li>
+</ul>
+<p align="left"><font color="#000080"><b>Constant : </b>The value of constant never be change. We can declare const before 
+or after type. <b>For ex.</b> int const num=56; Or const int num=78; both are 
+correct .<br><b>Variable :</b> Variable may be change at runtime. A variable data object can be 
+modified.<br><b>Types of variables:</b> integer, char, string etc. Each type of variable has their 
+own size and range. <b>For ex.</b> Range of integer is&nbsp;&nbsp;&nbsp; -32768 to 32767 and the range 
+for it is 2, 4 bytes (1 byte = 8 bits).<br>The size of a char is 1 byte. And range is from 1 to 255.<br>
+<b>Note : </b>The initialization of variable is a good process in programming.</font></p>
+<p align="center"><font color="#000080"><b>6.</b> <u><b>Difference Between C and 
+C++</b></u></font></p>
+<ul>
+	<li>
+	<p align="left"><font color="#000080">C is a <b>procedural</b> or <b>structural</b> language while C++ is 
+	<b>Object Oriented Language</b>.</font></p></li>
+	<li>
+	<p align="left"><font color="#000080">In C <b>printf</b> and <b>scanf</b> is used as input and output function while in C++ 
+	<b>cin</b> and 
+<b>cout </b>is used as input and output.</font></p></li>
+	<li>
+	<p align="left"><font color="#000080">In C we use <b>&lt;#include stdio.h&gt;</b> 
+	as preprocessor while in C++ we use <b>&lt;iostream.h&gt;</b>.</font></p>
+	</li>
+	<li>
+	<p align="left"><font color="#000080">C language does not use <b>namespaces</b> while C++ uses namespaces to reduce 
+collision.</font></p></li>
+	<li>
+	<p align="left"><font color="#000080">In C memory is allocated by <b>malloc</b> while in C++ memory is allocated by 
+	<b>new</b> 
+keyword.</font></p></li>
+	<li>
+	<p align="left"><font color="#000080">C does not use the concept of <b>constructor
+	</b>while C++ uses <b>constructor </b>and <b>destructor</b>.</font></p></li>
+	<li>
+	<p align="left"><font color="#000080">C++ adds many more features in C language.</font></p>
+	</li>
+	<li>
+	<p align="left"><font color="#000080">C does not use <b>reference variable</b> 
+	while C++ uses reference variables.</font></p></li>
+	<li>
+	<p align="left"><font color="#000080">C language follows <b>Top Down approach
+	</b>while C++ follows <b>Bottom Up approach</b>. </font></p></li>
+	<li>
+	<p align="left"><font color="#000080">C++ uses the concept of <b>class</b>, 
+	<b>object</b> and <b>inheritance</b> etc while C doesnt use these 
+concepts.</font></p></li>
+</ul>
+<p align="center"><font color="#000080"><u><b>7. Difference between Definition and Declaration</b></u></font></p>
+<p align="left"><font color="#000080">Both objects and functions can be defined and declared. When we declare a 
+variable or object then its <b>attribute</b> is known to the compiler. When we define a 
+object then the attribute is known to the compiler and the object is also be 
+created.
+Definition means where a variable or function is defined in reality and actual 
+memory is allocated for variable or function and the value is given to it.<br>Whenever a variable is defined within the function then it has<b> local scope
+</b>(local scope means that variable con only access locally). While when a variable 
+is defined outside the function then it has<b> global scope </b>(global scope means we 
+can access the variable globally or anywhere).<br>
+<b>Example of definition and declaration : <br>
+<PRE><FONT FACE="Courier New">
+<FONT COLOR="#000000">viod fun(</FONT><FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">num)</FONT>
+<FONT COLOR="#000000">{</FONT>
+<FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">n;  </FONT></FONT></b></font><b><FONT COLOR="#008000" FACE="Times New Roman" size="3">// Declaration of variable</FONT><FONT FACE="Courier New"><font color="#000080">
+<FONT COLOR="#000000">n= num; </FONT></font></FONT><font size="3" COLOR="#008000" face="Times New Roman">// Definition</font><font size="3" COLOR="#008000" face="Times New Roman"> of variable </font><font color="#000080" FACE="Courier New">
+<FONT COLOR="#000000">}
+</FONT></font></b><font color="#000080"><font size="3" face="Times New Roman">Here we are passing integer type parameter to fun function and we are also declaring n as integer which is known by compiler that is called Declaration and are assigning the value num to n is 
+called definition.</font><br>
+<b><font size="3" face="Times New Roman">Example For Global Scope Of Variable : </font></b></font></PRE>
+<p class="MsoNormal"><FONT FACE="Times New Roman">
+<FONT COLOR="#0000ff">int&nbsp;  </FONT><FONT COLOR="#000000">num;</FONT><br>
+<FONT COLOR="#0000ff">char </FONT><FONT COLOR="#000000">letter;&nbsp; </FONT><b>
+<FONT COLOR="#008000">// int num and char are global variables</FONT></b><br>
+<FONT COLOR="#000000">main()</FONT><br>
+<FONT COLOR="#000000">{</FONT><br>
+<FONT COLOR="#000000">num=</FONT><FONT COLOR="#800080">23</FONT><FONT COLOR="#000000">;</FONT><br>
+<FONT COLOR="#000000">letter=A;</FONT><br>
+</FONT>
+<FONT COLOR="#000000"><FONT FACE="Times New Roman">
+}</FONT><FONT FACE="Courier New"><br>
+</FONT>
+</FONT><FONT COLOR="#000080"><b><font size="3" face="Times New Roman">Example For Local Scope Of&nbsp; Variable</font></b></FONT><FONT COLOR="#000080" face="Times New Roman" size="3"><b> :</b></FONT><FONT COLOR="#000000" face="Courier New"><br>
+</FONT><FONT FACE="Times New Roman">
+<FONT COLOR="#000000">main()</FONT><br>
+<FONT COLOR="#000000">{</FONT><br>
+<FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">num;</FONT><FONT COLOR="#008000">&nbsp;
+<b>// int num and char ch are local variables&nbsp;&nbsp;&nbsp;&nbsp; </b>&nbsp;&nbsp; </FONT>
+<br>
+<FONT COLOR="#0000ff">char </FONT><FONT COLOR="#000000">ch;</FONT><br>
+<FONT COLOR="#000000">num=</FONT><FONT COLOR="#800080">2</FONT><FONT COLOR="#000000">;</FONT><br>
+<FONT COLOR="#0000ff">ch</FONT><FONT COLOR="#000000">=a;</FONT><br>
+<FONT COLOR="#000000">}</FONT></FONT><FONT FACE="Courier New"><br>
+&nbsp;</FONT></p>
+
+<p align="center"><b><font color="#000080">8. <u>Storage Classes In C Language</u></font></b><p align="left">
+<font color="#000080"><br>Storage classes define the scope and lifetime of the variable and function 
+within a C program.<br><b>Types of storage classes in C :</b></font></p>
+<ul>
+	<li>
+	<p align="left"><font color="#000080"><b>Auto storage class</b></font></p>
+	</li>
+	<li>
+	<p align="left"><font color="#000080"><b>Register storage class</b></font></p>
+	</li>
+	<li>
+	<p align="left"><font color="#000080"><b>Static storage class</b></font></p>
+	</li>
+	<li >
+	<p align="left"><font color="#000080"><b>Extern storage class<br>
+	</b><u><br>
+	Auto storage class</u> : This is the default storage class for local variable.<br>For ex: 
+	<br>
+	<FONT FACE="Courier New">
+	<FONT COLOR="#000000">{</FONT><br>
+</FONT>
+	<FONT FACE="Times New Roman">
+<FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">num;</FONT><br>
+<FONT COLOR="#0000ff">auto int </FONT><FONT COLOR="#000000">month; </FONT>
+</FONT>
+	<FONT FACE="Courier New">
+	<br>
+<FONT COLOR="#000000">}</FONT><br>
+</FONT><b><u>Register storage class</u></b> : This is used to define the local variable that should 
+be stored in register instead of RAM.<br>For ex.<br>
+<HTML>
+<BODY>
+<FONT FACE="Courier New">
+<FONT COLOR="#000000">{</FONT><br>
+</FONT></font><font face="Times New Roman">r</font><font color="#000080"><FONT FACE="Times New Roman"><FONT COLOR="#000000">egister </FONT><FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">miles;</FONT><br>
+</FONT>
+<FONT FACE="Courier New">
+<FONT COLOR="#000000">}</FONT><br>
+</FONT>
+</BODY>
+</HTML>
+	<b>
+	<u>Static storage class</u></b> : This is the default storage class for global variables.<br>For ex.<br>
+
+<FONT COLOR="#000000" face="Times New Roman">{</FONT><FONT FACE="Courier New"><br>
+
+</FONT>
+<FONT FACE="Times New Roman">
+<FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">num;</FONT><br>
+<FONT COLOR="#0000ff">static int </FONT><FONT COLOR="#000000">count;</FONT><br>
+<FONT COLOR="#000000">main()</FONT><br>
+<FONT COLOR="#000000">printf(%d,count);</FONT><br>
+<FONT COLOR="#000000">}</FONT></FONT><FONT FACE="Courier New"><br>
+
+</FONT>
+
+	<u>Extern storage class</u> : Extern is used to give a reference of a global variable 
+that is visible to all the program files.<br>File 1: <br>
+    main.c<br>
+
+<FONT FACE="Times New Roman">
+<FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">count=</FONT><FONT COLOR="#800080">5</FONT><FONT COLOR="#000000">;</FONT><br>
+    <br>
+
+<FONT COLOR="#000000">main()</FONT><br>
+<FONT COLOR="#000000">{</FONT><br>
+<FONT COLOR="#000000">write_extern();</FONT><br>
+<FONT COLOR="#000000">}</FONT></FONT><FONT FACE="Courier New"><br>
+</FONT>File 2:
+    write.c</font><p align="left"><font color="#000080">
+
+<FONT FACE="Times New Roman">
+<FONT COLOR="#0000ff">void </FONT><FONT COLOR="#000000">write_extern(</FONT><FONT COLOR="#0000ff">void</FONT><FONT COLOR="#000000">);</FONT><br>
+    <br>
+
+<FONT COLOR="#0000ff">extern int </FONT><FONT COLOR="#000000">count;</FONT><br>
+    <br>
+
+<FONT COLOR="#0000ff">void </FONT><FONT COLOR="#000000">write_extern(</FONT><FONT COLOR="#0000ff">void</FONT><FONT COLOR="#000000">)</FONT><br>
+<FONT COLOR="#000000">{</FONT><br>
+<FONT COLOR="#000000">printf(</FONT><FONT COLOR="#ff00ff">"count is %i\n"</FONT><FONT COLOR="#000000">, count);</FONT><br>
+<FONT COLOR="#000000">}</FONT></FONT><FONT FACE="Courier New"><br>
+
+</FONT>Here extern keyword is being used to declare count in another file.</font><p align="center"><font color="#000080">
+    9. <u><b>Types Of operators In C Language</b></u></font></li>
+</ul>
+
+<p align="left"><font color="#000080"><br><u>What is an operator</u>:<br>
+If we take an expression 3+5=8, here 3 and 5 are <b>operands</b> 
+and + is an<b> operator</b>.<br><br>
+&nbsp;<u>Types of operator</u> :<br>
+Arithmetic Operators<br>
+Logical Operators<br>
+Assignment Operators<br>
+Bitwise&nbsp; Operator<br>
+Misc Operator<br>
+<br>
+<b>Arithmetic Operators:<br></b>The arithmetic operators are +, -, *, %, /, ++, 
+--<br><b>For ex. </b>If a variable A=10 then A++=11 and A--=9</font><p align="left"><font color="#000080"><b>Logical (or Relational) Operators</b> 
+:<br>==, !=, &gt;, &lt;, &amp;&amp;, ||, &lt;=, &gt;= are the logical operators.<br>
+<b>For Ex.</b> If variable A =10 and B=23 then (A=B) is false, (A&lt;B) is true etc.</font><p align="left"><font color="#000080">
+<b>Bitwise Operators</b>: Bitwise operators works on bits and perform bit by bit 
+operation.<br>Assume if A = 60; and B = 13; Now in binary format they will be as follows:<br>A = 0011 1100 and B = 0000 1101<br>A&amp;B = 0000 1000</font><p align="left"><font color="#000080">
+<b>Assignment Operators</b> <b>:</b><br>=, +=, -=, /=, %= &amp;=, |= etc are the assignment operators.<br>For Ex. C = A + B will 
+assign value of A + B into C and C+= A means C=C+A.</font><p align="left"><font color="#000080"><b>Misc Operators :</b> 
+These are some special kind of operators such as sizeof(), 
+*(Pointer), &amp;(address).<br>For Ex. sizeof (a) means that If a is integer then it returns value 4.<br>
+<b>*a</b> means a will be a pointer to 'a' variable.</font><p align="center"><font color="#000080"><br>
+<u><b>10. Control Statements In C Language </b></u></font>
+
+<p align="left"><font color="#000080"><br>C language provides 2 types 
+of control statements</font><ul>
+
+<li><font color="#000080">Branching Statements</font></font></li>
+<li>
+<font color="#000080">Looping Statements<br>
+</li></ul>
+<br>
+<b>Branching Statements :</b> In branching statement what action is to be performed is 
+decided.<br><u>Ex. of&nbsp; branching statements are<br>
+</u><br><b>1. If Statements :</b><br><u>Syntax for if statements: </u> 
+	<br>
+
+<FONT FACE="Times New Roman">
+<FONT COLOR="#0000ff">if </FONT><FONT COLOR="#000000">(expression)</FONT><br>
+<FONT COLOR="#000000">statement;</FONT><br>
+
+</FONT>OR<br></font><font color="#0000FF">if</font><font color="#000080"> (</font>expression<font color="#000080">)<br>{<br></font>Block of statements<font color="#000080">;<br>}<br>
+	OR<br></font><font color="#0000FF">if</font><font color="#000080"> (</font>expression<font color="#000080">)<br>{<br></font>Block of statements<font color="#000080">;<br>}<br>
+<FONT FACE="Times New Roman">
+<FONT COLOR="#0000ff">else if</FONT><FONT COLOR="#000000">(expression)</FONT><br>
+<FONT COLOR="#000000">{</FONT><br>
+<FONT COLOR="#000000">Block of statements;</FONT><br>
+<FONT COLOR="#000000">}</FONT><br>
+<FONT COLOR="#0000ff">else</FONT><br>
+<FONT COLOR="#000000">{</FONT><br>
+<FONT COLOR="#000000">Block of statements;</FONT><br>
+<FONT COLOR="#000000">}</FONT><br>
+</FONT><b>2. Switch case statements :</b><br><u><br>
+Syntax for switch Case statements
+<br>
+
+</u>
+<FONT FACE="Times New Roman">
+<FONT COLOR="#0000ff">switch</FONT><FONT COLOR="#000000">( expression )</FONT><br>
+<FONT COLOR="#000000">{</FONT><br>
+</FONT></font>
+<FONT FACE="Times New Roman">[<font color="#000080"><FONT COLOR="#0000ff">case </FONT><FONT COLOR="#000000">constant-expression1: statements1;]</FONT><br>
+<FONT COLOR="#000000">[</FONT></font><font color="#0000FF">case</font><font color="#000080"><FONT COLOR="#000000"> constant-expression2: statements2;] </FONT>
+<br>
+<FONT COLOR="#000000">[</FONT></font><font color="#0000FF">case</font><font color="#000080"><FONT COLOR="#000000"> constant-expression3: statements3;]</FONT><br>
+<FONT COLOR="#000000">[</FONT><FONT COLOR="#0000ff">default</FONT><FONT COLOR="#000000">: statements4;]</FONT><br>
+<FONT COLOR="#000000">}<br>
+<br>
+</FONT></font>
+</FONT><font color="#000080"><b>Looping Statements:</b> In looping statement how many times the action is to be 
+perform.<br><u>Ex. of looping statements</u> :<br><b><br>
+1. While loop:<br></b><u>Syntax for While loop</u><br>
+
+<FONT FACE="Times New Roman">
+<FONT COLOR="#0000ff">while </FONT><FONT COLOR="#000000">( expression )</FONT><br>
+<FONT COLOR="#000000">{</FONT><br>
+<FONT COLOR="#000000">Single statement </FONT><br>
+<FONT COLOR="#000000">or</FONT><br>
+<FONT COLOR="#000000">Block of statements;</FONT><br>
+<FONT COLOR="#000000">}</FONT><br>
+
+</FONT>
+<FONT FACE="Courier New"><br>
+
+</FONT><b>2. Do While loop:</b><br><u>Syntax for Do while loop</u><br>
+
+<FONT FACE="Times New Roman">
+<FONT COLOR="#0000ff">do</FONT><br>
+<FONT COLOR="#000000">{</FONT><br>
+<FONT COLOR="#000000">Single statement</FONT><br>
+<FONT COLOR="#000000">or</FONT><br>
+<FONT COLOR="#000000">Block of statements;</FONT><br>
+<FONT COLOR="#000000">}</FONT><FONT COLOR="#0000ff"><br>
+while</FONT><FONT COLOR="#000000">(expression);</FONT></FONT></font><p align="left"><font color="#000080">
+<b>3. For loop :<br></b><u>Syntax of for loop</u><br>
+<FONT FACE="Times New Roman">
+<FONT COLOR="#0000ff">for</FONT><FONT COLOR="#000000">( expression1; expression2; expression3)</FONT><br>
+<FONT COLOR="#000000">{</FONT><br>
+<FONT COLOR="#000000">Single statement</FONT><br>
+<FONT COLOR="#000000">or</FONT><br>
+<FONT COLOR="#000000">Block of statements;</FONT><br>
+<FONT COLOR="#000000">}</FONT></FONT></font><p align="center"><u><b><font color="#000080">
+
+11. C Input And Output:</font></b></u><p align="left"><font color="#000080">
+<br><b>printf() Function:</b><br>This is one of the most frequently used functions in C for output.<br>
+<b>For ex. </b> 
+	<br>
+
+<FONT FACE="Times New Roman">
+<FONT COLOR="#ff0000">#include </FONT><FONT COLOR="#000000">&lt;stdio.h&gt;</FONT><br>
+<FONT COLOR="#000000">main()</FONT><br>
+<FONT COLOR="#000000">{</FONT><br>
+<FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">num = </FONT><FONT COLOR="#800080">5</FONT><FONT COLOR="#000000">;</FONT><br>
+<FONT COLOR="#0000ff">char </FONT><FONT COLOR="#000000">str[] = </FONT><FONT COLOR="#ff00ff">"mini"</FONT><FONT COLOR="#000000">;</FONT><br>
+<FONT COLOR="#0000ff">char </FONT><FONT COLOR="#000000">ch = </FONT><FONT COLOR="#ff00ff">'s'</FONT><FONT COLOR="#000000">;</FONT><br>
+<FONT COLOR="#0000ff">float </FONT><FONT COLOR="#000000">pi = </FONT><FONT COLOR="#800080">3</FONT><FONT COLOR="#000000">.</FONT><FONT COLOR="#800080">14</FONT><FONT COLOR="#000000">;</FONT><br>
+
+<FONT COLOR="#000000">printf(</FONT><FONT COLOR="#ff00ff">"%d %s %f %c\n"</FONT><FONT COLOR="#000000">, 
+num, str, pi, ch);</FONT><br>
+<FONT COLOR="#000000">}</FONT><br>
+</FONT><br>
+<b>Scanf() Function:</b><br>This is one of the most frequently used functions in C for intput.<br>
+<b>For Ex.</b><br>
+
+<FONT FACE="Times New Roman">
+<FONT COLOR="#ff0000">#include </FONT><FONT COLOR="#000000">&lt;stdio.h&gt;</FONT><br>
+<FONT COLOR="#000000">main()</FONT><br>
+<FONT COLOR="#000000">{</FONT><br>
+<FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">num ;</FONT><br>
+<FONT COLOR="#0000ff">char </FONT><FONT COLOR="#000000">str[] = </FONT><FONT COLOR="#ff00ff">"mini"</FONT><FONT COLOR="#000000">;</FONT><br>
+<FONT COLOR="#0000ff">char </FONT><FONT COLOR="#000000">ch = </FONT><FONT COLOR="#ff00ff">'s'</FONT><FONT COLOR="#000000">;</FONT><br>
+<FONT COLOR="#0000ff">float </FONT><FONT COLOR="#000000">pi = </FONT><FONT COLOR="#800080">3</FONT><FONT COLOR="#000000">.</FONT><FONT COLOR="#800080">14</FONT><FONT COLOR="#000000">;</FONT><br>
+<FONT COLOR="#000000">printf(enter the value </FONT>
+
+</FONT>
+</font>
+<FONT FACE="Times New Roman"><font color="#0000FF">
+of</font><font color="#000080"><FONT COLOR="#0000ff"> </FONT><FONT COLOR="#000000">num);</FONT><br>
+<FONT COLOR="#000000">scanf(%d,&amp;num);
+</FONT>
+</font></FONT><font color="#008000" face="Times New Roman"><b>// take the value 
+of num as input </b><br>
+</font>
+<FONT FACE="Times New Roman">
+<FONT COLOR="#008000">&nbsp;</FONT>printf(&quot;%d %c %f&quot;, num,str,pi);<b><font color="#008000">
+</font></b></FONT><b><font color="#008000" face="Times New Roman">// print the 
+values of num,str,pi,ch</font><FONT FACE="Courier New" color="#008000"><br>
+
+</FONT></b><font color="#000080" face="Times New Roman"><br>
+<FONT COLOR="#000000">}</FONT><br>
+</font><font color="#000080">
+<br>
+</font><p></p>
+
+</body>
+
+</html>

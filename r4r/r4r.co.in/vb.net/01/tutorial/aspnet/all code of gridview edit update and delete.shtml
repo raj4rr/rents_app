@@ -1,0 +1,298 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>ASP.net  Select| Edit| Update and Delete in Asp.Net GridView|Design Of Gridview</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="Asp.net tutorial learn how to select edit, update and delete with r4r tutorial asp.net
+basics, asp.net examples, interview question, Design Of Gridview, ASP.Net Life cycle, Architecture of Asp.Net
+Event Handling in ASP.Net, Server Controls in ASP.Net, HTML Server in ASP.Net" >
+<meta name="keywords" CONTENT="Asp.net Simple  Select, Edit, Update and Delete in Asp.Net GridView,
+Design Of GridviewBasic Controls in ASP.Net, Validators in ASP.Net, Database Access, ASP.Net with ADO.Net
+File uploading in ASP.Net, Multiviews in ASP.Net, Panel Control In ASP.Net, Razors in ASP.Net
+ASP.Net MVC, ASP.Net web services, Ajax Control in ASP.Net, Error Handling in ASP.Net">
+
+<!--Header start-->
+
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>VB.net Tutorials with Examples</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a><img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+			<a href="/vb.net/">vb.net</a><img src="/images/left_menu_bullet.gif" width="11" height="6"/>
+			<a href="/vb.net/01/tutorial/aspnet/">ASP.net using VB.net</a>
+              </div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/vb.net/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	  
+
+<!-- Header End-->	
+<div class="heading">Simple  Select, Edit, Update and Delete in Asp.Net GridView</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="gridview%20update%20delete%20and%20edit%20.shtml" title="Simple Code For Edit Update And 
+Delete In Gridview">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="server%20side%20validation.shtml" title="Validation Control in Asp.net">Next</a></td>
+  </tr>
+</table>
+
+<div class="image"><img src="newgrid.gif"></div>
+<h3>.ASPX CODE</h3>
+<div class="code">
+<pre>
+<font color="#000000">&lt;%@ </font><font color="#808000">Page 
+</font><font color="#000000">Language=</font><font color="#ff00ff">
+&quot;VB&quot; </font><font color="#000000">AutoEventWireup=
+</font><font color="#ff00ff">&quot;true&quot;  </font><font
+ color="#000000">CodeFile=</font><font color="#ff00ff">&quot;Default.aspx.vb&quot;
+  </font><font color="#000000">Inherits=</font><font color="#ff00ff">&quot;
+_Default&quot; </font><font color="#000000">%&gt;</font>
+<font color="#000000">&lt;!DOCTYPE html PUBLIC </font><font color="
+#ff00ff">&quot;-//W3C//DTD XHTML 1.0 Transitional//EN&quot;
+ &quot;http://www.w3.org/TR/xhtml1/</font>
+<font color="#000000">DTD/xhtml1-transitional.dtd</font><font color="#ff00ff">&quot;&gt;</font>
+<font color="#000000">&lt;html xmlns=</font><font color="#ff00ff">
+&quot;http://www.w3.org/1999/xhtml&quot;</font><font color="#000000">&gt;</font>
+<font color="#000000">&lt;head runat=</font><font color="#ff00ff">
+&quot;server&quot;</font><font color="#000000">&gt;</font>
+ <font color="#000000">&lt;title&gt;Untitled </font><font 
+ color="#808000">Page</font><font color="#000000">&lt;/title&gt;</font>
+<font color="#000000">&lt;/head&gt;</font>
+<font color="#000000">&lt;body&gt;</font>
+<font color="#000000">&lt;form id=</font><font color="#ff00ff">
+&quot;form1&quot; </font><font color="#000000">runat=</font><font color="#ff00ff">
+&quot;server&quot;</font><font color="#000000">&gt;</font>
+<font color="#000000">&lt;div&gt;</font>
+<font color="#000000">&lt;asp:</font><font color="#808000">GridView
+ </font><font color="#000000">ID=</font><font color="#ff00ff">&quot;GridView1&quot;
+  </font><font color="#000000">runat=</font><font color="#ff00ff">
+&quot;server&quot; </font><font color="#000000">AllowPaging=</font><font color="#ff00ff">&quot;True&quot; </font>
+<font color="#000000">AutoGenerateColumns=</font><font color="#ff00ff">
+&quot;False&quot; </font><font color="#000000">BackColor=</font><font color="#ff00ff">
+&quot;#DEBA84&quot; </font><font color="#000000">BorderColor=</font><font color="#ff00ff">&quot;#DEBA84&quot; </font>
+<font color="#000000">BorderStyle=</font><font color="#ff00ff">
+&quot;None&quot; </font><font color="#000000">BorderWidth=</font><font color="#ff00ff">
+&quot;1px&quot; </font><font color="#000000">CellPadding=</font><font color="#ff00ff">&quot;3&quot; </font><font color="#000000">
+CellSpacing=</font><font color="#ff00ff">&quot;2&quot; </font>
+<font color="#000000">DataKeyNames=</font><font color="#ff00ff">
+&quot;item_id&quot; </font><font color="#000000">onrowcancelingedit=</font><font color="#ff00ff">
+&quot;GridView1_RowCancelingEdit&quot; </font>
+<font color="#000000">onrowcommand=</font><font color="#ff00ff">
+&quot;GridView1_RowCommand&quot; </font><font color="#000000">
+onrowdeleting=</font><font color="#ff00ff">&quot;GridView1_RowDeleting&quot; </font>
+<font color="#000000">onrowediting=</font><font color="#ff00ff">
+&quot;GridView1_RowEditing&quot; </font><font color="#000000">
+onrowupdating=</font><font color="#ff00ff">&quot;GridView1_RowUpdating&quot; </font>
+<font color="#000000">onselectedindexchanged=</font><font color="#ff00ff">
+&quot;GridView1_SelectedIndexChanged&quot;</font><font color="#000000">&gt;</font>
+<font color="#000000">&lt;FooterStyle BackColor=</font><font color="#ff00ff">
+&quot;#F7DFB5&quot; </font><font color="#000000">ForeColor=</font><font color="#ff00ff">
+&quot;#8C4510&quot; </font><font color="#000000">/&gt;</font>
+<font color="#000000">&lt;</font><font color="#808000">RowStyle </font><font color="#000000">
+BackColor=</font><font color="#ff00ff">&quot;#FFF7E7&quot;
+ </font><font color="#000000">ForeColor=</font><font color="#ff00ff">
+&quot;#8C4510&quot; </font><font color="#000000">/&gt;</font>
+<font color="#000000">&lt;Columns&gt;</font>
+<font color="#000000">&lt;asp:</font><font color="#808000">
+BoundField </font><font color="#000000">DataField=</font><font color="#ff00ff">
+&quot;item_id&quot; </font><font color="#000000">HeaderText=</font><font color="#ff00ff">
+&quot;ITEM&quot; </font><font color="#000000">/&gt;</font>
+<font color="#000000">&lt;asp:</font><font color="#808000">BoundField 
+</font><font color="#000000">DataField=</font><font color="#ff00ff">&quot;purchase1&quot;
+ </font><font color="#000000">HeaderText=</font><font color="#ff00ff">
+ &quot;name&quot; </font><font color="#000000">/&gt;</font>
+<font color="#000000">&lt;asp:</font><font color="#808000">BoundField </font><font color="#000000">
+DataField=</font><font color="#ff00ff">&quot;tax&quot; </font><font color="#000000">
+HeaderText=</font><font color="#ff00ff">
+&quot;tax&quot; </font><font color="#000000">/&gt;</font>
+<font color="#000000">&lt;asp:</font><font color="#808000">
+CommandField </font><font color="#000000">ShowEditButton=</font><font color="#ff00ff">
+&quot;True&quot; </font><font color="#000000">/&gt;</font>
+<font color="#000000">&lt;asp:</font><font color="#808000">
+CommandField </font><font color="#000000">ShowSelectButton=</font><font color="#ff00ff">
+&quot;True&quot; </font><font color="#000000">/&gt;</font>
+<font color="#000000">&lt;asp:</font><font color="#808000">
+CommandField </font><font color="#000000">ShowDeleteButton=</font><font color="#ff00ff">
+&quot;True&quot; </font><font color="#000000">/&gt;</font>
+<font color="#000000">&lt;/Columns&gt;</font>
+<font color="#000000">&lt;PagerStyle ForeColor=</font><font color="#ff00ff">
+&quot;#8C4510&quot; </font><font color="#000000">HorizontalAlign=</font><font color="#ff00ff">
+&quot;Center&quot; </font><font color="#000000">/&gt;</font>
+<font color="#000000">&lt;SelectedRowStyle BackColor=</font><font color="#ff00ff">&
+quot;#738A9C&quot; </font><font color="#808000">Font</font><font color="#000000">-
+</font><font color="#808000">Bold</font><font color="#000000">=</font><font color="#ff00ff">
+&quot;True&quot; </font><font color="#000000">ForeColor=</font><font color="#ff00ff">
+&quot;White&quot; </font><font color="#000000">/&gt;</font>
+<font color="#000000">&lt;HeaderStyle BackColor=</font><font color="#ff00ff">
+&quot;#A55129&quot; </font><font color="#808000">Font</font><font color="#000000">
+-</font><font color="#808000">Bold</font><font color="#000000">=</font><font color="#ff00ff">
+&quot;True&quot; </font><font color="#000000">ForeColor=</font><font color="#ff00ff">
+&quot;White&quot; </font><font color="#000000">/&gt;</font>
+<font color="#000000">&lt;AlternatingRowStyle BorderColor=</font><font color="#ff00ff">
+&quot;#FF99FF&quot; </font><font color="#000000">/&gt;</font>
+<font color="#000000">&lt;/asp:</font><font color="#808000">GridView</font><font color="#000000">&gt;</font>
+<font color="#000000">&lt;/div&gt;</font>
+<font color="#000000">&lt;/form&gt;</font>
+<font color="#000000">&lt;/body&gt;</font>
+<font color="#000000">&lt;/html&gt;</font>
+</pre>
+</div>
+
+<h3>.VB CODE</h3>
+<div class="code">
+<pre>
+<font color="#000000">Imports </font><font color="#008080">System</font><font 
+color="#000000">.</font><font color="#008080">Data</font>
+<font color="#000000">Imports </font><font color="#008080">System</font><font
+ color="#000000">.</font><font color="#008080">Data</font><font color="#000000">.OleDb</font>
+<font color="#000000">Partial Class _Default</font>
+<font color="#000000">Inherits </font><font color="#008080">System</font><font color="#000000">
+.</font><font color="#008080">Web</font><font color="#000000">.</font><font color="#008080">UI
+</font><font color="#000000">.</font><font color="#808000">Page</font>
+<font color="#000000">Public Sub bindgrid()</font>
+<font color="#000000">Dim con As OleDbConnection</font>
+<font color="#000000">Dim da As OleDbDataAdapter</font>
+<font color="#000000">con = New OleDbConnection(</font><font color="#ff00ff">
+&quot;provider=microsoft.jet.oledb.4.0;Data source=D:\invent.mdb&quot;</font><font color="#000000">)</font>
+<font color="#000000">da = New OleDbDataAdapter(</font><font color="#ff00ff">
+&quot;select item_id, purchase1,tax from purchase&quot;</font><font color="#000000">, con)</font>
+<font color="#000000">Dim ds As New </font><font color="#808000">DataSet</font><font color="#000000">()</font>
+<font color="#000000">da.Fill(ds, </font><font color="#ff00ff">&quot;purchase&quot;</font><font color="#000000">)</font>
+<font color="#000000">GridView1.DataSource = ds.Tables(</font><font color="#ff00ff">
+&quot;purchase&quot;</font><font color="#000000">)</font>
+<font color="#000000">GridView1.DataBind()</font>
+<font color="#000000">End Sub</font>
+<font color="#000000">Protected Sub Page_Load(ByVal sender As </font><font color="#808000">
+Object</font><font color="#000000">, ByVal e As </font><font color="#008080">System
+</font><font color="#000000">.</font><font color="#808000">EventArgs</font><font color="#000000">) Handles Me.Load</font>
+<font color="#000000">If Not </font><font color="#808000">Page</font><font color="#000000">.IsPostBack Then</font>
+<font color="#000000">bindgrid()</font>
+<font color="#000000">End If</font>
+<font color="#000000">End Sub</font>
+<font color="#000000">Protected Sub GridView1_RowEditing(ByVal sender As 
+</font><font color="#808000">Object</font><font color="#000000">, </font>
+	<font color="#000000">ByVal e As </font><font color="#008080">System
+	</font><font color="#000000">.</font><font color="#008080">Web
+	</font><font color="#000000">.</font><font color="#008080">U
+	I</font><font color="#000000">.</font><font color="#008080">WebControls
+	</font><font color="#000000">.</font><font color="#808000">GridViewEditEventArgs
+	</font><font color="#000000">) Handles GridView1.RowEditing</font>
+<font color="#000000">GridView1.EditIndex = e.NewEditIndex</font>
+<font color="#000000">bindgrid()</font>
+<font color="#000000">End Sub</font>
+<font color="#000000">Protected Sub GridView1_RowUpdating(ByVal sender As 
+</font><font color="#808000">Object</font><font color="#000000">, </font>
+	<font color="#000000">ByVal e As </font><font color="#008080">System
+	</font><font color="#000000">.</font><font color="#008080">Web</font><font color="#000000">
+	.</font><font color="#008080">UI</font><font color="#000000">.</font><font color="#008080">
+	WebControls</font><font color="#000000">.</font><font color="#808000"
+	>GridViewUpdateEventArgs</font><font color="#000000">) Handles GridView1.RowUpdating</font>
+<font color="#000000">Dim UserID As </font><font color="#808000">String
+ </font><font color="#000000">= GridView1.DataKeys(e.RowIndex).Value.ToString()</font>
+<font color="#000000">Dim l As </font><font color="#808000">String 
+</font><font color="#000000">= DirectCast(GridView1.Rows(e.RowIndex).Cells(</font><font 
+color="#800080">1</font><font color="#000000">).</font><font color="#008080">Controls
+</font><font color="#000000">(</font><font color="#800080">0</font><font color="#000000">),
+ </font><font color="#808000">TextBox</font><font color="#000000">).</font><font color="#008080">Text</font>
+<font color="#000000">Dim k As </font><font color="#808000">String
+ </font><font color="#000000">= DirectCast(GridView1.Rows(e.RowIndex).Cells(</font><font
+  color="#800080">2</font><font color="#000000">).</font><font color="#008080">Controls
+  </font><font color="#000000">(</font><font color="#800080">0</font><font color="#000000">),
+   </font><font color="#808000">TextBox</font>
+  <font color="#000000">).</font><font color="#008080">Text</font>
+<font color="#000000">Dim can As New OleDbConnection(</font><font color="#ff00ff">
+&quot;provider=microsoft.jet.oledb.4.0;Data source=D:\invent.mdb&quot;</font><font color="#000000">)</font>
+<font color="#000000">can.Open()</font>
+<font color="#000000">Dim com1 As New OleDbCommand(</font><font color="#ff00ff">
+&quot;update purchase set purchase1='&quot; </font>
+	<font color="#000000">&amp; l &amp; </font><font color="#ff00ff">
+	&quot;',tax='&quot; </font><font color="#000000">&amp; k &amp; 
+	</font><font color="#ff00ff">&quot;' where item_id='&quot; 
+	</font><font color="#000000">&amp; UserID &amp; </font><font color="#ff00ff">
+	&quot;'&quot;</font><font color="#000000">, can)</font>
+<font color="#000000">com1.ExecuteNonQuery()</font>
+<font color="#000000">can.Close()</font>
+<font color="#ff00ff">'to go back to the previous position</font>
+<font color="#000000">GridView1.EditIndex = -</font><font color="#800080">1</font>
+<font color="#ff00ff">' // fetch and rebind the data.</font>
+<font color="#000000">bindgrid()</font>
+<font color="#000000">End Sub</font>
+<font color="#000000">Protected Sub GridView1_RowCancelingEdit(ByVal sender As 
+</font><font color="#808000">Object</font><font color="#000000">, </font>
+	<font color="#000000">ByVal e As </font><font color="#008080">System
+	</font><font color="#000000">.</font><font color="#008080">Web
+	</font><font color="#000000">.</font><font color="#008080">UI
+	</font><font color="#000000">.</font><font color="#008080">WebControls
+	</font><font color="#000000">.</font><font color="#808000">
+	GridViewCancelEditEventArgs</font><font color="#000000">) </font>
+	<font color="#000000">Handles GridView1.RowCancelingEdit</font>
+<font color="#000000">GridView1.EditIndex = -</font><font color="#800080">1</font>
+<font color="#000000">bindgrid()</font>
+<font color="#000000">End Sub</font>
+<font color="#000000">Protected Sub GridView1_RowDeleting(ByVal sender As 
+</font><font color="#808000">Object</font><font color="#000000">, </font>
+	<font color="#000000">ByVal e As </font><font color="#008080">System
+	</font><font color="#000000">.</font><font color="#008080">Web
+	</font><font color="#000000">.</font><font color="#008080">UI</font><font 
+	color="#000000">.</font><font color="#008080">WebControls</font><font 
+	color="#000000">.</font><font color="#808000">GridViewDeleteEventArgs
+	</font><font color="#000000">) Handles GridView1.RowDeleting</font>
+<font color="#000000">Dim UserID As </font><font color="#808000">String
+ </font><font color="#000000">= GridView1.DataKeys(e.RowIndex).Value.ToString()</font>
+<font color="#000000">Dim can As New OleDbConnection(</font><font color="#ff00ff">
+&quot;provider=microsoft.jet.oledb.4.0;Datasource=D:\invent.mdb&quot;</font><font color="#000000">)</font>
+<font color="#000000">can.Open()</font>
+<font color="#000000">Dim com1 As New OleDbCommand(</font><font color="#ff00ff">
+&quot;delete from purchase where item_id ='&quot; </font><font color="#000000">
+&amp; UserID &amp; </font><font color="#ff00ff">&quot;'&quot;</font><font color="#000000">, can)</font>
+<font color="#000000">com1.ExecuteNonQuery()</font>
+<font color="#000000">can.Close()</font>
+<font color="#ff00ff">'to go back to the previous position</font>
+<font color="#000000">GridView1.EditIndex = -</font><font color="#800080">1</font>
+<font color="#ff00ff">' // fetch and rebind the data.</font>
+<font color="#000000">bindgrid()</font>
+<font color="#000000">End Sub</font>
+<font color="#000000">End Class</font>
+</pre>
+</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="gridview%20update%20delete%20and%20edit%20.shtml" title="Simple Code For Edit Update And 
+Delete In Gridview">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="server%20side%20validation.shtml" title="Validation Control in Asp.net">Next</a></td>
+  </tr>
+</table>
+
+<!--Footer  -->
+</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>

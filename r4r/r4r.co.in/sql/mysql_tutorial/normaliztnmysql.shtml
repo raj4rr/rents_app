@@ -1,0 +1,153 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http:///www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML>
+	<HEAD>
+
+	<meta http-equiv="Content-Language" content="en-us">
+	<TITLE>Normalization in MySQL</TITLE>
+		<META content="Rajesh Kumar" name="author">
+		<META http-equiv="expires" content="0">
+		<META content="r4r.co.in" name="owner">
+		<META http-equiv=Content-Type content="text/html; charset=windows-1252">
+		<meta name="description" CONTENT="Normalization in MySQL-Learn mysql with r4r tutorial provides you sql tutorial from basic level concept to higher 
+		level concept sql interview questions and sql examples">
+		<meta name="keywords" CONTENT="Normalization in MySQL, Syntax In MySQL ,Select In MySQL,Distinct In MySQL ,Where In MySQL,And & Or In MySQL
+Order By In MySQL,Insert Into In MySQL,Update In MySQL,Delete In MySQL,Injection In MySQL">
+
+	<!-- header start-->	
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>MySQL </h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+			<img src="/images/left_menu_bullet.gif" width="11" height="6"><a href="/sql/mysql_tutorial/">MySQL</a>
+
+              </div>
+
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/sql/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	 
+
+<div class="heading">Normalization in MySQL</div>
+<table id="indexing">
+	<tr>
+	<td style="width:33%; text-align:left;"><a href="datatypemysql.shtml" title="Data Type in MySQL">Previous</a></td>
+	<td style="width:34%; text-align:center"><a href="index.shtml" title="Home">Home</a></td>
+	<td style="width:33%; text-align:right"><a href="functionmysql.shtml" title="Function in MySQL">Next</a></td>
+	</tr>
+</table>
+<p>It is a technique in which we are decomposing the existing data into different tables which reduces the redundency and undesirable characteristics like insertion, updation , deletion operation performed in database.</p>
+<p>Normalization of database means we are normalizing the given  database.It mainly used for two purpose only, they are:</p>
+<ol><li>Eliminating the redundent(useless) data from the database.</li>
+<li>Data is stored in different table in should be relevant and make dependencies i.e. all data is logically stored</li></ol>
+<p>Normalization have the following rules that divides it into the form known as Normal Form, they are:</p>
+<ol><li>First Normal Form</li>
+<li>Second Normal Form</li>
+<li>Third Normal Form</li>
+<li>BCNF</li></ol>
+<h3>First Normal Form(1NF)</h3>
+<p> In  this nomal form, no two row or columns have the same data element i.e. each set of column must have the unique value. in this normal form data redundency get increases as there are many columns have the same data into their columns but each row should be unique.</p>
+<h3>example</h3>
+<p>In this we are having the details of student in the database table of a school, we are appllying the 1NF as defined in the below table view</p>
+<div class="table_content">
+<table>
+<tr><td class="heading" style="width:35;">Student</td><td class="heading" style="width:30;">age</td><td class="heading" style="width:35;">Address</td></tr>
+<tr><td class="alternate_heading1">Arun </td><td class="alternate_heading1">24</td><td class="alternate_heading1">Saket</td></tr>
+<tr><td class="alternate_heading2">Kuldeep </td><td class="alternate_heading2">23</td><td class="alternate_heading1">Malviya Nagar</td></tr>
+<tr><td class="alternate_heading1">Hemant </td><td class="alternate_heading1">24</td><td class="alternate_heading1">Gurgaon</td></tr>
+<tr><td class="alternate_heading2">Prasant </td><td class="alternate_heading2">24</td><td class="alternate_heading2">Kotla</td></tr>
+<tr><td class="alternate_heading1">Gaurav </td><td class="alternate_heading1">25</td><td class="alternate_heading1">Laxmi Nagar</td></tr>
+</table>
+</div>
+
+<h3>Second Normal Form(2NF)</h3>
+<p>In this normal form, the data which is already stored in 1NF, its all attributes within the table should be solely dependent in the unique identity of that entity.</p> 
+<h3>example</h3>
+<p>In this we are applying the 2NF in the above define table , we are decomposing the table into twop tables like Student table and Address table as below</p>
+<h3>Student table</h3>
+<div class="table_content">
+<table>
+<tr><td class="heading" style="width:50;">Student</td><td class="heading" style="width:50;">age</td></tr>
+<tr><td class="alternate_heading1">Arun </td><td class="alternate_heading1">24</td></tr>
+<tr><td class="alternate_heading2">Kuldeep </td><td class="alternate_heading2">23</td></tr>
+<tr><td class="alternate_heading1">Hemant </td><td class="alternate_heading1">24</td></tr>
+<tr><td class="alternate_heading2">Prasant </td><td class="alternate_heading2">24</td></tr>
+<tr><td class="alternate_heading1">Gaurav </td><td class="alternate_heading1">25</td></tr>
+</table>
+</div>
+<h3>Address table</h3>
+<div class="table_content">
+<table>
+<tr><td class="heading" style="width:50;">Student</td><td class="heading" style="width:50;">Address</td></tr>
+<tr><td class="alternate_heading1">Arun </td><td class="alternate_heading1">Saket</td></tr>
+<tr><td class="alternate_heading2">Kuldeep </td><td class="alternate_heading1">Malviya Nagar</td></tr>
+<tr><td class="alternate_heading1">Hemant </td><td class="alternate_heading1">Gurgaon</td></tr>
+<tr><td class="alternate_heading2">Prasant </td><td class="alternate_heading2">Kotla</td></tr>
+<tr><td class="alternate_heading1">Gaurav </td><td class="alternate_heading1">Laxmi Nagar</td></tr>
+</table>
+</div>
+
+<h3>Third Normal Form</h3>
+<p>In this normal form, we are providing the non-prime attribute of each table must be dependent on the Primary key. In this we are creating the transitive dependencies which help in data integrity.</p>
+<h3>example</h3>
+<p>In the above table define in 2NF we are giving the primary key to each table and assign dependency on it.</p>
+<h3>Student table</h3>
+<div class="table_content">
+<table>
+<tr><td class="heading" style="width:30;">Student_id</td><td class="heading" style="width:35;">Student</td><td class="heading" style="width:35;">age</td></tr>
+<tr><td class="alternate_heading1">101</td><td class="alternate_heading1">Arun </td><td class="alternate_heading1">24</td></tr>
+<tr><td class="alternate_heading2">102</td><td class="alternate_heading2">Kuldeep </td><td class="alternate_heading2">23</td></tr>
+<tr><td class="alternate_heading1">103</td><td class="alternate_heading1">Hemant </td><td class="alternate_heading1">24</td></tr>
+<tr><td class="alternate_heading2">104</td><td class="alternate_heading2">Prasant </td><td class="alternate_heading2">24</td></tr>
+<tr><td class="alternate_heading1">105</td><td class="alternate_heading1">Gaurav </td><td class="alternate_heading1">25</td></tr>
+</table>
+</div>
+<h3>Address table</h3>
+<div class="table_content">
+<table>
+<tr><td class="heading" style="width:30;">Address_id</td><td class="heading" style="width:35;">Student</td><td class="heading" style="width:35;">Address</td></tr>
+<tr><td class="alternate_heading1">201</td><td class="alternate_heading1">Arun </td><td class="alternate_heading1">Saket</td></tr>
+<tr><td class="alternate_heading2">202</td><td class="alternate_heading2">Kuldeep </td><td class="alternate_heading1">Malviya Nagar</td></tr>
+<tr><td class="alternate_heading1">203</td><td class="alternate_heading1">Hemant </td><td class="alternate_heading1">Gurgaon</td></tr>
+<tr><td class="alternate_heading2">204</td><td class="alternate_heading2">Prasant </td><td class="alternate_heading2">Kotla</td></tr>
+<tr><td class="alternate_heading1">205</td><td class="alternate_heading1">Gaurav </td><td class="alternate_heading1">Laxmi Nagar</td></tr>
+</table>
+</div>
+ <h3>Boyce-Codd normal form (BCNF)</h3>
+ <p>This is the highest version of 3NF, it is based on the concept of Determinant, in which some attribute is fully functionaly dependent. The relation in a bcnf if and only if every determinant is a candidate key.</p>  
+<table id="indexing">
+	<tr>
+	<td style="width:33%; text-align:left;"><a href="datatypemysql.shtml" title="Data Type in MySQL">Previous</a></td>
+	<td style="width:34%; text-align:center"><a href="index.shtml" title="Home">Home</a></td>
+	<td style="width:33%; text-align:right"><a href="functionmysql.shtml" title="Function in MySQL">Next</a></td>
+	</tr>
+</table>
+
+		</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->

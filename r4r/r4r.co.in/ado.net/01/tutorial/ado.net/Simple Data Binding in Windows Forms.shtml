@@ -1,0 +1,142 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>Simple Data Binding in Windows Forms,Create a New Project in VS .NET,Add the Data Connection, Data Adapter, and DataSet,Create Text Boxes, Labels, and Buttons</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="Simple Data Binding in Windows Forms,Create a New Project in VS .NET,Add the Data Connection, Data Adapter, and DataSet,Create Text Boxes, Labels, and Buttons" >
+<meta name="keywords" CONTENT="Simple Data Binding in Windows Forms,Create a New Project in VS .NET,Add the Data Connection, Data Adapter, and DataSet,Create Text Boxes, Labels, and Buttons">
+
+<!-- header start-->	
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>ADO.NET</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+            <img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+            <a href="/ado.net">ADO.Net</a>
+              <img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+
+			  <a href="/ado.net/01/tutorial/ado.net/">ADO.NET Tutorials</a>
+
+              </div>
+
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/ado.net/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	 
+<!-- header End-->	
+
+<div class="heading">Simple Data Binding in Windows Forms</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="ADO%20Versus%20ADO.NET%20Data%20Types.shtml" title="ADO Versus ADO.NET">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="Complex%20Data%20Binding%20in%20Windows%20Forms.shtml" title="Complex Data Binding in Windows Forms">Next</a></td>
+  </tr> 
+</table>
+
+<h3>Create a New Project in VS .NET</h3>
+<ol>
+<li>Create a new project in VS .NET by choosing File, New, and then choosing the Project option.</li>
+<li>When the New Project dialog box appears, choose  Visual C# Projects and Windows Applications. Name this project "simple data binding." This creates a default form for you to start from.</li>
+</ol>
+
+<h3>Add the Data Connection, Data Adapter, and DataSet</h3>
+<p>From the Data tab of the Toolbox, drag a OledbDataAdapter object into your form</p>
+<ol>
+<li>This will automatically invoke the Data Adapter Configuration Wizard. Both the data connection and the data adapter can be fully configured here.</li>
+
+<ul>
+<li><p>a. The wizard creates  with the Choose Your Data Connection dialog box. If   already exist a  connection defined in your project, it will be placed in the dialog box. Otherwise, choose to create a new connection and specify the appropriate connection information</p></li>
+<li><p>b. we will then have to decide to supply SQL statements, build a new stored procedure, or give the name of an existing stored procedure for the data access. In our example we will use the Use SQL Statements option.</p></li>
+<li><p>c. we will be presented with a Generate the SQL Statements dialog box where we  will simply type in a valid SQL statement, or you can use the Query Builder option to formulate the SQL query. such as
+<div class="code">
+<pre>
+<font color="#000000">SELECT * FROM emp</font>
+</pre>
+</div></p>
+</li>
+
+<li><p>d. The wizard will show we  the tasks that it has done and indicate whether the SqlDataAdapter has been configured successfully.</p></li>
+</ul>
+
+<li>After the SqlDataAdapter and DataConnection objects have been configured and added to the form, you must generate a DataSet and then add an instance of this DataSet to the form. We will be binding our TextBox properties to the columns in the DataSet.</li>
+<ul>
+<li><p>a. Simply right-click on the oledbDataAdapter that is on your form and choose the Generate Dataset menu option</p></li></ul>
+<h3> Generate a new dataset for the form</h3>
+<ul>
+<li><p>a. Now,we  choose to create a new DataSet using the default name that it provides (DataSet1). Make sure you have checked the emp table and checked the box for it to be added to the designer.</p></li>
+<li><p>b. When the process finishes, a DataSet instance named DataSet11 will be on the form and a dataset schema will be in the Solutions Explorer (named DataSet1.xsd).</p></li>
+</ul>
+<h3>Create Text Boxes, Labels, and Buttons</h3>
+<ul>
+<li><i>Textbox</i>: With a name of EmpID and text is blank.</li>
+<li><i>Textbox</i>: With a name of EmpName and text is blank.</li>
+<li><i>Button</i>: With a name of ok  and text of  OK</li>
+</ul></ol>
+<p>
+<div class="heading">Bind the Text Boxes to the DataSet</div>
+</p>
+<ol>
+<li>From the Forms Designer, select the EmpID text box and go to its property</li>
+<li>Expand the (DataBindings) node in the properties list and its text property.</li>
+<li>Within the text property, expand DataSet1 and Emp nodes and select the empid column from the list</li>
+<li>Now, from the Forms Designer, select the EmpName text box and press F4.</li>
+<li>Expand the (DataBindings) node in the properties list and its text property.</li>
+<li>Within the text property, expand the DataSet1 and Emp nodes and select the empname column from the list.</li>
+</ol>
+<p>Now we are ready to complete the application by adding the code to fill the DataSet.Just double-click on the Ok  button to create a method for the Click event.</p>
+<div class="code">
+<pre>
+<font color="#0000ff">private void </font><font color="#000000">button1_Click(</font><font color="#0000ff">object </font><font color="#000000">sender, </font><font color="#808000">EventArgs </font><font color="#000000">e)</font>
+<font color="#000000">{</font>
+<font color="#000000">oleDbDataAdapter1.SelectCommand.Parameters</font>
+<font color="#000000">[</font><font color="#ff00ff">&quot;param1&quot;</font><font color="#000000">].Value =EmpID.</font><font color="#008080">Text</font><font color="#000000">.ToString();</font>
+<font color="#000000">empDataSet1.Clear();</font>
+<font color="#000000">oleDbDataAdapter1.Fill(empDataSet1);</font>
+<font color="#000000">}</font>
+<font color="#000000">}</font>
+</pre>
+</div>
+<h3>The  Forms application, showing simple binding.</h3>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="ADO%20Versus%20ADO.NET%20Data%20Types.shtml" title="ADO Versus ADO.NET">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="Complex%20Data%20Binding%20in%20Windows%20Forms.shtml" title="Complex Data Binding in Windows Forms">Next</a></td>
+  </tr> 
+</table>
+
+<!-- Footer Start-->		
+		</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/dotnet/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->

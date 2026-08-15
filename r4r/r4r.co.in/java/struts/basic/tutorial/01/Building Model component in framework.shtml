@@ -1,0 +1,86 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>Building Model component in framework</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="Building Model component in framework" >
+<meta name="keywords" CONTENT="Building Model component in framework">
+
+<!-- header start-->	
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>Struts</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+            <img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+            <a href="/java/">Java</a>
+              <img src="/images/left_menu_bullet.gif" width="11" height="6"/><A href="/java/struts/basic/tutorial/01">Struts1.3 Basic Tutorials </a>
+              </div>
+
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/struts/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	 
+
+<div class="heading">Building Model component in framework</div>
+<!-- header End-->
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="advantages.shtml" title="Advantages of MVC,Concept of Struts framework,Brief description of Model-View-Controller(MVC)">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="How%20Struts%20enforces%20the%20MVC%20pattern.shtml" title="How Struts enforces the MVC pattern">Next</a></td>
+  </tr> 
+</table>
+<p>Since MVC architecture divide into three main part:- Model, View, and Controller. So all the three part briefly describe below-</p>
+<h3>Model Component : </h3><p>In general, the Model components strongly focusing on the creation of JavaBeans classes that support all of the functional requirements of the project. Different type of Bean describe below</p>
+
+<ol><li><p><i>Scope of Bean :</i>   Within a web application, JavaBeans can be stored in (and access from) a number of different collections of "attributes". Each collection has different rules for the lifetime of that collection, and the visibility of the beans stored there. Together, the rules defining lifetime and visibility are called the scope of those beans. JavaBean define four different Scope such as </p></li>
+
+<ul><li><i>page :</i>  Beans request that visible within a single page or servlet( in which Bean is create)</li>
+<li><i>request :</i>  Bean request that visible within a single page as well as to any page or servlet that is included in this page, or forwarded to by this page.</li>
+<li><i>Session :</i>  Bean request that visible into many pages or servlet until the particular user session not expire.</li>
+<li><i>Application : </i>Bean request visible within the web application.</li></ul>
+
+<li><i>Business Logic Bean :</i>This beans is design for provide the encapsulate, logic function in the application. Business logic beans should be designed and implemented so that they do not know they are being executed in a web application environment for maximum code reuse. Every logic  bean extend javax.servlet.* package.</li>
+<li><i>DynaBean( Dynamic Bean) :</i>DynaBeans are the extensibility and flexibility according to the incoming request, defining even the simplest JavaBean requires defining a new class and coding a field and two methods for each property. The property of DynaBean can be configured via an XML descriptor, its property can't called by a simple java method but work well with reflection and introspection component.</li>
+<li><i>ActionForm Beans :</i>ActionForm beans almost similar to the JavaBeans( ModelBeans) but should be consider a Controller component. Because, that able to transfer data between the Model and View layers. In struts framework the ActionForm is generally define by the extending the org.apache.struts.action.ActionForm, sometime ActionBean also called "form beans". These may be finely-grained objects, so that there is one bean for each form, or coarsely-grained so that one bean serves several forms, or even an entire application.</li></ol>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="advantages.shtml" title="Advantages of MVC,Concept of Struts framework,Brief description of Model-View-Controller(MVC)">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="How%20Struts%20enforces%20the%20MVC%20pattern.shtml" title="How Struts enforces the MVC pattern">Next</a></td>
+  </tr> 
+</table>
+
+<!-- Footer Start-->	
+
+		</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->

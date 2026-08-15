@@ -1,0 +1,149 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD>
+<meta http-equiv="Content-Language" content="en-us">
+<TITLE>Dependency Injection</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name="description" CONTENT="Dependency Injection,spring travels,spring tutorials,spring framework,spring mvc,spring interview question,spring framework tutorials,spring aop" >
+<meta name="keywords" CONTENT="Dependency Injection,spring travels,spring tutorials,spring framework,spring mvc,spring interview question,spring framework tutorials,spring aop">
+
+<!-- header start-->	
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>Spring Framework</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+           <img src="/images/left_menu_bullet.gif" width="11" height="6"/>  <a href="/java/">Java</a>    
+		      <img src="/images/left_menu_bullet.gif" width="11" height="6"/><a href="/java/spring/">Spring</a>
+
+              </div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/spring/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	 
+
+<!-- header End--> 
+
+<div class="heading">Dependency Injection</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="prototypeExample.shtml" title="prototype Example">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="ConstructorDI.shtml" title="Constructor DI">Next</a></td>
+  </tr> 
+</table>
+
+ <p><i>Introduction:</i> In case of DI (Dependency Injection) ,dependency of object are satisfied by IOC 
+ container on its own i.e IOC container are not ask to satisfied the dependency of an object.</p>
+<h3>Approach of Dependency Injection</h3>
+<p>There are two approach of Dependency Injection which are following:</p>
+<ol>
+<li>
+Constructor Dependency Injection
+</li><li>
+Setter Dependency Injection
+</li></ol>
+
+<p><i>Constructor Dependency Injection:</i> In this approach the IOC container provide the facility to satisfied 
+the dependency of an object in mandatory case and IOC container inject the dependency through the constructor.</p>
+<p><i>Setter Dependency Injection:</i> In this approach the IOC container inject the dependency through the 
+default constructor and setter method. This approach is used in the case of optional dependency.</p>
+
+<div class="heading">Type of Dependency Injection</div>
+<p>There are three type of dependency injection which are following:</p>
+<ol>
+<li>
+ Dependency on primitive values (String is consider primitive by String).
+</li>
+<li>
+ Dependency on Object.
+</li>
+<li>
+ Dependency on Collection.
+</li>
+</ol>
+<p><i>Dependency on primitive value:</i> In the case of constructor injection, constructor-arg is the sub element
+ of &lt;bean ......&gt; is used to specified the dependency of a bean i.e to be satisfied to a constructor this 
+ elements uses values and reference attribute which are used to specified value primitive type and object respectively.</p>
+<h3>Syntax:</h3>
+<div class="code">
+<PRE>
+<FONT COLOR="#0000ff">&lt;</FONT><FONT COLOR="#808000">bean </FONT><FONT COLOR="#000000">.................</FONT><FONT COLOR="#0000ff">&gt;</FONT><FONT COLOR="#000000">   </FONT>
+<FONT COLOR="#0000ff">&lt;</FONT><FONT COLOR="#808000">constructor-arg </FONT><FONT COLOR="#800080">value</FONT><FONT COLOR="#0000ff">=</FONT><FONT COLOR="#ff00ff">"primitive or String"</FONT><FONT COLOR="#0000ff">/&gt;</FONT>
+<FONT COLOR="#0000ff">&lt;</FONT><FONT COLOR="#808000">constructor-arg </FONT><FONT COLOR="#800080">ref</FONT><FONT COLOR="#0000ff">=</FONT><FONT COLOR="#ff00ff">"Reference of a bean"</FONT><FONT COLOR="#0000ff">/&gt;</FONT>
+<FONT COLOR="#000000">................</FONT>
+<FONT COLOR="#0000ff">&lt;/</FONT><FONT COLOR="#808000">bean</FONT><FONT COLOR="#0000ff">&gt;</FONT>
+</PRE>
+</div>
+
+<p><i>Dependency on object:</i> In the case of constructor injection, constructor-arg is the sub element of &lt;bean ......&gt; 
+is used to specify the dependency of an object i.e to be satisfied the constructor-arg element uses reference of 
+an attribute which are used to specify object respectively. </p>
+<h3>Syntax:</h3>
+<div class="code">
+<PRE>
+<FONT COLOR="#0000ff">&lt;</FONT><FONT COLOR="#808000">bean </FONT><FONT COLOR="#000000">.................</FONT><FONT COLOR="#0000ff">&gt;</FONT><FONT COLOR="#000000">   </FONT>
+<FONT COLOR="#0000ff">&lt;</FONT><FONT COLOR="#808000">constructor-arg </FONT><FONT COLOR="#0000ff">&gt;</FONT>
+<FONT COLOR="#0000ff">&lt;</FONT><FONT COLOR="#808000">list</FONT><FONT COLOR="#0000ff">&gt;&lt;</FONT><FONT COLOR="#808000">ref  </FONT><FONT COLOR="#800080">bean</FONT><FONT COLOR="#0000ff">=</FONT><FONT COLOR="#ff00ff">"Reference of a bean"</FONT><FONT COLOR="#0000ff">/&gt;</FONT>
+<FONT COLOR="#000000">................</FONT>
+<FONT COLOR="#0000ff">&lt;/</FONT><FONT COLOR="#808000">list</FONT><FONT COLOR="#0000ff">&gt;&lt;/</FONT><FONT COLOR="#808000">constructor-arg</FONT><FONT COLOR="#0000ff">&gt;</FONT>
+<FONT COLOR="#0000ff">&lt;/</FONT><FONT COLOR="#808000">bean</FONT><FONT COLOR="#0000ff">&gt;</FONT>
+</PRE>
+</div>
+<p><i>Dependency on collection:</i> In the case of constructor injection, constructor-arg is the sub element 
+of &lt;bean ......&gt; is used to specify the dependency of a collection i.e to be satisfied the constructor-arg 
+element uses list ,set and map sub element to specify the dependency of list ,set and map respectively.</p>
+<h3>Syntax:</h3>
+<div class="code">
+<PRE>
+<FONT COLOR="#0000ff">&lt;</FONT><FONT COLOR="#808000">bean </FONT><FONT COLOR="#000000">.................</FONT><FONT COLOR="#0000ff">&gt;</FONT><FONT COLOR="#000000">   </FONT>
+<FONT COLOR="#0000ff">&lt;</FONT><FONT COLOR="#808000">constructor-arg </FONT><FONT COLOR="#0000ff">&gt;</FONT>
+<FONT COLOR="#0000ff">&lt;</FONT><FONT COLOR="#808000">list </FONT><FONT COLOR="#800080">or set or map</FONT><FONT COLOR="#0000ff">&gt;</FONT>
+<FONT COLOR="#0000ff">&lt;</FONT><FONT COLOR="#808000">Value</FONT><FONT COLOR="#0000ff">&gt;&lt;/</FONT><FONT COLOR="#808000">value</FONT><FONT COLOR="#0000ff">&gt;</FONT>
+<FONT COLOR="#000000">................</FONT>
+<FONT COLOR="#0000ff">&lt;/</FONT><FONT COLOR="#808000">list </FONT><FONT COLOR="#800080">or set or map</FONT><FONT COLOR="#0000ff">&gt;&lt;/</FONT><FONT COLOR="#808000">constructor-arg</FONT><FONT COLOR="#0000ff">&gt;</FONT>
+<FONT COLOR="#0000ff">&lt;/</FONT><FONT COLOR="#808000">bean</FONT><FONT COLOR="#0000ff">&gt;</FONT>
+</PRE>
+</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="prototypeExample.shtml" title="prototype Example">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="ConstructorDI.shtml" title="Constructor DI">Next</a></td>
+  </tr> 
+</table>
+
+<!-- Footer Start-->
+
+		</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->

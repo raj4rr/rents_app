@@ -1,0 +1,19 @@
+//out :- to return more then one value
+using System;
+public class MyClass 
+{
+   public static int disp(out char i,out char p) 
+   {
+      i = 'b';
+      p = 'c'; 	
+      return -1;
+   }
+   public static void Main() 
+   {
+      char j='a',k='r';  // variable need not be initialized
+      int h=(disp(out j,out k));
+      Console.WriteLine(j);
+      Console.WriteLine(k);	
+      Console.WriteLine(h);	
+   }
+}

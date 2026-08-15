@@ -1,0 +1,169 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>Events,Example of Events management using delegates</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="Events,Example of Events management using delegates" >
+<meta name="keywords" CONTENT="Events,Example of Events management using delegates">
+
+<!--Header start-->
+
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>WCF</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a><img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+			<a href="/wcf">WCF with C# </a>
+              <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/wcf/01/tutorial/basic/">WCF Tutorials</a></div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/wcf/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	  
+
+<!-- Header End-->
+<div class="heading">Events</div>
+
+  <table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="The%20DuplexChannelFactor.shtml" title="The DuplexChannelFactory&lt;T,C&gt; class
+">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="Transactions%20in%20WCF.shtml" title="Transactions in WCF">Next</a></td>
+  </tr>
+</table>
+
+<p>Events provide the client or clients to be notified about something that occurred on the service side. The event  can  result from a direct client call, or it can be the result of something the service monitors. vent-handling operations must have a void return type, should not have any outgoing parameters, and should be marked as one-waye.</p>
+<p>The service firing the event is called the publisher, and the client receiving the event is called the subscriber. Events are a required feature in almost any type of application.</p>
+
+<div class="code">
+<pre>
+<font color="#0000ff">interface </font><font color="#000000">IMyEvents</font>
+<font color="#000000">{</font>
+<font color="#000000">[OperationContract(IsOneWay = </font><font color="#0000ff">true</font><font color="#000000">)]</font>
+<font color="#0000ff">void </font><font color="#000000">Evantoperation1( );</font>
+<font color="#000000">[OperationContract(IsOneWay = </font><font color="#0000ff">true</font><font color="#000000">)]</font>
+<font color="#0000ff">void </font><font color="#000000">Evantoperation2(</font><font color="#0000ff">int </font><font color="#000000">number);</font>
+<font color="#000000">[OperationContract(IsOneWay = </font><font color="#0000ff">true</font><font color="#000000">)]</font>
+<font color="#0000ff">void </font><font color="#000000">Evantoperation3(</font><font color="#0000ff">int </font><font color="#000000">number,</font><font color="#0000ff">string </font><font color="#000000">text);</font>
+<font color="#000000">}</font>
+</pre>
+</div>
+
+<h3>Example of Events management using delegates: </h3>
+<div class="code">
+<pre>
+<font color="#0000ff">enum </font><font color="#000000">EventExample</font>
+<font color="#000000">{</font>
+<font color="#000000">Event1 = </font><font color="#800080">1</font><font color="#000000">,</font>
+<font color="#000000">Event2 = </font><font color="#800080">2</font><font color="#000000">,</font>
+<font color="#000000">Event3 = </font><font color="#800080">4</font><font color="#000000">,</font>
+<font color="#000000">AllEvents = Event1|Event2|Event3</font>
+<font color="#000000">}</font>
+<font color="#000000">[ServiceContract(CallbackContract = </font><font color="#0000ff">typeof</font><font color="#000000">(IMyEvents))]</font>
+<font color="#0000ff">interface </font><font color="#000000">IMyContract</font>
+<font color="#000000">{</font>
+<font color="#000000">[OperationContract]</font>
+<font color="#0000ff">void </font><font color="#000000">operation( );</font>
+<font color="#000000">[OperationContract]</font>
+<font color="#0000ff">void </font><font color="#000000">Subscribe(EventExample EExample);</font>
+<font color="#000000">[OperationContract]</font>
+<font color="#0000ff">void </font><font color="#000000">Unsubscribe(EventExample EExample);</font>
+<font color="#000000">}</font>
+<font color="#000000">[ServiceBehavior(InstanceContextMode = InstanceContextMode.PerCall)]</font>
+<font color="#0000ff">class </font><font color="#000000">MyPublisher : IMyContract</font>
+<font color="#000000">{</font>
+<font color="#0000ff">static </font><font color="#000000">GenericEventHandler GEventhandlr1 = </font><font color="#0000ff">delegate</font><font color="#000000">{};</font>
+<font color="#0000ff">static </font><font color="#000000">GenericEventHandler&lt;</font><font color="#0000ff">int</font><font color="#000000">&gt; GEventhandlr2  = </font><font color="#0000ff">delegate</font><font color="#000000">{};</font>
+<font color="#0000ff">static </font><font color="#000000">GenericEventHandler&lt;</font><font color="#0000ff">int</font><font color="#000000">,</font><font color="#0000ff">string</font><font color="#000000">&gt; GEventhandlr3 = </font><font color="#0000ff">delegate</font><font color="#000000">{};</font>
+<font color="#0000ff">public void </font><font color="#000000">Subscribe(EventExample EExample)</font>
+<font color="#000000">{</font>
+<font color="#000000">IMyEvents subscriber =  </font><font color="#808000">OperationContext</font><font color="#000000">.Current.</font>
+<font color="#000000">GetCallbackChannel&lt;IMyEvents&gt;( );</font>
+<font color="#0000ff">if</font><font color="#000000">((EExample &amp; EventExample.Event1) == EventExample.Event1)</font>
+<font color="#000000">{</font>
+<font color="#000000">GEventhandlr1 += subscriber.OnEvent1;</font>
+<font color="#000000">}</font>
+<font color="#0000ff">if</font><font color="#000000">((EExample &amp; EventExample.Event2) == EventExample.Event2)</font>
+<font color="#000000">{</font>
+<font color="#000000">GEventhandlr2 += subscriber.OnEvent2;</font>
+<font color="#000000">}</font>
+<font color="#0000ff">if</font><font color="#000000">((EExample &amp; EventExample.Event3) == EventExample.Event3)</font>
+<font color="#000000">{</font>
+<font color="#000000">GEventhandlr3 += subscriber.OnEvent3;</font>
+<font color="#000000">}</font>
+<font color="#000000">}</font>
+<font color="#0000ff">public void </font><font color="#000000">Unsubscribe(EventExample EExample)</font>
+<font color="#000000">{</font>
+<font color="#008000">//Similar to Subscribe( ) but uses -=</font>
+<font color="#000000">}</font>
+<font color="#0000ff">public static void </font><font color="#000000">FireEvent(EventExample EventExample)</font>
+<font color="#000000">{</font>
+<font color="#0000ff">switch</font><font color="#000000">(EventExample)</font>
+<font color="#000000">{</font>
+<font color="#0000ff">case </font><font color="#000000">EventExample.Event1:</font>
+<font color="#000000">{</font>
+<font color="#000000">GEventhandlr1( );</font>
+<font color="#0000ff">return</font><font color="#000000">;</font>
+<font color="#000000">}</font>
+
+<font color="#0000ff">case </font><font color="#000000">EventExample.Event2:</font>
+<font color="#000000">{</font>
+<font color="#000000">GEventhandlr2(</font><font color="#800080">42</font><font color="#000000">);</font>
+<font color="#0000ff">return</font><font color="#000000">;</font>
+<font color="#000000">}</font>
+<font color="#0000ff">case </font><font color="#000000">EventExample.Event3:</font>
+<font color="#000000">{</font>
+<font color="#000000">GEventhandlr3(</font><font color="#800080">42</font><font color="#000000">,</font><font color="#ff00ff">&quot;Hello&quot;</font><font color="#000000">);</font>
+<font color="#0000ff">return</font><font color="#000000">;</font>
+<font color="#000000">}</font>
+<font color="#0000ff">default</font><font color="#000000">:</font>
+<font color="#000000">{</font>
+<font color="#0000ff">throw new </font><font color="#808000">InvalidOperationException</font><font color="#000000">(</font><font color="#ff00ff">&quot;Unknown event type&quot;</font><font color="#000000">);</font>
+<font color="#000000">}</font>
+<font color="#000000">}</font>
+<font color="#000000">}</font>
+<font color="#0000ff">public void </font><font color="#000000">operation( )</font>
+<font color="#000000">{...}</font>
+<font color="#000000">}</font>
+</pre>
+</div>
+
+ <table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="The%20DuplexChannelFactor.shtml" title="The DuplexChannelFactory&lt;T,C&gt; class
+">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="Transactions%20in%20WCF.shtml" title="Transactions in WCF">Next</a></td>
+  </tr>
+</table>
+
+ <!--Footer  -->
+</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/dotnet/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>

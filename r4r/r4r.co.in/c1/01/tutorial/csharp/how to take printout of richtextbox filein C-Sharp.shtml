@@ -1,0 +1,180 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>How to Take Printout of RichtextBox if file using c#</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="How to Take Printout of RichtextBox if file using c#" >
+<meta name="keywords" CONTENT="How to Take Printout of RichtextBox if file using c#">
+
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+     <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>C# Tutorial</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a><img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/c1/">C#</a>
+
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/c1/commonfiles/leftmenu.shtml'); ?></td>
+
+                       <td style="80%" valign="top">
+                        <div class="main_content"> 
+
+	<!-- Header End-->
+
+	<div class="heading">How to Take Printout of RichtextBox</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="how%20to%20find%20max%20Value%20of%20X,Y,Z%20from%20Textfile.shtml" 
+    title="How to Find Max Value of X, Y ,Z From Text file Using C# ">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="Multiple%20Colored%20Texts%20in%20RichTextBox%20using%20C-Sharp.shtml" 
+    title="Multiple Colored Texts in RichTextBox using C#">Next</a></td>
+  </tr>
+</table>
+
+<div class="comment">.CS File</div>
+<div class="code">
+<pre>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Collections</font><font color="#000000">.</font><font color="#008080">Generic</font><font color="#000000">;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">ComponentModel</font><font color="#000000">;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Data</font><font color="#000000">;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Drawing</font><font color="#000000">;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.Linq;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Text</font><font color="#000000">;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Windows</font><font color="#000000">.</font><font color="#008080">Forms</font><font color="#000000">;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">IO</font><font color="#000000">;</font>
+<font color="#0000ff">namespace </font><font color="#000000">WindowsFormsApplication1{</font>
+<font color="#0000ff">public </font><font color="#000000">partial </font><font color="#0000ff">class </font><font color="#000000">Form1 : </font><font color="#808000">Form</font><font color="#000000">{</font>
+<font color="#0000ff">public </font><font color="#000000">Form1(){</font>
+<font color="#000000">InitializeComponent();</font>
+<font color="#000000">}</font>
+<font color="#0000ff">private </font><font color="#808000">StringReader </font><font color="#000000">myReader;</font>
+<font color="#008000">//for Preview</font>
+<font color="#0000ff">private void </font><font color="#000000">Preview_Click(</font><font color="#0000ff">object </font><font color="#000000">sender, </font><font color="#808000">EventArgs </font><font color="#000000">e)</font>
+<font color="#000000">{</font>
+<font color="#0000ff">try</font>
+<font color="#000000">{</font>
+<font color="#0000ff">string </font><font color="#000000">strText = </font><font color="#0000ff">this</font><font color="#000000">.richTextBox1.</font><font color="#008080">Text</font><font color="#000000">; </font>
+<font color="#008000">// read string from editor window</font>
+<font color="#000000">myReader = </font><font color="#0000ff">new </font><font color="#000000">tringReader(strText);</font>
+<font color="#808000">PrintPreviewDialog </font><font color="#000000">printPreviewDialog1 = </font><font color="#0000ff">new </font>
+<font color="#808000">PrintPreviewDialog</font><font color="#000000">();</font>
+<font color="#008000">// instantiate new print preview dialog</font>
+<font color="#000000">printPreviewDialog1.Document = </font><font color="#0000ff">this</font><font color="#000000">.printDocument1;</font>
+<font color="#000000">printPreviewDialog1.BorderStyle=FormBorderStyle.Fixed3D;</font>
+<font color="#000000">printPreviewDialog1.ShowDialog(); </font>
+<font color="#008000">// Show the print preview dialog, uses print </font>
+<font color="#008000">//page event to draw preview screen</font>
+<font color="#000000">}</font>
+<font color="#0000ff">catch </font><font color="#000000">(</font><font color="#808000">Exception </font><font color="#000000">exp)</font>
+<font color="#000000">{</font>
+<font color="#008080">System</font><font color="#000000">.</font><font color="#808000">Console</font><font color="#000000">.WriteLine(exp.</font><font color="#808000">Message</font><font color="#000000">.ToString());</font>
+<font color="#000000">}</font>
+<font color="#000000">}</font>
+   <font color="#008000">// TextBoxPrinter _textBoxPrinter;</font>
+<font color="#0000ff">private void </font><font color="#000000">printDocument1_PrintPage(</font><font color="#0000ff">object </font><font color="#000000">sender, </font>
+<font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Drawing</font><font color="#000000">.</font><font color="#008080">Printing</font><font color="#000000">.PrintPageEventArgs e)</font>
+<font color="#000000">{</font>
+<font color="#0000ff">float </font><font color="#000000">linesPerPage = </font><font color="#800080">0</font><font color="#000000">;</font>
+<font color="#0000ff">float </font><font color="#000000">yPosition = </font><font color="#800080">0</font><font color="#000000">;</font>
+<font color="#0000ff">int </font><font color="#000000">count = </font><font color="#800080">0</font><font color="#000000">;</font>
+<font color="#0000ff">float </font><font color="#000000">leftMargin = e.MarginBounds.Left;</font>
+<font color="#0000ff">float </font><font color="#000000">topMargin = e.MarginBounds.Top;</font>
+<font color="#0000ff">string </font><font color="#000000">line = </font><font color="#0000ff">null</font><font color="#000000">;</font>
+<font color="#808000">Font </font><font color="#000000">printFont = </font><font color="#0000ff">this</font><font color="#000000">.richTextBox1.</font><font color="#808000">Font</font><font color="#000000">;</font>
+<font color="#808000">SolidBrush </font><font color="#000000">myBrush = </font><font color="#0000ff">new </font><font color="#808000">SolidBrush</font><font color="#000000">(Color.Black);</font>
+<font color="#008000">// Work out the number of lines per page,</font>
+ <font color="#0000ff">using </font><font color="#000000">the MarginBounds.linesPerPage = e.MarginBounds.Height </font>
+<font color="#000000">/ printFont.GetHeight(e.</font><font color="#808000">Graphics</font><font color="#000000">);</font>
+<font color="#008000">// Iterate over the string using the StringReader,</font>
+<font color="#008000">//printing each line.</font>
+<font color="#0000ff">while </font><font color="#000000">(count &lt; linesPerPage &amp;&amp; ((line = myReader.ReadLine()) </font>
+	<font color="#000000">!= </font><font color="#0000ff">null</font><font color="#000000">)) {</font>
+<font color="#008000">// calculate the next line</font>
+ <font color="#000000">position based on the  height of the font</font>
+<font color="#000000">according to the printing device yPosition =</font>
+<font color="#000000">topMargin + (count * printFont.GetHeight(e.</font>
+<font color="#808000">Graphics</font><font color="#000000">));</font>
+
+<font color="#008000">// draw the next line in the rich edit control</font>
+<font color="#000000">e.</font><font color="#808000">Graphics</font><font color="#000000">.DrawString(line, printFont, </font>
+<font color="#000000">myBrush, leftMargin, yPosition, </font><font color="#0000ff">new  </font><font color="#808000">StringFormat</font><font color="#000000">());</font>
+<font color="#000000">count++;</font>
+<font color="#000000">}</font>
+<font color="#008000">// If there are more lines, print another page.</font>
+<font color="#0000ff">if </font><font color="#000000">(line != </font><font color="#0000ff">null</font><font color="#000000">)</font>
+<font color="#000000">e.HasMorePages = </font><font color="#0000ff">true</font><font color="#000000">;</font>
+<font color="#0000ff">else</font>
+<font color="#000000">e.HasMorePages = </font><font color="#0000ff">false</font><font color="#000000">;</font>
+<font color="#000000">myBrush.Dispose();</font>
+ <font color="#008000">// e.HasMorePages = TextBoxPrinter.Prin</font>
+<font color="#000000">t(e.</font><font color="#808000">Graphics</font><font color="#000000">, richTextBox1, printDocument1, _screenResolutionX);</font>
+<font color="#000000">}</font>
+<font color="#0000ff">private void </font><font color="#000000">Print_Click(</font><font color="#0000ff">object </font><font color="#000000">sender, </font><font color="#808000">EventArgs </font><font color="#000000">e)</font>
+<font color="#000000">{</font>
+<font color="#000000">printDialog1.Document = printDocument1;</font>
+<font color="#0000ff">string </font><font color="#000000">strText = </font><font color="#0000ff">this</font><font color="#000000">.richTextBox1.</font><font color="#008080">Text</font><font color="#000000">;</font>
+<font color="#000000">myReader = </font><font color="#0000ff">new </font><font color="#808000">StringReader </font><font color="#000000">(richTextBox1.</font><font color="#008080">Text</font><font color="#000000">);</font>
+<font color="#0000ff">if </font><font color="#000000">(printDialog1.ShowDialog() == DialogResult.OK)</font>
+<font color="#000000">{</font>
+<font color="#0000ff">this</font><font color="#000000">.printDocument1.Print();</font>
+<font color="#000000">}</font>
+<font color="#000000">}</font>
+<font color="#000000">}</font>
+<font color="#000000">}</font>
+</pre>
+</div>
+
+<p><h3>Output</h3><p>
+<div class="output">
+<div class="image"><img src="print.gif"></div></div>
+<p>When you click on Preview it looks like below</p>
+<div class="output">
+<div class="image">
+<img src="print2.gif">
+</div></div>
+<p><h3>When You click on print then Output</h3></p>
+<div class="output">
+<div class="image">
+<img src="printer.gif">
+</div></div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="how%20to%20find%20max%20Value%20of%20X,Y,Z%20from%20Textfile.shtml" 
+    title="How to Find Max Value of X, Y ,Z From Text file Using C# ">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="Multiple%20Colored%20Texts%20in%20RichTextBox%20using%20C-Sharp.shtml" 
+    title="Multiple Colored Texts in RichTextBox using C#">Next</a></td>
+  </tr>
+</table>
+
+ <!--Footer-->
+   </div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/dotnet/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+     <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>

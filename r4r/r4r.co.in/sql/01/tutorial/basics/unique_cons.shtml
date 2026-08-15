@@ -1,0 +1,126 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>The UNIQUE Constraints</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="The UNIQUE Constraints" >
+<meta name="keywords" CONTENT="The UNIQUE Constraints,Rules regarding to the UNIQUE KEY Constraint">
+
+<!--header start-->
+
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>DATABASE & SQL/PLSQL</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a><img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+			<a href="/sql/">SQL </a>
+              </div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/sql/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	  
+
+                        	                        	<!-- Header End-->	
+ <div class="heading">The UNIQUE Constraint</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="primary_key.shtml" title="PRIMARY KEY Constraint">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="foreign_key.shtml" title="The FOREIGN KEY Constraint">Next</a></td>
+  </tr>
+</table>
+
+<p>To enforce uniqueness on non-primary columns used the UNIQUE constraints. 
+A primary key constraints column automatically includes a restriction for uniqueness. 
+The unique constraint is similar to the primary key constraint except that it allows NULL values, but 
+there can be only one row in the table with a NULL value. Multiple Unique constraints can be created on a table.</p>
+
+<div class="code">
+<pre>
+CREATE TABLE  table_name
+(coloumn_name  data_type  CONSTRAINT  constraint_name  UNIQUE)
+</pre>
+</div>
+
+<h3>Example</h3>
+<div class="code">
+<pre>
+CREATE TABLE  engineer
+(eng_name  char(4),  eng_id  char(4) CONSTRAINT  uniEng_id  UNIQUE)
+</pre>
+</div>
+
+<p><i>output</i></p>
+<div class="output">
+<div class="image">
+<img src="Image/unique.gif">
+</div>
+</div>
+
+<p>The above command creates a UNIQUE constraint uniEng_id  on the attribute  eng_id   in the engineer  table. The constraints would not allow the duplicate value to be inserted in the uniEng_id attribute. However, there could be one row in the uniEng_id  attribute that contains NULL.</p>
+
+<p><b>We create a UNIQUE constraints after the table has been created by altering the table</b><p>
+
+<div class="code">
+<pre>
+ALTER TABLE  engineer
+ADD CONSTRAINT  UNeng_SocialId  UNIQUE  (eng_SocialId)
+</pre>
+</div>
+
+<p><i>output</i></p>
+<div class="output">
+<div class="image">
+<img src="Image/altter_Unique.gif">
+</pre>
+</div>
+
+<p>The above command creates a UNIQUE constraint UNeng_SocialId on the attribute  eng_SocialId   in the engineer  table. </p>
+<h3>The Rules regarding to the UNIQUE constraints are:</h3>
+
+<ul>
+<li>It can be created at the column level as well as table level</li>
+<li> It does not allow two rows to have the same non-null value in a table</li>
+<li>  Multiple UNIQUE constraints can be placed on a table</li>
+</ul>
+</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="primary_key.shtml" title="PRIMARY KEY Constraint">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="foreign_key.shtml" title="The FOREIGN KEY Constraint">Next</a></td>
+  </tr>
+</table>
+
+                       <!--Footer  -->
+
+</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>

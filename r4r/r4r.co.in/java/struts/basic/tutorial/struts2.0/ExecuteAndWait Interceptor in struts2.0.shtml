@@ -1,0 +1,173 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD>
+<meta http-equiv="Content-Language" content="en-us">
+<TITLE>struts,struts 2.0,struts tutorial,struts 2.0 tutorial,ExecuteAndWait Interceptor in struts2.0 framework</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name="description" CONTENT="struts,struts 2.0,struts tutorial,struts 2.0 tutorial,ExecuteAndWait Interceptor in struts2.0 framework" >
+<meta name="keywords" CONTENT="struts,struts 2.0,struts tutorial,struts 2.0 tutorial,ExecuteAndWait Interceptor in struts2.0 framework">
+<!-- header start-->	
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>Struts</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+            <img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+            <a href="/java/">Java</a>
+              <img src="/images/left_menu_bullet.gif" width="11" height="6"/><A href="/java/struts/basic/tutorial/struts2.0">Struts 2.0 Basic Tutorial</a>
+              </div>
+
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/struts/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	 
+
+<div class="heading">ExecuteAndWait Interceptor in struts2.0 framework</div>
+<!-- header End-->
+
+ <table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="Implementation%20of%20Subframework%20validation%20Struts2.0.shtml" title="Implementation of ActionSupport Class">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="Concept%20of%20Tiles%20sub%20framework%20in%20Struts2.0.shtml" title="Concept of Tiles sub framework in Struts2.0">Next</a></td>
+  </tr> 
+</table>
+<h3> Introduction: </h3>
+<p>The ExecuteAndWait Interceptor is great for running long-lived actions in the background while showing the user a nice progress meter. This also prevents the HTTP request from timing out when the action takes more than 5 or 10 minutes.</p>
+<h3>Class/Library File Descriptions:</h3>
+<p>This interceptor works on a per-session basis. That means that the same action name cannot be run more than once at a time in a given session. On the initial request or any subsequent requests (before the action has completed), the wait result will be returned. The wait result is responsible for issuing a subsequent request back to the action, giving the effect of a self-updating progress meter. If no "wait" result is found, Struts will automatically generate a wait result on the fly. This result is written in FreeMarker and cannot run unless FreeMarker is installed. If you don't wish to deploy with FreeMarker, you must provide your own wait result. This is generally a good thing to do anyway, as the default wait page is very plain.</p>
+<h3>Source Code: </h3>
+<div class="comment">web.xml</div>
+<div class="code"><pre>
+<font color="#0000ff">&lt;?xml </font><font color="#ff0000">version</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;1.0&quot; </font><font color="#ff0000">encoding</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;UTF-8&quot;</font><font color="#800080">?</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">web-app </font><font color="#ff0000">version</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;2.5&quot; </font>
+<font color="#ff0000">xmlns</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;http://java.sun.com/xml/ns/javaee&quot; </font>
+<font color="#800080">xmlns:xsi</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;http://www.w3.org/2001</font>
+<font color="#ff00ff">/XMLSchema-instance&quot; </font>
+<font color="#800080">xsi:schemaLocation</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;http://java.sun.com</font>
+<font color="#ff00ff">/xml/ns/javaee </font>
+<font color="#ff00ff">http://java.sun.com/xml/ns/javaee</font>
+<font color="#ff00ff">/web-app_2_5.xsd&quot;</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">welcome-file-list</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">welcome-file</font><font color="#0000ff">&gt;</font><font color="#000000">index.jsp</font><font color="#0000ff">&lt;/</font><font color="#808000">welcome-file</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">welcome-file-list</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">filter</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">filter-name</font><font color="#0000ff">&gt;</font><font color="#000000">struts2</font><font color="#0000ff">&lt;/</font><font color="#808000">filter-name</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">filter-class</font><font color="#0000ff">&gt;</font>
+<font color="#000000">org.apache.struts2.dispatcher.FilterDispatcher</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">filter-class</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">filter</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">filter-mapping</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">filter-name</font><font color="#0000ff">&gt;</font><font color="#000000">struts2</font><font color="#0000ff">&lt;/</font><font color="#808000">filter-name</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">url-pattern</font><font color="#0000ff">&gt;</font><font color="#000000">/*</font><font color="#0000ff">&lt;/</font><font color="#808000">url-pattern</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">filter-mapping</font><font color="#0000ff">&gt;&lt;/</font><font color="#808000">web-app</font><font color="#0000ff">&gt;</font>
+</pre>
+</div>
+<div class="comment">index.jsp</div>
+<div class="code"><pre>
+<font color="#800000">&lt;%@taglib uri=</font><font color="#ff00ff">&quot;/struts-tags&quot; </font><font color="#800000">prefix=</font><font color="#ff00ff">&quot;s&quot;</font><font color="#800000">%&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">s:form </font><font color="#ff0000">action</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;exewait&quot; </font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">s:textfield </font><font color="#ff0000">name</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;name&quot; </font><font color="#ff0000">label</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;Name&quot;</font><font color="#0000ff">/&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">s:submit </font><font color="#ff0000">value</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;Submit&quot;</font><font color="#0000ff">/&gt;</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">s:form</font><font color="#0000ff">&gt;</font>
+</pre>
+</div>
+<div class="comment">struts.xml</div>
+<div class="code"><pre>
+<font color="#0000ff">&lt;?xml </font><font color="#ff0000">version</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;1.0&quot; </font><font color="#ff0000">encoding</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;UTF-8&quot; </font><font color="#800080">?</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;!DOCTYPE </font><font color="#800080">struts PUBLIC </font>
+<font color="#000000">&quot;</font><font color="#800080">-</font><font color="#000000">//</font><font color="#800080">Apache Software Foundation</font>
+<font color="#000000">//</font><font color="#800080">DTD Struts Configuration </font>
+<font color="#800080">2</font><font color="#000000">.</font><font color="#800080">1</font><font color="#000000">//</font><font color="#800080">EN</font><font color="#000000">&quot; &quot;</font><font color="#800080">http:</font><font color="#000000">//</font><font color="#800080">struts</font><font color="#000000">.</font><font color="#800080">apache</font><font color="#000000">.</font><font color="#800080">org</font>
+<font color="#000000">/</font><font color="#800080">dtds</font><font color="#000000">/</font><font color="#800080">struts-2</font><font color="#000000">.</font><font color="#800080">1</font><font color="#000000">.</font><font color="#800080">dtd</font><font color="#000000">&quot;</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">struts</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">package </font><font color="#ff0000">name</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;demo&quot; </font><font color="#800080">extends</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;struts-default&quot;</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">action </font><font color="#ff0000">name</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;exewait&quot; </font>
+<font color="#800080">class</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;mypack.ExecuteAction&quot;</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">interceptor-ref </font><font color="#ff0000">name</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;defaultStack&quot;</font><font color="#0000ff">/&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">interceptor-ref </font><font color="#ff0000">name</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;execAndWait&quot;</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">param </font><font color="#ff0000">name</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;excludeMethods&quot;</font><font color="#0000ff">&gt;</font><font color="#000000">input,back,cancel</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">param</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">interceptor-ref</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">result </font><font color="#ff0000">name</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;success&quot;</font><font color="#0000ff">&gt;</font><font color="#000000">/result.jsp</font><font color="#0000ff">&lt;/</font><font color="#808000">result</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">result </font><font color="#ff0000">name</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;wait&quot;</font><font color="#0000ff">&gt;</font><font color="#000000">/progress.jsp</font><font color="#0000ff">&lt;/</font><font color="#808000">result</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">action</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">package</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">struts</font><font color="#0000ff">&gt;</font><font color="#000000"> </font>
+</pre>
+</div>
+<div class="comment">ExecuteAction.java</div>
+<div class="code"><pre>
+<font color="#0000ff">package </font><font color="#000000">mypack;</font>
+<font color="#0000ff">public class </font><font color="#000000">ExecuteAction {</font>
+<font color="#ff0000">String </font><font color="#000000">name;</font>
+<font color="#0000ff">public </font><font color="#ff0000">String </font><font color="#000000">execute(){</font>
+<font color="#0000ff">try</font><font color="#000000">{</font>
+<font color="#ff0000">Thread</font><font color="#000000">.sleep(</font><font color="#800080">10000</font><font color="#000000">);</font>
+<font color="#000000">}</font><font color="#0000ff">catch</font><font color="#000000">(</font><font color="#ff0000">Exception </font><font color="#000000">e){}</font>
+<font color="#0000ff">return </font><font color="#ff00ff">&quot;success&quot;</font><font color="#000000">;</font>
+<font color="#000000">}</font>
+<font color="#0000ff">public </font><font color="#ff0000">String </font><font color="#000000">getName() {</font>
+<font color="#0000ff">return </font><font color="#000000">name;</font>
+<font color="#000000">}</font>
+<font color="#0000ff">public void </font><font color="#000000">setName(</font><font color="#ff0000">String </font><font color="#000000">name) {</font>
+<font color="#0000ff">this</font><font color="#000000">.name = name;</font>
+<font color="#000000">}</font>
+<font color="#000000">}</font>
+</pre>
+</div>
+<div class="comment">progress.jsp</div>
+<div class="code"><pre>
+<font color="#0000ff">&lt;meta </font><font color="#ff0000">http-equiv</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;refresh&quot; </font><font color="#ff0000">content</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;4;&quot;</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;b&gt;</font><font color="#000000">Work is progressing</font><font color="#0000ff">&lt;/b&gt;</font>
+</pre>
+</div>
+<div class="comment">result.jsp</div>
+<div class="code"><pre>
+<font color="#800000">&lt;%@taglib uri=</font><font color="#ff00ff">&quot;/struts-tags&quot; </font><font color="#800000">prefix=</font><font color="#ff00ff">&quot;s&quot;</font><font color="#800000">%&gt;</font>
+<font color="#000000">Welcome, </font><font color="#0000ff">&lt;</font><font color="#808000">s:property </font><font color="#ff0000">value</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;name&quot;</font><font color="#0000ff">/&gt;&lt;br/&gt;</font>
+<font color="#0000ff">&lt;b&gt;</font><font color="#000000">Your wait is completed</font><font color="#0000ff">&lt;/b&gt;</font>
+</pre>
+</div>
+<div class="output"><i>output</i></div>
+<div class="image"><img src="image34.jpg"></div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="Implementation%20of%20Subframework%20validation%20Struts2.0.shtml" title="Implementation of ActionSupport Class">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="Concept%20of%20Tiles%20sub%20framework%20in%20Struts2.0.shtml" title="Concept of Tiles sub framework in Struts2.0">Next</a></td>
+  </tr> 
+</table>
+<!-- Footer Start-->	
+
+		</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->

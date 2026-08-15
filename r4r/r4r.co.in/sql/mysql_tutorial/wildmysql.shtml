@@ -1,0 +1,138 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http:///www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML>
+	<HEAD>
+
+	<meta http-equiv="Content-Language" content="en-us">
+	<TITLE>Wildcard in MySQL</TITLE>
+		<META content="Rajesh Kumar" name="author">
+		<META http-equiv="expires" content="0">
+		<META content="r4r.co.in" name="owner">
+		<META http-equiv=Content-Type content="text/html; charset=windows-1252">
+		<meta name="description" CONTENT="Wildcard in MySQL-Tutorial covers all topics of Mysql with best  examples to give a immense startup to yourself">
+		<meta name="keywords" CONTENT="Wildcard in MySQL, Wildcards In MySQL,Aliases In MySQL,Joins In MySQL,Inner Join In MySQL,Left Join In MySQL
+Right Join In MySQL,Full Join In MySQL,Union In MySQL">
+
+	<!-- header start-->	
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>MySQL </h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+			<img src="/images/left_menu_bullet.gif" width="11" height="6"><a href="/sql/mysql_tutorial/">MySQL</a>
+
+              </div>
+
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/sql/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	 
+
+<div class="heading">Wildcard in MySQL</div>
+
+<table id="indexing">
+	<tr>
+	<td style="width:33%; text-align:left;"><a href="likemysql.shtml" title="Like in MySQL">Previous</a></td>
+	<td style="width:34%; text-align:center"><a href="index.shtml" title="Home">Home</a></td>
+	<td style="width:33%; text-align:right"><a href="aliasmysql.shtml" title="Alias in MySQL">Next</a></td>
+	</tr>
+</table>
+
+<p>They are the chararcters which provides a easiy way to search any pattern or string in the specified column. Wildcards can be use within two functions only, they are </p>
+<ol><li>Like</li>
+<li>Rlike</li>
+</ol>
+<p>The Like is already discussed in the previous page or you can  click on <a href="likemysql.shtml"> this</a> link </p>
+<h3>Rlike</h3>
+
+<p>It performs some category , whose description is given below in the below table</p>
+<div class="table_content">
+<table>
+<tr><td class="heading" style="width:30;">Type</td><td class="heading" style="width:70;">Description</td></tr>
+<tr><td class="alternate_heading1">^</td><td class="alternate_heading1">Define begining of the string</td></tr>
+<tr><td class="alternate_heading2">$</td><td class="alternate_heading2">Define ending of the string </td></tr>
+<tr><td class="alternate_heading1">| </td> <td class="alternate_heading1"> OR Conditions</td></tr>
+</table>
+</div>
+
+<p><h3>Syntax</h3></p>
+<div class="code">
+<pre>
+SELECT *   
+FROM tablename  
+WHERE Clause 
+RLIKE 'type_define';
+</pre>
+</div>
+
+<p>The '^' defines the starting of the string followed  by the character ' s ' define and display all the result.</p>
+<p><h3>Example</h3></p>
+<div class="code">
+<pre>
+SELECT *
+FROM studinfo 
+WHERE lname
+RLIKE '^s' ;
+</pre>
+</div>
+<div class="output"><div class="image"><img src="images/wild1.gif"></div></div>
+
+<p>The '$' defines the ending of the string followed  by the character ' a ' define and display all the result.</p>
+<p><h3>Example</h3></p>
+<div class="code">
+<pre>
+SELECT *
+FROM studinfo 
+WHERE lname
+RLIKE 'a$' ;
+</pre>
+</div>
+<div class="output"><div class="image"><img src="images/wild2.gif"></div></div>
+
+<p>The '|' defines the OR type in the string and display all the result.</p>
+<p><h3>Example</h3></p>
+<div class="code">
+<pre>
+SELECT *
+FROM studinfo 
+WHERE lname
+RLIKE 'sharma|saxena' ;
+</pre>
+</div>
+<div class="output"><div class="image"><img src="images/wild3.gif"></div></div>
+
+<table id="indexing">
+	<tr>
+	<td style="width:33%; text-align:left;"><a href="likemysql.shtml" title="Like in MySQL">Previous</a></td>
+	<td style="width:34%; text-align:center"><a href="index.shtml" title="Home">Home</a></td>
+	<td style="width:33%; text-align:right"><a href="aliasmysql.shtml" title="Alias in MySQL">Next</a></td>
+	</tr>
+</table>
+
+		</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->

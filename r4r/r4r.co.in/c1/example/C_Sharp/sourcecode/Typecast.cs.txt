@@ -1,0 +1,33 @@
+class Typecast
+{
+	public static void Main()
+	{
+		char c='x';
+		byte b=50;
+		short s=1996;
+		int i=123456789;
+		long l=1234567896789L;
+		float f1=3.142F;
+		double d1=0.0000000987;
+		System.Console.WriteLine("variabel created");
+		System.Console.WriteLine("c=" + c);
+		System.Console.WriteLine("b=" + b);
+		System.Console.WriteLine("s=" + s);
+		System.Console.WriteLine("i =" + i);
+		System.Console.WriteLine("l=" + l);
+		System.Console.WriteLine("f1=" + f1);
+		System.Console.WriteLine("d1=" + d1);
+		System.Console.WriteLine(" ");
+		System.Console.WriteLine("type casting");
+		short s1=(short)b;
+		short s2=(short)i; //incorrect result
+		float n1=(float)l;
+		int m1=(int)f1; //fractional is lost
+		System.Console.WriteLine("(short)b=" + s1);
+		System.Console.WriteLine("(short)i=" + s2);
+		System.Console.WriteLine("(float)l =" + n1);
+		System.Console.WriteLine("(int)f1 =" + m1);
+	}
+}
+	
+

@@ -1,0 +1,130 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>Hashtable in Collection</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="Generics and Collections( Version JDK-1.6 used)" >
+<meta name="keywords" CONTENT="Generics and Collections( Version JDK-1.6 used)">
+
+<!-- header start-->
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+	<BODY>
+		<?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+        <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>Java Collection Tutorials</h1>
+            <div class="link_menu"><br><div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+            <img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+            <a href="/java/">Java</a>
+			<img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/java/corejava/">Core Java</a>
+  <img src="/images/left_menu_bullet.gif" width="11" height="6"> <a href="/java/corejava/collections/">Collections</a>
+  </div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/corejava/collections/commonfiles/leftmenu.shtml'); ?></td>                                           
+                        <td style="80%" valign="top">
+
+                        <div class="main_content"> 	 
+<!-- header End-->	
+
+<div class="heading">Hashtable in Collection</div>
+
+<table id="indexing">
+  <tr>
+ <td style="width:33%; text-align:left;"><a href="Write a program for Conversion Array to Vector form.shtml" title="Write a program for Conversion Array to Vector form">previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="Write a program for Map Interface.shtml"title="Write a program for Map Interface">next</a></td>
+  </tr>
+</table>
+
+<p>A Hashtable is a specialized Dictionary that relies on a hashing algorithm to convert keys into a mechanism to look up values in the dictionary. When the key-value pair using in a hashtable, the keys are converted into an integer called a hash code by using a hashing algorithm. Now, this hash code is then reduced based upon the internal storage structure used by the hash table to serve as an index into this structure (an array). In case of two equal elements present into Hashtable, the hash code must be the same.</p>
+
+<h3>Example</h3>
+<div class="code">
+<pre>
+<font color="#008000">/*</font>
+<font color="#008000"> * Save as a HashTableExample.java</font>
+<font color="#008000"> * Program for HashTable</font>
+<font color="#008000"> */</font>
+<font color="#0000ff">package </font><font color="#000000">r4r.co.in;</font>
+<font color="#0000ff">import </font><font color="#000000">java.util.</font><font color="#ff0000">Enumeration</font><font color="#000000">;</font>
+<font color="#0000ff">import </font><font color="#000000">java.util.</font><font color="#ff0000">HashMap</font><font color="#000000">;</font>
+<font color="#0000ff">import </font><font color="#000000">java.util.</font><font color="#ff0000">Hashtable</font><font color="#000000">;</font>
+<font color="#0000ff">public class </font><font color="#000000">HashTableExample {</font>
+<font color="#0000ff">public static void </font><font color="#000000">main(</font><font color="#ff0000">String</font><font color="#000000">[] args) {</font>
+<font color="#ff0000">HashMap </font><font color="#000000">hmp = </font><font color="#0000ff">new </font><font color="#ff0000">HashMap</font><font color="#000000">();</font>
+
+<font color="#008000">// put the values to the Hashmap</font>
+<font color="#000000">hmp.put(</font><font color="#ff00ff">&quot;12&quot;</font><font color="#000000">, </font><font color="#ff00ff">&quot;tweleve&quot;</font><font color="#000000">);</font>
+<font color="#000000">hmp.put(</font><font color="#ff00ff">&quot;13&quot;</font><font color="#000000">, </font><font color="#ff00ff">&quot;thirteen&quot;</font><font color="#000000">);</font>
+<font color="#000000">hmp.put(</font><font color="#ff00ff">&quot;14&quot;</font><font color="#000000">, </font><font color="#ff00ff">&quot;fourteen&quot;</font><font color="#000000">);</font>
+<font color="#ff0000">Hashtable </font><font color="#000000">tb = </font><font color="#0000ff">new </font><font color="#ff0000">Hashtable</font><font color="#000000">();</font>
+<font color="#000000">tb.put(</font><font color="#ff00ff">&quot;1&quot;</font><font color="#000000">, </font><font color="#ff00ff">&quot;one&quot;</font><font color="#000000">);</font>
+<font color="#000000">tb.put(</font><font color="#ff00ff">&quot;2&quot;</font><font color="#000000">, </font><font color="#ff00ff">&quot;two&quot;</font><font color="#000000">);</font>
+<font color="#000000">tb.put(</font><font color="#ff00ff">&quot;3&quot;</font><font color="#000000">, </font><font color="#ff00ff">&quot;three&quot;</font><font color="#000000">);</font>
+<font color="#008000">// print the value of hashtable before copying the value Hashmap to Hashtable</font>
+<font color="#ff0000">System</font><font color="#000000">.out.println(</font><font color="#ff00ff">&quot; The  values of Hashtable are:&quot;</font><font color="#000000">);</font>
+<font color="#ff0000">Enumeration </font><font color="#000000">e = tb.elements();</font>
+<font color="#0000ff">while </font><font color="#000000">(e.hasMoreElements()) {</font>
+<font color="#ff0000">System</font><font color="#000000">.out.println(e.nextElement());</font>
+<font color="#000000">}</font>
+<font color="#008000">// now tocopy the elements of hashmap use putAll() method of hashtabble</font>
+<font color="#000000">tb.putAll(hmp);</font>
+<font color="#ff0000">System</font><font color="#000000">.out.println(</font><font color="#ff00ff">&quot;Elements of Hashtable after copying&quot;</font><font color="#000000">);</font>
+<font color="#000000">e = tb.elements();</font>
+<font color="#0000ff">while </font><font color="#000000">(e.hasMoreElements()) {</font>
+<font color="#ff0000">System</font><font color="#000000">.out.println(e.nextElement());</font>
+<font color="#000000">}</font>
+<font color="#000000">}</font>
+<font color="#000000">}</font>
+</pre>
+</div>
+
+<h3>output</h3>
+<div class="output">
+<pre>
+<font color="#000000">The  values of </font><font color="#ff0000">Hashtable </font><font color="#000000">are:</font>
+<font color="#000000">three</font>
+<font color="#000000">two</font>
+<font color="#000000">one</font>
+<font color="#000000">Elements of </font><font color="#ff0000">Hashtable </font><font color="#000000">after copying</font>
+<font color="#000000">fourteen</font>
+<font color="#000000">thirteen</font>
+<font color="#000000">tweleve</font>
+<font color="#000000">three</font>
+<font color="#000000">two</font>
+<font color="#000000">one</font>
+</pre>
+</div>
+
+<table id="indexing">
+  <tr>
+ <td style="width:33%; text-align:left;"><a href="Write a program for Conversion Array to Vector form.shtml" title="Write a program for Conversion Array to Vector form">previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="Write a program for Map Interface.shtml"title="Write a program for Map Interface">next</a></td>
+  </tr>
+</table>
+
+<!-- Footer Start-->
+		           </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+

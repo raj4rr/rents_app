@@ -1,0 +1,139 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD>
+<meta http-equiv="Content-Language" content="en-us">
+<TITLE>Adapter Design Pattern Pattern</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name="description" CONTENT="Adapter Design Pattern Pattern" >
+<meta name="keywords" CONTENT="Adapter Design Pattern Pattern">
+
+<!-- header start-->	
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>Design Pattern Basic Tutorial</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+
+            		 <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/java/">java</a>           
+              <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/java/design-patterns/">Design Pattern</a>
+
+              </div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/design-patterns/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	 
+
+<!-- header end-->
+
+<div class="heading">Adapter Pattern</div>
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="bridge.shtml" title="bridge">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="composite.shtml" title="composite">Next</a></td>
+  </tr> 
+</table>
+
+<p>The Adapter pattern is very useful structural pattern because with help of this we can established the relationship between the different types of the interfaces and prepare for work together. This means that it is convert to one interface of one class to an other interface expected by the client. lets take an example To understand clearly.</p>
+
+<h3>Example</h3>
+
+<p>Suppose that there are many sockets of different shapes and sizes in a home. socket has variation in sizes, and all sockets have no capability of plug-in a laptop adapter. then for make the portable it we can use the adapter. Here we are use the Adapter as a connector. This connector connects them together and complete the client requirement.</p>
+
+<div class="heading">Benefit of Adapter Pattern</div>
+<p>The developer is use this pattern to relate the different type of the class such as they work together in a program. this is provide the compatibility between interfaces and classes and also provide the pluggable kit, delegates objects and make the classes highly reusable and it is help to achieving the goal through inheritance or composition. </p>
+<p>Adapter Pattern is also trying to match the interfaces such as WindowAdapter, MouseAdapter, KeyAdapter, ComponentAdapter, ContainerAdapter, FocusAdapter and MouseMotionAdapter.</p>
+
+<h3>Example</h3>
+<div class="code">
+<pre>
+<font color="#008000">//Create the Interface</font>
+<font color="#0000ff">package </font><font color="#000000">r4r;</font>
+<font color="#0000ff">public interface </font><font color="#000000">Switch {</font>
+<font color="#0000ff">void </font><font color="#000000">SwitchOn();</font>
+<font color="#0000ff">void </font><font color="#000000">Switchoff();</font>
+<font color="#000000">}</font>
+<font color="#008000">// Create the Room class and implement to interface</font>
+
+<font color="#0000ff">package </font><font color="#000000">r4r;</font>
+<font color="#0000ff">public class </font><font color="#000000">bulb </font><font color="#0000ff">implements </font><font color="#000000">Switch {</font>
+<font color="#0000ff">public void </font><font color="#000000">SwitchOn()</font>
+<font color="#000000">{</font>
+<font color="#ff0000">System</font><font color="#000000">.out.println(</font><font color="#ff00ff">&quot;bulb is on&quot;</font><font color="#000000">);</font>
+<font color="#000000">}</font>
+<font color="#0000ff">public void </font><font color="#000000">Switchoff()</font>
+<font color="#000000">{</font>
+<font color="#ff0000">System</font><font color="#000000">.out.println(</font><font color="#ff00ff">&quot;bulb is off&quot;</font><font color="#000000">);</font>
+<font color="#000000">}</font>
+<font color="#000000">}</font>
+
+<font color="#008000">// Create the bulb class and implement to the interface</font>
+<font color="#0000ff">package </font><font color="#000000">r4r;</font>
+<font color="#0000ff">import </font><font color="#000000">java.util.*;</font>
+<font color="#0000ff">public class </font><font color="#000000">fam </font><font color="#0000ff">implements </font><font color="#000000">Switch {</font>
+<font color="#0000ff">public void </font><font color="#000000">SwitchOn()</font>
+<font color="#000000">{</font>
+<font color="#ff0000">System</font><font color="#000000">.out.println(</font><font color="#ff00ff">&quot;fan is on&quot;</font><font color="#000000">);</font>
+<font color="#000000">}</font>
+<font color="#0000ff">public void </font><font color="#000000">Switchoff()</font>
+<font color="#000000">{</font>
+<font color="#ff0000">System</font><font color="#000000">.out.println(</font><font color="#ff00ff">&quot;fan is off&quot;</font><font color="#000000">);</font>
+<font color="#000000">}</font>
+
+<font color="#000000">}</font>
+<font color="#0000ff">package </font><font color="#000000">r4r;</font>
+<font color="#0000ff">public class </font><font color="#000000">adaptertests {</font>
+<font color="#0000ff">public static void </font><font color="#000000">main(</font><font color="#ff0000">String</font><font color="#000000">[] args)</font>
+<font color="#000000">{</font>
+<font color="#000000">fam f= </font><font color="#0000ff">new </font><font color="#000000">fam();</font>
+<font color="#000000">bulb b=</font><font color="#0000ff">new </font><font color="#000000">bulb();</font>
+<font color="#000000">f.SwitchOn();</font>
+<font color="#000000">f.Switchoff();</font>
+<font color="#000000">b.Switchoff();</font>
+<font color="#000000">b.SwitchOn();</font>
+<font color="#000000">}</font>
+<font color="#000000">}</font>
+</pre>
+</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="bridge.shtml" title="bridge">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="composite.shtml" title="composite">Next</a></td>
+  </tr> 
+</table>
+
+<!-- Footer Start-->	   	
+
+		</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->
+

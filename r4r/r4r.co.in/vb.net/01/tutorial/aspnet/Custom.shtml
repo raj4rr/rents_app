@@ -1,0 +1,144 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>ASP.NET Custom Validator control|ValidateEmptyText|ClientValidationFunction|OnServerValidate</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="ASP.NET tutorial Custom Validator control work with controls in 
+asp.net in short time covers all examples of asp.net controls ValidateEmptyText,Client
+ValidationFunction,OnServerValidate" >
+<meta name="keywords" CONTENT="ASP.Net Custom Validator control,ValidateEmptyText,ClientValidation
+Function,OnServerValidate, dropdowlist in asp.net,gridview, gridview update, hyperlink, image button, label, link button,
+Validators in ASP.Net, Database Access, ASP.Net with ADO.Net, File uploading in ASP.Net, Multiviews
+ in ASP.Net, Panel Control In ASP.Net, Razors in ASP.Net">
+
+<!--Header start-->
+
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>VB.net Tutorials with Examples</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a><img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+			<a href="/vb.net/">vb.net</a><img src="/images/left_menu_bullet.gif" width="11" height="6"/>
+			<a href="/vb.net/01/tutorial/aspnet/">ASP.net using VB.net</a>
+              </div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/vb.net/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	  
+
+<!-- Header End-->	
+<div class="heading">Custom Validator control</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="Regularexpression.shtml" title="RegularExpressionValidator control 
+in Asp.net">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="validation%20summarry.shtml" title="Summary Validation Control in 
+Asp.net">Next</a></td>
+  </tr>
+</table>
+
+<p>It is used to validate user 
+input based on the user defined functionality.
+<i>OR </i>Custom validator control is used to capture the validation that cannot be 
+handled by the validator controls provided by ASP.NET.
+Here user is at the freedom to define his own custom method, both Client side 
+and Server side.</p>
+<p>CustomValidator is the only validator control 
+which has the capability to validate the user input at the client side and also 
+at the server side. Other than the CustomValidator, all the controls will validate 
+the user input at the client side.</p>
+<h3>Property</h3>
+<div class="table_content">
+<table> 
+  <tr>
+    <td class="alternate_heading1" style="width:30%;">ClientValidationFunction</td>
+    <td class="alternate_heading1" style="width:70%;">Specifies the JavaScript function name, 
+    which provides the definition to validate the user input at the client side</td>
+  </tr>
+</table></div>
+
+  <h3>Event</h3>
+  <div class="table_content">
+<table>
+  <tr>
+    <td class="alternate_heading1" style="width:30%;">ServerValidate</td>
+    <td class="alternate_heading1" style="width:70%;">The code written within this event will 
+    be used to validate the user input at the server side.</td>
+  </tr>
+</table></div>
+
+<h3>.aspx Code</h3>
+<div class="code">
+<pre>
+<font color="#000000">Custom text:&lt;br /&gt;</font>
+<font color="#000000">&lt;asp:</font><font color="#808000">TextBox </font><font color="#000000">runat=</font><font color="#ff00ff">&quot;server&quot; </font><font color="#000000">id=</font><font color="#ff00ff">&quot;txtCustom&quot; </font><font color="#000000">/&gt;</font>
+<font color="#000000">&lt;asp:</font><font color="#808000">CustomValidator </font><font color="#000000">runat=</font><font color="#ff00ff">&quot;server&quot; </font><font color="#000000">id=</font><font color="#ff00ff">&quot;cusCustom&quot; </font>
+<font color="#000000">controltovalidate=</font><font color="#ff00ff">&quot;txtCustom&quot; </font>
+<font color="#000000">onservervalidate=</font><font color="#ff00ff">&quot;cusCustom_ServerValidate&quot;</font>
+<font color="#000000">errormessage=</font><font color="#ff00ff">&quot;The text must be exactly 8 characters long!&quot; </font><font color="#000000">/&gt;</font>
+<font color="#000000">&lt;br /&gt;&lt;br /&gt;</font>
+</pre>
+</div>
+
+<h3>.VB CODE</h3>
+<div class="code">
+  <pre>
+<font color="#000000">Protected Sub CustomValidator1_ServerValidate(ByVal source As </font><font color="#808000">Object</font><font color="#000000">, </font>
+<font color="#000000">ByVal args As </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Web</font><font color="#000000">.</font><font color="#008080">UI</font><font color="#000000">.</font><font color="#008080">WebControls</font><font color="#000000">.</font><font color="#808000">ServerValidateEventArgs</font><font color="#000000">) </font>
+<font color="#000000">Handles CustomValidator1.ServerValidate</font>
+<font color="#000000">If args.Value.Length = </font><font color="#800080">8 </font><font color="#000000">Then</font>
+ <font color="#000000">args.IsValid = True</font>
+<font color="#000000">Else</font>
+<font color="#000000">args.IsValid = False</font>
+<font color="#000000">End If</font>
+<font color="#000000">End Sub</font>
+</pre>
+</div>
+  <p><i>ValidateEmptyText:</i> is a boolean attribute that if set to true, the 
+  input control will be validated even if it is empty.</p>
+
+<p><i>ClientValidationFunction:</i> contains name of client validation function.</p>
+
+ <p> <i>OnServerValidate:</i> contains name of server validation function.</p>
+
+ <table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="Regularexpression.shtml" title="RegularExpressionValidator control 
+in Asp.net">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="validation%20summarry.shtml" title="Summary Validation Control in 
+Asp.net">Next</a></td>
+  </tr>
+</table>
+
+<!--Footer  -->
+</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>

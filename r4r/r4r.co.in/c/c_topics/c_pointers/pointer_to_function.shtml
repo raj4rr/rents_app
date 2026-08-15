@@ -1,0 +1,159 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>Pointers to Functions in C Language</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="Learn Pointers to Functions with examples,c tutorial,c basics,programming language,examples,pointer,function,loop,else,if else,while,array,pre processor,post processor,structures" >
+<meta name="keywords" CONTENT="c tutorial,c basics,programming language,examples,pointer,function,loop,else,if else,while,array,pre processor,post processor,structures,memory menagement,string,constants,variables,decisions making,c unions,c memory allocation, c operators, C pointers,c error handling, c file handling">
+<link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>C Programming language</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a><img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/c/">C </a>
+              <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/c/c_topics/c_pointers/">C Pointer</a></div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/c/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 
+
+		<!-- Header End-->	
+<div class="heading">Pointers to Functions</div>
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="array_of_pointer.shtml">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="pointer_to_structure.shtml">Next</a></td>
+  </tr>
+</table>	
+
+<p>The function pointer is a powerful feature in c. In memory a function has a physical location  that can be assigned to a pointer. This address is the entry point of the function and it is the address used when the function is called. Once a pointer points to a function, the function can be called through that pointer. Function pointers also allow functions to be passed as arguments to other functions or function pointers is a pointers, that point to the address of a function. </p></p>Now we can se that when we run the any program than that running program gets a certain space in the main-memory. than the executable compiled program code and variables are put inside this memory. Thus that program code have a functions than that  function in the program code is, like e.g. a character field, nothing else than an address. It is only important how you, or better your compiler/processor, interpret the memory a pointer points to.</p>
+<div class="code">
+<FONT color="#000080">
+<FONT COLOR="#ff0000">#include</FONT><FONT>&lt;stdio.h&gt;</FONT><br>
+<FONT COLOR="#ff0000">#include</FONT><FONT>&lt;conio.h&gt;</FONT><br>
+<FONT COLOR="#0000ff">void </FONT><FONT>my_int_func(</FONT><FONT COLOR="#0000ff">int </FONT><FONT>x)</FONT><br>
+<FONT>{</FONT><br>
+&nbsp;&nbsp;&nbsp;
+    <FONT>printf( </FONT><FONT COLOR="#ff00ff">&quot;%d\n&quot;</FONT><FONT>, x );</FONT><br>
+<FONT>}</FONT><br>
+<FONT COLOR="#0000ff">int </FONT><FONT>main()</FONT><br>
+<FONT>{</FONT><br>
+&nbsp;&nbsp;&nbsp;
+    <FONT COLOR="#0000ff">void </FONT><FONT>(*yes)(</FONT><FONT COLOR="#0000ff">int</FONT><FONT>);</FONT><br>
+&nbsp;&nbsp;&nbsp;
+    <FONT>yes = &amp;my_int_func;&nbsp;  </FONT>
+			<br>
+				<FONT COLOR="#008000">/* call my_int_func (note that you do not need to write (*yes)(2) ) */</FONT><br>
+&nbsp;&nbsp;&nbsp;
+    <FONT>yes( </FONT><FONT COLOR="#800080">2 </FONT><FONT>);</FONT><br>
+&nbsp;&nbsp;&nbsp;
+    <FONT COLOR="#008000">/* but if you want to, you may */</FONT><br>
+&nbsp;&nbsp;&nbsp;
+    <FONT>(*yes)( </FONT><FONT COLOR="#800080">2 </FONT><FONT>);</FONT><br>
+			<br>
+&nbsp;&nbsp;&nbsp;
+
+    <FONT COLOR="#0000ff">return </FONT><FONT COLOR="#800080">0</FONT><FONT>;</FONT><br>
+<FONT>};</FONT></FONT>
+</div>
+<div class="output">
+	<p><i>Output</i>: The output of the above program would be:</p>
+ 	<font>2 2</font></FONT>
+</div>
+
+<h3>Example</h3>
+<div class="code">
+	<FONT color="#000080">   <FONT COLOR="#ff0000">#include</FONT><FONT>&lt;stdio.h&gt;&nbsp;  </FONT>
+   			<br>
+&nbsp;&nbsp;
+   <FONT COLOR="#ff0000">#include</FONT><FONT>&lt;conio.h&gt;&nbsp;  </FONT>
+   			<br>
+&nbsp;&nbsp;
+   <FONT COLOR="#0000ff">int </FONT><FONT>show();&nbsp;  </FONT>
+   			<br>
+&nbsp;&nbsp;
+   <FONT COLOR="#0000ff">void </FONT><FONT>main()&nbsp;  </FONT>
+   			<br>
+&nbsp;&nbsp;
+   <FONT>{&nbsp;  </FONT>
+   			<br>
+&nbsp;&nbsp;
+   <FONT COLOR="#0000ff">int </FONT><FONT>(*fP)();&nbsp;  </FONT>
+   			<br>
+&nbsp;&nbsp;
+   <FONT>clrscr();&nbsp;  </FONT>
+   			<br>
+&nbsp;&nbsp;
+   <FONT>fP=show;&nbsp;  </FONT>
+      		<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <FONT>printf(</FONT><FONT COLOR="#ff00ff">&quot;Address of function :%u&quot;</FONT><FONT>,show);&nbsp;  </FONT>
+       		<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+       <FONT>(*fP)();&nbsp;  </FONT>
+       		<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+       <FONT>getch();&nbsp;  </FONT>
+   			<br>
+&nbsp;&nbsp;
+   <FONT>}&nbsp;  </FONT>
+
+   			<br>
+&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;
+
+   <FONT COLOR="#0000ff">int </FONT><FONT>show()&nbsp;  </FONT>
+   			<br>
+&nbsp;&nbsp;
+   <FONT>{&nbsp;  </FONT>
+   			<br>
+&nbsp;&nbsp;
+   <FONT>printf(</FONT><FONT COLOR="#ff00ff">&quot;\nFunction called using pointer!&quot;</FONT><FONT>);&nbsp;  </FONT>
+   			<br>
+&nbsp;&nbsp;
+   <FONT COLOR="#0000ff">return </FONT><FONT COLOR="#800080">0</FONT><FONT>;&nbsp;  </FONT>
+   			<br>
+&nbsp;&nbsp;
+   <FONT>}  </FONT>
+</FONT>
+</div>
+<div class="output"><p><i>Output</i>: The output of the above program would be:</p>
+	<p>Address of function : 694</p>
+    <p>Function called using pointer!</p>
+</div>
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="array_of_pointer.shtml">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="pointer_to_structure.shtml">Next</a></td>
+  </tr>
+</table>	
+
+<!-- Footer Start-->	
+
+		</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>

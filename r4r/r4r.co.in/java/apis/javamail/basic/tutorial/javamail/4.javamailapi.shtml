@@ -1,0 +1,159 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD>
+<meta http-equiv="Content-Language" content="en-us">
+<TITLE>How Can Send Your First Message Program By Using JavaMail API</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name="description" CONTENT="How Can Send Your First Message Program By Using JavaMail API" >
+<meta name="keywords" CONTENT="How Can Send Your First Message Program By Using JavaMail API">
+
+<!-- header start-->	
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>Java mail</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+            <img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+            <a href="/java/">Java</a>
+
+                                   <img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+								   <a href="/java/apis/javamail/">JAVA Mail</a>
+              </div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/apis/javamail/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	 
+
+<div class="heading">How Can Send Your First Message Program By Using JavaMail API</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="3.envoiurment setup.shtml" >Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="5.javamailapi.shtml" >Next</a></td>
+  </tr> 
+</table>
+<!-- header End-->
+
+<p>If you want to send Message then using following steps:</p>
+
+<ol>
+	<li>firstly follow the total task of <i>JavaMail API</i> Setup implementation. </li>
+        <li>Then write a Skelton code 
+    	  <p><i>Skeleton code:</i></p>
+          <p><i>FirstMailProgram.java</i></p>
+          <div class="code">
+          <pre><font color="#0000ff">import </font><font color="#000000">java.util.</font><font color="#ff0000">Properties</font><font color="#000000">;</font>
+<font color="#0000ff">import </font><font color="#000000">javax.mail.*;</font>
+<font color="#0000ff">import </font><font color="#000000">javax.mail.internet.*;</font>
+<font color="#0000ff">public class </font><font color="#000000">FirstMailProgram {</font>
+  <font color="#0000ff">public static void </font><font color="#000000">main (</font><font color="#ff0000">String </font><font color="#000000">args[]) </font><font color="#0000ff">throws </font><font color="#ff0000">Exception </font><font color="#000000">{</font>
+    <font color="#ff0000">String </font><font color="#000000">host = args[</font><font color="#800080">0</font><font color="#000000">];</font>
+    <font color="#ff0000">String </font><font color="#000000">from = args[</font><font color="#800080">1</font><font color="#000000">];</font>
+    <font color="#ff0000">String </font><font color="#000000">to = args[</font><font color="#800080">2</font><font color="#000000">];</font>
+    <font color="#008000">// Get system properties</font>
+    <font color="#008000">// Setup mail server</font>
+    <font color="#008000">// Get session</font>
+    <font color="#008000">// Define message</font>
+    <font color="#008000">// Set the from address</font>
+    <font color="#008000">// Set the to address</font>
+    <font color="#008000">// Set the subject</font>
+    <font color="#008000">// Set the content</font>
+    <font color="#008000">// Send message</font>
+  <font color="#000000">}</font>
+<font color="#000000">}</font>
+</pre>
+
+          </div>
+
+    </li>
+
+    <li>To start Skeleton Code and then get the system Properties. To get the
+		<p><i>Properties props - sytem.get properties();</i>
+    </li>
+
+    <li>After the Skeleton Code add the name of your SMTP server to the  properties for the mail.smtp.host key.
+    <p><i>props. put ("mail.smtp.host",host);</i></p>
+    </li>
+
+    <li>When you add the name of your SMTP server after that Get a Session object based on the Properties.
+      <p><i>Session session -Session.getDefaultInstance(props,null)</i></p>
+      <p>In this situation the session class is defines a basic mail session. And the session object takes the advantages of a java.util.Properties. The object to get information like mail server, username, password, and other information that can be shared across your entire application.</p>
+    </li>
+
+    <li>To Create a MimeMessage from the session. In this session create a object based for MimeMessage.
+      <p><i>MimeMessage message- new MimeMessage (session);</i></p>
+    </li>
+
+    <li>Then set the total form field of the <i>message. message.setFrom(new InternetAddress(from)); </i>If you have message then you can set the parts , and set the message implement the parts interface. and the basic mechanism is set the content of SetContent () method , and the argument is content for Mime type.<i> message.SetContent("Hellor4r");</i>
+      <p>If  using plain text then you use method is <i>setText() </i>method which only requires the actual content. </p>                          
+      <p><i>message.setText("Hello r4r");</i></p>
+    </li>
+
+    <li>Now set the to field of  the message
+      <p><i>message.addRecipient(Message.RecipientType.TO,new InternetAddress(to));</i></p>
+    </li>
+
+    <li>When you set to field after that set the message for plain Text. To the message sending for other languages like as HTML messages. then setting the subject for using <i>setSubject()</i> method. 
+      <p><i>message.setSubject("Hello R4R");</i></p>
+    </li>
+
+    <li>If you select the messages then select the content of this messages then using method is
+      <p><i>message.setText("Welcome to r4rtechsoft");</i></p>
+    </li>
+
+    <li>The total content write or Gathered then Transport the messages so you using the method for Transport
+    <p><i>Transport.sent(messages);                                                                                                                              
+</i></p>
+<p>The Final part of the messages is the Transport class. The class Speaks the protocol specific messges(SMTP usually). It is just like work for abstract class and working is Session. then you can using the default version of the class just calling the static send() method.</p>
+    <p><i>Transport.send(message);</i></p>
+    </li>
+
+    <li>Finally Compile the program, and passing your SMTP server,from address and to address on the command line
+      <p><i>java MailExample SMTP.Server from@address to@address
+previous 	
+
+ </i></p>
+    </li>
+    </ol>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="3.envoiurment setup.shtml" >Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="5.javamailapi.shtml" >Next</a></td>
+  </tr> 
+</table>
+
+<!-- Footer Start-->	
+
+		</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->

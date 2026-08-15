@@ -1,0 +1,123 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD>
+<meta http-equiv="Content-Language" content="en-us">
+<TITLE>how to implement Custom formatter,Custom formatter</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name="description" CONTENT=">how to implement Custom formatter,Custom formatter" >
+<meta name="keywords" CONTENT=">how to implement Custom formatter,Custom formatter">
+
+<!-- header start-->	
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>Java Programing laungage</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+            <img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+            <a href="/java/">Java</a>
+              <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/java/corejava">Core Java</a>
+               <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/java/corejava/packages">Package</a>
+                     <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/java/corejava/packages/lang">Java Util Package</a>
+              </div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/corejava/packages/util/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	 
+
+<div class="heading">Creating Custom Formatter</div>
+<p>In This page of the programming tutorials we are going to create the a custom formatter for a logger handler. Java provides two types formatter <b>SimpleFormatter</b> and <b>XMLFormatter</b>. But, in the java logging package allows for creating a custom formatter through the logger handler. this means that the formatter is created by the user. A logger handler writes log records to another file by using the logger formatter.</p>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="case_sencitivity.shtml" title="case sencitivity">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="limit_sizeof_logfile.shtml" title="limit sizeof logfile">Next</a></td>
+  </tr> 
+</table>
+
+<!-- header End-->	
+
+<h2>Program Description</h2>
+<p>In this Example we are create to the a logger and writes logger records to given file in FileHandler that has append property is true to add content into last of file. Contents are adding into a file to given format in custom formatter. Here, formatter provides the facility to write date into file in <b>'heading 1' </b>format.</p>       
+
+ <div class="heading">Description of code</div>
+ <h3>getHead(Handler h)</h3>
+ <p>It is a method of Formatter class which is used to return string types formatter records. This method takes a argument which is any type of handler.</p>
+
+ <h3>Example</h3>
+
+ <div class="code">
+<PRE>
+<FONT FACE="Arial">
+<FONT COLOR="#0000ff">package </FONT><FONT COLOR="#000000">r4r;</FONT>
+<FONT COLOR="#0000ff">import </FONT><FONT COLOR="#000000">java.io.</FONT><FONT COLOR="#ff0000">IOException</FONT><FONT COLOR="#000000">;</FONT>
+<FONT COLOR="#0000ff">import </FONT><FONT COLOR="#000000">java.util.*;</FONT>
+<FONT COLOR="#0000ff">import </FONT><FONT COLOR="#000000">java.util.logging.</FONT><FONT COLOR="#ff0000">FileHandler</FONT><FONT COLOR="#000000">;</FONT>
+<FONT COLOR="#0000ff">import </FONT><FONT COLOR="#000000">java.util.logging.</FONT><FONT COLOR="#ff0000">Handler</FONT><FONT COLOR="#000000">;</FONT>
+<FONT COLOR="#0000ff">import </FONT><FONT COLOR="#000000">java.util.logging.</FONT><FONT COLOR="#ff0000">LogRecord</FONT><FONT COLOR="#000000">;</FONT>
+<FONT COLOR="#0000ff">import </FONT><FONT COLOR="#000000">java.util.logging.</FONT><FONT COLOR="#ff0000">Logger</FONT><FONT COLOR="#000000">;</FONT>
+<FONT COLOR="#0000ff">import </FONT><FONT COLOR="#000000">java.util.logging.</FONT><FONT COLOR="#ff0000">XMLFormatter</FONT><FONT COLOR="#000000">;</FONT>
+<FONT COLOR="#0000ff">public class </FONT><FONT COLOR="#000000">customformattest </FONT><FONT COLOR="#0000ff">extends </FONT><FONT COLOR="#ff0000">XMLFormatter  </FONT><FONT COLOR="#000000">{</FONT>
+<FONT COLOR="#0000ff">public static void </FONT><FONT COLOR="#000000">main(</FONT><FONT COLOR="#ff0000">String</FONT><FONT COLOR="#000000">[] args) {</FONT>
+<FONT COLOR="#ff0000">Logger </FONT><FONT COLOR="#000000">logg = </FONT><FONT COLOR="#ff0000">Logger</FONT><FONT COLOR="#000000">.getLogger(</FONT><FONT COLOR="#ff00ff">"R4RTechSoft Solution"</FONT><FONT COLOR="#000000">);</FONT>
+<FONT COLOR="#0000ff">try</FONT><FONT COLOR="#000000">{</FONT>
+
+<FONT COLOR="#ff0000">FileHandler </FONT><FONT COLOR="#000000">fhand = </FONT><FONT COLOR="#0000ff">new </FONT><FONT COLOR="#ff0000">FileHandler</FONT><FONT COLOR="#000000">(</FONT><FONT COLOR="#ff00ff">"Sam.html"</FONT><FONT COLOR="#000000">, </FONT><FONT COLOR="#0000ff">true</FONT><FONT COLOR="#000000">);</FONT>
+<FONT COLOR="#000000">fhand.setFormatter(</FONT><FONT COLOR="#0000ff">new </FONT><FONT COLOR="#000000">customformattest());</FONT>
+<FONT COLOR="#000000">logg.addHandler(fhand);</FONT>
+<FONT COLOR="#000000">logg.info(</FONT><FONT COLOR="#ff00ff">"This Custom formatter is created by R4RTechSoft Solution"</FONT><FONT COLOR="#000000">);</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#0000ff">catch </FONT><FONT COLOR="#000000">(</FONT><FONT COLOR="#ff0000">IOException </FONT><FONT COLOR="#000000">e){}</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#0000ff">public </FONT><FONT COLOR="#ff0000">String </FONT><FONT COLOR="#000000">format(</FONT><FONT COLOR="#ff0000">LogRecord </FONT><FONT COLOR="#000000">rec) {</FONT>
+<FONT COLOR="#ff0000">StringBuffer </FONT><FONT COLOR="#000000">sb = </FONT><FONT COLOR="#0000ff">new </FONT><FONT COLOR="#ff0000">StringBuffer</FONT><FONT COLOR="#000000">(</FONT><FONT COLOR="#800080">1000</FONT><FONT COLOR="#000000">);</FONT>
+<FONT COLOR="#000000">sb.append(formatMessage(rec));</FONT>
+<FONT COLOR="#0000ff">return </FONT><FONT COLOR="#000000">sb.toString();</FONT>
+<FONT COLOR="#000000">}</FONT>
+		 <FONT COLOR="#0000ff">public </FONT><FONT COLOR="#ff0000">String </FONT><FONT COLOR="#000000">getHead(</FONT><FONT COLOR="#ff0000">Handler </FONT><FONT COLOR="#000000">h) {</FONT>
+<FONT COLOR="#0000ff">return </FONT><FONT COLOR="#ff00ff">"&lt;HTML&gt;&lt;HEAD&gt;&lt;h1&gt;"</FONT><FONT COLOR="#000000">+(</FONT><FONT COLOR="#0000ff">new </FONT><FONT COLOR="#ff0000">Date</FONT><FONT COLOR="#000000">())+</FONT><FONT COLOR="#ff00ff">"&lt;/h1&gt;&lt;/HEAD&gt;&lt;BODY&gt;\n"</FONT><FONT COLOR="#000000">;</FONT>
+		 <FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#000000">}</FONT>
+</FONT>
+</PRE>
+ </div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="case_sencitivity.shtml" title="case sencitivity">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="limit_sizeof_logfile.shtml" title="limit sizeof logfile">Next</a></td>
+  </tr> 
+</table>
+
+<!-- Footer Start-->
+		</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->

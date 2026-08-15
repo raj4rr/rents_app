@@ -1,0 +1,98 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD>
+<meta http-equiv="Content-Language" content="en-us">
+<TITLE>Hibernate Caching</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name="description" CONTENT="Hibernate Caching" >
+<meta name="keywords" CONTENT="Hibernate Caching">
+
+<!-- header start-->	
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>Hibernate</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+			<img border="0" src="/images/left_menu_bullet.gif" width="11" height="6"><a href="/java/">Java</a><img border="0" src="/images/left_menu_bullet.gif" width="11" height="6"><a href="/java/hibernate/">Hibernate 3.0</a>
+
+              </div>
+
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/hibernate/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	 
+<!-- header End-->
+
+<div class="heading">Hibernate Caching</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="page40.shtml" title=" Example of Select  Program in HQL">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="page42.shtml" title="Specification Of second Level Cache">Next</a></td>
+  </tr> 
+</table>
+
+<p>caching is the facility of storing object temporally in the memory . The purpose of caching to
+improve the performance by reducing database hits . If same object is required by different session
+or user then it make sense to fetch them only one and to store them into the cache so that they
+can provide the cache each time they are requested.</p>
+<p>Hibernate support caching at two levels:-</p>
+<ol type="1"><li>First Level Caching</li>
+<li>Second Level Caching</li></ol>
+
+<i>First Level Caching</i>:-(Transactional scope caching)
+<p>First level caching is implicitly enable. It is implemented by session.
+First level caching is responsible for  storing the object used by user.Object in this cache has
+transactional scope, once the transaction is completed  object of this cache are synchronize to
+the database and cache is discarded.</p>
+
+<i>Second Level Cache </i>:-(Application Scope caching)
+<p>Second level cache is not enable by default. This cache has a application scope, Object in
+this cache are shared by multiple users. This cache is managed by sessionFactory</p>
+<p><i>NOTE</i>:- Hibernate does not provide implementation of Second level caching , it only
+provide  specification how second level cache should be implemented. Third party implementation of
+second level cache are available:</p><ul><li>EHCACHE ( Easy hibernate Caching)</li>
+<li>OSCACHE (Open source caching)</li></ul>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="page40.shtml" title=" Example of Select  Program in HQL">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="page42.shtml" title="Specification Of second Level Cache">Next</a></td>
+  </tr> 
+</table>
+
+<!-- Footer Start-->
+
+		</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->		
+

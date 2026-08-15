@@ -1,0 +1,183 @@
+
+
+<TITLE>The IF ELSE Statement and BEGIN END Statement</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name="description" CONTENT="The IF ELSE Statement and BEGIN END Statement" >
+<meta name="keywords" CONTENT="The IF ELSE Statement and BEGIN END Statement">
+<!--header start-->
+
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>DATABASE & SQL/PLSQL</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a><img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+			<a href="/sql/">SQL </a>
+              </div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/sql/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	  
+
+                        	                        	<!-- Header End-->	
+ <div class="heading">The IF...ELSE Statement and BEGIN...END Statement</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="Programming_in_SQL_Server.shtml" title="Programming in SQL Server">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="case_break.shtml" title="The CASE statement and WHILE statement">Next</a></td>
+  </tr>
+</table>
+
+<h3>IF...ELSE Statement</h3>
+
+<h3>Syntax:</h3>
+<div class="code">
+<pre>
+IF  boolean_expression
+    {sql_statement}
+ELSE  boolean_expression
+    {sql_statement}
+    </pre>
+</div>
+
+<p>where, <i>boolean_expression</i> is the condition that evaluates to 
+either TRUE or FALSE.</p>
+
+<p><i>sql_statement </i>is any T-SQL statement.</p>
+
+<p><i>statement_block </i>is a collection of T-SQL statements.</p>
+
+<h3>BEGIN...END Statement</h3>
+
+<p><b>Syntax:</b></p>
+<div class="code">
+<pre>
+BEGIN
+     {sql_statement}
+END
+</pre>
+</div>
+
+<p>where, <i>sql_statement </i>is one or more SQL statements</p>
+
+<p>The BEGIN...END block is nested and is most often 
+used with the IF...ELSE statement and the WHILE looops.</p>
+
+<h3>Example:</h3>
+<div class="code">
+<pre>
+IF EXISTS (SELECT  *  FROM  employee  WHERE  emp_name='anchal')
+BEGIN
+      PRINT  'The Details of employee are Available'
+      SELECT  *  FROM employee  WHERE  emp_name='anchal'
+END
+ELSE
+      PRINT  'Employee details not Available'
+</pre>
+</div>
+
+<p><i>output</i></p>
+<div class="output">
+<div class="image">
+<img src="Image/variable2.gif">
+</div>
+</div>
+
+<div class="code">
+<pre>
+IF EXISTS (SELECT  *  FROM  employee  WHERE  emp_name='anchal')
+BEGIN
+      PRINT  'The Details of employee are Available'
+      SELECT  *  FROM employee  WHERE  emp_name='Ram'
+END
+ELSE
+      PRINT  'Employee details not Available'
+</pre>
+</div>
+
+<p><b> Example: </b>There are number of employee in the employee table and 
+there salary different according to there experience, the administrator want to 
+increase there salary then this code be written.</p>
+
+<div class="code">
+<pre>
+SELECT  *  FROM employee
+</pre>
+</div>
+
+<p><i>output</i></p>
+<div class="output">
+<div class="image">
+<img src="Image/sql_query.gif">
+</div>
+</div>
+
+<div class="code">
+<pre>
+IF (SELECT MAX (emp_sal)  FROM  employee )<45000
+BEGIN
+     UPDATE employee
+     SET emp_sal=emp_sal+25000
+END
+ELSE
+BEGIN
+     UPDATE  employee
+     SET  emp_sal=emp_sal+10000
+END
+</pre>
+</div>
+
+<div class="code">
+<pre>
+SELECT  *  FROM employee
+</pre>
+</div>
+
+<p><i>output</i></p>
+<div class="output">
+<div class="image">
+<img src="Image/sql_query1.gif">
+</div>
+</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="Programming_in_SQL_Server.shtml" title="Programming in SQL Server">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="case_break.shtml" title="The CASE statement and WHILE statement">Next</a></td>
+  </tr>
+</table>
+
+                       <!--Footer  -->
+
+</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>

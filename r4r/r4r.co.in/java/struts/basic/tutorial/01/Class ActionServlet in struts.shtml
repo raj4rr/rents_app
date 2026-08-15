@@ -1,0 +1,131 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>Class ActionServlet in struts,Request Processor</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="Class ActionServlet in struts,Request Processor" >
+<meta name="keywords" CONTENT="Class ActionServlet in struts,Request Processor">
+<!-- header start-->	
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>Struts</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+            <img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+            <a href="/java/">Java</a>
+              <img src="/images/left_menu_bullet.gif" width="11" height="6"/><A href="/java/struts/basic/tutorial/01">Struts1.3 Basic Tutorials </a>
+              </div>
+
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/struts/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	 
+
+<div class="heading">Class ActionServlet in struts</div>
+<!-- header End-->
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="Define%20Core%20classes%20of%20Struts%20Framework.shtml" title="Define Core classes of Struts Framework">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="Class%20ActionForm%20in%20struts.shtml" title="Class ActionForm in struts">Next</a></td>
+  </tr> 
+</table>
+
+<p>The class ActionServlet belongs to org.apache.struts.action.*; package, which work as a "controller" in the Model-View-Controller (MVC) design pattern for web applications that is commonly known as "Model 2" in struts framework. The main job of controller is:-</P>
+<ul><li>process all user requests</li>
+<li>determine what the user is trying to achieve according to the request</li>
+<li>pull data from the model (if necessary) to be given to the appropriate view, and</li>
+<li>select the proper view to respond to the user.</li></ul>
+<p>For each request made of the controller, the method process (HttpServletRequest, HttpServletResponse) will be called. This method simply determines which module should service the request and then invokes that module's RequestProcessor's process method, passing the same request and response.</p>
+<h3>Architected of Model 2 application as follows:</h3>
+<ul><li>"View" component is prime component of an MVC architecture because the user interface will generally be created with server pages, which shouldn't contain any business logic.</li>
+<li>Forms and hyperlinks in the "View" component that require business logic to be executed will be submitted to a request URI that is mapped to this servlet.
+That servlet called ActionServlet and delegates the handling of a request to a RequestProcessor object. This component represents the "controller" component of an MVC architecture.</li>
+<li>The RequestProcessor selects an Action class according to request to perform the requested business logic, or delegates the response to another resource.
+The Action class can call the JavaBeans to manipulate the state of the application's interaction with the user and store as session and request( depending upon application need ).Such JavaBeans represent the "Model" component of an MVC architecture.
+Instead of producing the next page of the user interface directly, Action classes generally return an ActionForward to indicate which resource should handle the response. If the Action does not return null, the RequestProcessor forwards or redirects to the specified resource (by utilizing RequestDispatcher.forward or Response.sendRedirect) so as to produce the next page of the user interface</li></ul>
+<h3>Default mapping of ActionServlet in the web.xml file</h3>
+<div class="code"><pre>
+<font color="#0000ff">&lt;</font><font color="#808000">?xml </font><font color="#ff0000">version</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;1.0&quot; </font><font color="#ff0000">encoding</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;UTF-8&quot;</font><font color="#800080">?</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">web-app </font><font color="#ff0000">version</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;2.5&quot;</font><font color="#0000ff">&gt;</font>
+<font color="#008000">&lt;!--Default configuration and mapping</font>
+<font color="#008000">of Action class --&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">servlet</font><font color="#0000ff">&gt;</font>
+<font color="#000000">	</font><font color="#008000">&lt;!-- ActionServlet Mapping Name --&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">servlet-name</font><font color="#0000ff">&gt;</font><font color="#000000">action</font><font color="#0000ff">&lt;/</font><font color="#808000">servlet-name</font><font color="#0000ff">&gt;</font>
+<font color="#008000">&lt;!-- ActionServlet package name --&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">servlet-class</font><font color="#0000ff">&gt;</font><font color="#000000">org.apache.struts.action.ActionServlet</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">servlet-class</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">init-param</font><font color="#0000ff">&gt;</font>
+<font color="#000000">  </font><font color="#008000">&lt;!-- default Struts configuration here --&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">param-name</font><font color="#0000ff">&gt;</font><font color="#000000">config</font><font color="#0000ff">&lt;/</font><font color="#808000">param-name</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">param-value</font><font color="#0000ff">&gt;</font><font color="#000000">/WEB-INF/struts-config.xml</font><font color="#0000ff">&lt;/</font><font color="#808000">param-value</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">init-param</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">init-param</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">param-name</font><font color="#0000ff">&gt;</font><font color="#000000">debug</font><font color="#0000ff">&lt;/</font><font color="#808000">param-name</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">param-value</font><font color="#0000ff">&gt;</font><font color="#000000">2</font><font color="#0000ff">&lt;/</font><font color="#808000">param-value</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">init-param</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">init-param</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">param-name</font><font color="#0000ff">&gt;</font><font color="#000000">detail</font><font color="#0000ff">&lt;/</font><font color="#808000">param-name</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">param-value</font><font color="#0000ff">&gt;</font><font color="#000000">2</font><font color="#0000ff">&lt;/</font><font color="#808000">param-value</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">init-param</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">load-on-startup</font><font color="#0000ff">&gt;</font><font color="#000000">2</font><font color="#0000ff">&lt;/</font><font color="#808000">load-on-startup</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">servlet</font><font color="#0000ff">&gt;</font>
+<font color="#000000">	</font><font color="#008000">&lt;!-- Action class mapping here--&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">servlet-mapping</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">servlet-name</font><font color="#0000ff">&gt;</font><font color="#000000">action</font><font color="#0000ff">&lt;/</font><font color="#808000">servlet-name</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">url-pattern</font><font color="#0000ff">&gt;</font><font color="#000000">*.do</font><font color="#0000ff">&lt;/</font><font color="#808000">url-pattern</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">servlet-mapping</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">session-config</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">session-timeout</font><font color="#0000ff">&gt;</font>
+<font color="#000000">30</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">session-timeout</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">session-config</font><font color="#0000ff">&gt;</font>
+<font color="#000000">	</font><font color="#008000">&lt;!-- View file mapping --&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">welcome-file-list</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">welcome-file</font><font color="#0000ff">&gt;</font><font color="#000000">login.jsp</font><font color="#0000ff">&lt;/</font><font color="#808000">welcome-file</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">welcome-file-list</font><font color="#0000ff">&gt;</font><font color="#000000"> </font>
+<font color="#0000ff">&lt;/</font><font color="#808000">web-app</font><font color="#0000ff">&gt;</font>
+</pre>
+</div>
+<p><i>Request Processor : </i> It is designed as a drop-in replacement of the Struts 1.2.x behaviour and brings greater flexibility and easier customization to the request processing process. Request processor define some command classes which belong to either the org.apache.struts.chain.commands or org.apache.struts.chain.commands.servlet packages.</p>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="Define%20Core%20classes%20of%20Struts%20Framework.shtml" title="Define Core classes of Struts Framework">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="Class%20ActionForm%20in%20struts.shtml" title="Class ActionForm in struts">Next</a></td>
+  </tr> 
+</table>
+
+<!-- Footer Start-->	
+
+		</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->

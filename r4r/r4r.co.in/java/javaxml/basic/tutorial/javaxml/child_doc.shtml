@@ -1,0 +1,193 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD>
+<meta http-equiv="Content-Language" content="en-us">
+<TITLE>DOM Child Elements Creation</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name="description" CONTENT="DOM Child Elements Creation" >
+<meta name="keywords" CONTENT="DOM Child Elements Creation">
+
+<!-- header start-->	
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>JAVA XML</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+            <img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+            <a href="/java/">Java</a>
+              <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/java/javaxml">Java XML</a>
+                                   <img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+								   <a href="/java/javaxml/basic/tutorial/javaxml/">JAVA XML Basics</a>
+              </div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/javaxml/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	 
+
+<!-- header End-->
+<div class="heading">DOM Child Elements Creation</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="add_doctype.shtml" title="Adding DOCTYPE in XML Document">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="create_xml_file.shtml" title= "Create XML Document">Next</a></td>
+  </tr> 
+</table>
+
+<p>
+In this topics we are going to create the child element of DOM. firstly we are create the blank document which is add into the root element to it. after that we are creating the child elements.
+</p>
+
+<div class="code">
+<pre>
+<font face="Arial"><font color="#0000ff">&lt;?xml </font><font color="#ff0000">version</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;1.0&quot; </font><font color="#ff0000">encoding</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;UTF-8&quot; </font><font color="#800080">?</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">root</font><font color="#0000ff">&gt;</font>
+<font color="#008000">&lt;!--comment--&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">Child </font><font color="#800080">attribute1</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;The Attribute 1 Values&quot; </font><font color="#0000ff">/&gt;</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">root</font><font color="#0000ff">&gt;</font></font>
+</pre>
+</div>
+
+<p>The creation of the child show in steps</p>
+
+<ol>
+	<li> Firstly create instance of DocumentBuilderFactory
+    </li>
+    <div class="code">
+    <pre>
+<font face="Arial">
+<font color="#ff0000">DocumentBuilderFactory </font><font color="#000000">fact = </font><font color="#ff0000">DocumentBuilderFactory</font><font color="#000000">.newInstance();</font></font>
+</pre>
+    </div>
+
+    <li>Get the DocumentBuilder 
+    </li>
+    <div class="code"><pre>
+<font face="Arial"><font color="#ff0000">DocumentBuilder </font><font color="#000000">pars = fact.newDocumentBuilder();</font></font>
+</pre>
+
+    </div>
+
+    <li>Create blank DOM Document
+    </li>
+    <div class="code"><pre>
+<font face="Arial"><font color="#ff0000">Document </font><font color="#000000">docu = pars.newDocument();</font></font>
+</pre>
+
+    </div>
+
+    <li>Creating the Root Elements.
+
+    </li>
+    <div class="code"><pre>
+<font face="Arial"><font color="#ff0000">Element </font><font color="#000000">root = docu.createElement(</font><font color="#ff00ff">&quot;root&quot;</font><font color="#000000">);</font></font>
+</pre>
+
+    </div>
+
+    <li>Append to the child Element in Root
+    </li>
+    <div class="code"><pre>
+<font face="Arial">
+<font color="#000000">docu.appendChild(root);</font></font>
+</pre>
+
+    </div>
+
+    <li>create child element
+    </li>
+    <div class="code">
+    <pre>
+<font face="Arial"><font color="#ff0000">Element </font><font color="#000000">childElement = docu.createElement(</font><font color="#ff00ff">&quot;Child&quot;</font><font color="#000000">);</font></font>
+</pre>
+</div>
+
+    <li>Add the atribute in the child
+    </li>
+    <div class="code"><pre>
+<font face="Arial"><font color="#000000">childElement.setAttribute(</font><font color="#ff00ff">&quot;attribute1&quot;</font><font color="#000000">,</font><font color="#ff00ff">&quot;Attribute 1 values&quot;</font><font color="#000000">);</font>
+<font color="#000000">root.appendChild(childElement);</font></font>
+</pre>
+</div>
+
+</ol>
+
+<h3>Example</h3>
+<div class="code">
+
+<pre>
+<font face="Arial"><font color="#0000ff">package </font><font color="#000000">r4r;</font>
+<font color="#0000ff">import </font><font color="#000000">org.w3c.dom.*;</font>
+<font color="#0000ff">import </font><font color="#000000">javax.xml.*;</font>
+<font color="#0000ff">import </font><font color="#000000">javax.xml.parsers.*; </font>
+<font color="#0000ff">import </font><font color="#000000">javax.xml.transform.*; </font>
+<font color="#0000ff">import </font><font color="#000000">javax.xml.transform.dom.</font><font color="#ff0000">DOMSource</font><font color="#000000">; </font>
+<font color="#0000ff">import </font><font color="#000000">javax.xml.transform.stream.</font><font color="#ff0000">StreamResult</font><font color="#000000">; </font>
+<font color="#0000ff">public class </font><font color="#000000">childcreattest {</font>
+	<font color="#0000ff">public static void </font><font color="#000000">main(</font><font color="#ff0000">String</font><font color="#000000">[] args) </font>
+	  <font color="#000000">{</font>
+	  <font color="#0000ff">try</font><font color="#000000">{</font>
+	   <font color="#ff0000">DocumentBuilderFactory </font><font color="#000000">fact = </font><font color="#ff0000">DocumentBuilderFactory</font><font color="#000000">.newInstance();</font>
+	  <font color="#ff0000">DocumentBuilder </font><font color="#000000">docBuild = fact.newDocumentBuilder();</font>
+	  <font color="#ff0000">Document </font><font color="#000000">docu = docBuild.newDocument();</font>
+	  <font color="#ff0000">Element </font><font color="#000000">root = docu.createElement(</font><font color="#ff00ff">&quot;root&quot;</font><font color="#000000">);</font>
+	  <font color="#000000">docu.appendChild(root);</font>
+	  <font color="#ff0000">Comment </font><font color="#000000">com = docu.createComment(</font><font color="#ff00ff">&quot;-----comment-----&quot;</font><font color="#000000">);</font>
+	  <font color="#000000">root.appendChild(com);</font>
+	  <font color="#ff0000">Element </font><font color="#000000">childElement = docu.createElement(</font><font color="#ff00ff">&quot;Child&quot;</font><font color="#000000">);</font>
+	  <font color="#000000">childElement.setAttribute(</font><font color="#ff00ff">&quot;attribute1&quot;</font><font color="#000000">,</font><font color="#ff00ff">&quot;The Attribute1 Values&quot;</font><font color="#000000">);</font>
+	  <font color="#000000">root.appendChild(childElement);</font>
+	  <font color="#ff0000">TransformerFactory </font><font color="#000000">tranFact = </font><font color="#ff0000">TransformerFactory</font><font color="#000000">.newInstance(); </font>
+	  <font color="#ff0000">Transformer </font><font color="#000000">tform = tranFact.newTransformer(); </font>
+	  <font color="#ff0000">Source </font><font color="#000000">sr = </font><font color="#0000ff">new </font><font color="#ff0000">DOMSource</font><font color="#000000">(docu); </font>
+	  <font color="#ff0000">Result </font><font color="#000000">rst = </font><font color="#0000ff">new </font><font color="#ff0000">StreamResult</font><font color="#000000">(</font><font color="#ff0000">System</font><font color="#000000">.out); </font>
+	  <font color="#000000">tform.transform(sr, rst); </font>
+	  <font color="#000000">}</font><font color="#0000ff">catch</font><font color="#000000">(</font><font color="#ff0000">Exception </font><font color="#000000">e){</font>
+	  <font color="#ff0000">System</font><font color="#000000">.out.println(e.getMessage());</font>
+	  <font color="#000000">}</font>
+	  <font color="#000000">}</font>
+<font color="#000000">}</font></font>
+</pre>
+</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="add_doctype.shtml" title="Adding DOCTYPE in XML Document" >Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="create_xml_file.shtml" title="Create XML Document">Next</a></td>
+  </tr> 
+</table>
+
+<!-- Footer Start-->	
+
+		</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->

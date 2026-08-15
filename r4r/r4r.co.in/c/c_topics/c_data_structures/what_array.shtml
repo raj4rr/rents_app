@@ -1,0 +1,119 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>Define an Array,How to define an Array?,How to initialize an Array?,advantages of Array,disadvantages of Array</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="Learn Array?,How to declare an Array in C?,How to initialize an Array in C?,advantages of an Array in C, disadvantages of an Array in C" >
+<meta name="keywords" CONTENT="c tutorial,c basics,programming language,examples,pointer,function,loop,else,if else,while,array,pre processor,post processor,structures,memory menagement,string,constants,variables,decisions making,c unions,c memory allocation, c operators, C pointers,c error handling, c file handling">
+	<link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+    <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>C Programming language</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a><img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/c/">C </a>
+              <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/c/c_topics/c_data_structures">C Data structures</a></div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/c/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 
+
+		<!-- Header End-->	
+<div class="heading">Array in Data structure</div>
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="operations_on_DS.shtml" title="Operations in Data structure using C">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="accesselements_array.shtml" title="Access elements of array in Data structure using C">Next</a></td>
+  </tr>
+</table>
+
+<p>An Array may defined as the collection of the homogeneous (same type) elements that are stored in the contiguous memory locations. For example, if we have to store 7 values of any type, lets say, integer values we don't have to declare 5 variables with different identifiers 
+but we can define an array of integer type and can store the values in array directly with a unique identifier.</p><p>Thus, an array named arr created in memory having 5 values can be represented as :</p>
+<div class="table_content">
+	<table>
+    	<tr>
+        	<td style="width:20%;" class="alternate_heading2">Element</td>
+            <td style="width:16%;" class="alternate_heading2">1</td>
+            <td style="width:16%;" class="alternate_heading2">2</td>
+            <td style="width:16%;" class="alternate_heading2">3</td>
+            <td style="width:16%;" class="alternate_heading2">4</td>
+            <td style="width:16%;" class="alternate_heading2">5</td>
+       </tr>
+        <tr>
+            <td style="width:20%;" class="alternate_heading2">Index</td>
+            <td style="width:16%;" class="heading">0</td>
+            <td style="width:16%;" class="heading">1</td>
+            <td style="width:16%;" class="heading">2</td>
+            <td style="width:16%;" class="heading">3</td>
+            <td style="width:16%;" class="heading">4</td>
+      </tr>
+    </table>
+</div>
+
+<p>Cells have been assigned values from 0 to 4 as in arrays values are stored from a base index of 0.</p>
+<h2>How to declare an Array ?</h2>
+<p>An Array can be declared with the help of an unique identifier specifying its data type and also by specifying the number of elements it must contain. The number of elements are declared inside a square bracket i.e. [].</p><p> <i>Thus when an array of integers having 5 elements considering the above figure can be declared as </i>:</p>
+<div class="code">
+	<font color="#0000FF">int arr[5];</font><font class="comment">/*the element field within the [] should be a constant value as the are the blocks of static memory whose size must be declared before execution. For variable length array dynamic memory is required which we will discuss later.*/</font>
+</div>
+<h2>How to initialize an Array ?</h2>
+<p>While declaring the array for a local scope e.g. for a particular function its contents will not be initialized by default and will remain undetermined till we initialized it separately. In case of array of global scope the values are initialized but having the default values of 0's for each element.</p>
+
+<p>Thus, for the array of both scopes we can initialize an array by enclosing the elements within the {} brackets. <i>For example,</i></p>
+<div class="code">int arr[5] = {1,2,3,4,5};
+<font class="comment">/* This array will be created as which one is shown in the above figure. */</font>
+</div>
+
+<p>The no of elements declared within the {} must not exceeds the numbers of elements defined in the [], else it could some serious 
+trouble to your program.</p>
+<h2>Advantages of using an Array ?</h2>
+<p><i>Following are main advantages of using an array :</i></p>
+	<ul>
+	<li>Arrays are the most convenient way of storing the fixed amount of data that can be accessed in an unpredictable fashion.</li>
+	<li>Arrays are also one of the most compact data structures as in for storing the 50 elements in an array of integer type it will take the memory equivalent to the amountof memory required to store 50 elements in addition to that a few overhead bytes for whole 
+array.</li>
+	<li>Another advantage of array is that iterating through an array is more faster than compared to other data structure types like linked 
+list because of its good locality of reference.</li>
+	</ul>
+<h2>Disadvantages of using an Array ?</h2>
+<p><i>Following are the main disadvantages of using an Array :</i></p>
+	<ol>
+		<li>Performing various operations like insertion and deletion is quite a stiff task in arrays as after inserting or deleting an item 
+from an array every other element in array have to move forward or backwards prior to your operation, which is a costly affair.</li>
+		<li>In case of the static arrays the size of the array should be know up priori i.e. before the compile time.</li>
+		<li>C language does not have a checking mechanism for the array sizes.</li>
+	</ol>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="operations_on_DS.shtml" title="Operations in Data structure using C">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="accesselements_array.shtml" title="Access elements of an array in Data structure using C">Next</a></td>
+  </tr>
+</table>
+ <!--Footer  --> 
+</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>

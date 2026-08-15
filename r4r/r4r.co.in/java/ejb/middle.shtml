@@ -1,0 +1,132 @@
+<div class="main_content">
+<div class="heading">Enterprises Java Beans</div>
+<p>An enterprise bean is a server-side component that <i>encapsulates the business logic of an application.</i> It written in java so, it is called enterprise java beans. EJB is a managed, 
+server-side component architecture for modular construction of enterprise applications.</p>
+<p>The EJB technology provides a distributed component architecture which integrates many enterprise-level requirements like distribution, persistence, transactions, messaging, security, and connectivity to mainframes . 
+EJB technology provides us with different types of components for business logic, persistence, and enterprise messages. They are not only platform independent but also implementation independent. 
+That is EJBs can run in any application server that implements the EJB specifications.</p>
+
+<div class="heading">EJB Tutorials and Interview Question</div>
+                        <div class="content_link">
+                        	<p><a href="basic/tutorial/ejb/">EJB Basic Tutorials</a></p>
+            				<p><a href="#">EJB Basic Example</a></p>
+                            <p><a href="EJB_Interview_Questions_And_Answers/">EJB FAQS</a></p>
+                           </div>
+
+<div class="heading">EJB Component Architecture</div>
+<p>An enterprise java bean is a non-visual component of a distributed, transaction -oriented application. enterprise beans are deployed in EJB containers and run on EJB servers. there are mainly three types of EJB session beans,entity beans ,message driven beans.</p>
+	<div class="heading">EJB Server</div>  
+	<p>An EJB server provide environment for the support and execution of application developed using EJB components. An EJB server is a high-level process or application server that gives a run-time environment to support the execution of server applications which are  used enterprise beans. 
+	An EJB server provide one or more containers.</p>
+
+	<div class="heading">EJB Container</div>
+	<p>An EJB container manages the EJB contain inside it. For each enterprise bean, the container is responsible for registering the object, providing a remote interface for the object, creating and destroying object instances, checking security for the object, managing the active state for the object, and coordinating distributed transactions. Optionally, 
+	the container can also manage all persistent data within the object.</p>
+	<div class="heading">Enterprise Beans</div>
+	<p>An enterprise bean is a server-side component that encapsulates the business logic of an application. written in the Java programming language.The business logic is the code that fulfill the purpose of application. In an application enterprise beans add the business logic.</p>
+	<div class="heading">Benifits Of Enterprises Beans</div>
+	<p>Enterprise beans simplify the development of large, distributed applications. because the EJB container provides system-level services to enterprise beans, the bean developer can concentrate on solving business problems. EJB container is responsible for system-level services such as transaction management and security authorization</p>
+	<p>The EJB architecture provides a simple, elegant component container model. Java server components can be developed once and deployed in any EJB-compliant server.</p>
+	<p>The EJB architecture can be used for small-scale or large-scale business transactions. As processing requirements grow 
+	the enterprise beans can be migrated to more powerful operating environments</p>
+	<div class="heading">Types Of Enterprises Beans</div>
+	<p>There are tree types of enterprise beans</p>
+	<ul><li><i>Session beans - </i>Session bean perform task for a client  A session bean represents a single client and is not shared across clients.</li>
+	<p><i>There are two types of session beans: statefull and stateless.</i></p>
+	<h3>Statefull  session bean</h3>
+	<p>A stateful session bean maintains a conversational state with one client for the duration of a single session.</p>
+	<h3>Stateless session bean </h3>
+	<p>A stateless session bean does not maintain a conversational state for each individual client</p>
+    <i>Stateless session beans are not persisted to secondary storage by the EJB container,therefore a programmer must recognize that all data is transient between invocations for each client</i>
+	  <li><i>Entity bean -</i> Represent a business entity object that persistent in the storage. entity bean can be restored to its original state by the EJB container. Entity beans allow shared access â€“ they may be shared by multiple clients ,Entity beans have primary keys â€“ primary-key classes exist to identify an instance of an entity bean. 
+	  and Entity beans can participate in transactions</li>
+	  <li><i>Message -driven bean -</i>  Acts as a listener for the Java Message Service API, processing messages asynchronouslyAn instance of an MDB is instantiated by an EJB container to act as a message listener. Messages received by an MDB may be sent by any JMS-compatible message transmitter, such as a JMS-enabled publish/subscribe topic.</li></ul>
+	   <div class="heading">Creating an Enterprises Beans</div>
+	   <p>The creation of enterprise java bean requires to code remote interface, home interface, and EJB class
+	   To understand EJB here we take the example of stateless session bean.</p>
+	   <h3>Coding the remote interface</h3>
+       <p>A remote interface defines the business methods that a client may call. The business methods are implemented in the enterprise bean code.</p>
+       <div class="code">
+       <pre>
+<font color="#0000ff">import </font><font color="#000000">javax.ejb.EJBObject;</font>
+<font color="#0000ff">import </font><font color="#000000">java.rmi.</font><font color="#ff0000">RemoteException</font><font color="#000000">;</font>
+<font color="#0000ff">import </font><font color="#000000">java.math.*;</font>
+
+<font color="#0000ff">public interface </font><font color="#000000">Converter </font><font color="#0000ff">extends </font><font color="#000000">EJBObject</font>
+<font color="#000000">{</font>
+   <font color="#0000ff">public </font><font color="#ff0000">BigDecimal </font><font color="#000000">dollarToRupee(</font><font color="#ff0000">BigDecimal </font><font color="#000000">dollars) </font>
+      <font color="#0000ff">throws </font><font color="#ff0000">RemoteException</font><font color="#000000">;</font>
+   <font color="#0000ff">public </font><font color="#ff0000">BigDecimal </font><font color="#000000">RupeeToEuro(</font><font color="#ff0000">BigDecimal </font><font color="#000000">Rupee) </font>
+      <font color="#0000ff">throws </font><font color="#ff0000">RemoteException</font><font color="#000000">;</font>
+<font color="#000000">}</font>
+</pre>
+
+</div>
+
+<h3>Coding home interface</h3>
+<i>A home interface defines the methods that allow a client to create, find, or remove an enterprise bean. The Home interface contains a single create method, which returns an object of the remote interface type .</i>
+<div class="code">
+<pre>
+<font color="#0000ff">import </font><font color="#000000">java.io.</font><font color="#ff0000">Serializable</font><font color="#000000">;</font>
+
+<font color="#0000ff">import </font><font color="#000000">java.rmi.</font><font color="#ff0000">RemoteException</font><font color="#000000">;</font>
+
+<font color="#0000ff">import </font><font color="#000000">javax.ejb.CreateException;</font>
+
+<font color="#0000ff">import </font><font color="#000000">javax.ejb.EJBHome;</font>
+
+<font color="#0000ff">public interface </font><font color="#000000">ConverterHome </font><font color="#0000ff">extends </font><font color="#000000">EJBHome</font>
+
+	<font color="#000000">{</font>
+
+   <font color="#000000">Converter create() </font><font color="#0000ff">throws </font><font color="#ff0000">RemoteException</font><font color="#000000">, CreateException;</font>
+
+<font color="#000000">}</font>
+</pre>
+
+</div>
+<h3>Coding Enterprise bean class</h3>
+<i>The enterprise bean class for this example is called ConverterEJBBean. This class implements the two business methods, dollarToRupee and RupeeToEuro, that the Converter remote interface defines.</i>
+<div class="code">
+<pre>
+
+<font color="#0000ff">import </font><font color="#000000">javax.ejb.SessionBean;</font>
+
+<font color="#0000ff">import </font><font color="#000000">javax.ejb.SessionContext;</font>
+
+<font color="#0000ff">import </font><font color="#000000">java.math.*;</font>
+
+<font color="#0000ff">public class </font><font color="#000000">ConverterEJBBean </font><font color="#0000ff">implements </font><font color="#000000">SessionBean {</font>
+
+   <font color="#ff0000">BigDecimal </font><font color="#000000">RupeeRate = </font><font color="#0000ff">new </font><font color="#ff0000">BigDecimal</font><font color="#000000">(</font><font color="#ff00ff">&quot;45.4104&quot;</font><font color="#000000">);</font>
+
+   <font color="#ff0000">BigDecimal </font><font color="#000000">euroRate = </font><font color="#0000ff">new </font><font color="#ff0000">BigDecimal</font><font color="#000000">(</font><font color="#ff00ff">&quot;0.016523&quot;</font><font color="#000000">);</font>
+
+   <font color="#0000ff">public </font><font color="#ff0000">BigDecimal </font><font color="#000000">dollarToRupee(</font><font color="#ff0000">BigDecimal </font><font color="#000000">dollars) </font>
+
+	   <font color="#000000">{</font>
+
+      <font color="#ff0000">BigDecimal </font><font color="#000000">result = dollars.multiply(RupeeRate);</font>
+      <font color="#0000ff">return </font><font color="#000000">result.setScale(</font><font color="#800080">2</font><font color="#000000">,</font><font color="#ff0000">BigDecimal</font><font color="#000000">.ROUND_UP);</font>
+   <font color="#000000">}</font>
+   <font color="#0000ff">public </font><font color="#ff0000">BigDecimal </font><font color="#000000">RupeeToEuro(</font><font color="#ff0000">BigDecimal </font><font color="#000000">yen) </font>
+	   <font color="#000000">{</font>
+      <font color="#ff0000">BigDecimal </font><font color="#000000">result = Rupee.multiply(euroRate);</font>
+      <font color="#0000ff">return </font><font color="#000000">result.setScale(</font><font color="#800080">2</font><font color="#000000">,</font><font color="#ff0000">BigDecimal</font><font color="#000000">.ROUND_UP);</font>
+   <font color="#000000">}</font>
+   <font color="#0000ff">public </font><font color="#000000">ConverterEJBBean() {}</font>
+
+   <font color="#0000ff">public void </font><font color="#000000">ejbCreate() {}</font>
+
+   <font color="#0000ff">public void </font><font color="#000000">ejbRemove() {}</font>
+
+   <font color="#0000ff">public void </font><font color="#000000">ejbActivate() {}</font>
+
+   <font color="#0000ff">public void </font><font color="#000000">ejbPassivate() {}</font>
+
+   <font color="#0000ff">public void </font><font color="#000000">setSessionContext(SessionContext sc) {}</font>
+
+<font color="#000000">}</font>
+</pre>
+
+</div>

@@ -1,0 +1,117 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>Attributes,When do we need attributes?</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="Attributes,When do we need attributes?" >
+<meta name="keywords" CONTENT="Attributes,When do we need attributes?">
+
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+     <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>C# Tutorial</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a><img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/c1/">C#</a>
+
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/c1/commonfiles/leftmenu.shtml'); ?></td>
+
+                       <td style="80%" valign="top">
+                        <div class="main_content"> 
+
+	<!-- Header End-->
+
+  <div class="heading">Attributes</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="Properties.shtml" title="Properties">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="structs.shtml" title="Structs">Next</a></td>
+  </tr>
+</table>
+<p>Attributes contains a powerful method of associating declarative information with C# code for types, methods, properties. 
+Once associated with a program entity, the attribute can be queried at run time and used in any number of ways.</p>
+<h3>Uses of Attributes</h3>
+<ol><li>Associating help documentation with program entities (through a Help attribute).</li>
+
+<li>Associating value editors to a specific type in a GUI framework (through a Value Editor attribute).</li></ol>
+
+<div class="code">
+<pre>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">;[AttributeUsage(AttributeTargets.All)]</font>
+<font color="#0000ff">public class </font><font color="#000000">HelpAttribute : </font><font color="#008080">System</font><font color="#000000">.</font><font color="#808000">Attribute  </font><font color="#000000">{</font>
+<font color="#0000ff">public readonly string </font><font color="#000000">Url;</font>
+
+<font color="#0000ff">public string </font><font color="#000000">Topic</font>
+<font color="#008000">// Topic is a named parameter</font>
+<font color="#000000">{</font>
+<font color="#000000">get </font>
+<font color="#000000">{ </font>
+<font color="#0000ff">return </font><font color="#000000">topic; </font>
+<font color="#000000">}</font>
+<font color="#000000">set </font>
+<font color="#000000">{ </font>
+
+<font color="#000000">topic = value; </font>
+<font color="#000000">}</font>
+<font color="#000000">}</font>
+
+<font color="#0000ff">public </font><font color="#000000">HelpAttribute(</font><font color="#0000ff">string </font><font color="#000000">url)  </font>
+<font color="#008000">// url is a positional parameter</font>
+<font color="#000000">{</font>
+<font color="#0000ff">this</font><font color="#000000">.Url = url;</font>
+<font color="#000000">}</font>
+
+<font color="#0000ff">private string </font><font color="#000000">topic;</font>
+<font color="#000000">}</font>
+</pre>
+</div>
+
+<div class="heading">When do we need attributes</div>
+<ol>
+<li>The System.ObsoleteAttribute attribute that we have just described is a good example of how an attribute is used by the
+ compiler, certain standard attributes which are only destined for the compiler are not stored in the assembly.</li>
+
+<li>An attribute can be consumed by the CLR during execution. For example the .NET Framework offers the System.
+ThreadStaticAttribute attribute. When a static field is marked with this attribute the CLR makes sure that during 
+the execution, there is only one version of this field per thread.</li>
+
+<li>An attribute can be consumed by a debugger during execution. Hence, the System.Diagnostics.DebuggerDisplayAttribute attribute 
+allows personalizing the display of an element of the code the state of an object for example) during debugging.</li>
+</ol>
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="Properties.shtml" title="Properties">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="structs.shtml" title="Structs">Next</a></td>
+  </tr>
+</table>
+<!--Footer  -->
+   </div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/dotnet/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>

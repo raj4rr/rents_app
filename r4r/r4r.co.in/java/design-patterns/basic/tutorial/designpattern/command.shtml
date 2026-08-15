@@ -1,0 +1,239 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD>
+<meta http-equiv="Content-Language" content="en-us">
+<TITLE>Command Design Pattern Pattern</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name="description" CONTENT="Command Design Pattern Pattern" >
+<meta name="keywords" CONTENT="Command Design Pattern Pattern">
+
+<!-- header start-->	
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>Design Pattern Basic Tutorial</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+
+     		 <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/java/">java</a>           
+
+              <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/java/design-patterns/">Design Pattern</a>
+
+              </div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/design-patterns/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	 
+
+<!-- header end--> 
+
+<div class="heading">Command pattern</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="Chain_of_responsibility.shtml" title="Chain_of_responsibility">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="Interpreter.shtml" title="Interpreter">Next</a></td>
+  </tr> 
+</table>
+
+<!-- header End-->
+<p>The command pattern is used to streamlize the objects by help of the interface to encapsulate the request of the object and make the interface which is implemented by the subclass in the order of the parameterized clients.</p>
+<div class="heading">Benefit and use of the Command pattern</div>	   
+ <ol>
+ <li>
+  By the command One action can be represented in many ways, this will be like buttons, drop-down menu and popup menu etc.
+  </li><li>
+The command pattern has a callback function, which is used for the register it somewhere to be called later.
+  </li><li>
+It is used to specify and execute the object request at different time.
+  </li><li>
+It is store the states of the action. if we want to undo the action then we are release the state.
+  </li><li>
+It is used the trigger for Decouple the object.
+ </li></ol>
+
+ <p>suppose that we are design a Command interface which contain an <font class="point_out">execute method</font> like this:</p>
+<div class="code">
+<pre>
+<font color="#0000ff">public interface </font><font color="#000000">Command {</font>
+<font color="#0000ff">public void </font><font color="#000000">exe();</font>
+<font color="#000000">}</font>
+</pre>
+</div>
+
+<p>Then, we are design the multiple implementation classes and call the powerful the execute() method dynamically. in order we are design the window with the button commands, drop down menu and popup menu with command pattern. we know that the JMenuItem, JButton and JPopupMenu have constructors which is accept the Action type variable. the Action interface extends to the class ActionListener like this.</p>
+
+<div class="code">
+<pre>
+<font color="#0000ff">public interface </font><font color="#000000">EventLister {</font>
+<font color="#000000">...</font>
+<font color="#000000">}</font>
+
+<font color="#0000ff">public interface </font><font color="#ff0000">ActionListener </font><font color="#0000ff">extends </font><font color="#ff0000">EventListener </font><font color="#000000">{</font>
+<font color="#000000">...</font>
+<font color="#000000">}</font>
+
+<font color="#0000ff">public interface </font><font color="#ff0000">Action </font><font color="#0000ff">extends </font><font color="#ff0000">ActionListener </font><font color="#000000">{</font>
+<font color="#000000">...</font>
+<font color="#000000">}</font>
+</font>
+</pre>
+</div>
+
+<h3>Example</h3>
+<div class="code">
+<pre>
+<font color="#0000ff">package </font><font color="#000000">r4r;</font>
+<font color="#0000ff">import </font><font color="#000000">javax.swing.*;</font>
+<font color="#0000ff">import </font><font color="#000000">java.awt.event.*;</font>
+<font color="#0000ff">import </font><font color="#000000">java.awt.*;</font>
+<font color="#0000ff">class </font><font color="#000000">ExitButton </font><font color="#0000ff">extends </font><font color="#ff0000">AbstractAction </font><font color="#000000">{</font>
+<font color="#0000ff">private </font><font color="#ff0000">Component </font><font color="#000000">target;</font>
+<font color="#0000ff">public </font><font color="#000000">ExitButton(</font><font color="#ff0000">String </font><font color="#000000">name, </font><font color="#ff0000">Icon </font><font color="#000000">icon, </font><font color="#ff0000">Component </font><font color="#000000">t){</font>
+<font color="#000000">putValue(</font><font color="#ff0000">Action</font><font color="#000000">.NAME, name);</font>
+<font color="#000000">putValue(</font><font color="#ff0000">Action</font><font color="#000000">.SMALL_ICON, icon);</font>
+<font color="#000000">putValue(</font><font color="#ff0000">Action</font><font color="#000000">.SHORT_DESCRIPTION, name + </font><font color="#ff00ff">&quot; the program&quot;</font><font color="#000000">);</font>
+<font color="#000000">target = t;</font>
+<font color="#000000">} </font>
+<font color="#0000ff">public void </font><font color="#000000">actionPerformed(</font><font color="#ff0000">ActionEvent </font><font color="#000000">evt) {</font>
+<font color="#0000ff">int </font><font color="#000000">answer = </font><font color="#ff0000">JOptionPane</font><font color="#000000">.showConfirmDialog(target,</font>
+<font color="#ff00ff">&quot;Are you sure you want to exit? &quot;</font><font color="#000000">, </font><font color="#ff00ff">&quot;Confirmation&quot;</font><font color="#000000">,</font>
+<font color="#ff0000">JOptionPane</font><font color="#000000">.YES_NO_OPTION);</font>
+<font color="#0000ff">if </font><font color="#000000">( answer == </font><font color="#ff0000">JOptionPane</font><font color="#000000">.YES_OPTION) { </font>
+<font color="#ff0000">System</font><font color="#000000">.exit(</font><font color="#800080">0</font><font color="#000000">);</font>
+<font color="#000000">} </font>
+<font color="#000000">}</font>
+<font color="#000000">} </font>
+
+<font color="#0000ff">class </font><font color="#000000">OKButton </font><font color="#0000ff">extends </font><font color="#ff0000">AbstractAction</font><font color="#000000">{</font>
+<font color="#0000ff">private </font><font color="#ff0000">Component </font><font color="#000000">target;</font>
+<font color="#0000ff">public </font><font color="#000000">OKButton(</font><font color="#ff0000">String </font><font color="#000000">name, </font><font color="#ff0000">Icon </font><font color="#000000">icon,</font><font color="#ff0000">Component </font><font color="#000000">t){</font>
+<font color="#000000">putValue(</font><font color="#ff0000">Action</font><font color="#000000">.NAME,name);</font>
+<font color="#000000">putValue(</font><font color="#ff0000">Action</font><font color="#000000">.SMALL_ICON,icon);</font>
+<font color="#000000">putValue(</font><font color="#ff0000">Action</font><font color="#000000">.SHORT_DESCRIPTION,</font><font color="#ff00ff">&quot;Click on Button&quot;</font><font color="#000000">+name);</font>
+
+<font color="#000000">}</font>
+<font color="#0000ff">public void </font><font color="#000000">actionPerformed(</font><font color="#ff0000">ActionEvent </font><font color="#000000">ae){</font>
+<font color="#0000ff">int </font><font color="#000000">ans=</font><font color="#ff0000">JOptionPane</font><font color="#000000">.showConfirmDialog(target,</font>
+<font color="#ff00ff">&quot;you are click on the OK button&quot;</font><font color="#000000">,</font><font color="#ff00ff">&quot;Conformation&quot;</font><font color="#000000">,</font>
+<font color="#ff0000">JOptionPane</font><font color="#000000">.YES_NO_CANCEL_OPTION);</font>
+<font color="#0000ff">if</font><font color="#000000">(ans==</font><font color="#ff0000">JOptionPane</font><font color="#000000">.YES_OPTION){</font>
+<font color="#0000ff">int </font><font color="#000000">a=</font><font color="#ff0000">JOptionPane</font><font color="#000000">.showConfirmDialog(target, </font><font color="#ff00ff">&quot;you are right&quot;</font><font color="#000000">);</font>
+<font color="#000000">}</font>
+<font color="#0000ff">else if</font><font color="#000000">(ans==</font><font color="#ff0000">JOptionPane</font><font color="#000000">.NO_OPTION){</font>
+<font color="#0000ff">int </font><font color="#000000">b=</font><font color="#ff0000">JOptionPane</font><font color="#000000">.showConfirmDialog(target, </font><font color="#ff00ff">&quot;Yes&quot;</font><font color="#000000">);</font>
+<font color="#000000">}</font>
+<font color="#0000ff">else</font>
+<font color="#ff0000">JOptionPane</font><font color="#000000">.showConfirmDialog(target, </font><font color="#ff00ff">&quot;exit from application&quot;</font><font color="#000000">);</font>
+<font color="#ff0000">System</font><font color="#000000">.exit(</font><font color="#800080">0</font><font color="#000000">);</font>
+<font color="#000000">}</font>
+
+<font color="#000000">}</font>
+<font color="#0000ff">class </font><font color="#000000">SubmitAction </font><font color="#0000ff">extends </font><font color="#ff0000">AbstractAction </font><font color="#000000">{</font>
+<font color="#0000ff">private </font><font color="#ff0000">Component </font><font color="#000000">target;</font>
+<font color="#0000ff">public </font><font color="#000000">SubmitAction(</font><font color="#ff0000">String </font><font color="#000000">name, </font><font color="#ff0000">Icon </font><font color="#000000">icon, </font><font color="#ff0000">Component </font><font color="#000000">t){</font>
+<font color="#000000">putValue(</font><font color="#ff0000">Action</font><font color="#000000">.NAME, name);</font>
+<font color="#000000">putValue(</font><font color="#ff0000">Action</font><font color="#000000">.SMALL_ICON, icon);</font>
+<font color="#000000">putValue(</font><font color="#ff0000">Action</font><font color="#000000">.SHORT_DESCRIPTION, name + </font><font color="#ff00ff">&quot; the program&quot;</font><font color="#000000">);</font>
+<font color="#000000">target = t;</font>
+<font color="#000000">} </font>
+<font color="#0000ff">public void </font><font color="#000000">actionPerformed(</font><font color="#ff0000">ActionEvent </font><font color="#000000">evt) {</font>
+<font color="#ff0000">JOptionPane</font><font color="#000000">.showMessageDialog(target, </font><font color="#ff00ff">&quot;submit action clicked &quot;</font><font color="#000000">);</font>
+<font color="#000000">}</font>
+<font color="#000000">} </font>
+<font color="#0000ff">public class </font><font color="#000000">commandtest </font><font color="#0000ff">extends </font><font color="#ff0000">JFrame </font><font color="#000000">{</font>
+<font color="#000000">commandtest() {</font>
+<font color="#ff0000">Action </font><font color="#000000">ea = </font><font color="#0000ff">new </font><font color="#000000">ExitButton(</font><font color="#ff00ff">&quot;Exit&quot;</font><font color="#000000">, </font><font color="#0000ff">null</font><font color="#000000">, </font><font color="#0000ff">this</font><font color="#000000">);</font>
+<font color="#ff0000">Action </font><font color="#000000">sa = </font><font color="#0000ff">new </font><font color="#000000">SubmitAction(</font><font color="#ff00ff">&quot;Submit&quot;</font><font color="#000000">, </font><font color="#0000ff">null</font><font color="#000000">, </font><font color="#0000ff">this</font><font color="#000000">);</font>
+<font color="#ff0000">Action </font><font color="#000000">ob = </font><font color="#0000ff">new </font><font color="#000000">OKButton(</font><font color="#ff00ff">&quot;OK&quot;</font><font color="#000000">,</font><font color="#0000ff">null</font><font color="#000000">,</font><font color="#0000ff">this</font><font color="#000000">); </font>
+<font color="#ff0000">JMenuBar </font><font color="#000000">jbr = </font><font color="#0000ff">new </font><font color="#ff0000">JMenuBar</font><font color="#000000">();</font>
+<font color="#ff0000">JMenu </font><font color="#000000">dropmenu= </font><font color="#0000ff">new </font><font color="#ff0000">JMenu</font><font color="#000000">(</font><font color="#ff00ff">&quot;File&quot;</font><font color="#000000">); </font>
+<font color="#ff0000">JMenuItem </font><font color="#000000">submitmenu = </font><font color="#0000ff">new </font><font color="#ff0000">JMenuItem</font><font color="#000000">(sa);</font>
+<font color="#ff0000">JMenuItem </font><font color="#000000">exitmenu = </font><font color="#0000ff">new </font><font color="#ff0000">JMenuItem</font><font color="#000000">(ea);</font>
+<font color="#000000">dropmenu.add(submitmenu);</font>
+<font color="#000000">dropmenu.add(exitmenu);</font>
+<font color="#000000">jbr.add(dropmenu);</font>
+<font color="#000000">setJMenuBar(jbr);</font>
+
+<font color="#0000ff">final </font><font color="#ff0000">JPopupMenu </font><font color="#000000">pop = </font><font color="#0000ff">new </font><font color="#ff0000">JPopupMenu</font><font color="#000000">(</font><font color="#ff00ff">&quot;PopMenu&quot;</font><font color="#000000">);</font>
+<font color="#000000">pop.add(sa);</font>
+<font color="#000000">pop.add(ea);</font>
+<font color="#000000">addMouseListener(</font><font color="#0000ff">new </font><font color="#ff0000">MouseAdapter</font><font color="#000000">() {</font>
+<font color="#0000ff">public void </font><font color="#000000">mousePressed(</font><font color="#ff0000">MouseEvent </font><font color="#000000">e) {</font>
+<font color="#000000">showPopup(e);</font>
+<font color="#000000">}</font>
+
+<font color="#0000ff">public void </font><font color="#000000">mouseReleased(</font><font color="#ff0000">MouseEvent </font><font color="#000000">e) {</font>
+<font color="#000000">showPopup(e);</font>
+<font color="#000000">}</font>
+
+<font color="#0000ff">private void </font><font color="#000000">showPopup(</font><font color="#ff0000">MouseEvent </font><font color="#000000">e) {</font>
+<font color="#0000ff">if </font><font color="#000000">(e.isPopupTrigger()) {</font>
+<font color="#000000">pop.show(e.getComponent(),</font>
+<font color="#000000">e.getX(), e.getY());</font>
+<font color="#000000">}</font>
+<font color="#000000">}</font>
+
+<font color="#000000">});</font>
+<font color="#ff0000">JPanel </font><font color="#000000">jp = </font><font color="#0000ff">new </font><font color="#ff0000">JPanel</font><font color="#000000">();</font>
+<font color="#ff0000">JButton </font><font color="#000000">subbtn = </font><font color="#0000ff">new </font><font color="#ff0000">JButton</font><font color="#000000">(sa);</font>
+<font color="#ff0000">JButton </font><font color="#000000">exitbtn = </font><font color="#0000ff">new </font><font color="#ff0000">JButton</font><font color="#000000">(ea);</font>
+<font color="#ff0000">JButton </font><font color="#000000">obtn=</font><font color="#0000ff">new </font><font color="#ff0000">JButton</font><font color="#000000">(ob);</font>
+<font color="#000000">jp.add(subbtn);</font>
+<font color="#000000">jp.add(exitbtn);</font>
+<font color="#000000">jp.add(obtn);</font>
+
+<font color="#ff0000">Container </font><font color="#000000">con = getContentPane();</font>
+<font color="#000000">con.add(jp, </font><font color="#ff00ff">&quot;South&quot;</font><font color="#000000">);</font>
+
+<font color="#000000">setTitle(</font><font color="#ff00ff">&quot;Command pattern example&quot;</font><font color="#000000">);</font>
+<font color="#000000">setSize(</font><font color="#800080">600</font><font color="#000000">,</font><font color="#800080">400</font><font color="#000000">);</font>
+<font color="#000000">setVisible(</font><font color="#0000ff">true</font><font color="#000000">);</font>
+<font color="#000000">}</font>
+<font color="#0000ff">public static void </font><font color="#000000">main(</font><font color="#ff0000">String</font><font color="#000000">[] args) {</font>
+<font color="#0000ff">new </font><font color="#000000">commandtest(); </font>
+<font color="#000000">}</font>
+<font color="#000000">}</font>
+</pre>
+</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="Chain_of_responsibility.shtml" title="Chain_of_responsibility">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="Interpreter.shtml" title="Interpreter">Next</a></td>
+  </tr> 
+</table>
+
+<!-- Footer Start-->	   	
+
+		</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->

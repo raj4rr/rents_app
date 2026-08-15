@@ -1,0 +1,128 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD>
+<meta http-equiv="Content-Language" content="en-us">
+<TITLE>Servlets - File Uploading</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name="description" CONTENT="Servlet File Uploading examples" >
+<meta name="keywords" CONTENT="Servlets,java,File Uploading,example">
+
+<!-- header start-->	
+
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+
+<?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+     <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>Servlet Tutorials</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+			<img src="/images/left_menu_bullet.gif"  width="11" height="6"/> <a href="/java/">Java</a>
+			<img src="/images/left_menu_bullet.gif"  width="11" height="6"/> <a href="/java/servlet/">Servlet</a>
+
+			      </div>
+
+            	<table>
+                    <tr>
+
+                         <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/servlet/servlet_basics/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 
+
+<div class="heading">Servlets - File Uploading</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="logincookies.shtml" title="Servlet Login and Logout Example using Cookies">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="database.shtml" title=" Servlets - Database Access">Next</a></td>
+  </tr> 
+</table>
+<!-- header End-->	
+
+<p>In Servlet can be used with an HTML form tag and it allows users to upload files to the server.Servlet can be uploaded file could be a text file or image file or any document.
+</p>
+
+<p>Using the HTML code to create an uploader form. Some important points are as follows:
+</p>
+
+<ol>
+   <li> The form method attribute should be set to POST method and GET method can not be used.</li>
+
+  <li> The form enctype attribute should be set to multipart/form-data.</li>
+
+    <li>The form action attribute should be set to a servlet file which would handle file uploading at backend server. Following example is using UploadServlet servlet to upload file.</li>
+
+    <li>To upload a single file you should use a single &lt;input .../ &gt;tag with attribute type="file". To allow multiple files uploading, include more than one input tags with different values for the name attribute. The browser associates a Browse button with each of them.</li>
+
+</ol>
+
+<h3>Example</h3>
+<div class="code">
+<pre>
+<font face="Courier New"><font color="#0000ff">&lt;html&gt;</font>
+<font color="#0000ff">&lt;head&gt;</font>
+<font color="#0000ff">&lt;title&gt;</font><font color="#000000">File Uploading Form</font><font color="#0000ff">&lt;/title&gt;</font>
+<font color="#0000ff">&lt;/head&gt;</font>
+<font color="#0000ff">&lt;body&gt;</font>
+<font color="#0000ff">&lt;h3&gt;</font><font color="#000000">File Upload:</font><font color="#0000ff">&lt;/h3&gt;</font>
+<font color="#000000">Select a file to upload: </font><font color="#0000ff">&lt;br /&gt;</font>
+<font color="#0000ff">&lt;form </font><font color="#ff0000">action</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;UploadServlet&quot; </font><font color="#ff0000">method</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;post&quot;</font>
+                        <font color="#ff0000">enctype</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;multipart/form-data&quot;</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;input </font><font color="#ff0000">type</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;file&quot; </font><font color="#ff0000">name</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;file&quot; </font><font color="#ff0000">size</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;50&quot; </font><font color="#0000ff">/&gt;</font>
+<font color="#0000ff">&lt;br /&gt;</font>
+<font color="#0000ff">&lt;input </font><font color="#ff0000">type</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;submit&quot; </font><font color="#ff0000">value</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;Upload File&quot; </font><font color="#0000ff">/&gt;</font>
+<font color="#0000ff">&lt;/form&gt;</font>
+<font color="#0000ff">&lt;/body&gt;</font>
+<font color="#0000ff">&lt;/html&gt;</font>
+</font></pre>
+</div>
+
+<i>
+To display following result which would allow to select a file from local PC and when user would click at "Upload File", form would be submitted along with the selected file:
+</i>
+
+ <p><i>
+File Upload: </i>
+Select a file to upload: 
+</p>
+
+<img src="images/upload.gif">
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="logincookies.shtml" title="Servlet Login and Logout Example using Cookies">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="database.shtml" title=" Servlets - Database Access">Next</a></td>
+  </tr> 
+</table>
+
+<!-- Footer Start-->		
+
+		</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+   </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->

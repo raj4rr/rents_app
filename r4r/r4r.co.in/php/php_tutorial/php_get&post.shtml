@@ -1,0 +1,212 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>Php get and post|get and post method in php|how to use GET and POST</TITLE>
+<META content=r4r.co.in name=owner>
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="Php get and post-learn with r4r php tutorial covers all  topics of php from basics concept to higher level php
+best examples interview questions in easy and short way" >
+<meta name="keywords" CONTENT="php GET and POST, PHP, Programming, Language, Built-in Function,HTML,CSS,XML,JavaScript,DOM,jQuery Library, Web Design,Object 
+Oriented PHP, PHP Variables, Scalars,Arrays,Object Oriented In PHP,Exception In PHP,Filters In PHP">
+<META content="Rajesh Kumar" name=author>
+<!-- header start-->	
+
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>PHP Programing language</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+            <img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+            <a href="/php/">Php</a>
+              </div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/php/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	 
+
+	   	   <div class="heading">Get &amp; Post in PHP</div>
+
+		   <table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="string_function.shtml" title="String Function">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="php_fileinclusion.shtml" title="php File Inclusion">Next</a></td>
+  </tr>
+</table>
+
+<h3>Get &amp; Post Methods</h3>
+<p>In forms, you want to submit the information and transfered the information to another page. The following to methods are used for this:</p>
+<ol>
+<li>The GET Method : Inthis method, the key values are passed in the Url.</li>
+<li>The POST Method : Inthis method,the information transfers in a hidden manner.</li>
+</ol>
+<i>GET Method:</i>
+<p>In Client side, method="get" is used to submit information in a form. And In Server side, $_GET associative array is used to receive sent information in a form.</p>
+<h3>Example:</h3>
+<div class="code">
+<pre>
+<font color="#000000">test.php code:</font>
+
+<font color="#0000ff">&lt;html&gt;</font>
+<font color="#0000ff">&lt;head&gt;</font>
+<font color="#0000ff">&lt;title&gt;</font><font color="#000000">Get method in PHP</font><font color="#0000ff">&lt;/title&gt;</font>
+<font color="#0000ff">&lt;/head&gt;</font>
+<font color="#0000ff">&lt;body&gt;</font>
+
+<font color="#0000ff">&lt;form </font><font color="#ff0000">action</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;abc.php&quot; </font><font color="#ff0000">method</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;GET&quot;</font><font color="#0000ff">&gt;</font>
+<font color="#000000">Your Name : </font><font color="#0000ff">&lt;input </font><font color="#ff0000">type</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;text&quot; </font><font color="#ff0000">name</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;yourname&quot;</font><font color="#0000ff">/&gt;&lt;br/&gt;&lt;br/&gt;</font>
+<font color="#000000">Your Age :  </font><font color="#0000ff">&lt;input </font><font color="#ff0000">type</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;text&quot; </font><font color="#ff0000">name</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;yourage&quot; </font><font color="#0000ff">/&gt;&lt;br/&gt;&lt;br/&gt;</font>
+<font color="#0000ff">&lt;input </font><font color="#ff0000">type</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;submit&quot; </font><font color="#0000ff">/&gt;</font>
+<font color="#0000ff">&lt;/form&gt;</font>
+<font color="#0000ff">&lt;/body&gt;</font>
+<font color="#0000ff">&lt;/html&gt;</font>
+</pre>
+
+<pre>
+<font color="#000000">abc.php code:</font>
+
+<font color="#800000">&lt;?php</font>
+<font color="#0000ff">if</font><font color="#800000">( </font><font color="#0000ff">$</font><font color="#008080">_GET</font><font color="#800000">[</font><font color="#ff00ff">&quot;yourname&quot;</font><font color="#800000">] || </font><font color="#0000ff">$</font><font color="#008080">_GET</font><font color="#800000">[</font><font color="#ff00ff">&quot;yourage&quot;</font><font color="#800000">] )</font>
+<font color="#800000">{</font>
+<font color="#0000ff">echo </font><font color="#ff00ff">&quot;Welcome&quot;</font><font color="#800000">. </font><font color="#0000ff">$</font><font color="#008080">_GET</font><font color="#800000">[</font><font color="#ff00ff">'yourname'</font><font color="#800000">]. </font><font color="#ff00ff">&quot;&lt;br /&gt;&quot;</font><font color="#800000">;</font>
+<font color="#0000ff">echo </font><font color="#ff00ff">&quot;You age is &quot;</font><font color="#800000">. </font><font color="#0000ff">$</font><font color="#008080">_GET</font><font color="#800000">[</font><font color="#ff00ff">'yourage'</font><font color="#800000">]. </font><font color="#ff00ff">&quot; years.&quot;</font><font color="#800000">;</font>
+<font color="#0000ff">exit</font><font color="#800000">();</font>
+<font color="#800000">}</font>
+<font color="#800000">?&gt;</font>
+</pre>
+</div>
+
+<p><i>Output:</i>
+<div class="output">
+<div class="image">
+<h4>Before Submit Information:</h4>
+<img src="images/get_before.gif">
+
+<h4>After Submit Information:</h4>
+<img src="images/get_after.gif">
+</div>
+</div>
+</p>
+<i>POST Method:</i>
+<p>In Client side, method="post" is used to submit information in a form. And In Server side, $_POST associative array is used to receive sent information in a form.</p>
+<h3>Example:</h3>
+<div class="code">
+<pre>
+<font color="#000000">test.php code:</font>
+
+<font color="#0000ff">&lt;html&gt;</font>
+<font color="#0000ff">&lt;head&gt;</font>
+<font color="#0000ff">&lt;title&gt;</font><font color="#000000">Post method in PHP</font><font color="#0000ff">&lt;/title&gt;</font>
+<font color="#0000ff">&lt;/head&gt;</font>
+<font color="#0000ff">&lt;body&gt;</font>
+<font color="#000000"> </font>
+<font color="#0000ff">&lt;form </font><font color="#ff0000">action</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;abc.php&quot; </font><font color="#ff0000">method</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;POST&quot;</font><font color="#0000ff">&gt;</font>
+<font color="#000000">Name: </font><font color="#0000ff">&lt;input </font><font color="#ff0000">type</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;text&quot; </font><font color="#ff0000">name</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;name&quot;</font><font color="#0000ff">/&gt;&lt;br/&gt;&lt;br/&gt;</font>
+<font color="#000000">Age: </font><font color="#0000ff">&lt;input </font><font color="#ff0000">type</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;text&quot; </font><font color="#ff0000">name</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;age&quot;</font><font color="#0000ff">/&gt;&lt;br/&gt;&lt;br/&gt;</font>
+<font color="#0000ff">&lt;input </font><font color="#ff0000">type</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;submit&quot; </font><font color="#0000ff">/&gt;</font>
+<font color="#0000ff">&lt;/form&gt;</font>
+
+<font color="#0000ff">&lt;/body&gt;</font>
+<font color="#0000ff">&lt;/html&gt;</font>
+</pre>
+
+<pre>
+<font color="#000000">abc.php code:</font>
+
+<font color="#800000">&lt;?php</font>
+<font color="#0000ff">if</font><font color="#800000">( </font><font color="#0000ff">$</font><font color="#008080">_POST</font><font color="#800000">[</font><font color="#ff00ff">&quot;name&quot;</font><font color="#800000">] || </font><font color="#0000ff">$</font><font color="#008080">_POST</font><font color="#800000">[</font><font color="#ff00ff">&quot;age&quot;</font><font color="#800000">] )</font>
+<font color="#800000">{</font>
+<font color="#0000ff">echo </font><font color="#ff00ff">&quot;Welcome &quot;</font><font color="#800000">. </font><font color="#0000ff">$</font><font color="#008080">_POST</font><font color="#800000">[</font><font color="#ff00ff">'name'</font><font color="#800000">]. </font><font color="#ff00ff">&quot;to our world...!!!&lt;br /&gt;&quot;</font><font color="#800000">;</font>
+<font color="#0000ff">echo </font><font color="#ff00ff">&quot;You are &quot;</font><font color="#800000">. </font><font color="#0000ff">$</font><font color="#008080">_POST</font><font color="#800000">[</font><font color="#ff00ff">'age'</font><font color="#800000">]. </font><font color="#ff00ff">&quot; years old.&lt;br/&gt;&quot;</font><font color="#800000">;</font>
+<font color="#0000ff">echo </font><font color="#ff00ff">&quot;You permitted to enter this world.&quot;</font><font color="#800000">; </font>
+<font color="#0000ff">exit</font><font color="#800000">();</font>
+  <font color="#800000">}</font>
+<font color="#800000">?&gt;</font>
+</pre>
+</div>
+<p><i>Output:</i>
+<div class="output">
+<div class="image">
+<h4>Before Submit Information:</h4>
+<img src="images/post_before.gif">
+
+<h4>After Submit Information:</h4>
+<img src="images/post_after.gif">
+</div>
+</div>
+</p>
+
+<div class="heading">The $_REQUEST variable</div>
+<p>The $_REQUEST variable is a superglobal Array that contains the contents of both $_GET, $_POST, and $_COOKIE arrays. It can be used to collect data sent with both the GET and POST methods.</p>
+<h3>Example:</h3>
+<div class="code">
+<pre>
+<font color="#000000">test.php code:</font>
+
+<font color="#0000ff">&lt;html&gt;</font>
+<font color="#0000ff">&lt;head&gt;&lt;title&gt;</font><font color="#000000">$_REQUEST Variable in php</font><font color="#0000ff">&lt;/title&gt;</font>
+<font color="#0000ff">&lt;/head&gt;</font>
+<font color="#0000ff">&lt;body&gt;</font>
+
+<font color="#0000ff">&lt;form </font><font color="#ff0000">action</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;abc.php?thename=MarPlo&quot; </font><font color="#ff0000">method</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;post&quot;</font><font color="#0000ff">&gt;</font>
+<font color="#000000"> </font><font color="#0000ff">&lt;input </font><font color="#ff0000">type</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;text&quot; </font><font color="#ff0000">name</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;thename&quot; </font><font color="#ff0000">value</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;r4r.co.in&quot; </font><font color="#0000ff">/&gt;</font>
+<font color="#000000"> </font><font color="#0000ff">&lt;input </font><font color="#ff0000">type</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;submit&quot; </font><font color="#ff0000">value</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;Send&quot; </font><font color="#0000ff">/&gt;</font>
+<font color="#0000ff">&lt;/form&gt;</font>
+<font color="#0000ff">&lt;/body&gt;</font>
+<font color="#0000ff">&lt;/html&gt;</font>
+</pre>
+
+<pre>
+<font color="#000000">abc.php code:</font>
+
+<font color="#800000">&lt;?php</font>
+<font color="#0000ff">if</font><font color="#800000">(</font><font color="#0000ff">isset</font><font color="#800000">(</font><font color="#0000ff">$</font><font color="#008080">_REQUEST</font><font color="#800000">[</font><font color="#ff00ff">'thename'</font><font color="#800000">])) </font>
+<font color="#0000ff">echo $</font><font color="#008080">_REQUEST</font><font color="#800000">[</font><font color="#ff00ff">'thename'</font><font color="#800000">];       </font>
+<font color="#800000">?&gt;</font>
+</pre>
+</div>
+<p><i>Output:</i>
+<div class="output">
+<div class="image">
+<h4> Before Submit:</h4>
+<img src="images/request_before.gif">
+<h4> After Submit:</h4>
+<img src="images/request_after.gif">
+</div>
+</div>
+</p>
+
+		   <table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="string_function.shtml" title="String Function">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="php_fileinclusion.shtml" title="php File Inclusion">Next</a></td>
+  </tr>
+</table>
+
+</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/webtechnology/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->

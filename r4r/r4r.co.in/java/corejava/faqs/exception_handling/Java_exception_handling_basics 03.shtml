@@ -1,0 +1,157 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>Throwing Exceptions in Java Programming;Catching Exceptions in Java Programming</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="Throwing Exceptions in Java Programming;Catching Exceptions in Java Programming" >
+<meta name="keywords" CONTENT="Throwing Exceptions in Java Programming;Catching Exceptions in Java Programming">
+
+<!-- header start-->
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+	<BODY>
+		<?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+        <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>Java Exception FAQ Tutorials</h1>
+            <div class="link_menu"><br><div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+            <img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+            <a href="/java/">Java</a>
+			<img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/java/corejava/">Core Java</a>
+  <img src="/images/left_menu_bullet.gif" width="11" height="6"> <a href="/java/corejava/faqs/">FAQS</a>
+  </div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/corejava/collections/commonfiles/leftmenu.shtml'); ?></td>                                           
+                        <td style="80%" valign="top">
+
+                        <div class="main_content"> 	 
+
+	<!-- header End-->
+
+<div class="heading">Throwing Exceptions in Java Programming</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="Java_exception_handling_basics%2002.shtml" title="Class Hierarchy in Java Programming">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="Java_exception_handling_basics%2004.shtml" title="Try, catch and finally in Java Programming">Next</a></td>
+  </tr> 
+</table>
+
+<p>Exception is throwing by the utilize the keyworld throw (for single exception) and throws (for multiple exception ),both the keyword help in catching exceptions that are thrown by the Java run-time system. There are two ways you can obtain a Throwable object: using a parameter into a catch clause, or creating one with the new operator.</p>	
+
+<div class="code">
+<PRE>
+<FONT COLOR="#008000">//following example consider for IndexoutofBoundException.</FONT>
+<FONT COLOR="#0000ff">package </FONT><FONT COLOR="#000000">r4r.co.in;</FONT>
+<FONT COLOR="#0000ff">public class </FONT><FONT COLOR="#000000">IndexoutofBoundException</FONT>
+<FONT COLOR="#000000">{</FONT>
+<FONT COLOR="#0000ff">public static void </FONT><FONT COLOR="#000000">main(</FONT><FONT COLOR="#ff0000">String </FONT><FONT COLOR="#000000">args[]) </FONT><FONT COLOR="#0000ff">throws </FONT><FONT COLOR="#ff0000">Exception </FONT><FONT COLOR="#000000">{</FONT>
+<FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">i;                                                            </FONT>
+<FONT COLOR="#008000">//initialize local variable</FONT>
+<FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">array[] = { </FONT><FONT COLOR="#800080">0</FONT><FONT COLOR="#000000">,</FONT><FONT COLOR="#800080">1</FONT><FONT COLOR="#000000">,</FONT><FONT COLOR="#800080">2</FONT><FONT COLOR="#000000">,</FONT><FONT COLOR="#800080">3</FONT><FONT COLOR="#000000">,</FONT><FONT COLOR="#800080">4</FONT><FONT COLOR="#000000">,</FONT><FONT COLOR="#800080">5</FONT><FONT COLOR="#000000">,</FONT><FONT COLOR="#800080">6</FONT><FONT COLOR="#000000">,</FONT><FONT COLOR="#800080">7</FONT><FONT COLOR="#000000">,</FONT><FONT COLOR="#800080">9 </FONT><FONT COLOR="#000000">};           </FONT>
+<FONT COLOR="#008000">//initialize an array</FONT>
+<FONT COLOR="#0000ff">for</FONT><FONT COLOR="#000000">( i=</FONT><FONT COLOR="#800080">0</FONT><FONT COLOR="#000000">;i&lt;</FONT><FONT COLOR="#800080">10</FONT><FONT COLOR="#000000">;i++)</FONT>
+<FONT COLOR="#000000">{</FONT>
+<FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">index = i+</FONT><FONT COLOR="#800080">1</FONT><FONT COLOR="#000000">;</FONT>
+<FONT COLOR="#000000">i = array[ index ];</FONT>
+<FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.print(i);</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.println( </FONT><FONT COLOR="#ff00ff">"sample define IndexoutofBoundException"  </FONT><FONT COLOR="#000000">);</FONT>
+
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#000000">}</FONT>
+</PRE>
+</div>
+
+<div class="heading">Declaring Exceptions handling in Java Programming</div>
+<p>In Java exception is an object that describes an exceptional condition (or in error form) that's occurred in a piece of code and  handled using a try-catch-finally block within a program .When an exceptional condition arises, an object that representing the exception is created and thrown in the method that caused the error. Following syntax shows exception handling.</p>
+
+<div class="code">
+<PRE>
+<FONT COLOR="#0000ff">package </FONT><FONT COLOR="#000000">r4r.co.in;</FONT>
+<FONT COLOR="#0000ff">try </FONT><FONT COLOR="#000000">{      </FONT>
+<FONT COLOR="#008000">//Exception Code writing here</FONT>
+<FONT COLOR="#000000">&lt;code&gt;</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#0000ff">catch </FONT><FONT COLOR="#000000">(&lt;exception type&gt; &lt;parameter&gt;)      </FONT>
+<FONT COLOR="#008000">//catch block utilize as catch the exception</FONT>
+<FONT COLOR="#000000">{ </FONT>
+<FONT COLOR="#000000">&lt;statements&gt;</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#000000">} </FONT>
+<FONT COLOR="#0000ff">finally </FONT><FONT COLOR="#000000">{       </FONT>
+<FONT COLOR="#000000">&lt;statements&gt;     </FONT>
+<FONT COLOR="#008000">// finally block utilize as code that must be executed</FONT>
+<FONT COLOR="#000000">}</FONT>
+</PRE>
+</div>
+
+<div class="heading">Catching Exceptions in Java Programming</div>
+<p>Exceptions can be generated by the Java run-time system (or java virtual machine, JVM ), or they can be manually generated by your code. Java exception handlingis managed via five keywords: <b>try, catch, throw, throws, and finally</b>.</p>
+
+<div class="code">
+<PRE>
+<FONT COLOR="#008000">// Handle and generate an exception.</FONT>
+<FONT COLOR="#0000ff">package </FONT><FONT COLOR="#000000">r4r.co.in;</FONT>
+<FONT COLOR="#0000ff">public class </FONT><FONT COLOR="#000000">ArithmeticExceptionExp {</FONT>
+<FONT COLOR="#0000ff">public static void </FONT><FONT COLOR="#000000">main(</FONT><FONT COLOR="#ff0000">String </FONT><FONT COLOR="#000000">args[])</FONT><FONT COLOR="#0000ff">throws </FONT><FONT COLOR="#ff0000">Exception        </FONT>
+<FONT COLOR="#008000">//throws keyword is used to throw the exception</FONT>
+<FONT COLOR="#000000">{</FONT>
+<FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">a= </FONT><FONT COLOR="#800080">0</FONT><FONT COLOR="#000000">;           </FONT>
+<FONT COLOR="#008000">//initialization local variable  in superclass</FONT>
+<FONT COLOR="#0000ff">try       </FONT>
+<FONT COLOR="#008000">//  Generate the exception.</FONT>
+<FONT COLOR="#000000">{</FONT>
+<FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">b = </FONT><FONT COLOR="#800080">10</FONT><FONT COLOR="#000000">, c = </FONT><FONT COLOR="#800080">0</FONT><FONT COLOR="#000000">;          </FONT>
+<FONT COLOR="#008000">// initialize local variable in subclass</FONT>
+
+<FONT COLOR="#000000">a = </FONT><FONT COLOR="#800080">10 </FONT><FONT COLOR="#000000">/(b/c) ;</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#0000ff">catch </FONT><FONT COLOR="#000000">(</FONT><FONT COLOR="#ff0000">ArithmeticException </FONT><FONT COLOR="#000000">e)      </FONT>
+<FONT COLOR="#008000">// catch the exception</FONT>
+<FONT COLOR="#000000">{</FONT>
+
+<FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.println(</FONT><FONT COLOR="#ff00ff">"Division by zero."</FONT><FONT COLOR="#000000">);</FONT>
+
+<FONT COLOR="#000000">a = </FONT><FONT COLOR="#800080">0</FONT><FONT COLOR="#000000">;      }          </FONT>
+<FONT COLOR="#008000">// set a to zero and continue</FONT>
+
+<FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.println(</FONT><FONT COLOR="#ff00ff">"a: " </FONT><FONT COLOR="#000000">+ a);</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#000000">}</FONT>
+</PRE>
+</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="Java_exception_handling_basics%2002.shtml" title="Class Hierarchy in Java Programming">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="Java_exception_handling_basics%2004.shtml" title="Try, catch and finally in Java Programming">Next</a></td>
+  </tr> 
+</table>
+
+   <!-- Footer Start-->
+    </div>
+		           </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!--footer end-->

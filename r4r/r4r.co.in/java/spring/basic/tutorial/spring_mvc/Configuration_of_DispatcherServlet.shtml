@@ -1,0 +1,108 @@
+	<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+
+<HTML><HEAD><TITLE>Configuration of DispatcherServlet</TITLE>
+
+<META content="r4r.co.in" name="owner">
+<META http-equiv="content-type" content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="Configuration of DispatcherServlet,spring,spring mvc,spring2.5,spring2.5 mvc" >
+<meta name="keywords" CONTENT="Configuration of DispatcherServlet,spring,spring mvc,spring2.5,spring2.5 mvc">
+
+<!-- header start-->	
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>Spring Framework</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+           <img src="/images/left_menu_bullet.gif" width="11" height="6"/>  <a href="/java/">Java</a>       <img src="/images/left_menu_bullet.gif" width="11" height="6"/><a href="/java/spring/">Spring</a>
+
+              </div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/spring/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	 
+
+<!-- header End--> 
+
+<div class="heading">Configuration of DispatcherServlet</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="Introduction_of_DispatcherServler.shtml" title="Introduction_of_DispatcherServler">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="Introduction_of_ContextLoaderListener.shtml" title="Introduction_of_ContextLoaderListener">Next</a></td>
+  </tr> 
+</table>
+
+<p>The spring MVC provide the DispatcherServlet, this is the front controller in MVC(Model View Controller). This front controller is the heart of the spring MVC which are configure in the web.xml file this file store in the WEB-INF folder in directry structure o web application. This configuration example which are following:</p>
+<h3>web.xml</h3>
+
+<div class="code">
+<pre>
+<font color="#0000ff">&lt;</font><font color="#808000">web-app </font><font color="#800080">id</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;WebApp_ID&quot; </font><font color="#ff0000">version</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;2.4&quot;</font>
+<font color="#ff0000">xmlns</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;http://java.sun.com/xml/ns/j2ee&quot; </font>
+<font color="#800080">xmlns:xsi</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</font>
+<font color="#800080">xsi:schemaLocation</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;http://java.sun.com/xml/ns/j2ee </font>
+<font color="#ff00ff">http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd&quot;</font><font color="#0000ff">&gt;</font>
+
+<font color="#0000ff">&lt;</font><font color="#808000">display-name</font><font color="#0000ff">&gt;</font><font color="#000000">Spring MVC Application</font><font color="#0000ff">&lt;/</font><font color="#808000">display-name</font><font color="#0000ff">&gt;</font>
+
+<font color="#0000ff">&lt;</font><font color="#808000">servlet</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">servlet-name</font><font color="#0000ff">&gt;</font><font color="#000000">dispatcher</font><font color="#0000ff">&lt;/</font><font color="#808000">servlet-name</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">servlet-class</font><font color="#0000ff">&gt;</font>
+<font color="#000000">org.springframework.web.servlet.DispatcherServlet</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">servlet-class</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">load-on-startup</font><font color="#0000ff">&gt;</font><font color="#000000">1</font><font color="#0000ff">&lt;/</font><font color="#808000">load-on-startup</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">servlet</font><font color="#0000ff">&gt;</font>
+
+<font color="#0000ff">&lt;</font><font color="#808000">servlet-mapping</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">servlet-name</font><font color="#0000ff">&gt;</font><font color="#000000">dispatcher</font><font color="#0000ff">&lt;/</font><font color="#808000">servlet-name</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">url-pattern</font><font color="#0000ff">&gt;</font><font color="#000000">*.bean</font><font color="#0000ff">&lt;/</font><font color="#808000">url-pattern</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">servlet-mapping</font><font color="#0000ff">&gt;</font>
+
+<font color="#0000ff">&lt;</font><font color="#808000">welcome-file-list</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">welcome-file</font><font color="#0000ff">&gt;</font><font color="#000000">index.jsp</font><font color="#0000ff">&lt;/</font><font color="#808000">welcome-file</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">welcome-file-list</font><font color="#0000ff">&gt;</font>
+
+<font color="#0000ff">&lt;/</font><font color="#808000">web-app</font><font color="#0000ff">&gt;</font>
+</pre>
+
+</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="Introduction_of_DispatcherServler.shtml" title="Introduction_of_DispatcherServler">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="Introduction_of_ContextLoaderListener.shtml" title="Introduction_of_ContextLoaderListener">Next</a></td>
+  </tr> 
+</table>
+
+<!-- Footer Start-->
+
+		</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->

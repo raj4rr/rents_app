@@ -1,0 +1,121 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD>
+<meta http-equiv="Content-Language" content="en-us">
+<TITLE>Statement of the JDBC,Statement,PreparedStatement,CallableStatement</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name="description" CONTENT="Statement of the JDBC,Statement,PreparedStatement,CallableStatement" >
+<meta name="keywords" CONTENT="Statement of the JDBC,Statement,PreparedStatement,CallableStatement">
+
+<!-- header start-->	
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>PHP Programing language</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+            <img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+            <a href="/php/">PHP</a>
+
+              </div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/php/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	 
+
+	   	   <div class="heading">PHP Creating A file</div>
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="php_files.shtml" title="PHP Files">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="php_close.shtml" title="PHP Close a File">Next</a></td></tr>
+</table>
+
+<!-- header End-->
+
+<p>A file is created by use a command and that is also used to open files. It may seem a little confusing, but we'll try to clarify this conundrum.</p>
+<p>In PHP the using a function is called fopen. it's function is used to open files. it can also creating a file if it does not find the file specified in the function call. So if you use fopen on a file that does not exist, it will create it, giving that we open the file for writing or appending.</p>
+
+<h3>How to Create a File in PHP</h3>
+<p>The fopen function needs two important pieces of information to operate correctly. First, we must supply it with the name of the file that we want it to open. Secondly, we must tell the function what we plan on doing with that file (i.e. read from the file, write information, etc).</p>
+<p>Since we want to create a file, we must supply a file name and tell PHP that we want to write to the file. Note: We have to tell PHP we are writing to the file, otherwise it will not create a new file.</p>
+<div class="code">
+<pre>
+<font color="#000000">PHP Code:</font>
+
+<font color="#800000">&lt;?php</font>
+<font color="#0000ff">$</font><font color="#008080">FileName </font><font color="#800000">= </font><font color="#ff00ff">&quot;firsttext.txt&quot;</font><font color="#800000">;</font>
+<font color="#0000ff">$</font><font color="#008080">FileHandle </font><font color="#800000">= </font><font color="#ff0000">fopen</font><font color="#800000">(</font><font color="#0000ff">$</font><font color="#008080">FileName</font><font color="#800000">, </font><font color="#ff00ff">'A'</font><font color="#800000">) </font><font color="#0000ff">or die</font>
+<font color="#800000">(</font><font color="#ff00ff">&quot;can't be write this file&quot;</font><font color="#800000">);</font>
+<font color="#ff0000">fclose</font><font color="#800000">(</font><font color="#0000ff">$</font><font color="#008080">FileHandle</font><font color="#800000">);</font>
+<font color="#800000">?&gt;</font>
+</pre>
+</div>
+
+<p>The file "firsttext.txt" should be create in the same directory where this PHP code resides. PHP will see that "firsttext.txt" does not exist and will create it after running this code. There's a lot of information in those three lines of code, let's make sure you understand it.</p>
+
+<div class="code">
+<pre>
+<font color="#000000">$FileName = &quot;firsttext.txt&quot;;</font>
+</pre>
+</div>
+
+<p>Here we create the name of our file, "firsttext.txt" and store it into a PHP String variable $FileName.</p>
+
+<div class="code">
+<pre>
+<font color="#000000">$FileHandle = fopen($FileName, 'A') or die(&quot;can't </font>
+<font color="#000000">be write this file&quot;);</font>
+</pre>
+</div>
+<p>Second, the fopen function returns what is called a file handle, which will allow us to manipulate the file. We save the file handle into the $FileHandle variable. We will talk more about file handles later on.</p>
+
+<div class="code">
+<pre>
+<font color="#000000">fclose($ourFileHandle);</font>
+</pre>
+</div>
+<p>We close the file that was opened. fclose takes the file handle that is to be closed. We will talk more about this more in the file closing lesson.</p>
+
+<h3>PHP Permissions</h3>
+<p>If you are trying to get this program to run and you are having errors, you might want to check that you have granted your PHP file access to write information to the hard drive. Setting permissions is most often done with the use of an FTP program to execute a command called CHMOD. Use CHMOD to allow the PHP file to write to disk, thus allowing it to create a file.</p>
+<p>In the near future will have a more in-depth tutorial on how to use CHMOD to set file permissions.</p> 
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="php_files.shtml" title="PHP Files">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="php_close.shtml" title="PHP Close a File">Next</a></td></tr>
+</table>
+
+ <!-- Footer end-->                       	
+
+</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/php/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->

@@ -1,0 +1,100 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>Array of Pointers Using C Language</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="Learn Array of Pointers Using C Language,c basics,programming language,examples,pointer,function,loop,else,if else,while,array,pre processor,post processor,structures,memory menagemen" >
+<meta name="keywords" CONTENT="c tutorial,c basics,programming language,examples,pointer,function,loop,else,if else,while,array,pre processor,post processor,structures,memory menagement,string,constants,variables,decisions making,c unions,c memory allocation, c operators, C pointers,c error handling, c file handling">
+		<link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>C Programming language</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a><img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/c/">C </a>
+              <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/c/c_topics/c_pointers/">C Pointer</a></div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/c/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 
+
+		<!-- Header End-->	
+<div class="heading">Array of Pointers</div>
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="spointer.shtml">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="pointer_to_function.shtml">Next</a></td>
+  </tr>
+</table>	   
+
+<p>We are creating  an array of pointers of maximum size 2. Then we have assigned the objects of array pointer.</p>
+
+<div class="code">
+<pre style="font-family: Verdana; margin-left: 0in; margin-right: 0in; margin-top: 0in; margin-bottom: .0001pt"><span class="Apple-style-span" style="border-collapse: separate; color: rgb(0, 0, 0); font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-align: auto; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-border-horizontal-spacing: 0px; -webkit-border-vertical-spacing: 0px; -webkit-text-decorations-in-effect: none; -webkit-text-size-adjust: auto; -webkit-text-stroke-width: 0px; "><span class="Apple-style-span" style="text-align: -webkit-left; -webkit-border-horizontal-spacing: 2px; -webkit-border-vertical-spacing: 2px"><font >arr[0] = &amp;a;
+arr[1] = &amp;b;</font></span></span></pre>
+</div>
+<h3>Example</h3>
+<div class="code">
+			<pre style=" margin-left: 0in; margin-right: 0in; margin-top: 0in; margin-bottom: .0001pt"><FONT><FONT COLOR="#ff0000">#include </FONT><FONT COLOR="#000000">&lt;stdio.h&gt;</FONT>
+<FONT COLOR="#ff0000">#include </FONT><FONT COLOR="#000000">&lt;conio.h&gt;</FONT>
+<FONT COLOR="#000000">main() {</FONT>
+  <FONT COLOR="#000000">clrscr();</FONT>
+  <FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">*arr[</FONT><FONT COLOR="#800080">2</FONT><FONT COLOR="#000000">];</FONT>
+  <FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">a = </FONT><FONT COLOR="#800080">5</FONT><FONT COLOR="#000000">, b = </FONT><FONT COLOR="#800080">10</FONT><FONT COLOR="#000000">;</FONT>
+  <FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">i;</FONT>
+  <FONT COLOR="#000000">arr[</FONT><FONT COLOR="#800080">0</FONT><FONT COLOR="#000000">] = &amp;a;</FONT>
+  <FONT COLOR="#000000">arr[</FONT><FONT COLOR="#800080">1</FONT><FONT COLOR="#000000">] = &amp;b;</FONT>
+   <FONT COLOR="#0000ff">for </FONT><FONT COLOR="#000000">(i=</FONT><FONT COLOR="#800080">0</FONT><FONT COLOR="#000000">; i&lt; </FONT><FONT COLOR="#800080">2</FONT><FONT COLOR="#000000">; i++) {</FONT>
+    <FONT COLOR="#000000">printf(</FONT><FONT COLOR="#ff00ff">&quot;The value of %d= %d ,address is %u\t \n&quot;</FONT><FONT COLOR="#000000">, i, *(arr[i]),arr[i]);</FONT>
+  <FONT COLOR="#000000">}</FONT>
+  <FONT COLOR="#000000">getch();</FONT>
+  <FONT COLOR="#0000ff">return </FONT><FONT COLOR="#800080">0</FONT><FONT COLOR="#000000">;</FONT>
+<FONT COLOR="#000000">};</FONT></FONT></pre>
+ </div>
+ <div class="output">
+<p><i>Output</i>: The output of the above program would be:</p>
+<p>the value of 0=5 , address is 6523</p>
+<p>the value of 1=10 , address is 6521</p>
+</div>
+
+<p><i>Note</i>: If we write  int *p[10]; are we declaring an array of pointers, or a pointer to an array? In declarations, the brackets [] which describe arrays have higher precedence than the * which describes pointers.It looks like the * and the [] are both next to the identifier p, but since [] has higher precedence it means that the brackets are ``closer'' --p is an array first, and what it's an array of is pointers. </p>
+<p>If you really wanted a pointer to an array (though usually you do not) you once again override the default precedence using explicit parentheses: </p>
+<div class="code"><font color="#0000FF">int</font><font color="#000000" > (*p)[10];</font></div>
+
+	<p style=" margin-left: 0in; margin-right: 0in; margin-top: 0in; margin-bottom: .0001pt">
+ <p>says that p is a pointer first, and what it's a pointer to is an array.</p>
+
+ <table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="spointer.shtml">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="pointer_to_function.shtml">Next</a></td>
+  </tr>
+</table>	
+
+		<!-- Footer Start-->	
+</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>

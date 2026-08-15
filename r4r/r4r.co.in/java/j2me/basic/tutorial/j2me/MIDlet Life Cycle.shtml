@@ -1,0 +1,96 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD>
+<meta http-equiv="Content-Language" content="en-us">
+<TITLE>Java 2 Micro Edition (J2ME)</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name="description" CONTENT="AWT Examples,AWT Tutorials,AWT Tutorials for Begginers" >
+<meta name="keywords" CONTENT="AWT Examples,AWT Tutorials,AWT Tutorials for Begginers">
+
+<!-- header start-->	
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>Java Programing laungage</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+            <img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+         <a href="/java/">Java</a>
+              <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/java/j2me">J2ME</a>
+                     <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/java/j2me/basic/example/Mobile_Servlet">J2ME BASIC TUTORIALS</a>
+              </div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/j2me/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content">
+
+<div class="heading">MIDlet Life Cycle</div>
+
+	 <table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="generated Source file.shtml" title="generated Source file">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="J2ME_Package.shtml" title="J2ME_Package">Next</a></td>
+  </tr> 
+</table>
+	<!-- header End-->  
+<p>A MIDlet is a MID Profile and application must extend MIDlet for implement three main abstract methods and methods functionality in it, Methods are :</p>
+<ol><li> startApp();</li>
+<li>pauseApp();</li>
+<li>destroyApp();</li></ol>
+
+<p>A MIDlet application is represented by the instance of the javax.microedition.midlet.MIDlet class. MIDlet have very specific lifecycle which is reflect in the methods and behavior of the MIDlet class. The application must  extend this class to allow the application management (a piece of device- specific software) to controls the installation, execution, life cycle of  MIDlet and to be able to retrieve properties from the application descriptor and notify and request state changes.  The class files will be packaged in a Java Archive (JAR), while an accompanying descriptor file (with a .jad extension) describes the contents of the JAR.</p>
+
+<div class="image">
+<img src="images/lifecycle of MIDlet.png">
+</div>
+<h3>Stages of MIDlet's lifecycle:</h3>
+<ol><li>When the MIDlet is about to be run, an instance of javax.microedition.midlet.MIDlet class is create. The MIDlet's class constructor is run, and the MIDlet is in the Paused state.</li>
+<li>Next, MIDlet move into Active state after application manager calling startApp() method which implement with extend MIDlet class.</li>
+<li>While the MIDlet is Active state, the application manager can suspend its execution by calling pauseApp() method. This will puts MIDlet back into Paused State.</li>
+<li>The MIDlet also place itself into Paused state by calling calling notifyPaused() mehod.</li>
+<li>The application manager puts MIDlet form Paused state to Active state by calling startApp() Method.</li>
+<li>One addition method resumeRequest() method calling by application manger to put MIDlet into Active state from Paused state.</li>
+<li>After application manager execute startApp() method, can terminate the execution by calling destroyApp() method. At that point the MIDlet is destroyed and patiently awaits garbage collection.</li>
+<li> A MIDlet can destroy itself by calling notifyDestroyed() method.</li>
+</ol>
+
+ <table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="generated Source file.shtml" title="generated Source file">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="J2ME_Package.shtml" title="J2ME_Package">Next</a></td>
+  </tr> 
+</table>
+<!-- Footer Start-->	
+
+		</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->
+

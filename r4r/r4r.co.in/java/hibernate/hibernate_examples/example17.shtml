@@ -1,0 +1,458 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<HTML><HEAD><TITLE>Validate data from the database using Hibernate and swing</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv="content-type" content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="Validate data from the database using Hibernate and swing tutorial learn easily and shortly with hibernate tutorial,hibernate
+Examples,hibernate interview questions Step by step covers all topics of hibernate, 
+hibernate query language(HQl), Presistent classes, Objects, Collections, interceptors" >
+<meta name="keywords" CONTENT="Hibernate tutorial, Validate data from the database using Hibernate and swing,  Hibernate Examples, object relation mapping(ORM), 
+hibernate query language(HQl), Presistent classes ">
+
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<META http-equiv="Content-Language" content="en-us">
+<link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+<link href="/css/main.css" rel="stylesheet" type="text/css" />
+</HEAD>
+<BODY>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>Hibernate</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+            <img src="/images/left_menu_bullet.gif"/> <a href="/java/hibernate/">Hibernate</a>
+             </div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top">
+                            <?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/hibernate/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                       <div class="main_content">  	 
+
+      <div class="heading">Validate data from the database using Hibernate and swing</div>
+
+      <table id="indexing">
+
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="example16.shtml" title="Delete Data from Database">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="example18.shtml" title="Insert Data into Database">Next</a></td>
+  </tr> 
+</table>
+      <p>
+          In this swing session we have learn how to insert data into the database using swing JFrame form. 
+          So here we will discuss that how can we validate the data using hibernate and database from the 
+          swing JFrame form. For these type of action we need to follow the some basic step which is given 
+          below:
+      </p> 
+      <p>
+          Step 1. First of all we need to create two table into the database one to insert the 
+          database into the data using JFrame form and second for the validate the data form the 
+          table on the Swing JFrame form.
+      </p>
+      <p>
+          Step 2. We have already discussed that how to insert data into multiple database using 
+          Hibernate. Click the below link to check how to insert the data into the multiple table.
+      </p>
+      <p>
+          Step 3. Given table we will use in this session.
+      </p>
+      <div class="code">
+          <pre><code class="language-sql">
+create table SwingLogin
+(
+id intnotnullprimarykey auto_increment,
+fname varchar(50),
+lname varchar(50),
+uid varchar(50),
+mid varchar(50),
+pass varchar(50)
+)
+
+create table SwingValidate
+(
+id intnotnullprimarykey auto_increment,
+uid varchar(50),
+mid varchar(40),
+pass varchar(50)
+)
+</code></pre>
+      </div>
+      <p>
+          Step 4. Now create a Java Application (Follow the instruction as shown in out last example click here)
+      </p>
+      <p>
+          Step 5. Now create a hibernate cfg file (Follow the instruction as shown in out last example click here)
+      </p>
+      <p>Instead of using legacy <code>.hbm.xml</code> mapping files, map the entity directly using JPA annotations like <code>@Entity</code> and <code>@Table</code>.</p>
+
+      <h3>2. SwingLogin.java</h3>
+      <div class="code">
+          <pre><code class="language-java">
+package R4R;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="SwingLogin")
+public class SwingLogin implements java.io.Serializable {
+@Id
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    private int id;
+private String fname;
+private String lname;
+private String uid;
+private String mid;
+private String pass;
+
+public SwingLogin() {
+}
+public SwingLogin(int id) {
+this.id = id;
+}
+public SwingLogin(int id, String fname, String lname, String uid, String mid, String pass) {
+this.id = id;
+this.fname = fname;
+this.lname = lname;
+this.uid = uid;
+this.mid = mid;
+this.pass = pass;
+}
+public int getId() {
+return this.id;
+}
+public void setId(int id) {
+this.id = id;
+}
+public String getFname() {
+return this.fname;
+}
+public void setFname(String fname) {
+this.fname = fname;
+}
+public String getLname() {
+return this.lname;
+}
+public void setLname(String lname) {
+this.lname = lname;
+}
+public String getUid() {
+return this.uid;
+}
+public void setUid(String uid) {
+this.uid = uid;
+}
+public String getMid() {
+return this.mid;
+}
+public void setMid(String mid) {
+this.mid = mid;
+}
+public String getPass() {
+return this.pass;
+}
+public void setPass(String pass) {
+this.pass = pass;
+}
+}
+</code></pre>
+      </div>
+
+      <h3>3. SwingValidate.hbm.xml</h3>
+      <p>Instead of using legacy <code>.hbm.xml</code> mapping files, map the entity directly using JPA annotations like <code>@Entity</code> and <code>@Table</code>.</p>
+
+      <h3>4. SwingValidate.java</h3>
+      <div class="code">
+         <pre><code class="language-java">
+ package R4R;
+public class SwingValidate implements java.io.Serializable {
+private int id;
+private String uid;
+private String mid;
+private String pass;
+public SwingValidate() {
+}
+public SwingValidate(int id) {
+this.id = id;
+}
+public SwingValidate(int id, String uid, String mid, String pass) {
+this.id = id;
+this.uid = uid;
+this.mid = mid;
+this.pass = pass;
+}
+public int getId() {
+return this.id;
+}
+public void setId(int id) {
+this.id = id;
+}
+public String getUid() {
+return this.uid;
+}
+public void setUid(String uid) {
+this.uid = uid;
+}
+public String getMid() {
+return this.mid;
+}
+public void setMid(String mid) {
+this.mid = mid;
+}
+public String getPass() {
+return this.pass;
+}
+public void setPass(String pass) {
+this.pass = pass;
+}
+}
+</code></pre>
+      </div>
+
+      <p>
+          Step 7. Now create a Swing JFrame Form (as we have already discussed into the last 
+          example click here)
+      </p>
+      <h3>1. Inserting the Data(Registration Page)</h3>
+      <div class="code">
+          <pre><code class="language-java">
+public class RegistrationPage extends javax.swing.JFrame {
+    public String pho;
+    public RegistrationPage() {
+        initComponents();
+        {
+        List&lt;String&gt; a = Admin.getState();
+           for(String s : a)
+           state.addItem(s);
+        }
+        List&lt;String&gt; a = Admin.getSQuestion();
+          for(String s : a)
+          squestion.addItem(s);
+    }
+    private boolean validateFields() 
+    {
+		if (fname.getText().equals("")) {
+		  JOptionPane.showMessageDialog(this,"Please enter To first name!","Error", JOptionPane.ERROR_MESSAGE);
+			fname.requestFocus();
+			return false;
+		}
+
+		if (lname.getText().equals("")) 
+                {
+	          JOptionPane.showMessageDialog(this, "Please enter last name!","Error", JOptionPane.ERROR_MESSAGE);
+			lname.requestFocus();
+			return false;
+		}
+
+		if (email.getText().equals("")) 
+                {
+		 JOptionPane.showMessageDialog(this, "Please enter email!","Error", JOptionPane.ERROR_MESSAGE);
+			email.requestFocus();
+			return false;
+		}
+
+		return true;
+	}
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {                                         
+             new LoginPage().setVisible(true);
+             dispose();
+    }                                        
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {                                         
+                JFileChooser fd = new JFileChooser("c:/");
+                fd.showOpenDialog(this);
+                 pho = fd.getSelectedFile().toString(); 
+                photo.setIcon(new ImageIcon(pho));
+
+    }                                        
+
+    private void cityActionPerformed(java.awt.event.ActionEvent evt) {                                     
+
+    }                                    
+
+    private void stateActionPerformed(java.awt.event.ActionEvent evt) {                                      
+           city.removeAllItems();
+           List&lt;String&gt; a = Admin.getCity(state.getSelectedItem().toString());
+           for(String s : a)
+           city.addItem(s); 
+    }                                     
+
+    private void squestionActionPerformed(java.awt.event.ActionEvent evt) {                                          
+//                       List&lt;String&gt; a = Admin.getSQuestion();
+//                       for(String s : a)
+//                       squestion.addItem(s);
+    }                                         
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {                                         
+                 if (!validateFields()) {
+			return;
+		}
+
+                 SessionFactory sf = new Configuration().configure().buildSessionFactory();
+                 Session s = sf.openSession();
+                 Transaction tr = s.beginTransaction();
+                 r4r.SwingValidation sv = new r4r.SwingValidation(fname.getText(), lname.getText(), 
+					 email.getText(), uid.getText(), pass.getText(), address.getText(), 
+                 state.getSelectedItem().toString(), city.getSelectedItem().toString(), Integer.parseInt(pin.getText()), 
+                 squestion.getSelectedItem().toString(), sans.getText(), pho.getBytes());
+                 r4r.SwingLogin sl = new r4r.SwingLogin(email.getText(), uid.getText(), pass.getText());
+                 r4r.SwingForgetPass sfp = new r4r.SwingForgetPass(uid.getText(), pass.getText());
+                 JOptionPane.showMessageDialog(this, "One Record Inserted");
+                    s.save(sv);
+                    s.save(sl);
+                    s.save(sfp);
+                    tr.commit();
+                    s.close();
+                    s.clear();
+    } 
+</code></pre>
+      </div>
+      <h3>2. For Validate the daTa</h3>
+      <div class="code">
+         <pre><code class="language-java">
+ public class LoginPage extends javax.swing.JFrame {
+    public LoginPage() {
+        initComponents();
+    } 
+
+private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {                                         
+        new RegistrationPage().setVisible(true);
+    }                                        
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {                                         
+        new ForgetPass().setVisible(true);
+    }                                        
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {                                         
+            int a = Admin.checkId(uid.getText(),new String(pass.getPassword()));
+           if(a!=0)
+            JOptionPane.showMessageDialog(this,"Sorry this is Invalid Login Id &amp; Password");
+             else 
+               {
+                 new WelcomePage().setVisible(true);
+               }
+    }
+</code></pre>
+      </div>
+      <h3>3. After the Validate the data.</h3>
+      <p>Step 8. Now take a admin class for making holding the action of the application.</p>
+      <div class="code">
+          <pre><code class="language-java">
+package swing.validation;
+import java.util.ArrayList;
+import java.util.List;
+import org.hibernate.Criteria;
+import org.hibernate.Query;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+import org.hibernate.cfg.Configuration;
+import org.hibernate.criterion.Restrictions;
+public class Admin 
+{
+   public static List&lt;String&gt; getState() 
+   {
+     List&lt;String&gt; a = new ArrayList&lt;String&gt;();   
+     try
+     {
+        SessionFactory sf = new Configuration().configure().buildSessionFactory();
+        Session s = sf.openSession();
+        Transaction tr = s.beginTransaction();
+         Criteria cr = s.createCriteria(r4r.Tblstate.class);
+        java.util.List&lt;r4r.Tblstate&gt; ds = cr.list();
+        for(r4r.Tblstate dd : ds)
+        {
+        a.add(dd.getStateName());   
+         }   
+     }catch(Exception ex) { a.add(ex.getMessage()); }
+     return a;
+   }
+   public static List&lt;String&gt; getCity(String st) 
+   {
+     List&lt;String&gt; a = new ArrayList&lt;String&gt;();   
+     try
+     {
+         SessionFactory sf = new Configuration().configure().buildSessionFactory();
+         Session s = sf.openSession();
+         Transaction tr = s.beginTransaction();
+         Criteria cr = s.createCriteria(r4r.Tblcity.class).add(Restrictions.eq( "stateName", st));
+        java.util.List&lt;r4r.Tblcity&gt; ds = cr.list();
+        for(r4r.Tblcity dd : ds)
+        {
+        a.add(dd.getCityName());   
+         }
+     }catch(Exception ex) { a.add(ex.getMessage()); }
+     return a;
+   }
+   public static List&lt;String&gt; getSQuestion()
+   {
+     List&lt;String&gt; a = new ArrayList&lt;String&gt;();   
+     try
+     {
+         SessionFactory sf = new Configuration().configure().buildSessionFactory();
+         Session s = sf.openSession();
+         Transaction tr = s.beginTransaction();
+         Criteria cr = s.createCriteria(r4r.Squestion.class);
+         java.util.List&lt;r4r.Squestion&gt; ds = cr.list();
+         for(r4r.Squestion dd : ds)
+         {
+            a.add(dd.getSquestion());   
+         }
+     }catch(Exception ex) { a.add(ex.getMessage()); }
+     return a;
+   }
+ public static int checkId(String u,String ps)
+  {
+    try
+    {
+      SessionFactory sf = new Configuration().configure().buildSessionFactory();
+      Session s = sf.openSession();
+      Transaction tr = s.beginTransaction();
+      //Criteria cr = s.createCriteria(r4r.Login1.class).add(Restrictions.eq( "mid", u )); 
+
+      Query query = s.createQuery("select count(*) from SwingLogin where uid = "+u+" &amp;&amp; pass = "+ps+"");
+
+        query.executeUpdate();
+
+     return query.executeUpdate();
+    }catch(Exception ex) { return 0; }
+      //  return 0;
+  }
+}
+</code></pre>
+      </div>
+      <p>Step 9. Now run the application.</p>
+
+   <table id="indexing">
+
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="example16.shtml" title="Delete Data from Database">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="example18.shtml" title="Insert Data into Database">Next</a></td>
+  </tr> 
+</table>   
+
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+
+                <?php @include($_SERVER['DOCUMENT_ROOT'] . '/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>

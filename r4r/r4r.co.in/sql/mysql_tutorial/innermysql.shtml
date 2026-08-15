@@ -1,0 +1,162 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http:///www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML>
+	<HEAD>
+
+	<meta http-equiv="Content-Language" content="en-us">
+	<TITLE>Inner Join in MySQL</TITLE>
+		<META content="Rajesh Kumar" name="author">
+		<META http-equiv="expires" content="0">
+		<META content="r4r.co.in" name="owner">
+		<META http-equiv=Content-Type content="text/html; charset=windows-1252">
+		<meta name="description" CONTENT="inner join in MySQL- Learn about join in Sql Types of join in Sql Working Of sql with r4r tutorial
+		for beginners, freshers">
+		<meta name="keywords" CONTENT="inner join in MySQL, join in Mysql, Types of Mysql, how it works ,MySQL,Joins In MySQL,Inner Join In MySQL,Left Join In MySQL
+Right Join In MySQL,Full Join In MySQL,Union">
+
+	<!-- header start-->	
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>MySQL </h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+			<img src="/images/left_menu_bullet.gif" width="11" height="6"><a href="/sql/mysql_tutorial/">MySQL</a>
+
+              </div>
+
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/sql/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	 
+
+<div class="heading">Inner Join in MySQL</div> 
+<table id="indexing">
+	<tr>
+	<td style="width:33%; text-align:left;"><a href="joinmysql.shtml" title="Join in MySQL">Previous</a></td>
+	<td style="width:34%; text-align:center"><a href="index.shtml" title="Home">Home</a></td>
+	<td style="width:33%; text-align:right"><a href="leftmysql.shtml" title="Left Join in MySQL">Next</a></td>
+	</tr>
+</table>
+
+<P>It is almost similar to join query syntax and gives the similar output as join gives, just replace JOIN as INNER JOIN.</P>
+<h3>Syntax for inner join</h3>
+<div class="code">
+<pre>
+SELECT columnname1, columnname2
+FROM tablename1
+INNER JOIN tablename2 ON common condition1
+INNER JOIN tablename3 ON common condition2
+</pre>
+</div>
+
+<p><h3>Example</h3></p>
+<div class="code">
+<pre>
+SELECT *
+FROM studadr 
+INNER JOIN studinfo 
+ON studinfo.sid = studadr.sid ;
+</pre>
+</div>
+<div class="output"><div class="image"><img src="images/join1.gif"></div></div>
+<p>The table define after  from clause  is the first  output followed by second table output in single output, here we have define 'studadr' followed by 'studinfo'.</p>
+
+<p><h3>Example</h3></p>
+
+<div class="code">
+<pre>
+SELECT *
+FROM studinfo 
+INNER JOIN studadr 
+ON studinfo.sid = studadr.sid ;
+</pre>
+</div>
+<div class="output"><div class="image"><img src="images/join2.gif"></div></div>
+
+<p>The above code gives the reverse result as the table order define in the clause.</p>
+
+<p><h3>Example</h3></p>
+<div class="code">
+<pre>
+SELECT fname,age,lname,street
+FROM studinfo
+INNER JOIN studadr 
+ON studinfo.sid = studadr.sid ;
+</pre>
+</div>
+<div class="output"><div class="image"><img src="images/join3.gif"></div></div>
+<p>In the above code we can reverse the table name order but the result will remain same, we can change the output order like street , age n anything to get the desired order result.</p> 
+
+<p><h3>Example</h3></p>
+<div class="code">
+<pre>
+SELECT fname,age,lname,street
+FROM studinfo
+INNER JOIN studadr 
+ON studinfo.sid = studadr.sid 
+WHERE studinfo.sid > 105
+order by fname ;
+</pre>
+</div>
+<div class="output"><div class="image"><img src="images/join4.gif"></div></div>
+<p>In the above code we have  can use either WHERE clause or ORDER BY clause , but here can use both to get the desired output on the specified condition.</p>
+
+<p><h3>Example</h3></p>
+<div class="code">
+<pre>
+SELECT *
+FROM studadr
+INNER JOIN studinfo ON studinfo.sid = studadr.sid
+Inner join studptin ON studadr.said=studptin.said ;
+</pre>
+</div>
+<p><h3>Output:</h3> This gives the combination of all the three tables define in the above code, to get the shorter and select result check the next code.</p>
+
+<p><h3>Example</h3></p>
+<div class="code">
+<pre>
+SELECT Name, Fname, Street
+FROM studadr
+INNER JOIN studinfo ON studinfo.sid = studadr.sid
+Inner join studptin ON studadr.said = studptin.said;
+</pre>
+</div>
+
+<div class="output"><div class="image"><img src="images/innerjoin1.gif"></div></div>
+<p>In the above code we get the selected output like Name from STUDPTIN Table , Fname From STUDINFO Table and street From STUDADR Table and the comman table that contain the join of both the table is STUDADR is use in from condition.</p> 
+
+<table id="indexing">
+	<tr>
+	<td style="width:33%; text-align:left;"><a href="joinmysql.shtml" title="Join in MySQL">Previous</a></td>
+	<td style="width:34%; text-align:center"><a href="index.shtml" title="Home">Home</a></td>
+	<td style="width:33%; text-align:right"><a href="leftmysql.shtml" title="Left Join in MySQL">Next</a></td>
+	</tr>
+</table>
+
+		</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->

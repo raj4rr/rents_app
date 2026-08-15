@@ -1,0 +1,231 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>Struts Basic questions and answers</TITLE>
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<META content=r4r.co.in name=owner>
+<meta name="description" CONTENT="Struts Basic questions and answers,Struts Subjective questions and answers" >
+<meta name="keywords" CONTENT="Struts Basic questions and answers,Struts Subjective questions and answers">
+<!--Header start-->
+
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>FAQ</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a><img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+			<a href="/java/">Java </a>
+              <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/java/faq">Faqs</a>
+
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/corejava/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	  
+
+<!-- header End-->
+
+<div class="heading">Struts Interview Questions and Answers(Subjective)</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="index_servlets1.shtml" title="2 Java Servlets Interview Questions and Answers(Subjective)
+">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="index_struts1.shtml" title="2 Struts Interview Questions and Answers(Subjective)">Next</a></td>
+  </tr>
+</table>
+
+<div class="content_link">
+<p class="no_border"><a href="/java/struts/Struts_Interview_Questions_And_Answers/Struts_Objective_Questions_And_Answers.php" class="topic">Struts Objective Questions And Answers</a></p>
+<p class="no_border"><a href="/java/struts/Struts_Interview_Questions_And_Answers/Struts_Subjective_Questions_And_Answers.php" class="topic">Struts Subjective Questions And Answers</a></p>
+<p class="no_border"><a href="/java/struts/Struts_Interview_Questions_And_Answers/Struts_Interview_Questions_And_Answers.php" class="topic">Struts Interview Questions And Answers</a></p>
+
+</div>
+
+<div class="heading">Q.1	Describe Jakarta Struts Framework?</div>
+<p><i>Answer: </i>Jakarta Struts Framework is implements Model-View-Controller design pattern , it is an open source code sponsored by Apache Jakarta Struts.It is server side implementation of MVC model-II. It saves time in design and implementation of a web based application due to this framework and pattern as I is highly robust, scalable and reliable.</p>
+
+<div class="heading">Q.2	What are the components of Struts?</div>
+<p><i>Answer: </i>Struts is based on the MVC design pattern. Struts components can be categories into Model, View and Controller.</p>
+<ul><li><i>Model: </i>Model is used to impalement business object. Components like business logic / business processes and data are the part of Model.</li>
+<li><i>View: </i>JSP, HTML etc. are part of View.</li>
+<li><i>Controller: </i>ActionServlet of Struts is part of Controller components which works as front controller to handle all the requests.</li>
+</ul>
+
+<div class="heading">Q.3	What is ActionServlet ?</div>
+<p><i>Answer: </i><font class="point_out">ActionServlet </font>provides the &quot;controller&quot; in the <font class="point_out">Model-View-Controller (MVC)</font> design pattern for web applications that is commonly known as &quot;Model 2&quot;. It is backbone of struts application.It is used as controller to control .There can be only one ActionServlet defined for a context. ActionServlet is defined in web.xml file of a context e.g. WEB-INF/web.xml </p>
+
+<div class="heading">Q.4	What is an Action Class used for?</div>
+<p><i>Answer: </i>An Action is an adapter between the contents of an incoming HTTP request and the corresponding business logic that should be executed to process this request. The controller (ActionServlet) will select an appropriate Action for each request, create an instance (if necessary), and call the perform method. </p>
+<p>Actions must be programmed in a thread-safe manner, because the controller will share the same instance for multiple simultaneous requests. In this means you should design with the following items in mind: </p>
+
+<ul>
+<li><font class="point_out">Instance and static </font>variables MUST NOT be used to store information related to the state of a particular request. They MAY be used to share global resources across requests for the same action. </li>
+<li>Access to other resources (<font class="point_out">JavaBeans, session variables, etc.</font>) MUST be <font class="point_out">synchronized</font> if those resources require protection. (Generally, however, resource classes should be designed to provide their own protection where necessary.</li>
+</ul>
+
+<p>When an Action instance is first created, the controller servlet will call setServlet() with a non-null argument to identify the controller servlet instance to which this Action is attached. When the controller servlet is to be shut down (or restarted), the setServlet() method will be called with a null argument, which can be used to clean up any allocated resources in use by this Action. </p>
+
+<div class="heading">Q.5	What is ActionForm?</div>
+<p><i>Answer: </i>An <font class="point_out">ActionForm</font> is a <font class="point_out">JavaBean</font> optionally associated with one or more <font class="point_out">ActionMappings</font>. Such a bean will have had its properties initialized from the corresponding request parameters before the corresonding action's <font class="point_out">perform()</font> method is called.</p>
+<p>When the properties of this bean have been populated, but before the perform() method of the action is called, this bean's <font class="point_out">validate()</font> method will be called, which gives the bean a chance to verify that the properties submitted by the user are correct and valid. If this method finds problems, it returns an error messages object that encapsulates those problems, and the controller servlet will return control to the corresponding input form. Otherwise, the validate() method returns null(), indicating that everything is acceptable and the corresponding Action's perform() method should be called.</p>
+<p>This class must be subclassed in order to be instantiated. Subclasses should provide property getter and setter methods for all of the bean properties they wish to expose, plus override any of the public or protected methods for which they wish to provide modified functionality.</p>
+
+<div class="heading">Q.6	What is Struts Validator Framework?</div>
+<p><i>Answer: </i>Struts Framework provides the functionality to validate the form data. It can be use to validate the data on the users browser as well as on the server side. Struts Framework emits the java scripts and it can be used validate the form data on the client browser. Server side validation of form can be accomplished by sub classing your From Bean with DynaValidatorForm class.</p>
+
+<div class="heading">Q.7	What are the core classes of the Struts Framework?</div>
+<p><i>Answer: </i>Core classes of Struts Framework are <font class="point_out">ActionForm,  Action,  ActionMapping, ActionForward,  ActionServlet </font>etc.</p>
+
+<div class="heading">Q.8	What are Tag Libraries provided with Struts?</div>
+<p><i>Answer: </i>Struts provides a number of tag libraries that helps to create view components easily. These tag libraries are:</p>
+
+<ol><li><p><i>Bean Tags: </i>Bean Tags are used to access the beans and their properties.</p></li>
+<li><p><i>HTML Tags: </i>HTML Tags provides tags for creating the view components like forms, buttons, etc.</p></li>
+<li><p><i>Logic Tags: </i>Logic Tags provides presentation logics that eliminate the need for scriptlets.</p></li>
+<li><p><i>Nested Tags: </i>Nested Tags helps to work with the nested context.</p></li>
+</ol>
+
+<div class="heading">Q.9	What are difference between ActionErrors and ActionMessage?</div>
+<h3>Answer: </h3>
+<p><i>ActionMessage: </i>A class that encapsulates messages is called <font class="point_out">ActionMessage</font>. Messages can be either global or they are specific to a particular bean property.</p>
+<p>Each individual message is described by an <font class="point_out">ActionMessage</font> object, which contains a message key , and up to four placeholder arguments used for parametric substitution in the resulting message.</p>
+<p><i>ActionErrors: </i>A class that encapsulates the error messages being reported by the <font class="point_out">validate()</font> method of an <font class="point_out">ActionForm</font>. Validation errors are either global to the entire <font class="point_out">ActionForm</font> bean they are associated with, or they are specific to a particular bean property.</p>
+
+<div class="heading">Q.10	How you will handle exceptions in Struts?</div>
+
+<p><i>Answer: </i> In Struts you can handle the exceptions in two ways:</p>
+
+<ol><li><p><i>Declarative Exception Handling: </i>You can either define global exception handling tags in your struts-config.xml or define the exception handling tags within .. tag.</p>
+<h3>Example: </h3>
+<div class="code">
+<pre>
+<font color="#0000ff">&lt;</font><font color="#808000">key</font><font color="#000000">=&quot;</font><font color="#800080">database</font><font color="#000000">.</font><font color="#800080">error</font><font color="#000000">.</font><font color="#800080">duplicate</font><font color="#000000">&quot;</font>
+<font color="#800080">path</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;/UserExists.jsp&quot;</font>
+<font color="#ff0000">type</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;mybank.account.DuplicateUserException&quot;</font><font color="#0000ff">/&gt;</font>
+</pre>
+</div>
+</li>
+
+<li><p><i>Programmatic Exception Handling: </i>Here you can use try{}catch{} block to handle the exception. </p></li>
+</ol>
+
+<div class="heading">Q.11	Give the Details of XML files used in Validator Framework?</div>
+<p><i>Answer: </i>The Validator Framework uses two XML configuration files <font class="point_out">validator-rules.xml</font> and <font class="point_out">validation.xml</font>. The <font class="point_out">validator-rules.xml</font> is provided with the <font class="point_out">Validator Framework</font>. The <font class="point_out">validator-rules.xml</font> is used to declares and assigns the logical names to the validation routines. It also contains the client-side java-script code for each validation routine. The validation routines are java methods plugged into the system to perform specific validations.</p>
+
+<p>The Validator plug-in is supplied with a predefined set of commonly used validation rules such as Required, Minimum Length, Maximum length, Date Validation, Email Address validation and more. This basic set of rules can also be extended with custom validators if required.</p>
+
+<p>The <font class="point_out">validation.xml</font> configuration file defines which validation routines that is used to validate Form Beans. You can define validation logic for any number of Form Beans in this configuration file. Inside that definition, you specify the validations you want to apply to the Form Bean's fields. The definitions in this file use the logical names of Form Beans from the <font class="point_out">struts-config.xml</font> file along with the logical names of validation routines from the <font class="point_out">validator-rules.xml</font> file to tie the two together.</p>
+
+<h3>Example: </h3>
+
+<div class="code">
+<pre>
+<font color="#008000">&lt;!-- An example form --&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">form </font><font color="#ff0000">name</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;logonForm&quot;</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">field </font><font color="#800080">property</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;username&quot; </font><font color="#800080">depends</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;required&quot;</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">arg </font><font color="#800080">key</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;logonForm.username&quot;</font><font color="#0000ff">/&gt;</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">field</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">field </font><font color="#800080">property</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;password&quot; </font><font color="#800080">depends</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;required,mask&quot;</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">arg </font><font color="#800080">key</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;logonForm.password&quot;</font><font color="#0000ff">/&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">var</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">var-name</font><font color="#0000ff">&gt;</font><font color="#000000">mask</font><font color="#0000ff">&lt;/</font><font color="#808000">var-name</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">var-value</font><font color="#0000ff">&gt;</font><font color="#000000">^[0-9a-zA-Z]*$</font><font color="#0000ff">&lt;/</font><font color="#808000">var-value</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">var</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">field</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">form</font><font color="#0000ff">&gt;</font><font color="#000000"> </font>
+</pre>
+</div>
+
+<div class="heading">Q.12	How you will display validation fail errors on jsp page?</div>
+<p><i>Answer: </i>Following tag displays all the errors.</p>
+
+<div class="heading">Q.13	How you will enable front-end validation based on the xml in validation.xml?</div>
+<p><i>Answer: </i>The tag to allow front-end validation based on the xml in validation.xml. For example the code: generates the client side java script for the form &quot;logonForm&quot; as defined in the validation.xml file. The when added in the jsp file generates the client site validation script.</p>
+
+<div class="heading">Q.14	Can I setup Apache Struts to use multiple configuration files?</div>
+<p><i>Answer: </i>Yes.Struts can use multiple configuration files. Here is the configuration example:</p>
+
+<div class="code">
+<pre>
+<font color="#0000ff">&lt;</font><font color="#808000">servlet</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">servlet-name</font><font color="#0000ff">&gt;</font><font color="#000000">banking</font><font color="#0000ff">&lt;/</font><font color="#808000">servlet-name</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">servlet-class</font><font color="#0000ff">&gt;</font><font color="#000000">org.apache.struts.action.ActionServlet</font><font color="#0000ff">&lt;/</font><font color="#808000">servlet-class</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">init-param</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">param-name</font><font color="#0000ff">&gt;</font><font color="#000000">config</font><font color="#0000ff">&lt;/</font><font color="#808000">param-name</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">param-value</font><font color="#0000ff">&gt;</font><font color="#000000">/WEB-INF/struts-config.xml,</font>
+<font color="#000000">/WEB-INF/struts-authentication.xml,</font>
+<font color="#000000">/WEB-INF/struts-help.xml</font><font color="#0000ff">&lt;/</font><font color="#808000">param-value</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">init-param</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">load-on-startup</font><font color="#0000ff">&gt;</font><font color="#000000">1</font><font color="#0000ff">&lt;/</font><font color="#808000">load-on-startup</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">servlet</font><font color="#0000ff">&gt;</font><font color="#000000"> </font>
+</pre>
+</div>
+
+<h3>Q.15	How you will make available any Message Resources Definitions file to the Struts Framework Environment?</h3>
+<p><i>Answer: </i>Message Resources Definitions file are simple. <font class="point_out">properties</font> files and these files contains the messages that can be used in the struts project. Message Resources Definitions files can be added to the <font class="point_out">struts-config.xml</font> file through tag.</p>
+
+<div class="heading">Q.16	What is Struts Flow?</div>
+<p><i>Answer: </i>Struts Flow is a port of <font class="point_out">Cocoon's Control Flow</font> to Struts to allow complex workflow, like multi-form wizards, to be easily implemented using continuations-capable JavaScript. It provides the ability to describe the order of Web pages that have to be sent to the client, at any given point in time in an application. The code is based on a proof-of-concept Dave Johnson put together to show how the Control Flow could be extracted from Cocoon.</p>
+
+<div class="heading">Q.17	What is LookupDispatchAction?</div>
+<p><i>Answer: </i><font class="point_out">LookupDispatchAction</font> is an abstract Action that dispatches to the subclass mapped execute method. This is useful in cases where an HTML form has multiple submit buttons with the same name. The button name is specified by the parameter property of the corresponding ActionMapping.</p>
+
+<div class="heading">Q.18	What do you understand by DispatchAction?</div>
+<p><i>Answer: </i>DispatchAction is an action that comes with Struts 1.1 or later, that lets you combine Struts actions into one class, each with their own method. The <font class="point_out">org.apache.struts.action.DispatchAction</font> class allows multiple operation to mapped to the different functions in the same Action class. </p>
+
+<div class="heading">Q.19	Is struts threadsafe?Give an example?</div>
+<p><i>Answer: </i>Struts is not only thread-safe but thread-dependant. The response to a request is handled by a light-weight Action object, rather than an individual servlet. Struts instantiates each Action class once, and allows other requests to be threaded through the original object. This core strategy conserves resources and provides the best possible throughput. A properly-designed application will exploit this further by routing related operations through a single Action</p>
+
+<h3>Q.20	What are the uses of tiles-def.xml file, resourcebundle.properties file, validation.xml file?</h3>
+<p><i>Answer: </i>tiles-def.xml is an xml file used to configure tiles with the struts application. You can define the layout / header / footer / body content for your View.</p>
+
+<div class="heading">Q.21	What is the difference between perform() and execute() methods?</div>
+<p><i>Answer: </i>Perform method is the method which was deprecated in the Struts Version 1.1. In Struts 1.x, Action.perform() is the method called by the ActionServlet. This is typically where your business logic resides, or at least the flow control to your JavaBeans and EJBs that handle your business logic. As we already mentioned, to support declarative exception handling, the method signature changed in perform. Now execute just throws Exception. Action.perform() is now deprecated; however, the Struts v1.1 ActionServlet is smart enough to know whether or not it should call perform or execute in the Action, depending on which one is available.</p>
+
+<div class="heading">Q.22	How Struts relates to J2EE?</div>
+<p><i>Answer: </i>Struts framework is built on J2EE technologies (JSP, Servlet, Taglibs), but it is itself not part of the J2EE standard.</p>
+
+<div class="heading">Q.23	What is Struts actions and action mappings?</div>
+<p><i>Answer: </i>A Struts action is an instance of a subclass of an Action class, which implements a portion of a Web application and whose perform or execute method returns a forward.</p>
+<p>An action can perform tasks such as validating a user name and password.</p>
+<p>An action mapping is a configuration file entry that, in general, associates an action name with an action. An action mapping can contain a reference to a form bean that the action can use, and can additionally define a list of local forwards that is visible only to this action.</p>
+
+<p>An action servlet is a servlet that is started by the servlet container of a Web server to process a request that invokes an action. The servlet receives a forward from the action and asks the servlet container to pass the request to the forward's URL. An action servlet must be an instance of an org.apache.struts.action.ActionServlet class or of a subclass of that class. An action servlet is the primary component of the controller.</p>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="index_servlets1.shtml" title="2 Java Servlets Interview Questions and Answers(Subjective)
+">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="index_struts1.shtml" title="2 Struts Interview Questions and Answers(Subjective)">Next</a></td>
+  </tr>
+</table>
+
+<!-- Footer Start-->
+
+</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>

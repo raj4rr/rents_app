@@ -1,0 +1,160 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>What is DLL?,Creating DLL in C#,Using DLL in C# Application</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="What is DLL?,Creating DLL in C#,Using DLL in C# Application" >
+<meta name="keywords" CONTENT="What is DLL?,Creating DLL in C#,Using DLL in C# Application">
+
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+     <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>C# Tutorial</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a><img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/c1/">C#</a>
+
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/c1/commonfiles/leftmenu.shtml'); ?></td>
+
+                       <td style="80%" valign="top">
+                        <div class="main_content"> 
+
+	<!-- Header End-->
+
+	<div class="heading">dll</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="Bar_chart.shtml" title="Creating Bar Chart in windows using C#">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="Graphics.shtml" title="GDI(Graphics Design Interface)">Next</a></td>
+  </tr>
+</table>
+<h3>What is DLL</h3>
+<p>A dynamic linking library (DLL) is linked to your program at run time. DLL is similar to an EXE but is not directly
+ executable. Functions in the dll are called from the main exe. It provides a way to split what would be a very large exe
+  into an exe plus one or more dlls.</p>
+  <h3>Creating DLL in C#</h3>
+  <p>To creating DLL in C# just follow next steps</p>
+  <p>Goto File -> New Project then choose Class Library you will see window like below.</p>
+  <div class="image">
+  <img src="dll1.PNG">
+  </div>
+  <p>Here i am going to show DLL for addition, subtraction, multiplication, and division. Code for this is given below</p>
+
+  <div class="code">
+  <pre>
+
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Collections</font><font color="#000000">.</font><font color="#008080">Generic</font><font color="#000000">;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.Linq;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Text</font><font color="#000000">;</font>
+
+<font color="#0000ff">namespace </font><font color="#000000">ClassLibrary1{</font>
+<font color="#0000ff">public class </font><font color="#000000">Class1{</font>
+<font color="#0000ff">public int </font><font color="#000000">add(</font><font color="#0000ff">int </font><font color="#000000">x,</font><font color="#0000ff">int </font><font color="#000000">y)</font>
+<font color="#000000">{ </font>
+<font color="#000000">int z = x + y;</font>
+<font color="#0000ff">return </font><font color="#000000">z;</font>
+<font color="#000000">}</font>
+<font color="#0000ff">public int </font><font color="#000000">sub(</font><font color="#0000ff">int </font><font color="#000000">x, </font><font color="#0000ff">int </font><font color="#000000">y)</font>
+<font color="#000000">{ </font>
+<font color="#0000ff">int </font><font color="#000000">z = x - y;</font>
+<font color="#0000ff">return </font><font color="#000000">z;</font>
+<font color="#000000">}</font>
+<font color="#0000ff">public int </font><font color="#000000">mul(</font><font color="#0000ff">int </font><font color="#000000">x, </font><font color="#0000ff">int </font><font color="#000000">y)</font>
+<font color="#000000">{</font>
+<font color="#0000ff">int </font><font color="#000000">z = x * y;</font>
+<font color="#0000ff">return </font><font color="#000000">z;</font>
+<font color="#000000">}</font>
+<font color="#0000ff">public int </font><font color="#000000">div(</font><font color="#0000ff">int </font><font color="#000000">x, </font><font color="#0000ff">int </font><font color="#000000">y)</font>
+<font color="#000000">{</font>
+<font color="#0000ff">int </font><font color="#000000">z = x / y;</font>
+<font color="#0000ff">return </font><font color="#000000">z;</font>
+<font color="#000000">}</font>
+<font color="#000000">}</font>
+<font color="#000000">}</font>
+</pre>
+</div>
+
+<p>After this Build this class by pressing F6 and dll will generate this class library now you can use this in any other
+application where you want to use this dll.</p>
+<h3>Using DLL in C# Application</h3>
+<p>For using DLL in application you have to make add reference of the dll that you</p>
+<div class="image">
+<img src="dll2.PNG">
+</div>
+<h3>Design the form as shown in below picture</h3>
+<div class="image">
+<img src="dll3.PNG">
+</div>
+
+<div class="code">
+<pre>
+
+<font color="#0000ff">private void </font><font color="#000000">button1_Click(</font><font color="#0000ff">object </font><font color="#000000">sender, </font><font color="#808000">EventArgs </font><font color="#000000">e)</font>
+<font color="#000000">{</font>
+<font color="#000000">ClassLibrary1.Class1 c1 = </font><font color="#0000ff">new </font><font color="#000000">Class1();</font>
+<font color="#0000ff">int </font><font color="#000000">result=c1.add(</font><font color="#0000ff">int</font><font color="#000000">.Parse(textBox1.</font><font color="#008080">Text</font><font color="#000000">),</font>
+<font color="#0000ff">int</font><font color="#000000">.Parse(textBox2.</font><font color="#008080">Text</font><font color="#000000">));</font>
+<font color="#000000">textBox3.</font><font color="#008080">Text </font><font color="#000000">= result.ToString();</font>
+<font color="#000000">}</font>
+
+<font color="#0000ff">private void </font><font color="#000000">button2_Click(</font><font color="#0000ff">object </font><font color="#000000">sender, </font><font color="#808000">EventArgs </font><font color="#000000">e)</font>
+<font color="#000000">{</font>
+<font color="#000000">ClassLibrary1.Class1 c2 = </font><font color="#0000ff">new </font><font color="#000000">Class1();</font>
+<font color="#0000ff">int </font><font color="#000000">result = c2.sub(</font><font color="#0000ff">int</font><font color="#000000">.Parse(textBox1.</font><font color="#008080">Text</font><font color="#000000">), </font><font color="#0000ff">int</font><font color="#000000">.Parse(textBox2.</font><font color="#008080">Text</font><font color="#000000">));</font>
+<font color="#000000">textBox3.</font><font color="#008080">Text </font><font color="#000000">= result.ToString();</font>
+<font color="#000000">}</font>
+
+<font color="#0000ff">private void </font><font color="#000000">button3_Click(</font><font color="#0000ff">object </font><font color="#000000">sender, </font><font color="#808000">EventArgs </font><font color="#000000">e)</font>
+<font color="#000000">{</font>
+<font color="#000000">ClassLibrary1.Class1 c3 = </font><font color="#0000ff">new </font><font color="#000000">Class1();</font>
+<font color="#0000ff">int </font><font color="#000000">result = c3.mul(</font><font color="#0000ff">int</font><font color="#000000">.Parse(textBox1.</font><font color="#008080">Text</font><font color="#000000">), </font><font color="#0000ff">int</font><font color="#000000">.Parse(textBox2.</font><font color="#008080">Text</font><font color="#000000">));</font>
+<font color="#000000">textBox3.</font><font color="#008080">Text </font><font color="#000000">= result.ToString();</font>
+<font color="#000000">}</font>
+
+<font color="#0000ff">private void </font><font color="#000000">button4_Click(</font><font color="#0000ff">object </font><font color="#000000">sender, </font><font color="#808000">EventArgs </font><font color="#000000">e)</font>
+<font color="#000000">{</font>
+<font color="#000000">ClassLibrary1.Class1 c4 = </font><font color="#0000ff">new </font><font color="#000000">Class1();</font>
+<font color="#0000ff">int </font><font color="#000000">result = c4.div(</font><font color="#0000ff">int</font><font color="#000000">.Parse(textBox1.</font><font color="#008080">Text</font><font color="#000000">), </font><font color="#0000ff">int</font><font color="#000000">.Parse(textBox2.</font><font color="#008080">Text</font><font color="#000000">));</font>
+<font color="#000000">textBox3.</font><font color="#008080">Text </font><font color="#000000">= result.ToString();</font>
+<font color="#000000">}</font>
+</pre>
+</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="Bar_chart.shtml" title="Creating Bar Chart in windows using C#">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="Graphics.shtml" title="GDI(Graphics Design Interface)">Next</a></td>
+  </tr>
+</table>
+ <!--Footer-->
+   </div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/dotnet/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+     <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>

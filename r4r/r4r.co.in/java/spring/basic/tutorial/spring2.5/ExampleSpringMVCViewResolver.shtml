@@ -1,0 +1,190 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD>
+<meta http-equiv="Content-Language" content="en-us">
+<TITLE>Example of Spring MVC ViewResolver</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name="description" CONTENT="Show in a Message Box using Validation Summary,spring travels,spring tutorials,spring framework,spring mvc,spring interview question,spring framework tutorials,spring aop" >
+<meta name="keywords" CONTENT="Show in a Message Box using Validation Summary,spring travels,spring tutorials,spring framework,spring mvc,spring interview question,spring framework tutorials,spring aop">
+
+<!-- header start-->	
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>Spring Framework</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+           <img src="/images/left_menu_bullet.gif" width="11" height="6"/>  <a href="/java/">Java</a>    
+		      <img src="/images/left_menu_bullet.gif" width="11" height="6"/><a href="/java/spring/">Spring</a>
+
+              </div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/spring/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	 
+
+<!-- header End--> 
+
+<div class="heading">Example of Spring MVC ViewResolver</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="ExampleSpringMVC.shtml" title="Example of Spring MVC Implementation">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="StrutsSpring.shtml" title="How can Integrate Struts 2.x and Spring Framework">Next</a></td>
+  </tr> 
+</table>
+
+<p><i>Introduction:</i> In the Spring framework provide the facility to view the result in front of User through the "InternalResourceViewResolver" class. The Spring framework provide this class to present the information which processing after the controller of the Spring MVC pattern.
+
+<p>Technology use to run this source code:</p>
+<ol><li>Spring2.5 jar file</li>
+<li>Eclips Id</li>
+<li>Tomcat Server</li></ol>
+<p>Source Code</p>
+
+<h3>web.xml</h3>
+<div class="code">
+<pre>
+<font color="#0000ff">&lt;?xml </font><font color="#ff0000">version</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;1.0&quot; </font><font color="#ff0000">encoding</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;UTF-8&quot;</font><font color="#800080">?</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">web-app </font><font color="#ff0000">version</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;2.5&quot; </font>
+<font color="#ff0000">xmlns</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;http://java.sun.com/xml/ns/javaee&quot; </font>
+<font color="#800080">xmlns:xsi</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;http://www.w3.org/2001/XMLSchema-instance&quot; </font>
+<font color="#800080">xsi:schemaLocation</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;http://java.sun.com/xml/ns/javaee </font>
+<font color="#ff00ff">http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd&quot;</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">welcome-file-list</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">welcome-file</font><font color="#0000ff">&gt;</font><font color="#000000">index.jsp</font><font color="#0000ff">&lt;/</font><font color="#808000">welcome-file</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">welcome-file-list</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">servlet</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">servlet-name</font><font color="#0000ff">&gt;</font><font color="#000000">frontController</font><font color="#0000ff">&lt;/</font><font color="#808000">servlet-name</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">servlet-class</font><font color="#0000ff">&gt;</font><font color="#000000">org.springframework.web.servlet.DispatcherServlet</font><font color="#0000ff">&lt;/</font><font color="#808000">servlet-class</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">servlet</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">servlet-mapping</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">servlet-name</font><font color="#0000ff">&gt;</font><font color="#000000">frontController</font><font color="#0000ff">&lt;/</font><font color="#808000">servlet-name</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">url-pattern</font><font color="#0000ff">&gt;</font><font color="#000000">*.bean</font><font color="#0000ff">&lt;/</font><font color="#808000">url-pattern</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">servlet-mapping</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">web-app</font><font color="#0000ff">&gt;</font>
+</pre>
+</div>
+
+<h3>frontController.xml</h3>
+<div class="code">
+<pre>
+<font color="#0000ff">&lt;?xml </font><font color="#ff0000">version</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;1.0&quot; </font><font color="#ff0000">encoding</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;UTF-8&quot;</font><font color="#800080">?</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">beans</font>
+<font color="#ff0000">xmlns</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;http://www.springframework.org/schema/beans&quot;</font>
+<font color="#800080">xmlns:xsi</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</font>
+<font color="#800080">xmlns:p</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;http://www.springframework.org/schema/p&quot;</font>
+<font color="#800080">xsi:schemaLocation</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;http://www.springframework.org/schema/beans</font>
+<font color="#ff00ff">http://www.springframework.org/schema/beans/spring-beans-2.5.xsd&quot;</font><font color="#0000ff">&gt;</font>
+
+<font color="#0000ff">&lt;</font><font color="#808000">bean </font><font color="#800080">id</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;viewResolver&quot;</font>
+<font color="#800080">class</font><font color="#0000ff">=</font><font color="#ff00ff">&quot; org.springframework.web.servlet.view.InternalResourceViewResolver&quot; </font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">property </font><font color="#ff0000">name</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;prefix&quot; </font><font color="#800080">value</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;/&quot;</font><font color="#0000ff">/&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">property </font><font color="#ff0000">name</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;suffix&quot; </font><font color="#800080">value</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;.jsp&quot;</font><font color="#0000ff">/&gt;</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">bean</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">bean </font><font color="#ff0000">name</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;/first.bean&quot; </font><font color="#800080">class</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;org.r4r.FirstController&quot;</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">property </font><font color="#ff0000">name</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;message&quot; </font><font color="#800080">value</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;My Name Is MUKUND&quot;</font><font color="#0000ff">&gt;&lt;/</font><font color="#808000">property</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">bean</font><font color="#0000ff">&gt;</font>
+
+<font color="#0000ff">&lt;/</font><font color="#808000">beans</font><font color="#0000ff">&gt;</font>
+</pre>
+</div>
+
+<h3>SecondController.java</h3>
+
+<div class="code">
+<pre>
+<font color="#0000ff">package </font><font color="#000000">org.r4r;</font>
+<font color="#0000ff">import </font><font color="#000000">javax.servlet.http.HttpServletRequest;</font>
+<font color="#0000ff">import </font><font color="#000000">javax.servlet.http.HttpServletResponse;</font>
+<font color="#0000ff">import </font><font color="#000000">org.springframework.web.servlet.ModelAndView;</font>
+<font color="#0000ff">import </font><font color="#000000">org.springframework.web.servlet.mvc.AbstractController;</font>
+
+<font color="#0000ff">public class </font><font color="#000000">FirstController </font><font color="#0000ff">extends </font><font color="#000000">AbstractController {</font>
+<font color="#0000ff">private </font><font color="#ff0000">String </font><font color="#000000">message;</font>
+
+<font color="#000000">@</font><font color="#0000ff">Override</font>
+<font color="#0000ff">protected </font><font color="#000000">ModelAndView handleRequestInternal(HttpServletRequest request,</font>
+<font color="#000000">HttpServletResponse response) </font><font color="#0000ff">throws </font><font color="#ff0000">Exception </font><font color="#000000">{</font>
+<font color="#008000">// TODO Auto-generated method stub</font>
+<font color="#0000ff">return new </font><font color="#000000">ModelAndView(</font><font color="#ff00ff">&quot;welcomePage&quot;</font><font color="#000000">,</font><font color="#ff00ff">&quot;welcomeMessage&quot;</font><font color="#000000">,message);</font>
+<font color="#000000">}</font>
+
+<font color="#0000ff">public </font><font color="#ff0000">String </font><font color="#000000">getMessage() {</font>
+<font color="#0000ff">return </font><font color="#000000">message;</font>
+<font color="#000000">}</font>
+
+<font color="#0000ff">public void </font><font color="#000000">setMessage(</font><font color="#ff0000">String </font><font color="#000000">message) {</font>
+<font color="#0000ff">this</font><font color="#000000">.message = message;</font>
+<font color="#000000">}</font>
+<font color="#000000">}</font>
+</pre>
+</div>
+
+<h3>index.jsp</h3>
+<div class="code">
+<pre>
+<font color="#0000ff">&lt;a </font><font color="#ff0000">href</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;first.bean&quot;</font><font color="#0000ff">&gt;</font><font color="#000000">First Controller</font><font color="#0000ff">&lt;/a&gt;</font>
+</pre>
+</div>
+
+<h3>welcomePage.jsp</h3>
+<div class="code">
+<pre>
+<font color="#0000ff">&lt;html&gt;</font>
+<font color="#0000ff">&lt;head&gt;</font>
+<font color="#0000ff">&lt;meta </font><font color="#ff0000">http-equiv</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;Content-Type&quot; </font><font color="#ff0000">content</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;text/html; charset=ISO-8859-1&quot;</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;title&gt;</font><font color="#000000">Welcome Page</font><font color="#0000ff">&lt;/title&gt;</font>
+<font color="#0000ff">&lt;/head&gt;</font>
+<font color="#0000ff">&lt;body&gt;</font>
+<font color="#000000">${welcomeMessage}</font>
+<font color="#0000ff">&lt;/body&gt;</font>
+<font color="#0000ff">&lt;/html&gt;</font>
+</pre>
+</div>
+
+<p><h3>output</h3></p>
+<div class="output">
+<div class="image">
+<img src="Exampl2.jpg"></div></div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="ExampleSpringMVC.shtml" title="Example of Spring MVC Implementation">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="StrutsSpring.shtml" title="How can Integrate Struts 2.x and Spring Framework">Next</a></td>
+  </tr> 
+</table>
+
+<!-- Footer Start-->
+
+		</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->

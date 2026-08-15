@@ -1,0 +1,447 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<HTML><HEAD><TITLE>Insert Program In HQL(Hibernate Query Language)</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv="content-type" content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="Hibernate Tutorial- Learn How to Write insert program in HQL(Hibernate Query Language),
+  HCQL, Named Query, Caching " >
+<meta name="keywords" CONTENT="HQL Insert program, Tutorial, Beginners, Freshers, HQL(Hibernate Query Language),
+mapping, collection mapping, component mapping, HQL(Hibenate Query Language), HCQL, Named Query, 
+Caching">
+
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<META http-equiv="Content-Language" content="en-us">
+<link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+<link href="/css/main.css" rel="stylesheet" type="text/css" />
+</HEAD>
+<BODY>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>Hibernate</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+            <img src="/images/left_menu_bullet.gif"/> <a href="/java/hibernate/">Hibernate</a>
+             </div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top">
+                            <?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/hibernate/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                       <div class="main_content">  	 
+
+      <div class="heading">Inserting a data into database using HQL</div>
+
+      <table id="indexing">
+
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="simple_program_of_select_in_hql.shtml" title="Simple Program Of Select in HQL">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="hibernate_caching.shtml" title="Hibernate Caching">Next</a></td>
+  </tr> 
+</table>
+      <P>
+          HQL is an object-oriented query language, similar to SQL, but instead of operating on tables 
+          and columns, HQL works with persistent objects and their properties. It is a superset of the 
+          JPQL, the Java Persistence Query Language; a JPQL query is a valid HQL query, but not all HQL
+          queries are valid JPQL queries. HQL is a language with its own syntax and grammar. It is 
+          written as strings, like ?from Product p?. your HQL queries are translated by Hibernate 
+          into conventional SQL queries; Hibernate also provides an API that allows you to directly 
+          issue SQL queries as well.
+      </P>
+      <DIV class="code">
+      <DIV class="code">
+<pre><code class="language-sql">
+CREATE TABLE `Employee` (
+  `emp_id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `emp_name` varchar(20) NOT NULL,
+  `emp_salary` double(10,0) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`emp_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+
+CREATE TABLE `Address` (
+  `emp_id` int(11) unsigned NOT NULL,
+  `address_line1` varchar(50) NOT NULL DEFAULT '',
+  `zipcode` varchar(10) DEFAULT NULL,
+  `city` varchar(20) DEFAULT NULL,
+  PRIMARY KEY (`emp_id`),
+  CONSTRAINT `emp_fk_1` FOREIGN KEY (`emp_id`) REFERENCES `Employee` (`emp_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+INSERT INTO `Employee` (`emp_id`, `emp_name`, `emp_salary`)
+VALUES
+    (1, 'Pankaj', 100),
+    (2, 'David', 200),
+    (3, 'Lisa', 300),
+    (4, 'Jack', 400);
+
+INSERT INTO `Address` (`emp_id`, `address_line1`, `zipcode`, `city`)
+VALUES
+    (1, 'Albany Dr', '95129', 'San Jose'),
+    (2, 'Arques Ave', '95051', 'Santa Clara'),
+    (3, 'BTM 1st Stage', '560100', 'Bangalore'),
+    (4, 'City Centre', '100100', 'New Delhi');
+
+commit;
+</code></pre>
+      </DIV>
+      </DIV>
+      <h3>pom.xml</h3>
+      <div class="code">
+<pre><code class="language-xml">
+&lt;project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"&gt;
+  &lt;modelVersion&gt;4.0.0&lt;/modelVersion&gt;
+  &lt;groupId&gt;com.journaldev.hibernate&lt;/groupId&gt;
+  &lt;artifactId&gt;HQLExample&lt;/artifactId&gt;
+  &lt;version&gt;0.0.1-SNAPSHOT&lt;/version&gt;
+  &lt;dependencies&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;org.hibernate&lt;/groupId&gt;
+        &lt;artifactId&gt;hibernate-core&lt;/artifactId&gt;
+        &lt;version&gt;5.4.32.Final&lt;/version&gt;
+    &lt;/dependency&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;mysql&lt;/groupId&gt;
+        &lt;artifactId&gt;mysql-connector-java&lt;/artifactId&gt;
+        &lt;version&gt;8.0.26&lt;/version&gt;
+    &lt;/dependency&gt;
+  &lt;/dependencies&gt;
+&lt;/project&gt;
+</code></pre>
+      </div>
+      <h3>hibernate.cfg.xml</h3>
+      <div class="code">
+<pre><code class="language-xml">
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://hibernate.org/dtd/hibernate-configuration-3.0.dtd"&gt;
+&lt;hibernate-configuration&gt;
+    &lt;session-factory&gt;
+        &lt;property name="hibernate.connection.driver_class"&gt;com.mysql.jdbc.Driver&lt;/property&gt;
+        &lt;property name="hibernate.connection.password"&gt;pankaj123&lt;/property&gt;
+        &lt;property name="hibernate.connection.url"&gt;jdbc:mysql://localhost/TestDB&lt;/property&gt;
+        &lt;property name="hibernate.connection.username"&gt;pankaj&lt;/property&gt;
+        &lt;property name="hibernate.dialect"&gt;org.hibernate.dialect.MySQLDialect&lt;/property&gt;
+
+        &lt;property name="hibernate.current_session_context_class"&gt;thread&lt;/property&gt;
+        &lt;property name="hibernate.show_sql"&gt;true&lt;/property&gt;
+
+        &lt;mapping class="com.journaldev.hibernate.model.Employee"/&gt;
+        &lt;mapping class="com.journaldev.hibernate.model.Address"/&gt;
+    &lt;/session-factory&gt;
+&lt;/hibernate-configuration&gt;
+</code></pre>
+      </div>
+      <h3>HibernateUtil.java</h3>
+      <div class="code">
+<pre><code class="language-java">
+import org.hibernate.SessionFactory;
+import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
+import org.hibernate.cfg.Configuration;
+import org.hibernate.service.ServiceRegistry;
+
+public class HibernateUtil {
+
+    private static SessionFactory sessionFactory;
+
+    private static SessionFactory buildSessionFactory() {
+        try {
+            Configuration configuration = new Configuration();
+            configuration.configure("hibernate.cfg.xml");
+            System.out.println("Hibernate Configuration loaded");
+
+            ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder().applySettings(configuration.getProperties()).build();
+            System.out.println("Hibernate serviceRegistry created");
+
+            SessionFactory sessionFactory = configuration.buildSessionFactory(serviceRegistry);
+            return sessionFactory;
+        }
+        catch (Throwable ex) {
+            System.err.println("Initial SessionFactory creation failed." + ex);
+            ex.printStackTrace();
+            throw new ExceptionInInitializerError(ex);
+        }
+    }
+
+    public static SessionFactory getSessionFactory() {
+        if(sessionFactory == null) sessionFactory = buildSessionFactory();
+        return sessionFactory;
+    }
+}
+</code></pre>
+      </div>
+
+      <h3>Employee.java</h3>
+      <div class="code">
+<pre><code class="language-java">
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "EMPLOYEE")
+public class Employee {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "emp_id")
+    private long id;
+
+    @Column(name = "emp_name")
+    private String name;
+
+    @Column(name = "emp_salary")
+    private double salary;
+
+    @OneToOne(mappedBy = "employee", cascade = CascadeType.ALL)
+    private Address address;
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public double getSalary() {
+        return salary;
+    }
+
+    public void setSalary(double salary) {
+        this.salary = salary;
+    }
+}
+</code></pre>
+      </div>
+      <h3>Address.java</h3>
+      <div class="code">
+<pre><code class="language-java">
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
+import javax.persistence.Table;
+
+import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Parameter;
+
+@Entity
+@Table(name = "ADDRESS")
+public class Address {
+
+    @Id
+    @Column(name = "emp_id", unique = true, nullable = false)
+    @GeneratedValue(generator = "gen")
+    @GenericGenerator(name = "gen", strategy = "foreign", 
+                parameters = { @Parameter(name = "property", value = "employee") })
+    private long id;
+
+    @Column(name = "address_line1")
+    private String addressLine1;
+
+    @Column(name = "zipcode")
+    private String zipcode;
+
+    @Column(name = "city")
+    private String city;
+
+    @OneToOne
+    @PrimaryKeyJoinColumn
+    private Employee employee;
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public String getAddressLine1() {
+        return addressLine1;
+    }
+
+    public void setAddressLine1(String addressLine1) {
+        this.addressLine1 = addressLine1;
+    }
+
+    public String getZipcode() {
+        return zipcode;
+    }
+
+    public void setZipcode(String zipcode) {
+        this.zipcode = zipcode;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public Employee getEmployee() {
+        return employee;
+    }
+
+    public void setEmployee(Employee employee) {
+        this.employee = employee;
+    }
+}
+</code></pre>
+      </div>
+      <h3>HQLExamples.java</h3>
+      <div class="code">
+<pre><code class="language-java">
+import java.util.Arrays;
+import java.util.List;
+
+import org.hibernate.query.Query;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+
+import com.journaldev.hibernate.model.Employee;
+import com.journaldev.hibernate.util.HibernateUtil;
+
+public class HQLExamples {
+
+    public static void main(String[] args) {
+        SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+        Session session = sessionFactory.getCurrentSession();
+
+        Transaction tx = session.beginTransaction();
+        
+        // Get All Employees using TypedQuery
+        Query&lt;Employee&gt; query = session.createQuery("from Employee", Employee.class);
+        List&lt;Employee&gt; empList = query.getResultList();
+        for(Employee emp : empList){
+            System.out.println("List of Employees::"+emp.getId()+","+emp.getAddress().getCity());
+        }
+
+        // Get Employee with id
+        Query&lt;Employee&gt; empQuery = session.createQuery("from Employee where id= :id", Employee.class);
+        empQuery.setParameter("id", 3L);
+        Employee emp = empQuery.uniqueResult();
+        System.out.println("Employee Name="+emp.getName()+", City="+emp.getAddress().getCity());
+
+        // pagination example
+        Query&lt;Employee&gt; pageQuery = session.createQuery("from Employee", Employee.class);
+        pageQuery.setFirstResult(0); 
+        pageQuery.setMaxResults(2);
+        List&lt;Employee&gt; paginatedList = pageQuery.getResultList();
+        for(Employee emp4 : paginatedList){
+            System.out.println("Paginated Employees::"+emp4.getId()+","+emp4.getAddress().getCity());
+        }
+
+        // Update Employee
+        Query updateQuery = session.createQuery("update Employee set name= :name where id= :id");
+        updateQuery.setParameter("name", "Pankaj Kumar");
+        updateQuery.setParameter("id", 1L);
+        int result = updateQuery.executeUpdate();
+        System.out.println("Employee Update Status="+result);
+
+        // Delete Employee, we need to take care of foreign key constraints too
+        Query delAddressQuery = session.createQuery("delete from Address where id= :id");
+        delAddressQuery.setParameter("id", 4L);
+        result = delAddressQuery.executeUpdate();
+        System.out.println("Address Delete Status="+result);
+
+        Query delEmpQuery = session.createQuery("delete from Employee where id= :id");
+        delEmpQuery.setParameter("id", 4L);
+        result = delEmpQuery.executeUpdate();
+        System.out.println("Employee Delete Status="+result);
+
+        // Aggregate function examples
+        Query&lt;Double&gt; aggQuery = session.createQuery("select sum(salary) from Employee", Double.class);
+        double sumSalary = aggQuery.uniqueResult();
+        System.out.println("Sum of all Salaries= "+sumSalary);
+
+        // join examples
+        Query&lt;Object[]&gt; joinQuery = session.createQuery("select e.name, a.city from Employee e INNER JOIN e.address a", Object[].class);
+        List&lt;Object[]&gt; list = joinQuery.getResultList();
+        for(Object[] arr : list){
+            System.out.println(Arrays.toString(arr));
+        }
+
+        // group by and like example
+        Query&lt;Object[]&gt; groupQuery = session.createQuery("select e.name, sum(e.salary), count(e) from Employee e where e.name like '%i%' group by e.name", Object[].class);
+        List&lt;Object[]&gt; groupList = groupQuery.getResultList();
+        for(Object[] arr : groupList){
+            System.out.println(Arrays.toString(arr));
+        }
+
+        // order by example
+        Query&lt;Employee&gt; orderQuery = session.createQuery("from Employee e order by e.id desc", Employee.class);
+        List&lt;Employee&gt; orderList = orderQuery.getResultList();
+        for(Employee emp3 : orderList){
+            System.out.println("ID Desc Order Employee::"+emp3.getId()+","+emp3.getAddress().getCity());
+        }
+
+        // rolling back to save the test data
+        tx.rollback();
+        sessionFactory.close();
+    }
+}
+</code></pre>
+      </div>
+      <p>
+          After doing this kind of activity build and run the project. For doing this we need to go into
+          the project node and right click on the project and select to the run project.
+      </p>
+      <table id="indexing">
+
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="simple_program_of_select_in_hql.shtml" title="Simple Program Of Select in HQL">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="hibernate_caching.shtml" title="Hibernate Caching">Next</a></td>
+  </tr> 
+</table>
+
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+
+                <?php @include($_SERVER['DOCUMENT_ROOT'] . '/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>

@@ -1,0 +1,190 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>Anonymous Classes,Interface Based,Class Based Anonymous Class</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="Anonymous Classes,Interface Based,Class Based Anonymous Class" >
+<meta name="keywords" CONTENT="Anonymous Classes,Interface Based,Class Based Anonymous Class">
+
+<!-- header start-->
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>Java Programing laungage</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+            <img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+            <a href="/java/">Java</a>
+              <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/java/corejava">Core Java</a>
+               <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/java/corejava/topics/basics/">Basics</a>
+
+              </div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/corejava/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	 
+<!-- header End-->	
+
+<div class="heading">Anonymous Classes, Interface Based, Class Based Anonymous Class</div>
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="17java_Classcontd2.class.shtml" title="Local Classes In Java">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="19java_AccessModifiers.shtml" title="What are access modifiers in java?,public modifier, private modifier">Next</a></td>
+  </tr> 
+</table>
+
+<p>  Anonymous classes in the Java programming language are the classes without names thus, we can say, an anonymous class is essentially a local class without a name. The main advantage of using an anonymous class is Encapsulation. </p> 
+
+<p>An anonymous class is, in a way, the ultimate in private object oriented encapsulation. It is defined exactly where it is needed, it can never be used anywhere else, and it is having a total local scope. Anonymous classes provide a very clear syntax for implementing event listeners in GUI programming, and are very much useful for implementing method parameters and returning objects.</p>
+<p>One of the key advantages of using anonymous classes is that it  relieves the programmer from defining large numbers of special purpose classes.</p><p> Such classes are used only once and are defined right where the action is taking place, and never used again. Also, anonymous classes have access to all data and methods of their containing classes, including private members which means that for small highly localized tasks, they generally need less initialization. </p><p>The syntax of anonymous classes have one of the two forms which are shown below :</p>	
+<ol>
+<li>
+<p><i>Interface Based : </i>The syntax for declaring interface based anonymous class is given as,</p></li>
+<div class="code">
+<PRE>
+<FONT FACE="Arial">
+<FONT COLOR="#0000ff">new </FONT><FONT COLOR="#000000">InterfaceName()</FONT>
+  <FONT COLOR="#000000">{</FONT>
+    <FONT COLOR="#008000">// ClassBody</FONT>
+  <FONT COLOR="#000000">}</FONT>
+</FONT>
+</PRE>
+</div>   
+<p>An interface based anonymous class has to implement the entire interface on which it is based upon, to understand it better, take a look at the following code snippet :</p>
+<h3>Example</h3>
+<div class="code">
+<PRE>
+<FONT FACE="Arial">
+<FONT COLOR="#000000">Java Tutorialslass AnonymousClassExample</FONT>
+<FONT COLOR="#000000">{</FONT>
+ <FONT COLOR="#0000ff">public static void </FONT><FONT COLOR="#000000">main(</FONT><FONT COLOR="#ff0000">String </FONT><FONT COLOR="#000000">args[])</FONT>
+  <FONT COLOR="#000000">{</FONT>
+   <FONT COLOR="#ff0000">Runnable </FONT><FONT COLOR="#000000">obj = </FONT><FONT COLOR="#0000ff">new </FONT><FONT COLOR="#ff0000">Runnable</FONT><FONT COLOR="#000000">()            </FONT>
+	   <FONT COLOR="#008000">// anonymous class is defined here</FONT>
+  <FONT COLOR="#000000">{</FONT>
+   <FONT COLOR="#0000ff">private static final int </FONT><FONT COLOR="#000000">ARRAY_LIMIT = </FONT><FONT COLOR="#800080">50</FONT><FONT COLOR="#000000">;</FONT>
+   <FONT COLOR="#0000ff">private int</FONT><FONT COLOR="#000000">[] arr = </FONT><FONT COLOR="#0000ff">new int</FONT><FONT COLOR="#000000">[ARRAY_LIMIT];</FONT>
+   <FONT COLOR="#008000">// instance intialization code</FONT>
+    <FONT COLOR="#000000">{</FONT>
+     <FONT COLOR="#0000ff">for</FONT><FONT COLOR="#000000">(</FONT><FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">i=</FONT><FONT COLOR="#800080">0</FONT><FONT COLOR="#000000">; i&lt; arr.length; i++)</FONT>
+     <FONT COLOR="#000000">arr[i] = i;</FONT>
+    <FONT COLOR="#000000">}</FONT>
+   <FONT COLOR="#0000ff">public void </FONT><FONT COLOR="#000000">run()</FONT>
+    <FONT COLOR="#000000">{</FONT>
+     <FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">sum = </FONT><FONT COLOR="#800080">0</FONT><FONT COLOR="#000000">;</FONT>
+     <FONT COLOR="#0000ff">for</FONT><FONT COLOR="#000000">(</FONT><FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">i=</FONT><FONT COLOR="#800080">0</FONT><FONT COLOR="#000000">; i&lt;ARRAY_LIMIT; i++)</FONT>
+     <FONT COLOR="#000000">sum = sum + arr[i];</FONT>
+     <FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.println(</FONT><FONT COLOR="#ff00ff">"The sum of the  array elements is :"</FONT><FONT COLOR="#000000">+sum);</FONT>
+	 <FONT COLOR="#008000">// printing the sum of array</FONT>
+    <FONT COLOR="#000000">}  </FONT>
+
+  <FONT COLOR="#000000">};           </FONT><FONT COLOR="#008000">// anonymous class ends here</FONT>
+     <FONT COLOR="#000000">obj.run();</FONT>
+   <FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#000000">}</FONT>
+</FONT>
+</PRE>
+</div>
+
+<li>
+
+<p><i>Class Based Anonymous Class : </i>The syntax for class based anonoymous class is,</p></li>
+<div class="code">
+<PRE>
+<FONT FACE="Arial">
+<FONT COLOR="#0000ff">new </FONT><FONT COLOR="#000000">ClassName (optional Argument_List)</FONT>
+<FONT COLOR="#000000">{</FONT>
+<FONT COLOR="#008000">// Class Body</FONT>
+<FONT COLOR="#000000">}</FONT>
+</FONT>
+</PRE>
+</div>
+<p>A class based anonymous class has access to its base class methods and members and it can override its members, just like any other subclass. To understand more take a look at this code snippet,</p>
+<h3>Example</h3>
+<div class="code">
+<PRE>
+<FONT FACE="Arial">
+<FONT COLOR="#000000">Java Tutorialslass AnonymousClassExample2</FONT>
+<FONT COLOR="#000000">{</FONT>
+    <FONT COLOR="#000000">ShowMessage anonymous_obj = </FONT><FONT COLOR="#0000ff">new </FONT><FONT COLOR="#000000">ShowMessage(</FONT><FONT COLOR="#ff00ff">"R4R Example"</FONT><FONT COLOR="#000000">)</FONT>
+                                                   <FONT COLOR="#000000">{</FONT>
+	 <FONT COLOR="#0000ff">public void </FONT><FONT COLOR="#000000">display()</FONT>
+	  <FONT COLOR="#000000">{</FONT>
+ <FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.println(</FONT><FONT COLOR="#ff00ff">"anonymous override"</FONT><FONT COLOR="#000000">+</FONT><FONT COLOR="#ff00ff">"member display ShowMessage Output :"</FONT><FONT COLOR="#000000">+msg);</FONT>
+	  <FONT COLOR="#000000">}</FONT>
+						<FONT COLOR="#000000">};	</FONT>
+    <FONT COLOR="#0000ff">public </FONT><FONT COLOR="#000000">AnonymousClassExample2()</FONT>
+<FONT COLOR="#000000">{</FONT>
+ <FONT COLOR="#000000">ShowMessage obj = </FONT><FONT COLOR="#0000ff">new </FONT><FONT COLOR="#000000">ShowMessage(</FONT><FONT COLOR="#ff00ff">"hi!!!!!!"</FONT><FONT COLOR="#000000">);</FONT>
+ <FONT COLOR="#000000">obj.display();</FONT>
+<FONT COLOR="#000000">ShowMessage anonymous_obj2 =</FONT><FONT COLOR="#0000ff">new </FONT><FONT COLOR="#000000">ShowMessage(</FONT><FONT COLOR="#ff00ff">"hi!!!!!!!"</FONT><FONT COLOR="#000000">)</FONT>
+<FONT COLOR="#000000">{</FONT>
+ <FONT COLOR="#0000ff">public void </FONT><FONT COLOR="#000000">display()</FONT>
+<FONT COLOR="#000000">{</FONT>
+ <FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.println(</FONT><FONT COLOR="#ff00ff">"anonymous override"</FONT><FONT COLOR="#000000">+</FONT><FONT COLOR="#ff00ff">"local display ShowMessage output :"</FONT><FONT COLOR="#000000">+msg);</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#000000">};</FONT>
+<FONT COLOR="#000000">anonymous_obj2.display();</FONT>
+<FONT COLOR="#0000ff">this</FONT><FONT COLOR="#000000">.anonymous_obj.display();</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#0000ff">public static void </FONT><FONT COLOR="#000000">main(</FONT><FONT COLOR="#ff0000">String </FONT><FONT COLOR="#000000">args[])</FONT>
+<FONT COLOR="#000000">{</FONT>
+<FONT COLOR="#000000">AnonymousClassExample2 example = </FONT><FONT COLOR="#0000ff">new </FONT><FONT COLOR="#000000">AnonymousClassExample2();</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#000000">Java Tutorialslass ShowMessage</FONT>
+<FONT COLOR="#000000">{</FONT>
+<FONT COLOR="#ff0000">String </FONT><FONT COLOR="#000000">msg=</FONT><FONT COLOR="#ff00ff">""</FONT><FONT COLOR="#000000">;</FONT>
+<FONT COLOR="#0000ff">public </FONT><FONT COLOR="#000000">ShowMessage(</FONT><FONT COLOR="#ff0000">String </FONT><FONT COLOR="#000000">msg)</FONT>
+<FONT COLOR="#000000">{</FONT>
+<FONT COLOR="#0000ff">this</FONT><FONT COLOR="#000000">.msg=msg;</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#0000ff">public void </FONT><FONT COLOR="#000000">display()</FONT>
+<FONT COLOR="#000000">{</FONT>
+<FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.println(</FONT><FONT COLOR="#ff00ff">"SimpleClass output :"</FONT><FONT COLOR="#000000">+msg);</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#000000">}</FONT>
+</FONT>
+</PRE>
+</div>
+</ol>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="17java_Classcontd2.class.shtml" title="Local Classes In Java">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="19java_AccessModifiers.shtml" title="What are access modifiers in java?,public modifier, private modifier">Next</a></td>
+  </tr> 
+</table>
+
+<!-- Footer Start-->	
+
+		</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->

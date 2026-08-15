@@ -1,0 +1,154 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>ASP.net Server Side State Management|State Management in ASP.NET|Server side state management|</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="ASP.net Server Side State Management learn how to work with 
+server side state management with r4r tutorial easily and short way stepwise" >
+<meta name="keywords" CONTENT="ASP.Net Server Side State Management, state management in asp.net, how 
+to work with asp.net,Control in ASP.NET, HTML Server Controls,Web Server Controls,Validation Server Controls, dropdowlist in asp.net,gridview, gridview update, hyperlink, image button, label, link button,
+Validators in ASP.Net, Database Access, ASP.Net with ADO.Net, File uploading in ASP.Net">
+
+<!--Header start-->
+
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>VB.net Tutorials with Examples</h1>
+          <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a><img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+			<a href="/vb.net/">vb.net</a><img src="/images/left_menu_bullet.gif" width="11" height="6"/>
+			<a href="/vb.net/01/tutorial/aspnet/">ASP.net using VB.net</a>
+              </div>
+
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/vb.net/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	  
+
+<!-- Header End-->	
+
+ <div class="heading">Server Side State Management</div>	   
+  <table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="query%20string%20.shtml" title="How to Implement Query String in 
+Asp.net">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="master_page.shtml" title="Master Page In Asp.net">Next</a></td>
+  </tr>
+</table>
+<p>When users visit Web sites it becomes necessary to maintain session related 
+and controls related information. In an HTTP exchange between a browser and a 
+remote host, session related information which identifies state, such as a 
+unique session ID, information about the user's preferences or authorization 
+level is preserved. Note that sessions are maintained in the data being 
+exchanged.</p>
+<p>State Management is the process by which we maintain session related 
+information and additional information about the controls and its state. The 
+necessity of state management arises when multiple users request for the same or 
+different Web Pages of a Web Site.
+State management can be accomplished using Client Side options or the Server 
+side options.</p>
+<h2>Session State:</h2>Its nothing but defined as a period of time shared 
+between the web application and user. Every user has individual session. 
+Items/Objects can be placed into the Session which would only define these 
+object for that user. Session contains key variables which help to identify the 
+related values. <p>This can be thought of as a hash table. Each user would 
+represent a different key node in the hash identifying unique values. The 
+Session variables will be clear by the application which can clear it, as well 
+as through the timeout property in the web config file. Usually the timeout is 
+20 minutes by default. ASP.NET allows you to save values using session state, a 
+storage mechanism that is accessible from all pages requested by a single Web 
+browser session.</p> Therefore, you can use session state to store user-specific 
+information. Session state is similar to application state, except that it is 
+scoped to the current browser session. If different users are using your 
+application, each user session has a different session state. In addition, if a 
+user leaves your application and then returns later after the session timeout 
+period, session state information is lost and a new session is created for the 
+user. Session state is stored in the Session key/value dictionary.<p>Session Variables are stored on the server, can 
+hold any type of data including references, they are similar to global variables 
+in a windows application and use HTTP cookies to store a key with which to 
+locate user's session variables .The collection of session variables is indexed 
+by the name of the variable or by an integer index. Session variables are 
+created by referring to the session variable by name. You do not have to declare 
+a session variable or explicitly add it to the collection.</p>
+<p>Example:</p>
+<div class="code">
+<pre>
+<font color="#ff00ff">'Storing informaton in session state </font>
+<font color="#000000">Session(</font><font color="#ff00ff">&quot;username&quot;</font><font color="#000000">) = </font><font color="#ff00ff">&quot;Ashish&quot;</font>
+<font color="#ff00ff">'Retrieving information from session state</font>
+<font color="#000000">Dim str As </font><font color="#808000">String </font><font color="#000000">= Session(</font><font color="#ff00ff">&quot;username&quot;</font><font color="#000000">)</font>
+</pre>
+</div>
+
+<h2>Application State:</h2>
+<p>Application State is used to store information which is 
+shared among users of the ASP.Net web application. Application state is stored 
+in the memory of the windows process which is processing user requests on the 
+web server. Application state is useful in storing small amount of often-used 
+data. If application state is used for such data instead of frequent trips to 
+database, then it increases the response time/performance of the web 
+application.</p>
+<p>In ASP.Net, application state is an instance of 
+HttpApplicationState class and it exposes key-value pairs to store information. 
+Its instance is automatically created when a first request is made to web 
+application by any user and same state object is being shared across all 
+subsequent users.</p>
+<p>Application state can be used in similar manner as 
+session state but it should be noted that many user might be accessing 
+application state simultaneously so any call to application state object needs 
+to be thread safe. This can be easily achieved in ASP.Net by using lock keyword 
+on the statements which are accessing application state object. This lock 
+keyword places a mutually exclusive lock on the statements and only allows a 
+single thread to access the application state at a time.</p>
+<p><i>Code Sample</i></p>
+<div class="code">
+<pre>
+<font color="#ff00ff">'Stroing information in application state</font>
+<font color="#000000">SyncLock Me</font>
+<font color="#808000">Application</font><font color="#000000">(</font><font color="#ff00ff">&quot;username&quot;</font><font color="#000000">) = </font><font color="#ff00ff">&quot;william&quot;</font>
+<font color="#000000">End SyncLock</font>
+<font color="#ff00ff">'Retrieving value from application state</font>
+<font color="#000000">SyncLock Me</font>
+<font color="#000000">Dim str As </font><font color="#808000">String </font><font color="#000000">= </font><font color="#808000">Application</font><font color="#000000">(</font><font color="#ff00ff">&quot;username&quot;</font><font color="#000000">).ToString()</font>
+<font color="#000000">End SyncLock</font>
+</pre>
+</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="query%20string%20.shtml" title="How to Implement Query String in 
+Asp.net">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="master_page.shtml" title="Master Page In Asp.net">Next</a></td>
+  </tr>
+</table>
+<!--Footer  -->
+</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>

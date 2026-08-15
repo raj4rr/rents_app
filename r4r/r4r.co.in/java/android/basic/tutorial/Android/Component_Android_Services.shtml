@@ -1,0 +1,104 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD>
+<meta http-equiv="Content-Language" content="en-us">
+<TITLE>Android services component||Android tutorials|| Android examples||Android interview questions</TITLE>
+<META content="Vinit Tyagi" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name="description" CONTENT="Android  Services component learn about android in detail step wise step
+step with r4r tutorial, What is Services in Andriod,Activity Component, lifecyle, architecture, application architecture, advantage, android platform,
+layout, datastorage, android api " >
+<meta name="keywords" CONTENT="android services component,android basic tutorial, android 
+architecture, lifecycle, application lifecycle, user interface, android api, multithread,
+ broadcast receivers, types of component, layout, datastorage, control, style,
+themes, send email, send sms, beginners, freshers, experienced , What is Servicescomponent 
+in Android, What is Services in Andriod,Activity Component ">
+<!-- header start-->	
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>Android</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+            <img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+            <a href="/java/">Java</a>
+              <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/java/android/">Android</a>
+              </div>
+
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/android/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	 
+
+<div class="heading">Type of Android Component: Service </div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="Component_Android_Activity.shtml" title="Type of Android Component">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="Component_Android_ContentProvider.shtml" title="ContentProvider Component">Next</a></td>
+  </tr> 
+</table>
+
+<p>his application component operations is running in the background. This component does not provide a user interface. We can start the another services  and it will continue to run in the background even if the user switches to another application. It even perform interprocess communication (IPC).</p>
+<p>This service is used handle network transactions, play music, perform file I/O, or interact with a content provider, all running in the background.</p>
+<p><i>started</i> and <i> bundle</i> are two form of service.
+<ol><li><i> Started : </i> The service start when We called the start service method by the activity. when another component calls startService() then services is start. Once service started,  a service can run in the background indefinitely  and must stop itself by calling stopSelf(), even if the component that started it is destroyed. </li>
+<i>For example,</i> A good example, download or upload a file over the network. When the operation is done, the service should stop itself.
+<li><i> Bound : </i>This method is used to bound the service when an application component binds to it by calling bindService(). This service offers a client-server interface that allows components to interact with the service, send requests, get results, and even do so across processes with interprocess communication (IPC).The client can close the connection by calling unbindService(). Multiple clients can bind to the same service and when all of them unbind, the system destroys the service. </li></ol>
+<h3>Life Cycle of Service</h3>
+<p>Life cycle of service is same as Activity life cycle. Service has many lifecycle callback methods. There are some life cycle method </p>
+<ol><li><i>1.startService() : </i>This method is called when application service be started.This method return  the ComponentName of the actual service.  </li>
+<p><i>public abstract ComponentName startService (Intent service)</i></p>
+<li><i> onCreate() : </i> This method is called  by the system when the service is first created. Do not call this method directly</li>
+<p><i>     public void onCreate ()</i></p>
+<li><i> onStartCommand() : </i> Thsi meyhod is called by the system every time a client explicitly starts the service by calling startService(Intent), providing the arguments it supplied and a unique integer token representing the start request.</li>
+<p><i>public int onStartCommand (Intent intent, int flags, int startId)</i></p>
+<li><i>onBind() : </i> This method is return the communication channel to the service. 
+This method return null  if clients can not bind to the service otherwise return  IBinder</li>
+<p><i>public abstract IBinder onBind (Intent intent)</i></p>
+<li><i>onUnbind() : </i> This method is called when all clients have disconnected from a particular interface published by the service.This method return boolean value. The default implementation does nothing and returns false.</li>
+<p><i>public boolean onUnbind (Intent intent)</i></p>
+<li><i>onRebind() : </i>   This method is called when new clients have connected to the service, after it had previously been notified that all had disconnected in its onUnbind(Intent).</li>
+<p><i>public void onRebind (Intent intent)</i></p>
+<li><i>onDestroy() :</i> This method is called by the system to notify a Service that it is no longer used and is being removed</li>
+<p><i>public void onDestroy ()</i></p></ol>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="Component_Android_Activity.shtml" title="Type of Android Component">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="Component_Android_ContentProvider.shtml" title="ContentProvider Component">Next</a></td>
+  </tr> 
+</table>
+
+<!-- Footer Start-->	
+
+		</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->

@@ -1,0 +1,122 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+
+<HTML><HEAD><TITLE>Arrays,Declaring the array,some rules on array declaration,Initializing the array,Character arrays in C,Passing value in array</TITLE>
+<META content=r4r.co.in name=owner>
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="Arrays,Learn array basics in C with examples,Declaring the array,some rules on array declaration,Initializing the array,Character arrays in C,Passing value in array,Functions,Pointers,Union,Data types,Structures,Preprocessors">
+<meta name="keywords" CONTENT="Arrays,Declaring the array,some rules on array declaration,Initializing the array,Character arrays in C,Passing value in array,array reprentation in memory,multidimensional array,array of pointers,array of structures,Loops,Functions,Data types,C constants,Union,Preprocessor">
+<META content="Rajesh Kumar" name=author>
+<META http-equiv="expires" content="0"> 
+
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+     <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>C Programming language</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a><img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/c/">C </a>
+              <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/c/c_basics_tutorials/">Learn C in 9 days</a></div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/c/commonfiles/new-leftmenu.shtml'); ?></td>
+
+                       <td style="80%" valign="top">
+                        <div class="main_content"> 
+
+	 <!-- Header End--> 	
+
+    <div class="heading">Arrays in C: Introduction</div> 
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="switch.shtml" title="Statements in C: Switch Statement">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="mutidimensional_arrays.shtml" title="Arrays in C: Multidimensional Arrays">Next</a></td>
+  </tr>
+</table>
+
+<h2>Arrays</h2>
+<p>Array by definition is a variable that hold multiple elements which has the same data type. Array is variables that hold multiple elements which   has same data type. An array is a multi element box, uses an indexing system.</p> 
+
+<h2>Declaring the array</h2>
+<p>We can declare an array by specify its data type, name and the number of elements the array holds between square brackets immediately following   the array name. <br>
+Name;<br>
+Type of array<br>
+Number of element
+
+<h2>There are some rules for array declaration</h2>
+<p>The data type can be any valid C data types including structure and union. The array name has to follow the rule of variable and the size of   array has to be a positive constant integer. We can access array elements via indexes array_name[index]. Indexes of array starts from 0 not 1 so   the highest elements of an array is array_name[size-1].</p>
+
+<h2>Initializing the array</h2>
+<p>It is like a variable, an array can be initialized. To initialize an array, you provide initializing values which are enclosed within curly   braces in the declaration and placed following an equals sign after the array name.</p>
+
+<div class="code">
+<PRE>
+<FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">list[</FONT><FONT COLOR="#800080">5</FONT><FONT COLOR="#000000">]={</FONT><FONT COLOR="#800080">2</FONT><FONT COLOR="#000000">,</FONT><FONT COLOR="#800080">3</FONT><FONT COLOR="#000000">,</FONT><FONT COLOR="#800080">4</FONT><FONT COLOR="#000000">,</FONT><FONT COLOR="#800080">5</FONT><FONT COLOR="#000000">,</FONT><FONT COLOR="#800080">6</FONT><FONT COLOR="#000000">}  OR   </FONT><FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">list[</FONT><FONT COLOR="#800080">5</FONT><FONT COLOR="#000000">] = {</FONT><FONT COLOR="#800080">2</FONT><FONT COLOR="#000000">,</FONT><FONT COLOR="#800080">1</FONT><FONT COLOR="#000000">,</FONT><FONT COLOR="#800080">3</FONT><FONT COLOR="#000000">,</FONT><FONT COLOR="#800080">7</FONT><FONT COLOR="#000000">,</FONT><FONT COLOR="#800080">8</FONT><FONT COLOR="#000000">};</FONT>
+</PRE>
+
+</div>
+
+<h2>Character arrays</h2>
+
+<div class="code">
+<PRE>
+<FONT COLOR="#0000ff">char </FONT><FONT COLOR="#000000">string1[]=</FONT><FONT COLOR="#ff00ff">"first"</FONT><FONT COLOR="#000000">;
+Here ,we using </FONT><FONT COLOR="#0000ff">char </FONT><FONT COLOR="#000000">string and its array size is six.</FONT><FONT COLOR="#ff00ff"></FONT>
+<FONT COLOR="#0000ff">
+char </FONT><FONT COLOR="#000000">string[]={</FONT><FONT COLOR="#ff00ff">'f'</FONT><FONT COLOR="#000000">,</FONT><FONT COLOR="#ff00ff">'g'</FONT><FONT COLOR="#000000">,</FONT><FONT COLOR="#ff00ff">'t'</FONT><FONT COLOR="#000000">,</FONT><FONT COLOR="#ff00ff">'y'</FONT><FONT COLOR="#000000">,</FONT><FONT COLOR="#ff00ff">'u'</FONT><FONT COLOR="#000000">,</FONT><FONT COLOR="#ff00ff">'I'</FONT><FONT COLOR="#000000">,</FONT><FONT COLOR="#ff00ff">'\0'</FONT><FONT COLOR="#000000">};
+//\0 null character terminating the string.</FONT>
+</PRE>
+</div>
+
+<h2>Passing the array</h2>
+<p>To pass an array argument in a function specifies the name of array to pass without any bracket.</p>
+   int myarray[24];<br>
+   myfunction(my array,24).<br>
+   array usually pass to the function <br>
+   array using call by reference<br>
+   function knows where the array stored<br>
+
+<h2>passing array element</h2>
+<ol>
+   <li>using call by value</li>
+   <li>pass subscripted name (ex: myarray[5]) to function.</li>
+</ol>
+
+<h2>Function prototype</h2>
+void modify array (int b[],int array size);<br>
+Parameter name may be optional.<br>
+int b[] may be int[]<br>
+int array size may be int
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="switch.shtml" title="Statements in C: Switch Statement">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="mutidimensional_arrays.shtml" title="Arrays in C: Multidimensional Arrays">Next</a></td>
+  </tr>
+</table>
+
+<!--Footer  --> 	
+</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/c/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>

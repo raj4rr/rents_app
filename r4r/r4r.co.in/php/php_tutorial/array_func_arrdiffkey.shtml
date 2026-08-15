@@ -1,0 +1,134 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>Php array_diff_key() function|array_diff_key() Function in PHP|php tutorial</TITLE>
+<META content=r4r.co.in name=owner>
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="PHP array_diff_key() function -learn with r4r php tutorial covers all  topics of php from basics concept to higher level php
+best examples interview questions in easy and short way" >
+<meta name="keywords" CONTENT="php array_diff_key() function, PHP, Programming, Language, Built-in Function,HTML,CSS,XML,JavaScript,DOM,jQuery Library, Web Design,Object 
+Oriented PHP, PHP Variables, Scalars,Arrays,Object Oriented In PHP,Exception In PHP,Filters In PHP
+References In PHP">
+<META content="Rajesh Kumar" name=author>
+<!-- header start-->	
+
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>PHP Programing language</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+            <img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+            <a href="/php/">PHP</a>
+              </div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/php/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	 
+
+	   	   <div class="heading">array_diff_key() &amp; array_diff_ukey() Function in PHP</div>
+
+		   <table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="array_function.shtml" title="Array Functions">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="php_strings.shtml" title="PHP Strings">Next</a></td>
+  </tr>
+</table>
+
+<h3>array_diff_key()</h3>
+<p>The array_diff_key() function compares the keys of two (or more) arrays, and returns the differences.</p>
+<i>Syntax:</i>
+<div class="code">
+<pre>
+<font color="#000000">array_diff_key(array1,array2,array3...);</font>
+</pre>
+</div>
+<p>In above Syntax,&quot;array1&quot; compare from, &quot;array2&quot; compare against,&quot;array3&quot; compare against to more arrays.</p>
+<h3>Example:</h3>
+<div class="code">
+<pre>
+<font color="#800000">&lt;?php</font>
+<font color="#0000ff">$</font><font color="#008080">array1</font><font color="#800000">=</font><font color="#0000ff">array</font><font color="#800000">(</font><font color="#ff00ff">&quot;a&quot;</font><font color="#800000">=&gt;</font><font color="#ff00ff">&quot;Apple&quot;</font><font color="#800000">,</font><font color="#ff00ff">&quot;b&quot;</font><font color="#800000">=&gt;</font><font color="#ff00ff">&quot;Banana&quot;</font><font color="#800000">,</font><font color="#ff00ff">&quot;c&quot;</font><font color="#800000">=&gt;</font><font color="#ff00ff">&quot;Orange&quot;</font><font color="#800000">);</font>
+<font color="#0000ff">$</font><font color="#008080">array2</font><font color="#800000">=</font><font color="#0000ff">array</font><font color="#800000">(</font><font color="#ff00ff">&quot;a&quot;</font><font color="#800000">=&gt;</font><font color="#ff00ff">&quot;Apple&quot;</font><font color="#800000">,</font><font color="#ff00ff">&quot;c&quot;</font><font color="#800000">=&gt;</font><font color="#ff00ff">&quot;Orange&quot;</font><font color="#800000">,</font><font color="#ff00ff">&quot;d&quot;</font><font color="#800000">=&gt;</font><font color="#ff00ff">&quot;Mango&quot;</font><font color="#800000">);</font>
+<font color="#0000ff">$</font><font color="#008080">result</font><font color="#800000">=</font><font color="#ff0000">array_diff_key</font><font color="#800000">(</font><font color="#0000ff">$</font><font color="#008080">array1</font><font color="#800000">,</font><font color="#0000ff">$</font><font color="#008080">array2</font><font color="#800000">);</font>
+<font color="#ff0000">print_r</font><font color="#800000">(</font><font color="#0000ff">$</font><font color="#008080">result</font><font color="#800000">);</font>
+<font color="#800000">?&gt;</font>
+</pre>
+</div>
+<p><i>Output:</i>
+<div class="output">
+<pre>
+Array ( [b] => Banana )
+</pre>
+</div>
+</p>
+
+<h3>array_diff_ukey()</h3>
+<p>The array_diff_ukey() function compares the keys of two (or more) arrays, and returns the differences.</p>
+<i>Syntax:</i>
+<div class="code">
+<pre>
+<font color="#000000">array_diff_uassoc(array1,array2,array3...,myfunction);</font>
+</pre>
+</div>
+<p>In above Syntax,&quot;array1&quot; compare from, &quot;array2&quot; compare against,&quot;array3&quot; compare against to more arrays and &quot;myfunction&quot; is a string that define a callable comparison function. The comparison function must return an integer &lt;, =, or &gt; than 0 if the first argument is &lt;, =, or &gt; than the second argument</p>
+<h3>Example:</h3>
+<div class="code">
+<pre>
+<font color="#800000">&lt;?php</font>
+<font color="#0000ff">function </font><font color="#800000">myfunction(</font><font color="#0000ff">$</font><font color="#008080">a</font><font color="#800000">,</font><font color="#0000ff">$</font><font color="#008080">b</font><font color="#800000">)</font>
+<font color="#800000">{</font>
+<font color="#0000ff">if </font><font color="#800000">(</font><font color="#0000ff">$</font><font color="#008080">a</font><font color="#800000">===</font><font color="#0000ff">$</font><font color="#008080">b</font><font color="#800000">)</font>
+   <font color="#800000">{</font>
+   <font color="#0000ff">return </font><font color="#800080">0</font><font color="#800000">;</font>
+   <font color="#800000">}</font>
+   <font color="#0000ff">return </font><font color="#800000">(</font><font color="#0000ff">$</font><font color="#008080">a</font><font color="#800000">&gt;</font><font color="#0000ff">$</font><font color="#008080">b</font><font color="#800000">)?</font><font color="#800080">1</font><font color="#800000">:-</font><font color="#800080">1</font><font color="#800000">;</font>
+<font color="#800000">}</font>
+
+<font color="#0000ff">$</font><font color="#008080">array1</font><font color="#800000">=</font><font color="#0000ff">array</font><font color="#800000">(</font><font color="#ff00ff">&quot;a&quot;</font><font color="#800000">=&gt;</font><font color="#ff00ff">&quot;Apple&quot;</font><font color="#800000">,</font><font color="#ff00ff">&quot;b&quot;</font><font color="#800000">=&gt;</font><font color="#ff00ff">&quot;Banana&quot;</font><font color="#800000">,</font><font color="#ff00ff">&quot;c&quot;</font><font color="#800000">=&gt;</font><font color="#ff00ff">&quot;Orange&quot;</font><font color="#800000">);</font>
+<font color="#0000ff">$</font><font color="#008080">array2</font><font color="#800000">=</font><font color="#0000ff">array</font><font color="#800000">(</font><font color="#ff00ff">&quot;a&quot;</font><font color="#800000">=&gt;</font><font color="#ff00ff">&quot;Orange&quot;</font><font color="#800000">,</font><font color="#ff00ff">&quot;b&quot;</font><font color="#800000">=&gt;</font><font color="#ff00ff">&quot;Mango&quot;</font><font color="#800000">,</font><font color="#ff00ff">&quot;e&quot;</font><font color="#800000">=&gt;</font><font color="#ff00ff">&quot;Orange&quot;</font><font color="#800000">);</font>
+
+<font color="#0000ff">$</font><font color="#008080">result</font><font color="#800000">=</font><font color="#ff0000">array_diff_ukey</font><font color="#800000">(</font><font color="#0000ff">$</font><font color="#008080">array1</font><font color="#800000">,</font><font color="#0000ff">$</font><font color="#008080">array2</font><font color="#800000">,</font><font color="#ff00ff">&quot;myfunction&quot;</font><font color="#800000">);</font>
+<font color="#ff0000">print_r</font><font color="#800000">(</font><font color="#0000ff">$</font><font color="#008080">result</font><font color="#800000">);</font>
+<font color="#800000">?&gt;</font>
+</pre>
+</div>
+<p><i>Output:</i>
+<div class="output">
+Array ( [c] => Orange )
+</div>
+</p>
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="array_function.shtml" title="Array Functions">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="php_strings.shtml" title="PHP Strings">Next</a></td>
+  </tr>
+</table>
+
+</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/webtechnology/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->

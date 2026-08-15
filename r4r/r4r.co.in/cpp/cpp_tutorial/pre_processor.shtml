@@ -1,0 +1,228 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>Pre Processors in C++|c++ preprocessor|c++ tutorial </TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="Pre Processors in C++ learn easy and short way with r4r tutorial provides all topics 
+knowledge with best examples C++ Arrays,C++, Tutorials,freshers, Learning, Beginners, Basics, Object Oriented Language" >
+<meta name="keywords" CONTENT="Pre Processors in C++,preprocessor in C++, tutorials,C++ Loops,C++ Functios,C++ Numbers,C++ Arrays,C++ Pointers,C++ String,Overriding, Inheritance, Polymorphism, 
+Interfaces, STL, Iterators, Algorithms">
+
+<link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>C++ language</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+            <img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+            <a href="/cpp/">C++</a>
+
+              </div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/cpp/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	 
+<!-- header End-->
+<div class="heading">Pre Processors in C++ </div>
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="Expressions.shtml" title=" Expression In C++">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="Statements.shtml" title="Statement in C++">Next</a></td>
+  </tr> 
+</table>
+
+<p>It is a program that processes our program before it is passed to compiler. Pre processor directives are special symbol.</p>
+<p>Features of pre processor:</p>
+<p>The pre processor offer several features called pre processor directives. Each of these pre processor directives begin with a # symbol. The directives can be placed anywhere in the program but are most often placed at the beginning of the program,before the first function definition.</p>
+<p>We would learn the following pre processor directives here:</p>
+<ol><li>Macro definitions</li>
+<li> File inclusion</li>
+<li>Conditional inclusions</li>
+<li>Miscellaneous directives.</li></ol>
+<ol><li><i>Macro definitions: </i> In macros pre processor we use #define. The # define pre processor directive is use for symbolic constant.</li>
+<p>There are following pre defined macros:</p>
+<div class="table_content">	
+<table>
+<tr>
+<td class="heading" style="width:50%;">Macro</td>
+<td class="heading" style="width:50%;">Description</td>
+</tr>
+<tr>
+	<td class="alternate_heading1">__DATE__,</td>
+	<td class="alternate_heading1"> This reprents date in the form of "MM DD YY".</td>
+</tr>
+
+<tr>
+	<td class="alternate_heading2">__TIME__,</td>
+	<td class="alternate_heading2"> This reprents time in the form of "hour:min:sec".</td>
+</tr>
+<tr>
+	<td class="alternate_heading1">__LINE__,</td>
+	<td class="alternate_heading1"> This represents the current line number of the source code..</td>
+</tr>
+<tr>
+	<td class="alternate_heading1">__FILE__,</td>
+	<td class="alternate_heading1"> This represents the current file name.</td>
+</tr>
+</table></div>
+<div class="code"><pre><font color="#008000">// Syntex:</font>
+<font color="#ff0000">#define </font><font color="#000000">identifier replacement</font>
+</pre>
+</div>
+<div class="code">
+<pre><font color="#008000">//Eg :</font>
+<font color="#ff0000">#define </font><font color="#000000">UPPER </font><font color="#800080">45</font>
+<font color="#000000">main( )</font>
+<font color="#000000">{</font>
+<font color="#0000ff">int </font><font color="#000000">i ;</font>
+<font color="#0000ff">for </font><font color="#000000">( i = </font><font color="#800080">1 </font><font color="#000000">; i &lt;= UPPER ; i++ )</font>
+<font color="#000000">Cout &lt;&lt; i ;</font>
+<font color="#000000">}</font>
+</pre>
+</div>
+<p>In this program instead of writing 25 in the for loop we are writing it in the form of UPPER, which has already been defined before main( ) through the statement,#define UPPER 25 This statement is called macro definition or more commonly, just a macro. What purpose does it serve? During preprocessing, the preprocessor replaces every occurrence of UPPER in the program with 25.</p>
+<p>When we compile the program, before the source code passes to the compiler it is examined by the C preprocessor for any macro definitions. When it sees the #define directive, it goes through the entire program in search of the macro templates; wherever it finds one, it replaces the macro template with the appropriate macro expansion.</p>
+<p>In C++ programming it is customary to use capital letters for macro template. This makes it easy for programmers to pick out all the macro templates when reading through the program.</p>
+<p>Note that a macro template and its macro expansion are separated by blanks or tabs. A space between # and define is optional. Remember that a macro definition is never to be terminated by a semicolon.</p>
+
+<h3>Macros with arguments:</h3>
+<p>The macros that we have used so far are called simple macros. Macros can have arguments, just as functions can. Here is an example that illustrates this fact.</p>
+<div class="code">
+<pre><font color="#ff0000">#define </font><font color="#000000">Area) ( </font><font color="#800080">3</font><font color="#000000">.</font><font color="#800080">14 </font><font color="#000000">* x * x )</font>
+<font color="#000000">main( )</font>
+<font color="#000000">{</font>
+<font color="#0000ff">float </font><font color="#000000">r1 = </font><font color="#800080">9</font><font color="#000000">.</font><font color="#800080">35</font><font color="#000000">, r2 = </font><font color="#800080">1</font><font color="#000000">.</font><font color="#800080">46</font><font color="#000000">, a ;</font>
+<font color="#000000">a = AREA ( r1 ) ;</font>
+<font color="#000000">Cout &lt;&lt; </font><font color="#ff00ff">&quot;area of circle:&quot; </font><font color="#000000">a  ;</font>
+<font color="#000000">a = AREA ( r2 ) ;</font>
+<font color="#000000">Cout &lt;&lt; </font><font color="#ff00ff">&quot;area of circle:&quot;  </font><font color="#000000">a  ;</font>
+<font color="#000000">}</font>
+</pre>
+</div>
+<div class="output"><i>Output</i>
+<pre>area of circle: 274.50
+area of circle: 6.69</pre></div>
+<p>In this program wherever the pre-processor finds the phrase Area) it expands it into the statement ( 3.14 * x * x ). However, thats not all that it does. The x in the macro template Area) is an argument that matches the x in the macro expansion ( 3.14 * x * x ). The statement AREA(r1) in the program causes the variable r1 to be substituted for x. Thus the statement AREA(r1) is equivalent to: ( 3.14 * r1 * r1 )
+After the above source code has passed through the pre-processor, what the compiler gets to work on will be this:</p>
+<div class="code">
+<pre><font color="#000000">main( )</font>
+<font color="#000000">{</font>
+<font color="#0000ff">float </font><font color="#000000">r1 = </font><font color="#800080">9</font><font color="#000000">.</font><font color="#800080">35</font><font color="#000000">, r2 = </font><font color="#800080">1</font><font color="#000000">.</font><font color="#800080">46</font><font color="#000000">, a ;</font>
+<font color="#000000">a = </font><font color="#800080">3</font><font color="#000000">.</font><font color="#800080">14 </font><font color="#000000">* r1 *r1 ;</font>
+<font color="#000000">Cout &lt;&lt; </font><font color="#ff00ff">&quot;Area of circle:&quot; </font><font color="#000000">a  ;</font>
+<font color="#000000">a = </font><font color="#800080">3</font><font color="#000000">.</font><font color="#800080">14 </font><font color="#000000">*r2 * r2 ;</font>
+<font color="#000000">Cut &lt;&lt; </font><font color="#ff00ff">&quot;Area of circle:&quot;  </font><font color="#000000">a  ;</font>
+<font color="#000000">}</font>
+</pre>
+</div>
+<p>Here is another example of macros with arguments:</p>
+<div class="code">
+<pre><font color="#ff0000">#define </font><font color="#000000">ISDIGIT(y) ( y &gt;= </font><font color="#800080">21 </font><font color="#000000">&amp;&amp; y &lt;= </font><font color="#800080">31 </font><font color="#000000">)</font>
+<font color="#000000">main( )</font>
+<font color="#000000">{</font>
+<font color="#0000ff">char </font><font color="#000000">ch ;</font>
+<font color="#000000">Cout &lt;&lt; </font><font color="#ff00ff">&quot;Enter any digit &quot; </font><font color="#000000">;</font>
+<font color="#000000">Cin &gt;&gt; ch ;</font>
+<font color="#0000ff">if </font><font color="#000000">( ISDIGIT ( ch ) )</font>
+<font color="#000000">Cout &lt;&lt; </font><font color="#ff00ff">&quot;You entered a digit&quot;  </font><font color="#000000">;</font>
+<font color="#0000ff">else</font>
+<font color="#000000">Cout &lt;&lt;  </font><font color="#ff00ff">&quot;Illegal input&quot; </font><font color="#000000">;</font>
+<font color="#000000">}</font>
+</pre>
+</div>
+<h3>Macros vs Function:</h3>
+<ol><li>In a macro call the pre-processor replaces the macro template with its macro expansion, in a stupid, unthinking, literal way. As against this, in a function call the control is passed to a function along with certain arguments, some calculations are performed in the function and a useful value is returned back from the function.</li>
+<p>Usually macros make the program run faster but increase the program size, whereas functions make the program smaller and compact.</p>
+<p>If we use a macro hundred times in a program, the macro expansion goes into our source code at hundred different places, thus increasing the program size. On the other hand, if a function is used, then even if it is called from hundred different places in the program, it would take the same amount of space in the program.</p>
+<li><i> File inclusion: </i>The second pre-processor directive well explore in this chapter is file inclusion. This directive causes one file to be included in another. The pre-processor command for file inclusion looks like this:</li>
+<p>#include "filename"</p>
+<p>
+If we have a very large program, the code is best divided into several different files, each containing a set of related functions. It is a good programming practice to keep different sections of a large program separate. These files are #included at the beginning of main program file.</p>
+
+<li> Conditional inclusion:We can, if we want, have the compiler skip over part of a source code by inserting the preprocessing commands #ifdef and #endif,which have the general form:</li>
+<div class="code">
+<pre><font color="#ff0000">#ifdef </font><font color="#000000">macroname</font>
+<font color="#000000">statement </font><font color="#800080">1 </font><font color="#000000">;</font>
+<font color="#000000">statement </font><font color="#800080">2 </font><font color="#000000">;</font>
+<font color="#000000">statement </font><font color="#800080">3 </font><font color="#000000">;</font>
+<font color="#ff0000">#endif</font>
+</pre>
+</div>
+<p>If macroname has been #defined, the block of code will be processed as usual; otherwise not.</p>
+<h3>#if and elseif directives:</h3>
+<p>The #if directive can be used to test whether an expression evaluates to a nonzero value or not. If the result of the expression is nonzero, then subsequent lines upto a #else, #elif or #endif are compiled, otherwise they are skipped.</p>
+<h2>A simple example of #if directive is shown below:</h2>
+<div class="code">
+<pre><font color="#000000">main( )</font>
+<font color="#000000">{</font>
+<font color="#ff0000">#if </font><font color="#000000">TEST &lt;= </font><font color="#800080">5</font>
+<font color="#000000">statement </font><font color="#800080">1 </font><font color="#000000">;</font>
+<font color="#000000">statement </font><font color="#800080">2 </font><font color="#000000">;</font>
+<font color="#000000">statement </font><font color="#800080">3 </font><font color="#000000">;</font>
+<font color="#ff0000">#else</font>
+<font color="#000000">statement </font><font color="#800080">4 </font><font color="#000000">;</font>
+<font color="#000000">statement </font><font color="#800080">5 </font><font color="#000000">;</font>
+<font color="#000000">statement </font><font color="#800080">6 </font><font color="#000000">;</font>
+<font color="#ff0000">#endif</font>
+</pre>
+</div>
+<p>If the expression, TEST <= 5 evaluates to true then statements 1, 2 and 3 are compiled otherwise statements 4, 5 and 6 are compiled. In place of the expression TEST <= 5 other expressions like ( LEVEL == HIGH || LEVEL == LOW ) or ADAPTER == CGA can also be used.</p>
+<h2>program using #elif directive can be rewritten as shown below.</h2>
+<div class="code">
+<pre><font color="#ff0000">#if </font><font color="#000000">ADAPTER == VGA</font>
+<font color="#000000">code </font><font color="#0000ff">for </font><font color="#000000">video graphics array</font>
+<font color="#ff0000">#elif </font><font color="#000000">ADAPTER == SVGA</font>
+<font color="#000000">code </font><font color="#0000ff">for </font><font color="#000000">super video graphics array</font>
+<font color="#ff0000">#else</font>
+<font color="#000000">code </font><font color="#0000ff">for </font><font color="#000000">extended graphics adapter</font>
+<font color="#ff0000">#endif</font>
+</pre>
+</div>
+
+<li><i>Misllaneous directives: </i>There are two more preprocessor directives available, though they are not very commonly used. They are:</li>
+<ul><li>#undef</li>
+<li>) #pragm</li></ul>
+
+<ul><li><i>#undef:</i>
+On some occasions it may be desirable to cause a defined name to become undefined. This can be accomplished by means of the #undef directive. In order to undefine a macro that has been earlier #defined, the directive, #undef macro template can be used. Thus the statement, #undef PENTIUM would cause the definition of PENTIUM to be removed from the system. All subsequent #ifdef PENTIUM statements would evaluate to false.</li>
+<li><i>#pragma:</i>
+This directive is another special-purpose directive that you can use to turn on or off certain features. Pragmas vary from one compiler to another. There are certain pragmas available with Microsoft C compiler that deal with formatting source listings and placing comments in the object file generated by the compiler.</li></ul>
+ </ol>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="Expressions.shtml" title=" Expression In C++">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="Statements.shtml" title="Statement in C++">Next</a></td>
+  </tr> 
+</table>
+<!-- Footer Start-->
+		</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/cpp/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    </ol>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->

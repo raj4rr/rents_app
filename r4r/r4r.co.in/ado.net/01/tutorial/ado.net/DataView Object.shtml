@@ -1,0 +1,172 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>DataView Object,Creating a DataView,Example of DataView Object</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="DataView Object,Creating a DataView,Example of DataView Object" >
+<meta name="keywords" CONTENT="DataView Object,Creating a DataView,Example of DataView Object">
+
+<!-- header start-->	
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>ADO.NET</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+            <img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+            <a href="/ado.net">ADO.Net</a>
+              <img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+
+			  <a href="/ado.net/01/tutorial/ado.net/">ADO.NET Tutorials</a>
+
+              </div>
+
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/ado.net/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	 
+<!-- header End-->	
+<div class="heading">DataView Object</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="Display%20Data%20Using%20the%20DataGridview%20and%20Sqlconnection.shtml" title="Display Data Using the DataGridview and Sqlconnection">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="Displaying%20the%20Row%20States%20.shtml" title="Displaying the Row States">Next</a></td>
+  </tr> 
+</table>
+
+<p>The DataView object is more than a replacement for the DataTables Select method . Not only are the results of the Select method on a DataTable not directly 
+data bindable, but it is also not a very efficient method to query rows.</p>
+<h3>Creating a DataView</h3>
+<p>A DataView can be created using any of the three constructor overloads it supports. The first constructor
+overload allows you to create a DataView but not specify any information</p>
+<div class="code">
+<pre>
+<font color="#808000">DataView  </font><font color="#000000">dv = </font><font color="#0000ff">new </font><font color="#808000">DataView</font><font color="#000000">() ;</font>
+</pre>
+</div>
+
+<p>The second constructor directly ties the DataView to a DataTable</p>
+<div class="code">
+<pre>
+<font color="#808000">DataView </font><font color="#000000">dv = </font><font color="#0000ff">new </font><font color="#808000">DataView</font><font color="#000000">(TableName) ;</font>
+</pre>
+</div>
+
+<p>The third and final constructor of DataViews allows you to specify all that information in
+one line of code.</p>
+<div class="code">
+<pre>
+<font color="#808000">DataView </font><font color="#000000">dv =</font><font color="#0000ff">new </font><font color="#808000">DataView</font><font color="#000000">(</font>
+<font color="#000000">EmpTable, </font><font color="#ff00ff">&quot;EmpID = 1001&quot;</font><font color="#000000">, </font>
+<font color="#ff00ff">&quot;EmpName&quot;</font><font color="#000000">, DataViewRowState.Unchanged);</font>
+</pre>
+</div>
+
+<div class="heading">Example of  DataView Object</div>
+<div class="code">
+<pre>
+<font color="#0000ff">private void </font><font color="#000000">DataViewexample()</font>
+<font color="#000000">{</font>
+<font color="#008000">// Create one DataTable with one column.</font>
+<font color="#808000">DataTable </font><font color="#000000">tb = </font><font color="#0000ff">new </font><font color="#808000">DataTable</font><font color="#000000">(</font><font color="#ff00ff">&quot;student&quot;</font><font color="#000000">);</font>
+<font color="#808000">DataColumn </font><font color="#000000">dc = </font><font color="#0000ff">new </font><font color="#808000">DataColumn</font><font color="#000000">(</font><font color="#ff00ff">&quot;stuentname&quot;</font><font color="#000000">,</font>
+<font color="#808000">Type</font><font color="#000000">.GetType(</font><font color="#ff00ff">&quot;System.String&quot;</font><font color="#000000">));</font>
+<font color="#000000">table.Columns.Add(colItem);</font>
+
+<font color="#008000">// Add five items.</font>
+<font color="#808000">DataRow </font><font color="#000000">NewRow;</font>
+<font color="#0000ff">for</font><font color="#000000">(</font><font color="#0000ff">int </font><font color="#000000">i = </font><font color="#800080">0</font><font color="#000000">; i &lt;</font><font color="#800080">5</font><font color="#000000">; i++)</font>
+<font color="#000000">{</font>
+<font color="#000000">NewRow = table.NewRow();</font>
+<font color="#000000">NewRow[</font><font color="#ff00ff">&quot;studentname&quot;</font><font color="#000000">] = </font><font color="#ff00ff">&quot;studentname &quot; </font><font color="#000000">+ i;</font>
+<font color="#000000">table.Rows.Add(NewRow);</font>
+<font color="#000000">}</font>
+<font color="#008000">// Change the values in the table.</font>
+<font color="#000000">table.Rows[</font><font color="#800080">0</font><font color="#000000">][</font><font color="#ff00ff">&quot;studentname&quot;</font><font color="#000000">]=</font><font color="#ff00ff">&quot;Ashish&quot;</font><font color="#000000">;</font>
+<font color="#000000">table.Rows[</font><font color="#800080">1</font><font color="#000000">][</font><font color="#ff00ff">&quot;studentname&quot;</font><font color="#000000">] = </font><font color="#ff00ff">&quot;Aditya&quot;</font><font color="#000000">;</font>
+<font color="#000000">tb.AcceptChanges();</font>
+<font color="#008000">// Create two DataView objects with the same table.</font>
+<font color="#808000">DataView </font><font color="#000000">firstView = </font><font color="#0000ff">new </font><font color="#808000">DataView</font><font color="#000000">(table);</font>
+<font color="#808000">DataView </font><font color="#000000">secondView = </font><font color="#0000ff">new </font><font color="#808000">DataView</font><font color="#000000">(table);</font>
+<font color="#008000">// Print current table values.</font>
+<font color="#000000">PrintTableOrView(table,</font><font color="#ff00ff">&quot;Current Values in Table&quot;</font><font color="#000000">);</font>
+<font color="#008000">// Set first DataView to show only modified </font>
+<font color="#008000">// versions of original rows.</font>
+<font color="#000000">firstView.RowStateFilter=DataViewRowState.ModifiedOriginal;</font>
+<font color="#008000">// Print values.   </font>
+<font color="#000000">PrinSTDtTableOrView(firstView,</font><font color="#ff00ff">&quot;First DataView: ModifiedOriginal&quot;</font><font color="#000000">);</font>
+<font color="#008000">// Add one New row to the second view.</font>
+<font color="#808000">DataRowView </font><font color="#000000">rowView;</font>
+<font color="#000000">rowView=secondView.AddNew();</font>
+<font color="#000000">rowView[</font><font color="#ff00ff">&quot;studentname&quot;</font><font color="#000000">] = </font><font color="#ff00ff">&quot;Anil&quot;</font><font color="#000000">;</font>
+<font color="#008000">// Set second DataView to show modified versions of </font>
+<font color="#008000">// current rows, or New rows.</font>
+<font color="#000000">secondView.RowStateFilter=DataViewRowState.ModifiedCurrent </font>
+<font color="#000000">| DataViewRowState.Added;</font>
+<font color="#008000">// Print modified and Added rows.</font>
+<font color="#000000">PrintTableOrView(secondView, </font>
+<font color="#ff00ff">&quot;Second DataView: ModifiedCurrent | Added&quot;</font><font color="#000000">);</font>
+<font color="#000000">}</font>
+<font color="#0000ff">private void </font><font color="#000000">PrintSTDTableOrView(</font><font color="#808000">DataTable </font><font color="#000000">table, </font><font color="#0000ff">string </font><font color="#000000">s)</font>
+<font color="#000000">{</font>
+<font color="#008000">// This function prints values in the table or DataView.</font>
+<font color="#808000">Console</font><font color="#000000">.WriteLine(</font><font color="#ff00ff">&quot;\n&quot; </font><font color="#000000">+ s);</font>
+<font color="#0000ff">for</font><font color="#000000">(</font><font color="#0000ff">int </font><font color="#000000">i = </font><font color="#800080">0</font><font color="#000000">; i&lt;table.Rows.Count;i++)</font>
+<font color="#000000">{</font>
+<font color="#808000">Console</font><font color="#000000">.WriteLine(</font><font color="#ff00ff">&quot;\table&quot; </font><font color="#000000">+ table.Rows[i][</font><font color="#ff00ff">&quot;studentname&quot;</font><font color="#000000">]);</font>
+<font color="#000000">}</font>
+<font color="#808000">Console</font><font color="#000000">.WriteLine();</font>
+<font color="#000000">}</font>
+<font color="#0000ff">private void </font><font color="#000000">PrintSTDTableOrView(</font><font color="#808000">DataView </font><font color="#000000">view, </font><font color="#0000ff">string </font><font color="#000000">label)</font>
+<font color="#000000">{</font>
+<font color="#008000">// This overload prints values in the table or DataView.</font>
+<font color="#808000">Console</font><font color="#000000">.WriteLine(</font><font color="#ff00ff">&quot;\n&quot; </font><font color="#000000">+ s);</font>
+<font color="#0000ff">for</font><font color="#000000">(</font><font color="#0000ff">int </font><font color="#000000">i = </font><font color="#800080">0</font><font color="#000000">; i&lt;view.Count;i++)</font>
+<font color="#000000">{</font>
+<font color="#808000">Console</font><font color="#000000">.WriteLine(</font><font color="#ff00ff">&quot;\table&quot; </font><font color="#000000">+ view[i][</font><font color="#ff00ff">&quot;&quot;</font><font color="#000000">studentname</font><font color="#ff00ff">&quot;]);</font>
+<font color="#000000">}</font>
+<font color="#808000">Console</font><font color="#000000">.WriteLine();</font>
+<font color="#000000">}</font>
+</pre>
+</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="Display%20Data%20Using%20the%20DataGridview%20and%20Sqlconnection.shtml" title="Display Data Using the DataGridview and Sqlconnection">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="Displaying%20the%20Row%20States%20.shtml" title="Displaying the Row States">Next</a></td>
+  </tr> 
+</table>
+
+ <!-- Footer Start-->		
+		</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/dotnet/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->

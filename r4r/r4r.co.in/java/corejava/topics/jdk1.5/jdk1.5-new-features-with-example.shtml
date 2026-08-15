@@ -1,0 +1,271 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>jdk1.5 new features with example</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="jdk1.5 new features with example">
+<meta name="keywords" CONTENT="jdk1.5 new features with example">
+
+<!-- header start-->	
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>Java Programing laungage</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+            <img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+            <a href="/java/">Java</a>
+             <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/java/corejava/">Core Java</a>
+                                   <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/java/corejava/topics/jdk1.5/">JDK1.5</a>
+              </div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/corejava/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	 
+<!-- header End-->
+
+<div class="heading">jdk1.5 new features with example</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="jdk1.5-interview-questions-answers.shtml" title="jdk1.5 interview questions answers">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+   <td style="width:33%; text-align:right;"><a href="index.shtml" title="Home">Next</a></td>
+  </tr> 
+</table>
+
+<ol>
+<li>
+<p><i>Generics: </i> provides compile-time (static) type safety for collections and eliminates the need for most typecasts (type conversion).</p>
+<h3>Problem:</h3>
+<ul>
+<li>
+Collection element types
+ </li>
+<li>
+Cannot be checked at compile time
+ </li>
+<li>
+Assignment must use cast
+ </li>
+<li>
+Can cause runtime errors
+( ClassCastException)
+</li>
+</ul>
+<b>Solution:</b>
+<ul>
+<li>
+Tell the compiler what type your collection is
+ </li>
+<li>
+Compiler can fill in casts for you
+ </li>
+<li>
+Guaranteed to succeed.
+</li>
+</ul>
+<h3>Generics Example</h3>
+<div class="code">
+<PRE>
+<FONT COLOR="#000000">Old code:-</FONT>
+ <FONT COLOR="#ff0000">List </FONT><FONT COLOR="#000000">l = </FONT><FONT COLOR="#0000ff">new </FONT><FONT COLOR="#ff0000">LinkedList</FONT><FONT COLOR="#000000">();</FONT>
+<FONT COLOR="#000000">l.add(</FONT><FONT COLOR="#0000ff">new </FONT><FONT COLOR="#ff0000">Integer</FONT><FONT COLOR="#000000">(</FONT><FONT COLOR="#800080">0</FONT><FONT COLOR="#000000">));</FONT>
+<FONT COLOR="#ff0000">Integer </FONT><FONT COLOR="#000000">i = (</FONT><FONT COLOR="#ff0000">Integer</FONT><FONT COLOR="#000000">)l.iterator.next();</FONT>
+<FONT COLOR="#000000">New code:-</FONT>
+ <FONT COLOR="#ff0000">List</FONT><FONT COLOR="#000000">&lt;</FONT><FONT COLOR="#ff0000">Integer</FONT><FONT COLOR="#000000">&gt; l = </FONT><FONT COLOR="#0000ff">new </FONT><FONT COLOR="#ff0000">LinkedList</FONT><FONT COLOR="#000000">&lt;</FONT><FONT COLOR="#ff0000">Integer</FONT><FONT COLOR="#000000">&gt;();</FONT>
+<FONT COLOR="#000000">l.add(</FONT><FONT COLOR="#0000ff">new </FONT><FONT COLOR="#ff0000">Integer</FONT><FONT COLOR="#000000">(</FONT><FONT COLOR="#800080">0</FONT><FONT COLOR="#000000">));</FONT>
+<FONT COLOR="#ff0000">Integer </FONT><FONT COLOR="#000000">i = l.iterator.next();</FONT>
+</PRE>
+</div>
+<h3>Generics are NOT templates</h3>
+<ul>
+<li>
+ No code size increase
+ </li>
+ <li>
+ No hideous complexity
+ </li>
+ <li>
+ No template metaprogramming
+ </li>
+ </ul>
+</li>
+<li>
+<p><i>Enhanced for each loop:</i> the for loop syntax is extended with special syntax for iterating over each member of either an array or any iterable, such as the standard collection classesfix the previously broken semantics of the java memory model, which defines how threads interact through memory.</p>
+<p><i>Problem:</i></p>
+<ul>
+<li>
+ Iterating over collections is tricky
+ </li>
+ <li>
+ Often, iterator only used to get an element
+ </li>
+ <li>
+ Iterator is error prone (Occurs three times
+in a for loop)
+</li>
+<li>
+ Can produce subtle runtime errors
+ </li></ul>
+ <h3>Solution:</h3>
+ <ul>
+ <li>
+  Let the compiler do it
+  </li>
+  <li>
+ New for loop syntax
+ </li>
+ <li>
+for (variable : collection)
+</li></ul>
+
+<h3>Enhanced for loop example</h3>
+<div class="code">
+<PRE>
+<FONT FACE="Arial">
+ <FONT COLOR="#000000">Old code:-</FONT>
+ <FONT COLOR="#0000ff">void </FONT><FONT COLOR="#000000">cancelAll(</FONT><FONT COLOR="#ff0000">Collection </FONT><FONT COLOR="#000000">c) {</FONT>
+<FONT COLOR="#0000ff">for </FONT><FONT COLOR="#000000">(</FONT><FONT COLOR="#ff0000">Iterator </FONT><FONT COLOR="#000000">i = c.iterator(); i.hasNext(); ) {</FONT>
+<FONT COLOR="#ff0000">TimerTask </FONT><FONT COLOR="#000000">task = (</FONT><FONT COLOR="#ff0000">TimerTask</FONT><FONT COLOR="#000000">)i.next();</FONT>
+<FONT COLOR="#000000">task.cancel(); } }</FONT>
+ <FONT COLOR="#000000">New Code:-</FONT>
+ <FONT COLOR="#0000ff">void </FONT><FONT COLOR="#000000">cancelAll(</FONT><FONT COLOR="#ff0000">Collection</FONT><FONT COLOR="#000000">&lt;</FONT><FONT COLOR="#ff0000">TimerTask</FONT><FONT COLOR="#000000">&gt; c) {</FONT>
+<FONT COLOR="#0000ff">for </FONT><FONT COLOR="#000000">(</FONT><FONT COLOR="#ff0000">TimerTask </FONT><FONT COLOR="#000000">task : c)</FONT>
+<FONT COLOR="#000000">task.cancel();</FONT>
+<FONT COLOR="#000000">}</FONT>
+ <FONT COLOR="#000000">Also works </FONT><FONT COLOR="#0000ff">for </FONT><FONT COLOR="#000000">arrays</FONT>
+</FONT>
+</PRE>
+</div>
+</li>
+<li>
+<p><i>Metadata:</i> also called annotations; allows language constructs such as classes and methods to be tagged with additional data, which can then be processed by metadata-aware utilities.</p>
+<h3>Problem:</h3>
+ <p>Some APIs require lots of standard code</p>
+ <p>How to indicate this to a tool</p>
+ <h3>Solution:</h3>
+ <p>Annotated source code</p>
+ <p>e.g. @remote getPrice(Product p)</p>
+</li>
+<li>
+<p><i>Auto boxing/unboxing: </i>Automatic conversions between primitive types (such as int) and primitive wrapper classes (such as integer).</p>
+<h3>Problem:</h3>
+<p>Conversion between primitive types and</p>
+<p>wrapper objects (and vice-versa)</p>
+<p>Needed when adding primitives to a collection</p>
+ <h3>Solution:</h3>
+ <div class="code">
+<PRE>
+<FONT COLOR="#000000">Let the compiler </FONT><FONT COLOR="#0000ff">do </FONT><FONT COLOR="#000000">it</FONT>
+<FONT COLOR="#ff0000">Integer </FONT><FONT COLOR="#000000">intObj = </FONT><FONT COLOR="#800080">22</FONT><FONT COLOR="#000000">; </FONT><FONT COLOR="#008000">// Boxing conversion</FONT>
+<FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">i = (</FONT><FONT COLOR="#0000ff">int</FONT><FONT COLOR="#000000">)intObj </FONT><FONT COLOR="#008000">// Unboxing conversion</FONT>
+<FONT COLOR="#ff0000">ArrayList </FONT><FONT COLOR="#000000">al = </FONT><FONT COLOR="#0000ff">new </FONT><FONT COLOR="#ff0000">ArrayList</FONT><FONT COLOR="#000000">();</FONT>
+<FONT COLOR="#000000">al.add(</FONT><FONT COLOR="#800080">22</FONT><FONT COLOR="#000000">); </FONT><FONT COLOR="#008000">// Boxing conversion</FONT>
+</PRE>
+ </div>
+ </li>
+ <li>
+ <p><i>Enumerations:</i> the enum keyword creates a typesafe, ordered list of values (such as day.monday, day.tuesday, etc.). Previously this could only be achieved by non-typesafe constant integers or manually constructed classes (typesafe enum pattern).</p>
+<h3>Typesafe Enumerations</h3>
+<h3>Problem:</h3>
+ <p>Variable needs to hold limited set of values</p>
+ <p>e.g. Card suit can only be Spade, Diamond, Club, Heart</p>
+ <h3>Solution:</h3>
+ <p>New type of class declaration</p>
+ <p>enum type has public, self-typed members for</p>
+ <p>each enum constant</p>
+ <p>new keyword, enum</p>
+ <p>works with switch statement</p>
+ <h3>Enumeration Examples </h3>
+ <div class="code">
+<PRE>
+<FONT COLOR="#0000ff">public enum </FONT><FONT COLOR="#000000">Coin {</FONT>
+<FONT COLOR="#000000">penny(</FONT><FONT COLOR="#800080">1</FONT><FONT COLOR="#000000">), nickel(</FONT><FONT COLOR="#800080">5</FONT><FONT COLOR="#000000">), dime(</FONT><FONT COLOR="#800080">10</FONT><FONT COLOR="#000000">), quarter(</FONT><FONT COLOR="#800080">25</FONT><FONT COLOR="#000000">);</FONT>
+<FONT COLOR="#000000">Coin(</FONT><FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">value) { </FONT><FONT COLOR="#0000ff">this</FONT><FONT COLOR="#000000">.value = value; }</FONT>
+<FONT COLOR="#0000ff">private final int </FONT><FONT COLOR="#000000">value;</FONT>
+<FONT COLOR="#0000ff">public int </FONT><FONT COLOR="#000000">value() { </FONT><FONT COLOR="#0000ff">return </FONT><FONT COLOR="#000000">value; }</FONT>
+<FONT COLOR="#000000">}</FONT>
+</PRE>
+ </div>
+ </li>
+<li>
+<p><i>Var args: </i>the last parameter of a method can now be declared using a type name followed by three dots (e.g. Void drawtext(string... Lines)). In the calling code any number of parameters of that type can be used and they are then placed in an array to be passed to the method, or alternatively the calling code can pass an array of that type.</p>
+ <h3>Problem:</h3>
+ <p>To have a method that takes a variable number of parameters</p>
+<p> Can be done with an array, but not nice Look at java.text.MessageFormat</p>
+ <p><i>Solution:</i> Let the compiler do it for you</p>
+ <h3>New syntax:</h3>
+ <div class="code">
+<PRE>
+<FONT FACE="Arial">
+<FONT COLOR="#0000ff">public static </FONT><FONT COLOR="#ff0000">String </FONT><FONT COLOR="#000000">format(</FONT><FONT COLOR="#ff0000">String </FONT><FONT COLOR="#000000">fmt,</FONT><FONT COLOR="#ff0000">Object</FONT><FONT COLOR="#000000">... args);</FONT>
+ <FONT COLOR="#000000">Java gets printf !!!</FONT>
+</FONT>
+</PRE>
+ </div>
+</li>
+<li>
+<h3>Static imports</h3>
+<h3>Problem:</h3>
+ <p>Having to fully qualify every static</p>
+<p>Referenced from external classes</p>
+ <h3>Solution:</h3>
+  <p>New import syntax</p>
+ <p>import static TypeName . Identifier ;</p>
+ <p>import static Typename . * ;</p>
+<p> Also works for static methods and enums</p>
+<p>e.g Math.sin(x) becomes sin(x)</p>
+</li>
+<li>
+<h3>Concurrency Utilities</h3>
+ <p>Goal: Beat C performance in high end</p>
+ <p>server side applications</p>
+ <p>New framework for locks to provide greater</p>
+ <p>flexibility over synchronized</p>
+ <p>No more threads, use Executors</p>
+ <p>Use anExecutor.execute(aRunnable)</p>
+ <p>Not new Thread(aRunnable).start();</p>
+ <p>Runnable and Callable</p>
+  <p>Callable for things that return values and/or exceptions</p>
+</li>
+</ol>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="jdk1.5-interview-questions-answers.shtml" title="jdk1.5 interview questions answers">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+   <td style="width:33%; text-align:right;"><a href="index.shtml" title="Home">Next</a></td>
+  </tr> 
+</table>
+
+	       <!-- Footer Start-->	
+
+		</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->

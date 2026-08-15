@@ -1,0 +1,110 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD>
+<meta http-equiv="Content-Language" content="en-us">
+<TITLE>struts,struts 2.0,struts tutorial,struts 2.0 tutorial,Struts2.0 framework Configuration File</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name="description" CONTENT="struts,struts 2.0,struts tutorial,struts 2.0 tutorial,Struts2.0 framework Configuration File" >
+<meta name="keywords" CONTENT="struts,struts 2.0,struts tutorial,struts 2.0 tutorial,Struts2.0 framework Configuration File">
+<!-- header start-->	
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>Struts</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+            <img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+            <a href="/java/">Java</a>
+              <img src="/images/left_menu_bullet.gif" width="11" height="6"/><A href="/java/struts/basic/tutorial/struts2.0">Struts 2.0 Basic Tutorial</a>
+              </div>
+
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/struts/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	 
+
+<div class="heading">Struts2.0 framework Configuration File</div>
+<!-- header End-->
+
+ <table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="page18.shtml" title="What is directory structure of struts2.0 Framework application?">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="page20.shtml" title="Downloading and configuring Struts2.0 Framework">Next</a></td>
+  </tr> 
+</table>
+
+<h3>Introduction:</h3>
+<p>The struts2 configuration file described the all request which is send by user then configure action class will be invoked . The action class return the string this string is configure in configuration file then send the response with the help of Result class.</p>
+<h3>Class/Library File  Descriptions: </h3>
+<p>There are two ways to do configuration file in struts2 framework</p>
+<ol><li> XML based configuration file: </li>
+<div class="comment">struts.xmlM </div>
+<div class="code"><pre>
+<font color="#0000ff">&lt;</font><font color="#808000">struts</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">package </font><font color="#ff0000">name</font><font color="#0000ff">=</font><font color="#800080"></font><font color="#000000">..</font><font color="#800080">  extends</font><font color="#0000ff">=</font><font color="#800080">struts-default</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">action </font><font color="#ff0000">name</font><font color="#0000ff">=</font><font color="#800080">request submitted by user </font>
+<font color="#800080">class</font><font color="#0000ff">=</font><font color="#800080">action class name</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">result </font><font color="#ff0000">name</font><font color="#0000ff">=</font><font color="#800080">string return by action class</font><font color="#0000ff">&gt;</font>
+<font color="#000000">/after string return then invoke jsp page</font><font color="#0000ff">&lt;/</font><font color="#808000">result</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">action</font><font color="#0000ff">&gt;</font><font color="#000000"> </font>
+<font color="#0000ff">&lt;/</font><font color="#808000">package</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">struts</font><font color="#0000ff">&gt;</font>
+</pre>
+</div>
+<li> Java Annotation based configuration:-</li>
+<div class="comment">Action.java</div>
+<div class="code"><pre>
+<font color="#000000">@</font><font color="#0000ff">Results</font><font color="#000000">({</font>
+<font color="#000000">@</font><font color="#0000ff">Result</font><font color="#000000">(name=</font><font color="#ff00ff">&quot;input&quot;</font><font color="#000000">,</font>
+<font color="#000000">value=</font><font color="#ff00ff">&quot;/RegistrationSuccess.jsp&quot; </font><font color="#000000">)</font>
+<font color="#000000">@</font><font color="#0000ff">Result</font><font color="#000000">(value=</font><font color="#ff00ff">&quot;/RegistrationSuccess.jsp&quot; </font><font color="#000000">)</font>
+<font color="#000000">})</font>
+<font color="#0000ff">public class </font><font color="#000000">Login </font><font color="#0000ff">implements </font><font color="#ff0000">Action </font><font color="#000000">{</font>
+<font color="#0000ff">public </font><font color="#ff0000">String </font><font color="#000000">execute() {</font>
+<font color="#008000">//Business logic for login</font>
+<font color="#000000">}</font>
+<font color="#000000">}</font>
+</pre>
+</div>
+</ol>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="page18.shtml" title="What is directory structure of struts2.0 Framework application?">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="page20.shtml" title="Downloading and configuring Struts2.0 Framework">Next</a></td>
+  </tr> 
+</table>
+
+<!-- Footer Start-->	
+
+		</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->

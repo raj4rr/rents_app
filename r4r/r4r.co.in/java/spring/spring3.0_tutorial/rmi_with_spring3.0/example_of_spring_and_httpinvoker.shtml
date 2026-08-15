@@ -1,0 +1,310 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD>
+<meta http-equiv="Content-Language" content="en-us">
+<TITLE>Spring Examples of spring httpinvoker|spring examples</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name="description" CONTENT="Spring Examples of spring httpinvoker tutorial covers all topics of  spring examples for fresher and beginners" >
+<meta name="keywords" CONTENT="Spring,Tutorial, examples,Spring Examples of spring httpinvoker, spring httpinvoker,spring httpinvoker Examples">
+
+		<!-- header start-->	
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+     <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>Spring Tutorials</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+			<img src="/images/left_menu_bullet.gif"/> <a href="/spring/">Spring</a>
+
+       </div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/spring/commonfiles/leftmenucore.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	 
+
+<div class="heading">Spring Remoting with Httpinvoker Example</div>
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="example_of_spring_and_rmi_integration.shtml" title="example_of_spring_and_rmi_integration">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="example_of_spring_and_hessian.shtml" title="example_of_spring_and_hessian">Next</a></td>
+  </tr> 
+</table>
+<p>Spring HTTP invokers use the standard Java serialization mechanism to expose services through HTTP. Spring uses either the standard facilities provided by the JDK or Apache HttpComponents to perform HTTP calls. The main classes of Spring Http invoker are as follows:</p>
+<p><i>org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter:</i> This is a servlet API based Http request handler. It is used to export the remote services. It takes in a service property that is the service to be exported and a ServiceInterface that specifies the interface that the service is tied to.</p>
+<p><i>org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean:</i> This is a proxy factory for creating http invoker proxies. It has a serviceUrl property that must be an http url exposing an http invoker service. This class serializes the objects that are sent to remote services and deserializes the objects back.</p>
+<div class="heading">Technologies used to run this Application.</div>
+<ol>
+<li>
+Spring 3.0
+</li><li>
+Eclipse IDE
+</li><li>
+JDK 1.6
+</li>
+</ol>
+<p>Let us have working Eclipse IDE in place and follow the following steps to create a Spring application:</p>
+<p><i>Step1.</i> Now you create<font class="point_out"> Dyanamic Web Project</font> using Eclipse IDE. Follow the option<font class="point_out"> File -> New -> Project </font>and finally select Dyanamic Web Project wizard from the wizard list. Now name your project as <font class="point_out">SpringRemotingWithHttpinvoker</font> using the wizard window as given below.</p>
+<div class="image">
+<img src="../images/spring_httpinvoker_example.png">
+</div>
+<div class="heading">Add spring jar files</div>
+<p><i>Step2.</i> Now add spring jar in your project, To do this, right click on your project in Lib folder, name<font class="point_out"> SpringRemotingWithHttpinvoker</font> and  copy the jar as given below. then follow the following option available in context menu:<font class="point_out">  Build Path -> Configure Build Path</font> to display the Java Build Path window as given below. To load the jar files in eclipse IDE,<font class="point_out">  Right click on your project - Build Path - Add external archives - select all the required jar files - finish.</font></p>
+<ol>
+<li>
+com.springsource.org.apache.commons.fileupload-1.2.0.jar
+</li><li>
+com.springsource.org.apache.commons.httpclient-3.1.0.jar
+</li><li>
+com.springsource.org.apache.commons.logging-1.1.1.jar
+</li><li>
+com.springsource.org.apache.log4j-1.2.15.jar
+</li><li>
+com.springsource.org.codehaus.jackson.mapper-1.0.0.jar
+</li><li>
+jmxtools-1.2.1.jar
+</li><li>
+org.springframework.asm-3.1.0.
+</li><li>
+org.springframework.beans-3.1.0.
+</li><li>
+org.springframework.context.support-3.1.0.
+</li><li>
+org.springframework.context-3.1.0.
+</li><li>
+org.springframework.core-3.1.0.
+</li><li>
+spring-expression-3.1.0.RELEASE.jar
+</li><li>
+org.springframework.oxm-3.0.1.RELEASE-A.jar
+</li><li>
+org.springframework.web.portlet-3.0.1.RELEASE-A.jar
+</li><li>
+org.springframework.web.servlet-3.0.1.RELEASE-A.jar
+</li><li>
+org.springframework.web.struts-3.0.1.RELEASE-A.jar
+</li><li>
+org.springframework.web-3.0.1.RELEASE-A.jar
+</li><li>
+com.springsource.com.caucho-3.2.1.jar
+</li><li>
+com.springsource.net.sf.cglib-2.2.0.jar
+</li><li>
+com.springsource.org.aopalliance-1.0.0.jar
+</li><li>
+com.springsource.org.aspectj.weaver-1.6.8.RELEASE.jar
+</li><li>
+org.springframework.aop-3.0.1.RELEASE-A.jar
+</li><li>
+org.springframework.aspects-3.0.1.RELEASE-A.jar
+</li><li>
+org.springframework.instrument.tomcat-3.0.1.RELEASE-A.jar
+</li><li>
+org.springframework.instrument-3.0.1.RELEASE-A.jar
+</li>
+</ol>
+
+<div class="heading">Create a Java interface.</div>
+<p><i>Step3.</i> Now you create simply java file with any name. First we need to create a package with any name like<font class="point_out"> com.r4r.</font> To do this,<font class="point_out">  Right click on src in package </font>explorer section and follow the option :<font class="point_out">  New -> Package.</font> and then <font class="point_out"> Right click on package(com.r4r) - New - interface - Write the interface name e.g. Square - finish. Following is the content of  Interface Square.java containing one sq(square) metod.</font> Write the following code:</p>
+<div class="code">
+<pre>
+<font color="#0000ff">package </font><font color="#000000">com.r4r;</font>
+<font color="#0000ff">public interface </font><font color="#000000">Square </font>
+<font color="#000000">{</font>
+ <font color="#0000ff">int </font><font color="#000000">sq(</font><font color="#0000ff">int </font><font color="#000000">number);</font>
+
+<font color="#000000">}</font>
+</pre>
+</div>
+<p><i>Step4.</i> Following is the content of  java class SquareImpl.java. This class provides the implementation of Square interface.</p>
+<div class="code">
+<pre>
+<font color="#0000ff">package </font><font color="#000000">com.r4r;</font>
+<font color="#0000ff">public class </font><font color="#000000">SquareImpl </font><font color="#0000ff">implements </font><font color="#000000">Square{</font>
+	<font color="#000000">@</font><font color="#0000ff">Override</font>
+	<font color="#0000ff">public int </font><font color="#000000">sq(</font><font color="#0000ff">int </font><font color="#000000">number) {</font>
+	<font color="#0000ff">return </font><font color="#000000">number*number;</font>
+	<font color="#000000">} }</font>
+</pre>
+</div>
+<p><i>Step5.</i> Following is the content of  xml file web.xml. In this xml file we define the DispatcherServlet as the front controller. If any request is followed by .http extension, it will be forwarded to DispatcherServlet.</p>
+<div class="code">
+<pre>
+<font color="#0000ff">&lt;?xml </font><font color="#ff0000">version</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;1.0&quot; </font><font color="#ff0000">encoding</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;UTF-8&quot;</font><font color="#800080">?</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">web-app </font><font color="#ff0000">version</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;2.5&quot;</font>
+
+<font color="#ff0000">xmlns</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;http://java.sun.com/xml/ns/javaee&quot;</font>
+<font color="#800080">xmlns:xsi</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</font>
+<font color="#800080">xsi:schemaLocation</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;http://java.sun.com/xml/ns/javaee</font>
+<font color="#ff00ff">http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd&quot;</font><font color="#0000ff">&gt;</font>
+
+<font color="#0000ff">&lt;</font><font color="#808000">servlet</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">servlet-name</font><font color="#0000ff">&gt;</font><font color="#000000">httpInvoker</font><font color="#0000ff">&lt;/</font><font color="#808000">servlet-name</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">servlet-class</font><font color="#0000ff">&gt;</font><font color="#000000">org.springframework.web.servlet.DispatcherServlet</font><font color="#0000ff">&lt;/</font><font color="#808000">servlet-class</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">load-on-startup</font><font color="#0000ff">&gt;</font><font color="#000000">1</font><font color="#0000ff">&lt;/</font><font color="#808000">load-on-startup</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">servlet</font><font color="#0000ff">&gt;</font>
+
+<font color="#0000ff">&lt;</font><font color="#808000">servlet-mapping</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">servlet-name</font><font color="#0000ff">&gt;</font><font color="#000000">httpInvoker</font><font color="#0000ff">&lt;/</font><font color="#808000">servlet-name</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">url-pattern</font><font color="#0000ff">&gt;</font><font color="#000000">*.http</font><font color="#0000ff">&lt;/</font><font color="#808000">url-pattern</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">servlet-mapping</font><font color="#0000ff">&gt;</font>
+
+<font color="#0000ff">&lt;/</font><font color="#808000">web-app</font><font color="#0000ff">&gt;</font>
+</pre>
+</div>
+<p><i>Step6.</i> Following is the content of  xml file beans.xml. In this xml file, we define bean for HttpInvokerProxyFactoryBean. now we need to define two properties of this class. </p>
+<ol>
+<li>
+serviceUrl
+</li><li>
+serviceInterface
+</li>
+</ol>
+<div class="code">
+<pre>
+<font color="#0000ff">&lt;?xml </font><font color="#ff0000">version</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;1.0&quot; </font><font color="#ff0000">encoding</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;UTF-8&quot;</font><font color="#800080">?</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">beans </font><font color="#ff0000">xmlns</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;http://www.springframework.org/schema/beans&quot;</font>
+<font color="#800080">xmlns:xsi</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</font>
+<font color="#800080">xsi:schemaLocation</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;http://www.springframework.org/schema/beans</font>
+<font color="#ff00ff">http://www.springframework.org/schema/beans/spring-beans.xsd&quot;</font><font color="#0000ff">&gt;</font>
+
+<font color="#0000ff">&lt;</font><font color="#808000">bean </font><font color="#800080">id</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;squareBean&quot; </font>
+<font color="#800080">class</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean&quot;</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">property </font><font color="#ff0000">name</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;serviceUrl&quot; </font>
+ <font color="#800080">value</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;http://localhost:8080/SpringRemotingWithHttpinvoker/Square.http&quot;</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">property</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">property </font><font color="#ff0000">name</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;serviceInterface&quot; </font><font color="#800080">value</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;com.r4r.Square&quot;</font><font color="#0000ff">&gt;&lt;/</font><font color="#808000">property</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">bean</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">beans</font><font color="#0000ff">&gt;</font>
+</pre>
+</div>
+
+<p><i>Step7.</i> Following is the content of  xml file httpInvoker-servlet.xml. It defines bean for SquareImpl and HttpInvokerServiceExporter. this file must be inside the WEB-INF folder.</p>
+<div class="code">
+<pre>
+<font color="#0000ff">&lt;?xml </font><font color="#ff0000">version</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;1.0&quot; </font><font color="#ff0000">encoding</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;UTF-8&quot;</font><font color="#800080">?</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">beans </font><font color="#ff0000">xmlns</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;http://www.springframework.org/schema/beans&quot;</font>
+<font color="#800080">xmlns:xsi</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</font>
+<font color="#800080">xsi:schemaLocation</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;http://www.springframework.org/schema/beans</font>
+<font color="#ff00ff">http://www.springframework.org/schema/beans/spring-beans.xsd&quot;</font><font color="#0000ff">&gt;</font>
+
+<font color="#0000ff">&lt;</font><font color="#808000">bean </font><font color="#800080">id</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;squareBean&quot; </font><font color="#800080">class</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;com.r4r.SquareImpl&quot;</font><font color="#0000ff">&gt;&lt;/</font><font color="#808000">bean</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">bean </font><font color="#ff0000">name</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;/Square.http&quot; </font>
+<font color="#800080">class</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter&quot;</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">property </font><font color="#ff0000">name</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;service&quot; </font><font color="#800080">ref</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;squareBean&quot;</font><font color="#0000ff">&gt;&lt;/</font><font color="#808000">property</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">property </font><font color="#ff0000">name</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;serviceInterface&quot; </font><font color="#800080">value</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;com.r4r.Square&quot;</font><font color="#0000ff">&gt;&lt;/</font><font color="#808000">property</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">bean</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">beans</font><font color="#0000ff">&gt;</font>
+</pre>
+</div>
+<p><i>Step8.</i> Following is the content of  java class Test.java. It is simply getting the instance of Square and call the method.</p>
+<div class="code">
+<pre>
+<font color="#0000ff">package </font><font color="#000000">com.r4r;</font>
+<font color="#0000ff">import </font><font color="#000000">org.springframework.context.ApplicationContext;  </font>
+<font color="#0000ff">import </font><font color="#000000">org.springframework.context.support.ClassPathXmlApplicationContext;  </font>
+
+<font color="#0000ff">public class </font><font color="#000000">Test {  </font>
+    <font color="#0000ff">public static int </font><font color="#000000">getSq(</font><font color="#0000ff">int </font><font color="#000000">number){  </font>
+        <font color="#000000">ApplicationContext context = </font>
+			<font color="#0000ff">new </font><font color="#000000">ClassPathXmlApplicationContext(</font><font color="#ff00ff">&quot;beans.xml&quot;</font><font color="#000000">);  </font>
+        <font color="#000000">Square square = (Square)context.getBean(</font><font color="#ff00ff">&quot;squareBean&quot;</font><font color="#000000">);  </font>
+        <font color="#0000ff">return </font><font color="#000000">square.sq(number);  </font>
+    <font color="#000000">}  </font>
+<font color="#000000">}  </font>
+</pre>
+</div>
+<p><i>Step9.</i> Following is the content of Jsp file index.jsp. </p>
+<div class="code">
+<pre>
+<font color="#000000">&lt;%@ page language=</font><font color="#ff00ff">&quot;java&quot; </font><font color="#000000">contentType=</font><font color="#ff00ff">&quot;text/html; charset=ISO-8859-1&quot;</font>
+    <font color="#000000">pageEncoding=</font><font color="#ff00ff">&quot;ISO-8859-1&quot;</font><font color="#000000">%&gt;</font>
+<font color="#000000">&lt;!DOCTYPE html PUBLIC </font><font color="#ff00ff">&quot;-//W3C//DTD HTML 4.01 Transitional//EN&quot; </font>
+<font color="#ff00ff">&quot;http://www.w3.org/TR/html4/loose.dtd&quot;</font><font color="#000000">&gt;</font>
+<font color="#000000">&lt;html&gt;</font>
+<font color="#000000">&lt;head&gt;</font>
+<font color="#000000">&lt;meta http-equiv=</font><font color="#ff00ff">&quot;Content-Type&quot; </font><font color="#000000">content=</font><font color="#ff00ff">&quot;text/html; charset=ISO-8859-1&quot;</font><font color="#000000">&gt;</font>
+<font color="#000000">&lt;title&gt;Square of the </font><font color="#ff0000">Number</font><font color="#000000">&lt;/title&gt;</font>
+<font color="#000000">&lt;/head&gt;</font>
+<font color="#000000">&lt;body&gt;</font>
+<font color="#000000">&lt;form action=</font><font color="#ff00ff">&quot;success.jsp&quot;</font><font color="#000000">&gt;  </font>
+<font color="#000000">Enter </font><font color="#ff0000">Number</font><font color="#000000">: &lt;input type=</font><font color="#ff00ff">&quot;text&quot; </font><font color="#000000">name=</font><font color="#ff00ff">&quot;number&quot;</font><font color="#000000">/&gt;  </font>
+<font color="#000000">&lt;input type=</font><font color="#ff00ff">&quot;submit&quot; </font><font color="#000000">value=</font><font color="#ff00ff">&quot;Square&quot; </font><font color="#000000">/&gt;  </font>
+<font color="#000000">&lt;/form&gt; </font>
+<font color="#000000">&lt;/body&gt;</font>
+<font color="#000000">&lt;/html&gt;</font>
+</pre>
+</div>
+<p><i>Step10.</i> Following is the content of Jsp file success.jsp. </p>
+<div class="code">
+<pre>
+<font color="#000000">&lt;%@ page language=</font><font color="#ff00ff">&quot;java&quot; </font><font color="#000000">contentType=</font><font color="#ff00ff">&quot;text/html; charset=ISO-8859-1&quot;</font>
+    <font color="#000000">pageEncoding=</font><font color="#ff00ff">&quot;ISO-8859-1&quot;</font><font color="#000000">%&gt;</font>
+<font color="#000000">&lt;!DOCTYPE html PUBLIC </font><font color="#ff00ff">&quot;-//W3C//DTD HTML 4.01 Transitional//EN&quot; </font>
+<font color="#ff00ff">&quot;http://www.w3.org/TR/html4/loose.dtd&quot;</font><font color="#000000">&gt;</font>
+<font color="#000000">&lt;html&gt;</font>
+<font color="#000000">&lt;head&gt;</font>
+<font color="#000000">&lt;meta http-equiv=</font><font color="#ff00ff">&quot;Content-Type&quot; </font><font color="#000000">content=</font><font color="#ff00ff">&quot;text/html; charset=ISO-8859-1&quot;</font><font color="#000000">&gt;</font>
+<font color="#000000">&lt;title&gt;Show the Square of </font><font color="#ff0000">Number</font><font color="#000000">&lt;/title&gt;</font>
+<font color="#000000">&lt;/head&gt;</font>
+<font color="#000000">&lt;body&gt;</font>
+<font color="#000000">&lt;jsp:include page=</font><font color="#ff00ff">&quot;index.jsp&quot;</font><font color="#000000">&gt;&lt;/jsp:include&gt;  </font>
+<font color="#000000">&lt;hr/&gt;  </font>
+<font color="#000000">&lt;%@</font><font color="#0000ff">page import</font><font color="#000000">=</font><font color="#ff00ff">&quot;com.r4r.Test&quot;</font><font color="#000000">%&gt;  </font>
+  <font color="#000000">&lt;%  </font>
+<font color="#0000ff">int </font><font color="#000000">number=</font><font color="#ff0000">Integer</font><font color="#000000">.parseInt(request.getParameter(</font><font color="#ff00ff">&quot;number&quot;</font><font color="#000000">));  </font>
+<font color="#000000">out.print(</font><font color="#ff00ff">&quot;Square of &quot;</font><font color="#000000">+number+</font><font color="#ff00ff">&quot; is: &quot;</font><font color="#000000">+Test.getSq(number));  </font>
+<font color="#000000">%&gt;  </font>
+<font color="#000000">&lt;/body&gt;</font>
+<font color="#000000">&lt;/html&gt;</font>
+</pre>
+</div>
+<p>Now run the Application you see the following output:</p>
+<div class="output">
+<div class="image">
+<img src="../images/springremoting_with_httpinvoker_output.png">
+</div>
+</div>
+<p>And this is the final output.</p>
+<div class="output">
+<div class="image">
+<img src="../images/springremoting_with_httpinvoker_output2.png">
+</div>
+</div>
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="example_of_spring_and_rmi_integration.shtml" title="example_of_spring_and_rmi_integration">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="example_of_spring_and_hessian.shtml" title="example_of_spring_and_hessian">Next</a></td>
+  </tr> 
+</table>
+
+		</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->

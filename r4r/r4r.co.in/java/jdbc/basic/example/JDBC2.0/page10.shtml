@@ -1,0 +1,136 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD>
+<meta http-equiv="Content-Language" content="en-us">
+<TITLE>Show in a Message Box using Validation Summary</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name="description" CONTENT="Show in a Message Box using Validation Summary" >
+<meta name="keywords" CONTENT="Show in a Message Box using Validation Summary">
+
+<!-- header start-->		
+
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>JDBC</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a><img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+			<a href="/java/">Java </a>
+              <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/java/jdbc">JDBC</a>
+			  </div>	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/jdbc/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	  
+
+                        	<!-- header End-->	
+
+<div class ="heading">JDBC Using PreparedStatement example  Insert a record</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="page9.shtml" title="JDBC Using PreparedStatement Example-Create a table">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+   <td style="width:33%; text-align:right;"><a href="page11.shtml" title="JDBC Using PreparedStatement Example-Update a Record">Next</a></td>
+  </tr> 
+</table>
+
+<div class="code">
+<pre>
+<font color="#008000">/* This program shows you how to insert the data in </font>
+<font color="#008000">the database table using JDBC PreparedStatement.*/</font>
+
+<font color="#0000ff">package </font><font color="#000000">r4r;</font>
+<font color="#0000ff">import </font><font color="#000000">java.sql.*;</font>
+<font color="#0000ff">import </font><font color="#000000">java.util.</font><font color="#ff0000">Scanner</font><font color="#000000">;</font>
+<font color="#0000ff">public class </font><font color="#000000">InserData </font>
+<font color="#000000">{</font>
+<font color="#0000ff">public static void </font><font color="#000000">main(</font><font color="#ff0000">String</font><font color="#000000">[] args) </font>
+<font color="#000000">{</font>
+<font color="#0000ff">try</font>
+<font color="#000000">{</font>
+<font color="#ff0000">Scanner </font><font color="#000000">s=</font><font color="#0000ff">new </font><font color="#ff0000">Scanner</font><font color="#000000">(</font><font color="#ff0000">System</font><font color="#000000">.in);</font>
+<font color="#ff0000">System</font><font color="#000000">.out.println(</font><font color="#ff00ff">&quot;Enter your name:-&quot;</font><font color="#000000">);</font>
+<font color="#ff0000">String </font><font color="#000000">s1=s.nextLine();</font>
+<font color="#ff0000">System</font><font color="#000000">.out.println(</font><font color="#ff00ff">&quot;Enter the id:-&quot;</font><font color="#000000">);</font>
+<font color="#0000ff">int </font><font color="#000000">i=s.nextInt();</font>
+<font color="#000000">s.nextLine();</font>
+<font color="#ff0000">System</font><font color="#000000">.out.println(</font><font color="#ff00ff">&quot;Enter the city:-&quot;</font><font color="#000000">);</font>
+<font color="#ff0000">String </font><font color="#000000">c=s.nextLine();</font>
+<font color="#ff0000">System</font><font color="#000000">.out.println(</font><font color="#ff00ff">&quot;Enter sex:-&quot;</font><font color="#000000">);</font>
+<font color="#ff0000">String </font><font color="#000000">se=s.nextLine();</font>
+<font color="#ff0000">Class</font><font color="#000000">.forName(</font><font color="#ff00ff">&quot;oracle.jdbc.driver.OracleDriver&quot;</font><font color="#000000">);</font>
+<font color="#ff0000">Connection </font><font color="#000000">con=</font><font color="#ff0000">DriverManager</font><font color="#000000">.getConnection</font>
+<font color="#000000">(</font><font color="#ff00ff">&quot;jdbc:oracle:thin:@localhost:1521:xe&quot;</font><font color="#000000">,</font><font color="#ff00ff">&quot;system&quot;</font><font color="#000000">,</font><font color="#ff00ff">&quot;oracle&quot;</font><font color="#000000">);</font>
+<font color="#ff0000">PreparedStatement </font><font color="#000000">stmt=con.prepareStatement(</font><font color="#ff00ff">&quot;insert</font>
+<font color="#000000">into user5 values(?,?,?,?)</font><font color="#ff00ff">&quot;);</font>
+<font color="#000000">stmt.setString(</font><font color="#800080">1</font><font color="#000000">, s1);</font>
+<font color="#000000">stmt.setInt(</font><font color="#800080">2</font><font color="#000000">, i);</font>
+<font color="#000000">stmt.setString(</font><font color="#800080">3</font><font color="#000000">, c);</font>
+<font color="#000000">stmt.setString(</font><font color="#800080">4</font><font color="#000000">, se);</font>
+<font color="#000000">stmt.executeQuery();</font>
+<font color="#ff0000">System</font><font color="#000000">.out.println(</font><font color="#ff00ff">&quot;successfully inserted&quot;</font><font color="#000000">);</font>
+<font color="#000000">con.close();</font>
+<font color="#000000">}</font>
+<font color="#0000ff">catch</font><font color="#000000">(</font><font color="#ff0000">Exception </font><font color="#000000">e)</font>
+<font color="#000000">{</font>
+<font color="#ff0000">System</font><font color="#000000">.out.println(e);</font>
+<font color="#000000">}</font>
+<font color="#000000">}</font>
+<font color="#000000">}</font>
+
+</pre>
+</div>
+
+<p><h3>output:</h3></p>
+<div class="output">
+<pre>
+Enter your name:-
+tarun
+Enter the id:-
+12
+Enter the city:-
+Goa
+Enter sex:-
+m
+successfully inserted
+</pre>
+</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="page9.shtml" title="JDBC Using PreparedStatement Example-Create a table">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+   <td style="width:33%; text-align:right;"><a href="page11.shtml" title="JDBC Using PreparedStatement Example-Update a Record">Next</a></td>
+  </tr> 
+</table>
+
+                        <!--Footer  -->
+</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->

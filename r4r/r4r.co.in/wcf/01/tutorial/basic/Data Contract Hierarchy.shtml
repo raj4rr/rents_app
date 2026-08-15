@@ -1,0 +1,245 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>Data Contract Hierarchy,Known Types,Service Known Types,Multiple Known Types,Configuring Known Types,Object and Interfaces</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="Data Contract Hierarchy,Known Types,Service Known Types,Multiple Known Types,Configuring Known Types,Object and Interfaces" >
+<meta name="keywords" CONTENT="Data Contract Hierarchy,Known Types,Service Known Types,Multiple Known Types,Configuring Known Types,Object and Interfaces">
+
+<!--Header start-->
+
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>WCF</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a><img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+			<a href="/wcf">WCF with C# </a>
+              <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/wcf/01/tutorial/basic/">WCF Tutorials</a></div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/wcf/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	  
+
+<!-- Header End-->
+<div class="heading">Data Contract Hierarchy</div>
+
+  <table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="First%20WCF%20Service-2nd%20part.shtml" title="First WCF Service-2nd part
+">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="Data%20Contract%20Equivalence.shtml" title="Data Contract Equivalence">Next</a></td>
+  </tr>
+</table>
+<p>Data contract class canbe the subclass of another 
+data contract class. Since the <font class="point_out">DataContract</font>attribute is not inheritable so WCF 
+requires that every level in the class hierarchy explicitly opt in for a given 
+data contract.</p>
+<div class="code">
+<pre>
+<font color="#000000">[DataContract]</font>
+<font color="#0000ff">class </font><font color="#000000">Contact</font>
+<font color="#000000">{</font>
+   <font color="#000000">[DataMember]</font>
+   <font color="#0000ff">public string </font><font color="#000000">FtName;</font>
+   <font color="#000000">[DataMember]</font>
+   <font color="#0000ff">public string </font><font color="#000000">LName;</font>
+<font color="#000000">}</font>
+<font color="#000000">[DataContract]</font>
+<font color="#0000ff">class </font><font color="#000000">Customer : Contact</font>
+<font color="#000000">{</font>
+   <font color="#000000">[DataMember]</font>
+   <font color="#0000ff">public int </font><font color="#000000">CNumber;</font>
+<font color="#000000">}</font>
+</pre>
+</div>
+
+<ol>
+<li><h3>Known Types</h3>
+<p>The <font class="point_out">KnownType</font> attribute allows you to designate 
+acceptable subclasses for the data contract:</p>
+<div class="code">
+<pre>
+<font color="#000000">[DataContract]</font>
+<font color="#000000">[KnownType(</font><font color="#0000ff">typeof</font><font color="#000000">(Customer))]</font>
+<font color="#0000ff">class </font><font color="#000000">Contact</font>
+<font color="#000000">{...}</font>
+<font color="#000000">[DataContract]</font>
+<font color="#0000ff">class </font><font color="#000000">Customer : Contact</font>
+<font color="#000000">{...}</font>
+</pre>
+</div>
+<p>The KnownType attribute includes the subclass in the metadata so that the client will 
+have its own definition of the subclass and will be able to pass the subclass 
+instead of the base class. Using the base class, 
+all contracts and operations are affected by The KnownType attribute , across all services and 
+endpoints on the host side and allowing it to accept subclasses instead of 
+base classes.</p>
+<p> If the client also applies the KnownType attribute on 
+its copy of the base class, it can in turn receive the known subclass back from 
+the service.</p></li>
+
+<li><h3>Service Known Types</h3>
+
+<p>WCF also provides the <font class="point_out">ServiceKnownTypeAttribute</font>, defined as:</p>
+<div class="code">
+<pre>
+<font color="#000000">[AttributeUsage(AttributeTargets.Interface|</font>
+<font color="#000000">AttributeTargets.Method|</font>
+<font color="#000000">AttributeTargets.Class,</font>
+<font color="#000000">AllowMultiple = </font><font color="#0000ff">true</font><font color="#000000">)]</font>
+<font color="#0000ff">public sealed class </font><font color="#808000">ServiceKnownTypeAttribute </font><font color="#000000">: </font><font color="#808000">Attribute</font>
+<font color="#000000">{</font>
+<font color="#0000ff">public </font><font color="#808000">ServiceKnownTypeAttribute</font><font color="#000000">(</font><font color="#808000">Type </font><font color="#000000">type);</font>
+<font color="#008000">//More members</font>
+<font color="#000000">}</font>
+</pre>
+</div>
+
+<p>Instead of using the KnownType 
+attribute on the base data contract we can apply the ServiceKnownType 
+attribute on a specific operation on the service side. Then, only that operation 
+(across all supporting services) can accept the known subclass.</p>
+<div class="code">
+<pre>
+<font color="#000000">[DataContract]</font>
+<font color="#0000ff">class </font><font color="#000000">Contact</font>
+<font color="#000000">{...}</font>
+<font color="#000000">[DataContract]</font>
+<font color="#0000ff">class </font><font color="#000000">Customer : Contact</font>
+<font color="#000000">{...}</font>
+<font color="#000000">[ServiceContract]</font>
+<font color="#0000ff">interface </font><font color="#000000">IContactManager</font>
+<font color="#000000">{</font>
+   <font color="#000000">[OperationContract]</font>
+   <font color="#000000">[ServiceKnownType(</font><font color="#0000ff">typeof</font><font color="#000000">(Customer))]</font>
+   <font color="#0000ff">void </font><font color="#000000">AddContact(Contact contact);</font>
+   <font color="#000000">[OperationContract]</font>
+   <font color="#000000">Contact[] GetContacts();</font>
+<font color="#000000">}</font>
+</pre>
+</div></li>
+
+<li><h3>Multiple Known Types</h3>
+
+<p>Tthe KnownType and the ServiceKnownType attributes both&nbsp; can be applied multiple times to inform WCF about as many 
+known types as required:</p>
+<div class="code">
+<pre>
+<font color="#000000">[DataContract]</font>
+<font color="#0000ff">class </font><font color="#000000">Contact</font>
+<font color="#000000">{...}</font>
+<font color="#000000">[DataContract]</font>
+<font color="#0000ff">class </font><font color="#000000">Customer : Contact</font>
+<font color="#000000">{...}</font>
+<font color="#000000">[DataContract]</font>
+<font color="#0000ff">class </font><font color="#000000">Person : Contact</font>
+<font color="#000000">{...}</font>
+<font color="#000000">[ServiceContract]</font>
+<font color="#000000">[ServiceKnownType(</font><font color="#0000ff">typeof</font><font color="#000000">(Customer))]</font>
+<font color="#000000">[ServiceKnownType(</font><font color="#0000ff">typeof</font><font color="#000000">(Person))]</font>
+<font color="#0000ff">interface </font><font color="#000000">IContactManager</font>
+<font color="#000000">{...}</font>
+</pre>
+</div></li>
+<li><h3>Configuring Known Types</h3>
+<p>The main disadvantage of the known 
+types attributes is that they require the service or the client to know in 
+advance about all possible subclasses the other party may want to use. Adding a 
+new subclass necessitates changing the code, recompiling, and redeploying. To 
+alleviate this, WCF lets you configure the known types in the service's or 
+client's config file.</p>
+<div class="code">
+<pre>
+<font color="#0000ff">&lt;</font><font color="#808000">system</font><font color="#000000">.</font><font color="#800080">runtime</font><font color="#000000">.</font><font color="#800080">serialization</font><font color="#0000ff">&gt;</font>
+<font color="#000000">   </font><font color="#0000ff">&lt;</font><font color="#808000">dataContractSerializer</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">declaredTypes</font><font color="#0000ff">&gt;</font>
+<font color="#000000">   </font><font color="#0000ff">&lt;</font><font color="#808000">add </font><font color="#ff0000">type </font><font color="#0000ff">= </font><font color="#ff00ff">&quot;Contact,Host,Version=1.0.0.0,Culture=neutral,</font>
+<font color="#ff00ff">  PublicKeyToken=null&quot;</font><font color="#0000ff">&gt;</font>
+<font color="#000000"> </font><font color="#0000ff">&lt;</font><font color="#808000">knownType </font><font color="#ff0000">type </font><font color="#0000ff">= </font><font color="#ff00ff">&quot;Customer,MyClassLibrary,Version=1.0.0.0,</font>
+<font color="#ff00ff">  Culture=neutral,PublicKeyToken=null&quot;</font><font color="#0000ff">/&gt;</font>
+<font color="#000000">   </font><font color="#0000ff">&lt;/</font><font color="#808000">add</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">declaredTypes</font><font color="#0000ff">&gt;</font>
+<font color="#000000">   </font><font color="#0000ff">&lt;/</font><font color="#808000">dataContractSerializer</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">system</font><font color="#000000">.</font><font color="#800080">runtime</font><font color="#000000">.</font><font color="#800080">serialization</font><font color="#0000ff">&gt;</font>
+</pre>
+</div></li>
+
+<li><h3>Object and Interfaces</h3>
+<p>The base type of a data contract 
+class or a struct can be an interface:</p>
+
+<div class="code">
+<pre>
+<font color="#000000">Interface IContact</font>
+<font color="#000000">{</font>
+   <font color="#0000ff">string </font><font color="#000000">FirstName</font>
+   <font color="#000000">{get;set;}</font>
+   <font color="#0000ff">string </font><font color="#000000">LastName</font>
+   <font color="#000000">{get;set;}</font>
+<font color="#000000">}</font>
+<font color="#000000">[DataContract]</font>
+<font color="#0000ff">class </font><font color="#000000">Contact : IContact</font>
+<font color="#000000">{...}</font>
+</pre>
+</div>
+<p>You can use such a base interface 
+in your service contract or as a data member in a data contract if you use the 
+ServiceKnownType attribute to designate the actual data type:</p>
+
+<div class="code">
+<pre>
+<font color="#000000">[ServiceContract]</font>
+<font color="#000000">[ServiceKnownType(</font><font color="#0000ff">typeof</font><font color="#000000">(Contact))]</font>
+<font color="#0000ff">interface </font><font color="#000000">IContactManager</font>
+<font color="#000000">{</font>
+   <font color="#000000">[OperationContract]</font>
+   <font color="#0000ff">void </font><font color="#000000">AddContact(IContact contact);</font>
+
+   <font color="#000000">[OperationContract]</font>
+   <font color="#000000">IContact[] GetContacts();</font>
+<font color="#000000">}</font>
+</pre>
+</div>
+</li>
+</ol>
+
+ <table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="First%20WCF%20Service-2nd%20part.shtml" title="First WCF Service-2nd part
+">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="Data%20Contract%20Equivalence.shtml" title="Data Contract Equivalence">Next</a></td>
+  </tr>
+</table>
+
+<!--Footer  -->
+</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/dotnet/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>

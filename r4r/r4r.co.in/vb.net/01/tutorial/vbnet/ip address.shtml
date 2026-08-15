@@ -1,0 +1,116 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>How to Access IP Address of LAN Connected Computers</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="How to Access IP Address of LAN Connected Computers" >
+<meta name="keywords" CONTENT="How to Access IP Address of LAN Connected Computers">
+<!-- header start-->	
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>VB.NET Technology</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+            <img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+            <a href="/vb.net/">VB.net</a>
+              <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/vb.net/01/tutorial/vbnet/">VB.NET Tutorial</a>
+
+              </div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/vb.net/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	 
+
+<div class="heading">How to Access IP Address of LAN Connected Computers</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="dll.shtml" title="What is DLL">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="ipaddress.shtml" title="How to get IP Address of Websites in VB.Net application">Next</a></td>
+  </tr> 
+</table>
+<!-- header End-->	
+<p>
+In VB.Net with the help of Namespace <b>System.Net.Sockets</b> and <b>System.Net</b> we can build an application through which we can find ID address of the machine connected with LAN. 
+</p>
+
+<h3>Program code is given below-
+</h3>
+
+<p><b>System.Net.IPHostEntry</b> - Provides a container class for internet host address information .</p>
+<p><b>Dns.Resolve("strhostname")</b>- Resolve a DNS hostname or IP Address to an System.Net.IPHostEntry instance.</p>
+<p><b>Console.ReadKey()</b>- Obtains the next character or function key pressed by the user. The pressed key is optimally displayed in the console window.</p>
+
+<div class="code">
+<pre>
+<font face="Arial"><font color="#000000">Imports System.Net</font>
+<font color="#000000">Imports System.Net.Sockets</font>
+<font color="#000000">Module Module1</font>
+    <font color="#0000ff">Sub </font><font color="#000000">Main()</font>
+        <font color="#0000ff">Dim </font><font color="#000000">strHost As </font><font color="#ff0000">String</font>
+        <font color="#000000">Console.Write(</font><font color="#ff00ff">&quot;Input host : &quot;</font><font color="#000000">)</font>
+        <font color="#000000">strHost = Console.ReadLine()</font>
+        <font color="#0000ff">Dim </font><font color="#000000">IPHost As IPHostEntry = Dns.Resolve(strHost)</font>
+        <font color="#000000">Console.WriteLine(IPHost.HostName)</font>
+        <font color="#0000ff">Dim </font><font color="#000000">address As IPAddress() = IPHost.AddressList</font>
+        <font color="#000000">Console.WriteLine(</font><font color="#ff00ff">&quot;List IP {0} :&quot;</font><font color="#000000">, IPHost.HostName)</font>
+        <font color="#0000ff">For </font><font color="#000000">i As Integer = </font><font color="#800080">0 </font><font color="#0000ff">To </font><font color="#000000">address.Length - </font><font color="#800080">1</font>
+            <font color="#008000">' output list of IP address</font>
+            <font color="#000000">Console.WriteLine(address(i))</font>
+        <font color="#0000ff">Next</font>
+        <font color="#000000">Console.ReadKey()</font>
+    <font color="#0000ff">End Sub</font>
+<font color="#0000ff">End </font><font color="#000000">Module</font></font>
+</pre>
+</div>
+
+<div class="image">
+<img src=" ipaddress.PNG">
+</div>
+
+<p><b>IP Address of Machine-02</b></p>
+<div class="image">
+<img src="ipaddress1.PNG ">
+</div>
+<p><b>IP Address of Machine-01</b></p>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="dll.shtml" title="What is DLL">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="ipaddress.shtml" title="How to get IP Address of Websites in VB.Net application">Next</a></td>
+  </tr> 
+</table>
+<!-- Footer Start-->		
+
+		</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/dotnet/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->

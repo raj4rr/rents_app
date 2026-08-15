@@ -1,0 +1,644 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD>
+<meta http-equiv="Content-Language" content="en-us">
+<TITLE>Create an application for accessing DataCompressionFilter in Servlet</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name="description" CONTENT="Create an application for access DataCompressionFilter in servlett" >
+<meta name="keywords" CONTENT="Create an application for access DataCompressionFilter in servlet, DataCompressionFilter, DataCompressionFilter example, access DataCompressionFilter, access DataCompressionFilter in servlet,  use DataCompressionFilter , DataCompressionFilter examples,  Servlet Filter, Servlet Filters, Servlet Filters Examples, Writing Servlet Filters, Filter Request and Response Interface filter, Filter, doFilter, FilterChain, Filters Tutorials, Learning, Beginners">
+
+<!-- header start-->	
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+   	  <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>Java Servlet Programing Laungage</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a><img src="/images/left_menu_bullet.gif"/> <a href="/java/servlet/../">Java</a><img src="/images/left_menu_bullet.gif"/><a href="/java/servlet/">Servlet</a><img src="/images/left_menu_bullet.gif"/><a href="index.shtml">Servlet Filter Examples</a>
+       </div>
+
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/servlet/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	 
+<!-- header End-->
+
+<div class="heading">Create an application to accessing DataCompressionFilter in Servlet</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="ImageConversionFilter.shtml" title="Create an application for accessing ImageConversionFilter in Servlet">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="EncryptionFilter.shtml" title="Create an application for accessing EncryptionFilter in servlet">Next</a></td>
+  </tr> 
+</table>
+<p>In this servlet application, DataCompression Filter is used for compressing 
+requested data through servlet filter.Steps involved in create filter class and mapping into web.xml file.
+<a href="FilterServlet.shtml">check here</a>.</p>
+
+			<h3>Application directory structure</h3>
+			<div class="image">
+			<img src="Servlet%20Filter%20image/DataCompressFilter.gif">
+			</div>
+
+			<h3>Web.xml</h3>
+			<div class="code">
+			<pre>
+<font color="#0000ff">&lt;?xml </font><font color="#ff0000">version</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;1.0&quot; </font><font color="#ff0000">encoding</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;UTF-8&quot;</font><font color="#800080">?</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">web-app </font><font color="#ff0000">version</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;3.0&quot;</font>
+  <font color="#ff0000">xmlns</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;http://java.sun.com/xml/ns/javaee&quot;</font>
+  <font color="#800080">xmlns:xsi</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</font>
+ <font color="#800080">xsi:schemaLocation</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;http://java.sun.com/xml/ns/javaee</font>
+<font color="#ff00ff">  http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd&quot;</font><font color="#0000ff">&gt;</font>
+<font color="#000000"> </font><font color="#0000ff">&lt;</font><font color="#808000">filter</font><font color="#0000ff">&gt;</font>
+<font color="#000000">  </font><font color="#0000ff">&lt;</font><font color="#808000">filter-name</font><font color="#0000ff">&gt;</font><font color="#000000">DataCompressFilter</font><font color="#0000ff">&lt;/</font><font color="#808000">filter-name</font><font color="#0000ff">&gt;</font>
+<font color="#000000">  </font><font color="#0000ff">&lt;</font><font color="#808000">filter-class</font><font color="#0000ff">&gt;</font><font color="#000000">r4r.Filter.DataCompressFilter</font><font color="#0000ff">&lt;/</font><font color="#808000">filter-class</font><font color="#0000ff">&gt;</font>
+<font color="#000000"> </font><font color="#0000ff">&lt;/</font><font color="#808000">filter</font><font color="#0000ff">&gt;</font>
+<font color="#000000"> </font><font color="#0000ff">&lt;</font><font color="#808000">filter-mapping</font><font color="#0000ff">&gt;</font>
+<font color="#000000">  </font><font color="#0000ff">&lt;</font><font color="#808000">filter-name</font><font color="#0000ff">&gt;</font><font color="#000000">DataCompressFilter</font><font color="#0000ff">&lt;/</font><font color="#808000">filter-name</font><font color="#0000ff">&gt;</font>
+<font color="#000000">  </font><font color="#0000ff">&lt;</font><font color="#808000">url-pattern</font><font color="#0000ff">&gt;</font><font color="#000000">/*</font><font color="#0000ff">&lt;/</font><font color="#808000">url-pattern</font><font color="#0000ff">&gt;</font>
+<font color="#000000"> </font><font color="#0000ff">&lt;/</font><font color="#808000">filter-mapping</font><font color="#0000ff">&gt;</font>
+<font color="#000000"> </font><font color="#0000ff">&lt;</font><font color="#808000">servlet</font><font color="#0000ff">&gt;</font>
+<font color="#000000">  </font><font color="#0000ff">&lt;</font><font color="#808000">servlet-name</font><font color="#0000ff">&gt;</font><font color="#000000">DataCompressTest</font><font color="#0000ff">&lt;/</font><font color="#808000">servlet-name</font><font color="#0000ff">&gt;</font>
+<font color="#000000">  </font><font color="#0000ff">&lt;</font><font color="#808000">servlet-class</font><font color="#0000ff">&gt;</font><font color="#000000">r4r.Filter.DataCompressTest</font><font color="#0000ff">&lt;/</font><font color="#808000">servlet-class</font><font color="#0000ff">&gt;</font>
+<font color="#000000"> </font><font color="#0000ff">&lt;/</font><font color="#808000">servlet</font><font color="#0000ff">&gt;</font>
+<font color="#000000"> </font><font color="#0000ff">&lt;</font><font color="#808000">servlet-mapping</font><font color="#0000ff">&gt;</font>
+<font color="#000000">  </font><font color="#0000ff">&lt;</font><font color="#808000">servlet-name</font><font color="#0000ff">&gt;</font><font color="#000000">DataCompressTest</font><font color="#0000ff">&lt;/</font><font color="#808000">servlet-name</font><font color="#0000ff">&gt;</font>
+<font color="#000000">  </font><font color="#0000ff">&lt;</font><font color="#808000">url-pattern</font><font color="#0000ff">&gt;</font><font color="#000000">/DataCompressTest</font><font color="#0000ff">&lt;/</font><font color="#808000">url-pattern</font><font color="#0000ff">&gt;</font>
+<font color="#000000"> </font><font color="#0000ff">&lt;/</font><font color="#808000">servlet-mapping</font><font color="#0000ff">&gt;</font>
+<font color="#000000"> </font><font color="#0000ff">&lt;</font><font color="#808000">session-config</font><font color="#0000ff">&gt;</font>
+<font color="#000000">  </font><font color="#0000ff">&lt;</font><font color="#808000">session-timeout</font><font color="#0000ff">&gt;</font>
+<font color="#000000">30</font>
+<font color="#000000">  </font><font color="#0000ff">&lt;/</font><font color="#808000">session-timeout</font><font color="#0000ff">&gt;</font>
+<font color="#000000"> </font><font color="#0000ff">&lt;/</font><font color="#808000">session-config</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">web-app</font><font color="#0000ff">&gt;</font>
+</pre>
+</div>
+
+			<h3>Index.jsp</h3>
+			<div class="code">
+			<pre>
+<font color="#800000">&lt;%-- </font>
+ <font color="#800000">Document: index.jsp</font>
+<font color="#800000">--%&gt;</font>
+<font color="#800000">&lt;%@page </font><font color="#0000ff">import</font><font color="#800000">=</font><font color="#ff00ff">&quot;java.io.InputStream, java.io.ByteArrayOutputStream&quot;</font><font color="#800000">%&gt;</font>
+<font color="#800000">&lt;%@page </font><font color="#0000ff">import</font><font color="#800000">=</font><font color="#ff00ff">&quot;java.net.URL, java.net.HttpURLConnection&quot;</font><font color="#800000">%&gt;</font>
+<font color="#800000">&lt;%@page contentType=</font><font color="#ff00ff">&quot;text/html&quot; </font><font color="#800000">pageEncoding=</font><font color="#ff00ff">&quot;UTF-8&quot;</font><font color="#800000">%&gt;</font>
+<font color="#0000ff">&lt;!DOCTYPE </font><font color="#800080">html</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;html&gt;</font>
+<font color="#000000"> </font><font color="#0000ff">&lt;head&gt;</font>
+<font color="#000000">  </font><font color="#0000ff">&lt;meta </font><font color="#ff0000">http-equiv</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;Content-Type&quot; </font>
+         <font color="#ff0000">content</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;text/html; charset=UTF-8&quot;</font><font color="#0000ff">&gt;</font>
+<font color="#000000">  </font><font color="#0000ff">&lt;title&gt;</font><font color="#000000">r4r.co.in-Index</font><font color="#0000ff">&lt;/title&gt;</font>
+<font color="#000000"> </font><font color="#0000ff">&lt;/head&gt;</font>
+<font color="#000000"> </font><font color="#0000ff">&lt;body&gt;</font>
+<font color="#000000">  </font><font color="#0000ff">&lt;h1&gt;</font><font color="#000000">Data Compress Filter!</font><font color="#0000ff">&lt;/h1&gt;</font>
+<font color="#000000">  </font><font color="#0000ff">&lt;p&gt;</font><font color="#000000">Test the Data Compression is supported, by visiting</font>
+<font color="#000000">    </font><font color="#0000ff">&lt;a </font><font color="#ff0000">href</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;DataCompressTest&quot;</font><font color="#0000ff">&gt;</font><font color="#000000">DataCompressTest</font><font color="#0000ff">&lt;/a&gt;</font><font color="#000000"> servlet</font><font color="#0000ff">&lt;/p&gt;</font>
+<font color="#000000">  </font><font color="#0000ff">&lt;p&gt;</font>
+<font color="#000000">  </font><font color="#0000ff">&lt;form </font><font color="#ff0000">method</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;POST&quot;</font><font color="#0000ff">&gt;</font>
+<font color="#000000">Enter WebPage URL: </font><font color="#0000ff">&lt;input </font><font color="#ff0000">type</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;text&quot; </font>
+             <font color="#ff0000">name</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;webURL&quot; </font><font color="#ff0000">value</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;&quot; </font><font color="#ff0000">size</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;30&quot; </font><font color="#0000ff">/&gt;&lt;br/&gt;</font>
+<font color="#0000ff">&lt;input </font><font color="#ff0000">type</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;submit&quot; </font><font color="#ff0000">value</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;Process URL&quot; </font><font color="#0000ff">/&gt;</font>
+<font color="#0000ff">&lt;input </font><font color="#ff0000">type</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;reset&quot; </font><font color="#ff0000">value</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;Reset URL&quot; </font><font color="#0000ff">/&gt;</font>
+<font color="#000000">  </font><font color="#0000ff">&lt;/form&gt;</font>
+
+<font color="#000000">  </font><font color="#800000">&lt;%</font>
+<font color="#ff0000">String </font><font color="#800000">url = request.getParameter(</font><font color="#ff00ff">&quot;webURL&quot;</font><font color="#800000">);</font>
+<font color="#0000ff">if </font><font color="#800000">(url != </font><font color="#0000ff">null</font><font color="#800000">) {</font>
+ <font color="#800000">URL webURL = </font><font color="#0000ff">new </font><font color="#800000">URL(</font><font color="#ff00ff">&quot;http://&quot; </font><font color="#800000">+ url);</font>
+ <font color="#800000">HttpURLConnection connection =</font>
+	   <font color="#800000">(HttpURLConnection) webURL.openConnection();</font>
+ <font color="#008000">//set requested property for Communication link</font>
+ <font color="#800000">connection.setRequestProperty</font>
+	     <font color="#800000">(</font><font color="#ff00ff">&quot;User-Agent&quot;</font><font color="#800000">, </font><font color="#ff00ff">&quot;INTERNET(MISE)&quot;</font><font color="#800000">);</font>
+ <font color="#800000">connection.connect(); </font><font color="#008000">//opens a communication link</font>
+ <font color="#ff0000">ByteArrayOutputStream </font><font color="#800000">baos = </font><font color="#0000ff">new </font><font color="#ff0000">ByteArrayOutputStream</font><font color="#800000">();</font>
+ <font color="#ff0000">InputStream </font><font color="#800000">is = webURL.openStream();</font>
+ <font color="#008000">// read data from inputstream and write it to output stream</font>
+ <font color="#0000ff">while </font><font color="#800000">(is.read() &gt; -</font><font color="#800080">1</font><font color="#800000">) {</font>
+  <font color="#800000">baos.write(is.read());</font>
+ <font color="#800000">}</font>
+ <font color="#800000">request.setAttribute(</font><font color="#ff00ff">&quot;webURL&quot;</font><font color="#800000">, webURL);</font>
+ <font color="#800000">request.setAttribute(</font><font color="#ff00ff">&quot;size1&quot;</font><font color="#800000">, </font>
+	    <font color="#0000ff">new </font><font color="#ff0000">Integer</font><font color="#800000">(baos.toByteArray().</font><font color="#0000ff">length</font><font color="#800000">));</font>
+
+ <font color="#800000">HttpURLConnection compressConnection = </font>
+	   <font color="#800000">(HttpURLConnection) webURL.openConnection();</font>
+ <font color="#800000">compressConnection.setRequestProperty</font>
+	  <font color="#800000">(</font><font color="#ff00ff">&quot;Accept-Encoding&quot;</font><font color="#800000">, </font><font color="#ff00ff">&quot;gzip&quot;</font><font color="#800000">);</font>
+ <font color="#800000">compressConnection.addRequestProperty</font>
+	  <font color="#800000">(</font><font color="#ff00ff">&quot;User-Agent&quot;</font><font color="#800000">, </font><font color="#ff00ff">&quot;INTERNET(MISE)&quot;</font><font color="#800000">);</font>
+ <font color="#800000">compressConnection.connect();</font>
+ <font color="#ff0000">ByteArrayOutputStream </font><font color="#800000">compressBaos = </font>
+	 <font color="#0000ff">new </font><font color="#ff0000">ByteArrayOutputStream</font><font color="#800000">();</font>
+ <font color="#ff0000">InputStream </font><font color="#800000">compressIs = compressConnection.getInputStream();</font>
+ <font color="#0000ff">while </font><font color="#800000">(compressIs.read() &gt; -</font><font color="#800080">1</font><font color="#800000">) {</font>
+  <font color="#800000">compressBaos.write(compressIs.read());</font>
+ <font color="#800000">}</font>
+ <font color="#800000">request.setAttribute</font>
+	 <font color="#800000">(</font><font color="#ff00ff">&quot;size2&quot;</font><font color="#800000">, </font><font color="#0000ff">new </font><font color="#ff0000">Integer</font><font color="#800000">(compressBaos.toByteArray().</font><font color="#0000ff">length</font><font color="#800000">));</font>
+<font color="#800000">} </font><font color="#0000ff">else </font><font color="#800000">{</font>
+ <font color="#008000">//user won't allow to leave textfield empty</font>
+<font color="#800000">}</font>
+  <font color="#800000">%&gt;</font>
+
+<font color="#000000">  </font><font color="#008000">&lt;!-- Display Result on same browser --&gt;</font>
+<font color="#000000">  </font><font color="#0000ff">&lt;p&gt;&lt;strong&gt;</font><font color="#000000">${webURL}</font><font color="#0000ff">&lt;/strong&gt;&lt;/p&gt;</font>
+<font color="#000000">  Uncompress URL Size: </font><font color="#0000ff">&lt;strong&gt;</font><font color="#000000"> ${size1} </font><font color="#0000ff">&lt;/strong&gt;</font><font color="#000000"> bytes</font><font color="#0000ff">&lt;br/&gt;</font>
+<font color="#000000">  Compress URL Size: </font><font color="#0000ff">&lt;strong&gt;</font><font color="#000000"> ${size2} </font><font color="#0000ff">&lt;/strong&gt;</font><font color="#000000"> bytes</font><font color="#0000ff">&lt;br/&gt;</font>
+<font color="#000000">  Save Space: </font><font color="#0000ff">&lt;strong&gt;</font><font color="#000000"> ${size1-size2} </font>
+<font color="#000000">  </font><font color="#0000ff">&lt;/strong&gt;</font><font color="#000000"> bytes or </font><font color="#0000ff">&lt;strong&gt;</font><font color="#000000"> ${(1-size2/size1)*100} </font><font color="#0000ff">&lt;/strong&gt;</font><font color="#000000">%</font>
+<font color="#000000"> </font><font color="#0000ff">&lt;/p&gt;</font>
+<font color="#0000ff">&lt;/body&gt;</font>
+<font color="#0000ff">&lt;/html&gt;</font>
+</pre>
+</div>
+
+			<h3>Filter Program</h3>
+			<div class="code">
+			<pre>
+<font color="#008000">/*</font>
+<font color="#008000"> * Save as a DataCompressFilter.java</font>
+<font color="#008000"> */</font>
+<font color="#0000ff">package </font><font color="#000000">r4r.</font><font color="#ff0000">Filter</font><font color="#000000">;</font>
+<font color="#0000ff">import </font><font color="#000000">java.io.</font><font color="#ff0000">IOException</font><font color="#000000">;</font>
+<font color="#0000ff">import </font><font color="#000000">javax.servlet.FilterChain;</font>
+<font color="#0000ff">import </font><font color="#000000">javax.servlet.FilterConfig;</font>
+<font color="#0000ff">import </font><font color="#000000">javax.servlet.ServletException;</font>
+<font color="#0000ff">import </font><font color="#000000">javax.servlet.ServletRequest;</font>
+<font color="#0000ff">import </font><font color="#000000">javax.servlet.ServletResponse;</font>
+<font color="#0000ff">import </font><font color="#000000">javax.servlet.http.HttpServletRequest;</font>
+<font color="#0000ff">import </font><font color="#000000">javax.servlet.http.HttpServletResponse;</font>
+<font color="#008000">/**</font>
+<font color="#008000"> *</font>
+<font color="#008000"> * @author R4R</font>
+<font color="#008000"> */</font>
+<font color="#0000ff">public class </font><font color="#000000">DataCompressFilter </font>
+	  <font color="#0000ff">implements </font><font color="#000000">javax.servlet.</font><font color="#ff0000">Filter </font><font color="#000000">{</font>
+
+ <font color="#0000ff">private static final boolean </font><font color="#000000">debug = </font><font color="#0000ff">true</font><font color="#000000">;</font>
+ <font color="#0000ff">private </font><font color="#000000">FilterConfig filterConfig = </font><font color="#0000ff">null</font><font color="#000000">;</font>
+ <font color="#0000ff">private int </font><font color="#000000">minThreshold = </font><font color="#800080">128</font><font color="#000000">;</font>
+ <font color="#0000ff">protected int </font><font color="#000000">compressThreshold = </font><font color="#800080">0</font><font color="#000000">;</font>
+
+ <font color="#008000">// Constructor</font>
+ <font color="#0000ff">public </font><font color="#000000">DataCompressFilter() {</font>
+ <font color="#000000">}</font>
+
+ <font color="#008000">/**</font>
+<font color="#008000">  * Init method for this filter </font>
+<font color="#008000">  */</font>
+ <font color="#000000">@</font><font color="#0000ff">Override</font>
+ <font color="#0000ff">public void </font><font color="#000000">init(FilterConfig filterConfig) {</font>
+  <font color="#0000ff">this</font><font color="#000000">.filterConfig = filterConfig;</font>
+  <font color="#0000ff">if </font><font color="#000000">(filterConfig != </font><font color="#0000ff">null</font><font color="#000000">) {</font>
+<font color="#0000ff">if </font><font color="#000000">(debug) {</font>
+ <font color="#000000">log(</font><font color="#ff00ff">&quot;DataCompressFilter:Initializing filter&quot;</font><font color="#000000">);</font>
+<font color="#000000">}</font>
+<font color="#ff0000">String </font><font color="#000000">string =</font>
+	<font color="#000000">filterConfig.getInitParameter(</font><font color="#ff00ff">&quot;compressThreshold&quot;</font><font color="#000000">);</font>
+<font color="#0000ff">if </font><font color="#000000">(string != </font><font color="#0000ff">null</font><font color="#000000">) {</font>
+ <font color="#000000">compressThreshold =</font>
+	    <font color="#ff0000">Integer</font><font color="#000000">.parseInt(string); </font><font color="#008000">//type casting</font>
+ <font color="#0000ff">if </font><font color="#000000">(compressThreshold != </font>
+	 <font color="#800080">0 </font><font color="#000000">&amp;&amp; compressThreshold &lt; minThreshold) {</font>
+  <font color="#000000">log(</font><font color="#ff00ff">&quot;compressThreshold either 0 or set to&quot; </font>
+	  <font color="#000000">+ minThreshold + </font><font color="#ff00ff">&quot;, means no data compression&quot;</font><font color="#000000">);</font>
+ <font color="#000000">}</font>
+ <font color="#000000">compressThreshold = minThreshold; </font><font color="#008000">//store value</font>
+<font color="#000000">} </font><font color="#0000ff">else </font><font color="#000000">{</font>
+ <font color="#000000">compressThreshold = </font><font color="#800080">0</font><font color="#000000">;</font>
+<font color="#000000">}</font>
+  <font color="#000000">}</font>
+ <font color="#000000">}</font>
+
+ <font color="#008000">/**</font>
+<font color="#008000">  *</font>
+<font color="#008000">  * @param request The servlet request we are processing</font>
+<font color="#008000">  * @param response The servlet response we are creating</font>
+<font color="#008000">  * @param chain The filter chain we are processing</font>
+<font color="#008000">  */</font>
+ <font color="#000000">@</font><font color="#0000ff">Override</font>
+ <font color="#0000ff">public void </font><font color="#000000">doFilter(ServletRequest request,</font>
+	  <font color="#000000">ServletResponse response, FilterChain chain)</font>
+<font color="#0000ff">throws </font><font color="#ff0000">IOException</font><font color="#000000">, ServletException {</font>
+  <font color="#0000ff">if </font><font color="#000000">(debug) {</font>
+<font color="#000000">log(</font><font color="#ff00ff">&quot;DataCompressFilter:doFilter()&quot;</font><font color="#000000">);</font>
+  <font color="#000000">}</font>
+  <font color="#0000ff">boolean </font><font color="#000000">isCompressedSupport = </font><font color="#0000ff">false</font><font color="#000000">;</font>
+
+  <font color="#0000ff">if </font><font color="#000000">(request </font><font color="#0000ff">instanceof </font><font color="#000000">HttpServletRequest) {</font>
+<font color="#008000">//is data compression support</font>
+<font color="#000000">java.util.</font><font color="#ff0000">Enumeration</font><font color="#000000">&lt;</font><font color="#ff0000">String</font><font color="#000000">&gt; e = </font>
+	<font color="#000000">((HttpServletRequest) request).getHeaders(</font><font color="#ff00ff">&quot;Accept-Encoding&quot;</font><font color="#000000">);</font>
+<font color="#0000ff">while </font><font color="#000000">(e.hasMoreElements()) {</font>
+ <font color="#ff0000">String </font><font color="#000000">string = e.nextElement();</font>
+ <font color="#0000ff">if </font><font color="#000000">(string.indexOf(</font><font color="#ff00ff">&quot;gzip&quot;</font><font color="#000000">) != -</font><font color="#800080">1</font><font color="#000000">) {</font>
+  <font color="#000000">isCompressedSupport = </font><font color="#0000ff">true</font><font color="#000000">;</font>
+  <font color="#000000">log(</font><font color="#ff00ff">&quot;Support Gzip, data compress possible&quot;</font><font color="#000000">);</font>
+ <font color="#000000">} </font><font color="#0000ff">else </font><font color="#000000">{</font>
+  <font color="#000000">isCompressedSupport = </font><font color="#0000ff">false</font><font color="#000000">;</font>
+  <font color="#000000">log(</font><font color="#ff00ff">&quot;Not support Gzip, data compress not possible&quot;</font><font color="#000000">);</font>
+ <font color="#000000">}</font>
+<font color="#000000">}</font>
+  <font color="#000000">}</font>
+  <font color="#0000ff">if </font><font color="#000000">(!isCompressedSupport) {</font>
+<font color="#008000">//send request|response to next phase in chain</font>
+<font color="#000000">chain.doFilter(request, response);</font>
+  <font color="#000000">} </font><font color="#0000ff">else if </font><font color="#000000">(response </font><font color="#0000ff">instanceof </font><font color="#000000">HttpServletResponse) {</font>
+<font color="#008000">//initialize ResponseWrapper class </font>
+<font color="#000000">ResponseWrapper wrappedResponse = </font>
+	<font color="#0000ff">new </font><font color="#000000">ResponseWrapper((HttpServletResponse) response);</font>
+<font color="#000000">wrappedResponse.setCompressThreshold(compressThreshold);</font>
+<font color="#0000ff">try </font><font color="#000000">{</font>
+ <font color="#000000">chain.doFilter(request, wrappedResponse);</font>
+<font color="#000000">} </font><font color="#0000ff">finally </font><font color="#000000">{</font>
+ <font color="#000000">wrappedResponse.finishResponse(); </font><font color="#008000">//free resource</font>
+<font color="#000000">}</font>
+  <font color="#000000">}</font>
+ <font color="#000000">}</font>
+
+ <font color="#008000">/**</font>
+<font color="#008000">  * Return the filter configuration object for this filter.</font>
+<font color="#008000">  */</font>
+ <font color="#0000ff">public </font><font color="#000000">FilterConfig getFilterConfig() {</font>
+  <font color="#0000ff">return </font><font color="#000000">(</font><font color="#0000ff">this</font><font color="#000000">.filterConfig);</font>
+ <font color="#000000">}</font>
+
+ <font color="#008000">/**</font>
+<font color="#008000">  * Set the filter configuration object for this filter.</font>
+<font color="#008000">  */</font>
+ <font color="#0000ff">public void </font><font color="#000000">setFilterConfig(FilterConfig filterConfig) {</font>
+  <font color="#0000ff">this</font><font color="#000000">.filterConfig = filterConfig;</font>
+ <font color="#000000">}</font>
+
+ <font color="#008000">/**</font>
+<font color="#008000">  * Destroy method for this filter </font>
+<font color="#008000">  */</font>
+ <font color="#000000">@</font><font color="#0000ff">Override</font>
+ <font color="#0000ff">public void </font><font color="#000000">destroy() {</font>
+  <font color="#000000">filterConfig = </font><font color="#0000ff">null</font><font color="#000000">;</font>
+  <font color="#000000">compressThreshold = </font><font color="#800080">0</font><font color="#000000">;</font>
+ <font color="#000000">}</font>
+
+ <font color="#008000">/**</font>
+<font color="#008000">  * log method for print msg over server console </font>
+<font color="#008000">  */</font>
+ <font color="#0000ff">public void </font><font color="#000000">log(</font><font color="#ff0000">String </font><font color="#000000">msg) {</font>
+  <font color="#000000">filterConfig.getServletContext().log(msg);</font>
+ <font color="#000000">}</font>
+<font color="#000000">}</font>
+</pre>
+</div>
+
+			<h3>ResponseWrapper Program</h3>
+			<div class="code">
+			<pre>
+<font color="#008000">/*</font>
+<font color="#008000"> * Save as a ResponseWrapper.java</font>
+<font color="#008000"> */</font>
+<font color="#0000ff">package </font><font color="#000000">r4r.</font><font color="#ff0000">Filter</font><font color="#000000">;</font>
+<font color="#0000ff">import </font><font color="#000000">java.io.</font><font color="#ff0000">IOException</font><font color="#000000">;</font>
+<font color="#0000ff">import </font><font color="#000000">java.io.</font><font color="#ff0000">OutputStreamWriter</font><font color="#000000">;</font>
+<font color="#0000ff">import </font><font color="#000000">java.io.</font><font color="#ff0000">PrintWriter</font><font color="#000000">;</font>
+<font color="#0000ff">import </font><font color="#000000">javax.servlet.ServletOutputStream;</font>
+<font color="#0000ff">import </font><font color="#000000">javax.servlet.http.HttpServletResponse;</font>
+<font color="#008000">/**</font>
+<font color="#008000"> * This response wrapper class extends the </font>
+<font color="#008000"> support class HttpServletResponseWrapper,</font>
+<font color="#008000"> * which implements all the methods in</font>
+<font color="#008000"> the HttpServletResponse interface, as</font>
+<font color="#008000"> * delegations to the wrapped response. </font>
+<font color="#008000"> */</font>
+<font color="#0000ff">class </font><font color="#000000">ResponseWrapper </font><font color="#0000ff">extends </font>
+	  <font color="#000000">javax.servlet.http.HttpServletResponseWrapper {</font>
+
+ <font color="#0000ff">protected </font><font color="#000000">HttpServletResponse origResponse = </font><font color="#0000ff">null</font><font color="#000000">;</font>
+ <font color="#0000ff">protected </font><font color="#000000">ServletOutputStream stream = </font><font color="#0000ff">null</font><font color="#000000">;</font>
+ <font color="#0000ff">protected </font><font color="#ff0000">PrintWriter </font><font color="#000000">writer = </font><font color="#0000ff">null</font><font color="#000000">;</font>
+ <font color="#0000ff">protected int </font><font color="#000000">threshold = </font><font color="#800080">0</font><font color="#000000">;</font>
+ <font color="#0000ff">protected </font><font color="#ff0000">String </font><font color="#000000">contentType = </font><font color="#0000ff">null</font><font color="#000000">;</font>
+
+ <font color="#008000">// Constructor</font>
+ <font color="#000000">ResponseWrapper(HttpServletResponse response) {</font>
+  <font color="#0000ff">super</font><font color="#000000">(response);</font>
+  <font color="#0000ff">this</font><font color="#000000">.origResponse = response; </font><font color="#008000">//set response </font>
+ <font color="#000000">}</font>
+
+ <font color="#0000ff">void </font><font color="#000000">setCompressThreshold(</font><font color="#0000ff">int </font><font color="#000000">compressThreshold) {</font>
+  <font color="#0000ff">this</font><font color="#000000">.threshold = compressThreshold;</font>
+ <font color="#000000">}</font>
+
+ <font color="#0000ff">void </font><font color="#000000">finishResponse() </font><font color="#0000ff">throws </font><font color="#ff0000">IOException </font><font color="#000000">{</font>
+  <font color="#008000">// free resource</font>
+  <font color="#0000ff">if </font><font color="#000000">(writer != </font><font color="#0000ff">null</font><font color="#000000">) {</font>
+<font color="#000000">writer.close();</font>
+  <font color="#000000">}</font>
+  <font color="#0000ff">if </font><font color="#000000">(stream != </font><font color="#0000ff">null</font><font color="#000000">) {</font>
+<font color="#000000">stream.close();</font>
+  <font color="#000000">}</font>
+ <font color="#000000">}</font>
+
+ <font color="#0000ff">public </font><font color="#000000">ServletOutputStream createOutputStream()</font>
+	  <font color="#0000ff">throws </font><font color="#ff0000">IOException </font><font color="#000000">{</font>
+  <font color="#008000">//initialize ResponseOutputStream class</font>
+  <font color="#000000">ResponseOutputStream outputStream = </font>
+	     <font color="#0000ff">new </font><font color="#000000">ResponseOutputStream(origResponse);</font>
+  <font color="#000000">outputStream.setBuffer(threshold);</font>
+  <font color="#0000ff">return </font><font color="#000000">outputStream;</font>
+ <font color="#000000">}</font>
+
+ <font color="#000000">@</font><font color="#0000ff">Override</font>
+ <font color="#0000ff">public void </font><font color="#000000">flushBuffer() </font><font color="#0000ff">throws </font><font color="#ff0000">IOException </font><font color="#000000">{</font>
+  <font color="#000000">((ResponseOutputStream) stream).flush();</font>
+ <font color="#000000">}</font>
+
+ <font color="#000000">@</font><font color="#0000ff">Override</font>
+ <font color="#0000ff">public </font><font color="#000000">ServletOutputStream getOutputStream() </font>
+	    <font color="#0000ff">throws </font><font color="#ff0000">IOException </font><font color="#000000">{</font>
+  <font color="#0000ff">if </font><font color="#000000">(writer == </font><font color="#0000ff">null</font><font color="#000000">) {</font>
+<font color="#0000ff">throw new </font><font color="#ff0000">IllegalStateException</font>
+	  <font color="#000000">(</font><font color="#ff00ff">&quot;response already call getWriter() method&quot;</font><font color="#000000">);</font>
+  <font color="#000000">}</font>
+  <font color="#0000ff">if </font><font color="#000000">(stream == </font><font color="#0000ff">null</font><font color="#000000">) {</font>
+<font color="#000000">stream = createOutputStream(); </font><font color="#008000">//invoke method</font>
+  <font color="#000000">}</font>
+  <font color="#0000ff">return </font><font color="#000000">stream;</font>
+ <font color="#000000">}</font>
+
+ <font color="#000000">@</font><font color="#0000ff">Override</font>
+ <font color="#0000ff">public </font><font color="#ff0000">PrintWriter </font><font color="#000000">getWriter() </font><font color="#0000ff">throws </font><font color="#ff0000">IOException </font><font color="#000000">{</font>
+  <font color="#0000ff">if </font><font color="#000000">(writer != </font><font color="#0000ff">null</font><font color="#000000">) {</font>
+<font color="#0000ff">return </font><font color="#000000">writer;</font>
+  <font color="#000000">}</font>
+  <font color="#0000ff">if </font><font color="#000000">(stream != </font><font color="#0000ff">null</font><font color="#000000">) {</font>
+<font color="#0000ff">throw new </font><font color="#ff0000">IllegalStateException</font>
+	 <font color="#000000">(</font><font color="#ff00ff">&quot;response already call getOutputStream() method&quot;</font><font color="#000000">);</font>
+  <font color="#000000">}</font>
+  <font color="#000000">stream = createOutputStream(); </font><font color="#008000">//invoke method</font>
+  <font color="#ff0000">String </font><font color="#000000">charEncode = origResponse.getCharacterEncoding();</font>
+  <font color="#0000ff">if </font><font color="#000000">(charEncode != </font><font color="#0000ff">null</font><font color="#000000">) {</font>
+<font color="#000000">writer =</font>
+	<font color="#0000ff">new </font><font color="#ff0000">PrintWriter</font><font color="#000000">(</font><font color="#0000ff">new </font><font color="#ff0000">OutputStreamWriter</font><font color="#000000">(stream, charEncode));</font>
+  <font color="#000000">} </font><font color="#0000ff">else </font><font color="#000000">{</font>
+<font color="#000000">writer = </font><font color="#0000ff">new </font><font color="#ff0000">PrintWriter</font><font color="#000000">(stream);</font>
+  <font color="#000000">}</font>
+  <font color="#0000ff">return </font><font color="#000000">writer;</font>
+ <font color="#000000">}</font>
+
+ <font color="#000000">@</font><font color="#0000ff">Override</font>
+ <font color="#0000ff">public void </font><font color="#000000">setContentType(</font><font color="#ff0000">String </font><font color="#000000">type) {</font>
+  <font color="#0000ff">this</font><font color="#000000">.contentType = type;</font>
+  <font color="#000000">origResponse.setContentType(type);</font>
+ <font color="#000000">}</font>
+<font color="#000000">}</font>
+</pre>
+</div>
+
+			<h3>ResponseOutputStream Program</h3>
+			<div class="code">
+			<pre>
+<font color="#008000">/*</font>
+<font color="#008000"> * Save as a ResponseOutputStream.java</font>
+<font color="#008000"> */</font>
+<font color="#0000ff">package </font><font color="#000000">r4r.</font><font color="#ff0000">Filter</font><font color="#000000">;</font>
+<font color="#0000ff">import </font><font color="#000000">java.io.</font><font color="#ff0000">IOException</font><font color="#000000">;</font>
+<font color="#0000ff">import </font><font color="#000000">java.io.</font><font color="#ff0000">OutputStream</font><font color="#000000">;</font>
+<font color="#0000ff">import </font><font color="#000000">java.util.zip.</font><font color="#ff0000">GZIPOutputStream</font><font color="#000000">;</font>
+<font color="#0000ff">import </font><font color="#000000">javax.servlet.ServletOutputStream;</font>
+<font color="#0000ff">import </font><font color="#000000">javax.servlet.http.HttpServletResponse;</font>
+<font color="#008000">/**</font>
+<font color="#008000"> * This ResponseOutputStream class extends the support</font>
+<font color="#008000"> class ServletOutputStream,</font>
+<font color="#008000"> * which implements all the methods in the OutputStream, as</font>
+<font color="#008000"> * delegations to the write response to stream. </font>
+<font color="#008000"> */</font>
+<font color="#0000ff">class </font><font color="#000000">ResponseOutputStream </font><font color="#0000ff">extends</font>
+	<font color="#000000">javax.servlet.ServletOutputStream {</font>
+ <font color="#0000ff">protected int </font><font color="#000000">compressThreshold = </font><font color="#800080">0</font><font color="#000000">;</font>
+ <font color="#0000ff">protected byte</font><font color="#000000">[] buffer = </font><font color="#0000ff">null</font><font color="#000000">;</font>
+ <font color="#0000ff">protected int </font><font color="#000000">bufferCount = </font><font color="#800080">0</font><font color="#000000">;</font>
+ <font color="#0000ff">protected </font><font color="#ff0000">OutputStream </font><font color="#000000">gzipstream = </font><font color="#0000ff">null</font><font color="#000000">;</font>
+ <font color="#0000ff">protected boolean </font><font color="#000000">closed = </font><font color="#0000ff">false</font><font color="#000000">;</font>
+ <font color="#0000ff">protected </font><font color="#000000">HttpServletResponse response = </font><font color="#0000ff">null</font><font color="#000000">;</font>
+ <font color="#0000ff">protected </font><font color="#000000">ServletOutputStream output = </font><font color="#0000ff">null</font><font color="#000000">;</font>
+
+ <font color="#008000">// Constructor</font>
+ <font color="#000000">ResponseOutputStream(HttpServletResponse origResponse)</font>
+	 <font color="#0000ff">throws </font><font color="#ff0000">IOException </font><font color="#000000">{</font>
+  <font color="#0000ff">super</font><font color="#000000">();</font>
+  <font color="#0000ff">this</font><font color="#000000">.closed = </font><font color="#0000ff">false</font><font color="#000000">;</font>
+  <font color="#0000ff">this</font><font color="#000000">.response = origResponse;</font>
+  <font color="#0000ff">this</font><font color="#000000">.output = origResponse.getOutputStream();</font>
+ <font color="#000000">}</font>
+
+ <font color="#0000ff">void </font><font color="#000000">setBuffer(</font><font color="#0000ff">int </font><font color="#000000">threshold) {</font>
+  <font color="#000000">compressThreshold = threshold;</font>
+  <font color="#000000">buffer = </font><font color="#0000ff">new byte</font><font color="#000000">[compressThreshold];</font>
+ <font color="#000000">}</font>
+
+ <font color="#0000ff">private void </font><font color="#000000">writeToGZip(</font><font color="#0000ff">byte</font><font color="#000000">[] b, </font><font color="#0000ff">int </font><font color="#000000">off, </font><font color="#0000ff">int </font><font color="#000000">len)</font>
+	 <font color="#0000ff">throws </font><font color="#ff0000">IOException </font><font color="#000000">{</font>
+  <font color="#0000ff">if </font><font color="#000000">(gzipstream == </font><font color="#0000ff">null</font><font color="#000000">) {</font>
+<font color="#008000">// response is done</font>
+<font color="#0000ff">if </font><font color="#000000">(response.isCommitted()) {</font>
+ <font color="#000000">gzipstream = output; </font><font color="#008000">//store value</font>
+<font color="#000000">} </font><font color="#0000ff">else </font><font color="#000000">{</font>
+ <font color="#008000">// set header property</font>
+ <font color="#000000">response.addHeader(</font><font color="#ff00ff">&quot;Content-Encoding&quot;</font><font color="#000000">, </font><font color="#ff00ff">&quot;gzip&quot;</font><font color="#000000">);</font>
+ <font color="#ff0000">String </font><font color="#000000">vary = response.getHeader(</font><font color="#ff00ff">&quot;Vary&quot;</font><font color="#000000">);</font>
+ <font color="#0000ff">if </font><font color="#000000">(vary == </font><font color="#0000ff">null</font><font color="#000000">) {</font>
+  <font color="#000000">response.setHeader(</font><font color="#ff00ff">&quot;Vary&quot;</font><font color="#000000">, </font><font color="#ff00ff">&quot;Accept-Encoding&quot;</font><font color="#000000">);</font>
+ <font color="#000000">} </font><font color="#0000ff">else </font><font color="#000000">{</font>
+  <font color="#008000">// add new Vary header in privous header</font>
+  <font color="#000000">response.setHeader(</font><font color="#ff00ff">&quot;Vary&quot;</font><font color="#000000">, vary + </font><font color="#ff00ff">&quot;,Accept-Encoding&quot;</font><font color="#000000">);</font>
+ <font color="#000000">}</font>
+ <font color="#000000">gzipstream = </font><font color="#0000ff">new </font><font color="#ff0000">GZIPOutputStream</font><font color="#000000">(output);</font>
+<font color="#000000">}</font>
+  <font color="#000000">}</font>
+  <font color="#000000">gzipstream.write(b, off, len);</font>
+ <font color="#000000">}</font>
+
+ <font color="#0000ff">public void </font><font color="#000000">flushToGZip() </font><font color="#0000ff">throws </font><font color="#ff0000">IOException </font><font color="#000000">{</font>
+  <font color="#0000ff">if </font><font color="#000000">(bufferCount &gt; </font><font color="#800080">0</font><font color="#000000">) {</font>
+<font color="#000000">gzipstream.write(buffer, </font><font color="#800080">0</font><font color="#000000">, bufferCount);</font>
+<font color="#000000">bufferCount = </font><font color="#800080">0</font><font color="#000000">;</font>
+  <font color="#000000">}</font>
+ <font color="#000000">}</font>
+
+ <font color="#000000">@</font><font color="#0000ff">Override</font>
+ <font color="#0000ff">public void </font><font color="#000000">write(</font><font color="#0000ff">int </font><font color="#000000">b) </font><font color="#0000ff">throws </font><font color="#ff0000">IOException </font><font color="#000000">{</font>
+  <font color="#0000ff">if </font><font color="#000000">(closed) {</font>
+<font color="#0000ff">throw new </font><font color="#ff0000">IOException</font><font color="#000000">(</font><font color="#ff00ff">&quot;Cannot write to a closed output stream&quot;</font><font color="#000000">);</font>
+  <font color="#000000">}</font>
+  <font color="#0000ff">if </font><font color="#000000">(bufferCount &gt;= buffer.length) {</font>
+<font color="#000000">flushToGZip();</font>
+  <font color="#000000">}</font>
+  <font color="#000000">buffer[bufferCount++] = (</font><font color="#0000ff">byte</font><font color="#000000">) b;</font>
+ <font color="#000000">}</font>
+
+ <font color="#000000">@</font><font color="#0000ff">Override</font>
+ <font color="#0000ff">public void </font><font color="#000000">write(</font><font color="#0000ff">byte</font><font color="#000000">[] b) </font><font color="#0000ff">throws </font><font color="#ff0000">IOException </font><font color="#000000">{</font>
+  <font color="#000000">write(b, </font><font color="#800080">0</font><font color="#000000">, b.length);</font>
+ <font color="#000000">}</font>
+
+ <font color="#000000">@</font><font color="#0000ff">Override</font>
+ <font color="#0000ff">public void </font><font color="#000000">write(</font><font color="#0000ff">byte</font><font color="#000000">[] b, </font><font color="#0000ff">int </font><font color="#000000">off, </font><font color="#0000ff">int </font><font color="#000000">len)</font>
+	 <font color="#0000ff">throws </font><font color="#ff0000">IOException </font><font color="#000000">{</font>
+  <font color="#0000ff">if </font><font color="#000000">(closed) {</font>
+<font color="#0000ff">throw new </font><font color="#ff0000">IOException</font><font color="#000000">(</font><font color="#ff00ff">&quot;Cannot write to a closed output stream&quot;</font><font color="#000000">);</font>
+  <font color="#000000">}</font>
+  <font color="#008000">//if len==0 write nothing</font>
+  <font color="#0000ff">if </font><font color="#000000">(len == </font><font color="#800080">0</font><font color="#000000">) {</font>
+<font color="#0000ff">return</font><font color="#000000">;</font>
+  <font color="#000000">}</font>
+  <font color="#008000">// get buffer space and compare from length</font>
+  <font color="#0000ff">if </font><font color="#000000">(len &lt;= (buffer.length - bufferCount)) {</font>
+<font color="#ff0000">System</font><font color="#000000">.arraycopy(b, off, buffer, bufferCount, len);</font>
+<font color="#000000">bufferCount += len; </font><font color="#008000">// append on buffercount</font>
+<font color="#0000ff">return</font><font color="#000000">;</font>
+  <font color="#000000">}</font>
+  <font color="#008000">//write to GZIP stream</font>
+  <font color="#000000">writeToGZip(b, off, len);</font>
+ <font color="#000000">}</font>
+
+ <font color="#000000">@</font><font color="#0000ff">Override</font>
+ <font color="#0000ff">public void </font><font color="#000000">flush() </font><font color="#0000ff">throws </font><font color="#ff0000">IOException </font><font color="#000000">{</font>
+  <font color="#0000ff">if </font><font color="#000000">(closed) {</font>
+<font color="#0000ff">throw new </font><font color="#ff0000">IOException</font><font color="#000000">(</font><font color="#ff00ff">&quot;Cannot flush a closed output stream&quot;</font><font color="#000000">);</font>
+  <font color="#000000">}</font>
+  <font color="#0000ff">if </font><font color="#000000">(gzipstream != </font><font color="#0000ff">null</font><font color="#000000">) {</font>
+<font color="#000000">gzipstream.flush();</font>
+  <font color="#000000">}</font>
+ <font color="#000000">}</font>
+
+ <font color="#000000">@</font><font color="#0000ff">Override</font>
+ <font color="#0000ff">public void </font><font color="#000000">close() </font><font color="#0000ff">throws </font><font color="#ff0000">IOException </font><font color="#000000">{</font>
+  <font color="#0000ff">if </font><font color="#000000">(gzipstream != </font><font color="#0000ff">null</font><font color="#000000">) {</font>
+<font color="#000000">flushToGZip();</font><font color="#008000">// flush all data</font>
+<font color="#000000">gzipstream.close(); </font><font color="#008000">// close stream</font>
+<font color="#000000">gzipstream = </font><font color="#0000ff">null</font><font color="#000000">;</font>
+  <font color="#000000">} </font><font color="#0000ff">else if </font><font color="#000000">(bufferCount &gt; </font><font color="#800080">0</font><font color="#000000">) {</font>
+<font color="#000000">output.write(buffer, </font><font color="#800080">0</font><font color="#000000">, bufferCount);</font>
+        <font color="#008000">//write data in output stream</font>
+<font color="#000000">bufferCount = </font><font color="#800080">0</font><font color="#000000">;</font>
+  <font color="#000000">}</font>
+  <font color="#000000">output.close(); </font><font color="#008000">// close output stream</font>
+  <font color="#000000">closed = </font><font color="#0000ff">true</font><font color="#000000">;</font>
+ <font color="#000000">}</font>
+
+ <font color="#0000ff">public boolean </font><font color="#000000">isClosed() {</font>
+  <font color="#0000ff">return </font><font color="#000000">closed;</font>
+ <font color="#000000">}</font>
+<font color="#000000">}</font>
+</pre>
+</div>
+
+			<h3>Test program </h3>
+			<div class="code">
+			<pre>
+<font color="#008000">/*</font>
+<font color="#008000"> * Save as a DataCompressTest.java</font>
+<font color="#008000"> */</font>
+<font color="#0000ff">package </font><font color="#000000">r4r.</font><font color="#ff0000">Filter</font><font color="#000000">;</font>
+
+<font color="#0000ff">import </font><font color="#000000">java.io.</font><font color="#ff0000">IOException</font><font color="#000000">;</font>
+<font color="#0000ff">import </font><font color="#000000">java.io.</font><font color="#ff0000">PrintWriter</font><font color="#000000">;</font>
+<font color="#0000ff">import </font><font color="#000000">javax.servlet.ServletException;</font>
+<font color="#0000ff">import </font><font color="#000000">javax.servlet.http.HttpServlet;</font>
+<font color="#0000ff">import </font><font color="#000000">javax.servlet.http.HttpServletRequest;</font>
+<font color="#0000ff">import </font><font color="#000000">javax.servlet.http.HttpServletResponse;</font>
+<font color="#008000">/**</font>
+<font color="#008000"> *</font>
+<font color="#008000"> * @author R4R</font>
+<font color="#008000"> */</font>
+<font color="#0000ff">public class </font><font color="#000000">DataCompressTest </font><font color="#0000ff">extends </font><font color="#000000">HttpServlet {</font>
+
+ <font color="#0000ff">protected void </font><font color="#000000">processRequest(HttpServletRequest request,</font>
+  <font color="#000000">HttpServletResponse response)</font><font color="#0000ff">throws </font><font color="#000000">ServletException, </font><font color="#ff0000">IOException </font>
+<font color="#000000">{</font>
+  <font color="#000000">response.setContentType(</font><font color="#ff00ff">&quot;text/html;charset=UTF-8&quot;</font><font color="#000000">);</font>
+  <font color="#ff0000">PrintWriter </font><font color="#000000">out = response.getWriter();</font>
+
+  <font color="#0000ff">try </font><font color="#000000">{</font>
+<font color="#008000">// get header property</font>
+<font color="#000000">java.util.</font><font color="#ff0000">Enumeration</font><font color="#000000">&lt;</font><font color="#ff0000">String</font><font color="#000000">&gt; e = request.getHeaders(</font><font color="#ff00ff">&quot;Accept-Encoding&quot;</font><font color="#000000">);</font>
+<font color="#0000ff">while </font><font color="#000000">(e.hasMoreElements()) {</font>
+ <font color="#ff0000">String </font><font color="#000000">string = e.nextElement();</font>
+ <font color="#0000ff">if </font><font color="#000000">(string.indexOf(</font><font color="#ff00ff">&quot;gzip&quot;</font><font color="#000000">) != -</font><font color="#800080">1</font><font color="#000000">) {</font>
+  <font color="#000000">out.println(</font><font color="#ff00ff">&quot;Support Gzip, data compress possible&quot;</font><font color="#000000">);</font>
+ <font color="#000000">} </font><font color="#0000ff">else </font><font color="#000000">{</font>
+  <font color="#000000">out.println(</font><font color="#ff00ff">&quot;Not support Gzip, data compress not possible&quot;</font><font color="#000000">);</font>
+ <font color="#000000">}</font>
+<font color="#000000">}</font>
+<font color="#000000">out.println(</font><font color="#ff00ff">&quot;&lt;br/&gt;&lt;a href=\&quot;index.jsp\&quot;&gt;Return to Home page&lt;/a&gt;&quot;</font><font color="#000000">);</font>
+  <font color="#000000">} </font><font color="#0000ff">finally </font><font color="#000000">{</font>
+<font color="#000000">out.flush(); </font><font color="#008000">//free resource</font>
+<font color="#000000">out.close();</font>
+  <font color="#000000">}</font>
+ <font color="#000000">}</font>
+
+ <font color="#000000">@</font><font color="#0000ff">Override</font>
+ <font color="#0000ff">protected void </font><font color="#000000">doGet(HttpServletRequest request, </font>
+  <font color="#000000">HttpServletResponse response)</font><font color="#0000ff">throws </font><font color="#000000">ServletException,</font><font color="#ff0000">IOException</font>
+	 <font color="#000000">{</font>
+
+  <font color="#000000">processRequest(request, response);</font>
+ <font color="#000000">}</font>
+
+ <font color="#000000">@</font><font color="#0000ff">Override</font>
+ <font color="#0000ff">protected void </font><font color="#000000">doPost(HttpServletRequest request,</font>
+	 <font color="#000000">HttpServletResponse response)</font>
+<font color="#0000ff">throws </font><font color="#000000">ServletException, </font><font color="#ff0000">IOException</font>
+	 <font color="#000000">{</font>
+  <font color="#000000">processRequest(request, response);</font>
+ <font color="#000000">}</font>
+
+ <font color="#000000">@</font><font color="#0000ff">Override</font>
+ <font color="#0000ff">public </font><font color="#ff0000">String </font><font color="#000000">getServletInfo() {</font>
+  <font color="#0000ff">return </font><font color="#ff00ff">&quot;r4r.co.in-DataCompressTest&quot;</font><font color="#000000">;</font>
+ <font color="#000000">}</font>
+<font color="#000000">}</font>
+</pre>
+</div>
+
+			<i>Output of Program</i>
+			<div class="image">
+			<img src="Servlet%20Filter%20image/DataCompressFilter1.gif">
+			</div>
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="ImageConversionFilter.shtml" title="Create an application for accessing ImageConversionFilter in Servlet">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="EncryptionFilter.shtml" title="Create an application for accessing EncryptionFilter in servlet">Next</a></td>
+  </tr> 
+</table>
+	<!-- Footer Start-->		
+		</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->

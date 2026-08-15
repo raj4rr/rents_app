@@ -1,0 +1,140 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<HTML><HEAD><TITLE>Specification Of Second level cache</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv="content-type" content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="Hibenate Specification Of Second level cache Learn About Hibernate second Level Chache how It works
+with Examples And Interview Questions Of Hibernate" >
+<meta name="keywords" CONTENT="Documentation, Specification Of Second level cache, Hibernate, Tutorial, beginners, Fresher, Basics, How to work with collection in hibernate, Collection In Hibernate,
+ inheritance mapping, collection mapping, component mapping, HQL, HCQL">
+
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<META http-equiv="Content-Language" content="en-us">
+<link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+<link href="/css/main.css" rel="stylesheet" type="text/css" />
+</HEAD>
+<BODY>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>Hibernate</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+            <img src="/images/left_menu_bullet.gif"/> <a href="/java/hibernate/">Hibernate</a>
+             </div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top">
+                            <?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/hibernate/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                       <div class="main_content">  	 
+
+      <div class="heading">Specification of Second Level Cache</div>
+
+      <table id="indexing">
+
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="second_level_cache.shtml" title="Second Level Cache">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="program_of_eh_cache.shtml" title="Program Of EHCache">Next</a></td>
+  </tr> 
+</table>
+      <p>
+          Hibernate Session is a transaction-level cache of persistent data.Hibernate has the 
+          ability to configure a cluster or JVM-level (SessionFactory-level) cache on a class-by-class 
+          and collection-by-collection basis. we can plug in a clustered cache. We need to aware that 
+          caches are not having change mode to the persistent store by another application. 
+          So it can be called to configured to regularly expire cached data.
+      </p>
+      <p>
+          We have an another option in Hibernate which cache implementation to use by 
+          specifying the name of a class that implements org.hibernate.cache.CacheProvider 
+          using the property hibernate.cache.provider_class. Hibernate is combination of bundled 
+          with a number of own and plug it in as outlined above. we have to remember EhCache as 
+          the default cache provider.
+      </p>
+      <h3>We have given all cache provider in the table:</h3>
+      <div class="table_content">
+          <table>
+              <tr>
+                  <td class="heading">Cache</td>
+                  <td class="heading">Provider Class</td>
+                  <td class="heading">Type</td>              
+                  <td class="heading">Cluster Safe</td>
+                  <td class="heading">Query Cache Supported</td>
+              </tr>
+              <tr>
+                  <td class="alternate_heading1">Hashtable (not intended for production use)</td>
+                  <td class="alternate_heading1">org.hibernate.cache.HashtableCacheProvider</td>
+                  <td class="alternate_heading1">memory</td>
+                  <td class="alternate_heading1"></td>
+                  <td class="alternate_heading1">Yes</td>
+              </tr>
+              <tr>
+                  <td class="alternate_heading2">EHCache</td>
+                  <td class="alternate_heading2">org.hibernate.cache.EhCacheProvider</td>
+                  <td class="alternate_heading2">memory, disk</td>
+                  <td class="alternate_heading2"></td>
+                  <td class="alternate_heading2">Yes</td>
+              </tr>
+              <tr>
+                  <td class="alternate_heading1">OSCache</td>
+                  <td class="alternate_heading1">org.hibernate.cache.OSCacheProvider</td>
+                  <td class="alternate_heading1">memory, disk</td>
+                  <td class="alternate_heading1">Yes</td>
+                  <td class="alternate_heading1"></td>
+              </tr>
+              <tr>
+                  <td class="alternate_heading2">SwarmCache</td>
+                  <td class="alternate_heading2">org.hibernate.cache.SwarmCacheProvider</td>
+                  <td class="alternate_heading2">clustered (ip multicast)</td>
+                  <td class="alternate_heading2">yes (clustered invalidation)</td>
+                  <td class="alternate_heading2"></td>
+              </tr>
+              <tr>
+                  <td class="alternate_heading1">JBoss Cache 1.x</td>
+                  <td class="alternate_heading1">org.hibernate.cache.TreeCacheProvider</td>
+                  <td class="alternate_heading1">clustered (ip multicast</td>
+                  <td class="alternate_heading1">transactional yes (replication)</td>
+                  <td class="alternate_heading1">yes (clock sync req.)</td>
+              </tr>
+              <tr>
+                  <td class="alternate_heading2">JBoss Cache 2</td>
+                  <td class="alternate_heading2">org.hibernate.cache.jbc2.JBossCacheRegionFactory</td>
+                  <td class="alternate_heading2">clustered (ip multicast)</td>
+                  <td class="alternate_heading2">transactional yes (replication or invalidation)</td>
+                  <td class="alternate_heading2">yes (clock sync req.)</td>
+              </tr>
+          </table>
+      </DIV>
+
+      <table id="indexing">
+
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="second_level_cache.shtml" title="Second Level Cache">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="program_of_eh_cache.shtml" title="Program Of EHCache">Next</a></td>
+  </tr> 
+</table>
+
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+
+                <?php @include($_SERVER['DOCUMENT_ROOT'] . '/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>

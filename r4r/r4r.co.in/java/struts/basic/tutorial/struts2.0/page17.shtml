@@ -1,0 +1,156 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD>
+<meta http-equiv="Content-Language" content="en-us">
+<TITLE>struts,struts 2.0,struts tutorial,struts 2.0 tutorial,Welcome Program using Struts2.0 Framework</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name="description" CONTENT="struts,struts 2.0,struts tutorial,struts 2.0 tutorial,Welcome Program using Struts2.0 Framework" >
+<meta name="keywords" CONTENT="struts,struts 2.0,struts tutorial,struts 2.0 tutorial,Welcome Program using Struts2.0 Framework">
+<!-- header start-->	
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>Struts</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+            <img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+            <a href="/java/">Java</a>
+              <img src="/images/left_menu_bullet.gif" width="11" height="6"/><A href="/java/struts/basic/tutorial/struts2.0">Struts 2.0 Basic Tutorial</a>
+              </div>
+
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/struts/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	 
+
+<div class="heading">Welcome Program using Struts2.0 Framework</div>
+<!-- header End-->
+
+ <table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="page16.shtml" title="Downloading and configuring Struts2.0 Framework">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="page18.shtml" title="What is directory structure of struts2.0 Framework application?">Next</a></td>
+  </tr> 
+</table>
+
+<h3>Introduction:</h3>
+<p>This is basic examples of how you can make a struts2 application. Here we are going to make only View using JSP Struts2 Tag Library files. The purpose of this topic is taught you how you can make, run and debug struts2 application?</p>
+<h3>Class/Library File  Descriptions</h3>
+<ul><li>You can download "r4r-welcome-program-using-struts2.zip" from our website.</li> 
+<li>To do so just copy and past following URL into address bar of your browser /java/struts/basic/tutorial/r4r-welcome-program-using-struts2.zip and then change its extension to .war then import it into your workspace by using any IDEs(eclipse or Netbaens). </li>
+<li>If you are not using IDEs .Then extract it and save it into root folder into tomcat webapp or you can deploy it on tomcat. 
+Then you can see .Here you can see two xml files (web.xml and struts.xml ) , one jsp (index.jsp)file,lib folder which includes all required jars. 
+The source code for these files are given below you can explorer these sours code into your workspace.</li>
+<li>To run our struts2 application start web server and type following on browser http://localhost:8080/r4r-welcome-program-using-struts/index.jsp 
+Then you will see the output on your browser.</li></ul>
+<h3>Source Code: </h3>
+<div class="comment">web.xml</div>
+<div class="code"><pre>
+<font color="#000000">?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">web-app </font><font color="#ff0000">version</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;2.5&quot; </font>
+<font color="#800080">xmlns</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;http://java.sun.com/xml/ns/javaee&quot; </font>
+<font color="#800080">xmlns:xsi</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;http://www.w3.org/2001/XMLSchema-instance&quot; </font>
+<font color="#800080">xsi:schemaLocation</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;http://java.sun.com/xml/ns/javaee </font>
+<font color="#ff00ff">http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd&quot;</font><font color="#0000ff">&gt;</font>
+<font color="#000000">    </font><font color="#0000ff">&lt;</font><font color="#808000">filter</font><font color="#0000ff">&gt;</font>
+<font color="#000000">  </font><font color="#0000ff">&lt;</font><font color="#808000">filter-name</font><font color="#0000ff">&gt;</font><font color="#000000">f1</font><font color="#0000ff">&lt;/</font><font color="#808000">filter-name</font><font color="#0000ff">&gt;</font>
+<font color="#000000">  </font><font color="#0000ff">&lt;</font><font color="#808000">filter-class</font><font color="#0000ff">&gt;</font><font color="#000000">org.apache.struts2.dispatcher</font>
+<font color="#000000">  .FilterDispatcher</font><font color="#0000ff">&lt;/</font><font color="#808000">filter-class</font><font color="#0000ff">&gt;</font>
+<font color="#000000">  </font><font color="#0000ff">&lt;/</font><font color="#808000">filter</font><font color="#0000ff">&gt;</font>
+<font color="#000000">  </font><font color="#0000ff">&lt;</font><font color="#808000">filter-mapping</font><font color="#0000ff">&gt;</font>
+<font color="#000000">  </font><font color="#0000ff">&lt;</font><font color="#808000">filter-name</font><font color="#0000ff">&gt;</font><font color="#000000">f1</font><font color="#0000ff">&lt;/</font><font color="#808000">filter-name</font><font color="#0000ff">&gt;</font>
+<font color="#000000">  </font><font color="#0000ff">&lt;</font><font color="#808000">url-pattern</font><font color="#0000ff">&gt;</font><font color="#000000">/*</font><font color="#0000ff">&lt;/</font><font color="#808000">url-pattern</font><font color="#0000ff">&gt;</font>
+<font color="#000000">  </font><font color="#0000ff">&lt;/</font><font color="#808000">filter-mapping</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">web-app</font><font color="#0000ff">&gt;</font>
+</pre>
+</div>
+<div class="comment">index.jsp</div>
+<div class="code"><pre>
+<font color="#800000">&lt;%@taglib uri=</font><font color="#ff00ff">&quot;/struts-tags&quot; </font><font color="#800000">prefix=</font><font color="#ff00ff">&quot;s&quot;</font><font color="#800000">%&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">s:form </font><font color="#ff0000">action</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;hello&quot;</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">s:textfield </font><font color="#ff0000">name</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;name&quot; </font><font color="#ff0000">label</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;Name&quot;</font><font color="#0000ff">/&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">s:submit </font><font color="#ff0000">value</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;Submit&quot;</font><font color="#0000ff">/&gt;</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">s:form</font><font color="#0000ff">&gt;</font>
+</pre>
+</div>
+<div class="comment">struts.xml</div>
+<div class="code">
+<pre>
+!DOCTYPE struts PUBLIC 
+&quot;-//Apache Software Foundation
+//DTD Struts Configuration 2.0//EN&quot;
+&quot;<font color="#0000ff">http://struts.apache.org/dtds/struts-2.0.dtd</font><font color="#000000">&quot;&gt;</font>
+&lt;struts&gt;
+&lt;package name=&quot;demo&quot; extends=&quot;struts-default&quot;&gt;
+&lt;action name=&quot;hello&quot; class=&quot;mypack.MyAction&quot;&gt;
+&lt;result name=&quot;success&quot;&gt;/hello.jsp&lt;/result&gt;
+&lt;/action&gt;
+&lt;/package&gt;&lt;/struts&gt;
+</pre>
+</div>
+<div class="comment">MyAction.java</div>
+<div class="code">
+<pre>
+<font color="#0000ff">package </font><font color="#000000">mypack;</font>
+<font color="#0000ff">public class </font><font color="#000000">MyAction {</font>
+	<font color="#0000ff">private </font><font color="#ff0000">String </font><font color="#000000">name;</font>
+	<font color="#0000ff">public </font><font color="#ff0000">String </font><font color="#000000">execute(){</font>
+		<font color="#0000ff">return </font><font color="#ff00ff">&quot;success&quot;</font><font color="#000000">;</font>
+	<font color="#000000">}</font>
+	<font color="#0000ff">public </font><font color="#ff0000">String </font><font color="#000000">getName() {</font>
+		<font color="#0000ff">return </font><font color="#000000">name;</font>
+	<font color="#000000">}</font>
+	<font color="#0000ff">public void </font><font color="#000000">setName(</font><font color="#ff0000">String </font><font color="#000000">name) {</font>
+		<font color="#0000ff">this</font><font color="#000000">.name = name;</font>
+	<font color="#000000">}	</font>
+<font color="#000000">}</font>
+</pre>
+</div>
+<div class="comment">hello.jsp</div>
+<div class="code"><pre>
+<font color="#800000">&lt;%@taglib uri=</font><font color="#ff00ff">&quot;/struts-tags&quot; </font><font color="#800000">prefix=</font><font color="#ff00ff">&quot;s&quot;</font><font color="#800000">%&gt;</font>
+<font color="#000000"> </font><font color="#0000ff">&lt;b&gt;</font><font color="#000000">Welcome, </font><font color="#0000ff">&lt;</font><font color="#808000">s:property </font><font color="#ff0000">value</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;name&quot;</font><font color="#0000ff">/&gt;&lt;/b&gt;</font>
+</pre>
+</div>
+<div class="output"><i>Output: </i>
+<div class="image"><img border="0" src="image14.jpg"></div>
+
+ <table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="page16.shtml" title="Downloading and configuring Struts2.0 Framework">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="page18.shtml" title="What is directory structure of struts2.0 Framework application?">Next</a></td>
+  </tr> 
+</table>
+<!-- Footer Start-->	
+
+		</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->

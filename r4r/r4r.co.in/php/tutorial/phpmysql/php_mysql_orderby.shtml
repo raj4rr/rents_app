@@ -1,0 +1,166 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD>
+<meta http-equiv="Content-Language" content="en-us">
+<TITLE>What is the means of Order By in MySQL,How can sorting a MySQL Query with ORDER BY,How can perform keyword ORDER BY, What is ORDER BY</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name="description" CONTENT="What is the means of Order By in MySQL,How can sorting a MySQL Query with ORDER BY,How can perform keyword ORDER BY, What is ORDER BY" >
+<meta name="keywords" CONTENT="What is the means of Order By in MySQL,How can sorting a MySQL Query with ORDER BY,How can perform keyword ORDER BY, What is ORDER BY">
+
+<!-- header start-->	
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>PHP Programing language</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+            <img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+            <a href="/php/">PHP</a>
+
+              </div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/php/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	  
+
+	   	   <div class="heading">PHP MySQL ORDER BY</div>
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="php_mysql_WHERE.shtml" title="PHP MySQL WHERE">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="php_mysql_joins.shtml" title="PHP MySQL JOIN">Next</a></td>
+</table>
+
+<!-- header End-->		   
+
+<p>In any program or a database it would be nice to make a MySQL results easier to read and understand. In database the simple or common way to do this in the real world is to order a big list of items by name or amount. In this condition the way of to order your result in MySQL is to use the ORDER BY statement.</p>
+<p>If you are specify and sort alphabetical order or a numeric order just like as only numbers then what is ORDER BY statement does is take the a column name. Then when you use mysql_fetch_array to print out the result, the values are already sorted and easy to read.</p>
+
+<p>The Ordering is also used quite frequently to add additional functionality to webpages that use any type of column layout. For example, some forums let you sort by date, thread title, post count, view count, and more.</p>
+<h3>How can sorting a MySQL Query with ORDER BY</h3>
+<p>Let's use the same query we had in MySQL Select and modify it to ORDER BY the person's age. The code from MySQL Select looked like...</p>
+
+<div class="code">
+<pre>
+<font color="#000000">PHP &amp; MySQL Code:</font>
+
+<font color="#800000">&lt;?php</font>
+<font color="#008000">// Make a MySQL Connection</font>
+
+<font color="#800000">mysql_connect(</font><font color="#ff00ff">&quot;localhost&quot;</font><font color="#800000">, </font><font color="#ff00ff">&quot;admin&quot;</font><font color="#800000">, </font><font color="#ff00ff">&quot;1admin&quot;</font><font color="#800000">) </font>
+<font color="#0000ff">or die</font><font color="#800000">(mysql_error());</font>
+
+<font color="#800000">mysql_select_db(</font><font color="#ff00ff">&quot;test&quot;</font><font color="#800000">) </font><font color="#0000ff">or die</font><font color="#800000">(mysql_error());</font>
+
+<font color="#008000">// Get all the data from the &quot;tablefirst&quot; table</font>
+
+<font color="#0000ff">$</font><font color="#008080">result </font><font color="#800000">= mysql_query(</font><font color="#ff00ff">&quot;SELECT * FROM tablefirst&quot;</font><font color="#800000">) </font>
+<font color="#0000ff">or die</font><font color="#800000">(mysql_error());  </font>
+
+<font color="#0000ff">echo </font><font color="#ff00ff">&quot;&lt;table border='1'&gt;&quot;</font><font color="#800000">;</font>
+<font color="#0000ff">echo </font><font color="#ff00ff">&quot;&lt;tr&gt; &lt;th&gt;Name&lt;/th&gt; &lt;th&gt;Age&lt;/th&gt; &lt;/tr&gt;&quot;</font><font color="#800000">;</font>
+
+<font color="#008000">// keeps getting the next row until there are no more to get</font>
+
+<font color="#0000ff">while</font><font color="#800000">(</font><font color="#0000ff">$</font><font color="#008080">row </font><font color="#800000">= mysql_fetch_array( </font><font color="#0000ff">$</font><font color="#008080">result </font><font color="#800000">)) </font>
+	<font color="#800000">{</font>
+<font color="#008000">// Print out the contents of each row into a table</font>
+<font color="#0000ff">echo </font><font color="#ff00ff">&quot;&lt;tr&gt;&lt;td&gt;&quot;</font><font color="#800000">; </font>
+<font color="#0000ff">echo $</font><font color="#008080">row</font><font color="#800000">[</font><font color="#ff00ff">'name'</font><font color="#800000">];</font>
+<font color="#0000ff">echo </font><font color="#ff00ff">&quot;&lt;/td&gt;&lt;td&gt;&quot;</font><font color="#800000">; </font>
+<font color="#0000ff">echo $</font><font color="#008080">row</font><font color="#800000">[</font><font color="#ff00ff">'age'</font><font color="#800000">];</font>
+<font color="#0000ff">echo </font><font color="#ff00ff">&quot;&lt;/td&gt;&lt;/tr&gt;&quot;</font><font color="#800000">; </font>
+<font color="#800000">} </font>
+<font color="#0000ff">echo </font><font color="#ff00ff">&quot;&lt;/table&gt;&quot;</font><font color="#800000">;</font>
+<font color="#800000">?&gt;</font>
+</pre>
+</div>
+<P><i>Output</i></P>
+<div class="output">
+<pre>
+Name Age
+Amit 23
+Akash 21
+Aniket 15 </pre></div>
+
+<p>What we need to do is add on to the existing MySQL statement &quot;SELECT * FROM tablefirst&quot; to include our new ordering requirement. When you choose to order a column, be sure that your ORDER BY appears after the SELECT ... FROM part of the MySQL statement.</p>
+<div class="code">
+<pre>
+<font color="#000000">PHP &amp; MySQL Code:</font>
+<font color="#800000">&lt;?php</font>
+
+<font color="#008000">// Make a MySQL Connection</font>
+<font color="#800000">mysql_connect(</font><font color="#ff00ff">&quot;localhost&quot;</font><font color="#800000">, </font><font color="#ff00ff">&quot;admin&quot;</font><font color="#800000">, </font><font color="#ff00ff">&quot;1admin&quot;</font><font color="#800000">) </font><font color="#0000ff">or die</font><font color="#800000">(mysql_error());</font>
+<font color="#800000">mysql_select_db(</font><font color="#ff00ff">&quot;test&quot;</font><font color="#800000">) </font><font color="#0000ff">or die</font><font color="#800000">(mysql_error());</font>
+
+<font color="#008000">// Get all the data from the &quot;example&quot; table</font>
+<font color="#0000ff">$</font><font color="#008080">result </font><font color="#800000">= mysql_query(</font><font color="#ff00ff">&quot;SELECT * FROM example ORDER BY age&quot;</font><font color="#800000">) </font>
+<font color="#0000ff">or die</font><font color="#800000">(mysql_error());  </font>
+
+<font color="#0000ff">echo </font><font color="#ff00ff">&quot;&lt;table border='1'&gt;&quot;</font><font color="#800000">;</font>
+<font color="#0000ff">echo </font><font color="#ff00ff">&quot;&lt;tr&gt; &lt;th&gt;Name&lt;/th&gt; &lt;th&gt;Age&lt;/th&gt; &lt;/tr&gt;&quot;</font><font color="#800000">;</font>
+
+<font color="#008000">// keeps getting the next row until there are no more to get</font>
+
+<font color="#0000ff">while</font><font color="#800000">(</font><font color="#0000ff">$</font><font color="#008080">row </font><font color="#800000">= mysql_fetch_array( </font><font color="#0000ff">$</font><font color="#008080">result </font><font color="#800000">))</font>
+	<font color="#800000">{</font>
+<font color="#008000">// Print out the contents of each row into a table</font>
+
+<font color="#0000ff">echo </font><font color="#ff00ff">&quot;&lt;tr&gt;&lt;td&gt;&quot;</font><font color="#800000">; </font>
+<font color="#0000ff">echo $</font><font color="#008080">row</font><font color="#800000">[</font><font color="#ff00ff">'name'</font><font color="#800000">];</font>
+<font color="#0000ff">echo </font><font color="#ff00ff">&quot;&lt;/td&gt;&lt;td&gt;&quot;</font><font color="#800000">; </font>
+<font color="#0000ff">echo $</font><font color="#008080">row</font><font color="#800000">[</font><font color="#ff00ff">'age'</font><font color="#800000">];</font>
+<font color="#0000ff">echo </font><font color="#ff00ff">&quot;&lt;/td&gt;&lt;/tr&gt;&quot;</font><font color="#800000">; </font>
+<font color="#800000">} </font>
+<font color="#0000ff">echo </font><font color="#ff00ff">&quot;&lt;/table&gt;&quot;</font><font color="#800000">;</font>
+<font color="#800000">?&gt;</font>
+</pre>
+</div>
+
+<p><i>Output</i></p>
+<div class="output">
+<pre>
+Name Age
+Aniket 15
+Akash 21
+Amit 23</pre></div>
+<p>Presto! We have an ordered MySQL result! Notice that we didn't have to change any of our PHP code. Remember this whenever you're editing a PHP script that uses MySQL. Sometimes it may be easier to just tweak your MySQL query instead of trying to mess around in PHP.</p>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="php_mysql_WHERE.shtml" title="PHP MySQL WHERE">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="php_mysql_joins.shtml" title="PHP MySQL JOIN">Next</a></td>
+</table>
+
+	<!-- Footer Start-->  	
+
+</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/php/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->

@@ -1,0 +1,110 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<HTML><HEAD><TITLE>Hibernate Architecture|Hibernate Basics</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv="content-type" content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="Hibernate Architecture learn easily and shortly with hibernate tutorial,hibernate
+Examples,hibernate interview questions Step by step covers all topics of hibernate" >
+<meta name="keywords" CONTENT="Hibernate Architecture Tutorial, Hibernate Examples, object relation mapping(ORM), 
+hibernate query language(HQl), native sql, caching,HQL queries, association, has a mapping, many to one mapping, hibernate architecture">
+
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<META http-equiv="Content-Language" content="en-us">
+<link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+<link href="/css/main.css" rel="stylesheet" type="text/css" />
+</HEAD>
+<BODY>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>Hibernate</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+            <img src="/images/left_menu_bullet.gif"/> <a href="/java/hibernate/">Hibernate</a>
+             </div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top">
+                            <?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/hibernate/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                       <div class="main_content">  	 
+
+      <div class="heading">Hibernate Architecture</div>
+
+      <table id="indexing">
+
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="a_simple_program_of_select.shtml" title="A simple program of select">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="id_generator.shtml" title="ID Generator">Next</a></td>
+  </tr> 
+</table>
+      <p>
+          The Hibernate architecture consists of multiple key components including the Session Factory, Session, Transaction, and Connection Provider.
+          It is designed as a persistence layer to isolate the application developer from the underlying database APIs (like JDBC).
+      </p>
+      <p>
+          There are generally 4 layers in a Hibernate-based application: the Java Application layer, the Hibernate Framework layer, the Back-end API layer (JDBC, JTA, JNDI), and the Database layer.
+      </p>
+      <div class="image">
+          <img src="images/hibernate_architecture.png"/>
+      </div>
+      <h4>This is a high-level view of Hibernate's architecture mapping to the database.</h4>
+      <div class="image">
+          <img src="images/architecture_of_hibernate.png"/>
+      </div>
+      <p>The Hibernate framework works seamlessly alongside Java APIs such as JDBC (Java Database Connectivity) and JTA (Java Transaction API).</p>
+      
+      <div class="heading">Core Elements of Hibernate Architecture</div>
+      <p>To effectively build Hibernate applications, it is crucial to understand its core interfaces and classes:</p>
+      
+      <div class="heading">SessionFactory (JPA equivalent: EntityManagerFactory)</div>
+      <p>The <code>SessionFactory</code> is a thread-safe, immutable cache of compiled mappings for a single database. 
+          It is a heavy-weight object, so typically an application will create a single <code>SessionFactory</code> during initialization.
+          It also holds the second-level cache (optional) of data.</p>
+
+      <div class="heading">Session (JPA equivalent: EntityManager)</div>
+      <p>The <code>Session</code> is a single-threaded, short-lived object representing a conversation between the application and the database. 
+          It wraps a JDBC <code>java.sql.Connection</code> and serves as a factory for <code>Transaction</code>, <code>Query</code>, and <code>Criteria</code>. 
+          It holds the mandatory first-level cache of data, which guarantees object identity within the session.</p>
+
+      <div class="heading">Transaction (JPA equivalent: EntityTransaction)</div>
+      <p>The <code>Transaction</code> object specifies an atomic unit of work. 
+          It abstracts the application from underlying transaction implementations (JDBC, JTA, or CORBA).</p>
+
+      <div class="heading">ConnectionProvider</div>
+      <p>A factory for, and pool of, JDBC connections. It abstracts the application from the underlying <code>DriverManager</code> or <code>DataSource</code>.</p>
+      
+      <div class="heading">TransactionFactory</div>
+      <p>A factory for <code>Transaction</code> instances, allowing the application to switch between transaction environments.</p>
+
+      <table id="indexing">
+
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="a_simple_program_of_select.shtml" title="A simple program of select">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="id_generator.shtml" title="ID Generator">Next</a></td>
+  </tr> 
+</table>            
+
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+
+                <?php @include($_SERVER['DOCUMENT_ROOT'] . '/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>

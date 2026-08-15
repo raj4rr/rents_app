@@ -1,0 +1,118 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+
+<HTML><HEAD><TITLE>C tutorial on Structure with Example</TITLE>
+<META content=r4r.co.in name=owner>
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="Tutorial on Example Of Structure,Pointers,Array,Storage class,Loops,Functions,Data types,C constants,Union,Preprocessor,C interview questions and answers">
+<meta name="keywords" CONTENT="Example Of Structure,Structure in C,Pointers,Array,Storage class,Loops,Functions,Data types,C constants,Union,Preprocessor,C interview questions and answers">
+<META content="Rajesh Kumar" name=author>
+<META http-equiv="expires" content="0"> 
+
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+     <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>C Programming language</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a><img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/c/">C </a>
+              <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/c/basic_tutorials/01/">Learn C in 15 days</a></div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/c/commonfiles/leftmenu.shtml'); ?></td>
+
+                       <td style="80%" valign="top">
+                        <div class="main_content">
+
+	<!-- Header End-->	
+    <div class="heading">Structure in C: Example</div> 
+    <table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="stucture3.shtml" title="Structure and sizeof functionC">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="str1.shtml" title="String in C">Next</a></td>
+  </tr>
+</table>	
+
+<h2>Example Of Structure</h2>
+<p>You will never get the size of a structure exactly as you think it must be. The sizeof function returns the size of structure larger than it is because the compiler pads struct members so that each one can be accessed faster without delays. So you should be careful when you read the whole structure from file which were written from other programs.</p>
+
+<h3>example of using C structure:</h3>
+
+<div class="code">
+<PRE>
+<FONT COLOR="#000000">#include &lt;stdio.h&gt; </FONT>
+<FONT COLOR="#000000">typedef struct _student{</FONT>
+ <FONT COLOR="#0000ff">char </FONT><FONT COLOR="#000000">name[</FONT><FONT COLOR="#800080">50</FONT><FONT COLOR="#000000">];</FONT>
+ <FONT COLOR="#000000">unsigned </FONT><FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">mark;</FONT>
+ <FONT COLOR="#000000">} student; </FONT>
+ <FONT COLOR="#0000ff">void </FONT><FONT COLOR="#000000">print_list(student list[], </FONT><FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">size);</FONT>
+ <FONT COLOR="#0000ff">void </FONT><FONT COLOR="#000000">read_list(student list[], </FONT><FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">size); </FONT>
+ <FONT COLOR="#0000ff">void </FONT><FONT COLOR="#000000">main(){</FONT>
+<FONT COLOR="#0000ff">const int </FONT><FONT COLOR="#000000">size = </FONT><FONT COLOR="#800080">3</FONT><FONT COLOR="#000000">;</FONT>
+<FONT COLOR="#000000">student list[size];</FONT>
+<FONT COLOR="#000000">read_list(list,size);</FONT>
+ <FONT COLOR="#000000">print_list(list,size);  }</FONT>
+ <FONT COLOR="#0000ff">void </FONT><FONT COLOR="#000000">read_list(student list[], </FONT><FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">size)</FONT>
+ <FONT COLOR="#000000">{</FONT>
+<FONT COLOR="#000000">printf(</FONT><FONT COLOR="#ff00ff">"Please enter the student information:\n"</FONT><FONT COLOR="#000000">); </FONT>
+ <FONT COLOR="#0000ff">for</FONT><FONT COLOR="#000000">(</FONT><FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">i = </FONT><FONT COLOR="#800080">0</FONT><FONT COLOR="#000000">; i &lt; size;i++){</FONT>
+ <FONT COLOR="#000000">printf(</FONT><FONT COLOR="#ff00ff">"\nname:"</FONT><FONT COLOR="#000000">);</FONT>
+<FONT COLOR="#000000">scanf(</FONT><FONT COLOR="#ff00ff">"%S"</FONT><FONT COLOR="#000000">,&amp;list[i].name); </FONT>
+ <FONT COLOR="#000000">printf(</FONT><FONT COLOR="#ff00ff">"\nmark:"</FONT><FONT COLOR="#000000">);</FONT>
+ <FONT COLOR="#000000">scanf(</FONT><FONT COLOR="#ff00ff">"%U"</FONT><FONT COLOR="#000000">,&amp;list[i].mark);</FONT>
+ <FONT COLOR="#000000">} </FONT>
+ <FONT COLOR="#000000">} </FONT>
+ <FONT COLOR="#0000ff">void </FONT><FONT COLOR="#000000">print_list(student list[], </FONT><FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">size){</FONT>
+ <FONT COLOR="#000000">printf(</FONT><FONT COLOR="#ff00ff">"Students' information:\n"</FONT><FONT COLOR="#000000">); [an error occurred </FONT><FONT COLOR="#0000ff">while </FONT><FONT COLOR="#000000"><br>                                      processing </FONT><FONT COLOR="#0000ff">this </FONT><FONT COLOR="#000000">directive]</FONT>
+ <FONT COLOR="#0000ff">for</FONT><FONT COLOR="#000000">(</FONT><FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">i = </FONT><FONT COLOR="#800080">0</FONT><FONT COLOR="#000000">; i &lt; size;i++){</FONT>
+ <FONT COLOR="#000000">printf(</FONT><FONT COLOR="#ff00ff">"\nname: %s, mark: %u"</FONT><FONT COLOR="#000000">,list[i].name,list[i].mark);</FONT>
+ <FONT COLOR="#000000">}</FONT>
+ <FONT COLOR="#000000">}</FONT>
+
+<FONT COLOR="#000000">Here is program</FONT><FONT COLOR="#ff00ff">'s output</FONT>
+<FONT COLOR="#000000">Please enter the student information:</FONT>
+<FONT COLOR="#000000">name:Jack</FONT>
+<FONT COLOR="#000000">mark:</FONT><FONT COLOR="#800080">5</FONT>
+<FONT COLOR="#000000">name:Anna</FONT>
+<FONT COLOR="#000000">mark:</FONT><FONT COLOR="#800080">7</FONT>
+<FONT COLOR="#000000">name:Harry</FONT>
+<FONT COLOR="#000000">mark:</FONT><FONT COLOR="#800080">8</FONT>
+<FONT COLOR="#000000">Students</FONT><FONT COLOR="#ff00ff">' information:</FONT>
+<FONT COLOR="#000000">name: J, mark: </FONT><FONT COLOR="#800080">5</FONT>
+<FONT COLOR="#000000">name: A, mark: </FONT><FONT COLOR="#800080">7</FONT>
+<FONT COLOR="#000000">name: H, mark: </FONT><FONT COLOR="#800080">8</FONT>
+</PRE>
+</div>
+
+ <table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="stucture3.shtml" title="Structure and sizeof functionC">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="str1.shtml" title="String in C">Next</a></td>
+  </tr>
+</table>	
+
+<!--Footer  --> 
+</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>

@@ -1,0 +1,103 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD>
+<meta http-equiv="Content-Language" content="en-us">
+<TITLE>Step of connectivity with Oracle</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name="description" CONTENT="Step of connectivity with Oracle" >
+<meta name="keywords" CONTENT="Step of connectivity with Oracle">
+
+<!-- header start-->	
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>JDBC</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+            <img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+            <a href="/java/">Java</a>
+              <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/java/jdbc">jdbc </a>
+              </div>
+
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/jdbc/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	 
+<!-- header End-->
+<div class="heading">Step of the connectivity with Oracle</div>
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="Version_of_JDBC.shtml" title="Version of JDBC">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="Step_of_the_connectivity_with_MySQL.shtml" title="Step of the connectivity with MySQL">Next</a></td>
+  </tr> 
+</table>
+
+<p>The steps of developing the Java programs that access the Oracle database.</p>
+<p><i>Step 1:</i> load the database driver and register it with the driver </p>
+<div class ="code"><pre>
+<font color="#000000">manager.</font><font color="#ff0000">Class</font><font color="#000000">.forName(oracle.jdbc.driver.oracleDriver);</font>
+</pre>
+</div>
+<p><i>Step 2:</i> In the second step we are create the connection to the database</p> 
+<div class ="code"><pre>
+<font color="#000000">server.</font><font color="#ff0000">Connection </font><font color="#000000">con = </font><font color="#ff0000">DriverManager</font><font color="#000000">.getConnection(jdbc:oracle;thin:@</font>
+<font color="#0000ff">localhost</font><font color="#000000">:</font><font color="#800080">1521</font><font color="#000000">:xe,system,sam);</font>
+</pre>
+</div>
+<p><i>Step 3:</i> In this step you can create the statement object by giving your Oracle.</p>
+<div class="code"><pre>
+<font color="#ff0000">PreparedStatement </font><font color="#000000">stm = con.prepareStatement(select * from sam);</font>
+</pre>
+</div>
+<p><i>Step 4:</i> Now you can execute the SQL query and retrieve the data in the form of ResultSet.
+In case of delete or update you can execute the SQL and get the information about the SQL 
+execution like no of records deleted or modified etc.</p>
+<div class="code"><pre>
+<font color="#ff0000">ResultSet </font><font color="#000000">rset = stm.executeQuery();</font>
+</pre>
+</div>
+<p><i>Step 5:</i> Finally you should disconnect your database</p> 
+<div class="code"><pre>
+<font color="#000000">connection.Con.close();</font>
+</pre>
+</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="Version_of_JDBC.shtml" title="Version of JDBC">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="Step_of_the_connectivity_with_MySQL.shtml" title="Step of the connectivity with MySQL">Next</a></td>
+  </tr> 
+</table>
+
+	<!-- Footer Start-->		
+		</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->

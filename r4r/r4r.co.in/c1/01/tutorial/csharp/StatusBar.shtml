@@ -1,0 +1,164 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>StatusBar Control,StatusBar Properties,StatusBar Events,The StatusBarPanel Class,Example  For StatusBar,Code for button click on go button,Code for timer Control</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="StatusBar Control,StatusBar Properties,StatusBar Events,The StatusBarPanel Class,Example  For StatusBar,Code for button click on go button,Code for timer Control" >
+<meta name="keywords" CONTENT="StatusBar Control,StatusBar Properties,StatusBar Events,The StatusBarPanel Class,Example  For StatusBar,Code for button click on go button,Code for timer Control">
+
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+     <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>C# Tutorial</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a><img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/c1/">C#</a>
+
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/c1/commonfiles/leftmenu.shtml'); ?></td>
+
+                       <td style="80%" valign="top">
+                        <div class="main_content"> 
+
+	<!-- Header End-->
+
+  <div class="heading">StatusBar Control</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="ListView.shtml" title="Listview Control">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="Tabcontrol.shtml" title="Tabcontrol Control">Next</a></td>
+  </tr>
+</table>
+<p>A status bar is commonly used to provide hints for the selected item or information about an action currently being
+ performed on a dialog. Normally, the StatusBar is placed at the bottom of the screen, as it is in MS Office applications and
+  Paint, but it can be located anywhere you like.</p>
+  <h3>StatusBar Properties</h3>
+  <div class="table_content">
+ <table>
+ <tr>
+ <td class="heading" style="width:20%;">Name</td>
+ <td class="heading" style="width:20%;">Availability</td>
+ <td class="heading" style="width:60%;">Description</td>
+ </tr>
+   <tr><td class="alternate_heading2">BackgroundImage</td><td class="alternate_heading2"> Read/Write</td><td class="alternate_heading2">It is possible to assign an image to the status bar that will be drawn in the background.</td> </tr>
+ <tr><td class="alternate_heading1">Panels</td><td class="alternate_heading1"> Read-only</td><td class="alternate_heading1">This is the collection of panels in the status bar. Use this collection to add and remove panels.</td> </tr>
+ <tr><td class="alternate_heading2">ShowPanels</td><td class="alternate_heading2">  Read/Write</td><td class="alternate_heading2"> If you want to display panels, this property must be set to true.</td> </tr>
+ <tr><td class="alternate_heading1">Sorted</td><td class="alternate_heading1"> Read/Write</td><td class="alternate_heading1"> When you are not using panels this property holds the text that is displayed in the status bar.</td> </tr>
+ </table>
+ </div>
+  <h3>StatusBar Events</h3>
+  <div class="table_content">
+ <table>
+ <tr>
+ <td class="heading" style="width:30%;">Name</td>
+ <td class="heading" style="width:60%;">Description</td>
+ </tr>
+ <tr>
+ <td class="alternate_heading2">DropDown</td><td class="alternate_heading2">Occurs when the list portion of the control is dropped down.</td></tr>
+ <tr><td class="alternate_heading1">SelectedIndexChanged</td><td class="alternate_heading1">Occurs when the selection in the list portion of the control changed.</td></tr>
+  <td class="alternate_heading2">KeyDown, KeyPress, KeyUp</td><td class="alternate_heading2">These events occur when a key is pressed while the text portion of the control has focus. Please refer to the descriptions of the events in the text box section earlier in this chapter</td></tr>
+ <td class="alternate_heading1">TextChanged</td><td class="alternate_heading1">Occurs when the Text property changes</td></tr>
+</table>
+ </div>
+ <h3>The StatusBarPanel Class</h3>
+ <p>This class contains all the information about the individual panels in the Panels collection. The information that can be
+  set ranges from simple text and alignment of text to icons to be displayed and the style of the panel</p>
+  <h3>Example For StatusBar</h3>
+  <p>To understanding StatusBar control drag and drop status strip and make text blank and add 2toolstatuslabel and 1 
+  toolstatusprogressbar. And drag 1textbox and 1 button,1timer control and change property according to your choice.</p>
+  <div class="image">
+  <img src="images/status.JPG">
+  </div>
+  <h3>Code for button click on go button</h3>
+
+  <div class="code">
+  <pre>
+<font color="#0000ff">private void </font><font color="#000000">button1_Click_1(</font><font color="#0000ff">object </font><font color="#000000">sender, </font><font color="#808000">EventArgs </font><font color="#000000">e)</font>
+<font color="#000000">{</font>
+<font color="#000000">toolStripProgressBar1.Visible = </font><font color="#0000ff">true</font><font color="#000000">;</font>
+<font color="#000000">toolStripStatusLabel2.</font><font color="#008080">Text </font><font color="#000000">= </font><font color="#ff00ff">&quot;&quot;</font><font color="#000000">;</font>
+<font color="#000000">timer1.Enabled = </font><font color="#0000ff">true</font><font color="#000000">;</font>
+<font color="#000000">webBrowser1.Navigate(textBox1.</font><font color="#008080">Text</font><font color="#000000">);</font>
+<font color="#000000">toolStripStatusLabel1.</font><font color="#008080">Text </font><font color="#000000">= textBox1.</font><font color="#008080">Text</font><font color="#000000">;</font>
+<font color="#000000">}</font>
+</pre>
+</div>
+
+<div class="image">
+<img src="images/status1.JPG">
+</div>
+
+<p>On clicking button progress bar will show on status strip control until webpage will not open. when web page is loaded 
+progress bar will not be display and label text will be web address and done that means page has been loaded as shown below</p>
+
+<div class="image">
+<img src="images/status2.JPG">
+</div>
+
+<h3>Code for timer Control</h3>
+<div class="code">
+<pre>
+<font color="#0000ff">private void </font><font color="#000000">timer1_Tick(</font><font color="#0000ff">object </font><font color="#000000">sender, </font><font color="#808000">EventArgs </font><font color="#000000">e) {</font>
+
+<font color="#000000">toolStripProgressBar1.Value = toolStripProgressBar1.Value + </font><font color="#800080">10</font><font color="#000000">;</font>
+
+<font color="#0000ff">if </font><font color="#000000">(toolStripProgressBar1.Value == toolStripProgressBar1.Maximum)</font>
+<font color="#000000">{</font>
+
+<font color="#000000">toolStripProgressBar1.Value= </font><font color="#800080">0</font><font color="#000000">;</font>
+<font color="#000000">toolStripProgressBar1.Visible = </font><font color="#0000ff">false</font><font color="#000000">;</font>
+<font color="#000000">timer1.Enabled = </font><font color="#0000ff">false</font><font color="#000000">;</font>
+<font color="#000000">toolStripStatusLabel2.</font><font color="#008080">Text </font><font color="#000000">= </font><font color="#ff00ff">&quot;Done&quot;</font><font color="#000000">; </font>
+<font color="#000000">}</font>
+<font color="#000000">}</font>
+</pre>
+</div>
+
+<p>Write following code on document complete event of WebbrowserControl so that progressbar stops</p>
+
+<div class="code">
+<pre>
+<font color="#0000ff">private void </font><font color="#000000">webBrowser1_DocumentCompleted(</font><font color="#0000ff">object </font><font color="#000000">sender, </font>
+<font color="#808000">WebBrowserDocumentCompletedEventArgs </font><font color="#000000">e)</font>
+<font color="#000000">{</font>
+<font color="#000000">toolStripProgressBar1.Visible = </font><font color="#0000ff">false</font><font color="#000000">;</font>
+<font color="#000000">}</font>
+</pre>
+</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="ListView.shtml" title="Listview Control">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="Tabcontrol.shtml" title="Tabcontrol Control">Next</a></td>
+  </tr>
+</table>
+
+ 				 <!--Footer-->
+   </div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/dotnet/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+     <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>

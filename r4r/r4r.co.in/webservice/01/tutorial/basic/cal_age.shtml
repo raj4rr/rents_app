@@ -1,0 +1,150 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HEAD><TITLE>Create a Web Service For Calculate Age</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="Create a Web Service For Calculate Age" >
+<meta name="keywords" CONTENT="Create a Web Service For Calculate Age">
+
+<!-- header start-->	
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>Web Services</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+            <img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+           <a href="/webservice/">Web Services</a>
+
+              </div>
+
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/webservice/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	 
+
+<!-- header End-->	
+ <div class="heading">Create a Web Service For Calculate Age when user input Date</div>
+ <table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="how_to_make_a_web_services.shtml" title="How To make a Web Services">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="How_to_use_web_services.shtml" title="How to Use web Services (in ASP. NET)">Next</a></td>
+  </tr> 
+</table>
+
+<p><i>Step 1:</i> Open a new Web Site and click on</p>
+ASP.Net Web Services press on OK as shown below in fig.
+<div class="image"><img src="Images/hw.GIF"></div>
+<div class="image"><img src="Images/cal_age_files.gif"></div>
+
+<p><i>Step 2:</i> 
+The code (Service.cs) written for Calculating Age , Calculate Factorial and 
+Square Root of a Number. </p>
+<div class="code">
+<pre>
+
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.Linq;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Web</font><font color="#000000">;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Web</font><font color="#000000">.Services;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Web</font><font color="#000000">.Services.Protocols;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Xml</font><font color="#000000">.Linq;</font>
+<font color="#000000">[WebService(Namespace = </font><font color="#ff00ff">&quot;http://tempuri.org/&quot;</font><font color="#000000">)]</font>
+<font color="#000000">[WebServiceBinding(ConformsTo = WsiProfiles.BasicProfile1_1)]</font>
+<font color="#0000ff">public class </font><font color="#000000">Service : </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Web</font><font color="#000000">.Services.WebService</font>
+<font color="#000000">{[WebMethod (</font><font color="#008080">Description</font><font color="#000000">=</font><font color="#ff00ff">&quot;Calculating Age&quot;</font><font color="#000000">)]</font>
+    <font color="#0000ff">public string </font><font color="#000000">calAge(DateTime date)</font>
+    <font color="#000000">{   DateTime nowDate = </font><font color="#008080">System</font><font color="#000000">.DateTime.Now;</font>
+        <font color="#008080">System</font><font color="#000000">.TimeSpan span = nowDate - date;</font>
+        <font color="#0000ff">int </font><font color="#000000">days = (</font><font color="#0000ff">int</font><font color="#000000">)span.TotalDays;</font>
+        <font color="#0000ff">int </font><font color="#000000">yea = days / </font><font color="#800080">365</font><font color="#000000">;</font>
+        <font color="#0000ff">string </font><font color="#000000">age = yea.ToString() + </font><font color="#ff00ff">&quot; years &quot;</font><font color="#000000">;</font>
+        <font color="#0000ff">return </font><font color="#000000">age;}</font>
+    <font color="#000000">[WebMethod(</font><font color="#008080">Description </font><font color="#000000">= </font><font color="#ff00ff">&quot;Calculating SquareRoot&quot;</font><font color="#000000">)]</font>
+    <font color="#0000ff">public double </font><font color="#000000">calSquareRoot(</font><font color="#0000ff">int </font><font color="#000000">a)</font>
+    <font color="#000000">{   </font><font color="#0000ff">double </font><font color="#000000">i = </font><font color="#800080">0</font><font color="#000000">;</font>
+        <font color="#0000ff">double </font><font color="#000000">x1, x2=</font><font color="#800080">0</font><font color="#000000">;</font>
+        <font color="#0000ff">while </font><font color="#000000">((i * i) &lt;= a)</font>
+        <font color="#000000">i += </font><font color="#800080">0</font><font color="#000000">.</font><font color="#800080">1</font><font color="#000000">;</font>
+        <font color="#000000">x1 = i;</font>
+        <font color="#0000ff">for </font><font color="#000000">(</font><font color="#0000ff">int </font><font color="#000000">j = </font><font color="#800080">0</font><font color="#000000">; j &lt; </font><font color="#800080">10</font><font color="#000000">; j++)</font>
+        <font color="#000000">{   x2 = a;</font>
+            <font color="#000000">x2 /= x1;</font>
+            <font color="#000000">x2 += x1;</font>
+            <font color="#000000">x2 /= </font><font color="#800080">2</font><font color="#000000">;</font>
+            <font color="#000000">x1 = x2;}</font>
+        <font color="#0000ff">return </font><font color="#000000">x2;}</font>
+    <font color="#000000">[WebMethod(</font><font color="#008080">Description </font><font color="#000000">= </font><font color="#ff00ff">&quot;Calculating Factorial&quot;</font><font color="#000000">)]</font>
+    <font color="#0000ff">public double </font><font color="#000000">calFactorial(</font><font color="#0000ff">int </font><font color="#000000">a)</font>
+    <font color="#000000">{</font><font color="#0000ff">if </font><font color="#000000">(a == </font><font color="#800080">0</font><font color="#000000">)</font><font color="#0000ff">return </font><font color="#800080">1</font><font color="#000000">;</font>
+        <font color="#0000ff">else return </font><font color="#000000">(a*calFactorial(a-</font><font color="#800080">1</font><font color="#000000">));}}</font>
+
+</pre>
+</div>
+
+<p><i>Step 3:</i> Debug The service</p>
+<div class="image"><img src="Images/calage.jpeg"></div>
+Click on each link and check your service
+<p><i>Step 4:</i> To use this service, go to your project 
+solution right click and click on Add Web Reference. A new window open</p>
+<div class="image"><img src="Images/calage1.jpeg"></div>
+Copy the URL of your running web service and paste 
+it in the new window place as shown in below fig.
+
+<div class="image"><img src="Images/calage2.jpeg"></div>
+<div class="image"><img src="Images/calage4.jpeg"></div>
+<font class="point_out"> Note: <i>Remember the web reference name, it will be 
+added in your project (.cs ) file e.g. this reference help to call the method of 
+your web services. </i>You will call the methods to create an object of SERVICE.</font> 
+<p>To know more click <a href="How_to_use_web_services.htm">
+Here</font></a></p>
+
+<div class="code">
+<pre>
+<font color="#0000ff">using </font><font color="#000000">localhost;</font>
+</pre>
+</div>
+
+<p>Click on Add Reference, The service will be added in 
+your web site. It will be show on your page like below fig.</p>
+<div class="image"><img src="Images/calage3.jpeg"></div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="how_to_make_a_web_services.shtml" title="How To make a Web Services">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="How_to_use_web_services.shtml" title="How to Use web Services (in ASP. NET)">Next</a></td>
+  </tr> 
+</table>
+
+<!-- Footer Start-->	
+
+		</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->

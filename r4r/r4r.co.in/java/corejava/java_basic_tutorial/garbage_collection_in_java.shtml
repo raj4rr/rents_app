@@ -1,0 +1,170 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<HTML><HEAD><TITLE>Garbage collection in Java</TITLE>
+
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv="content-type" content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="Garbage Collection is process of reclaiming the runtime unused memory automatically.">
+<meta name="keywords" CONTENT="Garbage Collection, gc method, Java Basic, Hotspot, JVM Architecture, heap memory, Example ">
+
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>Java Programing laungage</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a><img src="/images/left_menu_bullet.gif"/> <a href="/java/">Java</a><img src="/images/left_menu_bullet.gif"/> <a href="/java/corejava">Core Java</a></div>
+            	<table>
+                    <tr>
+                      <td width="19%" valign="top" style="width:20%"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/corejava/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td width="81%" style="80%" valign="top">
+
+                        		<!-- Header End-->	
+                     <div class="main_content">
+
+<div class="heading">Garbage collection in Java</div>
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="null_keyword_in_java.shtml" title="null Keyword in Java">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml" title="Java Programming Tutorials">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="finialize()_method_in_java.shtml" title="finalize() method in Java">Next</a></td>
+  </tr> 
+</table> 
+<p>Automatic garbage collection is the process of looking at heap memory, identifying which objects are in use and which are not, and deleting the unused objects. An in use object, or a referenced object, means that some part of your program still maintains a pointer to that object. An unused object, or unreferenced object, is no longer referenced by any part of your program. So the memory used by an unreferenced object can be reclaimed.</p> 
+<ol>
+<li>garbage means unreferenced objects. it is a way to destroy the unused objects.</li>
+<li>Garbage collection is a static method of the class system system.gc().</li>
+<li>It will free the the memory of all the array and object no reference variable.</li>
+<li>gc() is called automatically after a fixed interval of time. This interval is different in different platform.</li>
+<li>It work in backgound. It is a way to destroy the unused objects.</li>
+<li>We were using free() function in C language and delete() in C++. But, in java it is performed automatically. So, java provides better memory management.</li>
+</ol>
+<p>In a programming language like C, allocating and deallocating memory is a manual process. In Java, process of deallocating memory is handled automatically by the garbage collector. The basic process can be described as follows.</p>
+
+<ol>
+<li><h3>Marking</h3></li>
+<p>The first step in the process is called marking. This is where the garbage collector identifies which pieces of memory are in use and which are not.</p>
+<div class="image">
+<p><img src="images/garbagemark.png"></p>
+</div>
+<p>Referenced objects are shown in blue. Unreferenced objects are shown in gold. All objects are scanned in the marking phase to make this determination. This can be a very time consuming process if all objects in a system must be scanned.</p>
+
+<li><h3>Normal Deletion</h3></li>
+<p>Normal deletion removes unreferenced objects leaving referenced objects and pointers to free space.</p>
+<div class="image">
+<p><img src="images/garbagedelet.png"></p>
+</div>
+<p>The memory allocator holds references to blocks of free space where new object can be allocated.</p>
+
+<li><h3> Deletion with Compacting</h3></li>
+<p>Improve performance, in addition to deleting unreferenced objects, you can also compact the remaining referenced objects. By moving referenced object together, this makes new memory allocation much easier and faster.</p>
+
+<div class="image">
+<p><img src="images/garbagecomp.png"></p>
+</div>
+</ol>
+
+<p>Explain the basic terminologies like JDK, JVM, JRE, HotSpot VM then understand the JVM architecture and Java heap memory structure.</p>
+<h2>Java Basic</h2>
+<ol>
+<li><h3>Java API :</h3> is a collection of packaged libraries that helps developers to create Java applications.</li>
+<li><h3>Java Development Kit (JDK) :</h3> is a set of tools that enables a developer to create Java applications. JDK includes tools to compile, run, package, distribute and monitor Java applications.</li>
+<li><h3>Java Virtual Machine (JVM) :</h3> JVM is an abstract computing machine. Java programs are written against the JVM specification. JVM is specific for OS platform and they translate the Java instructions to the underlying platform specific instructions and execute them. JVM enables the Java programs to be platform independent.</li>
+<li><h3>Java Runtime Environment (JRE) :</h3>JRE comprises the JVM implementation and the Java API.</li>
+</ol>
+
+<h2>Java HotSpot Virtual Machine</h2>
+<p>Each JVM implementation may be different in the way the garbage collection principles are implemented. Prior to SUN takeover Oracle had JRockit JVM and after takeover it got the HotSpot JVM. Presently Oracle maintains both the JVM implementations and it has declared that over a period these two JVM implementations will be converged to one.</p>
+
+<p><h2>Hotspot JVM Architecture</h2></p>
+<p>The JVM architecture, two main components that are related to garbage collection are heap memory and garbage collector. Heap memory is the runtime data area where the instances will be store and the garbage collector will operate on.</p> 
+<div class="image">
+<p><img src="images/garbagecollec.png"></p>
+</div>
+
+<h2>java Heap Memory</h2>
+<p>At runtime the Java instances are stored in the heap memory area. Heap memory is divided into three parts :</p>
+<ol>
+<li>Young Generation</li>
+<ol>
+<li>Eden Space (any instance enters the runtime memory area through eden).</li>
+<li>S0 Survivor Space (older instances moved from eden to S0).</li>
+<li>S1 Survivor Space (older instances moved from S0 to S1).</li>
+</ol>
+<li>Old or Tenured Generation (instances promoted from S1 to tenured)</li>
+<li>Permanent Generation (contains meta information like class, method detail).</li>
+</ol>
+
+<div class="image">
+<p><img src="images/garbageheap.png"></p>
+</div>
+
+<h2>Java Garbage Collection GC Initiation</h2>
+<p>In Java, as the developer does not explicitly remove the memory in the program code, the garbage collector finds the unnecessary (garbage) objects and removes them. Being an automatic process, programmers need not initiate the garbage collection process explicitly in the code. System.gc() and Runtime.gc() are hooks to request the JVM to initiate the garbage collection process.</p>
+
+<h2>Java Garbage Collection Process</h2>
+<p>Garbage collection is the process of reclaiming the unused memory space and making it available for the future instances.</p>
+<ol>
+<li><h3>Eden Space</h3>: When an instance is created, it is first stored in the eden space in young generation of heap memory area.</li>
+<li><h3>Survivor Space (S0 and S1)</h3>: When the eden space fills up, a minor garbage collection is triggered. As part of the minor garbage collection cycle, objects that are live (which is still referenced) are moved to survivor space S0 from eden space. Similarly the garbage collector scans S0 and moves the live instances to S1. Referenced objects are moved to the first survivor space. Unreferenced objects are deleted when the eden space is cleared. At the next minor GC, the same thing happens for the eden space. Unreferenced objects are deleted and referenced objects are moved to a survivor space. However, in this case, they are moved to the second survivor space (S1). In addition, objects from the last minor GC on the first survivor space (S0) have their age incremented and get moved to S1. Once all surviving objects have been moved to S1, both S0 and eden are cleared.</li>
+<li><h3>Old Generation</h3>: Old or tenured generation is the second logical part of the heap memory. When the garbage collector does the minor GC cycle, instances that are still live in the S1 survivor space will be promoted to the old generation. Objects that are dereferenced in the S1 space is marked for eviction.</li>
+<li><h3>Major GC</h3>: Old generation is the last phase in the instance life cycle with respect to the Java garbage collection process. Major GC is the garbage collection process that scans the old generation part of the heap memory. If instances are dereferenced, then they are marked for eviction and if not they just continue to stay in the old generation.</li>
+<li><h3>Memory Fragmentation</h3>: Once the instances are deleted from the heap memory the location becomes empty and becomes available for future allocation of live instances. These empty spaces will be fragmented across the memory area. For quicker allocation of the instance it should be defragmented. Based on the choice of the garbage collector, the reclaimed memory area will either be compacted on the go or will be done in a separate pass of the GC.</li>
+</ol>
+
+<h3>Example</h3>
+<div class="code">
+<PRE><FONT FACE="Arial"><FONT COLOR="#0000ff">import </FONT><FONT COLOR="#000000">java.util.*;</FONT>
+
+<FONT COLOR="#0000ff">class </FONT><FONT COLOR="#000000">GarbageCollection</FONT>
+<FONT COLOR="#000000">{</FONT>
+   <FONT COLOR="#0000ff">public static void </FONT><FONT COLOR="#000000">main(</FONT><FONT COLOR="#ff0000">String </FONT><FONT COLOR="#000000">s[]) </FONT><FONT COLOR="#0000ff">throws </FONT><FONT COLOR="#ff0000">Exception</FONT>
+   <FONT COLOR="#000000">{</FONT>
+      <FONT COLOR="#ff0000">Runtime </FONT><FONT COLOR="#000000">rs =  </FONT><FONT COLOR="#ff0000">Runtime</FONT><FONT COLOR="#000000">.getRuntime();</FONT>
+      <FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.println(</FONT><FONT COLOR="#ff00ff">"Free memory in JVM before = "</FONT><FONT COLOR="#000000">+rs.freeMemory());</FONT>
+      <FONT COLOR="#000000">rs.gc();</FONT>
+      <FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.println(</FONT><FONT COLOR="#ff00ff">"Free memory in JVM after = "</FONT><FONT COLOR="#000000">+rs.freeMemory());</FONT>
+   <FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#000000">}</FONT></FONT></PRE>
+</div>
+
+<h3>Output</h3>
+<div class="code">
+<PRE><FONT FACE="Arial"><FONT COLOR="#000000">Free memory in JVM before = </FONT><FONT COLOR="#800080">61738736 </FONT>
+<FONT COLOR="#000000">Free memory in JVM after = </FONT><FONT COLOR="#800080">61506664</FONT></FONT></PRE>
+</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="null_keyword_in_java.shtml" title="null Keyword in Java">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml" title="Java Programming Tutorials">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="finialize()_method_in_java.shtml" title="finalize() method in Java">Next</a></td>
+  </tr> 
+</table> 
+ <!--Footer  -->     		
+
+                      </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>

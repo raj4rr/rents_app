@@ -1,0 +1,251 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>jdk1.7 new features</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="jdk1.7 new features">
+<meta name="keywords" CONTENT="jdk1.7 new features">
+
+<!-- header start-->	
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>Java Programing laungage</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+            <img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+            <a href="/java/">Java</a>
+              <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/java/corejava/">Core Java</a>
+                                   <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/java/corejava/topics/jdk7/">JDK1.7</a>
+              </div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/corejava/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	 
+
+<!-- header End-->
+
+<div class="heading">jdk1.7 new features</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="Downling-and-Installing-jdk 1.7.shtml" title="Downling-and-Installing-jdk 1.7">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+   <td style="width:33%; text-align:right;"><a href="Difference-between-jdk1.6andjdk1.7.shtml" title="Difference-between-jdk1.6andjdk1.7">Next</a></td>
+  </tr> 
+</table>
+
+<p> There are a number of features in Java 7 that will please developers.</p>
+<ol>
+<li>
+Things such as strings in switch statements.
+</li>
+<li>
+multi-catch exception handling.
+</li>
+<li>
+try-with-resource statements.
+</li>
+<li>
+the new File System API,
+</li>
+<li>
+extensions of the JVM.
+</li>
+<li>
+support for dynamically-typed languages.
+</li>
+<li>
+ the fork and join framework for task parallelism, and a few others will certainly be embraced by the community.
+</li></ol>
+<div class="heading">Language Enhancement</div>
+<p><i>Underscore for Numeric Literals:</i>
+In JDK1.7, you could insert underscore(s) '_' in between the digits in an numeric literals (integral and floating-point literals) to improve readability. </p>
+<h3>Example</h3>
+<div class="code">
+<PRE>
+<FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">anInt = 0b10101000_0101;</FONT>
+<FONT COLOR="#0000ff">double </FONT><FONT COLOR="#000000">aDouble = </FONT><FONT COLOR="#800080">5</FONT><FONT COLOR="#000000">.115_7265;</FONT>
+<FONT COLOR="#0000ff">float </FONT><FONT COLOR="#000000">aFloat = </FONT><FONT COLOR="#800080">6</FONT><FONT COLOR="#000000">.14_15_92_65f;</FONT>
+</PRE>
+</div>
+
+<div class="heading">Catching Multiple Exception Types</div>
+<p>In JDK1.7, a single catch block can handle more than one exception types.
+For example, before JDK1.7, you need two catch blocks to catch two exception types although both perform identical task:</p>
+<div class="code">
+<PRE>
+<FONT COLOR="#0000ff">try </FONT><FONT COLOR="#000000">{</FONT>
+<FONT COLOR="#000000">......</FONT>
+<FONT COLOR="#000000">} </FONT><FONT COLOR="#0000ff">catch</FONT><FONT COLOR="#000000">(</FONT><FONT COLOR="#ff0000">ClassNotFoundException </FONT><FONT COLOR="#000000">ex) {</FONT>
+<FONT COLOR="#000000">ex.printStackTrace();</FONT>
+<FONT COLOR="#000000">} </FONT><FONT COLOR="#0000ff">catch</FONT><FONT COLOR="#000000">(</FONT><FONT COLOR="#ff0000">SQLException </FONT><FONT COLOR="#000000">ex) {</FONT>
+<FONT COLOR="#000000">ex.printStackTrace();</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#000000">In JDK </FONT><FONT COLOR="#800080">7</FONT><FONT COLOR="#000000">, you could use one single </FONT><FONT COLOR="#0000ff">catch </FONT><FONT COLOR="#000000">block,</FONT>
+<FONT COLOR="#000000">with exception types separated by </FONT><FONT COLOR="#ff00ff">'|'</FONT><FONT COLOR="#000000">.</FONT>
+<FONT COLOR="#0000ff">try </FONT><FONT COLOR="#000000">{</FONT>
+<FONT COLOR="#000000">......</FONT>
+<FONT COLOR="#000000">} </FONT><FONT COLOR="#0000ff">catch</FONT><FONT COLOR="#000000">(</FONT><FONT COLOR="#ff0000">ClassNotFoundException</FONT><FONT COLOR="#000000">|</FONT><FONT COLOR="#ff0000">SQLException </FONT><FONT COLOR="#000000">ex) {</FONT>
+<FONT COLOR="#000000">ex.printStackTrace();</FONT>
+</PRE>
+</div>
+
+<div class="heading">The try-with-resources Statement</div>
+<p>For example, before JDK 7, we need to use a finally block, to ensure that a resource is closed regardless of whether the try statement completes normally or abruptly. The code is messy!</p>
+<p>JDK 7 introduces a try-with-resources statement, which ensures that each of the resources in try(resources) is closed at the end of the statement. This results in cleaner codes.</p>
+<div class="code">
+<PRE>
+<FONT COLOR="#0000ff">import </FONT><FONT COLOR="#000000">java.io.*;</FONT>
+<FONT COLOR="#008000">// Copy from one file to another file character by character.</FONT>
+<FONT COLOR="#0000ff">public class </FONT><FONT COLOR="#000000">testJDK7</FONT>
+<FONT COLOR="#000000">{</FONT>
+<FONT COLOR="#0000ff">public static void </FONT><FONT COLOR="#000000">main(</FONT><FONT COLOR="#ff0000">String</FONT><FONT COLOR="#000000">[] args)</FONT>
+<FONT COLOR="#000000">{</FONT>
+<FONT COLOR="#0000ff">try </FONT><FONT COLOR="#000000">(</FONT><FONT COLOR="#ff0000">BufferedReader </FONT><FONT COLOR="#000000">in = </FONT><FONT COLOR="#0000ff">new </FONT><FONT COLOR="#ff0000">BufferedReader</FONT><FONT COLOR="#000000">(</FONT><FONT COLOR="#0000ff">new </FONT><FONT COLOR="#ff0000">FileReader</FONT><FONT COLOR="#000000">(</FONT><FONT COLOR="#ff00ff">"in.txt"</FONT><FONT COLOR="#000000">));</FONT>
+<FONT COLOR="#ff0000">BufferedWriter </FONT><FONT COLOR="#000000">out = </FONT><FONT COLOR="#0000ff">new </FONT><FONT COLOR="#ff0000">BufferedWriter</FONT><FONT COLOR="#000000">(</FONT><FONT COLOR="#0000ff">new </FONT><FONT COLOR="#ff0000">FileWriter</FONT><FONT COLOR="#000000">(</FONT><FONT COLOR="#ff00ff">"out.txt"</FONT><FONT COLOR="#000000">))) {</FONT>
+<FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">charRead;</FONT>
+<FONT COLOR="#0000ff">while </FONT><FONT COLOR="#000000">((charRead = in.read()) != -</FONT><FONT COLOR="#800080">1</FONT><FONT COLOR="#000000">) {</FONT>
+<FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.printf(</FONT><FONT COLOR="#ff00ff">"%c "</FONT><FONT COLOR="#000000">, (</FONT><FONT COLOR="#0000ff">char</FONT><FONT COLOR="#000000">)charRead);</FONT>
+<FONT COLOR="#000000">out.write(charRead);</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#000000">} </FONT><FONT COLOR="#0000ff">catch </FONT><FONT COLOR="#000000">(</FONT><FONT COLOR="#ff0000">IOException </FONT><FONT COLOR="#000000">ex) {</FONT>
+<FONT COLOR="#000000">ex.printStackTrace();</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#000000">}</FONT>
+</PRE>
+</div>
+<div class="heading">Type Inference for Generic Instance Creation</div>
+<h3>Example</h3>
+<div class="code">
+<PRE>
+<FONT COLOR="#0000ff">import </FONT><FONT COLOR="#000000">java.util.*;</FONT>
+<FONT COLOR="#0000ff">public class </FONT><FONT COLOR="#000000">JDK7GenericTest {</FONT>
+<FONT COLOR="#0000ff">public static void </FONT><FONT COLOR="#000000">main(</FONT><FONT COLOR="#ff0000">String</FONT><FONT COLOR="#000000">[] args) {</FONT>
+<FONT COLOR="#008000">// before-JDK 7</FONT>
+<FONT COLOR="#ff0000">List</FONT><FONT COLOR="#000000">&lt;</FONT><FONT COLOR="#ff0000">String</FONT><FONT COLOR="#000000">&gt; l1 = </FONT><FONT COLOR="#0000ff">new </FONT><FONT COLOR="#ff0000">ArrayList</FONT><FONT COLOR="#000000">&lt;</FONT><FONT COLOR="#ff0000">String</FONT><FONT COLOR="#000000">&gt;();</FONT>
+<FONT COLOR="#008000">// JDK 7 supports limited type inference for generic instance creation</FONT>
+<FONT COLOR="#ff0000">List</FONT><FONT COLOR="#000000">&lt;</FONT><FONT COLOR="#ff0000">String</FONT><FONT COLOR="#000000">&gt; l2 = </FONT><FONT COLOR="#0000ff">new </FONT><FONT COLOR="#ff0000">ArrayList</FONT><FONT COLOR="#000000">&lt;&gt;();</FONT>
+<FONT COLOR="#000000">l1.add(</FONT><FONT COLOR="#ff00ff">"one"</FONT><FONT COLOR="#000000">);</FONT>
+<FONT COLOR="#000000">l1.add(</FONT><FONT COLOR="#ff00ff">"Two"</FONT><FONT COLOR="#000000">);</FONT>
+<FONT COLOR="#000000">l2.add(</FONT><FONT COLOR="#ff00ff">"three"</FONT><FONT COLOR="#000000">);</FONT>
+<FONT COLOR="#000000">l2.add(</FONT><FONT COLOR="#ff00ff">"four"</FONT><FONT COLOR="#000000">);</FONT>
+<FONT COLOR="#0000ff">for </FONT><FONT COLOR="#000000">(</FONT><FONT COLOR="#ff0000">String </FONT><FONT COLOR="#000000">item: l1) {</FONT>
+<FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.println(item);</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#0000ff">for </FONT><FONT COLOR="#000000">(</FONT><FONT COLOR="#ff0000">String </FONT><FONT COLOR="#000000">item: l2) {</FONT>
+<FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.println(item);</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#000000">}</FONT>
+</PRE>
+</div>
+<div class="heading">Switch on String :</div>
+<p>Before JDK 7, only integral types can be used as selector for switch-case statement. In JDK 7, you can use a String object as the selector. </p>
+<h3>Example</h3>
+<div class="code">
+<PRE>
+<FONT COLOR="#ff0000">String </FONT><FONT COLOR="#000000">day = </FONT><FONT COLOR="#ff00ff">"SAT"</FONT><FONT COLOR="#000000">;</FONT>
+<FONT COLOR="#0000ff">switch </FONT><FONT COLOR="#000000">(day) {</FONT>
+<FONT COLOR="#0000ff">case </FONT><FONT COLOR="#ff00ff">"MON"</FONT><FONT COLOR="#000000">: </FONT><FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.println(</FONT><FONT COLOR="#ff00ff">"Monday"</FONT><FONT COLOR="#000000">); </FONT><FONT COLOR="#0000ff">break</FONT><FONT COLOR="#000000">;</FONT>
+<FONT COLOR="#0000ff">case </FONT><FONT COLOR="#ff00ff">"SAT"</FONT><FONT COLOR="#000000">: </FONT><FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.println(</FONT><FONT COLOR="#ff00ff">"Saturday"</FONT><FONT COLOR="#000000">); </FONT><FONT COLOR="#0000ff">break</FONT><FONT COLOR="#000000">;</FONT>
+<FONT COLOR="#0000ff">case </FONT><FONT COLOR="#ff00ff">"SUN"</FONT><FONT COLOR="#000000">: </FONT><FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.println(</FONT><FONT COLOR="#ff00ff">"Sunday"</FONT><FONT COLOR="#000000">); </FONT><FONT COLOR="#0000ff">break</FONT><FONT COLOR="#000000">;</FONT>
+<FONT COLOR="#0000ff">default</FONT><FONT COLOR="#000000">: </FONT><FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.println(</FONT><FONT COLOR="#ff00ff">"wrong"</FONT><FONT COLOR="#000000">);</FONT>
+<FONT COLOR="#000000">}</FONT>
+</PRE>
+</div>
+<p>String.equals() method is used in comparison, which is case-sensitive. Java compiler can generate more efficient code than using nested if-then-else statement.</p>
+<p>This feature is handy in handling options specified in command-line arguments, which are Strings. For example (slightly neater code than using nested if-then-else statement),</p>
+<div class="code">
+<PRE>
+<FONT COLOR="#008000">// This program accepts three command-line options</FONT>
+<FONT COLOR="#008000">// -c : create</FONT>
+<FONT COLOR="#008000">// -v : verbose</FONT>
+<FONT COLOR="#008000">// -d : debug</FONT>
+<FONT COLOR="#008000">// More than one options can be specified in any order.</FONT>
+</PRE>
+</div>
+
+<div class="heading">Binary Literals with prefix "0b"</div>
+<p>In JDK 7, you can express literal values in binary with prefix '0b' (or '0B') for integral types (byte, short, int and long), similar to C/C++ language. Before JDK 7, you can only use octal values (with prefix '0') or hexadecimal values (with prefix '0x' or '0X').</p>
+<p>You are also permitted to use underscore (_) to break the digits to improve the readability but you must start and end with a digit, e.g.,</p>
+<div class="code">
+<PRE>
+<FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">number1 = 0b01010000101000101101000010100010;</FONT>
+<FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">number2 = 0b0101_0000_1010_0010_1101_0000_1010_0010;</FONT>
+<FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">number3 = 2_123_456; </FONT>
+<FONT COLOR="#008000">// break the digits with underscore</FONT>
+</PRE>
+</div>
+<h3>Example</h3>
+<div class="code">
+<pre>
+<font color="#000000">/ Some </font><font color="#800080">32</font><font color="#000000">-bit </font>
+<font color="#ff00ff">'int' </font><font color="#000000">literal values</font>
+<font color="#0000ff">int </font><font color="#000000">aInt1 = 0b0101_0000_1010_0010_1101_0000_1010_0010;</font>
+<font color="#0000ff">int </font><font color="#000000">bInt2 = 0b0011_1000;</font>
+<font color="#008000">// An 8-bit 'byte' literal value. By default, literal values are 'int'.</font>
+<font color="#008000">// Need to cast to 'byte'</font>
+<font color="#0000ff">byte </font><font color="#000000">aByte = (</font><font color="#0000ff">byte</font>
+<font color="#000000">)0b0110_1101;</font>
+<font color="#008000">// A 16-bit 'short' literal value</font>
+<font color="#0000ff">short </font><font color="#000000">aShort = (</font><font color="#0000ff">short</font><font color="#000000">)0b0111_0101_0000_0101;</font>
+<font color="#008000">// A 64-bit 'long' literal value. Long literals requires suffix &quot;L&quot;.</font>
+<font color="#0000ff">long </font><font color="#000000">aLong = 0b1000_0101_0001_0110_1000_0101</font>
+<font color="#000000">_0000_1010_0010_1101_0100_0101_1010_0001_0100_0101L;</font>
+</pre>
+
+</div>
+
+<div class="heading">// Formatted output: "%d" for integer in decimal, "%x" in hexadecimal, "%o" in octal.</div>
+<div class="code">
+<PRE>
+<FONT COLOR="#008000">// Take note that "%b" prints true or false (for null), NOT binary.</FONT>
+<FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.printf(</FONT><FONT COLOR="#ff00ff">"%d(%x)(%o)(%b)\n"</FONT>
+<FONT COLOR="#000000">, anInt1, anInt1, anInt1, anInt1);</FONT>
+<FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.printf(</FONT><FONT COLOR="#ff00ff">"%d(%x)(%o)(%b)\n"</FONT>
+<FONT COLOR="#000000">, aByte, aByte, aByte, aByte);</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#000000">}</FONT>
+</PRE>
+</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="Downling-and-Installing-jdk 1.7.shtml" title="Downling-and-Installing-jdk 1.7">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+   <td style="width:33%; text-align:right;"><a href="Difference-between-jdk1.6andjdk1.7.shtml" title="Difference-between-jdk1.6andjdk1.7">Next</a></td>
+  </tr> 
+</table>
+
+<!-- Footer Start-->	
+
+		</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->

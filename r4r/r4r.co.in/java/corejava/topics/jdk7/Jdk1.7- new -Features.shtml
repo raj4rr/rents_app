@@ -1,0 +1,557 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>jdk1.7 new features</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="jdk1.7 new features">
+<meta name="keywords" CONTENT="jdk1.7 new features">
+
+<script type="text/javascript" src="/js/main.js"></script>
+		<link rel="stylesheet" type="text/css" href="/css/style.css" />
+	    <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+
+	</HEAD>
+	<BODY style="text-align: left">
+		<table class="wrap" align="center"  cellpadding="0" cellspacing="0">
+			<tr>
+				<td class="m" align="left" valign="top">
+					<?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+				</td>
+						</tr>
+						<tr class="headerTR1">
+							<td>
+
+							</td>
+						</tr>
+						<tr>
+							<td class="headerTR2">
+								<?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+							</td>
+						</tr>
+
+						<tr>
+							<td class="headerTR3">
+								<?php @include($_SERVER['DOCUMENT_ROOT'] . '/common-files/menu.shtml'); ?>
+							</td>
+							</td>
+
+						</tr>
+						<tr>
+							<td>
+								<?php @include($_SERVER['DOCUMENT_ROOT'] . '/common-files/gaps.shtml'); ?>
+							</td>
+						</tr>
+
+						<tr>
+
+			               <td class="content">
+								<table>
+									<tr>
+
+								  <?php @include($_SERVER['DOCUMENT_ROOT'] . '/common-files/tdgaps.shtml'); ?>
+								<td class="td1"   valign="top" >
+
+							     <DIV style="margin-left:15px;">
+			<table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse"  width="100%">
+  <tr>
+    <td width="100%">
+    <p align="left"><font face="Verdana">
+    <A href="/"><font size="2">R4R</font></A><font size="2">
+<img border="0" src="/images/left_menu_bullet.gif" width="11" height="6">
+<a href="/java">Java</a><img border="0" src="/images/left_menu_bullet.gif" width="11" height="6">
+    <a href="/java/corejava">Corejava</a><img border="0" src="/images/left_menu_bullet.gif" width="11" height="6">
+    <a href="/java/corejava/topics/jdk7">JDK1.7 ,Java SE 5 - Oracle</a>
+    <img border="0" src="/images/left_menu_bullet.gif" width="11" height="6"><a href=" ">jdk1.7 new features</a></font></font></td>
+  </tr>
+</table>
+
+ <table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="100%" id="AutoNumber1">
+  <tr>
+    <td width="33%">
+<p align="left">
+<a href="Downling -and- Installing- jdk 1.7.shtml">
+<font size="2" face="Verdana">
+<img border="0" src="/images/previous.gif" alt="Previous" width="46" height="25"></font></a></td>
+    <td width="33%">
+    <p align="center">
+<a href="index.shtml">
+<font size="2" face="Verdana">
+<img border="0" src="/images/home.gif" alt="Home" width="46" height="25"></font></a></td>
+    <td width="34%">
+    <p align="left">
+<a href="Difference- between- jdk1.6 and jdk1.7.shtml">
+<font size="2" face="Verdana">
+<img border="0" src="/images/next.gif" alt="Next" width="46" height="25" align="right"></font></a></td>
+  </tr>
+</table>
+
+<p>&nbsp;</p>
+
+<p><b>jdk1.7 new features</b></p>
+<p>There are a number of features in Java 7 that will please 
+developers. <br>
+1)Things such as strings in switch statements.</p>
+<p>2) multi-catch exception handling.</p>
+<p>3)try-with-resource statements.</p>
+<p>&nbsp;4)the new File System API,</p>
+<p>&nbsp;5)extensions of the JVM.</p>
+<p><br>
+6)support for dynamically-typed languages.</p>
+<p>7) the fork and join framework for task 
+parallelism, and a few others will certainly be embraced by the community.</p>
+<p><b>Language Enhancement</b></p>
+<p><b>Underscore for Numeric Literals</b><br>
+<b>I</b>n JDK1.7, you could insert underscore(s) '_' in between the digits in 
+an numeric literals (integral and floating-point literals) to improve 
+readability. For example,<br>
+&nbsp;</p>
+            <font SIZE="2" COLOR="#7f0055"><b>
+            <p ALIGN="LEFT">int</b></font><font SIZE="2"> anInt = 
+            0b10101000_0101;</p>
+            </font><font SIZE="2" COLOR="#7f0055"><b>
+            <p ALIGN="LEFT">double</b></font><font SIZE="2"> aDouble = 
+            5.115_7265;</p>
+            </font><font SIZE="2" COLOR="#7f0055"><b>
+            <p>float</b></font><font SIZE="2"> aFloat = 6.14_15_92_65f;</p>
+            </font>
+<p dir="ltr"><br>
+Catching Multiple Exception Types<br>
+<b>In JDK1.7, a single catch block can handle more than one exception types.</b><br>
+For example, before JDK1.7, you need two catch blocks to catch two exception 
+types although both perform identical task:<br>
+&nbsp;</p>
+            <font SIZE="2" COLOR="#7f0055"><b>
+            <p ALIGN="LEFT">try</b></font><font SIZE="2"> {</p>
+            <p ALIGN="LEFT">......</p>
+            <p ALIGN="LEFT">} </font><font SIZE="2" COLOR="#7f0055"><b>catch</b></font><font SIZE="2">(ClassNotFoundException 
+            ex) {</p>
+            <p ALIGN="LEFT">ex.printStackTrace();</p>
+            <p ALIGN="LEFT">} </font><font SIZE="2" COLOR="#7f0055"><b>catch</b></font><font SIZE="2">(SQLException 
+            ex) {</p>
+            <p ALIGN="LEFT">ex.printStackTrace();</p>
+            <p ALIGN="LEFT">}</p>
+            <p ALIGN="LEFT">In JDK 7, you could use one single </font>
+            <font SIZE="2" COLOR="#7f0055"><b>catch</b></font><font SIZE="2"> 
+            block, with exception types separated by </font>
+            <font SIZE="2" COLOR="#2a00ff">'|'</font><font SIZE="2">.</p>
+            </font><font SIZE="2" COLOR="#7f0055"><b>
+            <p ALIGN="LEFT">try</b></font><font SIZE="2"> {</p>
+            <p ALIGN="LEFT">......</p>
+            <p ALIGN="LEFT">} </font><font SIZE="2" COLOR="#7f0055"><b>catch</b></font><font SIZE="2">(ClassNotFoundException|SQLException 
+            ex) {</p>
+            <p>ex.printStackTrace();</p>
+            </font>
+<p dir="ltr"><br>
+<br>
+<b>The try-with-resources Statement</b><br>
+<b>For example, before JDK 7, we need to use a finally block, to ensure that a 
+resource is closed regardless of whether the try statement completes normally or 
+abruptly. The code is messy!<br>
+</b><br>
+JDK 7 introduces a try-with-resources statement, which ensures that each of the 
+resources in try(resources) is closed at the end of the statement. This results 
+in cleaner codes.<br>
+import java.io.*;</p>
+<p dir="ltr"><br>
+//<b> Copy from one file to another file character 
+by character.<br>
+</b><br>
+&nbsp;</p>
+            <font SIZE="2" COLOR="#7f0055"><b>
+            <p ALIGN="LEFT">public</b></font><font SIZE="2"> </font>
+            <font SIZE="2" COLOR="#7f0055"><b>class</b></font><font SIZE="2"> 
+            testJDK7 </p>
+            <p ALIGN="LEFT">{</p>
+            </font><font SIZE="2" COLOR="#7f0055"><b>
+            <p ALIGN="LEFT">public</b></font><font SIZE="2"> </font>
+            <font SIZE="2" COLOR="#7f0055"><b>static</b></font><font SIZE="2">
+            </font><font SIZE="2" COLOR="#7f0055"><b>void</b></font><font SIZE="2"> 
+            main(String[] args) </p>
+            <p ALIGN="LEFT">{</p>
+            </font><font SIZE="2" COLOR="#7f0055"><b>
+            <p ALIGN="LEFT">try</b></font><font SIZE="2"> (BufferedReader in =
+            </font><font SIZE="2" COLOR="#7f0055"><b>new</b></font><font SIZE="2"> 
+            BufferedReader(</font><font SIZE="2" COLOR="#7f0055"><b>new</b></font><font SIZE="2"> 
+            FileReader(</font><font SIZE="2" COLOR="#2a00ff">&quot;in.txt&quot;</font><font SIZE="2">));</p>
+            <p ALIGN="LEFT">BufferedWriter out = </font>
+            <font SIZE="2" COLOR="#7f0055"><b>new</b></font><font SIZE="2"> 
+            BufferedWriter(</font><font SIZE="2" COLOR="#7f0055"><b>new</b></font><font SIZE="2"> 
+            FileWriter(</font><font SIZE="2" COLOR="#2a00ff">&quot;out.txt&quot;</font><font SIZE="2">))) 
+            {</p>
+            </font><font SIZE="2" COLOR="#7f0055"><b>
+            <p ALIGN="LEFT">int</b></font><font SIZE="2"> charRead;</p>
+            </font><font SIZE="2" COLOR="#7f0055"><b>
+            <p ALIGN="LEFT">while</b></font><font SIZE="2"> ((charRead = in.read()) 
+            != -1) {</p>
+            <p ALIGN="LEFT">System.out.printf(</font><font SIZE="2" COLOR="#2a00ff">&quot;%c 
+            &quot;</font><font SIZE="2">, (</font><font SIZE="2" COLOR="#7f0055"><b>char</b></font><font SIZE="2">)charRead);</p>
+            <p ALIGN="LEFT">out.write(charRead);</p>
+            <p ALIGN="LEFT">}</p>
+            <p ALIGN="LEFT">} </font><font SIZE="2" COLOR="#7f0055"><b>catch</b></font><font SIZE="2"> 
+            (IOException ex) {</p>
+            <p ALIGN="LEFT">ex.printStackTrace();</p>
+            <p ALIGN="LEFT">}</p>
+            <p ALIGN="LEFT">}</p>
+            <p ALIGN="LEFT">}</p>
+            </font>
+<p dir="ltr"><br>
+<b>Type Inference for Generic Instance Creation</b><br>
+&nbsp;</p>
+            <font SIZE="2" COLOR="#7f0055"><b>
+            <p ALIGN="LEFT">import</b></font><font SIZE="2"> java.util.*;</p>
+            </font><font SIZE="2" COLOR="#7f0055"><b>
+            <p ALIGN="LEFT">public</b></font><font SIZE="2"> </font>
+            <font SIZE="2" COLOR="#7f0055"><b>class</b></font><font SIZE="2"> 
+            JDK7GenericTest {</p>
+            </font><font SIZE="2" COLOR="#7f0055"><b>
+            <p ALIGN="LEFT">public</b></font><font SIZE="2"> </font>
+            <font SIZE="2" COLOR="#7f0055"><b>static</b></font><font SIZE="2">
+            </font><font SIZE="2" COLOR="#7f0055"><b>void</b></font><font SIZE="2"> 
+            main(String[] args) {</p>
+            </font><font SIZE="2" COLOR="#3f7f5f">
+            <p ALIGN="LEFT">// before-JDK 7</p>
+            </font><font SIZE="2">
+            <p ALIGN="LEFT">List&lt;String&gt; l1 = </font>
+            <font SIZE="2" COLOR="#7f0055"><b>new</b></font><font SIZE="2"> 
+            ArrayList&lt;String&gt;();</p>
+            </font><font SIZE="2" COLOR="#3f7f5f">
+            <p ALIGN="LEFT">// JDK 7 supports limited type inference for generic 
+            instance creation</p>
+            </font><font SIZE="2">
+            <p ALIGN="LEFT">List&lt;String&gt; l2 = </font>
+            <font SIZE="2" COLOR="#7f0055"><b>new</b></font><font SIZE="2"> 
+            ArrayList&lt;&gt;();</p>
+            <p ALIGN="LEFT"></p>
+            <p ALIGN="LEFT">l1.add(</font><font SIZE="2" COLOR="#2a00ff">&quot;one&quot;</font><font SIZE="2">);</p>
+            <p ALIGN="LEFT">l1.add(</font><font SIZE="2" COLOR="#2a00ff">&quot;Two&quot;</font><font SIZE="2">);</p>
+            <p ALIGN="LEFT">l2.add(</font><font SIZE="2" COLOR="#2a00ff">&quot;three&quot;</font><font SIZE="2">);</p>
+            <p ALIGN="LEFT">l2.add(</font><font SIZE="2" COLOR="#2a00ff">&quot;four&quot;</font><font SIZE="2">);</p>
+            <p ALIGN="LEFT"></p>
+            </font><font SIZE="2" COLOR="#7f0055"><b>
+            <p ALIGN="LEFT">for</b></font><font SIZE="2"> (String item: l1) {</p>
+            <p ALIGN="LEFT">System.out.println(item);</p>
+            <p ALIGN="LEFT">}</p>
+            <p ALIGN="LEFT"></p>
+            </font><font SIZE="2" COLOR="#7f0055"><b>
+            <p ALIGN="LEFT">for</b></font><font SIZE="2"> (String item: l2) {</p>
+            <p ALIGN="LEFT">System.out.println(item);</p>
+            <p ALIGN="LEFT">}</p>
+            <p ALIGN="LEFT">}</p>
+            <p>}</p>
+            </font>
+<p><b>switch on String :</b></p>
+
+<p dir="ltr"><br>
+Before JDK 7, only integral types can be used as selector for switch-case 
+statement. In JDK 7, you can use a String object as the selector. For example,<br>
+&nbsp;</p>
+
+            <font SIZE="2">
+            <p ALIGN="LEFT">String day = </font><font SIZE="2" COLOR="#2a00ff">
+            &quot;SAT&quot;</font><font SIZE="2">;</p>
+            </font><font SIZE="2" COLOR="#7f0055"><b>
+            <p ALIGN="LEFT">switch</b></font><font SIZE="2"> (day) {</p>
+            </font><font SIZE="2" COLOR="#7f0055"><b>
+            <p ALIGN="LEFT">case</b></font><font SIZE="2"> </font>
+            <font SIZE="2" COLOR="#2a00ff">&quot;MON&quot;</font><font SIZE="2">: 
+            System.out.println(</font><font SIZE="2" COLOR="#2a00ff">&quot;Monday&quot;</font><font SIZE="2">);
+            </font><font SIZE="2" COLOR="#7f0055"><b>break</b></font><font SIZE="2">;</p>
+            </font><font SIZE="2" COLOR="#7f0055"><b>
+            <p ALIGN="LEFT">case</b></font><font SIZE="2"> </font>
+            <font SIZE="2" COLOR="#2a00ff">&quot;SAT&quot;</font><font SIZE="2">: 
+            System.out.println(</font><font SIZE="2" COLOR="#2a00ff">&quot;Saturday&quot;</font><font SIZE="2">);
+            </font><font SIZE="2" COLOR="#7f0055"><b>break</b></font><font SIZE="2">;</p>
+            </font><font SIZE="2" COLOR="#7f0055"><b>
+            <p ALIGN="LEFT">case</b></font><font SIZE="2"> </font>
+            <font SIZE="2" COLOR="#2a00ff">&quot;SUN&quot;</font><font SIZE="2">: 
+            System.out.println(</font><font SIZE="2" COLOR="#2a00ff">&quot;Sunday&quot;</font><font SIZE="2">);
+            </font><font SIZE="2" COLOR="#7f0055"><b>break</b></font><font SIZE="2">;</p>
+            </font><font SIZE="2" COLOR="#7f0055"><b>
+            <p ALIGN="LEFT">default</b></font><font SIZE="2">: 
+            System.out.println(</font><font SIZE="2" COLOR="#2a00ff">&quot;wrong&quot;</font><font SIZE="2">);</p>
+            <p>}</p>
+            </font>
+
+<p><br>
+String.equals() method is used in comparison, which is case-sensitive. Java 
+compiler can generate more efficient code than using nested if-then-else 
+statement.<br>
+This feature is handy in handling options specified in command-line arguments, 
+which are Strings. For example (slightly neater code than using nested 
+if-then-else statement),<br>
+&nbsp;</p>
+
+            <font SIZE="2" COLOR="#3f7f5f">
+            <p ALIGN="LEFT">// This program accepts three command-line options</p>
+            <p ALIGN="LEFT">// -c : create</p>
+            <p ALIGN="LEFT">// -v : verbose</p>
+            <p ALIGN="LEFT">// -d : debug</p>
+            <p>// More than one options can be specified in any order.</p>
+            </font>
+
+<p><br>
+<b><br>
+Binary Literals with prefix &quot;0b&quot;</b><br>
+In JDK 7, you can express literal values in binary with prefix '0b' (or '0B') 
+for integral types (byte, short, int and long), similar to C/C++ language. 
+Before JDK 7, you can only use octal values (with prefix '0') or hexadecimal 
+values (with prefix '0x' or '0X').<br>
+You are also permitted to use underscore (_) to break the digits to improve the 
+readability but you must start and end with a digit, e.g.,<br>
+&nbsp;</p>
+
+            <font SIZE="2" COLOR="#7f0055"><b>
+            <p ALIGN="LEFT">int</b></font><font SIZE="2"> number1 = 
+            0b01010000101000101101000010100010;</p>
+            </font><font SIZE="2" COLOR="#7f0055"><b>
+            <p ALIGN="LEFT">int</b></font><font SIZE="2"> number2 = 
+            0b0101_0000_1010_0010_1101_0000_1010_0010;</p>
+            </font><font SIZE="2" COLOR="#7f0055"><b>
+            <p>int</b></font><font SIZE="2"> number3 = 2_123_456; </font>
+            <font SIZE="2" COLOR="#3f7f5f">// break the digits with underscore</p>
+            </font>
+
+<p><br>
+&nbsp;</p>
+
+<p dir="ltr"><b>For example,<br>
+</b><br>
+<font SIZE="2" COLOR="#3f7f5f">// Some 32-bit 'int' literal values</p>
+
+            </font><font SIZE="2" COLOR="#7f0055"><b>
+            <p ALIGN="LEFT">int</b></font><font SIZE="2"> aInt1 = 
+            0b0101_0000_1010_0010_1101_0000_1010_0010;</p>
+            </font><font SIZE="2" COLOR="#7f0055"><b>
+            <p ALIGN="LEFT">int</b></font><font SIZE="2"> bInt2 = 0b0011_1000;</p>
+            <p ALIGN="LEFT"></p>
+            </font><font SIZE="2" COLOR="#3f7f5f">
+            <p ALIGN="LEFT">// An 8-bit 'byte' literal value. By default, 
+            literal values are 'int'.</p>
+            <p ALIGN="LEFT">// Need to cast to 'byte'</p>
+            </font><font SIZE="2" COLOR="#7f0055"><b>
+            <p ALIGN="LEFT">byte</b></font><font SIZE="2"> aByte = (</font><font SIZE="2" COLOR="#7f0055"><b>byte</b></font><font SIZE="2">)0b0110_1101;</p>
+            <p ALIGN="LEFT"></p>
+            </font><font SIZE="2" COLOR="#3f7f5f">
+            <p ALIGN="LEFT">// A 16-bit 'short' literal value</p>
+            </font><font SIZE="2" COLOR="#7f0055"><b>
+            <p ALIGN="LEFT">short</b></font><font SIZE="2"> aShort = (</font><font SIZE="2" COLOR="#7f0055"><b>short</b></font><font SIZE="2">)0b0111_0101_0000_0101;</p>
+            <p ALIGN="LEFT"></p>
+            </font><font SIZE="2" COLOR="#3f7f5f">
+            <p ALIGN="LEFT">// A 64-bit 'long' literal value. Long literals 
+            requires suffix &quot;L&quot;.</p>
+            </font><font SIZE="2" COLOR="#7f0055"><b>
+            <p>long</b></font><font SIZE="2"> aLong = 
+            0b1000_0101_0001_0110_1000_0101_0000_1010_0010_1101_0100_0101_1010_0001_0100_0101L;</p>
+            </font>
+
+<p dir="ltr"><br>
+<br>
+<b>// Formatted output: &quot;%d&quot; for integer in decimal, &quot;%x&quot; in hexadecimal, &quot;%o&quot; in 
+octal.</b></p>
+
+            <font SIZE="2" COLOR="#3f7f5f">
+            <p ALIGN="LEFT">// Take note that &quot;%b&quot; prints true or false (for 
+            null), NOT binary.</p>
+            </font><font SIZE="2">
+            <p ALIGN="LEFT">System.out.printf(</font><font SIZE="2" COLOR="#2a00ff">&quot;%d(%x)(%o)(%b)\n&quot;</font><font SIZE="2">, 
+            anInt1, anInt1, anInt1, anInt1);</p>
+            <p ALIGN="LEFT">System.out.printf(</font><font SIZE="2" COLOR="#2a00ff">&quot;%d(%x)(%o)(%b)\n&quot;</font><font SIZE="2">, 
+            aByte, aByte, aByte, aByte);</p>
+            <p ALIGN="LEFT">}</p>
+            <p>}</p>
+            </font>
+
+<p><br>
+<br>
+
+ <div class="adLeft">
+<div id="vertmenu">
+<h1>Essential Points</h1>
+<ul>
+<li><a href="/ant/" tabindex="1">Ant/Moven</a></li>
+<li><a href="/java/struts/" tabindex="2">Struts</a></li>
+<li><a href="/java/hibernate/" tabindex="3">Hibernate</a></li>
+<li><a href="/java/jsp/" tabindex="4">JSP </a></li>
+<li><a href="/java/corejava/" tabindex="5">CoreJava</a></li>
+<li><a href="/java/j2me/" tabindex="6">J2ME</a></li>
+<li><a href="/java/spring/" tabindex="7">Spring</a></li>
+<li><a href="/java/android/" tabindex="8">Android</a></li>
+</ul>
+
+</div>
+
+</div>
+<div class="adRight">
+<div id="vertmenu">
+<h1>Essential Points</h1>
+<ul>
+<li><a href="/java/jsf/" tabindex="13">JSF</a></li>
+<li><a href="/java/javaxml" tabindex="9"> JavaXML  </a></li>
+<li><a href="/java/apis/iText/" tabindex="10">iText</a></li>
+<li><a href="/java/apis/javamail/" tabindex="11">Javamail</a></li>
+<li><a href="/java/apis/jexcel/" tabindex="12">Jexcel</a></li>
+<li><a href="/java/apis/poi/" tabindex="13">POI</a></li>
+<li><a href="/java/junit/" tabindex="14">Junit</a></li>
+</ul>
+
+</div>
+</div>
+
+<p align="left"><b><br>
+<br>
+All&nbsp; JDK&nbsp; and Java SE versions:-</b>&nbsp;&nbsp; </p>
+
+<p align="left">JDK Alpha and Beta (1995)</p>
+
+<p align="left">JDK 1.0 (January 23, 1996)</p>
+
+<p align="left">JDK 1.1 (February 19, 1997)</p>
+
+<p align="left">J2SE 1.2 (December 8, 1998)</p>
+
+<p align="left">J2SE 1.3 (May 8, 2000)</p>
+
+<p align="left">J2SE 1.4 (February 6, 2002)</p>
+
+<p align="left">J2SE 5.0 (September 30, 2004)</p>
+
+<p align="left">Java SE 6 (December 11, 2006)</p>
+
+<p align="left">1 Java 6 updates<br>
+<br>
+ Java SE 7 (July 28, 2011)<br>
+<br>
+1 Java 7 updates<br>
+<br>
+Java SE 8 (March 18, 2014)<br>
+<br>
+1 Java 8 updates</p>
+
+<p align="left">Java SE 9</p>
+
+<p align="left">Java SE 10<br>
+&nbsp;</p>
+
+            <font color="#0000FF">
+
+        <font size="3" face="Verdana" color="#0000FF"> 
+
+<table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="100%" id="AutoNumber1">
+  <tr>
+    <td width="33%">
+<p align="left">
+<a href="Downling -and- Installing- jdk 1.7.shtml">
+<font size="2">
+<img border="0" src="/images/previous.gif" alt="Previous" width="46" height="25"></font></a></td>
+    <td width="33%">
+    <p align="center">
+<a href="index.shtml">
+<font size="2">
+<img border="0" src="/images/home.gif" alt="Home" width="46" height="25"></font></a></td>
+    <td width="34%">
+    <p align="left">
+<a href="Difference- between- jdk1.6 and jdk1.7.shtml">
+<font size="2">
+<img border="0" src="/images/next.gif" alt="Next" width="46" height="25" align="right"></font></a></td>
+  </tr>
+</table>
+
+	        </font><font face="Courier New" size="2" color="#0000FF">
+
+	<!-- Footer Start-->	
+
+									</font>								
+
+									</td>
+
+										<td class="td2"  valign="top">
+
+											<table>
+											<?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/corejava/topics/common-files/news1.shtml'); ?>	
+												<tr>
+													<td class="colorChange">
+
+													</td>
+												</tr>
+
+												<?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/corejava/topics/common-files/news2.shtml'); ?>	
+
+												<tr>
+													<td class="colorChange">
+
+													</td>
+												</tr>
+
+												<?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/corejava/topics/common-files/news3.shtml'); ?>	
+
+												<tr>
+													<td class="colorChange">
+
+													</td>
+												</tr>
+
+												<?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/corejava/topics/common-files/news4.shtml'); ?>	
+
+		</table>
+
+										</td>
+										<?php @include($_SERVER['DOCUMENT_ROOT'] . '/common-files/tdgaps.shtml'); ?>
+									</tr>
+								 </table>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<?php @include($_SERVER['DOCUMENT_ROOT'] . '/common-files/gaps.shtml'); ?>
+							</td>
+						</tr>		
+						<tr>
+							<td>
+								<?php @include($_SERVER['DOCUMENT_ROOT'] . '/common-files/row.shtml'); ?>
+							</td>
+						</tr>
+
+						<tr>
+							<td>
+								<?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/corejava/topics/common-files/mainlinks.shtml'); ?>
+
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<?php @include($_SERVER['DOCUMENT_ROOT'] . '/common-files/gaps.shtml'); ?>
+							</td>
+						</tr>
+
+								<tr>
+							<td>
+								<?php @include($_SERVER['DOCUMENT_ROOT'] . '/common-files/row.shtml'); ?>
+							</td>
+						</tr>
+
+						<tr >
+							<td>
+								<?php @include($_SERVER['DOCUMENT_ROOT'] . '/common-files/hotlinks.shtml'); ?>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<?php @include($_SERVER['DOCUMENT_ROOT'] . '/common-files/gaps.shtml'); ?>
+							</td>
+						</tr>
+
+						<tr>
+							<td>
+								<?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+		</table>
+
+	    </table>
+
+	</BODY>
+</HTML>

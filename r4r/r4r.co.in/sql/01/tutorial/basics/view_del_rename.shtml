@@ -1,0 +1,118 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HEAD><TITLE>Viewing, Renaming and Deleting a Database</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="Viewing, Renaming and Deleting a Database" >
+<meta name="keywords" CONTENT="Viewing, Renaming and Deleting a Database">
+
+<!--header start-->
+
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>DATABASE & SQL/PLSQL</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a><img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+			<a href="/sql/">SQL </a>
+              </div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/sql/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	  
+
+                        	                        	<!-- Header End-->	
+ <div class="heading">Viewing, Renaming and Deleting a Database</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="mdf_ldf_ndf.shtml" title=".mdf, .ndf and .ldf extension files">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="data_intigrity.shtml" title="Data Integrity">Next</a></td>
+  </tr>
+</table>
+
+<h3>Viewing a Database</h3>
+
+<p>The information regarding database such as 
+owner, size, date of creation, and status can be viewed using the following:</p>
+<div class="code">
+<pre>
+sp_helpdb database_name
+</pre>
+</div>
+<h3>Example:</h3>
+<div class="code">
+<pre>
+sp_helpdb aditya
+</pre>
+</div>
+
+<p><i>output</i></p>
+<div class="output">
+<div class="image">
+<img src="Image/view_del_rename.png">
+</div>
+</div>
+
+<h3>Renaming Database</h3>
+<p>The name of database can be changed. The database should not be in use when it is being renamed, and it should be set to the single-user mode.</p>
+<div class="code">
+<pre>
+sp_rename <i>'old_name','new_name'</i> 
+</pre>
+</div>
+
+<p>where, <i>old_name</i> is the original name of the database </P>
+<p><i>new_name</i> is the original name of the database </P>
+
+<p>Only system administrator can changed the name of a database. </p>
+
+<h3>Deleting a Database </h3>
+<p>A database is deleted when it is no longer required. Only the system administrator and database owner have permission to delete a database.</p>
+<div class="code">
+<pre>
+DROP DATABASE <i> database_name</i>
+</pre>
+</div>
+
+<p>where, database_name is the name of the database</p>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="mdf_ldf_ndf.shtml" title=".mdf, .ndf and .ldf extension files">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="data_intigrity.shtml" title="Data Integrity">Next</a></td>
+  </tr>
+</table>
+
+                       <!--Footer  -->
+
+</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+

@@ -1,0 +1,156 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>Table Layout Panel in C#</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="Table Layout Panel in C#" >
+<meta name="keywords" CONTENT="Table Layout Panel in C#">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+     <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>C# Tutorial</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a><img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/c1/">C#</a>
+
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/c1/commonfiles/leftmenu.shtml'); ?></td>
+
+                       <td style="80%" valign="top">
+                        <div class="main_content"> 
+
+	<!-- Header End-->
+
+  <div class="heading">Table Layout Panel</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="Flow%20Layout%20Panel.shtml" title="Flow Layout Panel">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="panel_control.shtml" title="Panel Control">Next</a></td>
+  </tr>
+</table>
+
+<p>The TableLayoutPanel control is a container control where child controls are added within a table structure. Each cell in
+ the table contains a single control, unless a container such as a Panel is added first.</p>
+ <h3>Useful properties</h3>
+ <p><i>CellBorderStyle -</i> This property determines if the cell is outlined with a border or not. A value from the 
+ TableLayoutPanelCellBorderStyle enumeration is required, the default value is None:</p>
+ <ol>
+            <li><i>Inset - </i>A single-line sunken border.</li>
+            <li><i>InsetDouble -</i> A double-line sunken border.</li>
+            <li><i>None - </i>No borders.</li>
+            <li><i>Outset -</i> A single-line raised border.</li>
+            <li><i>Outset Double - </i>A double-line raised border.</li>
+            <li><i>OutsetPartial -</i> A single-line border containing a raised portion.</li>
+            <li><i>Single -</i> A single-line border.</li>
+</ol>
+<p><i>ColumnCount - </i>Determines the number of columns in the table.</p>
+
+<p><i>ColumnStyles - </i>A collection of column styles, one for each column in the TableLayoutPanel control.</p>
+
+<p><i>Controls -</i> Gets the collection of controls contained within the control.</p>
+
+<p><i>GrowStyle - </i>Determines whether the control should expand to accommodate new cells when all existing cells are occupied. A value 
+from the TableLayoutPanelGrowStyle enumeration is required, the default value is AddRows:</p>
+<ul>
+<li><i>AddColumns -</i> The TableLayoutPanel gains additional columns after it is full.</li>
+<li><i>AddRows -</i> The TableLayoutPanel gains additional rows after it is full.</li>
+<li><i>FixedSize -</i> The TableLayoutPanel does not allow additional rows or columns after it is full.</li>
+<li><i>RowCount - </i>Determines the number of rows in the table.</li>
+<li><i>RowStyles -</i> A collection of row styles, one for each row in the TableLayoutPanel control.</li>
+</ul>
+
+<h3>Example</h3>
+
+<div class="image">
+<img src="image/tabellay.JPG">
+<img src="image/tabellay1.JPG">
+</div>
+
+<p>This dialog allows you to edit the SizeType property of each of the Columns and Rows in the TableLayoutPanel. The SizeType property determines
+ how the Height (RowStyle) or Width (ColumnStyle) should be interpreted. A value from the SizeType enumeration is required, the default value is
+  Percent:</p>
+  <ul><li><i>Absolute - </i>The row or column should be sized to an exact number of pixels.</li>
+<li><i>AutoSize - </i>The row or column should be automatically sized to share space with its peers.</li>
+<li><i>Percent - </i>The row or column should be sized as a percentage of the parent container.</li></ul>
+
+<h3>Adding a TableLayoutPanel manually</h3>
+<div class="code">
+<pre>
+<font color="#008000">// Create TableLayoutPanel</font>
+<font color="#808000">TableLayoutPanel </font><font color="#000000">tlp = </font><font color="#0000ff">new </font><font color="#808000">TableLayoutPanel</font><font color="#000000">();</font>
+
+<font color="#008000">// Set the BorderStyle to Inset</font>
+<font color="#000000">tlp.CellBorderStyle = TableLayoutPanelCellBorderStyle.Inset;</font>
+
+<font color="#008000">// Grid has two columns</font>
+<font color="#000000">tlp.ColumnCount = </font><font color="#800080">2</font><font color="#000000">;</font>
+
+<font color="#008000">// Grid has two rows</font>
+<font color="#000000">tlp.RowCount = </font><font color="#800080">2</font><font color="#000000">;</font>
+
+<font color="#008000">// If grid is full add extra cells by adding column</font>
+<font color="#000000">tlp.GrowStyle = TableLayoutPanelGrowStyle.AddColumns;</font>
+
+<font color="#008000">// Padding (pixels)within each cell (left, top, right, bottom)</font>
+<font color="#000000">tlp.Padding = </font><font color="#0000ff">new </font><font color="#000000">Padding(</font><font color="#800080">1</font><font color="#000000">, </font><font color="#800080">1</font><font color="#000000">, </font><font color="#800080">4</font><font color="#000000">, </font><font color="#800080">5</font><font color="#000000">);</font>
+
+<font color="#008000">// Add TableLayoutPanel to the Forms controls</font>
+<font color="#0000ff">this</font><font color="#000000">.</font><font color="#008080">Controls</font><font color="#000000">.Add(tlp);</font>
+</pre>
+</div>
+
+<h3>Adding controls manually</h3>
+<p>Adding a control to a TableLayoutPanel at run time can be done in a couple of ways. Simply using the Add method with just the name of the 
+control adds the control to the first available cell.</p>
+<div class="code">
+<pre>
+<font color="#008000">// Create buttons</font>
+<font color="#808000">Button </font><font color="#000000">button1 = </font><font color="#0000ff">new </font><font color="#808000">Button</font><font color="#000000">();</font>
+<font color="#000000">button1.</font><font color="#008080">Text </font><font color="#000000">= </font><font color="#ff00ff">&quot;Click Me&quot;</font><font color="#000000">;</font>
+
+<font color="#008000">// Add buttons to TableLayoutPanel</font>
+<font color="#000000">tlp.</font><font color="#008080">Controls</font><font color="#000000">.Add(button1);</font>
+</pre>
+</div>
+
+<p><h3>output becomes</h3></p>
+<div class="output">
+<div class="image">
+<img src="image/tabellay2.JPG">
+</div>
+</div>
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="Flow%20Layout%20Panel.shtml" title="Flow Layout Panel">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="panel_control.shtml" title="Panel Control">Next</a></td>
+  </tr>
+</table>
+  <!--Footer-->
+   </div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/dotnet/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+     <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>

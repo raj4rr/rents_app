@@ -1,0 +1,150 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<HTML><HEAD><TITLE>Conversions between Numeric Types in Java</TITLE>
+
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv="content-type" content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="Type Conversion and Casting, Data Type Casting, Type Casting: The process of converting one data type to another is called casting. Type conversion can be   automatically and manually (explicitly).">
+<meta name="keywords" CONTENT="Casting Operations, java implicit explicit casting, java type casting, java type conversion, java widening conversion, java Narrowing  conversion">
+
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>Java Programing laungage</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a><img src="/images/left_menu_bullet.gif"/> <a href="/java/">Java</a><img src="/images/left_menu_bullet.gif"/> <a href="/java/corejava">Core Java</a></div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/corejava/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+
+                     <div class="main_content">
+<div class="heading">Conversions between Numeric Types in Java</div>
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="statement_in_java_programming.shtml" title="Statement in Java">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml" title="Java Programming Tutorials">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="import_statement_in_java.shtml" title="Import Statement in Java">Next</a></td>
+  </tr> 
+</table> 
+
+<p>In java there are two type of conversions between numeric types:</p>
+<ol>
+<li>Widening primitive conversion and</li>
+<li>Narrowing Primitive conversion</li>
+</ol>
+<p>These conversions are applying for integers</p>
+<ol>
+<li><h3>Widening primitive Conversion:</h3></li>
+<p>Widening conversion are very simple. There is no cast required and will never result in a runtime exception. precision may be lost when converting from integer to floating point types.</p>
+  <div class="table_content">
+<table>
+<tr>
+	<td class="alternate_heading1">byte</td><td class="alternate_heading1">to</td><td class="alternate_heading1">short, int, long, float, or double</td>
+</tr>
+<tr>
+	<td class="alternate_heading2">short</td><td class="alternate_heading2">to</td><td class="alternate_heading2">int, long, float, or double</td>
+</tr>
+<tr>
+	<td class="alternate_heading1">char</td><td class="alternate_heading1">to</td><td class="alternate_heading1">int, long, float, or double</td>
+</tr>
+<tr>
+	<td class="alternate_heading1">int</td><td class="alternate_heading1">to</td><td class="alternate_heading1">long, float, or double</td>
+</tr>
+<tr>
+	<td class="alternate_heading2">long</td><td class="alternate_heading2">to</td><td class="alternate_heading2">float or double</td>
+</tr>
+<tr>
+	<td class="alternate_heading2">float</td><td class="alternate_heading2">to</td><td class="alternate_heading2">double</td>
+</tr>
+
+</table>
+</div>
+
+<h3>Example :</h3>
+<div class="code">
+<PRE><FONT FACE="Arial"><FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">i = </FONT><FONT COLOR="#800080">65</FONT><FONT COLOR="#000000">;</FONT>
+<FONT COLOR="#0000ff">long </FONT><FONT COLOR="#000000">l = i;</FONT>
+
+<FONT COLOR="#0000ff">class </FONT><FONT COLOR="#000000">WideningConversion </FONT>
+<FONT COLOR="#000000">{</FONT>
+	<FONT COLOR="#0000ff">public static void </FONT><FONT COLOR="#000000">main(</FONT><FONT COLOR="#ff0000">String</FONT><FONT COLOR="#000000">[] args)</FONT>
+	<FONT COLOR="#000000">{</FONT>
+		<FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">i = </FONT><FONT COLOR="#800080">123456789</FONT><FONT COLOR="#000000">;</FONT>
+		<FONT COLOR="#0000ff">float </FONT><FONT COLOR="#000000">f = i;</FONT>
+		<FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.print(f);</FONT>
+	<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#000000">}</FONT></FONT></PRE>
+</div>
+
+<h3>Output :</h3> 
+<div class="code">
+<PRE><FONT FACE="Arial"><FONT COLOR="#800080">1</FONT><FONT COLOR="#000000">.</FONT><FONT COLOR="#800080">23456792E8</FONT></FONT></PRE>
+</div>
+
+<li><h3>Narrowing Primitive Conversion:</h3></li>
+<p>Cast required between types. Overflow and underflow may happen but a runtime exception will never happen. In case of narrowing conversion from long (64 bit) to int (32) bit we have 32 fewer bits in the destination number. The following integer type conversions are the narrowing ones.</p>
+<div class="table_content">
+<table>
+<tr>
+	<td class="alternate_heading1">short</td><td class="alternate_heading1">to</td><td class="alternate_heading1">byte or char</td>
+</tr>
+<tr>
+	<td class="alternate_heading2">char</td><td class="alternate_heading2">to</td><td class="alternate_heading2">byte or short</td>
+</tr>
+<tr>
+	<td class="alternate_heading1">int</td><td class="alternate_heading1">to</td><td class="alternate_heading1">byte, short, or char</td>
+</tr>
+<tr>
+	<td class="alternate_heading1">long</td><td class="alternate_heading1">to</td><td class="alternate_heading1">byte, short, char, or int</td>
+</tr>
+<tr>
+	<td class="alternate_heading2">float</td><td class="alternate_heading2">to</td><td class="alternate_heading2">byte, short, char, int, or long</td>
+</tr>
+<tr>
+	<td class="alternate_heading2">double</td><td class="alternate_heading2">to</td><td class="alternate_heading2">byte, short, char, int, long, or float</td>
+</tr>
+
+</table>
+</div>
+
+<h3>Example :</h3>
+<div class="code">
+<PRE><FONT FACE="Arial"><FONT COLOR="#0000ff">long </FONT><FONT COLOR="#000000">l = </FONT><FONT COLOR="#800080">656666L</FONT><FONT COLOR="#000000">;</FONT>
+<FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">i = (</FONT><FONT COLOR="#0000ff">int</FONT><FONT COLOR="#000000">) l;</FONT></FONT></PRE>
+</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="statement_in_java_programming.shtml" title="Statement in Java">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml" title="Java Programming Tutorials">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="import_statement_in_java.shtml" title="Import Statement in Java">Next</a></td>
+  </tr> 
+</table> 
+
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>

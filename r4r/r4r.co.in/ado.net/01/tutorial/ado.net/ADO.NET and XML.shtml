@@ -1,0 +1,228 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>ADO.NET and XML;XML Parser;A Example of  XML Document;Creating a DataSet from an XML File;ReadXml()Method;XmlReadMode Options for Retrieving XML;Serialization;Viewing the Contents of a DataSet;Writing a DataSet to an XML File;DiffGram </TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="ADO.NET and XML;XML Parser;A Example of  XML Document;Creating a DataSet from an XML File;ReadXml()Method;XmlReadMode Options for Retrieving XML;Serialization;Viewing the Contents of a DataSet;Writing a DataSet to an XML File;DiffGram " >
+<meta name="keywords" CONTENT="ADO.NET and XML;XML Parser;A Example of  XML Document;Creating a DataSet from an XML File;ReadXml()Method;XmlReadMode Options for Retrieving XML;Serialization;Viewing the Contents of a DataSet;Writing a DataSet to an XML File;DiffGram ">
+
+<!-- header start-->	
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>ADO.NET</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+            <img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+            <a href="/ado.net">ADO.Net</a>
+              <img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+
+			  <a href="/ado.net/01/tutorial/ado.net/">ADO.NET Tutorials</a>
+
+              </div>
+
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/ado.net/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	 
+<!-- header End-->	
+
+<div class="heading">ADO.NET and XML</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="use_of_CommandBuilder.shtml" title="Use of CommandBuilder">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="Transaction%20Processing%20in%20ADO.NET.shtml" title="Transaction Processing in ADO.NET">Next</a></td>
+  </tr> 
+</table>
+
+<p>XML stands for EXtensible Markup Language.XML was designed to carry data, not to display data and XML tags are not predefined,we  must define your own tags.XML is designed to be self-descriptive and XML is a W3C Recommendation.XML is a markup language that can be used to represent complicated data in a hierarchical format.The format of the generated XML document is far more readable than the ADO equivalent  the columns are represented by elements, not attributes, and there aren't a lot of unnecessary XML namespaces:</p>
+<h3>XML Parser</h3>
+<p><i>An XML parser is a program that extracts the data and data descriptions and reads  XML document from the XML data And it  enables  to programmatically work with an XML document without having to manually parse the file.</i></p>
+<p>The format of the generated XML document is far more readable than the ADO equivalent  the columns are represented by elements, not attributes, and there aren't a lot of unnecessary XML namespaces:</p>
+<div class="heading">A Example of  XML Document</div>
+<div class="code">
+<pre>
+<font color="#000000">&lt;?xml version=</font><font color="#ff00ff">&quot;1.0&quot;</font><font color="#000000">&gt;</font>
+<font color="#000000">&lt;customer type=</font><font color="#ff00ff">&quot;web&quot;</font><font color="#000000">&gt;</font>
+<font color="#000000">&lt;firstName&gt;Kamal&lt;/firstName&gt;</font>
+<font color="#000000">&lt;lastName&gt;Mishra&lt;/lastName&gt;</font>
+<font color="#000000">&lt;address&gt;Ashok nagar Delhi &lt;/address&gt;</font>
+<font color="#000000">&lt;city&gt;New Delhi&lt;/city&gt;</font>
+<font color="#000000">&lt;zip&gt;</font><font color="#800080">101100</font><font color="#000000">&lt;/zip&gt;</font>
+<font color="#000000">&lt;/customer&gt;</font>
+</pre>
+</div>
+<p>We can load any well-formed XML document into a DataSet, without having to use a predefined structure (although we might lose content if the structure of the document is not basically tabular).</p>
+<div class="code">
+<pre>
+<font color="#008000">// Store the XML document in a string</font>
+<font color="#0000ff">string </font><font color="#000000">xmlDoc = @</font><font color="#ff00ff">&quot;&lt;?xml version='1.0'?&gt;</font>
+<font color="#000000">&lt;books&gt;</font>
+<font color="#000000">&lt;book&gt;</font>
+<font color="#000000">&lt;title&gt;xml and ado .net&lt;/title&gt;</font>
+<font color="#000000">&lt;publisher&gt;R4R&lt;/publisher&gt;</font>
+<font color="#000000">&lt;/book&gt;</font>
+<font color="#000000">&lt;/books&gt;</font><font color="#ff00ff">&quot;;</font>
+<font color="#008000">// Load this into a StringReader</font>
+<font color="#808000">StringReader </font><font color="#000000">sr = </font><font color="#0000ff">new </font><font color="#808000">StringReader</font><font color="#000000">(xmlDoc);</font>
+<font color="#008000">// Create a new DataSet and read in the XML</font>
+<font color="#808000">DataSet </font><font color="#000000">ds = </font><font color="#0000ff">new </font><font color="#808000">DataSet</font><font color="#000000">();</font>
+<font color="#000000">ds.ReadXml(sr);</font>
+<font color="#008000">// Display the column names and row data as a table</font>
+<font color="#0000ff">foreach </font><font color="#000000">(</font><font color="#808000">DataColumn </font><font color="#000000">dc </font><font color="#0000ff">in </font><font color="#000000">ds.Tables[</font><font color="#800080">0</font><font color="#000000">].Columns)</font>
+<font color="#000000">{</font>
+<font color="#808000">Console</font><font color="#000000">.Write(</font><font color="#ff00ff">&quot;{0,-15}&quot;</font><font color="#000000">, dc.ColumnName);</font>
+<font color="#000000">}</font>
+<font color="#808000">Console</font><font color="#000000">.Write(</font><font color="#ff00ff">&quot;\n&quot;</font><font color="#000000">);</font>
+<font color="#0000ff">foreach </font><font color="#000000">(</font><font color="#808000">DataRow </font><font color="#000000">dr </font><font color="#0000ff">in </font><font color="#000000">ds.Tables[</font><font color="#800080">0</font><font color="#000000">].Rows)</font>
+<font color="#000000">{</font>
+<font color="#808000">Console</font><font color="#000000">.WriteLine(</font><font color="#ff00ff">&quot;{0,-15}{1,-15}&quot;</font><font color="#000000">, dr[</font><font color="#800080">0</font><font color="#000000">], dr[</font><font color="#800080">1</font><font color="#000000">]);</font>
+<font color="#000000">}</font>
+</pre>
+</div>
+
+<div class="heading">Creating a DataSet from an XML File</div>
+<p>The DataSet object has an overloaded method named ReadXml() that enables you to read XML data from a string, stream, or file.</p>
+<div class="code">
+<pre>
+<font color="#000000">dataSet.ReadXml(</font><font color="#ff00ff">&quot;file.xml&quot;</font><font color="#000000">);</font>
+</pre>
+</div>
+
+<h3>ReadXml()Method</h3>
+<p>ReadXml() is used to perform the magic of locating and loading the XML file. Readxml() is  a very robust method, and used with different way depending on what objects we pass ReadXml(), it will perform different actions:</p>
+<ul>
+<li>ReadXml( XmlReader reader, XmlReadMode mode ) When we are  passing an XmlReader as the first argument, ReadXml() will read data from an XmlReader object.</li>
+<li>ReadXml( Stream stream, XmlReadMode Mode )When we are passing a stream as the first argument, ReadXml() will read data from a stream.</li>
+<li>ReadXml( String fileName, XmlReadMode Mode ) When we are passing a filename to ReadXml(), it will retrieve XML from a file.</li>
+</ul>
+
+<h3>XmlReadMode Options for Retrieving XML</h3>
+<div class="table_content">
+<table>
+<tr><td class="heading"style="width:30;">Code</td> <td class="heading"style="width:70;">Symbol</td></tr>
+<tr><td class="alternate_heading1"style="width:30;">Auto</td> <td class="alternate_heading1"style="width:70;">ReadXml() automatically select  XmlReadMode by examining the XML document.</td></tr>
+
+<tr><td class="alternate_heading2"style="width:30;">ReadSchema</td> <td class="alternate_heading2"style="width:70;">ReadXml() reads XML schema and loads both data and schema into DataSet</td></tr>
+<tr><td class="alternate_heading1"style="width:30;">IgnoreSchema</td> <td class="alternate_heading1"style="width:70;">ReadXml()completely ignores XML schema and try  to load data into DataSet using existing DataSet schema.</td></tr>
+<tr><td class="alternate_heading2"style="width:30;">InferSchema</td> <td class="alternate_heading2"style="width:70;">ReadXml()ignores explicit schema information in the XML using the structure of the XML data as the schema.</td></tr>
+<tr><td class="alternate_heading1"style="width:30;"> DiffGram</td> <td class="alternate_heading1"style="width:70;">ReadXml()will read the XML as a DiffGram, appending and merging rows as needed.</td></tr>
+<tr><td class="alternate_heading2"style="width:30;">Fragment</td> <td class="alternate_heading2"style="width:70;">ReadXml()will read the document as partial XML and import the data matching the DataSet schema and ignore the rest.</td></tr>
+</table></div>
+<h3>Serialization</h3>
+<p>Serialization is defined as a way of saving the state of an object. In Microsoft .NET, serialization  refers to the conversion of an object's values into XML.
+Deserialization normally refers to the reverse process of building an object based on saved values in an XML document.</p>
+<h3>Viewing the Contents of a DataSet</h3>
+<p>The GetXml() method of the DataSet object is  used that  return  the DataSet's contents in XML form as a string. First, a table of information is retrieved from the  table in database. Then it is placed into a label Web control in a Web form in order to display it.</p>
+<p>
+<div class="heading">EXAMPLE:</div>
+</p>
+
+<div class="code">
+<pre>
+<font color="#000000">&lt;%@ Import Namespace=</font><font color="#ff00ff">&quot;System.Data&quot; </font><font color="#000000">%&gt;</font>
+<font color="#000000">&lt;%@ Import Namespace=</font><font color="#ff00ff">&quot;System.Data.SqlClient&quot; </font><font color="#000000">%&gt;</font>
+<font color="#000000">&lt;HTML&gt;</font>
+<font color="#000000">&lt;HEAD&gt;</font>
+<font color="#000000">&lt;script language=</font><font color="#ff00ff">&quot;c#&quot; </font><font color="#000000">runat=</font><font color="#ff00ff">&quot;server&quot; </font><font color="#000000">&gt;</font>
+<font color="#0000ff">void  </font><font color="#000000">Page_Load(</font><font color="#0000ff">object </font><font color="#000000">sender, </font><font color="#808000">EventArgs </font><font color="#000000">e)</font>
+<font color="#000000">{</font>
+<font color="#000000">SqlConnection conn = </font><font color="#0000ff">new </font><font color="#000000">SqlConnection(</font><font color="#ff00ff">&quot;Data Source=compee;Initial </font>
+<font color="#000000">Catalog=Emp;Integrated </font><font color="#008080">Security</font><font color="#000000">=sspi</font><font color="#ff00ff">&quot;); </font>
+<font color="#000000">SqlCommand cmd = </font><font color="#0000ff">new </font><font color="#000000">SqlCommand(</font><font color="#ff00ff">&quot;SELECT * FROM Customers&quot;</font><font color="#000000">, conn)</font>
+<font color="#000000">SqlDataAdapter adapt= </font><font color="#0000ff">new </font><font color="#000000">SqlDataAdapter(cmd)</font>
+<font color="#808000">DataSet </font><font color="#000000">dsCustomers = </font><font color="#0000ff">new </font><font color="#808000">DataSet</font><font color="#000000">()</font>
+<font color="#000000">conn.Open()</font>
+<font color="#000000">adapt.Fill(dsCustomers, </font><font color="#ff00ff">&quot;Customers&quot;</font><font color="#000000">)</font>
+<font color="#000000">conn.Close()</font>
+<font color="#000000">lblOutput.</font><font color="#008080">Text </font><font color="#000000">= dsCustomers.GetXml()</font>
+<font color="#000000">}</font>
+<font color="#000000">&lt;/script&gt;</font>
+<font color="#000000">&lt;/HEAD&gt;</font>
+<font color="#000000">&lt;body&gt;</font>
+<font color="#000000">&lt;form runat=</font><font color="#ff00ff">&quot;server&quot;</font><font color="#000000">&gt;</font>
+<font color="#000000">XML Output:&lt;br&gt;</font>
+<font color="#000000">&lt;asp:label id=</font><font color="#ff00ff">&quot;lblOutput&quot; </font><font color="#000000">runat=</font><font color="#ff00ff">&quot;server&quot;</font><font color="#000000">/&gt;</font>
+<font color="#000000">&lt;/form&gt;</font>
+<font color="#000000">&lt;/body&gt;</font>
+<font color="#000000">&lt;/html&gt;</font>
+</pre>
+</div>
+
+<h3>Writing a DataSet to an XML File</h3>
+<p>WriteXml().method is used to writing a dataset to an xml file.</p>
+<p>There are three different XmlWriteModes:</p>
+
+<div class="table_content">
+<table>
+<tr><td class="heading"style="width:30;">Code</td> <td class="heading"style="width:70;">Description</td></tr>
+<tr><td class="alternate_heading1"style="width:30;">IgnoreSchema</td> <td class="alternate_heading1"style="width:70;">Writes the DataSet as XML without any additional schema information.</td></tr>
+
+<tr><td class="alternate_heading2"style="width:30;">WriteSchema</td> <td class="alternate_heading2"style="width:70;">Writes the DataSet as XML with additional schema information included as inline XSD schema.</td></tr>
+<tr><td class="alternate_heading1"style="width:30;">DiffGram</td> <td class="alternate_heading1"style="width:70;">Writes the DataSet as a DiffGram.</td></tr>
+</table></div>
+
+<p><i>DiffGram </i>: A DiffGram is an XML document that is used to store original and current values for the data in a DataSet.</p>
+<p>
+<div class="heading">EXAMPLE</div>
+</p>
+<div class="code">
+<pre>
+<font color="#0000ff">void  </font><font color="#000000">Page_Load(</font><font color="#0000ff">object </font><font color="#000000">sender, </font><font color="#808000">EventArgs </font><font color="#000000">e)</font>
+<font color="#000000">{</font>
+<font color="#000000">SqlConnection conn = </font><font color="#0000ff">new </font><font color="#000000">SqlConnection</font>
+<font color="#000000">(</font><font color="#ff00ff">&quot;Data Source=compee;Initial </font>
+<font color="#000000">Catalog=Emp;Integrated </font><font color="#008080">Security</font><font color="#000000">=sspi</font><font color="#ff00ff">&quot;); </font>
+<font color="#000000">SqlCommand cmd = </font><font color="#0000ff">new </font><font color="#000000">SqlCommand</font>
+<font color="#000000">(</font><font color="#ff00ff">&quot;SELECT * FROM Customers&quot;</font><font color="#000000">, conn)</font>
+<font color="#000000">SqlDataAdapter adapt= </font><font color="#0000ff">new </font><font color="#000000">SqlDataAdapter(cmd)</font>
+<font color="#808000">DataSet </font><font color="#000000">dsCustomers = </font><font color="#0000ff">new </font><font color="#808000">DataSet</font><font color="#000000">()</font>
+<font color="#000000">conn.Open()</font>
+<font color="#000000">adapt.Fill(dsCustomers, </font><font color="#ff00ff">&quot;Customers&quot;</font><font color="#000000">)</font>
+<font color="#000000">conn.Close()</font>
+<font color="#000000">dsCustomers.WriteXml(Server.MapPath</font>
+<font color="#000000">(</font><font color="#ff00ff">&quot;XMLFiles/MyXMLFile.xml&quot;</font><font color="#000000">));</font>
+<font color="#000000">}</font>
+</pre>
+</div>
+
+ <table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="use_of_CommandBuilder.shtml" title="Use of CommandBuilder">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="Transaction%20Processing%20in%20ADO.NET.shtml" title="Transaction Processing in ADO.NET">Next</a></td>
+  </tr> 
+</table>
+
+<!-- Footer Start-->		
+		</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/dotnet/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->></BODY></HTML>

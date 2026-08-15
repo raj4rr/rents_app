@@ -1,0 +1,148 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>Handling Connection Events;StateChange;InfoMessage</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="Handling Connection Events;StateChange;InfoMessage" >
+<meta name="keywords" CONTENT="Handling Connection Events;StateChange;InfoMessage">
+
+<!-- header start-->	
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>ADO.NET</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+            <img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+            <a href="/ado.net">ADO.Net</a>
+              <img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+
+			  <a href="/ado.net/01/tutorial/ado.net/">ADO.NET Tutorials</a>
+
+              </div>
+
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/ado.net/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	 
+<!-- header End-->	
+
+<div class="heading">Handling Connection Events</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="The%20SQLCONNECTION%20OBJECT.shtml" title="The SQLCONNECTION OBJECT">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="dataset%20ado%20.net.shtml" title="Dataset object in ADO .NET">Next</a></td>
+  </tr> 
+</table>
+
+<p>Both the OLE DB and the SQL Server Connection objects provide two events:</p>
+<ol>
+<li>StateChange</li>
+<li>InfoMessage.</li>
+</ol>
+<ol>
+<li><p><i>StateChange:</i> The StateChange event fires whenever the state of the Connection object changes. The event passes a StateChangeEventArgs to its handler, which, inturn, has two properties: OriginalState and CurrentState. The possible values for</p></li>
+
+<h2>OriginalState and CurrentState are:</h2>
+<div class="table_content">
+<table>
+<tr><td class="heading" style="width:30;">Connection States</td> <td class="heading" style="width:70;"> Meaning</td></tr>
+<tr><td class="alternate_heading1">Broken</td> <td class="alternate_heading1">TheConnecton is open, but not functional. It maybe closed and reopened</td></tr>
+<tr><td class="alternate_heading2">Closed</td> <td class="alternate_heading2">The Connection is closed</td></tr>
+<tr><td class="alternate_heading1">Connecting</td> <td class="alternate_heading1">The Connection is in the process of connecting, but has not yet been</td></tr>
+<tr><td class="alternate_heading2">Executing</td> <td class="alternate_heading2">Executing the command</td></tr>
+<tr><td class="alternate_heading1">Fetching</td> <td class="alternate_heading1">Retrieving the data</td></tr>
+<tr><td class="alternate_heading2">Open</td> <td class="alternate_heading2">Open the connection</td></tr>
+</table>
+</div>
+<p>To display the previous and current Connection states for each of the two Connection objects: Select OleDbConnection1 in the Class Name combobox of the editor and the StateChange event in the Method Name combobox.</p>
+
+<div class="code">
+<pre>
+<font color="#0000ff">private void </font><font color="#000000">oleDbConnection1_StateChange</font>
+   <font color="#000000">(</font><font color="#0000ff">object </font><font color="#000000">sender,</font><font color="#808000">StateChangeEventArgs </font><font color="#000000">e)</font>
+<font color="#000000">{</font>
+<font color="#0000ff">string </font><font color="#000000">s;</font>
+<font color="#000000">s = </font><font color="#ff00ff">&quot;The Connection State is changing from &quot; </font>
+              <font color="#000000">+ e.OriginalState.ToString() +</font>
+         <font color="#ff00ff">&quot; to &quot; </font><font color="#000000">+ e.CurrentState.ToString();</font>
+<font color="#808000">MessageBox</font><font color="#000000">.Show(s);</font>
+<font color="#000000">}</font>
+<font color="#0000ff">private void </font><font color="#000000">SqlDbConnection1_StateChange </font>
+  <font color="#000000">(</font><font color="#0000ff">object </font><font color="#000000">sender, </font><font color="#808000">StateChangeEventArgs </font><font color="#000000">e)</font>
+<font color="#000000">{</font>
+<font color="#0000ff">string </font><font color="#000000">s1;</font>
+<font color="#000000">s1 = </font><font color="#ff00ff">&quot;The Connection State is changing from &quot; </font><font color="#000000">+</font>
+                 <font color="#000000">e.OriginalState.ToString() +</font>
+             <font color="#ff00ff">&quot; to &quot; </font><font color="#000000">+ e.CurrentState.ToString();</font>
+<font color="#808000">MessageBox</font><font color="#000000">.Show(s1);</font>
+<font color="#000000">}</font>
+</pre>
+
+</div>
+
+<p> Add the code to connect the event handlers to the:</p>
+<p>ConnectionProperties sub:</p>
+
+<div class="code">
+<pre>
+<font color="#0000ff">this</font><font color="#000000">.oleDbConnection1.StateChange +=</font>
+  <font color="#000000">newSystem.</font><font color="#008080">Data</font><font color="#000000">.StateChangeEventHandler</font>
+     <font color="#000000">(</font><font color="#0000ff">this</font><font color="#000000">.oleDbConnection1_StateChange);</font>
+</pre>
+
+</div> 
+<div class="code">
+<pre>
+<font color="#0000ff">this</font><font color="#000000">.SqlDbConnection1.StateChange += </font>
+   <font color="#0000ff">new </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Data</font><font color="#000000">.StateChangeEventHandler</font>
+      <font color="#000000">(</font><font color="#0000ff">this</font><font color="#000000">.SqlDbConnection1_StateChange);</font>
+</pre>
+
+</div>
+<p>Save and run the program. Change the Connection Type and then click the Test button.</p>
+<p>The application displays two MessageBoxes as the Connection is opened and closed.</p>
+
+<li><p><i>InfoMessage</i>: The InfoMessage event is triggered when the data source returns warnings. 
+              The information passed to the event handler depends on the Data Provider.</p></li></ol>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="The%20SQLCONNECTION%20OBJECT.shtml" title="The SQLCONNECTION OBJECT">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="dataset%20ado%20.net.shtml" title="Dataset object in ADO .NET">Next</a></td>
+  </tr> 
+</table>
+
+<!-- Footer Start-->		
+		</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/dotnet/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->

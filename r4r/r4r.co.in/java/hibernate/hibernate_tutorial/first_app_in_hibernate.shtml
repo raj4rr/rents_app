@@ -1,0 +1,381 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<HTML><HEAD><TITLE>Hibernate First Application</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv="content-type" content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="Hibernate tutorial learn - How To make First Application ,architecture, object relation mapping(ORM), 
+hibernate query language(HQl), Presistent classes, Objects, Collections, interceptors Stepwise Step" >
+<meta name="keywords" CONTENT="Hibernate tutorial, First Application In Hibernate, Hibernate First Application,
+Tutorial, Features, Basics, Beginners, Freshers,  mapping, collection mapping, component mapping, HQL(Hibenate Query Language)">
+
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<META http-equiv="Content-Language" content="en-us">
+<link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+<link href="/css/main.css" rel="stylesheet" type="text/css" />
+</HEAD>
+<BODY>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>Hibernate</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+            <img src="/images/left_menu_bullet.gif"/> <a href="/java/hibernate/">Hibernate</a>
+             </div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top">
+                            <?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/hibernate/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                       <div class="main_content">  	 
+
+      <div class="heading">First Application In Hibernate</div>
+
+      <table id="indexing">
+
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="features_of_hibernate.shtml" title="Features of Hibernate">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="commonly_used_class_and_interfaces.shtml" title="Commonly used classes and interfaces">Next</a></td>
+  </tr> 
+</table>
+      <h3>Creation a web application using servlet in hibernate</h3>
+      <p>
+          Before creating a web applcation we need to install NetBeans IDE and also need to 
+          install Hibernate Frame work with NetBeans and MySQL also required.
+          Now open the MySql and create a own database for Hibernate frame work .
+      </p>
+      <h3>Type these command in MySQL Editor:</h3>
+      <h2>create database hibernate_pro;</h2>
+      <p>
+          With the help of this command we can create a data base in the database to 
+          save the own data. DataBase is that area where we can put our data like as tables,procedures. 
+          etc
+      </p>
+      <h2>use hibernate_pro;</h2>
+      <h2>create table person</h2>
+      <div class="code">
+          <HTML>
+<BODY>
+<PRE>
+<FONT FACE="Courier New">
+<FONT COLOR="#000000">create table person</FONT>
+          <FONT COLOR="#000000">(</FONT>
+
+<FONT COLOR="#000000">id </FONT><FONT COLOR="#0000ff">int</FONT><FONT COLOR="#000000">(</FONT><FONT COLOR="#800080">4</FONT><FONT COLOR="#000000">) auto_increment primary key,</FONT>
+
+<FONT COLOR="#000000">first_name varhcar(</FONT><FONT COLOR="#800080">30</FONT><FONT COLOR="#000000">),</FONT>
+
+<FONT COLOR="#000000">last_name varchar(</FONT><FONT COLOR="#800080">30</FONT><FONT COLOR="#000000">),</FONT>
+
+<FONT COLOR="#000000">age varchar(</FONT><FONT COLOR="#800080">30</FONT><FONT COLOR="#000000">),</FONT>
+
+<FONT COLOR="#000000">profession varchar(</FONT><FONT COLOR="#800080">50</FONT><FONT COLOR="#000000">)</FONT>
+
+<FONT COLOR="#000000">);</FONT>
+</FONT>
+</PRE>
+</BODY>
+</HTML>
+      </div>
+      <p>
+          By this command we can create table which has id, first_name, last_name,age, 
+          profession are the field of the table in which we want to insert the data. 
+          In the table id show the unique quality of the table person. when we take the data type 
+          varchar then we are able to store any character value or any integer value in the data base.
+      </p>
+      <h2>select * from person;</h2>
+      <p>
+          We can see the data in the table by this command. This command will show the all data in the 
+          database. Here select is used to fetch the table from the data base.
+      </p>
+      <h3>Creation a web application in NetBean IDE:</h3>
+      <p>
+          Now Open the NetBeans IDE open File Menu Wizard -> New Project
+          Go-> File Menu Wizard -> Select to New Project -> 
+          Select Java web -> and also select web application -> click next ->(As Given in above image)
+          Write the project name HibernateWeb1 then click next->(As Given in above image)
+          Here select server on which you want to build the project -> then Next (As Given in above image)
+          Search the Hibernate Framework and mark on the hibernate and when mark will be on the one 
+          tab will open in the same page select to new connection to make the connection with 
+          database -> New Connection Wizard (As Given in above image) 
+          Now you will see in your Netbeasn IDE acording the given image and  ->select according the 
+          image and click next -> and then finish.  (As Given in Below Mentioned image)
+      </p>
+      <h3>hibernate.cfg.xml</h3>
+      <div class="code">
+         <HTML>
+<BODY>
+<PRE>
+<FONT FACE="Courier New">
+ <FONT COLOR="#000000">&lt;?xml version=</FONT><FONT COLOR="#ff00ff">"1.0" </FONT><FONT COLOR="#000000">encoding=</FONT><FONT COLOR="#ff00ff">"UTF-8"</FONT><FONT COLOR="#000000">?&gt;</FONT>
+
+<FONT COLOR="#000000">&lt;!DOCTYPE hibernate-configuration PUBLIC </FONT><FONT COLOR="#ff00ff">"-//Hibernate/Hibernate Configuration DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd"</FONT><FONT COLOR="#000000">&gt;</FONT>
+
+<FONT COLOR="#000000">&lt;hibernate-configuration&gt;</FONT>
+
+  <FONT COLOR="#000000">&lt;session-factory&gt;</FONT>
+
+    <FONT COLOR="#000000">&lt;property name=</FONT><FONT COLOR="#ff00ff">"hibernate.dialect"</FONT><FONT COLOR="#000000">&gt;org.hibernate.dialect.MySQLDialect&lt;/property&gt;</FONT>
+
+    <FONT COLOR="#000000">&lt;property name=</FONT><FONT COLOR="#ff00ff">"hibernate.connection.driver_class"</FONT><FONT COLOR="#000000">&gt;com.mysql.jdbc.</FONT><FONT COLOR="#ff0000">Driver</FONT><FONT COLOR="#000000">&lt;/property&gt;</FONT>
+
+    <FONT COLOR="#000000">&lt;property name=</FONT><FONT COLOR="#ff00ff">"hibernate.connection.url"</FONT><FONT COLOR="#000000">&gt;jdbc:mysql:</FONT><FONT COLOR="#008000">//localhost:3306/hibernate_pro?zeroDateTimeBehavior=convertToNull&lt;/property&gt;</FONT>
+
+    <FONT COLOR="#000000">&lt;property name=</FONT><FONT COLOR="#ff00ff">"hibernate.connection.username"</FONT><FONT COLOR="#000000">&gt;root&lt;/property&gt;</FONT>
+
+    <FONT COLOR="#000000">&lt;property name=</FONT><FONT COLOR="#ff00ff">"hibernate.connection.password"</FONT><FONT COLOR="#000000">&gt;root&lt;/property&gt;</FONT>
+
+  <FONT COLOR="#000000">&lt;/session-factory&gt;</FONT>
+
+<FONT COLOR="#000000">&lt;/hibernate-configuration&gt;</FONT>
+</FONT>
+</PRE>
+</BODY>
+</HTML>
+      </div>
+      <p>
+          In the above code we can see the some critical parts which should be always remember.
+          When we make the connection with the database and NetBeans Generate auto hibernate.cfg.xml file. 
+          In that file we see our database host name and port name alse.
+      </P>
+      <p>
+         If we given the password in the database then we see the user name and 
+         password in the above mentioned code.
+      </p>
+      <p>
+          Till then we don't create the POJO class we can't see the mapping file with the database 
+          name and file name also.
+      </p>
+      <p>
+          If all thing are completed then our project created correctly.
+      </p> 
+
+      <h3>Creation of the Index page</h3>
+      <p>
+          As we shown in the below image we can create a index page. 
+          It work to making the input source we can say that it work as the designing page of ours. 
+          Without designing page we can't nothing in any platform. In the designing page we perform 
+          the action via our action strategies.
+      </p>
+      <h3>index.jsp</h3>
+      <div class="code">
+         <HTML>
+<BODY>
+<PRE>
+<FONT FACE="Courier New">
+<FONT COLOR="#000000"> </FONT><FONT COLOR="#800000">&lt;%@page contentType=</FONT><FONT COLOR="#ff00ff">"text/html" </FONT><FONT COLOR="#800000">pageEncoding=</FONT><FONT COLOR="#ff00ff">"UTF-8"</FONT><FONT COLOR="#800000">%&gt;</FONT>
+<FONT COLOR="#0000ff">&lt;!DOCTYPE </FONT><FONT COLOR="#800080">html</FONT><FONT COLOR="#0000ff">&gt;</FONT>
+<FONT COLOR="#0000ff">&lt;html&gt;</FONT>
+<FONT COLOR="#000000">    </FONT><FONT COLOR="#0000ff">&lt;head&gt;</FONT>
+<FONT COLOR="#000000">        </FONT><FONT COLOR="#0000ff">&lt;meta </FONT><FONT COLOR="#ff0000">http-equiv</FONT><FONT COLOR="#0000ff">=</FONT><FONT COLOR="#ff00ff">"Content-Type" </FONT><FONT COLOR="#ff0000">content</FONT><FONT COLOR="#0000ff">=</FONT><FONT COLOR="#ff00ff">"text/html; charset=UTF-8"</FONT><FONT COLOR="#0000ff">&gt;</FONT>
+<FONT COLOR="#000000">        </FONT><FONT COLOR="#0000ff">&lt;title&gt;</FONT><FONT COLOR="#000000">JSP Page</FONT><FONT COLOR="#0000ff">&lt;/title&gt;</FONT>
+<FONT COLOR="#000000">    </FONT><FONT COLOR="#0000ff">&lt;/head&gt;</FONT>
+<FONT COLOR="#000000">    </FONT><FONT COLOR="#0000ff">&lt;body &gt;</FONT>
+<FONT COLOR="#000000">        </FONT><FONT COLOR="#0000ff">&lt;form </FONT><FONT COLOR="#ff0000">action</FONT><FONT COLOR="#0000ff">=</FONT><FONT COLOR="#ff00ff">"MyServlet1" </FONT><FONT COLOR="#ff0000">method</FONT><FONT COLOR="#0000ff">=</FONT><FONT COLOR="#ff00ff">"post"</FONT><FONT COLOR="#0000ff">&gt;</FONT>
+<FONT COLOR="#000000">            First Name      </FONT><FONT COLOR="#0000ff">&lt;input </FONT><FONT COLOR="#ff0000">type</FONT><FONT COLOR="#0000ff">=</FONT><FONT COLOR="#ff00ff">"text" </FONT><FONT COLOR="#ff0000">name</FONT><FONT COLOR="#0000ff">=</FONT><FONT COLOR="#ff00ff">"first_name" </FONT><FONT COLOR="#ff0000">value</FONT><FONT COLOR="#0000ff">=</FONT><FONT COLOR="#ff00ff">"" </FONT><FONT COLOR="#0000ff">/&gt;</FONT>
+<FONT COLOR="#000000">            Last Name       </FONT><FONT COLOR="#0000ff">&lt;input </FONT><FONT COLOR="#ff0000">type</FONT><FONT COLOR="#0000ff">=</FONT><FONT COLOR="#ff00ff">"text" </FONT><FONT COLOR="#ff0000">name</FONT><FONT COLOR="#0000ff">=</FONT><FONT COLOR="#ff00ff">"last_name" </FONT><FONT COLOR="#ff0000">value</FONT><FONT COLOR="#0000ff">=</FONT><FONT COLOR="#ff00ff">"" </FONT><FONT COLOR="#0000ff">/&gt;</FONT>
+<FONT COLOR="#000000">            Age             </FONT><FONT COLOR="#0000ff">&lt;select </FONT><FONT COLOR="#ff0000">name</FONT><FONT COLOR="#0000ff">=</FONT><FONT COLOR="#ff00ff">"age"</FONT><FONT COLOR="#0000ff">&gt;</FONT>
+<FONT COLOR="#000000">                            </FONT><FONT COLOR="#0000ff">&lt;option&gt;</FONT><FONT COLOR="#000000">--Select Age--</FONT><FONT COLOR="#0000ff">&lt;/option&gt;</FONT>
+<FONT COLOR="#000000">                            </FONT><FONT COLOR="#0000ff">&lt;option&gt;</FONT><FONT COLOR="#000000">10 to 20</FONT><FONT COLOR="#0000ff">&lt;/option&gt;</FONT>
+<FONT COLOR="#000000">                            </FONT><FONT COLOR="#0000ff">&lt;option&gt;</FONT><FONT COLOR="#000000">20 to 30</FONT><FONT COLOR="#0000ff">&lt;/option&gt;</FONT>
+<FONT COLOR="#000000">                            </FONT><FONT COLOR="#0000ff">&lt;option&gt;</FONT><FONT COLOR="#000000">30 to 40</FONT><FONT COLOR="#0000ff">&lt;/option&gt;</FONT>
+<FONT COLOR="#000000">                            </FONT><FONT COLOR="#0000ff">&lt;option&gt;</FONT><FONT COLOR="#000000">40 to above</FONT><FONT COLOR="#0000ff">&lt;/option&gt;</FONT>
+<FONT COLOR="#000000">                            </FONT><FONT COLOR="#0000ff">&lt;/select&gt;</FONT>
+<FONT COLOR="#000000">            Profession      </FONT><FONT COLOR="#0000ff">&lt;select </FONT><FONT COLOR="#ff0000">name</FONT><FONT COLOR="#0000ff">=</FONT><FONT COLOR="#ff00ff">"profession"</FONT><FONT COLOR="#0000ff">&gt;</FONT>
+<FONT COLOR="#000000">                            </FONT><FONT COLOR="#0000ff">&lt;option&gt;</FONT><FONT COLOR="#000000">--Select Profession--</FONT><FONT COLOR="#0000ff">&lt;/option&gt;</FONT>
+<FONT COLOR="#000000">                            </FONT><FONT COLOR="#0000ff">&lt;option&gt;</FONT><FONT COLOR="#000000">Manager</FONT><FONT COLOR="#0000ff">&lt;/option&gt;</FONT>
+<FONT COLOR="#000000">                            </FONT><FONT COLOR="#0000ff">&lt;option&gt;</FONT><FONT COLOR="#000000">Clerk</FONT><FONT COLOR="#0000ff">&lt;/option&gt;</FONT>
+<FONT COLOR="#000000">                            </FONT><FONT COLOR="#0000ff">&lt;option&gt;</FONT><FONT COLOR="#000000">Teacher</FONT><FONT COLOR="#0000ff">&lt;/option&gt;</FONT>
+<FONT COLOR="#000000">                            </FONT><FONT COLOR="#0000ff">&lt;/select&gt;</FONT>
+<FONT COLOR="#000000">            </FONT><FONT COLOR="#0000ff">&lt;input </FONT><FONT COLOR="#ff0000">type</FONT><FONT COLOR="#0000ff">=</FONT><FONT COLOR="#ff00ff">"submit" </FONT><FONT COLOR="#ff0000">value</FONT><FONT COLOR="#0000ff">=</FONT><FONT COLOR="#ff00ff">"Sign In" </FONT><FONT COLOR="#0000ff">/&gt;</FONT>
+<FONT COLOR="#000000">        </FONT><FONT COLOR="#0000ff">&lt;/form&gt;</FONT>
+<FONT COLOR="#000000">    </FONT><FONT COLOR="#0000ff">&lt;/body&gt;</FONT>
+<FONT COLOR="#0000ff">&lt;/html&gt;</FONT>
+</FONT>
+</PRE>
+</BODY>
+</HTML>
+      </div>
+
+<h3>Creating the servlet</h3>
+<p>
+    Now we need a servlet file to handle the HTTP request, read the form data, and use Hibernate to save it to the database.
+</p>
+<div class="code">
+<pre><code>
+package mypack;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+import org.hibernate.boot.MetadataSources;
+import org.hibernate.boot.registry.StandardServiceRegistry;
+import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
+
+public class MyServlet1 extends HttpServlet {
+
+    public void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+
+        response.setContentType("text/html;charset=UTF-8");
+        
+        String first_name = request.getParameter("first_name");
+        String last_name = request.getParameter("last_name");
+        String age = request.getParameter("age");
+        String profession = request.getParameter("profession");
+
+        // Modern Hibernate 5+ SessionFactory initialization
+        StandardServiceRegistry registry = new StandardServiceRegistryBuilder().configure().build();
+        SessionFactory sf = new MetadataSources(registry).buildMetadata().buildSessionFactory();
+        
+        Session s = sf.openSession();
+        Transaction tx = null;
+
+        try {
+            tx = s.beginTransaction();
+            
+            Person p = new Person(first_name, last_name, age, profession);
+            s.save(p);
+            
+            tx.commit();
+        } catch (Exception e) {
+            if (tx != null) tx.rollback();
+            e.printStackTrace();
+        } finally {
+            if (s != null) {
+                s.close();
+            }
+        }
+
+        try (PrintWriter out = response.getWriter()) {
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head><title>Welcome</title></head>");
+            out.println("<body>");
+            out.println("<h1>Successfully saved data for " + first_name + "!</h1>");
+            out.println("</body></html>");
+        }
+    }
+}
+</code></pre>
+</div>
+<h3>Entity Class Creation (JPA Annotations)</h3>
+<p>
+  In modern Hibernate, we no longer need complex <code>hibernate.reveng.xml</code> or <code>.hbm.xml</code> mapping files. Instead, we use JPA annotations directly on our Java objects (POJOs) to map them to database tables.
+  Create a new Java class named <code>Person.java</code> and add the following annotations:
+</p>
+<div class="code">
+<pre><code>
+package mypack;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.Column;
+
+@Entity
+@Table(name = "person")
+public class Person implements java.io.Serializable {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
+    private Integer id;
+
+    @Column(name = "first_name", length = 40)
+    private String firstName;
+
+    @Column(name = "last_name", length = 40)
+    private String lastName;
+
+    @Column(name = "age", length = 20)
+    private String age;
+
+    @Column(name = "profession", length = 15)
+    private String profession;
+
+    public Person() {}
+
+    public Person(String firstName, String lastName, String age, String profession) {
+       this.firstName = firstName;
+       this.lastName = lastName;
+       this.age = age;
+       this.profession = profession;
+    }
+
+    // Getters and Setters
+    public Integer getId() { return this.id; }
+    public void setId(Integer id) { this.id = id; }
+    
+    public String getFirstName() { return this.firstName; }
+    public void setFirstName(String firstName) { this.firstName = firstName; }
+    
+    public String getLastName() { return this.lastName; }
+    public void setLastName(String lastName) { this.lastName = lastName; }
+    
+    public String getAge() { return this.age; }
+    public void setAge(String age) { this.age = age; }
+    
+    public String getProfession() { return this.profession; }
+    public void setProfession(String profession) { this.profession = profession; }
+}
+</code></pre>
+</div>
+<h3>Output of the Project in the Browser after the Building of the project on the server:</h3>
+<p>
+    When we have completed all work like as reverse engineering ,pojo class and servlet 
+    file then we can build the project. You can select the project node for build or you 
+    can build to selecting file through index.jsp file right click on the file and select the 
+    run the project in menu option. then your project will build and run. As given in the images.
+</p>
+<h3>
+    Output of the Data Base When we have inserted the data by the browse:
+</h3>
+<p>
+    When we insert the required value in the required field and then submit the value goes 
+    into the database. So for the see this we have to follow the same required. We need to 
+    type the command in the editor of my sql then we found the last entry at the time when 
+    we inserted the value by the browser. select * from person; select work for fetching the 
+    table from the database. In the hilighted row shows that in this row has a new entry which 
+    inserted by the browser.
+</p>
+    <table id="indexing">
+
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="features_of_hibernate.shtml" title="Features of Hibernate">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="commonly_used_class_and_interfaces.shtml" title="Commonly used classes and interfaces">Next</a></td>
+  </tr> 
+</table>             
+
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+
+                <?php @include($_SERVER['DOCUMENT_ROOT'] . '/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>

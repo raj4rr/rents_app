@@ -1,0 +1,153 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>Delegate,What is a Function Pointer,Types of Delegate,Advantage of using Delegate ,Static Delegates,Delegates as Properties,Event </TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="Delegate,What is a Function Pointer,Types of Delegate,Advantage of using Delegate ,Static Delegates,Delegates as Properties,Event " >
+<meta name="keywords" CONTENT="Delegate,What is a Function Pointer,Types of Delegate,Advantage of using Delegate ,Static Delegates,Delegates as Properties,Event ">
+
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+     <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>C# Tutorial</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a><img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/c1/">C#</a>
+
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/c1/commonfiles/leftmenu.shtml'); ?></td>
+
+                       <td style="80%" valign="top">
+                        <div class="main_content"> 
+
+	<!-- Header End-->
+
+  <div class="heading">File Handling in C#</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="exception.shtml" title="Exception Handling">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="threading.shtml" title="Threading">Next</a></td>
+  </tr>
+</table>
+<p>File handling is an unmanaged resource in your application system.This means that it is not handled by CLR.</p>
+<p>The System.IO namespace includes various classes for file handling.   File Handling It is used to read from and write to any
+ location within a file.</p>
+ <ol>
+ <li><b>BinaryReader- </b>It is used to read primitive data types from a binary stream.</li>
+ <li><b>BinaryWriter- </b> It is used to write primitive data types in binary format.</li>
+ <li><b>StreamReader- </b> It is used to read characters from a byte Stream.</li>
+ <li><b>StreamWriter- </b> It is used to write characters to a stream.</li>
+ <li><b>StringReader- </b> It is used to read from a string buffer.</li>
+ <li><b>StringWriter- </b> It is used to write into a string buffer.</li>
+ <li><b>DirectoryInfo- </b> It is used to perform operations on directories.</li>
+ <li><b>FileInfo-  </b> It is used to perform operations on files.</li>
+ </ol>
+
+ <div class="heading">Working With Files </div>
+ <p>The Directory Info object can also return a collection of all the files in each subdirectory found. </p>
+ <p>The GetFiles( ) methodreturns an array of File Info objects, each of which describes a file in that directory. </p>
+  <p>The File Info and File objects relate to one another, much as Directory Info and Directory do. Like the methods of Directory,
+   all the File methods are static; like Directory Info, all the methods of File Info are instance methods.</p>
+   <ol><li><b>AppendText()-</b> Creates a Stream Writer that appends text to the specified file.</li>
+  <li><b> Copy()-</b>   Copies an existing file to a new file.</li>
+  <li><b> Create()-</b>Creates a file in the specified path.</li>
+  <li><b> CreateText()-</b> Creates a Stream Writer that writes a new text file to the specified file.</li>
+  <li><b>Delete()- </b> Deletes the specified file.</li>
+   <li><b>Exists()-</b> Returns true if the specified file exists.</li>
+   <li><b>GetAttributes()</b> and <b>SetAttributes()-</b> Gets and sets the File Attributes of the specified file.</li>
+   <li><b>GetCreationTime() </b> and <b> SetCreationtime()-</b> Returns and sets the creation date and time of the file.</li></ol>
+
+   <div class="heading">Input/Output</div>
+   <p>The FCL(Framework Class Library) provides a streams-based I/O framework that can handle a wide range of stream and 
+   backing store types.</p>
+   <p>All exist in the System.IO namespace.</p>
+   <p><h3>Example</h3> Reading a Text File using StreamReader.</p>
+   <div class="code">
+   <pre>
+<font color="#0000ff">using </font><font color="#000000">sysyem;</font>
+<font color="#0000ff">using </font><font color="#000000">syatem.</font><font color="#008080">IO</font><font color="#000000">;</font>
+<font color="#0000ff">public class </font><font color="#000000">SampleFileReader</font><font color="#000000">{</font>
+<font color="#0000ff">public static void </font><font color="#000000">main()</font><font color="#000000">{</font>
+<font color="#808000">TextReader </font><font color="#000000">tr = </font><font color="#0000ff">new </font><font color="#000000">StreanReader(</font><font color="#ff00ff">&quot;Filename.txt&quot;</font><font color="#000000">);</font>
+<font color="#0000ff">string </font><font color="#000000">line = </font><font color="#ff00ff">&quot;&quot;</font><font color="#000000">;</font>
+<font color="#0000ff">while </font><font color="#000000">(line = tr.ReadLine() != </font><font color="#0000ff">null</font><font color="#000000">)</font><font color="#000000">{</font>
+<font color="#000000">console.writeLine(inline);</font>
+<font color="#000000">}</font>
+<font color="#000000">}</font>
+<font color="#000000">}</font>
+</pre>
+</div>
+
+<p><h3>Example</h3> Writing a Text in file File using StreamWriter</p>
+<div class="code">
+<pre>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Text</font><font color="#000000">;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">IO</font><font color="#000000">;</font>
+<font color="#0000ff">class </font><font color="#000000">FileProgram</font><font color="#000000">{</font>
+<font color="#0000ff">public void </font><font color="#000000">Write()</font><font color="#000000">{</font>
+<font color="#808000">FileStream </font><font color="#000000">fs = </font><font color="#0000ff">new </font><font color="#808000">FileStream</font><font color="#000000">(</font><font color="#ff00ff">&quot;c:\\filename.txt&quot;</font><font color="#000000">, FileMode.Append, FileAccess.Write);</font>
+<font color="#808000">StreamWriter </font><font color="#000000">sw = </font><font color="#0000ff">new </font><font color="#808000">StreamWriter</font><font color="#000000">(fs);</font>
+<font color="#808000">Console</font><font color="#000000">.WriteLine(</font><font color="#ff00ff">&quot;Enter the text in the file&quot;</font><font color="#000000">);</font>
+<font color="#0000ff">string </font><font color="#000000">str = </font><font color="#808000">Console</font><font color="#000000">.ReadLine();</font>
+<font color="#000000">sw.WriteLine(str);</font>
+<font color="#000000">sw.Flush();</font>
+<font color="#000000">sw.Close();</font>
+<font color="#000000">fs.Close();</font>
+<font color="#000000">}</font>
+<font color="#0000ff">static void </font><font color="#000000">Main(</font><font color="#0000ff">string</font><font color="#000000">[] args)</font><font color="#000000">{</font>
+<font color="#000000">FileWrite wr = </font><font color="#0000ff">new </font><font color="#000000">FileWrite();</font>
+<font color="#000000">wr.Write();</font>
+<font color="#000000">}</font>
+<font color="#000000">}</font>
+</pre>
+</div>
+
+<div class="heading">StreamReader and StreamWriter classes</div>
+<p>StreamReader and StreamWriter are concrete classes that derive from TextReader and TextWriter, respectively, and operate
+on a Stream (passedas a constructor parameter).</p>
+<p> These classes allow you to combine a Stream (which can have a backing store but only knows about raw data) with a 
+TextReader/TextWriter which knows about character data, but doesn't have a backing store.</p>
+<h3>Streams and Backing Stores</h3>
+<p>A stream represents the flow of data coming in and out of a backing store. A backing store represents the endpoint of a 
+stream.</p>
+<h3>Abstract Stream class</h3>
+<p>Stream is an abstract class that defines operations for reading and writing a stream of raw, type less data as bytes. Once a 
+stream has been opened, it stays open and can be read from or written to until the stream is flushed and closed.</p>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="exception.shtml" title="Exception Handling">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="threading.shtml" title="Threading">Next</a></td>
+  </tr>
+</table>
+
+ <!--Footer  -->
+   </div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/dotnet/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>

@@ -1,0 +1,104 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>Using EXITS Clause</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="Using EXITS Clause" >
+<meta name="keywords" CONTENT="Using EXITS Clause">
+
+<!--header start-->
+
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>DATABASE & SQL/PLSQL</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a><img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+			<a href="/sql/">SQL </a>
+              </div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/sql/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	  
+
+                        	                        	<!-- Header End-->	
+    <div class="heading">Sub queries with EXITS Clause</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="equi.shtml" title="Equi Join,Natural Join,Self Join">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="subqry1.shtml" title="Queries with modified Comparison Operators">Next</a></td>
+  </tr>
+</table>
+
+<p>A sub query used with the EXISTS clause, always returns data in terms of a TRUE or FALSE value. It checks for the existence of a data rows according to the condition specified in the inner query and passes the existence status to the outer query to produce the result set.</p>
+<h3>Example:</h3>
+<div class="code">
+<pre>
+SELECT <i> pub_name</i>
+FROM  <i>publishers</i>
+WHERE  EXISTS (SELECT  *  FROM <i>titles</i> WHERE <i>type='business'</i>)
+</pre>
+</div> 
+<p><i>output</i></p>
+<div class="output">
+<div class="image">
+<img src="Image/subqry.gif">
+</div>
+</div>
+
+<p>Display the name of publishers who publish business related books.</p>
+
+<div class="code">
+<pre>
+SELECT <i>title</i>
+FROM <i>titles</i>
+WHERE <i>advance</i> > (SELECT  avg(advance)  FROM <i>titles</i>WHERE <i>type='business'</i>)
+</pre>
+</div>
+<p><i>output</i></p>
+<div class="output">
+<div class="image">
+<img src="Image/sbqry1.gif">
+</div>
+</div>
+<p>Display the titles of all those books for which the advance amount is greater than the average advance for bussiness related books.</p>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="equi.shtml" title="Equi Join,Natural Join,Self Join">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="subqry1.shtml" title="Queries with modified Comparison Operators">Next</a></td>
+  </tr>
+</table>
+
+                       <!--Footer  -->
+
+</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>

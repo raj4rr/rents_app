@@ -1,0 +1,123 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<HTML><HEAD><TITLE>Encapsulation in Java</TITLE>
+
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv="content-type" content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="Encapsulation in java with example, benefits of encapsulation and fully encapsulated class.">
+<meta name="keywords" CONTENT="encapsulation in java, encapsulation, example, java">
+
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>Java Programing laungage</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a><img src="/images/left_menu_bullet.gif"/> <a href="/java/">Java</a><img src="/images/left_menu_bullet.gif"/> <a href="/java/corejava">Core Java</a></div>
+            	<table>
+                    <tr>
+                      <td width="19%" valign="top" style="width:20%"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/corejava/commonfiles/leftmenu.shtml'); ?></td>
+
+                      <td style="80%" valign="top">
+
+                     <div class="main_content">
+<div class="heading">Encapsulation in Java</div>
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="class_and_objects_in_java.shtml" title="Class & Objects in java">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml" title="Java Programming Tutorials">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="modifiers_visibility_labels_for_members_of_a_class_or_interface_or_class.shtml" title="Modifiers/Visibility for a Class or Interrface or member of a Class">Next</a></td>
+  </tr> 
+</table> 
+
+<p>Encapsulation is a bundling of member variable and member method together in a class as a single entity is known as called as encapsulation. Encapsulation is the technique of making the fields in a class private and providing access to the fields via public methods. If a field is declared private, it cannot be accessed by anyone outside the class, thereby hiding the fields within the class. For this reason, encapsulation is also referred to as data hiding. for example capsule i.e. mixed of several medicines. Data Hiding is declaring a member has private we can hide them from external objects. The Java Bean class is the example of fully encapsulated class.</p>
+
+<h2>Benefits of Encapsulation:</h2>
+<p>The fields of a class can be made read-only or write-only.</p>
+<p>A class can have total control over what is stored in its fields.</p>
+<p>The users of a class do not know how the class stores its data. A class can change the data type of a field and users of the class do not need to change any of their code.</p>
+
+<h3>Example :</h3>
+<div class="code">
+<PRE><FONT FACE="Arial"><FONT COLOR="#0000ff">import </FONT><FONT COLOR="#000000">java.util.</FONT><FONT COLOR="#ff0000">Scanner</FONT><FONT COLOR="#000000">;</FONT>
+<FONT COLOR="#0000ff">class </FONT><FONT COLOR="#000000">B</FONT>
+<FONT COLOR="#000000">{</FONT>
+	<FONT COLOR="#0000ff">private int </FONT><FONT COLOR="#000000">x;</FONT>
+	<FONT COLOR="#0000ff">private float </FONT><FONT COLOR="#000000">y;</FONT>
+	<FONT COLOR="#0000ff">void </FONT><FONT COLOR="#000000">getData()</FONT><FONT COLOR="#008000">//for user input</FONT>
+	<FONT COLOR="#000000">{</FONT>
+		<FONT COLOR="#ff0000">Scanner </FONT><FONT COLOR="#000000">sc;</FONT>
+		<FONT COLOR="#000000">sc=</FONT><FONT COLOR="#0000ff">new </FONT><FONT COLOR="#ff0000">Scanner</FONT><FONT COLOR="#000000">(</FONT><FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.in);</FONT>
+		<FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.print(</FONT><FONT COLOR="#ff00ff">"Enter Value Of x :"</FONT><FONT COLOR="#000000">);</FONT>
+		<FONT COLOR="#000000">x=sc.nextInt();</FONT>
+		<FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.print(</FONT><FONT COLOR="#ff00ff">"Enter value of y :"</FONT><FONT COLOR="#000000">);</FONT>
+		<FONT COLOR="#000000">y=sc.nextFloat();</FONT>
+	<FONT COLOR="#000000">} </FONT>
+	<FONT COLOR="#0000ff">void </FONT><FONT COLOR="#000000">setdata(</FONT><FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">x1,</FONT><FONT COLOR="#0000ff">float </FONT><FONT COLOR="#000000">y1)</FONT><FONT COLOR="#008000">//for testing purpose</FONT>
+	<FONT COLOR="#000000">{</FONT>
+		<FONT COLOR="#000000">x=x1;</FONT>
+		<FONT COLOR="#000000">y=y1;</FONT>
+	<FONT COLOR="#000000">}</FONT>
+	<FONT COLOR="#0000ff">void </FONT><FONT COLOR="#000000">display()</FONT>
+	<FONT COLOR="#000000">{</FONT>
+		<FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.println(x+</FONT><FONT COLOR="#ff00ff">","</FONT><FONT COLOR="#000000">+y);</FONT>
+	<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#0000ff">class </FONT><FONT COLOR="#000000">BTest</FONT>
+<FONT COLOR="#000000">{</FONT>
+	<FONT COLOR="#0000ff">public static void </FONT><FONT COLOR="#000000">main(</FONT><FONT COLOR="#ff0000">String </FONT><FONT COLOR="#000000">args[])</FONT>
+	<FONT COLOR="#000000">{ </FONT>
+		<FONT COLOR="#000000">B a1,a2;</FONT>
+		<FONT COLOR="#000000">a1=</FONT><FONT COLOR="#0000ff">new </FONT><FONT COLOR="#000000">B();</FONT>
+		<FONT COLOR="#000000">a2=</FONT><FONT COLOR="#0000ff">new </FONT><FONT COLOR="#000000">B();</FONT>
+		<FONT COLOR="#008000">//a1.x=5 ;//error</FONT>
+		<FONT COLOR="#008000">//a1.getdata();</FONT>
+		<FONT COLOR="#008000">//a2.gatdata();</FONT>
+		<FONT COLOR="#000000">a1.setdata(</FONT><FONT COLOR="#800080">10</FONT><FONT COLOR="#000000">,</FONT><FONT COLOR="#800080">10</FONT><FONT COLOR="#000000">.</FONT><FONT COLOR="#800080">5f</FONT><FONT COLOR="#000000">);</FONT>
+		<FONT COLOR="#000000">a2.setdata(</FONT><FONT COLOR="#800080">2</FONT><FONT COLOR="#000000">,</FONT><FONT COLOR="#800080">5</FONT><FONT COLOR="#000000">.</FONT><FONT COLOR="#800080">4f</FONT><FONT COLOR="#000000">);</FONT>
+		<FONT COLOR="#000000">a1.display();</FONT>
+		<FONT COLOR="#000000">a2.display();</FONT>
+	<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#000000">}</FONT></FONT></PRE>
+</div>
+
+<h3>output :</h3>
+<div class="code">
+<PRE><FONT FACE="Arial"><FONT COLOR="#800080">10</FONT><FONT COLOR="#000000">,</FONT><FONT COLOR="#800080">10</FONT><FONT COLOR="#000000">.</FONT><FONT COLOR="#800080">5</FONT>
+
+<FONT COLOR="#800080">2</FONT><FONT COLOR="#000000">,</FONT><FONT COLOR="#800080">5</FONT><FONT COLOR="#000000">.</FONT><FONT COLOR="#800080">4</FONT></FONT></PRE>
+</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="class_and_objects_in_java.shtml" title="Class & Objects in java">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml" title="Java Programming Tutorials">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="modifiers_visibility_labels_for_members_of_a_class_or_interface_or_class.shtml" title="Modifiers/Visibility for a Class or Interrface or member of a Class">Next</a></td>
+  </tr> 
+</table> 
+
+                      </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+

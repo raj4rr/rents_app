@@ -1,0 +1,131 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD>
+<meta http-equiv="Content-Language" content="en-us">
+<TITLE>find the record in row wisw,how to find the record</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name="description" CONTENT="find the record in row wisw,how to find the record" >
+<meta name="keywords" CONTENT="find the record in row wisw,how to find the record">
+<!-- header start-->	
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>POI</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+            <img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+            <a href="/java/">Java</a>
+              <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/java/apis/poi/">POI</a>
+
+              </div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/apis/poi/commonfiles/leftmenu.shtml'); ?></td>                    
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	 
+
+<div class="heading">Find Records Using POI
+</div>
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="create_trapezoid.shtml" title="create trapezoid">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="find_valueof_colunm.shtml" title="find value colunm">Next</a></td>
+  </tr> 
+</table>
+<!-- header End-->
+<p>In this page of the tutorials we are trying to find records of an excel sheet using POI2.5 API Event. The class RowRecordextends Record implements Comparable. in this program it class is store the row information for the sheet. </p>
+
+<h3>Methods Description</h3>
+
+<div class="code">
+<pre>
+<font face="Arial"><font color="#000000">getFirstCol()</font></font>
+</pre>
+</div>
+<p>This methods get the first column number for the sheet.
+</p>
+
+<div class="code">
+<pre>
+<font face="Arial"><font color="#000000">getLastCol()</font></font>
+</pre>
+</div>
+<p>This methods get the last column number for the sheet.</p>
+
+<h3>Example</h3>
+<div class="code">
+<pre>
+<font face="Arial"><font color="#0000ff">package </font><font color="#000000">r4r;</font>
+<font color="#0000ff">import </font><font color="#000000">java.io.*;</font>
+<font color="#0000ff">import </font><font color="#000000">org.apache.poi.hssf.usermodel.*;</font>
+<font color="#0000ff">import </font><font color="#000000">org.apache.poi.poifs.filesystem.*;</font>
+<font color="#0000ff">import </font><font color="#000000">org.apache.poi.hssf.usermodel.HSSFRow;</font>
+<font color="#0000ff">import </font><font color="#000000">org.apache.poi.hssf.eventusermodel.*;</font>
+<font color="#0000ff">import </font><font color="#000000">org.apache.poi.hssf.record.*;</font>
+<font color="#0000ff">import </font><font color="#000000">org.apache.poi.hssf.dev.EFHSSF;</font>
+<font color="#0000ff">public class </font><font color="#000000">findrecordtest {</font>
+<font color="#0000ff">public static void </font><font color="#000000">main(</font><font color="#ff0000">String</font><font color="#000000">[] args) </font><font color="#0000ff">throws </font><font color="#ff0000">IOException</font>
+  <font color="#000000">{</font>
+  <font color="#ff0000">FileInputStream </font><font color="#000000">fis = </font><font color="#0000ff">new </font><font color="#ff0000">FileInputStream</font><font color="#000000">(args[</font><font color="#800080">0</font><font color="#000000">]);</font>
+  <font color="#000000">POIFSFileSystem pfs = </font><font color="#0000ff">new </font><font color="#000000">POIFSFileSystem(fis);</font>
+  <font color="#ff0000">InputStream </font><font color="#000000">in = pfs.createDocumentInputStream</font>
+<font color="#000000">(</font><font color="#ff00ff">&quot;Workbook&quot;</font><font color="#000000">);</font>
+  <font color="#000000">HSSFRequest hreq = </font><font color="#0000ff">new </font><font color="#000000">HSSFRequest();</font>
+ <font color="#000000">hreq.addListenerForAllRecords(</font><font color="#0000ff">new </font><font color="#000000">findrecordtest());</font>
+ <font color="#000000">HSSFEventFactory factory = </font><font color="#0000ff">new </font><font color="#000000">HSSFEventFactory();</font>
+  <font color="#000000">factory.processEvents(hreq, in);</font>
+  <font color="#000000">fis.close();</font>
+ <font color="#000000">in.close();</font>
+  <font color="#ff0000">System</font><font color="#000000">.out.println(</font><font color="#ff00ff">&quot;STOP&quot;</font><font color="#000000">);</font>
+  <font color="#000000">}</font>
+  <font color="#0000ff">public void </font><font color="#000000">processRecord(Record record)</font>
+  <font color="#000000">{</font>
+  <font color="#0000ff">switch </font><font color="#000000">(record.getSid())  {</font>
+  <font color="#0000ff">case  </font><font color="#000000">RowRecord.sid:</font>
+  <font color="#000000">RowRecord rowrececord = (RowRecord) record;</font>
+  <font color="#ff0000">System</font><font color="#000000">.out.println(</font><font color="#ff00ff">&quot;Row is found, First column at &quot;</font>
+  <font color="#000000">+ rowrececord.getFirstCol() +</font>
+<font color="#ff00ff">&quot; Last column at &quot; </font><font color="#000000">+ rowrececord.getLastCol());</font>
+  <font color="#0000ff">break</font><font color="#000000">;</font>
+  <font color="#000000">}</font>
+ <font color="#000000">} </font>
+<font color="#000000">}</font></font>
+</pre>
+</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="create_trapezoid.shtml" title="create trapezoid">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="find_valueof_colunm.shtml" title="find value colunm">Next</a></td>
+  </tr> 
+</table><!-- Footer Start-->	
+
+		</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->

@@ -1,0 +1,660 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<HTML><HEAD><TITLE>Hibernate Application Using Insert, Update, Delete, fetch, Validate|Hibernate Examples</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv="content-type" content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="Hibernate Application Using Insert, Update, Delete, fetch, Validate tutorial learn easily and shortly with hibernate tutorial,hibernate
+Examples,hibernate interview questions Step by step covers all topics of hibernate " >
+<meta name="keywords" CONTENT="Hibernate Application Using Insert, Update, Delete, fetch, Validate tutorial, Hibernate Examples, object relation mapping(ORM), 
+hibernate query language(HQl), Presisten">
+
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<META http-equiv="Content-Language" content="en-us">
+<link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+<link href="/css/main.css" rel="stylesheet" type="text/css" />
+</HEAD>
+<BODY>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>Hibernate</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+            <img src="/images/left_menu_bullet.gif"/> <a href="/java/hibernate/">Hibernate</a>
+             </div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top">
+                            <?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/hibernate/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                       <div class="main_content">  	 
+
+      <div class="heading">Complete application Using Insert, Update, Fetch, Delete, Validate Action with Hibernate and Struts</div>
+
+      <table id="indexing">
+
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="example11.shtml" title="Login Form Using Validation From Database">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="example13.shtml" title="Insert Data into Database">Next</a></td>
+  </tr> 
+</table> 
+      <p>
+          Here in the Hibernate tutorial we have learn how to insert, update, delete fetch data using Hibernate. 
+          But now we will learn how to make a combined application using all these action. For making these tye 
+          of application we used in the project. This type of activity provides to learn how to determine the 
+          combined application and how to create the data using all action.
+      </P>
+      <p>
+          For making the combined application we need to start with the all action study before if we 
+          did not done this we can't make to the combined application using all action of the database.
+          If we have done the all action study then we can create the combined application. For this we
+          need to follow the some basic step which can help to develop the application using the all 
+          action.
+      </p>
+
+      <p>First we need to start the Netbeans the and database also.</p>
+      <p>
+          Step 1. Now here we will do one thing in the first that is the database creation and table creation.
+      </p>
+      <div class="code">
+          <pre><code class="language-sql">
+(a). create database hibernate_pro
+(b). create table MyBean
+	(
+	id int not null primary key,
+	sname varchar(50),
+	scountry varhcar(50)
+	)	
+</code></pre>
+      </div>
+      <p>
+          Step 2. Now we will the design part of the application. Here we need to create the 6 jsp 
+          page that will be (Main.jsp, DataIntoTable.jsp, EditIntoTable.jsp, Error.jsp, Success.jsp, 
+          WelcomeToInsertData.jsp). These file will be create as we required after the action code 
+          implementation.
+      </p>
+      <h3>(a). Main.jsp file code:</h3>
+      <div class="code">
+          <pre><code class="language-java">
+&lt;%@ taglib prefix="s" uri="/struts-tags" %&gt;
+&lt;META HTTP-EQUIV="Refresh" CONTENT="1;URL=verify.action"&gt;
+</code></pre>
+      </div>
+<h3>(b). DataIntoTable.jsp</h3>
+<div class="code">
+    <pre><code class="language-java">
+&lt;%@taglib uri="/struts-tags" prefix="s"%&gt;
+&lt;%@ page import="java.util.*,R4R_Pojo.MyBean" %&gt;
+&lt;% MyBean b; %&gt;
+
+&lt;head&gt;
+&lt;link rel="stylesheet" type="text/css" href="css/java4s.css" /&gt;
+&lt;script type="text/javascript"&gt;
+function deleteRecord()
+	{	     
+	    document.fom.action="delete.action";
+	    document.fom.submit();
+	}
+function insertRecord()
+{	     
+    document.fom.action="insertLink.action";
+    document.fom.submit();
+}	
+function editr(val)
+{	     
+   document.fom.action="update.action?fid="+val;
+   document.fom.submit();   
+}	
+&lt;/script&gt;
+
+&lt;/head&gt;
+
+&lt;form method="post" name="fom"&gt;
+
+&lt;table class="mtable"&gt;
+&lt;tr&gt;&lt;td colspan="5"&gt;
+
+&lt;font face="verdana" size="2"&gt;
+&lt;input type="button" value="insert" onclick="insertRecord()"&gt; 
+&lt;input type="button" value="delete" onclick="deleteRecord()"&gt; &lt;br&gt;&lt;br&gt;
+
+&lt;/font&gt;
+
+&lt;/td&gt;&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="th"&gt;&lt;center&gt;+&lt;/center&gt;&lt;/td&gt;
+&lt;td class="th"&gt;&lt;b&gt;SNO&lt;/b&gt;&lt;/td&gt;
+&lt;td class="th"&gt;&lt;b&gt;SName&lt;/b&gt;&lt;/td&gt;
+&lt;td class="th"&gt;&lt;b&gt;Country&lt;/b&gt;&lt;/td&gt;
+&lt;td class="th"&gt;&lt;b&gt; Ope.&lt;/b&gt;&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;% 
+List l=(List)request.getAttribute("rec");
+if(l!=null)
+{
+	Iterator it=l.iterator();
+
+	while(it.hasNext())
+	{		
+		b=(R4R_Pojo.MyBean)it.next();
+
+%&gt;
+        &lt;tr&gt; 
+        &lt;td class="bord"&gt;&lt;input type="checkbox" value="&lt;%= b.getSno() %&gt;" name="rdel"&gt;&lt;/td&gt;
+        &lt;td class="bord"&gt;&lt;%= b.getSno() %&gt;&lt;/td&gt;
+        &lt;td class="bord"&gt;&lt;%= b.getSname() %&gt;&lt;/td&gt;
+        &lt;td class="bord"&gt;&lt;%= b.getScountry() %&gt;&lt;/td&gt;
+        &lt;td class="bord"&gt;&lt;a href="javascript:editr('&lt;%= b.getSno()%&gt;')"&gt;Edit&lt;/a&gt;&lt;/td&gt;         
+        &lt;/tr&gt; 
+
+&lt;% 		
+
+	}	
+}
+
+%&gt; 
+
+&lt;/table&gt;
+&lt;/form&gt;
+</code></pre>
+</div>
+<h3>(c). EditIntoTable.jsp </h3>
+<div class="code">
+    <pre><code class="language-java">
+&lt;%@ taglib prefix="s" uri="/struts-tags" %&gt;
+&lt;%@ page import="java.util.*;" %&gt;
+
+&lt;html&gt;
+
+&lt;head&gt;
+&lt;link rel="stylesheet" type="text/css" href="css/java4s.css" /&gt;
+
+&lt;script type="text/javascript"&gt;
+function display()
+	{	     
+	    document.fom.action="verify.action";
+	    document.fom.submit();
+	}
+&lt;/script&gt;
+
+&lt;/head&gt;
+
+&lt;body&gt;
+
+&lt;s:form action="updateRecInDB" method="post" name="fom"&gt; 	
+
+&lt;table class="mtableu"&gt;
+&lt;tr&gt;
+&lt;td colspan="2"&gt;
+
+&lt;input type="button" value="Display Records" onclick="display()"&gt; 
+
+&lt;/td&gt;&lt;/tr&gt;
+
+&lt;tr&gt;&lt;td&gt;
+			&lt;s:textfield label="Number" value="%{#application.x}" readonly="true" name="b.no" cssClass="bord"/&gt;
+			&lt;s:textfield label="Name" value="%{#application.y}" name="b.nam" cssClass="bord"/&gt;
+			&lt;s:textfield label="Country" value="%{#application.z}" name="b.ct" cssClass="bord"/&gt;
+
+&lt;s:submit value="Update" /&gt;
+
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;    
+
+&lt;/s:form&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+</div>
+<h3>(d). Error.jsp</h3>
+<div class="code">
+   <pre><code class="language-java">
+ &lt;h1&gt;This is an error Page&lt;/h1&gt;
+</code></pre>
+</div>
+<h3>e). Success.jsp</h3>
+<div class="code">
+   <pre><code class="language-java">
+ &lt;%@ taglib prefix="s" uri="/struts-tags" %&gt;
+
+Executed successfully....!!!!!
+&lt;META HTTP-EQUIV="Refresh" CONTENT="1;URL=verify.action"&gt;
+</code></pre>
+</div>
+    <h3>(f). WelcomeToInsertData.jsp</h3>
+    <div class="code">
+        <pre><code class="language-java">
+&lt;%@ taglib prefix="s" uri="/struts-tags" %&gt;
+&lt;%@ page import="java.util.*;" %&gt;
+
+&lt;html&gt;
+
+&lt;head&gt;
+&lt;link rel="stylesheet" type="text/css" href="css/java4s.css" /&gt;
+
+&lt;script type="text/javascript"&gt;
+function display()
+	{	     
+	    document.fom.action="verify.action";
+	    document.fom.submit();
+	}
+&lt;/script&gt;
+
+&lt;/head&gt;
+
+&lt;body&gt;
+
+	&lt;s:form action="insert" name="fom"&gt; 	
+
+&lt;table class="mtableu"&gt;
+&lt;tr&gt;
+&lt;td colspan="2"&gt;
+
+&lt;input type="button" value="Display Records" onclick="display()"&gt; 
+
+&lt;/td&gt;&lt;/tr&gt;
+
+&lt;tr&gt;&lt;td&gt;
+			&lt;s:textfield label="Number" name="b.sno" cssClass="bord"/&gt;
+			&lt;s:textfield label="Name" name="b.sname" cssClass="bord"/&gt;
+			&lt;s:textfield label="Country" name="b.scountry" cssClass="bord"/&gt;
+
+&lt;s:submit value="Insert" /&gt;
+
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;    
+
+&lt;/s:form&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+    </div>
+<p>
+    Step 3. Now we need to add the configuration file into our own application. For this we need to follow 
+    the step which we have discussed in our last example.
+</p>
+<p>Instead of using legacy <code>.hbm.xml</code> mapping files, map the entity directly using JPA annotations like <code>@Entity</code> and <code>@Table</code>.</p>
+<h3>MyBean.java</h3>
+<div class="code">
+   <pre><code class="language-java">
+ package R4R_Pojo;
+// Generated 20 Feb, 2015 1:16:10 PM by Hibernate Tools 4.3.1\
+/**
+ * MyBean generated by hbm2java
+ */
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="MyBean")
+public class MyBean  implements java.io.Serializable {
+     private int sno;
+     private String sname;
+     private String scountry;
+
+    public MyBean() {
+    }	
+    public MyBean(int sno) {
+        this.sno = sno;
+    }
+    public MyBean(int sno, String sname, String scountry) {
+       this.sno = sno;
+       this.sname = sname;
+       this.scountry = scountry;
+    }
+
+    public int getSno() {
+        return this.sno;
+    } 
+    public void setSno(int sno) {
+        this.sno = sno;
+    }
+    public String getSname() {
+        return this.sname;
+    } 
+    public void setSname(String sname) {
+        this.sname = sname;
+    }
+    public String getScountry() {
+        return this.scountry;
+    }  
+    public void setScountry(String scountry) {
+        this.scountry = scountry;
+    }
+}
+</code></pre>
+</div>
+<p>
+    Step 7. Now we will create tha action part of the application which help us to make action 
+    which we want to perform. Now we need to select to package (R4R_Dao)
+</p>
+<h3>ApplicationController.java</h3>
+<div class="code">
+ <pre><code class="language-java">
+   /*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package R4R_Dao;
+
+/**
+ *
+ * @author sarvesh
+ */
+import static com.opensymphony.xwork2.Action.SUCCESS;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+import javax.servlet.http.HttpServletRequest;
+import org.apache.struts2.interceptor.ApplicationAware;
+import org.apache.struts2.interceptor.ServletRequestAware;
+import com.opensymphony.xwork2.ActionSupport;
+import R4R_Pojo.MyBean;
+
+public class ApplicationController extends ActionSupport implements ServletRequestAware,ApplicationAware{	
+	private static final long serialVersionUID = 1L;
+	ApplicationMainOperation ma = new ApplicationMainOperation();	
+	private List&lt;MyBean&gt; recordsFromDB;
+        MyBean b;
+
+    public MyBean getB() {
+		return b;
+	}
+	public void setB(MyBean b) {
+		this.b = b;
+	}
+
+    //For RequestAware Interface
+	HttpServletRequest request;	
+        @Override
+	public void setServletRequest(HttpServletRequest request) {
+        this.request = request;
+    }
+    public HttpServletRequest getServletRequest() {
+        return request;
+    }	
+
+    //For Bean, while selecting..
+	public List&lt;MyBean&gt; getRecordsFromDB()
+	{
+		  return this.recordsFromDB;
+	}	
+
+	// for ApplicationAware Interface
+	Map m;
+        @Override
+    public void setApplication(Map m)
+	{
+		this.m=m;
+	} 
+
+    // *******     For select query  ********
+	public String getRecords()
+	{
+
+		recordsFromDB = ma.retrieveRecords();
+		request.setAttribute("rec", recordsFromDB);
+		return SUCCESS;
+	} 
+
+   //*********    For update query  ********
+	public String getRecordToUpdate()
+	{		
+		recordsFromDB = ma.retrieveRecord(request.getParameter("fid"));		
+
+		Iterator&lt;MyBean&gt; it = recordsFromDB.iterator();
+		while(it.hasNext())
+		{			
+			   Object o = it.next();
+			   b = (MyBean)o;			
+		}		
+
+		        m.put("x",b.getSno());
+			m.put("y", b.getSname());
+			m.put("z",b.getScountry());
+
+		return SUCCESS;
+	}
+
+	// ********     Insert method      *********
+	public String insertRecord()
+	{			
+		ma.insertRecord(b);			
+		return SUCCESS;
+	}
+
+	//**********    update in database  **********
+	public String updateRec()
+	{			
+		ma.upRecord(b);			
+		return SUCCESS;
+	}
+	public String deleteRecord()
+	{	
+		String cv[] = null;
+		cv=request.getParameterValues("rdel");		
+	 	ma.deleteRecord(cv);			
+		return SUCCESS;
+	}	
+}
+</code></pre>
+</div>
+<h3>ApplicationLinks.java</h3>
+<div class="code">
+  <pre><code class="language-java">
+  /*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package R4R_Dao;
+
+/**
+ *
+ * @author sarvesh
+ */
+public class ApplicationLinks{ 
+	public String insert()
+	{
+		return "insert";			
+	}
+	public String display()
+	{
+		return "display";			
+	}
+
+}
+</code></pre>
+</div>
+<h3>ApplicationMainOperation.java</h3>
+<div class="code">
+   <pre><code class="language-java">
+ /*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package R4R_Dao;
+
+/**
+ *
+ * @author sarvesh
+ */
+import java.util.List;
+import org.hibernate.Query;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+import R4R_Pojo.MyBean;
+
+public class ApplicationMainOperation{	
+
+    SessionFactory factory = HibernatePlug.getFactory();
+	Session session = factory.openSession();		
+	MyBean p;
+	List recList = null;
+
+	public List retrieveRecords() {	
+
+		recList = (List&lt;MyBean&gt;) session.createQuery("from MyBean b").list();		
+		System.out.println("got size"+recList.size());		
+		return recList;
+	}
+
+	public List retrieveRecord(String val) {		
+		  recList = (List&lt;MyBean&gt;) session.createQuery("from MyBean b where b.sno="+val).list();		
+			System.out.println("got size"+recList.size());	
+		  return recList;				
+		}
+
+	public void insertRecord(MyBean p) {			
+		 Transaction tx = session.beginTransaction();	 
+	       session.save(p);
+	       System.out.println("Object saved successfully.....!!");
+	     tx.commit();				
+	}
+	public void upRecord(MyBean p) {			
+		 Transaction tx = session.beginTransaction();	
+		    Query qry = session.createQuery("update MyBean b set b.sname=?, b.scountry=? where b.sno="+p.getSno());			
+		    qry.setParameter(0,p.getSname());
+		    qry.setParameter(1,p.getScountry());
+            qry.executeUpdate();
+            System.out.println("Object updated successfully...");
+	     tx.commit();				
+	}
+	public void deleteRecord(String cv[]) {	
+		Transaction tx = session.beginTransaction();	
+		for(int i=0;i&lt;cv.length;i++)
+		{
+			Query qry = session.createQuery("delete from MyBean b where b.sno="+cv[i]);			 
+			qry.executeUpdate();
+		}
+		System.out.println("Object(s) deleted successfully..");
+	    tx.commit();
+	}		
+}
+</code></pre>
+</div>
+<h3>HibernatePlug.java</h3>
+<div class="code">
+    <pre><code class="language-java">
+package R4R_Dao;
+import org.hibernate.SessionFactory;
+import org.hibernate.cfg.Configuration;
+
+public class HibernatePlug 
+{
+    private static final SessionFactory factory = getSessionFactory();
+    public static synchronized SessionFactory getSessionFactory() 
+     {		
+	try {					    
+	       Configuration cfg = new Configuration();
+	       cfg.configure("hibernate.cfg.xml"); 
+		SessionFactory sessionFactory = cfg.buildSessionFactory();
+	    	System.out.println(" ----------   Factory Object Created  ------------");
+	        return sessionFactory;
+	      }catch (Throwable ex) 
+                {
+
+                  System.err.println("Initial SessionFactory creation failed." + ex);
+		   throw new ExceptionInInitializerError(ex);
+		}
+	  }
+
+	public static SessionFactory getFactory() {
+		return factory;
+	}
+
+}
+</code></pre>
+</div>
+<p>Step 8. In the all of the end we need to configure the 
+    struts xml file to making the right action which and where we want to perform.
+</p>
+<h3>struts.xml</h3>
+<div class="code">
+   <pre><code class="language-java">
+ &lt;!DOCTYPE struts PUBLIC
+"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+"http://struts.apache.org/dtds/struts-2.0.dtd"&gt;
+
+&lt;struts&gt;
+    &lt;include file="example.xml"/&gt;
+    &lt;!-- Configuration for the default package. --&gt;
+    &lt;package name="default" extends="struts-default"&gt;
+        &lt;action name="verify" class="R4R_Dao.ApplicationController" method="getRecords"&gt;
+            &lt;result name="success"&gt;/DataIntoTable.jsp&lt;/result&gt;
+            &lt;result name="error"&gt;/Error.jsp&lt;/result&gt;
+        &lt;/action&gt;
+
+         &lt;action name="update" class="R4R_Dao.ApplicationController" method="getRecordToUpdate"&gt;
+            &lt;result name="success"&gt;/EditIntoTable.jsp&lt;/result&gt;
+            &lt;result name="error"&gt;/Error.jsp&lt;/result&gt;
+        &lt;/action&gt; 
+
+          &lt;action name="updateRecInDB" class="R4R_Dao.ApplicationController" method="updateRec"&gt;
+            &lt;result name="success"&gt;/Sucess.jsp&lt;/result&gt;
+            &lt;result name="error"&gt;/Error.jsp&lt;/result&gt;
+        &lt;/action&gt;
+
+         &lt;action name="insert" class="R4R_Dao.ApplicationController" method="insertRecord"&gt;
+            &lt;result name="success"&gt;/Sucess.jsp&lt;/result&gt;
+            &lt;result name="error"&gt;/Error.jsp&lt;/result&gt;
+        &lt;/action&gt; 
+
+        &lt;action name="delete" class="R4R_Dao.ApplicationController" method="deleteRecord"&gt;
+            &lt;result name="success"&gt;/Sucess.jsp&lt;/result&gt;
+            &lt;result name="error"&gt;/Error.jsp&lt;/result&gt;
+        &lt;/action&gt; 
+
+         &lt;action name="*Link" class="R4R_Dao.ApplicationLinks" method="{1}"&gt;
+            &lt;result name="insert"&gt;/EditIntoTable.jsp&lt;/result&gt;
+            &lt;result name="display"&gt;/DataIntoTable.jsp&lt;/result&gt;           
+        &lt;/action&gt;
+    &lt;/package&gt;
+&lt;/struts&gt;
+</code></pre>
+</div>
+<p>Step 9. Now we need to run the application by the selecting the project node.</p>
+
+      <table id="indexing">
+
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="example11.shtml" title="Login Form Using Validation From Database">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="example13.shtml" title="Insert Data into Database">Next</a></td>
+  </tr> 
+</table> 
+
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+
+                <?php @include($_SERVER['DOCUMENT_ROOT'] . '/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>

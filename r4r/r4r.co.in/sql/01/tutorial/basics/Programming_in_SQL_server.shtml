@@ -1,0 +1,144 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>PROGRAMMING IN SQL SERVER,BATCH, VARIABLE,GLOBAL VARIABLES,PRINTING MESSAGES,COMMENT ENTRY,CONTROL-OF-FLOW LANGAUGE</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="PROGRAMMING IN SQL SERVER,BATCH, VARIABLE,GLOBAL VARIABLES,PRINTING MESSAGES,COMMENT ENTRY,CONTROL-OF-FLOW LANGAUGE" >
+<meta name="keywords" CONTENT="PROGRAMMING IN SQL SERVER,BATCH, VARIABLE,GLOBAL VARIABLES,PRINTING MESSAGES,COMMENT ENTRY,CONTROL-OF-FLOW LANGAUGE">
+
+<!--header start-->
+
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>DATABASE & SQL/PLSQL</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a><img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+			<a href="/sql/">SQL </a>
+              </div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/sql/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	  
+
+                        	                        	<!-- Header End-->	
+ <div class="heading">Programming in SQL Server</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="how_to_create_an _index.shtml" title="How to Create an Index">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="if_else.shtml" title="The IF...ELSE Statement and BEGIN...END Statement">Next</a></td>
+  </tr>
+</table>
+
+<p>  programming in sql provides various functionalities are /p>
+<ol>
+  <li>Batches</li>
+  <li>Variables</li>
+  <li>Printing Messages</li>
+  <li>Comments</li>
+  <li>Control-of-flow statements</li>
+</ol>
+
+<h3>Batches</h3>
+
+<ol>
+  <li>Batches are groups of SQL statement submitted together to SQL Server&nbsp; 
+  for execution</li>
+  <li>A batch is parsed  </li>
+  <li>A batch is optimized</li>
+  <li>A batch is compiled/li>
+  <li>A batch is executed</li>
+  <li>SQL server compiled the statements&nbsp; of a batch into a single unit 
+  called an execution plane</li>
+  <li>The statement in the execution plane are then executed one at a time</li>
+  <li>There is any error in a batch, no statement in the batch is executed</li>
+</ol>
+
+<h3>Restriction</h3>
+
+<ol>
+  <li>You cannot bind rules and defaults to columns and use them in the 
+  same batch</li>
+  <li>You can not define and use the CHECK constraints in the same batch</li>
+  <li>You can not drop object and recreate them in the same batch</li>
+  <li>you cannot alter a table and reference the new column in the same batch</li>
+</ol>
+
+<h3>Variables</h3>
+
+<p>Variable used to store a temporary value. We can declare and assign a value to a variable, 
+declared a variable by using DECLARE statement.</p>
+
+<h3>Syntax:</h3>
+<div class="code">
+<pre>
+DECLARE @variable_name data_type
+</pre>
+</div>
+
+<p>The @ symbol before the variable name. 
+This symbol is required and is used by the query processor to identify variable.</p>
+
+<h3> Example:</h3>
+<div class="code">
+<pre>
+DECLARE @empID int
+SELECT @empID=max(emp_id)
+FROM employee
+SELECT new_empID=@empID
+</pre>
+</div>
+
+<p>In the first line DECLARE keyword declare a variable <i>empID</i> of <i>int</i> 
+type, and in second line the maximum value of <i>emp_id</i> attributes from 
+employee table stored in the <i>empID</i> variable</p>
+
+<p><i>output</i></p>
+<div class="output">
+<div class="image">s
+<img src="Image/variable.gif">
+</div>
+</div>
+
+<p><i>Global Variables: </i>Global variable are system-supplied and predefined. These variables are 
+distinguished from local variables by having two @ signs preceding their names</p>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="how_to_create_an_index.shtml" title="How to Create an Index">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="if_else.shtml" title="The IF...ELSE Statement and BEGIN...END Statement">Next</a></td>
+  </tr>
+</table>
+
+                       <!--Footer  -->
+
+</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>

@@ -1,0 +1,187 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>inheritance in c++|c++ oops tutorial</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="inheritance in c++ tutorial-learn  c++ oops inheritance easily and 
+shortly with description basics and interview questions">
+<meta name="keywords" CONTENT="Inheritance In C++,object oriented language,basics, learner,Overriding,
+inheritance, Polymorphism,overloading,multiple inheritance,multi threading">
+
+<link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>C++ language</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+            <img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+            <a href="/cpp/">C++</a>
+
+              </div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/cpp/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	 
+<!-- header End-->
+<div class="heading">Inheritance</div>
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="classes_and_Objects.html" title="A Program Of Class With Two Objects">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="overloading.shtml" title="overloading">Next</a></td>
+  </tr> 
+
+</table>
+<p>In C++ Inheritance is used for reusability of codes. One of the&nbsp; 
+important feature of OOP is reusability. It's done through creating new classes, 
+and reuse the feature and attribute of existing old one</p> <p> The mechanism where 
+feature and attribute of an old class is deriving&nbsp; to a new class is called 
+inheritance. The old class is referred to as the base class and the new one is 
+called the derived class or subclass.</p> <p>The derived class or subclass can acquire 
+the some or all property of base class. Derived class have its own feature and 
+also the feature of its super or base class.</p>
+
+<p><i>Defining The Derived Class:</i></p>
+
+<p>Derived class are those classes who inherit the property of&nbsp; base 
+class. In any program can have many base class and also have many derived 
+classes .</p>
+<div class="code">
+<pre>
+<font color="#0000ff">class </font><font color="#000000">derived_class_name : access_modifier base_class_name</font>
+<font color="#000000">{</font>
+<font color="#000000">.......	                </font><font color="#008000">//members 0of derived class</font>
+<font color="#000000">........                 </font><font color="#008000">//members 0of derived class</font>
+<font color="#000000">........                   </font><font color="#008000">//members 0of derived class</font>
+<font color="#000000">};</font>
+</pre>
+</div>
+<div class="code">
+<pre>
+ <font color="#0000ff">class </font><font color="#000000">base</font>
+<font color="#000000">{</font>
+<font color="#008000">//member of base class</font>
+<font color="#000000">};</font>
+<font color="#0000ff">class </font><font color="#000000">derive1: </font><font color="#0000ff">private </font><font color="#000000">base </font><font color="#008000">//private derivation</font>
+<font color="#000000">{</font>
+<font color="#008000">//member of derived1</font>
+<font color="#000000">};</font>
+<font color="#0000ff">class </font><font color="#000000">derive2: </font><font color="#0000ff">public </font><font color="#000000">base </font><font color="#008000">//public derivation</font>
+<font color="#000000">{</font>
+<font color="#008000">//member of derived2</font>
+<font color="#000000">};</font>
+<font color="#0000ff">class </font><font color="#000000">derive3: base </font><font color="#008000">//private derivation by default</font>
+<font color="#000000">{</font>
+<font color="#008000">//member of derived3</font>
+<font color="#000000">};</font>
+</pre>
+</div>
+
+<P><i>Private Inheritance:</i></P>
+
+<p>when derived class is private inherited the base class then public member of 
+the base class is become private member of the derived class.</p><p> When a derived 
+class inherit the base class then member function of derived class can only 
+access the public member of base class. when base class is privately inherited 
+then no member of the base class is accessible to the object of derived class.</p>
+
+<p><i>Public Inheritance:</i></p>
+
+<p>when derived class is public inherited the base class then public member of 
+the base class is become public member of the derived class. When a derived 
+class inherit the base class then member function of derived class can only 
+access the public member of base class.</p>  <p> when base class is publicly inherited 
+then public member of the base class is accessible to the object of derived 
+class. But in both cases private member of the base class can't inherited 
+therefore private members of a base class will never become the member of its 
+derived class.</p>
+<div class="code">
+<pre>
+ <font color="#ff0000">#include</font><font color="#000000">&lt;iostream&gt;</font>
+<font color="#0000ff">class </font><font color="#000000">Rectangle</font>
+<font color="#000000">{</font>
+<font color="#0000ff">private</font><font color="#000000">:</font>
+<font color="#0000ff">float </font><font color="#000000">length ;         </font><font color="#008000">// private member and data can't inherited</font>
+<font color="#0000ff">public</font><font color="#000000">:</font>
+<font color="#0000ff">float </font><font color="#000000">width ;     </font><font color="#008000">// public member and data are inheritable</font>
+<font color="#0000ff">void </font><font color="#000000">dimention()       </font><font color="#008000">//  public member and data are inheritable</font>
+<font color="#000000">{</font>
+<font color="#0000ff">cout </font><font color="#000000">&lt;&lt;
+ </font><font color="#ff00ff">&quot;\n Enter the length of the rectangle : &quot;</font><font color="#000000">;</font>
+<font color="#0000ff">cin </font><font color="#000000">&gt;&gt; length ;</font>
+<font color="#0000ff">cout </font><font color="#000000">&lt;&lt; </font><font color="#ff00ff">
+&quot;\n Enter the width of the rectangle : &quot;</font><font color="#000000">;</font>
+<font color="#0000ff">cin </font><font color="#000000">&gt;&gt; width ;</font>
+<font color="#000000">}</font>
+<font color="#0000ff">float </font><font color="#000000">length1()        </font><font color="#008000">// The public member and data are inheritable</font>
+<font color="#000000">{ </font><font color="#0000ff">return </font><font color="#000000">length ; }</font>
+<font color="#000000">};                       </font><font color="#008000">// End of the class definition</font>
+
+<font color="#0000ff">class </font><font color="#000000">RectangleArea : </font><font color="#0000ff">public </font><font color="#000000">Rectangle</font>
+<font color="#000000">{</font>
+<font color="#0000ff">private</font><font color="#000000">:</font>
+<font color="#0000ff">float </font><font color="#000000">area ;</font>
+<font color="#0000ff">public</font><font color="#000000">:</font>
+<font color="#0000ff">void </font><font color="#000000">Rec_area(</font><font color="#0000ff">void</font><font color="#000000">)</font>
+<font color="#000000">{</font>
+<font color="#000000">area = length1() * width ;    </font><font color="#008000">
+//length can't access directly because its a private member of base class</font>
+ <font color="#000000">}</font>
+
+<font color="#0000ff">void </font><font color="#000000">Display(</font><font color="#0000ff">void</font><font color="#000000">)</font>
+<font color="#000000">{</font>
+<font color="#0000ff">cout </font><font color="#000000">&lt;&lt; </font><font color="#ff00ff">
+&quot;\n Length = &quot; </font><font color="#000000">&lt;&lt; length1() ; </font><font color="#008000">
+//length can't access directly because its a private member of baseclass</font>
+<font color="#0000ff">cout </font><font color="#000000">&lt;&lt; </font><font color="#ff00ff">
+&quot;\n width = &quot; </font><font color="#000000">&lt;&lt; width ;</font>
+<font color="#0000ff">cout </font><font color="#000000">&lt;&lt; </font><font color="#ff00ff">
+&quot;\n Area = &quot; </font><font color="#000000">&lt;&lt; area ;</font>
+<font color="#000000">}</font>
+<font color="#000000">};                       </font><font color="#008000">// End of the derived class definition</font>
+<font color="#0000ff">void </font><font color="#000000">main(</font><font color="#0000ff">void</font><font color="#000000">)</font>
+<font color="#000000">{</font>
+<font color="#000000">RectangleArea area1 ;</font>
+<font color="#000000">area1.length1();     </font><font color="#008000">
+// The public member and data so its access through the object of derived class.</font>
+<font color="#000000">area1.Rec_area( );</font>
+<font color="#000000">area1.Display( );</font>
+<font color="#000000">}</font>
+</pre>
+</div>
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="classes_and_Objects.html" title="A Program Of Class With Two Objects">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="overloading.shtml" title="overloading">Next</a></td>
+  </tr> 
+
+</table>
+
+<!-- Footer Start-->
+		</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->

@@ -1,0 +1,284 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>C Language File Handling, C tutorial, Examples,Interview Questions </TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="Learn C File Handling, File handling Examples,C Function,introduction of C,Loops in C, Pointer, Union in C, Preprocessor,Memory Management, C data types, Operator in C, Features of C , History of C, Sample of C program, C Advantages and Disadvantages Step by Step with Programming" >
+<meta name="keywords" CONTENT="C File Handling, C File Handling Examples,C Function,introduction of C,Loops in C, Pointer in C, Union in C, Preprocessor,Memory Management, C data types, Operator in C, Features of C , History of C, Sample of C program, C Advantages and Disadvantages, Switch Statements with Examples">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		<link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>C Programming language</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a><img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/c/">C </a>
+              <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/c/basic_tutorials/03/">C Basic Tutorials</a></div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/c/commonfiles/leftmenu.shtml'); ?></td>
+                            <td style="80%" valign="top">
+                        <div class="main_content" > 
+ <div class="heading">Pointer in C </div>
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="instructions_in_c_language.shtml" title="instructions in c language">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="write_compile_run_a_first_C_program.shtml" title="write compile run a first_C program.">Next</a></td>
+  </tr>
+</table>
+	<!-- Header End-->	
+<p>In c a pointer is a variable that points to or references a memory location in which data is stored. Each memory cell in the computer has an address that can be used to access that location so a pointer variable points to a memory location we can access and change the contents of this memory location via the pointer.</p>
+<h2>Pointer declaration:</h2>
+<p>A pointer is a variable that contains the memory location of another variable. The syntax is as shown below. You start by specifying the type of data stored in the location identified by the pointer. The asterisk tells the compiler that you are creating a pointer variable. Finally you give the name of the variable.</p>
+<h2>type * variable name</h2>
+<h2>Example</h2>
+<div class="code"><pre>
+<font face="Courier New">
+<font color="#0000ff">int </font><font color="#000000">*ptr;</font>
+<font color="#0000ff">float </font><font color="#000000">*string;</font>
+</font>
+</pre>
+</div>
+<h2>Address operator</h2>
+<p>Once we declare a pointer variable we must point it to something we can do this by assigning to the pointer the address of the variable you want to point as in the following example.</p>
+<p><i>ptr=&amp;num;</i></p>
+<p>This places the address where num is stores into the variable ptr. If num is stored in memory 21260 address then the variable ptr has the value 21260.</p>
+<div class="code">
+<pre>
+<font face="Courier New">
+<font color="#008000">/* A program to illustrate pointer declaration*/</font>
+<font color="#000000">main()</font>
+<font color="#000000">{</font>
+<font color="#0000ff">int </font><font color="#000000">*ptr;</font>
+<font color="#0000ff">int </font><font color="#000000">sum;</font>
+<font color="#000000">sum=</font><font color="#800080">45</font><font color="#000000">;</font>
+<font color="#000000">ptr=?</font>
+<font color="#000000">printf (\n Sum is %d\n, sum);</font>
+<font color="#000000">printf (\n The sum pointer is %d, ptr);</font>
+<font color="#000000">}</font>
+<font color="#008000">/* Program to display the contents of 
+the variable their address using pointer variable*/</font>
+<font color="#ff0000">#include</font><font color="#000000">&lt; stdio.h &gt;</font>
+<font color="#000000">{</font>
+<font color="#0000ff">int </font><font color="#000000">num, *intptr;</font>
+<font color="#0000ff">float </font><font color="#000000">x, *floptr;</font>
+<font color="#0000ff">char </font><font color="#000000">ch, *cptr;</font>
+<font color="#000000">num=</font><font color="#800080">123</font><font color="#000000">;</font>
+<font color="#000000">x=</font><font color="#800080">12</font><font color="#000000">.</font><font color="#800080">34</font><font color="#000000">;</font>
+<font color="#000000">ch=a;</font>
+<font color="#000000">intptr=&amp;x;</font>
+<font color="#000000">cptr=&amp;ch;</font>
+<font color="#000000">floptr=&amp;x;</font>
+<font color="#000000">printf(Num %d stored at address %u\n,*intptr,intptr);</font>
+<font color="#000000">printf(Value %f stored at address %u\n,*floptr,floptr);</font>
+<font color="#000000">printf(Character %c stored at address %u\n,*cptr,cptr);</font>
+<font color="#000000">}</font>
+</font>
+</pre>
+</div>
+<h2>Pointer expressions & pointer arithmetic:</h2>
+<p>Like other variables pointer variables can be used in expressions. For example if p1 and p2 are properly declared and initialized pointers, then the /* Program to display the contents of the variable their address using pointer variable*/</p>
+<div class="code">
+<pre>
+<font face="Courier New">
+<font color="#000000">include&lt; stdio.h &gt;</font>
+<font color="#000000">{</font>
+<font color="#0000ff">int </font><font color="#000000">num, *intptr;</font>
+<font color="#0000ff">float </font><font color="#000000">x, *floptr;</font>
+<font color="#0000ff">char </font><font color="#000000">ch, *cptr;</font>
+<font color="#000000">num=</font><font color="#800080">123</font><font color="#000000">;</font>
+<font color="#000000">x=</font><font color="#800080">12</font><font color="#000000">.</font><font color="#800080">34</font><font color="#000000">;</font>
+<font color="#000000">ch=a;</font>
+<font color="#000000">intptr=&amp;x;</font>
+<font color="#000000">cptr=&amp;ch;</font>
+<font color="#000000">floptr=&amp;x;</font>
+<font color="#000000">printf(Num %d stored at address %u\n,*intptr,intptr);</font>
+<font color="#000000">printf(Value %f stored at address %u\n,*floptr,floptr);</font>
+<font color="#000000">printf(Character %c stored at address %u\n,*cptr,cptr);</font>
+<font color="#000000">}</font>
+<font color="#008000">/*Pointer expression and pointer arithmetic*/</font>
+<font color="#ff0000">#include</font><font color="#000000">&lt; stdio.h &gt;</font>
+<font color="#000000">main()</font>
+<font color="#000000">{</font>
+<font color="#0000ff">int </font><font color="#000000">ptr1,ptr2;</font>
+<font color="#0000ff">int </font><font color="#000000">a,b,x,y,z;</font>
+<font color="#000000">a=</font><font color="#800080">30</font><font color="#000000">;b=</font><font color="#800080">6</font><font color="#000000">;</font>
+<font color="#000000">ptr1=&amp;a;</font>
+<font color="#000000">ptr2=&amp;b;</font>
+<font color="#000000">x=*ptr1+ *ptr2 6;</font>
+<font color="#000000">y=</font><font color="#800080">6</font><font color="#000000">*- *ptr1/ *ptr2 +</font><font color="#800080">30</font><font color="#000000">;</font>
+<font color="#000000">printf(\nAddress of a +%u,ptr1);</font>
+<font color="#000000">printf(\nAddress of b %u,ptr2);</font>
+<font color="#000000">printf(\na=%d, b=%d,a,b);</font>
+<font color="#000000">printf(\nx=%d,y=%d,x,y);</font>
+<font color="#000000">ptr1=ptr1 + </font><font color="#800080">70</font><font color="#000000">;</font>
+<font color="#000000">ptr2= ptr2;</font>
+<font color="#000000">printf(\na=%d, b=%d,a,b);</font>
+<font color="#000000">}</font>
+</font>
+</pre>
+</div>
+<h2>Pointers and function:</h2>
+<p>The pointer are very much used in a function declaration. Sometimes only with a pointer a complex function can be easily represented and success. The usage of the pointers in a function definition may be classified into two groups.</p>
+<ol><li>Call by reference</li>
+<li>Call by value.</li>
+</ol>
+<h2>Call by value:</h2>
+<p>We have seen that a function is invoked there will be a link established between the formal and actual parameters. A temporary storage is created where the value of actual parameters is stored. The formal parameters picks up its value from storage area the mechanism of data transfer between actual and formal parameters allows the actual parameters mechanism of data transfer is referred as call by value. The corresponding formal parameter represents a local variable in the called function. </p>
+</p>The current value of corresponding actual parameter becomes the initial value of formal parameter. The value of formal parameter may be changed in the body of the actual parameter. The value of formal parameter may be changed in the body of the subprogram by assignment or input statements. This will not change the value of actual parameters.</p>
+<div class="code">
+<pre>
+<font face="Courier New">
+<font color="#ff0000">#include</font><font color="#000000">&lt; stdio.h &gt;</font>
+<font color="#0000ff">void </font><font color="#000000">main()</font>
+<font color="#000000">{</font>
+<font color="#0000ff">int </font><font color="#000000">x,y;</font>
+<font color="#000000">x=</font><font color="#800080">20</font><font color="#000000">;</font>
+<font color="#000000">y=</font><font color="#800080">30</font><font color="#000000">;</font>
+<font color="#000000">printf(\n Value of a and b before function call =%d %d,a,b);</font>
+<font color="#000000">fncn(x,y);</font>
+<font color="#000000">printf(\n Value of a and b after function call =%d %d,a,b);</font>
+<font color="#000000">}</font>
+<font color="#000000">fncn(p,q)</font>
+<font color="#0000ff">int </font><font color="#000000">p,q;</font>
+<font color="#000000">{</font>
+<font color="#000000">p=p+p;</font>
+<font color="#000000">q=q+q;</font>
+<font color="#000000">}</font>
+</font>
+</pre>
+</div>
+<h2>Call by Reference:</h2>
+<p>When we pass address to a function the parameters receiving the address should be pointers. The process of calling a function by using pointers to pass the address of the variable is known as call by reference. The function which is called by reference can change the values of the variable used in the call.</p>
+<div class="code">
+<pre>
+<font face="Courier New">
+<font color="#008000">/* example of call by reference*/</font>
+<font color="#ff0000">#include</font><font color="#000000">&lt; stdio.h &gt;</font>
+<font color="#0000ff">void </font><font color="#000000">main()</font>
+<font color="#000000">{</font>
+<font color="#0000ff">int </font><font color="#000000">x,y;</font>
+<font color="#000000">x=</font><font color="#800080">20</font><font color="#000000">;</font>
+<font color="#000000">y=</font><font color="#800080">30</font><font color="#000000">;</font>
+<font color="#000000">printf(\n Value of a and b before function call =%d %d,a,b);</font>
+<font color="#000000">fncn(&amp;x,&amp;y);</font>
+<font color="#000000">printf(\n Value of a and b after function call =%d %d,a,b);</font>
+<font color="#000000">}</font>
+<font color="#000000">fncn(p,q)</font>
+<font color="#0000ff">int </font><font color="#000000">p,q;</font>
+<font color="#000000">{</font>
+<font color="#000000">*p=*p+*p;</font>
+<font color="#000000">*q=*q+*q;</font>
+<font color="#000000">}</font>
+</font>
+</pre>
+</div>
+ <h2>Pointer to arrays:</h2>
+ <p>An array is actually very much like pointer. We can declare the arrays first element as a[0] or as int *a because a[0] is an address and *a is also an address the form of declaration is equivalent. The difference is pointer is a variable and can appear on the left of the assignment operator that is lvalue. The array name is constant and cannot appear as the left side of assignment operator.</p>
+<div class="code">
+<pre>
+<font face="Courier New">
+<font color="#008000">/* A program to display the contents of array using pointer*/</font>
+<font color="#000000">main()</font>
+<font color="#000000">{</font>
+<font color="#0000ff">int </font><font color="#000000">a[</font><font color="#800080">100</font><font color="#000000">];</font>
+<font color="#0000ff">int </font><font color="#000000">i,j,n;</font>
+<font color="#000000">printf(</font><font color="#ff00ff">&quot;\nEnter the elements of the array\n&quot;</font><font color="#000000">);</font>
+<font color="#000000">scanf(%d,&amp;n);</font>
+<font color="#000000">printf(</font><font color="#ff00ff">&quot;Enter the array elements&quot;</font><font color="#000000">);</font>
+<font color="#0000ff">for</font><font color="#000000">(I=</font><font color="#800080">0</font><font color="#000000">;I&lt; n;I++)</font>
+<font color="#000000">scanf(%d,&amp;a[I]);</font>
+<font color="#000000">printf(</font><font color="#ff00ff">&quot;Array element are&quot;</font><font color="#000000">);</font>
+<font color="#0000ff">for</font><font color="#000000">(ptr=a,ptr&lt; (a+n);ptr++)</font>
+<font color="#000000">printf(</font><font color="#ff00ff">&quot;Value of a[%d]=%d stored at address %u&quot;</font><font color="#000000">,j+=,*ptr,ptr);</font>
+<font color="#000000">}</font>
+</font>
+</pre>
+</div>
+<p>Strings are characters arrays and here last element is \0 arrays and pointers to char arrays can be used to perform a number of string functions.</p>
+<h2>Pointers and structures:</h2>
+<p>We know the name of an array stands for the address of its zeroth element the same concept applies for names of arrays of structures. Suppose item is an array variable of struct type. Consider the following declaration:</p>
+<div class="code">
+<pre>
+<font face="Courier New">
+<font color="#0000ff">struct </font><font color="#000000">products</font>
+<font color="#000000">{</font>
+<font color="#0000ff">char </font><font color="#000000">name[</font><font color="#800080">30</font><font color="#000000">];</font>
+<font color="#0000ff">int </font><font color="#000000">manufac;</font>
+<font color="#0000ff">float </font><font color="#000000">net;</font>
+<font color="#000000">item[</font><font color="#800080">2</font><font color="#000000">],*ptr;</font>
+</font>
+</pre>
+</div>
+<p>This statement declares item as array of two elements, each type struct products and ptr as a pointer data objects of type struct products, the
+assignment ptr=item;</p>
+<p>would assign the address of zeroth element to product[0].</p>
+<p> Its members can be accessed by using the following notation.</p>
+<ol><li>ptr- >name;</li>
+<li>ptr- >manufac;</li>
+<li>ptr- >net;</li>
+</ol>
+
+<p>The symbol - > is called arrow pointer and is made up of minus sign and greater than sign. Note that ptr- > is simple another way of writing product[0].</p>
+<p>When the pointer is incremented by one it is made to pint to next record ie item[1]. The following statement will print the values of members of all the elements of the product array.</p>
+<div class="code">
+<pre>
+<font face="Courier New">
+<font color="#0000ff">for</font><font color="#000000">(ptr=item; ptr&lt; item+</font><font color="#800080">2</font><font color="#000000">;ptr++)</font>
+<font color="#000000">printf(</font><font color="#ff00ff">&quot;%s%d%f\n&quot;</font><font color="#000000">,ptr- &gt;name,ptr- &gt;manufac,ptr- &gt;net);</font>
+<font color="#000000">We could also use the notation</font>
+<font color="#000000">(*ptr).number</font>
+</font>
+</pre>
+</div>
+<p>to access the member number. The parenthesis around ptr are necessary because the member operator . Has a higher precedence than the operator *.</p>
+<h2>Pointers on pointer:</h2>
+<p>While pointers provide enormous power and flexibility to the programmers, they may use cause manufactures if it not properly handled. Consider the following precautions using pointers to prevent errors. We should make sure that we know where each pointer is pointing in a program. Here are some general observations and common errors that might be useful to remember.</p>
+<p>A pointer contains garbage until it is initialized. Since compilers cannot detect un initialized or wrongly initialized pointers, the errors may not be known until we execute the program remember that even if we are able to locate a wrong result, it may not provide any evidence for us to suspect problems in the pointers.</p>
+<div class="code">
+<pre>
+<font face="Courier New">
+<font color="#000000">main()</font>
+ <font color="#000000">{</font>
+ <font color="#0000ff">unsigned int </font><font color="#000000">a = </font><font color="#800080">60</font><font color="#000000">; </font><font color="#008000">/* 60 = 0011 1100 */       </font>
+    <font color="#0000ff">unsigned int </font><font color="#000000">b = </font><font color="#800080">13</font><font color="#000000">;         </font><font color="#008000">/* 13 = 0000 1101 */</font>
+    <font color="#0000ff">unsigned int </font><font color="#000000">c = </font><font color="#800080">0</font><font color="#000000">;             </font>
+    <font color="#000000">c = a &amp; b;                       </font><font color="#008000">/* 12 = 0000 1100 */</font>
+    <font color="#000000">}</font>
+ </font>
+</pre>
+</div>
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="instructions_in_c_language.shtml" title="instructions in c language">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="write_compile_run_a_first_C_program.shtml" title="write compile run a first_C program.">Next</a></td>
+  </tr>
+</table>
+
+<!--Footer  --> 	
+
+		</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>

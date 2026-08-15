@@ -1,0 +1,194 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+
+<HTML><HEAD>
+
+<meta http-equiv="Content-Language" content="en-us">
+
+<TITLE>Implementing the session beans</TITLE>
+
+<META content="Rajesh Kumar" name="author">
+
+<META http-equiv="expires" content="0">
+
+<META content="r4r.co.in" name="owner">
+
+<META http-equiv=Content-Type content="text/html; charset=windows-1252">
+
+<meta name="description" CONTENT="Implementing the Session Bean,Creating the Home Interfaces,What is the Remote Invocation,All create methods may throw the following exceptions,Home Interface for Session Bean
+
+,Invocation" >
+
+<meta name="keywords" CONTENT="Implementing the Session Bean,Creating the Home Interfaces,What is the Remote Invocation,All create methods may throw the following exceptions,Home Interface for Session Bean
+
+,Invocation">
+
+<!--Header start-->
+
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>EJB</h1>
+            <div class="link_menu"><A href="/">R4R</A>
+
+<img border="0" src="/images/left_menu_bullet.gif" width="11" height="6"> <A href="/java">Java</A><img border="0" src="/images/left_menu_bullet.gif" width="11" height="6"><A href="/java/ejb/">EJB</A></font> </div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/ejb/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	  
+
+<!-- header End-->
+<div class="heading">Implementing the Session Bean</div>	   
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="Implementation%20of%20Session%20Beans.shtml" title=" Implementation of Session Beans
+">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="when%20we%20using%20Session%20beans.shtml" title="Using Session Beans">Next</a></td>
+  </tr>
+</table>
+
+<h3>If you implementing Session bean then using steps are:</h3>
+
+<ol>
+<li>The home interfaces for the bean. The home interface defines the create method for your bean.</li>
+<li>Remote home interface extends to the javax.ejb.EJBHome package .</li>
+<li>Local home interface extends to the javax.ejb.EJBLocalHome package.</li>
+<li>Component interfaces for the bean.</li>
+<li>Remote interface declares the methods that a client can invoke remotely. It extends<font class="point_out"> javax.ejb.EJBObject</font>.</li>
+<li>Local interface declares the methods that a collocated bean can invoke locally. It extends <font class="point_out">javax.ejb.EJBLocalObject</font>.</li>
+<li>Bean implementation includes the following:</li>
+<li>Implementation of the business methods that are declared in the component interfaces.</li>
+<li>Container callback methods that are inherited from the <font class="point_out">javax.ejb.SessionBean</font></li>
+<li>EJB methods that match the home interface create methods:</li>
+<li>Stateless session beans, provide an <font class="point_out">ejbCreate</font> method with no parameters.</li>
+<li>Stateful session beans, provide an <font class="point_out">ejbCreate</font> method with parameters matching those of the create method as defined in the home interfaces.</li>
+</ol>
+
+<p>After If All Steps are follows then </p>
+
+<div class="heading">To Creating the Home Interfaces</div>
+
+<p>The home interfaces (remote and local) are used to create the bean instance. It's defining the create method for your bean. </p>
+
+<i>And the session bean can defining the create method in the following ways:</i>
+<h3>The EJB types and this type parameter are shown here:</h3>
+
+<ol>
+<h3>
+<li>Stateless Session Bean</li></h3>
+<p>Can have only a single create method, with no parameters.</p>
+<h3><li>Stateful Session Bean</li></h3>
+<p>Can have one or more create methods, each with its own defined parameters.</p>
+<p>For each create method, a corresponding EJB Create method is defined in the bean implementation.</p>
+</ol>
+
+<div class="heading">What is the Remote Invocation:</div>
+
+<p>If Any remote client invokes the EJB through its remote interface. Then the 
+clients are invoking to the create method that is declared within the remote 
+home interface. And the container passes the client call to the EJB create 
+methodwith the appropriate parameter signaturewithin the bean implementation. 
+You can use the parameter arguments to initialize the state of the new EJB 
+object.</p>
+<p>
+
+The remote home interface must extend the javax.ejb.EJBHome interface.</p>
+
+<h3>All create methods may throw the following exceptions:</h3>
+<ul>
+<li>
+javax.ejb.CreateException</li>
+
+<li>javax.ejb.EJBException </li>
+
+<li>RuntimeException</li>
+</ul>
+
+<h3>Home Interface for Session Bean</h3>
+<p>A Remote home interface for a stateless session bean called Hello Home:</p>
+
+<h3>Example:</h3>
+<div class="code">
+<pre>
+<font color="#0000ff">package </font><font color="#000000">hello;</font>
+<font color="#0000ff">import </font><font color="#000000">javax.ejb.*;</font>
+<font color="#0000ff">import </font><font color="#000000">java.rmi.*;</font>
+<font color="#0000ff">public interface </font><font color="#000000">HelloHome </font><font color="#0000ff">extends </font><font color="#000000">EJBHome</font>
+<font color="#000000">{</font>
+  <font color="#0000ff">public </font><font color="#000000">Hello create() </font><font color="#0000ff">throws </font><font color="#000000">CreateException, </font><font color="#ff0000">RemoteException</font><font color="#000000">;</font>
+<font color="#000000">}</font>
+</pre>
+</div>
+
+<div class="heading">What is Local Invocation?</div>
+
+<p>An EJB can be called locally from a client that exists in the same container. 
+Thus, a collocated bean, and JSP, or servlet invoking to the creating method 
+that is declared within the local home interface. The container passes the 
+client call to the ejbCreate methodwith the appropriate parameter 
+signaturewithin the bean implementation. You can use the parameter arguments to 
+initialize the state of the new EJB object.</p>
+
+<p>The local home interface must extend the javax.ejb.EJBLocalHome interface.</p>
+
+<h3>All create methods may throw the following exceptions:</h3>
+<ul>
+<li>javax.ejb.CreateException</li>
+
+<li>javax.ejb.EJBException </li>
+
+<li>RuntimeException</li>
+</ul>
+
+<p><i>Example: </i> Local Home Interface for Session Bean</p>
+
+<p>A local home interface for a stateless session bean called HelloLocalHome.</p>
+<div class="code">
+<pre>
+<font color="#0000ff">package </font><font color="#000000">hello;</font>
+<font color="#0000ff">import </font><font color="#000000">javax.ejb.*;</font>
+<font color="#0000ff">public interface </font><font color="#000000">HelloLocalHome </font><font color="#0000ff">extends </font><font color="#000000">EJBLocalHome</font>
+<font color="#000000">{</font>
+ <font color="#0000ff">public </font><font color="#000000">HelloLocal create() </font><font color="#0000ff">throws </font><font color="#000000">CreateException, EJBException;</font>
+<font color="#000000">}</font>
+</pre>
+</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="Implementation%20of%20Session%20Beans.shtml" title=" Implementation of Session Beans
+">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="when%20we%20using%20Session%20beans.shtml" title="Using Session Beans">Next</a></td>
+  </tr>
+</table>
+
+<!-- Footer Start-->
+</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>

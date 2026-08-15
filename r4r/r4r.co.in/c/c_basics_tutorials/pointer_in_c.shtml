@@ -1,0 +1,137 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>Benefit of using function,Pointer in C</TITLE>
+<META content=r4r.co.in name=owner>
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="Benefits of using function in C with examples,Pointers in C,Data types,Array,Pointers,Functions,Union,Structures,Storage class,C constants,Data types,Preprocessors.Storage class">
+<meta name="keywords" CONTENT="Benefits of using function,Pointer in C,Types of functions in C,Function prototype,Function declaration,Nesting of function,Calling function in c,Recursive function in c,Pointers,Loops,Union,Structures,Data types,Storage class,C constants">
+<META content="Rajesh Kumar" name=author>
+<META http-equiv="expires" content="0"> 
+
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+     <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>C Programming language</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a><img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/c/">C </a>
+              <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/c/c_basics_tutorials/">Learn C in 9 days</a></div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/c/commonfiles/new-leftmenu.shtml'); ?></td>
+
+                       <td style="80%" valign="top">
+                        <div class="main_content">
+
+	 <!-- Header End--> 		
+<div class="heading"><font style="background:#FF9966; padding:7px 0px 7px 7px;">Day <font style="background:#E95409; padding:7px;">7</font></font> Pointer in C Programming language, Pointer declaration</div>    
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="adding_function_to_the_library.shtml" title="Adding function to the library in C Programming language">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="null_pointers_in_c.shtml" title="NULL Pointers in C Programming language">Next</a></td>
+  </tr>
+</table>	
+
+<h2># Pointer</h2>
+<p>In c a pointer is a variable that points to or references a memory location in which data is stored. Each memory cell in the computer has an address that can be used to access that location so a pointer variable points to a memory location we can access and change the contents of this memory location via the pointer.</p>
+<p>Pointer is a address variable that hold the address of another variable. We can have a pointer to any variable type. The <font class="point_out">&amp;</font> is a <font class="point_out">unary</font> operator that gives the address of a variable. The * (indirection or dereference operator), that gives the contents of an object that pointed to by a pointer.</p>
+
+<h3> (&) Ampersand operator</h3>
+
+<div class="code">
+<pre>
+<font color="#008000">//Using &amp; operator show the address of variable</font>
+
+<font color="#0000ff">void </font><font color="#000000">main( )</font>
+<font color="#000000">{</font>
+	<font color="#0000ff">int </font><font color="#000000">a = </font><font color="#800080">5 </font><font color="#000000">;</font>
+	<font color="#000000">printf ( </font><font color="#ff00ff">&quot;\nAddress of a = %u&quot;</font><font color="#000000">, &amp;a );</font>
+	<font color="#000000">printf ( </font><font color="#ff00ff">&quot;\nValue of a = %d&quot;</font><font color="#000000">, a );</font>
+<font color="#000000">}</font>
+</pre>
+
+</div>
+<div class="output"><i>Output</i>
+<p>Address of a=1444</p>
+<p>Value of a=5</p>
+</div>
+<div class="heading">How to use Pointer, Pointer declaration</div>
+<p>Note: In above example variable <font class="point_out">a</font> memory address is 1444. Means using this <font class="point_out">&amp;</font> we find the memory address. </p>
+<p><i>Syntax</i></p>
+<div class="code">
+<pre>
+<font color="#000000">data_type_name *variable_name  </font>
+
+<font color="#0000ff">int </font><font color="#000000">*ptr; </font><font color="#008000">//Declare a pointer</font>
+</pre>
+</div>
+<p># Now using pointer, once we declare a pointer variable we must point it to something we can do this by assigning to the pointer the address of the variable like:</p>
+<p>To access memory address of variable x you have to use pointer. To declare pointer you use asterisk notation (*) after pointer's data type and before pointer name as follows:</p>
+
+<div class="code">
+<pre>
+<font color="#0000ff">int </font><font color="#000000">x = </font><font color="#800080">10</font><font color="#000000">;</font>
+
+<font color="#008000">/* Now  pointer ptr to points to memory address of variable x */</font>
+<font color="#0000ff">const int </font><font color="#000000">*ptr;</font>
+
+<font color="#008000">/* you can use address-of operator (&amp;) */</font>
+<font color="#000000">ptr = &amp;x;</font>
+
+<font color="#008000">/* Show address of variable x */</font>
+<font color="#000000">printf(</font><font color="#ff00ff">&quot;Address of x is %d\n&quot;</font><font color="#000000">, ptr); </font>
+
+<font color="#008000">/* Variable x */</font>
+<font color="#000000">printf(</font><font color="#ff00ff">&quot;Value of x is %d\n&quot;</font><font color="#000000">, *ptr); </font>
+
+<font color="#008000">/* you can change the content of variable x </font>
+<font color="#008000">using poiter variable */</font>
+
+<font color="#000000">*ptr += </font><font color="#800080">10</font><font color="#000000">;</font><font color="#008000">// Increasing the value</font>
+<font color="#000000">printf(</font><font color="#ff00ff">&quot;Value of x after increasing %d\n&quot;</font><font color="#000000">,x);</font>
+
+<font color="#000000">*ptr -= </font><font color="#800080">5</font><font color="#000000">;</font><font color="#008000">// Decreasing the value</font>
+<font color="#000000">printf(</font><font color="#ff00ff">&quot;Value of x after decreasing %d\n&quot;</font><font color="#000000">,x);</font>
+</pre>
+
+</div>
+<div class="output">
+<i>Output:</i>
+<p>Address of x is 1310580</p>
+<p>Value of x is 10</p>
+<p>Value of x after increasing 20</p>
+<p>Value of x after decreasing 15</p>
+</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="adding_function_to_the_library.shtml" title="Adding function to the library in C Programming language">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="null_pointers_in_c.shtml" title="NULL Pointers in C Programming language">Next</a></td>
+  </tr>
+</table>	
+
+<!--Footer  --> 	
+</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/c/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>

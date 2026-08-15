@@ -1,0 +1,156 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+
+<HTML><HEAD><TITLE>RDBMS Interviews Questions And Answers,Orcale Interviews Questions And Answers,SQL Interviews Questions And Answers</TITLE>
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<META content=r4r.co.in name=owner>
+<meta name="description" CONTENT="RDBMS Interviews Questions And Answers,Orcale Interviews Questions And Answers,SQL Interviews Questions And Answers" >
+<meta name="keywords" CONTENT="RDBMS Interviews Questions And Answers,Orcale Interviews Questions And Answers,SQL Interviews Questions And Answers">
+<META content="Rajesh Kumar" name=author>
+<META http-equiv=expires content=0>
+
+<!--header start-->
+
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>DATABASE & SQL/PLSQL</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a><img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+			<a href="/sql/">SQL </a>
+              <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/sql/01/tutorial/basics">SQL & DATABASE BASIC</a></div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/sql/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	  
+
+                        	<!-- Header End-->	
+
+	   <div class="heading">Oacle interview Questions And Answer</div>
+
+       <table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="Oracle interview Questions 12.shtml" title="Oracle interview Questions 12">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="Oracle interview Questions 14.shtml" title="Oracle interview Questions 14">Next</a></td>
+  </tr>
+</table>
+
+<div class="heading">Display the number value in Words </div>
+<div class="code">
+<pre>SQL> select sal, (to_char(to_date(sal,'j'), 'jsp'))
+from emp; 
+</pre>
+</div>
+
+<i>output:</i>
+<div class="output">
+<pre>
+The output like,
+SAL (TO_CHAR(TO_DATE(SAL,'J'),'JSP')) 
+
+800 eight hundred
+1600 one thousand six hundred
+1250 one thousand two hundred fifty
+If you want to add some text like,
+Rs. Three Thousand only.
+SQL> select sal "Salary ",
+(' Rs. '|| (to_char(to_date(sal,'j'), 'Jsp'))|| ' only.'))
+"Sal in Words" from emp
+/
+Salary Sal in Words
+------- ------------------------------------------------------
+800 Rs. Eight Hundred only.
+1600 Rs. One Thousand Six Hundred only.
+1250 Rs. One Thousand Two Hundred Fifty only.
+</pre>
+</div>
+
+<div class="heading">Display Odd/ Even number of records </div>
+<p>Odd number of records: </p>
+<div class="code">
+<pre>select * from emp where (rowid,1) in (select rowid, mod(rownum,2) from emp); 
+</pre>
+</div>
+<i>output</i>
+<div class="output">
+<pre>1
+3
+5 
+</pre>
+</div>
+<p>Even number of records: </p>
+<div class="code">
+<pre>select * from emp where (rowid,0) in (select rowid, mod(rownum,2) from emp) 
+</pre>
+</div>
+
+<i>output</i>
+<div class="output">
+<pre>2
+4
+6
+</pre>
+</div>
+
+<div class="heading">Which date function returns number value? </div>
+<p>months_between</p>
+
+<h2>Any three PL/SQL Exceptions? </h2>
+<p>Too_many_rows, No_Data_Found, Value_Error, Zero_Error, Others </p>
+
+<h2>What are PL/SQL Cursor Exceptions? </h2>
+<p>Cursor_Already_Open, Invalid_Cursor </p>
+
+<h2>Other way to replace query result null value with a text </h2>
+<p>SQL> Set NULL N/A </p>
+<p>to reset SQL> Set NULL  </p>
+
+<div class="heading">What are the more common pseudo-columns?</div>
+<p>SYSDATE, USER , UID, CURVAL, NEXTVAL, ROWID, ROWNUM </p>
+
+<h2>What is the output of SIGN function? </h2>
+<ol>
+<li>1 for positive value, </li>
+<li>0 for Zero, </li>
+<li>-1 for Negative value.</li>
+</ol>
+
+<h2>What is the maximum number of triggers, can apply to a single table? </h2>
+<p>12 triggers. </p>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="Oracle interview Questions 12.shtml" title="Oracle interview Questions 12">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="Oracle interview Questions 14.shtml" title="Oracle interview Questions 14">Next</a></td>
+  </tr>
+</table>
+
+                         <!--Footer  -->
+</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>

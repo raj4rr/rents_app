@@ -1,0 +1,231 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+
+<HTML><HEAD><TITLE>Example of c which calculate angles between 0 and 360</TITLE>
+
+<META content=r4r.co.in name=owner>
+
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+
+<meta name="description" CONTENT="Example of c which calculate angles between 0 and 360" >
+
+<meta name="keywords" CONTENT="Example of c which calculate angles between 0 and 360"><META content="Rajesh Kumar" name="author">
+
+		<META http-equiv="expires" content="0">
+
+		<META content="r4r.co.in" name="owner">
+
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+
+		<META http-equiv="Content-Language" content="en-us">
+<link href="/css/main.css" rel="stylesheet" type="text/css" />
+        <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>C Programming language</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a><img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/c/">C </a><img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/c/basic_tutorials/05/">Learn C in 7 days</a></div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/c/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 
+
+	<!-- Header End-->	
+<div class="heading">C Tutorials</div>
+
+  <p align="center" class="style5">C Tutorial </p>
+
+  <p><span class="style3"><b>2. Let's Compute</b> <br>
+
+  The following program computes a table of the sine function for angles between 
+
+  0 and 360 degrees. </span>
+
+  <p><span class="style3">We will learn basic calculations and we learn how we 
+
+  can use deferent methods of deferent library header files in this example 
+
+  .Basically we are calculating the sine values from 0 to 360.<br>
+
+  Before exampling this example first you must know types of different variable.<br>
+
+  C uses the following standard variable types: <br>
+
+  <b>int</b> -&gt; integer variable<br>
+
+  <b>short</b> -&gt; short integer<br>
+
+  <b>long</b> -&gt; long integer<br>
+
+  <b>float </b>-&gt; single precision real (floating point) variable<br>
+
+  <b>double</b> -&gt; double precision real (floating point) variable<br>
+
+  <b>char</b> -&gt; character variable (single byte)<br>
+
+  <br>
+
+  The compilers checks for consistency in the types of all variables used in any 
+
+  code. This feature is intended to prevent mistakes, in particular in mistyping 
+
+  variable names. Calculations done in the math library routines are usually 
+
+  done in double precision arithmetic (64 bits on most workstations). The actual 
+
+  number of bytes used in the internal storage of these data types depends on 
+
+  the machine being used. <br>
+
+  The printf function can be instructed to print integers, floats and strings 
+
+  properly. The general syntax is <br>
+
+  <br>
+
+  printf( &quot;format&quot;, variables );<br>
+
+  &nbsp;</span><table border="1" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="200px" id="AutoNumber1">
+
+    <tr>
+
+      <td width="200px">
+
+<PRE><FONT FACE="Courier New"><FONT COLOR="#ff0000">#include </FONT><FONT COLOR="#000000">&lt; stdio.h&gt;</FONT>
+
+<FONT COLOR="#ff0000">#include </FONT><FONT COLOR="#000000">&lt; math.h&gt;</FONT>
+
+<FONT COLOR="#0000ff">void </FONT><FONT COLOR="#000000">main()</FONT>
+
+<FONT COLOR="#000000">{</FONT>
+
+<FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">angle_degree;</FONT>
+
+<FONT COLOR="#0000ff">double </FONT><FONT COLOR="#000000">angle_radian, pi, value;</FONT>
+
+<FONT COLOR="#008000">// Print a message </FONT>
+
+<FONT COLOR="#000000">printf (</FONT><FONT COLOR="#ff00ff">"\nCompute a table of the sine function\n\n"</FONT><FONT COLOR="#000000">);</FONT>
+
+<FONT COLOR="#008000">// obtain pi</FONT>
+
+<FONT COLOR="#000000">pi = </FONT><FONT COLOR="#800080">4</FONT><FONT COLOR="#000000">.</FONT><FONT COLOR="#800080">0</FONT><FONT COLOR="#000000">*atan(</FONT><FONT COLOR="#800080">1</FONT><FONT COLOR="#000000">.</FONT><FONT COLOR="#800080">0</FONT><FONT COLOR="#000000">);</FONT>
+
+<FONT COLOR="#000000">printf ( </FONT><FONT COLOR="#ff00ff">" Value of PI = %f \n\n"</FONT><FONT COLOR="#000000">, pi );</FONT>
+
+<FONT COLOR="#000000">printf ( </FONT><FONT COLOR="#ff00ff">" angle Sine \n" </FONT><FONT COLOR="#000000">);</FONT>
+
+<FONT COLOR="#000000">angle_degree=</FONT><FONT COLOR="#800080">0</FONT><FONT COLOR="#000000">; </FONT>
+
+<FONT COLOR="#008000">// initial angle value </FONT>
+
+<FONT COLOR="#008000">// scan over angle</FONT>
+
+<FONT COLOR="#0000ff">while </FONT><FONT COLOR="#000000">( angle_degree &lt;= </FONT><FONT COLOR="#800080">360 </FONT><FONT COLOR="#000000">) </FONT>
+
+	<FONT COLOR="#008000">// loop until angle_degree &gt; 360</FONT>
+
+<FONT COLOR="#000000">{</FONT>
+
+<FONT COLOR="#000000">angle_radian = pi * angle_degree/</FONT><FONT COLOR="#800080">180</FONT><FONT COLOR="#000000">.</FONT><FONT COLOR="#800080">0 </FONT><FONT COLOR="#000000">;</FONT>
+
+<FONT COLOR="#000000">value = sin(angle_radian);</FONT>
+
+<FONT COLOR="#000000">printf ( </FONT><FONT COLOR="#ff00ff">" %3d %f \n "</FONT><FONT COLOR="#000000">, angle_degree, value );</FONT>
+
+<FONT COLOR="#000000">angle_degree = angle_degree + </FONT><FONT COLOR="#800080">10</FONT><FONT COLOR="#000000">;</FONT>
+
+<FONT COLOR="#008000">// increment the loop index</FONT>
+
+<FONT COLOR="#000000">}</FONT>
+
+<FONT COLOR="#000000">}</FONT>
+
+</FONT>
+
+</PRE>
+
+</td>
+
+    </tr>
+
+  </table>
+
+  <p dir="ltr"><span class="style3"><br>
+
+  <br>
+
+  where &quot;format&quot; specifies the conversation specification and variables is a list 
+
+  of quantities to print. Some useful formats are <br>
+
+  <b>%.nd </b>integer (optional n = number of columns; if 0, pad with zeroes)<br>
+
+  <b>%m.nf</b> float or double (optional m = number of columns,<br>
+
+  n = number of decimal places)<br>
+
+  <b>%ns</b> string (optional n = number of columns)<br>
+
+  <b>%c</b> character<br>
+
+  <b>\n \t</b> to introduce new line or tab<br>
+
+  <b>\g</b> ring the bell (``beep'') on the terminal.<br>
+
+  Example descriptions:<br>
+
+  <b>1.Include header files:<br></span>
+
+  </b>
+
+<FONT FACE="Courier New">
+
+<FONT COLOR="#ff0000">#include </FONT><FONT COLOR="#000000">&lt; stdio.h&gt;</FONT><br>
+
+<FONT COLOR="#ff0000">#include </FONT><FONT COLOR="#000000">&lt; math.h&gt;<br>
+
+  </FONT></FONT>
+
+  <font size="2" FACE="Verdana">These two header files must be included first.<br>
+
+  first is included for printf()and main() methods as these methods are defined in 
+
+  this header file.<br>
+
+  Second &lt;math.h&gt; header file is included for sin function. In &lt;math.h&gt; header file 
+
+  all mathematical methods eg sin(),cose(),sqrt() etc. are define to use them we need 
+
+  to include this header file at top most in our progarm.<br>
+
+  We are using while loop for printing and calculating value of sin&nbsp; from 0 
+
+  to 360.</FONT></font><span class="style3"><font face="Verdana" color="#000080"><br>
+
+  </font>
+
+<!--Footer  --> 	
+
+		</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>

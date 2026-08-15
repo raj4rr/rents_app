@@ -1,0 +1,126 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>The FOREIGN KEY Constraint</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="The FOREIGN Constraint" >
+<meta name="keywords" CONTENT="The FOREIGN Constraint">
+
+<!--header start-->
+
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>DATABASE & SQL/PLSQL</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a><img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+			<a href="/sql/">SQL </a>
+              </div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/sql/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	  
+
+                        	                        	<!-- Header End-->	
+ <div class="heading">The FOREIGN KEY Constraint</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="unique_cons.shtml" title="The UNIQUE Constraint">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="check_con.shtml" title="The CHECK Constraint">Next</a></td>
+  </tr>
+</table>
+
+ <p>
+FOREIGN KEY constraint to remove the inconsistency in two 
+tables when data in one table depends on data in another table.</p>
+ <p>
+A FOREIGN KEY constraint associates one or more columns of a 
+table (the foreign key) with an identical set of columns on which a PRIMARY KEY 
+constraint has been defined (a primary key column in another table).</p>
+
+<div class="code">
+<pre>
+CREATE TABLE table_name
+(column_name data_type   REFERENCES  table_name (emp_id))
+</pre>
+</div>
+
+<h3>Syntax:</h3>
+<div class="code">
+<pre>
+CONSTRAINT  constraint_name  FOREIGN KEY  (column_name,..)
+REFERENCE  table_name  (column_name,..)
+</pre>
+</div>
+
+<h3>Example:</h3>
+<div class="code">
+<pre>
+CREATE TABLE employee
+(emp_name  char(4), emp_id  varchar (16)  REFERENCES  engineer (emp_id))
+</pre>
+</div>
+
+<p>The above command creates a FOREIGN KEY on the attribute  emp_id   of the  employee  table that reference the primary key emp_id  of the engineer table. This will ensure that the employeeID code that is inserted into the employee table is checked against the engineer table for the validity.</p>
+
+<p><i>output</i></p>
+<div class="output">
+<div class="image">
+<img src="Image/foreign_key.gif">
+</div>
+</div>
+<p>If the employee table is exist and does not have foreign key defined, then table also modified using ALTER TABLE command.</p>
+
+<div class="code">
+<pre>
+ALTER TABLE  employee
+ADD CONSTRAINT  fkemp_id  FOREIGN KEY  (emp_id)  REFERENCES  engineer (emp_id)
+</pre>
+</div>
+
+<p><i>output</i></p>
+<div class="output">
+<div class="image">
+<img src="Image/for_alter.gif">
+</div>
+</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="unique_cons.shtml" title="The UNIQUE Constraint">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="check_con.shtml" title="The CHECK Constraint">Next</a></td>
+  </tr>
+</table>
+
+                       <!--Footer  -->
+
+</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>

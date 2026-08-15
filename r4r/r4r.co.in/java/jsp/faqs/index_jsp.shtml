@@ -1,0 +1,473 @@
+
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>JSP Basic Subjective Questions And Answers</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="JSP Basic Subjective Questions And Answers" >
+<meta name="keywords" CONTENT="JSP Basic Subjective Questions And Answers">
+
+<!-- header start-->	
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>JSP</h1>
+             <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+        <img src="/images/left_menu_bullet.gif"/> 
+        <a href="/java/">Java</a><img src="/images/left_menu_bullet.gif"/> 
+        <a href="/java/jsp/">JSP</a><img src="/images/left_menu_bullet.gif"/>
+         <a href="/java/jsp/JSP_Interview_Questions_And_Answers/">FAQS</a></div>
+
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/jsp/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	 
+<!-- header End-->
+
+<div class="heading">JSP Interview Questions And Answers</div>
+
+     <table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="index.shtml" title="JSP Interview Questions And Answers">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="index_jsp1.shtml" title="JSP Objective Questions And Answers">Next</a></td>
+  </tr> 
+</table>
+
+<strong><span class="style4"><span class="style5">
+
+  <p align="justify"><font color="#0066FF" face="Verdana">JSP Interview Questions and Answer</font></p>
+
+</blockquote>
+
+<hr align="justify"></span></span></strong>
+
+<P align="justify"><font face="Verdana" size="2"><span class="style4"><span class="style3">
+<font color="#0066FF"><b>Q1: </b></font>What are the implicit objects?<br>
+
+<b><font color="#0066FF" face="Verdana">Ans:</font></b> Implicit objects are objects that are 
+
+created by the web container and contain information related to a particular 
+
+request, page, or application. They are: request, response, pageContext, 
+
+session, application, out, config, page, exception.</span></span></font></P>
+
+<P align="justify"><font face="Verdana" size="2"><font color="#0066FF"><b><span class="style3">Q2. </span>
+</b></font><span class="style4"><span class="style3">Is JSP technology extensible? <br>
+
+<font color="#0066FF"><b>Ans: </b></font>Yes. JSP technology is extensible through the 
+
+development of custom actions, or tags, which are encapsulated in tag libraries.</span></span></font></P>
+
+<P align="justify"><font face="Verdana" size="2"><font color="#0066FF"><b><span class="style3">Q3.</span></b></font><span class="style4"><span class="style3"> How can I implement a thread-safe JSP page? What are the advantages and 
+
+Disadvantages of using it? <br>
+
+<b><font color="#0066FF" face="Verdana">Ans:</font></b> You can make your JSPs thread-safe by having them 
+
+implement the SingleThreadModel interface. This is done by adding the directive &lt;%@ page isThreadSafe=&quot;false&quot; %&gt; within your JSP page. With this, instead of a 
+
+single instance of the servlet generated for your JSP page loaded in memory, you 
+
+will have N instances of the servlet loaded and initialized, with the service 
+
+method of each instance effectively synchronized. You can typically control the 
+
+number of instances (N) that are instantiated for all servlets implementing SingleThreadModel through the admin screen for your JSP engine. More 
+
+importantly, avoid using the tag for variables. If you do use this tag, then you 
+
+should set isThreadSafe to true, as mentioned above. Otherwise, all requests to 
+
+that page will access those variables, causing a nasty race condition. 
+
+SingleThreadModel is not recommended for normal use. There are many pitfalls, 
+
+including the example above of not being able to use &lt;%! %&gt;. You should try 
+
+really hard to make them thread-safe the old fashioned way: by making them 
+
+thread-safe
+
+</span></span> 
+
+</font> 
+
+<P align="justify"><font face="Verdana" size="2"><span class="style4"><span class="style3">
+<font color="#0066FF"><b>Q4: </b></font>How does JSP handle run-time exceptions? <br>
+
+<font color="#0066FF"><b>Ans: </b></font>You can use the errorPage attribute 
+
+of the page directive to have uncaught run-time exceptions automatically 
+
+forwarded to an error processing page. <br>
+
+For Example: &lt;%@ page errorPage=&quot;error.jsp&quot; 
+
+%&gt;<br>
+
+redirects the browser to the JSP page error.jsp if an uncaught exception is 
+
+encountered during request processing. Within error.jsp, if you indicate that it 
+
+is an error-processing page, via the directive: &lt;%@ page isErrorPage=&quot;true&quot; %&gt; 
+
+Throwable object describing the exception may be accessed within the error page 
+
+via the exception implicit object. Note: You must always use a relative URL as 
+
+the value for the errorPage attribute.<br>
+
+<br>
+
+<font color="#0066FF"><b>Q5: </b></font>How do I prevent the output of my JSP or Servlet pages from being cached by the 
+
+browser?<br>
+
+<b><font color="#0066FF" face="Verdana">Ans:</font></b> You will need to set the appropriate HTTP header attributes to 
+
+prevent the dynamic content output by the JSP page from being cached by the 
+
+browser. Just execute the following scriptlet at the beginning of your JSP pages 
+
+to prevent them from being cached at the browser. You need both the statements 
+
+to take care of some of the older browser versions. <br>
+
+&lt;%<br>
+
+response.setHeader(&quot;Cache-Control&quot;,&quot;no-store&quot;); //HTTP 1.1<br>
+
+response.setHeader(&quot;Pragma&quot;,&quot;no-cache&quot;); //HTTP 1.0<br>
+
+response.setDateHeader (&quot;Expires&quot;, 0); //prevents caching at the proxy server<br>
+
+%&gt; <br>
+
+<br>
+
+<font color="#0066FF"><b>Q6:</b></font>How do I use comments within a JSP page?<br>
+
+<font color="#0066FF"><b>Ans:</b></font>You can use JSP-style comments to 
+
+selectively block out code while debugging or simply to comment your scriptlets. 
+
+JSP comments are not visible at the client. For example: <br>
+
+&lt;%-- the scriptlet is now commented out<br>
+
+&lt;%<br>
+
+out.println(&quot;Hello World&quot;);<br>
+
+%&gt;<br>
+
+--%&gt;<br>
+
+You can also use HTML-style comments anywhere within your JSP page. These 
+
+comments are visible at the client. For example:<br>
+
+<br>
+
+&lt;!-- (c) 2004 --&gt;Of course, you can also use comments supported by your JSP 
+
+scripting language within your scriptlets. For example, assuming Java is the 
+
+scripting language, you can have:<br>
+
+<br>
+
+&lt;%<br>
+
+//some comment<br>
+
+/**<br>
+
+yet another comment<br>
+
+**/<br>
+
+%&gt;<br>
+
+Response has already been commited error.&nbsp;
+
+</span></span> 
+
+</font> 
+
+<P align="justify"><font face="Verdana" size="2"><span class="style4"><span class="style3">
+<font color="#0066FF"><b>Q7: </b></font>How do I use a scriptlet to initialize a newly instantiated bean? <br>
+
+<font color="#0066FF"><b>Ans: </b></font>A jsp:useBean action may optionally have a body. If the body is specified, its 
+
+contents will be automatically invoked when the specified bean is instantiated. 
+
+Typically, the body will contain scriptlets or jsp:setProperty tags to 
+
+initialize the newly instantiated bean, although you are not restricted to using 
+
+those alone.<br>
+
+The following example shows the today property of the Foo bean initialized to 
+
+the current date when it is instantiated. Note that here, we make use of a JSP 
+
+expression within the jsp:setProperty action.<br>
+
+&lt;jsp:useBean id=&quot;foo&quot; class=&quot;com.Bar.Foo&quot; &gt;<br>
+
+&lt;jsp:setProperty name=&quot;foo&quot; property=&quot;today&quot;<br>
+
+value=&quot;&lt;%=java.text.DateFormat.getDateInstance().format(new java.util.Date()) 
+
+%&gt;&quot;/ &gt;<br>
+
+&lt;%-- scriptlets calling bean setter methods go here --%&gt;<br>
+
+&lt;/jsp:useBean &gt;<br>
+
+<br>
+
+<b><font color="#0066FF">Q8:</font></b>How can I enable session tracking for JSP pages if the browser has disabled 
+
+cookies? <br>
+
+<b><font color="#0066FF">Ans: </font></b>We know that session tracking uses cookies by default to associate a 
+
+session identifier with a unique user. If the browser does not support cookies, 
+
+or if cookies are disabled, you can still enable session tracking using URL 
+
+rewriting. URL rewriting essentially includes the session ID within the link 
+
+itself as a name/value pair. However, for this to be effective, you need to 
+
+append the session ID for each and every link that is part of your servlet 
+
+response. Adding the session ID to a link is greatly simplified by means of of a 
+
+couple of methods: response.encodeURL() associates a session ID with a given 
+
+URL, and if you are using redirection, response.encodeRedirectURL() can be used 
+
+by giving the redirected URL as input. Both encodeURL() and encodeRedirectedURL() 
+
+first determine whether cookies are supported by the browser; if so, the input 
+
+URL is returned unchanged since the session ID will be persisted as a cookie. 
+
+Consider the following example, in which two JSP files, say hello1.jsp and 
+
+hello2.jsp, interact with each other. Basically, we create a new session within 
+
+hello1.jsp and place an object within this session. The user can then traverse 
+
+to hello2.jsp by clicking on the link present within the page.Within hello2.jsp, 
+
+we simply extract the object that was earlier placed in the session and display 
+
+its contents. Notice that we invoke the encodeURL() within hello1.jsp on the 
+
+link used to invoke hello2.jsp; if cookies are disabled, the session ID is 
+
+automatically appended to the URL, allowing hello2.jsp to still retrieve the 
+
+session object. Try this example first with cookies enabled. Then disable cookie 
+
+support, restart the brower, and try again. Each time you should see the 
+
+maintenance of the session across pages. Do note that to get this example to 
+
+work with cookies disabled at the browser, your JSP engine has to support URL 
+
+rewriting. <br>
+
+hello1.jsp<br>
+
+&lt;%@ page session=&quot;true&quot; %&gt;<br>
+
+&lt;%<br>
+
+Integer num = new Integer(100);<br>
+
+session.putValue(&quot;num&quot;,num);<br>
+
+String url =response.encodeURL(&quot;hello2.jsp&quot;);<br>
+
+%&gt;<br>
+
+&lt;a href='&lt;%=url%&gt;'&gt;hello2.jsp&lt;/a&gt;<br>
+
+hello2.jsp<br>
+
+&lt;%@ page session=&quot;true&quot; %&gt;<br>
+
+&lt;%<br>
+
+Integer i= (Integer )session.getValue(&quot;num&quot;);<br>
+
+out.println(&quot;Num value in session is &quot;+i.intValue());<br>
+
+How can I declare methods within my JSP page? - You can declare methods for use 
+
+within your JSP page as declarations. The methods can then be invoked within any 
+
+other methods you declare, or within JSP scriptlets and expressions. Do note 
+
+that you do not have direct access to any of the JSP implicit objects like 
+
+request, response, session and so forth from within JSP methods. However, you 
+
+should be able to pass any of the implicit JSP variables as parameters to the 
+
+methods you declare. For example: <br>
+
+&lt;%!<br>
+
+public String whereFrom(HttpServletRequest req) {<br>
+
+HttpSession ses = req.getSession();<br>
+
+...<br>
+
+return req.getRemoteHost();<br>
+
+}<br>
+
+%&gt;<br>
+
+&lt;%<br>
+
+out.print(&quot;Hi there, I see that you are coming in from &quot;);<br>
+
+%&gt;<br>
+
+&lt;%= whereFrom(request) %&gt;<br>
+
+Another Example<br>
+
+file1.jsp:<br>
+
+&lt;%@page contentType=&quot;text/html&quot;%&gt;<br>
+
+&lt;%!<br>
+
+public void test(JspWriter writer) throws IOException{<br>
+
+writer.println(&quot;Hello!&quot;);<br>
+
+}<br>
+
+%&gt;<br>
+
+file2.jsp<br>
+
+&lt;%@include file=&quot;file1.jsp&quot;%&gt;<br>
+
+&lt;html&gt;<br>
+
+&lt;body&gt;<br>
+
+&lt;%test(out);% &gt;<br>
+
+&lt;/body&gt;<br>
+
+&lt;/html&gt;</span></span></font><P align="justify"><font face="Verdana" size="2"><span class="style4"><span class="style3">
+            <font color="#0066FF"><b>Q9: </b></font>Is there a way I can set the inactivity lease period on a per-session basis?<br>
+
+<b><font color="#0066FF" face="Verdana">Ans:</font></b> 
+
+Typically, a default inactivity lease period for all sessions is set within your JSP engine admin screen or associated properties file. However, if your JSP 
+
+engine supports the Servlet 2.1 API, you can manage the inactivity lease period 
+
+on a per-session basis. This is done by invoking the 
+
+HttpSession.setMaxInactiveInterval() method, right after the session has been 
+
+created. For example: <br>
+
+&lt;%<br>
+
+session.setMaxInactiveInterval(300);<br>
+
+%&gt;<br>
+
+would reset the inactivity period for this session to 5 minutes. The inactivity 
+
+interval is set in seconds.<br>
+
+<br>
+
+            <font color="#0066FF"><b>Q10: </b></font>How can I set a cookie and delete a cookie from within a JSP page?<br>
+
+<b><font color="#0066FF" face="Verdana">Ans:</font></b> A cookie, mycookie, can be deleted using the following scriptlet: <br>
+
+&lt;%<br>
+
+//creating a cookie<br>
+
+Cookie mycookie = new Cookie(&quot;aName&quot;,&quot;aValue&quot;);<br>
+
+response.addCookie(mycookie);<br>
+
+//delete a cookie<br>
+
+Cookie killMyCookie = new Cookie(&quot;mycookie&quot;, null);<br>
+
+killMyCookie.setMaxAge(0);<br>
+
+killMyCookie.setPath(&quot;/&quot;);<br>
+
+response.addCookie(killMyCookie);<br>
+
+%&gt;<br>
+
+<br>
+
+</span></span> 
+
+</font> 
+     <table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="index.shtml" title="JSP Interview Questions And Answers">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="index_jsp1.shtml" title="JSP Objective Questions And Answers">Next</a></td>
+  </tr> 
+</table>       
+
+<!-- Footer Start-->	
+
+	<!-- Footer Start-->		
+		</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->

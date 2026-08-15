@@ -1,0 +1,116 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>Why Synchronization method in Multithreading?</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="Why Synchronization method in Multithreading?" >
+<meta name="keywords" CONTENT="Why Synchronization method in Multithreading?">
+
+<!-- header start-->
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+	<BODY>
+		<?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+        <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>Java Multithreading FAQ Tutorials</h1>
+            <div class="link_menu"><br><div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+            <img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+            <a href="/java/">Java</a>
+			<img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/java/corejava/">Core Java</a>
+  <img src="/images/left_menu_bullet.gif" width="11" height="6"> <a href="/java/corejava/faqs/">FAQS</a>
+  </div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/corejava/collections/commonfiles/leftmenu.shtml'); ?></td>                                           
+                        <td style="80%" valign="top">
+
+                        <div class="main_content"> 	 
+
+	<!-- header End-->
+
+<div class="heading">Synchronization method in Multithreading</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="java_multithreading02.shtml" title="Dead Lock">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="java_multithreading04.shtml" title="Multi-processing and Multi-tasking">Next</a></td>
+  </tr> 
+</table>
+
+<p>When two or more threads want to access a shared resource, they need someway to ensure that the resource will be use by only one thread at a time. The process by which this is achieved is called synchronization. Synchronization is the medium or key to monitor (also called a semaphore).</p>
+<p> A monitor is an object that is used as a mutually exclusive lock (or mutex) mean only one thread can own a monitor at a given time. When a thread acquires a lock, it is said to have entered the monitor or at running state then, other threads are in waiting state until the first thread exits the monitor. </p>
+
+<h3>Example</h3>
+<div class="code">
+<PRE>
+<FONT COLOR="#008000">// Create multiple threads using synchronization method.</FONT>
+<FONT COLOR="#0000ff">package </FONT><FONT COLOR="#000000">r4r.co.in;</FONT>
+<FONT COLOR="#0000ff">class </FONT><FONT COLOR="#000000">MYThread </FONT><FONT COLOR="#0000ff">implements </FONT><FONT COLOR="#ff0000">Runnable </FONT><FONT COLOR="#000000">{</FONT>
+<FONT COLOR="#ff0000">String </FONT><FONT COLOR="#000000">name;</FONT><FONT COLOR="#008000">// name of thread</FONT>
+<FONT COLOR="#ff0000">Thread </FONT><FONT COLOR="#000000">t;</FONT>
+<FONT COLOR="#000000">MYThread(</FONT><FONT COLOR="#ff0000">String </FONT><FONT COLOR="#000000">threadname) {</FONT>
+<FONT COLOR="#000000">name = threadname;</FONT>
+<FONT COLOR="#000000">t = </FONT><FONT COLOR="#0000ff">new </FONT><FONT COLOR="#ff0000">Thread</FONT><FONT COLOR="#000000">(</FONT><FONT COLOR="#0000ff">this</FONT><FONT COLOR="#000000">, name);</FONT>
+<FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.println(</FONT><FONT COLOR="#ff00ff">"My thread: " </FONT><FONT COLOR="#000000">+ t);</FONT>
+<FONT COLOR="#000000">t.start();</FONT><FONT COLOR="#008000">// Thread Start for execution</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#0000ff">synchronized public void </FONT><FONT COLOR="#000000">run() {</FONT><FONT COLOR="#008000">// Initialization of  thread.</FONT>
+<FONT COLOR="#0000ff">try </FONT><FONT COLOR="#000000">{</FONT>
+<FONT COLOR="#0000ff">for </FONT><FONT COLOR="#000000">(</FONT><FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">i = </FONT><FONT COLOR="#800080">0</FONT><FONT COLOR="#000000">; i &lt; </FONT><FONT COLOR="#800080">10</FONT><FONT COLOR="#000000">; i++) {</FONT>
+<FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.println(name + </FONT><FONT COLOR="#ff00ff">": " </FONT><FONT COLOR="#000000">+ i);</FONT>
+  <FONT COLOR="#ff0000">Thread</FONT><FONT COLOR="#000000">.sleep(</FONT><FONT COLOR="#800080">100</FONT><FONT COLOR="#000000">);</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#000000">} </FONT><FONT COLOR="#0000ff">catch </FONT><FONT COLOR="#000000">(</FONT><FONT COLOR="#ff0000">Exception </FONT><FONT COLOR="#000000">e) {</FONT>
+<FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.println(name + e);</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.println(name + </FONT><FONT COLOR="#ff00ff">" exiting."</FONT><FONT COLOR="#000000">);</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#0000ff">class </FONT><FONT COLOR="#000000">MultiThreadDemo {</FONT>
+<FONT COLOR="#0000ff">public static void </FONT><FONT COLOR="#000000">main(</FONT><FONT COLOR="#ff0000">String </FONT><FONT COLOR="#000000">args[]) {</FONT>
+<FONT COLOR="#0000ff">new </FONT><FONT COLOR="#000000">MYThread(</FONT><FONT COLOR="#ff00ff">"One"</FONT><FONT COLOR="#000000">);  </FONT>
+<FONT COLOR="#0000ff">new </FONT><FONT COLOR="#000000">MYThread(</FONT><FONT COLOR="#ff00ff">"Two"</FONT><FONT COLOR="#000000">);</FONT>
+<FONT COLOR="#0000ff">try </FONT><FONT COLOR="#000000">{</FONT>
+<FONT COLOR="#ff0000">Thread</FONT><FONT COLOR="#000000">.sleep(</FONT><FONT COLOR="#800080">1000</FONT><FONT COLOR="#000000">);  </FONT><FONT COLOR="#008000">// Thread sleep</FONT>
+<FONT COLOR="#000000">} </FONT><FONT COLOR="#0000ff">catch </FONT><FONT COLOR="#000000">(</FONT><FONT COLOR="#ff0000">InterruptedException </FONT><FONT COLOR="#000000">e) {</FONT>
+<FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.println(</FONT><FONT COLOR="#ff00ff">"Main thread Interrupted"</FONT><FONT COLOR="#000000">);</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.println(</FONT><FONT COLOR="#ff00ff">"My thread exiting."</FONT><FONT COLOR="#000000">);</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#000000">}</FONT>
+</PRE>
+</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="java_multithreading02.shtml" title="Dead Lock">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="java_multithreading04.shtml" title="Multi-processing and Multi-tasking">Next</a></td>
+  </tr> 
+</table>
+
+   <!-- Footer Start-->
+    </div>
+		           </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!--footer end-->

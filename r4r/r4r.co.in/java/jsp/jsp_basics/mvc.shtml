@@ -1,0 +1,230 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD>
+<meta http-equiv="Content-Language" content="en-us">
+<TITLE>JSP Tutorials-MVC in JSP</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name="keywords" content="JSP, Tutorials, Learning, Beginners, Basics, Life Cycle, Examples,Request, Server Response, Http, Filters, Exceptions, Cookies, Sessions, Database Access, File Uploading, File Uploading, Internationalization." />
+<meta name="description" content="JSP Tutorial - MVC in JSP, JSP (Java Server Pages) in simple and easy steps using this beginner's tutorial" />
+
+<!-- header start-->	
+
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+
+<?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+     <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>JSP Tutorials</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+			<img src="/images/left_menu_bullet.gif"/> <a href="/java/">Java</a>
+			<img src="/images/left_menu_bullet.gif"/> <a href="/java/jsp/">JSP</a>
+
+			       </div>
+
+            	<table>
+                    <tr>
+
+                         <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/jsp/jsp_basics/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	 
+
+<div class="heading">MVC in JSP</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="displayapplet.shtml" title="Displaying applet in JSP">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="jstl.shtml" title="JSTL in JSP 
+">Next</a></td>
+  </tr> 
+</table>
+
+<!-- header End--> 
+
+<h3>MVC in JSP</h3>
+
+<p>In MVC is used for Model View with Controller and presentation logic ,business logic.
+</p>
+
+<p>
+In MVC is basically Controller with interface between View and Model of incoming requests.
+</p>
+
+<p> MVC model to get the state of the application ,we can also have business logic.
+</p>
+
+<i>MVC View is display as a presentaion which means UI(User Interface).</i>
+
+<h3>Some basic advantages of MVC</h3>
+
+<ol>
+    <li>Navigation Control is centralized</li>
+    <li>Easy access to large application</li>
+</ol>
+
+<div class="image">
+<img src="images/mvc1.gif ">
+</div>
+
+<h3>Example </h3>
+
+<i> MVC using servlet(controller),jsp(view component)and Java Bean class(model).
+</i>
+
+<ol>
+    <li>index.jsp a page that gets input from the user.</li>
+    <li>ControllerServlet.java a servlet that acts as a controller.</li>
+    <li>login-success.jsp and login-error.jsp files acts as view components.</li>
+    <li>web.xml file for mapping the servlet.</li>
+</ol>
+
+<i>index.html</i>
+<div class="code">
+<pre>
+<span style="font-family: Arial"><span style="color: #000000">    </span><span style="color: #0000ff">&lt;form </span><span style="color: #ff0000">action</span><span style="color: #0000ff">=</span><span style="color: #ff00ff">&quot;ControllerServlet&quot; </span><span style="color: #ff0000">method</span><span style="color: #0000ff">=</span><span style="color: #ff00ff">&quot;post&quot;</span><span style="color: #0000ff">&gt;</span><span style="color: #000000">  </span>
+<span style="color: #000000">    Name:</span><span style="color: #0000ff">&lt;input </span><span style="color: #ff0000">type</span><span style="color: #0000ff">=</span><span style="color: #ff00ff">&quot;text&quot; </span><span style="color: #ff0000">name</span><span style="color: #0000ff">=</span><span style="color: #ff00ff">&quot;name&quot;</span><span style="color: #0000ff">&gt;&lt;br&gt;</span><span style="color: #000000">  </span>
+<span style="color: #000000">    Password:</span><span style="color: #0000ff">&lt;input </span><span style="color: #ff0000">type</span><span style="color: #0000ff">=</span><span style="color: #ff00ff">&quot;password&quot; </span><span style="color: #ff0000">name</span><span style="color: #0000ff">=</span><span style="color: #ff00ff">&quot;password&quot;</span><span style="color: #0000ff">&gt;&lt;br&gt;</span><span style="color: #000000">  </span>
+<span style="color: #000000">    </span><span style="color: #0000ff">&lt;input </span><span style="color: #ff0000">type</span><span style="color: #0000ff">=</span><span style="color: #ff00ff">&quot;submit&quot; </span><span style="color: #ff0000">value</span><span style="color: #0000ff">=</span><span style="color: #ff00ff">&quot;login&quot;</span><span style="color: #0000ff">&gt;</span><span style="color: #000000">  </span>
+<span style="color: #000000">    </span><span style="color: #0000ff">&lt;/form&gt;</span><span style="color: #000000">  </span>
+
+<span style="color: #000000">    </span><span style="color: #0000ff">&lt;form </span><span style="color: #ff0000">action</span><span style="color: #0000ff">=</span><span style="color: #ff00ff">&quot;ControllerServlet&quot; </span><span style="color: #ff0000">method</span><span style="color: #0000ff">=</span><span style="color: #ff00ff">&quot;post&quot;</span><span style="color: #0000ff">&gt;</span><span style="color: #000000">  </span>
+<span style="color: #000000">    Name:</span><span style="color: #0000ff">&lt;input </span><span style="color: #ff0000">type</span><span style="color: #0000ff">=</span><span style="color: #ff00ff">&quot;text&quot; </span><span style="color: #ff0000">name</span><span style="color: #0000ff">=</span><span style="color: #ff00ff">&quot;name&quot;</span><span style="color: #0000ff">&gt;&lt;br&gt;</span><span style="color: #000000">  </span>
+<span style="color: #000000">    Password:</span><span style="color: #0000ff">&lt;input </span><span style="color: #ff0000">type</span><span style="color: #0000ff">=</span><span style="color: #ff00ff">&quot;password&quot; </span><span style="color: #ff0000">name</span><span style="color: #0000ff">=</span><span style="color: #ff00ff">&quot;password&quot;</span><span style="color: #0000ff">&gt;&lt;br&gt;</span><span style="color: #000000">  </span>
+<span style="color: #000000">    </span><span style="color: #0000ff">&lt;input </span><span style="color: #ff0000">type</span><span style="color: #0000ff">=</span><span style="color: #ff00ff">&quot;submit&quot; </span><span style="color: #ff0000">value</span><span style="color: #0000ff">=</span><span style="color: #ff00ff">&quot;login&quot;</span><span style="color: #0000ff">&gt;</span><span style="color: #000000">  </span>
+<span style="color: #000000">    </span><span style="color: #0000ff">&lt;/form&gt;</span><span style="color: #000000"> </span>
+</span></pre>
+</div>
+
+<i>
+ControllerServlet
+</i>
+
+<div class="code">
+
+<pre>
+<span style="font-family: Arial"><span style="color: #0000ff">package </span><span style="color: #000000">com.javatpoint;  </span>
+    <span style="color: #0000ff">import </span><span style="color: #000000">java.io.</span><span style="color: #ff0000">IOException</span><span style="color: #000000">;  </span>
+    <span style="color: #0000ff">import </span><span style="color: #000000">java.io.</span><span style="color: #ff0000">PrintWriter</span><span style="color: #000000">;  </span>
+    <span style="color: #0000ff">import </span><span style="color: #000000">javax.servlet.RequestDispatcher;  </span>
+    <span style="color: #0000ff">import </span><span style="color: #000000">javax.servlet.ServletException;  </span>
+    <span style="color: #0000ff">import </span><span style="color: #000000">javax.servlet.http.HttpServlet;  </span>
+    <span style="color: #0000ff">import </span><span style="color: #000000">javax.servlet.http.HttpServletRequest;  </span>
+    <span style="color: #0000ff">import </span><span style="color: #000000">javax.servlet.http.HttpServletResponse;  </span>
+    <span style="color: #0000ff">public class </span><span style="color: #000000">ControllerServlet </span><span style="color: #0000ff">extends </span><span style="color: #000000">HttpServlet {  </span>
+        <span style="color: #0000ff">protected void </span><span style="color: #000000">doPost(HttpServletRequest request, HttpServletResponse response)  </span>
+                <span style="color: #0000ff">throws </span><span style="color: #000000">ServletException, </span><span style="color: #ff0000">IOException </span><span style="color: #000000">{  </span>
+            <span style="color: #000000">response.setContentType(</span><span style="color: #ff00ff">&quot;text/html&quot;</span><span style="color: #000000">);  </span>
+            <span style="color: #ff0000">PrintWriter </span><span style="color: #000000">out=response.getWriter();  </span>
+
+            <span style="color: #ff0000">String </span><span style="color: #000000">name=request.getParameter(</span><span style="color: #ff00ff">&quot;name&quot;</span><span style="color: #000000">);  </span>
+            <span style="color: #ff0000">String </span><span style="color: #000000">password=request.getParameter(</span><span style="color: #ff00ff">&quot;password&quot;</span><span style="color: #000000">);  </span>
+
+            <span style="color: #000000">LoginBean bean=</span><span style="color: #0000ff">new </span><span style="color: #000000">LoginBean();  </span>
+            <span style="color: #000000">bean.setName(name);  </span>
+            <span style="color: #000000">bean.setPassword(password);  </span>
+            <span style="color: #000000">request.setAttribute(</span><span style="color: #ff00ff">&quot;bean&quot;</span><span style="color: #000000">,bean);  </span>
+
+            <span style="color: #0000ff">boolean </span><span style="color: #000000">status=bean.validate();  </span>
+
+            <span style="color: #0000ff">if</span><span style="color: #000000">(status){  </span>
+                <span style="color: #000000">RequestDispatcher rd=request.getRequestDispatcher(</span><span style="color: #ff00ff">&quot;login-success.jsp&quot;</span><span style="color: #000000">);  </span>
+                <span style="color: #000000">rd.forward(request, response);  </span>
+            <span style="color: #000000">}  </span>
+            <span style="color: #0000ff">else</span><span style="color: #000000">{  </span>
+                <span style="color: #000000">RequestDispatcher rd=request.getRequestDispatcher(</span><span style="color: #ff00ff">&quot;login-error.jsp&quot;</span><span style="color: #000000">);  </span>
+                <span style="color: #000000">rd.forward(request, response);  </span>
+            <span style="color: #000000">}  </span>
+
+        <span style="color: #000000">}  </span>
+
+        <span style="color: #0000ff">@Override  </span>
+        <span style="color: #0000ff">protected void </span><span style="color: #000000">doGet(HttpServletRequest req, HttpServletResponse resp)  </span>
+                <span style="color: #0000ff">throws </span><span style="color: #000000">ServletException, </span><span style="color: #ff0000">IOException </span><span style="color: #000000">{  </span>
+            <span style="color: #000000">doPost(req, resp);  </span>
+        <span style="color: #000000">}  </span>
+    <span style="color: #000000">}  </span>
+
+    <span style="color: #0000ff">package </span><span style="color: #000000">com.javatpoint;  </span>
+    <span style="color: #0000ff">import </span><span style="color: #000000">java.io.</span><span style="color: #ff0000">IOException</span><span style="color: #000000">;  </span>
+    <span style="color: #0000ff">import </span><span style="color: #000000">java.io.</span><span style="color: #ff0000">PrintWriter</span><span style="color: #000000">;  </span>
+    <span style="color: #0000ff">import </span><span style="color: #000000">javax.servlet.RequestDispatcher;  </span>
+    <span style="color: #0000ff">import </span><span style="color: #000000">javax.servlet.ServletException;  </span>
+    <span style="color: #0000ff">import </span><span style="color: #000000">javax.servlet.http.HttpServlet;  </span>
+    <span style="color: #0000ff">import </span><span style="color: #000000">javax.servlet.http.HttpServletRequest;  </span>
+    <span style="color: #0000ff">import </span><span style="color: #000000">javax.servlet.http.HttpServletResponse;  </span>
+    <span style="color: #0000ff">public class </span><span style="color: #000000">ControllerServlet </span><span style="color: #0000ff">extends </span><span style="color: #000000">HttpServlet {  </span>
+        <span style="color: #0000ff">protected void </span><span style="color: #000000">doPost(HttpServletRequest request, HttpServletResponse response)  </span>
+                <span style="color: #0000ff">throws </span><span style="color: #000000">ServletException, </span><span style="color: #ff0000">IOException </span><span style="color: #000000">{  </span>
+            <span style="color: #000000">response.setContentType(</span><span style="color: #ff00ff">&quot;text/html&quot;</span><span style="color: #000000">);  </span>
+            <span style="color: #ff0000">PrintWriter </span><span style="color: #000000">out=response.getWriter();  </span>
+
+            <span style="color: #ff0000">String </span><span style="color: #000000">name=request.getParameter(</span><span style="color: #ff00ff">&quot;name&quot;</span><span style="color: #000000">);  </span>
+            <span style="color: #ff0000">String </span><span style="color: #000000">password=request.getParameter(</span><span style="color: #ff00ff">&quot;password&quot;</span><span style="color: #000000">);  </span>
+
+            <span style="color: #000000">LoginBean bean=</span><span style="color: #0000ff">new </span><span style="color: #000000">LoginBean();  </span>
+            <span style="color: #000000">bean.setName(name);  </span>
+            <span style="color: #000000">bean.setPassword(password);  </span>
+            <span style="color: #000000">request.setAttribute(</span><span style="color: #ff00ff">&quot;bean&quot;</span><span style="color: #000000">,bean);  </span>
+
+            <span style="color: #0000ff">boolean </span><span style="color: #000000">status=bean.validate();  </span>
+
+            <span style="color: #0000ff">if</span><span style="color: #000000">(status){  </span>
+                <span style="color: #000000">RequestDispatcher rd=request.getRequestDispatcher(</span><span style="color: #ff00ff">&quot;login-success.jsp&quot;</span><span style="color: #000000">);  </span>
+                <span style="color: #000000">rd.forward(request, response);  </span>
+            <span style="color: #000000">}  </span>
+            <span style="color: #0000ff">else</span><span style="color: #000000">{  </span>
+                <span style="color: #000000">RequestDispatcher rd=request.getRequestDispatcher(</span><span style="color: #ff00ff">&quot;login-error.jsp&quot;</span><span style="color: #000000">);  </span>
+                <span style="color: #000000">rd.forward(request, response);  </span>
+            <span style="color: #000000">}  </span>
+
+        <span style="color: #000000">}  </span>
+
+        <span style="color: #0000ff">@Override  </span>
+        <span style="color: #0000ff">protected void </span><span style="color: #000000">doGet(HttpServletRequest req, HttpServletResponse resp)  </span>
+                <span style="color: #0000ff">throws </span><span style="color: #000000">ServletException, </span><span style="color: #ff0000">IOException </span><span style="color: #000000">{  </span>
+            <span style="color: #000000">doPost(req, resp);  </span>
+        <span style="color: #000000">}  </span>
+    <span style="color: #000000">}  </span>
+</span></pre>
+</div>
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="displayapplet.shtml" title="Displaying applet in JSP">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="jstl.shtml" title="JSTL in JSP 
+">Next</a></td>
+  </tr> 
+</table>
+
+	<!--Footer  --> 
+
+		</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+
+<!-- Footer End-->
+

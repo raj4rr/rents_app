@@ -1,0 +1,159 @@
+<html>
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>Using String Functions</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="Using String Functions" >
+<meta name="keywords" CONTENT="ASCII, CHAR, CHARINDEX, SOUNDEX, DIFFERENCE,LEFT, LEN, LOWER, LTRIM, PATINDEX,
+ REVERSE, RIGHT, RTRIM,SPACE,STR, STUFF, SUBSTRING, UPPER">
+
+<!--header start-->
+
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>DATABASE & SQL/PLSQL</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a><img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+			<a href="/sql/">SQL </a>
+              </div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/sql/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	  
+
+                        	                        	<!-- Header End-->	
+    <div class="heading">Using String Functions</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="comput.shtml" title="Using COMPUTE BY Clause">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="date.shtml" title="DATE Functions">Next</a></td>
+  </tr>
+</table>
+
+<p>This function use to format data that will meet specific requirements. Mostly 
+they are used with the char and varchar data types. It used for implicit convert 
+data to char to varchar.</p>
+
+<div class="code">
+<pre>
+SELECT function_name (parameter)
+</pre>
+</div>
+
+<p><i>function_name </i>is the name of the string function. <i>parameter </i>are 
+required parameters for the string function.</p>
+
+<div class="table_content">
+<table>
+<tr>
+<td class="heading" style="width:20%;">Function name</td><td class="heading" style="width:20%;">Parameters</td><td class="heading" style="width:25%;">Example</td><td class="heading" style="width:35%;">Description</td>
+</tr>
+
+<tr>
+<td class="alternate_heading1" >ASCII</td><td class="alternate_heading1" ><i>(character_expression)</i></td><td class="alternate_heading1" >SELECT ASCII ('ADI')</td><td class="alternate_heading1">Return 65 the ASCII code of the leftmost character 'A'</td>
+</tr>
+<tr>
+<td class="alternate_heading2" >CHAR</td><td class="alternate_heading2" ><i>(integer_expression)</i></td><td class="alternate_heading2" >SELECT CHAR (65)</td><td class="alternate_heading2" >Return A the character equivalent of the ASCII code value</td>
+</tr>
+
+<tr>
+<td class="alternate_heading1" >CHARINDEX</td><td class="alternate_heading1" ><i>('pattern', expression)</i></td><td class="alternate_heading1" >SELECT CHARINDEX ('O','HELLO') (65)</td><td class="alternate_heading1">Returns 5, the standing position of the specified pattern in the expression</td>
+</tr>
+<tr>
+<td class="alternate_heading2">SOUNDEX</td><td class="alternate_heading2"><i>(character_expression)</i></td><td class="alternate_heading2" > 	SELECT SOUNDEX ('ADITYA')</td><td class="alternate_heading2">Return the four character code to compare the string</td>
+</tr>
+<tr>
+<td class="alternate_heading1" >DIFFERENCE</td><td class="alternate_heading1" ><i>(character_expression1, character_expression2)</i></td><td class="alternate_heading1" >SELECT DIFFERENCE ('ADITYA','ADI')</td><td class="alternate_heading1">Difference function compare the SOUNDEX value of two string and return a value from 0 to 4. The value 4 is best match.</td>
+</tr>
+<tr>
+<td class="alternate_heading2" >LEFT</td><td class="alternate_heading2"><i>(character_expression, integer_expression)</i></td><td class="alternate_heading2">SELECT LEFT ('ADITYA','4')</td><td class="alternate_heading2">Return 'ADIT', which is the part of character string equal in size to the <i>integer_expression</i> character from the left</td>
+</tr>
+<tr>
+<td class="alternate_heading1"> LEN</td><td class="alternate_heading1"><i> (character_expression)</i></td><td class="alternate_heading1" >SELECT LEN ('ADITYA')</td><td class="alternate_heading1">Return 6, the no of character in the <i>(character_expression)</i></td>
+</tr>
+<tr>
+<td class="alternate_heading2">LOWER</td><td class="alternate_heading2"><i>(character_expression)</i></td><td class="alternate_heading2" >SELECT LOWER ('ADITYA')</td><td class="alternate_heading2" >Return 'aditya', after the converting <i>(character_expression)</i> to the lower case</td>
+</tr>
+<tr>
+<td class="alternate_heading1">LTRIM</td><td class="alternate_heading1"> <i>(character_expression)</i></td><td class="alternate_heading1"> 	SELECT LTRIM ('    ADITYA')</td><td class="alternate_heading1">Return 'ADITYA' without leading spaces. It removes leading blanks from the <i>character expression</i></td>
+</tr>
+<tr>
+<td class="alternate_heading2" >PATINDEX</td><td class="alternate_heading2"><i>("%pattern%, expression")</i></td><td class="alternate_heading2" >SELECT PATINDEX ('%TY%','ADITYA')</td><td class="alternate_heading2">Return 4, the standing position of the first occurrence of the pattern in the specified expression, or zero if pattern is not found </td>
+</tr>
+
+<tr>
+<td class="alternate_heading1" >REVERSE</td><td class="alternate_heading1" ><i>(character_expression)</i></td><td class="alternate_heading1" >SELECT REVERSE ('ADITYA')</td><td class="alternate_heading1">Return 'AYTIDA' , the reverse of the <i>(character_expression)</i> </td>
+</tr>
+<tr>
+
+<td class="alternate_heading2">RIGHT</td><td class="alternate_heading2" ><i>(character_expression, integer_expression)</i></td><td class="alternate_heading2">SELECT RIGHT ('ADITYA',4)</td><td class="alternate_heading2" >Return 'ITYA' , the part of the character string.  </td>
+</tr>
+
+<tr>
+<td class="alternate_heading1" >RTRIM</td><td class="alternate_heading1"><i>(character_expression)</i></td><td class="alternate_heading1" >SELECT LTRIM ('ADITYA  ')</td><td class="alternate_heading1" >Return 'ADITYA' without leading spaces. It removes leading blanks from the <i>character expression</i> </td>
+</tr>
+<tr>
+<td class="alternate_heading2">SPACE</td><td class="alternate_heading2"><i>(integer_expression)</i></td><td class="alternate_heading2" >SELECT 'ADITYA'+SPACE(2)+'TIWARI'</td><td class="alternate_heading2">Returns 'ADITYA  TIWARI'. Two space are inserted between the first and second word </td>
+</tr>
+
+<tr>
+<td class="alternate_heading1" >STR</td><td class="alternate_heading1"><i>(float_expression, [length,[decimal]])</i></td><td class="alternate_heading1">SELECT STR (123.45,6,2) </td><td class="alternate_heading1">Return 4, the standing position of the first occurrence of the pattern in the specified expression, or zero if pattern is not </td>
+</tr>
+
+<tr>
+<td class="alternate_heading2" >STUFF</td><td class="alternate_heading2"><i>(character_expression1,
+start, length,character_expression2)</i></td><td class="alternate_heading2">SELECT STUFF ('Aditya',2,3,'s')</td><td class="alternate_heading2" >Return 'Asya'. It delete length characters from  <i> character_expression1</i> from the start and then inserts <i>character_expression2</i> into <i>character_expression1</i> at the start position </td>
+</tr>
+
+<tr>
+<td class="alternate_heading1">SUBSTRING</td><td class="alternate_heading1" ><i>(expression, start, length)</i></td><td class="alternate_heading1" >SELECT SUBSTRING ('Aditya',2,3)</td><td class="alternate_heading1" >Returns 'dit', which is part of a character string. It returns length character from the start position of the expression  </td>
+</tr>
+
+<tr>
+<td class="alternate_heading2">UPPER</td><td class="alternate_heading2"><i>(character_expression)</i></td><td class="alternate_heading2" >SELECT UPPER ('aditya')</td><td class="alternate_heading2" >Return 'ADITYA', after the converting <i>(character_expression)</i> to the upper case  </td>
+</tr>
+</table>
+</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="comput.shtml" title="Using COMPUTE BY Clause">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="date.shtml" title="DATE Functions">Next</a></td>
+  </tr>
+</table>     
+
+                       <!--Footer  -->
+
+</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>

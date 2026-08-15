@@ -1,0 +1,208 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<HTML><HEAD><TITLE>Increment Generator In Hibernate|Auto Increment In Hibernate </TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv="content-type" content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="Increment Generator In Hibernate Tutorial Step by step covers all topics of hibernate architecture, object relation mapping(ORM), 
+hibernate query language(HQl), Presistent classes, Objects, Collections, interceptors" >
+<meta name="keywords" CONTENT="Auto Increment Generator, Hibernate tutorial, Beginner, Fresher , Objects, Collections, interceptors, Hibernate, basics of hibernate native sql, caching,HQL queries, association, has a mapping
+ , many to one mapping, hibernate architecture">
+
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<META http-equiv="Content-Language" content="en-us">
+<link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+<link href="/css/main.css" rel="stylesheet" type="text/css" />
+</HEAD>
+<BODY>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>Hibernate</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+            <img src="/images/left_menu_bullet.gif"/> <a href="/java/hibernate/">Hibernate</a>
+             </div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top">
+                            <?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/hibernate/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                       <div class="main_content">  	 
+
+      <div class="heading">Generator Class in Hibernate</div>
+
+      <table id="indexing">
+
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="id_generator.shtml" title="ID Generator">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="sequence_generator.shtml" title="Sequence Generator">Next</a></td>
+  </tr> 
+</table>
+      <p>
+          The <generator> subelement of id used to generate the unique identifier for the objects 
+          of persistent class. There are many generator classes defined in the Hibernate Framework.
+      </p>
+      <p>
+          All the generator classes implements the org.hibernate.id.IdentifierGenerator interface. 
+          The application programmer may create one's own generator classes by implementing the 
+          IdentifierGenerator interface. Hibernate framework provides many built-in generator classes:
+      </p>
+      <ol>
+          <li>assigned</li>
+          <li>increment</li>
+          <li>sequence</li>
+          <li>hilo</li>
+          <li>native</li>
+          <li>identity</li>
+          <li>seqhilo</li>
+          <li>uuid</li>
+          <li>guid</li>
+          <li>select</li>
+          <li>foreign</li>
+          <li>sequence-identity</li>
+      </ol>
+      <div class="heading">assigned</div>
+      <p>It is the default generator strategy if there is no <generator> element . 
+          In this case, application assigns the id. For example:
+      </p>
+      <div class="code">
+<pre><code class="language-xml">
+&lt;!-- ... --&gt;
+&lt;hibernate-mapping&gt;  
+  &lt;class ...&gt;  
+    &lt;id ...&gt;  
+     &lt;generator class="assigned"&gt;&lt;/generator&gt;  
+    &lt;/id&gt;  
+    &lt;!-- ... --&gt;  
+  &lt;/class&gt;  
+&lt;/hibernate-mapping&gt;
+</code></pre>
+      </div>
+
+      <div class="heading">increment</div>
+      <p>
+          It generates the unique id only if no other process is inserting data into this table. 
+          It generates short, int or long type identifier. The first generated identifier is 1 
+          normally and incremented as 1. Syntax:
+      </p>
+      <div class="code">
+<pre><code class="language-xml">
+&lt;!-- ... --&gt;
+&lt;hibernate-mapping&gt;  
+  &lt;class ...&gt;  
+    &lt;id ...&gt;  
+     &lt;generator class="increment"&gt;&lt;/generator&gt;  
+    &lt;/id&gt;  
+    &lt;!-- ... --&gt;  
+  &lt;/class&gt;  
+&lt;/hibernate-mapping&gt;
+</code></pre>
+      </div>
+      <div class="heading">sequence</div>
+      <p>
+          It uses the sequence of the database. if there is no sequence defined, 
+          it creates a sequence automatically e.g. in case of Oracle database, 
+          it creates a sequence named HIBERNATE_SEQUENCE. In case of Oracle, DB2, 
+          SAP DB, Postgre SQL or McKoi, it uses sequence but it uses generator in 
+          interbase. Syntax:
+      </p>
+      <div class="code">
+<pre><code class="language-xml">
+&lt;!-- ... --&gt;
+&lt;id ...&gt;  
+  &lt;generator class="sequence"&gt;&lt;/generator&gt;  
+&lt;/id&gt;  
+&lt;!-- ... --&gt;
+</code></pre>
+      </div>
+      <p>
+          For defining your own sequence, use the param subelement of generator.
+      </p>
+      <div class="code">
+<pre><code class="language-xml">
+&lt;!-- ... --&gt;
+&lt;id ...&gt;  
+  &lt;generator class="sequence"&gt;  
+      &lt;param name="sequence"&gt;your_sequence_name&lt;/param&gt;  
+  &lt;/generator&gt;  
+&lt;/id&gt;  
+&lt;!-- ... --&gt;
+</code></pre>
+      </div>
+      <div class="heading">hilo</div>
+      <p>It uses high and low algorithm to generate the id of type short, int and long. Syntax:</p>    
+      <div class="code">
+<pre><code class="language-xml">
+&lt;!-- ... --&gt;
+&lt;id ...&gt;  
+  &lt;generator class="hilo"&gt;&lt;/generator&gt;  
+&lt;/id&gt;  
+&lt;!-- ... --&gt;
+</code></pre>
+      </div>
+      <div class="heading">native</div>
+      <p>It uses identity, sequence or hilo depending on the database vendor. Syntax:</p>
+      <div class="code">
+<pre><code class="language-xml">
+&lt;!-- ... --&gt;
+&lt;id ...&gt;  
+  &lt;generator class="native"&gt;&lt;/generator&gt;  
+&lt;/id&gt;  
+&lt;!-- ... --&gt;
+</code></pre>
+      </div>
+      <div class="heading">identity</div>
+      <p>
+          It is used in Sybase, My SQL, MS SQL Server, DB2 and HypersonicSQL to support the id column. 
+          The returned id is of type short, int or long.
+      </p>
+      <div class="heading">seqhilo</div>
+      <p>It uses high and low algorithm on the specified sequence name. The returned id is of type short, int or long.</p>
+      <div class="heading">uuid</div>
+      <p>
+          It uses 128-bit UUID algorithm to generate the id. The returned id is of type String, 
+          unique within a network (because IP is used). The UUID is represented in hexadecimal digits, 
+          32 in length.
+      </p>
+      <div class="heading">guid</div>
+      <p>It uses GUID generated by database of type string. It works on MS SQL Server and MySQL</p>
+      <div class="heading">select</DIV>
+      <p>It uses the primary key returned by the database trigger.</p>
+      <div class="heading">foreign</div>
+      <p>It uses the id of another associated object, mostly used with <one-to-one> association.</p>
+      <div class="heading">sequence-identity</div>
+      <p>
+          It uses a special sequence generation strategy. It is supported in Oracle 10g drivers only.
+      </p>
+
+ <table id="indexing">
+
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="id_generator.shtml" title="ID Generator">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="sequence_generator.shtml" title="Sequence Generator">Next</a></td>
+  </tr> 
+</table>                         
+
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+
+                <?php @include($_SERVER['DOCUMENT_ROOT'] . '/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>

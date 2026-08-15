@@ -1,0 +1,96 @@
+<div class="main_content">
+<div class="heading">Swing In Java</div>
+<p>Swing is also part of Sun Microsystems' Java Foundation Classes (JFC) an Application Programming Interface (API) for providing a graphical user interface (GUI) for Java programs.</p>
+<p> Introduce to overcome the limitation of AWT. The Swing classes are built on top of the AWT architecture. The JFC also provide some other important features to a GUI program, like the ability to add rich graphics functionality, ability to create a program that 
+can work in different languages/platform, and by users with different input devices..</p>
+
+<div class="content_link">
+           <p><a href="basic/tutorial/swing">Swing Basic Tutorials</a></p>
+           <p><a href="basic/example/index.php">Swing Basic Example</a></p>
+           <p><a href="Swing_Interview_Questions_And_Answers/">Swing FAQS</a></p>
+</div>
+
+<div class="heading">Write a program that "display the component in Jframe</div>
+
+<div class="code">
+<pre>
+<font color="#0000ff">package </font><font color="#000000">r4r.co.in;</font>
+
+<font color="#0000ff">import </font><font color="#000000">java.awt.</font><font color="#ff0000">Color</font><font color="#000000">;</font>
+<font color="#0000ff">import </font><font color="#000000">javax.swing.*;</font>
+
+<font color="#0000ff">public class </font><font color="#000000">FirstFrame </font><font color="#0000ff">extends </font><font color="#000000">java.awt.</font><font color="#ff0000">Frame </font><font color="#000000">{</font>
+
+<font color="#008000">//Define the Component and used it into the program</font>
+<font color="#0000ff">private </font><font color="#ff0000">JLabel </font><font color="#000000">label;</font>
+<font color="#0000ff">private </font><font color="#ff0000">JButton </font><font color="#000000">button;</font>
+<font color="#0000ff">private </font><font color="#ff0000">JTextField </font><font color="#000000">field;</font>
+<font color="#0000ff">private </font><font color="#ff0000">JTextArea </font><font color="#000000">area;</font>
+
+<font color="#0000ff">public </font><font color="#000000">FirstFrame() {</font>
+<font color="#000000">init();</font>
+<font color="#000000">}</font>
+
+<font color="#0000ff">private void </font><font color="#000000">init() {</font>
+<font color="#ff0000">JFrame </font><font color="#000000">frame = </font><font color="#0000ff">new </font><font color="#ff0000">JFrame</font><font color="#000000">(</font><font color="#ff00ff">&quot;Frame in Component of AWT &quot;</font><font color="#000000">);</font>
+<font color="#ff0000">JPanel </font><font color="#000000">panel = </font><font color="#0000ff">new </font><font color="#ff0000">JPanel</font><font color="#000000">();</font>
+<font color="#000000">frame.setVisible(</font><font color="#0000ff">true</font><font color="#000000">);</font>
+<font color="#000000">frame.setBounds(</font><font color="#800080">300</font><font color="#000000">, </font><font color="#800080">400</font><font color="#000000">, </font><font color="#800080">300</font><font color="#000000">, </font><font color="#800080">400</font><font color="#000000">);</font>
+<font color="#000000">panel.setBackground(</font><font color="#ff0000">Color</font><font color="#000000">.orange);</font>
+<font color="#000000">panel.setLayout(</font><font color="#0000ff">null</font><font color="#000000">);</font>
+
+<font color="#008000">//Initilizad the Component</font>
+
+<font color="#000000">label = </font><font color="#0000ff">new </font><font color="#ff0000">JLabel</font><font color="#000000">(</font><font color="#ff00ff">&quot;R4R Tech Soft! Welcome&quot;</font><font color="#000000">);</font>
+<font color="#000000">field = </font><font color="#0000ff">new </font><font color="#ff0000">JTextField</font><font color="#000000">(</font><font color="#ff00ff">&quot;This is TextField&quot;</font><font color="#000000">, </font><font color="#800080">20</font><font color="#000000">);</font>
+<font color="#000000">button = </font><font color="#0000ff">new </font><font color="#ff0000">JButton</font><font color="#000000">(</font><font color="#ff00ff">&quot;Click Me&quot;</font><font color="#000000">);</font>
+<font color="#000000">area = </font><font color="#0000ff">new </font><font color="#ff0000">JTextArea</font><font color="#000000">(</font><font color="#0000ff">null</font><font color="#000000">, </font><font color="#ff00ff">&quot;This is TextArea&quot;</font><font color="#000000">, </font><font color="#800080">4</font><font color="#000000">, </font><font color="#800080">5</font><font color="#000000">);</font>
+
+<font color="#008000">//Add the component into panel to display inside the JFrame</font>
+<font color="#000000">label.setBounds(</font><font color="#800080">30</font><font color="#000000">, </font><font color="#800080">20</font><font color="#000000">, </font><font color="#800080">300</font><font color="#000000">, </font><font color="#800080">30</font><font color="#000000">);</font>
+<font color="#000000">panel.add(label);</font>
+
+<font color="#000000">field.setBounds(</font><font color="#800080">25</font><font color="#000000">, </font><font color="#800080">50</font><font color="#000000">, </font><font color="#800080">200</font><font color="#000000">, </font><font color="#800080">30</font><font color="#000000">);</font>
+<font color="#000000">panel.add(field);</font>
+
+<font color="#000000">button.setBounds(</font><font color="#800080">30</font><font color="#000000">, </font><font color="#800080">100</font><font color="#000000">, </font><font color="#800080">150</font><font color="#000000">, </font><font color="#800080">50</font><font color="#000000">);</font>
+<font color="#000000">panel.add(button);</font>
+
+<font color="#000000">area.setBounds(</font><font color="#800080">20</font><font color="#000000">, </font><font color="#800080">180</font><font color="#000000">, </font><font color="#800080">200</font><font color="#000000">, </font><font color="#800080">100</font><font color="#000000">);</font>
+<font color="#000000">panel.add(area);</font>
+
+<font color="#008000">//Add panel to the Frame alongwith its component</font>
+<font color="#000000">frame.getContentPane().add(panel);</font>
+<font color="#008000">//Free all the resource and unload the JFrame</font>
+<font color="#000000">frame.setDefaultCloseOperation(</font><font color="#ff0000">JFrame</font><font color="#000000">.EXIT_ON_CLOSE);</font>
+<font color="#000000">}</font>
+
+<font color="#0000ff">public static void </font><font color="#000000">main(</font><font color="#ff0000">String</font><font color="#000000">[] args) {</font>
+<font color="#000000">FirstFrame firstFrame = </font><font color="#0000ff">new </font><font color="#000000">FirstFrame();</font>
+<font color="#000000">}</font>
+<font color="#000000">}</font>
+</pre>
+</div>
+
+<p><h3>Output</h3></p>
+<div class="output"><div class="image">
+<img src="images/Swing.png"> </div></div>
+
+<div class="heading">Difference Between Swing And AWT</div>
+<div class="table_content">
+<table>
+<tr>
+ <td class="heading" style="width:50%;">Swing</td>
+ <td class="heading" style="width:50%;">Abstract Window Toolkit( AWT)</td>
+ </tr>
+ <tr>
+ <td>Swing classes define in the javax.swing  package</td><td>AWT classes define in the java.awt package include subpackage java.awt.event</td></tr>
+  <tr><td class="alternate_heading1">It is totally platform independent</td> <td class="alternate_heading1">It is not totally platform independent</td></tr>
+ <tr><td>Written entirely in Java programming language</td><td>Some AWT component use native code</td></tr>
+  <tr><td class="alternate_heading1">Build around the number of API that implement various part of the AWT</td><td class="alternate_heading1">Swing classes are built on top of the AWT architecture</td></tr>
+ <tr><td>Swing is Light weight component.</td><td>AWT are heavy weight components</td></tr>
+ <tr><td class="alternate_heading1">It is "borrows" the screen resource of an ancestor ( means it has no native resource of its own)</td><td class="alternate_heading1">It is associated with its own  native screen resource (commonly known as a peer).</td>
+ </tr>
+ </table>
+ </div>
+</div>

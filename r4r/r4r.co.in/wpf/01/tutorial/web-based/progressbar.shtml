@@ -1,0 +1,153 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>ProgressBar Control in WPF WEB BASED</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="ProgressBar Control in WPF WEB BASED" >
+<meta name="keywords" CONTENT="ProgressBar Control in WPF WEB BASED">
+<!--Header start-->
+
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>WPF Web Based</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a><img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+			<a href="/wpf">WPF with C# </a>
+              <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/wpf/01/tutorial/web-based/">WPF Web Based Tutorials</a></div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/wpf/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	  
+
+<!-- Header End-->                                   
+<div class="heading">ProgressBar Control In WPF Web Base</div>
+
+ <table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="grid%20control.shtml" title=" Grid Control
+">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="menu.shtml" title="Menu Control">Next</a></td>
+  </tr>
+</table>
+
+<p>The ProgressBar tag in XAML represents a WPF ProgressBar control.</p>
+
+<div class="code">
+<pre>
+<font color="#0000ff">&lt;</font><font color="#808000">ProgressBar</font><font color="#0000ff">&gt;&lt;/</font><font color="#808000">ProgressBar</font><font color="#0000ff">&gt;</font>
+</pre>
+</div>
+
+<p>The Width and Height properties represent the width and the height of a 
+ProgressBar. The Name property represents the name of the control, which is a 
+unique identifier of a control. The Margin property tells the location of a 
+ProgressBar on the parent control. The HorizontalAlignment and VerticalAlignment 
+properties are used to set horizontal and vertical alignments. </p>
+
+<h3>Syntax of ProgressBar:</h3>
+<div class="code">
+<pre>
+<font color="#000000"> </font><font color="#0000ff">&lt;</font><font color="#808000">ProgressBar </font><font color="#800080">Margin</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;10,10,0,13&quot; </font><font color="#800080">Name</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;ListView1&quot; </font>
+ <font color="#800080">HorizontalAlignment</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;Left&quot; </font><font color="#800080">VerticalAlignment</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;Top&quot;</font>
+ <font color="#800080">Width</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;300&quot; </font><font color="#800080">Height</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;30&quot; </font><font color="#0000ff">/&gt;</font><font color="#000000"> </font>
+</pre>
+</div>
+
+<h3>Setting up ProgressBar Value :</h3>
+<p>The Value property of ProgressBar sets up the current value of a ProgressBar control. In the following code, I set the Value property to 60.</p>
+
+<div class="code">
+<pre>
+<font color="#0000ff">&lt;</font><font color="#808000">ProgressBar </font><font color="#800080">Margin</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;10,10,0,13&quot; </font><font color="#800080">Name</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;PBar&quot;</font>
+        <font color="#800080">HorizontalAlignment</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;Left&quot; </font><font color="#800080">VerticalAlignment</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;Top&quot;</font>
+		<font color="#800080">Width</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;300&quot; </font><font color="#800080">Height</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;30&quot; </font><font color="#800080">Value</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;60&quot; </font><font color="#0000ff">&gt;</font><font color="#000000">   </font>
+<font color="#000000"> </font><font color="#0000ff">&lt;/</font><font color="#808000">ProgressBar</font><font color="#0000ff">&gt;</font>
+</pre>
+</div> 
+
+<p>Next up, we are going to add an animation that will automatically fill and unfill the progress bar. So we are going to add a Trigger that fires after our progress bar has loaded. That trigger will fire a storyboard with an animation. The animation will be set to increase the ProgressBar.Value from 0 to 100 over the course of 1 second. We set the autoreverse property to true, to allow the animation to go forwards and backwards. The xaml to do this would be:</p>
+
+<h3>XAML Code:</h3>
+<div class="code">
+<pre>
+<font color="#0000ff">&lt;</font><font color="#808000">Page </font><font color="#800080">x:Class</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;WpfBrowserApplication5.Page4&quot;</font>
+<font color="#ff0000">xmlns</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;http://schemas.microsoft.com/winfx/2006/xaml/presentation&quot;</font>
+<font color="#800080">xmlns:x</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;http://schemas.microsoft.com/winfx/2006/xaml&quot;</font>
+<font color="#800080">Title</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;Page4&quot; </font><font color="#800080">Loaded</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;Page_Loaded&quot;</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">Grid </font><font color="#800080">Background</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;Beige&quot;</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">ProgressBar </font><font color="#800080">Margin</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;64,118,0,0&quot; </font><font color="#800080">Name</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;ProgressBar1&quot;</font>
+        <font color="#800080">HorizontalAlignment</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;Left&quot; </font><font color="#800080">Width</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;150&quot; </font><font color="#800080">Height</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;24&quot;</font>
+		<font color="#800080">VerticalAlignment</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;Top&quot;</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">ProgressBar</font><font color="#000000">.</font><font color="#800080">RenderTransform</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">RotateTransform </font><font color="#800080">Angle</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;0&quot; </font><font color="#800080">CenterX</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;75&quot; </font><font color="#800080">CenterY</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;12&quot; </font><font color="#0000ff">/&gt;</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">ProgressBar</font><font color="#000000">.</font><font color="#800080">RenderTransform</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">ProgressBar</font><font color="#000000">.</font><font color="#800080">Triggers</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">EventTrigger </font><font color="#800080">RoutedEvent</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;ProgressBar.Loaded&quot;</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">BeginStoryboard</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">Storyboard</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">DoubleAnimation </font><font color="#800080">Storyboard</font><font color="#000000">.</font><font color="#800080">TargetName</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;ProgressBar1&quot; </font>
+      <font color="#800080">Storyboard</font><font color="#000000">.</font><font color="#800080">TargetProperty</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;Value&quot; </font><font color="#800080">From</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;0&quot; </font><font color="#800080">To</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;100&quot;</font>
+	  <font color="#800080">Duration</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;0:0:1&quot; </font><font color="#800080">AutoReverse</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;True&quot; </font><font color="#800080">RepeatBehavior</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;Forever&quot; </font><font color="#0000ff">/&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">DoubleAnimation </font><font color="#800080">Storyboard</font><font color="#000000">.</font><font color="#800080">TargetName</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;ProgressBar1&quot; </font>
+      <font color="#800080">Storyboard</font><font color="#000000">.</font><font color="#800080">TargetProperty</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;(RenderTransform).(RotateTransform.Angle)&quot;</font>
+      <font color="#800080">From</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;0&quot; </font><font color="#800080">To</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;360&quot; </font><font color="#800080">Duration</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;0:0:2&quot; </font><font color="#800080">AutoReverse</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;False&quot; </font>
+	  <font color="#800080">RepeatBehavior</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;Forever&quot; </font><font color="#0000ff">/&gt;</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">Storyboard</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">BeginStoryboard</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">EventTrigger</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">ProgressBar</font><font color="#000000">.</font><font color="#800080">Triggers</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">ProgressBar</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">Grid</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">Page</font><font color="#0000ff">&gt;</font>
+</pre>
+</div>
+
+<div class="output"><p><i>First Output: </i></p>
+<div class="image">
+<img src="progress.gif"></div>
+</div>
+<div class="output"><p><i>After Rotation: </i></p>
+<div class="image">
+<img src="progress1.gif">
+</div>
+</div>
+
+ <table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="grid%20control.shtml" title=" Grid Control
+">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="menu.shtml" title="Menu Control">Next</a></td>
+  </tr>
+</table>
+
+<!--Footer  -->                                  
+</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/wpf/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>

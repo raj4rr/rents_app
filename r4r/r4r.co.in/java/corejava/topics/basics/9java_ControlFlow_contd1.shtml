@@ -1,0 +1,191 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>SWITCH STATEMENT,Using break, continue for breaking the Control Flow</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="SWITCH STATEMENT,Using break, continue for breaking the Control Flow" >
+<meta name="keywords" CONTENT="SWITCH STATEMENT,Using break, continue for breaking the Control Flow">
+
+<!-- header start-->
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>Java Programing laungage</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+            <img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+            <a href="/java/">Java</a>
+              <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/java/corejava">Core Java</a>
+               <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/java/corejava/topics/basics/">Basics</a>
+
+              </div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/corejava/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	 
+<!-- header End-->	
+
+<div class="heading">Switch Statement In Java</div>
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="8java_ControlFlow_contd.shtml" title="Loop Control In Java">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="10java_BigNumbers.shtml" title="Big Numbers in java">Next</a></td>
+  </tr> 
+</table>
+<p>Similar to the if-else branch, the switch statement is specifically designed to conditionally switch among multiple alternatives. The syntax for the switch statement follows:<p>
+
+<div class="code">
+<PRE>
+<FONT FACE="Arial">
+ <FONT COLOR="#0000ff">switch </FONT><FONT COLOR="#000000">(input) {</FONT>
+<FONT COLOR="#000000">Java Tutorialsase label1:</FONT>
+<FONT COLOR="#000000">Statement1;</FONT>
+<FONT COLOR="#0000ff">break</FONT><FONT COLOR="#000000">;</FONT>
+<FONT COLOR="#000000">Java Tutorialsase label2:</FONT>
+<FONT COLOR="#000000">Statement2;</FONT>
+<FONT COLOR="#0000ff">break</FONT><FONT COLOR="#000000">;</FONT>
+<FONT COLOR="#000000"></FONT>
+<FONT COLOR="#0000ff">default</FONT><FONT COLOR="#000000">:</FONT>
+<FONT COLOR="#000000">DefaultStatement;</FONT>
+<FONT COLOR="#000000">}</FONT>
+</FONT>
+</PRE>
+</div>
+
+<p>The switch branch evaluates and compares input to all of the case label and branches the programs execution to the matching case statement list. If no case label matches input, the program branches to the DefaultStatement, if one has been defined (DefaultStatement is optional).</p><p> In switch a statement list is simply a series, or list, of statements. Unlike the if-else branch, which directs program flow to a simple or compound statement, the switch statement directs the flow to  list of statements. When the program execution moves into a case statement list, it continues from there in a sequential manner.</p>
+<p>Note that the case labels must be integers. You cannot test strings. For example, the following is an error</p>
+<h3>Example</h3>
+<div class="code">
+<PRE>
+<FONT FACE="Arial">
+<FONT COLOR="#ff0000">String </FONT><FONT COLOR="#000000">input = </FONT><FONT COLOR="#ff00ff">"anyvalue"</FONT><FONT COLOR="#000000">;</FONT>
+<FONT COLOR="#0000ff">switch </FONT><FONT COLOR="#000000">(input) </FONT><FONT COLOR="#008000">// wrong, show error</FONT>
+<FONT COLOR="#000000">{</FONT>
+<FONT COLOR="#000000">Java Tutorialsase </FONT><FONT COLOR="#ff00ff">"p"</FONT><FONT COLOR="#000000">: </FONT><FONT COLOR="#008000">//wrong, will show error</FONT>
+<FONT COLOR="#000000">. . .</FONT>
+<FONT COLOR="#0000ff">break</FONT><FONT COLOR="#000000">;</FONT>
+<FONT COLOR="#000000">. . .</FONT>
+<FONT COLOR="#000000">}</FONT>
+</FONT>
+</PRE>
+</div>
+
+<div class="heading">Using break, continue for breaking the Control Flow</div>
+
+<p>In Java we have goto as a reserved keyword, but the designers of java decided not to include it in the language. In general, goto statements are considered poor style of programming. But some programmers argue that goto is useful for an occasional jump out of a loop.</p><p> The Java designers gave it a nod and added a new statement to support this programming style, the labeled break. Let us first look at the unlabeled break statement. The break statement that you use to exit a switch can also be used to break out of a loop. </p>
+<h3>Example</h3>
+<div class="code">
+<PRE>
+<FONT FACE="Arial">
+<FONT COLOR="#000000">Java Tutorialslass DemoUnlabeledBreak </FONT>
+<FONT COLOR="#000000">{</FONT>
+  <FONT COLOR="#0000ff">public static void </FONT><FONT COLOR="#000000">main (</FONT><FONT COLOR="#ff0000">String </FONT><FONT COLOR="#000000">args[]) </FONT>
+    <FONT COLOR="#000000">{</FONT>
+      <FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">i = </FONT><FONT COLOR="#800080">0</FONT><FONT COLOR="#000000">;</FONT>
+     <FONT COLOR="#0000ff">do </FONT>
+       <FONT COLOR="#000000">{</FONT>
+        <FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.println(demobreak);</FONT>
+        <FONT COLOR="#000000">i++;</FONT>
+        <FONT COLOR="#0000ff">if </FONT><FONT COLOR="#000000">(i &gt; </FONT><FONT COLOR="#800080">50</FONT><FONT COLOR="#000000">)</FONT>
+        <FONT COLOR="#0000ff">break</FONT><FONT COLOR="#000000">;</FONT>
+       <FONT COLOR="#000000">}</FONT>
+    <FONT COLOR="#0000ff">while </FONT><FONT COLOR="#000000">(</FONT><FONT COLOR="#0000ff">true</FONT><FONT COLOR="#000000">);</FONT>
+    <FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#000000">}</FONT>
+</FONT>
+</PRE>
+</div>
+<p> In above example, an infinite do-while loop is created by setting the loop condition to true. But here we incorporate the break statement  to exit the loop when i is incremented past 50.</p>
+
+<p>Java also offers a labeled break statement that lets you break out of multiple nested loops. Occasionally something weird happens inside a deeply nested loop. In that case, you may want to break completely out of all the nested loops. It is inconvenient to program that simply by adding extra conditions to the various loop tests.</p>
+<div class="code">
+<PRE>
+<FONT FACE="Arial">
+<FONT COLOR="#000000">Java Tutorialslass DemoLabelBreak </FONT>
+<FONT COLOR="#000000">{</FONT>
+  <FONT COLOR="#0000ff">public static void </FONT><FONT COLOR="#000000">main (</FONT><FONT COLOR="#ff0000">String </FONT><FONT COLOR="#000000">args[]) </FONT>
+    <FONT COLOR="#000000">{</FONT>
+      <FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">i = </FONT><FONT COLOR="#ff0000">Integer</FONT><FONT COLOR="#000000">.parseInt(args[</FONT><FONT COLOR="#800080">0</FONT><FONT COLOR="#000000">]);</FONT>
+      <FONT COLOR="#000000">labelbreak:    </FONT>
+     <FONT COLOR="#0000ff">while</FONT><FONT COLOR="#000000">(</FONT><FONT COLOR="#0000ff">true</FONT><FONT COLOR="#000000">) </FONT>
+       <FONT COLOR="#000000">{</FONT>
+       <FONT COLOR="#0000ff">for</FONT><FONT COLOR="#000000">(i=</FONT><FONT COLOR="#800080">0</FONT><FONT COLOR="#000000">;i&lt;</FONT><FONT COLOR="#800080">51</FONT><FONT COLOR="#000000">;i++)        </FONT>
+         <FONT COLOR="#000000">{</FONT>
+          <FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.println(demobreak);</FONT>
+          <FONT COLOR="#000000">i++;</FONT>
+          <FONT COLOR="#0000ff">if </FONT><FONT COLOR="#000000">(i &gt; </FONT><FONT COLOR="#800080">50</FONT><FONT COLOR="#000000">)</FONT>
+          <FONT COLOR="#0000ff">break </FONT><FONT COLOR="#000000">labelbreak;</FONT>
+          <FONT COLOR="#000000">}</FONT>
+       <FONT COLOR="#000000">}</FONT>
+     <FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.println(</FONT><FONT COLOR="#ff00ff">"Undesired value of  i"</FONT><FONT COLOR="#000000">);   </FONT>
+    <FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#000000">}</FONT>
+</FONT>
+</PRE>
+</div>
+<p>In above  program if the value of i is greater than 50 is inputted by user than control will come out of the loop and will pass to the very next statement after the loop.</p>
+
+<div class="heading">Java Continue Statement</div>
+<p>Another useful statement that works similarly to the break statement is the continue statement. Unlike break, the continue statement is only useful when working with loops and has no  relation to the switch branch. The continue statement works like the break statement in that it jumps out of the current iteration of a loop.</p><p> The difference with continue is that program execution is restored to the test condition of the loop while break jumps completely out of a loop. Use break when you want to jump out and terminate a loop, and use continue when you want to jump immediately to the next iteration of the loop. </p>
+
+<div class="code">
+<PRE>
+<FONT FACE="Arial">
+<FONT COLOR="#000000">Java Tutorialslass Java Tutorialsontinued</FONT>
+<FONT COLOR="#000000">{</FONT>
+<FONT COLOR="#0000ff">public static void </FONT><FONT COLOR="#000000">main(</FONT><FONT COLOR="#ff0000">String </FONT><FONT COLOR="#000000">args[])</FONT>
+<FONT COLOR="#000000">{</FONT>
+<FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">a=</FONT><FONT COLOR="#800080">0</FONT><FONT COLOR="#000000">;</FONT>
+<FONT COLOR="#0000ff">for</FONT><FONT COLOR="#000000">(</FONT><FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">i=</FONT><FONT COLOR="#800080">0</FONT><FONT COLOR="#000000">;i&lt;</FONT><FONT COLOR="#800080">10</FONT><FONT COLOR="#000000">;i++)</FONT>
+<FONT COLOR="#000000">{</FONT>
+<FONT COLOR="#0000ff">if</FONT><FONT COLOR="#000000">(i&gt;</FONT><FONT COLOR="#800080">7</FONT><FONT COLOR="#000000">)</FONT>
+<FONT COLOR="#000000">Java Tutorialsontinue;</FONT>
+<FONT COLOR="#000000">a=i;</FONT>
+<FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.println(</FONT><FONT COLOR="#ff00ff">"The value of a is:"</FONT><FONT COLOR="#000000">+a);</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#000000">}</FONT>
+</FONT>
+</PRE>
+</div>
+<p>The output of the program will print values 0 to 7, after the value of i become greater than 7 next statement after continue will not be executed and its control will pass to the header of the loop i.e in case of for loop the control will pass to incrementing slot till the loop terminates.</p>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="8java_ControlFlow_contd.shtml" title="Loop Control In Java">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="10java_BigNumbers.shtml" title="Big Numbers in java">Next</a></td>
+  </tr> 
+</table>
+
+<!-- Footer Start-->	
+
+		</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->

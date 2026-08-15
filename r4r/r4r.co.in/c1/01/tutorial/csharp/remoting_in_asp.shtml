@@ -1,0 +1,254 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>Remoting in ASP.NET,Architecture of Remoting,How does .NET Remoting work?,Terms Used in Remoting</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="Remoting in ASP.NET,Architecture of Remoting,How does .NET Remoting work?,Terms Used in Remoting" >
+<meta name="keywords" CONTENT="Remoting in ASP.NET,Architecture of Remoting,How does .NET Remoting work?,Terms Used in Remoting">
+
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+     <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>C# Tutorial</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a><img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/c1/">C#</a>
+
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/c1/commonfiles/leftmenu.shtml'); ?></td>
+
+                       <td style="80%" valign="top">
+                        <div class="main_content"> 
+
+	<!-- Header End-->
+
+	<div class="heading">Remoting in asp</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="how_to_use_xml_in_asp.shtml" 
+    title="How to use xml">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="transaction_in_asp.shtml" 
+    title="Transaction in asp">Next</a></td>
+  </tr>
+</table>
+<p>Remoting is one of the distributed technologies which is integrated in the .Net framework.Remoting can be defined as a 
+technology which facilitates communication between Application Domains which could be on the same machine or on different 
+machines Remoting infrtastructure is supported by protocols such as TCP HTTP with XML or SOAP/Binary as formatting
+ serializers Also remoting objects can be called in 3 modes viz. SingleCall Singleton ClientActivated Objects</p>
+ <p>It is a framework built into Common Language Runtime (CLR) in order to provide developers classes to build distributed 
+ applications and wide range of network services. It provides various features such as Object Passing, Proxy Objects, 
+ Activation, Stateless and Stateful Object, Lease Based LifeTime and Hosting of Objects in IIS.</p>
+ <p>.NET Remoting is an enable for application communication. It is a generic system for different applications to use to 
+ communicate with one another .NET objects are exposed to remote processes, thus allowing inter process communication. 
+ The applications can be located on the same computer, different computers on the same network, or even computers across separate networks.</p>
+
+   <h3>Architecture of Remoting</h3>
+   <div class="image">
+   <img src="remoting.gif">
+   </div>
+   <h3>How does .NET Remoting work</h3>
+
+   <p>.NET remoting involves sending messages along channels. Two of the standard channels are HTTP and TCP. TCP is intended 
+   for LANs only -HTTP can be used for LANs or WANs (internet).Support it provided for multiple message serializarion formats
+   .Examples are SOAP (XML-based) and binary. By default, the HTTP channel uses SOAP (via the .NET runtime Serialization SOAP
+    Formatter), and theTCP channel uses binary (via the .NET runtime Serialization BinaryFormatter).</p>
+    <h3>Terms Used in Remoting</h3>
+    <p><i>Proxy-</i> To avoid conjunction in networking. Main work is task Distributing. There are two type of proxy.</p>
+    <ol>
+   <li>Transparent proxy (There is no physical existence , Created by IIS server)</li>
+   <li> Real Proxy (Physical Existence)</li></ol>
+  <p><i>Channel-</i> Channel provides the medium for transfer data from one location to another location. There are two types 
+   of channel.</p>
+<ol>
+<li>TCP(work with Predefined root Connection oriented)</li> 
+<li>HTTP (No need predefined root) </li></ol>
+
+<p><i>Formatters-</i> Change the data in an appropriate format that it can traverse through channels.
+There are two types of formatters</p>
+<ol>
+<li> Binary</li>
+<li>SOAP(Simple Object Access Protocol) </li>
+</ol>
+
+<p><i>Sink-</i>Sink is used for security point of view. Before sending the data, the Data will be encrypted. Some additional 
+bit will be added with the data to secure the data.There are two types of sink </p>
+<ol>
+<li> Envoy sink</li>
+<li> Server Context Sink</li>
+</ol>
+
+<h3>SingleCall</h3>
+<p>Each in coming request from a client is serviced by a new object. The objectis thrown away when the request has finished.
+ This (essentiallystateless) model can be made stateful in the ASP.NET environment by using the ASP.NET state service to store 
+ application or session state.</p>
+
+<h3>Singleton</h3> 
+<p>All incoming requests from clients are processed by a single server object. <p>
+
+<h3>Client-activated object</h3>
+<p>This is the old stateful (D)COM model whereby the client receives areference to the remote object and holds that reference
+ (thus keepingthe remote object alive) until it is finished with it.</p>
+ <h3>Example</h3>
+ <p>1.class Library (Of which Remote Object will be created)</p>
+
+ <div class="code">
+ <pre>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Collections</font><font color="#000000">.</font><font color="#008080">Generic</font><font color="#000000">;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Text</font><font color="#000000">;</font>
+<font color="#0000ff">namespace </font><font color="#000000">remoteclass {</font>
+<font color="#0000ff">public class </font><font color="#000000">xx : </font>
+<font color="#808000">MarshalByRefObject </font><font color="#000000">{</font>
+<font color="#0000ff">public int </font><font color="#000000">sum(</font><font color="#0000ff">int </font><font color="#000000">a, </font><font color="#0000ff">int </font><font color="#000000">b)</font>
+<font color="#000000">{</font>
+<font color="#0000ff">return </font><font color="#000000">a * b;</font>
+<font color="#000000">}</font>
+<font color="#000000">}</font>
+<font color="#000000">}</font>
+</pre>
+</div>
+
+<p>2.Server Application (Console Application)</p>
+<div class="code">
+<pre>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Collections</font><font color="#000000">.</font><font color="#008080">Generic</font><font color="#000000">;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Text</font><font color="#000000">;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Runtime</font><font color="#000000">.Remoting;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Runtime</font><font color="#000000">.Remoting.</font><font color="#008080">Channels</font><font color="#000000">;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Runtime</font><font color="#000000">.Remoting.</font><font color="#008080">Channels</font><font color="#000000">.Tcp;</font>
+<font color="#0000ff">namespace </font><font color="#000000">remoteserver {</font>
+<font color="#0000ff">class </font><font color="#000000">Program {</font>
+
+<font color="#0000ff">static void </font><font color="#000000">Main(</font><font color="#0000ff">string</font><font color="#000000">[] args)</font>
+<font color="#000000">{</font>
+
+<font color="#000000">TcpChannel ch = </font><font color="#0000ff">new </font><font color="#000000">TcpChannel(</font><font color="#800080">8085</font><font color="#000000">);</font>
+<font color="#000000">ChannelServices.RegisterChannel(ch);</font>
+<font color="#000000">RemotingConfiguration.RegisterWellKnownServiceType(</font><font color="#0000ff">typeof</font>
+<font color="#000000">(remoteclass.xx), </font><font color="#ff00ff">&quot;rahul&quot;</font><font color="#000000">, WellKnownObjectMode.Singleton);</font>
+
+<font color="#808000">Console</font><font color="#000000">.Write(</font><font color="#ff00ff">&quot;Sever is  Ready........&quot;</font><font color="#000000">);</font>
+<font color="#808000">Console</font><font color="#000000">.Read();</font>
+<font color="#000000">}</font>
+<font color="#000000">}</font>
+<font color="#000000">}</font>
+</pre>
+</div>
+
+<p>3..Client Application (Window Application)</p>
+<div class="code">
+<pre>
+<font face="Courier New">
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Collections</font><font color="#000000">.</font><font color="#008080">Generic</font><font color="#000000">;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Text</font><font color="#000000">;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Runtime</font><font color="#000000">.Remoting;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Runtime</font><font color="#000000">.Remoting.</font><font color="#008080">Channels</font><font color="#000000">;</font>
+
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Runtime</font><font color="#000000">.Remoting.</font><font color="#008080">Channels</font><font color="#000000">.Tcp;</font>
+<font color="#0000ff">namespace </font><font color="#000000">remoteserver {</font>
+<font color="#0000ff">class </font><font color="#000000">Program {</font>
+
+<font color="#0000ff">static void </font><font color="#000000">Main(</font><font color="#0000ff">string</font><font color="#000000">[] args) {</font>
+
+<font color="#000000">TcpChannel ch = </font><font color="#0000ff">new </font><font color="#000000">TcpChannel(</font><font color="#800080">8085</font><font color="#000000">);</font>
+<font color="#000000">ChannelServices.RegisterChannel(ch);</font>
+<font color="#000000">RemotingConfiguration.RegisterWellKnownServiceType(</font><font color="#0000ff">typeof</font>
+<font color="#000000">(remoteclass.xx),</font><font color="#ff00ff">&quot; rahul&quot;</font><font color="#000000">, WellKnownObjectMode.Singleton);</font>
+
+<font color="#808000">Console</font><font color="#000000">.Write(</font><font color="#ff00ff">&quot;Sever is  Ready........&quot;</font><font color="#000000">);</font>
+<font color="#808000">Console</font><font color="#000000">.Read();</font>
+<font color="#000000">}</font>
+<font color="#000000">}</font>
+<font color="#000000">}</font>
+
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Collections</font><font color="#000000">.</font><font color="#008080">Generic</font><font color="#000000">;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">ComponentModel</font><font color="#000000">;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Data</font><font color="#000000">;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Drawing</font><font color="#000000">;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Text</font><font color="#000000">;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Windows</font><font color="#000000">.</font><font color="#008080">Forms</font><font color="#000000">;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Runtime</font><font color="#000000">.Remoting;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Runtime</font><font color="#000000">.Remoting.</font><font color="#008080">Channels</font><font color="#000000">;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Runtime</font><font color="#000000">.Remoting.</font><font color="#008080">Channels</font><font color="#000000">.Tcp;</font>
+
+<font color="#0000ff">namespace </font><font color="#000000">WindowsFormsApplication10 {</font>
+<font color="#0000ff">public </font><font color="#000000">partial </font><font color="#0000ff">class </font><font color="#000000">Form1 : </font><font color="#808000">Form </font><font color="#000000">{</font>
+<font color="#008000">//TcpChannel ch = new TcpChannel();</font>
+
+<font color="#000000">remoteclass.xx obj = </font><font color="#0000ff">new </font><font color="#000000">remoteclass.xx();</font>
+
+<font color="#0000ff">public </font><font color="#000000">Form1() {</font>
+<font color="#000000">InitializeComponent();</font>
+<font color="#000000">}</font>
+
+<font color="#0000ff">private void </font><font color="#000000">button1_Click(</font><font color="#0000ff">object </font><font color="#000000">sender, </font><font color="#008080">System</font><font color="#000000">.</font><font color="#808000">EventArgs </font><font color="#000000">e)</font>
+<font color="#000000">{</font>
+<font color="#008000">//ChannelServices.RegisterChannel(ch);</font>
+
+<font color="#000000">obj = (remoteclass.xx)</font><font color="#808000">Activator</font><font color="#000000">.GetObject(</font><font color="#0000ff">typeof</font><font color="#000000">(remoteclass.xx),</font>
+ <font color="#ff00ff">&quot; tcp://localhost:8085/rahul&quot;</font><font color="#000000">);</font>
+
+<font color="#0000ff">int </font><font color="#000000">x = Int32.Parse(textBox1.</font><font color="#008080">Text</font><font color="#000000">);</font>
+<font color="#0000ff">int </font><font color="#000000">y = Int32.Parse(textBox2.</font><font color="#008080">Text</font><font color="#000000">);</font>
+
+<font color="#000000">textBox3.</font><font color="#008080">Text </font><font color="#000000">= (obj.sum(x, y)).ToString();</font>
+<font color="#000000">}</font>
+<font color="#000000">}</font>
+<font color="#000000">}</font>
+</pre>
+</div>
+
+<p><h3>Output</h3></p>
+<p>Firstly Build Class Library</li>
+<p>After This Run Console Application Output Look like</p>
+<div class="image">
+<img src="console.gif">
+</div>
+<p>After this run Windows Application</p>
+<p><h3>output becomes</h3></p>
+<div class="output"> 
+<div class="image">
+<img src="windows.gif">
+</div></div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="how_to_use_xml_in_asp.shtml" 
+    title="How to use xml">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="transaction_in_asp.shtml" 
+    title="Transaction in asp">Next</a></td>
+  </tr>
+</table>
+ <!--Footer-->
+   </div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/dotnet/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+     <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+

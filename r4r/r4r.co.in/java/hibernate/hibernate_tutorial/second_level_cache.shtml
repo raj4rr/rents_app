@@ -1,0 +1,361 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<HTML><HEAD><TITLE>Hibernate Second Level Cache</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv="content-type" content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="Hibernate Second Level Cache tutorial learn easily and shortly with hibernate tutorial,hibernate
+Examples,hibernate interview questions Step by step covers all topics of hibernate" >
+<meta name="keywords" CONTENT="Hibernate Second Level Cache, Tutorial, For Beginners, Freshers, Learner, mapping, collection mapping, component mapping, HQL(Hibenate Query Language), HCQL, Named Query, 
+Caching">
+
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<META http-equiv="Content-Language" content="en-us">
+<link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+<link href="/css/main.css" rel="stylesheet" type="text/css" />
+</HEAD>
+<BODY>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>Hibernate</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+            <img src="/images/left_menu_bullet.gif"/> <a href="/java/hibernate/">Hibernate</a>
+             </div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top">
+                            <?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/hibernate/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                       <div class="main_content">  	 
+
+      <div class="heading">Second Level Cache</div>
+
+      <table id="indexing">
+
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="first_level_caching.shtml" title="First Level Caching">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="specification_of_second_level_cache.shtml" title="Specification Of second Level Cache">Next</a></td>
+  </tr> 
+</table>
+      <p>
+          Hibernate Session is a transaction-level cache of persistent data.Hibernate has the 
+          ability to configure a cluster or JVM-level (SessionFactory-level) cache on a class-by-class 
+          and collection-by-collection basis. we can plug in a clustered cache. We need to aware that 
+          caches are not having change mode to the persistent store by another application. 
+          So it can be called to configured to regularly expire cached data.
+      </p>
+      <p>
+          We have an another option in Hibernate which cache implementation to use by 
+          specifying the name of a class that implements org.hibernate.cache.CacheProvider 
+          using the property hibernate.cache.provider_class. Hibernate is combination of bundled 
+          with a number of own and plug it in as outlined above. we have to remember EhCache as 
+          the default cache provider.
+      </p>
+      <h3>We have given all cache provider in the table:</h3>
+      <div class="table_content">
+          <table>
+              <tr>
+                  <td class="heading">Cache</td>
+                  <td class="heading">Provider Class</td>
+                  <td class="heading">Type</td>              
+                  <td class="heading">Cluster Safe</td>
+                  <td class="heading">Query Cache Supported</td>
+              </tr>
+              <tr>
+                  <td class="alternate_heading1">Hashtable (not intended for production use)</td>
+                  <td class="alternate_heading1">org.hibernate.cache.HashtableCacheProvider</td>
+                  <td class="alternate_heading1">memory</td>
+                  <td class="alternate_heading1"></td>
+                  <td class="alternate_heading1">Yes</td>
+              </tr>
+              <tr>
+                  <td class="alternate_heading2">EHCache</td>
+                  <td class="alternate_heading2">org.hibernate.cache.EhCacheProvider</td>
+                  <td class="alternate_heading2">memory, disk</td>
+                  <td class="alternate_heading2"></td>
+                  <td class="alternate_heading2">Yes</td>
+              </tr>
+              <tr>
+                  <td class="alternate_heading1">OSCache</td>
+                  <td class="alternate_heading1">org.hibernate.cache.OSCacheProvider</td>
+                  <td class="alternate_heading1">memory, disk</td>
+                  <td class="alternate_heading1">Yes</td>
+                  <td class="alternate_heading1"></td>
+              </tr>
+              <tr>
+                  <td class="alternate_heading2">SwarmCache</td>
+                  <td class="alternate_heading2">org.hibernate.cache.SwarmCacheProvider</td>
+                  <td class="alternate_heading2">clustered (ip multicast)</td>
+                  <td class="alternate_heading2">yes (clustered invalidation)</td>
+                  <td class="alternate_heading2"></td>
+              </tr>
+              <tr>
+                  <td class="alternate_heading1">JBoss Cache 1.x</td>
+                  <td class="alternate_heading1">org.hibernate.cache.TreeCacheProvider</td>
+                  <td class="alternate_heading1">clustered (ip multicast</td>
+                  <td class="alternate_heading1">transactional yes (replication)</td>
+                  <td class="alternate_heading1">yes (clock sync req.)</td>
+              </tr>
+              <tr>
+                  <td class="alternate_heading2">JBoss Cache 2</td>
+                  <td class="alternate_heading2">org.hibernate.cache.jbc2.JBossCacheRegionFactory</td>
+                  <td class="alternate_heading2">clustered (ip multicast)</td>
+                  <td class="alternate_heading2">transactional yes (replication or invalidation)</td>
+                  <td class="alternate_heading2">yes (clock sync req.)</td>
+              </tr>
+          </table>
+      </DIV>
+
+      <p>
+          Generally we know that every session has its own cache memory. 
+          Cache is used to grow the performance of application and database. 
+          Caching is a mechanism for storing the loaded objects into a cache memory. 
+          By the help of the cache memory we can avoid the number of hits as many as possible to 
+          give a better performance for critical applications.
+      </p>
+      <h3>Advantage of cache mechanism: </h3>
+      <p>
+          When we want to load the same object from the database then instead of hitting the 
+          database once again, it loads from the local cache memory only, so that the number of 
+          round trips between an applications and databaase server got decreased. 
+          It means caching mechanism increase the performance of the application.Caching is 
+          important to Hibernate as well which utilizes a multilevel caching schemes.
+      </p>
+      <div class="heading">How to do Cache mappings</div>
+      <p>
+          We have given the simple cache code to understand the cache mapping. In the <cache> element of a class or collection mapping has the following form:
+      </p>
+      <div class="code">
+<pre><code class="language-java">
+@Entity
+@Cache(usage = CacheConcurrencyStrategy.READ_ONLY, region = "RegionName")
+public class YourEntity {
+    // ...
+}
+</code></pre>
+      </div>
+      <h3>Tag description is given below:</h3>
+      <div class="table_content">
+          <TABLE>
+              <tr><td class="heading">Tag</td><td class="heading">Description</td></tr>
+              <tr><td class="alternate_heading1">usage(required)</td><td class="alternate_heading1">It specifies the cache strategy. In transactional,read-write, nonstrict-read-write or read only</td></tr>
+              <tr><td class="alternate_heading2">region(optiona)</td><td class="alternate_heading2">Defaults to the classes or collection role name. It specifies the name of the second level cache region.</tr>
+              <tr><td class="alternate_heading1">include(optional)</td><td class="alternate_heading1">It defaults to all.It work non-lazy. It speficies that properties of teh entity mapped with lazy = atribute can not be cached when attribute-level lazy fetching is enabled.</tr>
+
+          </TABLE>
+      </div>
+      <p>
+          We can specify `@Cache` annotation on our entities. The usage attribute specifies a cache concurrency strategy.
+      </p>
+      <div class="heading">Hibernate Second Level Cache Example</div>
+      <p>
+          We know that in the hibernate cache first level cache is automatically generated but on the 
+          other hand second level cache we need to generate for making the session and to store the 
+          data and reusability the database object.
+      </p>
+      <h3>One small example for making the second level cache. In this we need some things which are given below:</h3>
+      <ol>
+          <li>Pro.java (Entity class)</li>
+          <li>Logic.java</li>
+          <li>ehcache.xml</li>
+          <li>hibernate.cfg.xml</li>
+      </ol>
+      <h3>Pro.java</h3>
+      <div class="code">
+<pre><code class="language-java">
+package HibernateCache;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
+
+@Entity
+@Table(name = "products")
+@Cache(usage = CacheConcurrencyStrategy.READ_ONLY)
+public class Pro {
+
+    @Id
+    @Column(name = "pid")
+    private int proId;
+
+    @Column(name = "pname", length = 10)
+    private String proName;
+
+    @Column(name = "price")
+    private double price;
+
+    public void setProId(int proId) {
+        this.proId = proId;
+    }
+
+    public int getProId() {
+        return proId;
+    }
+
+    public void setProName(String proName) {
+        this.proName = proName;
+    }
+
+    public String getProName() {
+        return proName;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+}
+</code></pre>
+      </div>
+      <h3>Logic.java</h3>
+      <div class="code">
+<pre><code class="language-java">
+package HibernateCache;
+
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.cfg.Configuration;
+
+public class Logic { 
+
+    public static void main(String[] args) {
+
+        Configuration cfg = new Configuration();
+        cfg.configure("hibernate.cfg.xml"); 
+
+        SessionFactory factory = cfg.buildSessionFactory();
+        
+        Session session1 = factory.openSession();
+        Pro s = session1.get(Pro.class, 105);
+        System.out.println("Loaded object product name is___" + s.getProName());
+        System.out.println("Object Loaded successfully.....!!");
+        session1.close();
+
+        System.out.println("------------------------------");
+        System.out.println("Waiting......");
+
+        try {
+            Thread.sleep(6000);
+        } catch (Exception e) {
+        }        
+
+        System.out.println("6 seconds compelted......!!!!!!!!");
+
+        Session session2 = factory.openSession();
+        Pro s2 = session2.get(Pro.class, 105);
+        System.out.println("Loaded object product name is___" + s2.getProName());
+        System.out.println("Object loaded from the database...!!");
+        session2.close();
+
+        Session session3 = factory.openSession();
+        Pro s3 = session3.get(Pro.class, 105);
+        System.out.println("Loaded object product name is___" + s3.getProName());
+        System.out.println("Object loaded from global cache successfully.....!!");
+        session3.close();
+
+        factory.close();
+    }
+}
+</code></pre>
+      </div>
+      <h3>Summary of Logic.java</h3>
+      <ol>
+          <li>From line numbers 16 \E2?? 22 we opened session1 and loaded object and closed session1, this time object will be loaded from the database as its the first time</li>
+          <li>Then from 27 \E2?? 31 we have been waited for 6 seconds,  but in our ehcache.xml we have given timeToIdleSeconds=\E2?\9D5\E2?\B3 , i mean after 5 seconds object will be removed from the global cache</li>
+          <li>And again in ForOurLogic.java line numbers 35 \E2?? 41 we opened second session and loaded the object, this time hibernate will loads the object from the database, and closed the session</li>
+          <li>Immediately from 43 \E2?? 49 we opened session3 and loaded the object, this time hibernate will loads the object form the global session not from the database</li>
+      </ol>
+
+      <h3>hibernate.cfg.xml</h3>
+      <div class="code">
+<pre><code class="language-xml">
+&lt;?xml version='1.0' encoding='UTF-8'?&gt;
+&lt;!DOCTYPE hibernate-configuration PUBLIC
+"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd"&gt;
+
+&lt;hibernate-configuration&gt;
+&lt;session-factory&gt;
+    &lt;property name="hibernate.dialect"&gt;org.hibernate.dialect.MySQLDialect&lt;/property&gt;
+    &lt;property name="hibernate.connection.driver_class"&gt;com.mysql.jdbc.Driver&lt;/property&gt;
+    &lt;property name="hibernate.connection.url"&gt;jdbc:mysql://localhost:3306/hibernate_pro?zeroDateTimeBehavior=convertToNull&lt;/property&gt;
+    &lt;property name="hibernate.connection.username"&gt;root&lt;/property&gt;
+    &lt;property name="hibernate.connection.password"&gt;root&lt;/property&gt;
+
+    &lt;property name="hibernate.cache.use_second_level_cache"&gt;true&lt;/property&gt;
+    &lt;property name="hibernate.cache.region.factory_class"&gt;org.hibernate.cache.ehcache.EhCacheRegionFactory&lt;/property&gt;
+
+    &lt;property name="show_sql"&gt;true&lt;/property&gt;
+    &lt;property name="hbm2ddl.auto"&gt;update&lt;/property&gt;
+
+    &lt;mapping class="HibernateCache.Pro" /&gt;
+&lt;/session-factory&gt;
+&lt;/hibernate-configuration&gt;
+</code></pre>
+      </div>
+      <h3>ehcache.xml</h3>
+      <div class="code">
+<pre><code class="language-xml">
+&lt;?xml version="1.0"?&gt; 
+&lt;ehcache&gt;
+    &lt;defaultCache maxElementsInMemory="100" eternal="false" timeToIdleSeconds="120" timeToLiveSeconds="200" /&gt;
+    &lt;cache name="HibernateCache.Pro" maxElementsInMemory="100" eternal="false" timeToIdleSeconds="5" timeToLiveSeconds="200" /&gt;
+&lt;/ehcache&gt;
+</code></pre>
+      </div>
+      <h3>Summary of ehcache.xml</h3>
+      <ol>
+          <li>
+              In ehcache.xml, if eternal=\E2?\9Dtrue\E2?\9D then we should not write timeToIdealSeconds, timeToLiveSeconds,  hibernate will take care about those values
+          </LI>
+          <li>
+              So if you want to give values manually better eternal=\E2?\9Dfalse\E2?\9D always,  so that we can assign values into timeToIdealSeconds, timeToLiveSeconds manually, and play ;)
+          </LI>
+          <li>
+              timeToIdealSeconds=\E2?\9Dseconds\E2?\9D means, if the object in the global chche is ideal, means not using by any other class or object then it will be waited for some time we specified and deleted from the global cache if time is exceeds more than timeToIdealSeconds value
+          </LI>
+          <li>
+              timeToLiveSeconds=\E2?\9Dseconds\E2?\9D means, the other Session or class using this object or not, i mean may be it is using by other sessions or may not, what ever the situation might be, once it competed the time specified timeToLiveSeconds, then it will be removed from the global cache by hibernate
+          </LI>
+          <li>
+              Actually <defaultCache \E2?\A6 /> will reflects to all the pojo classes in our application,  and we can also assign the ehcache values to specified pojo class by <cache name=\E2?\9D\E2?? your pojo class name \E2??\E2?\9D \E2?\A6\E2?\A6.. />
+          </li>
+      </ol>
+        <table id="indexing">
+
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="first_level_caching.shtml" title="First Level Caching">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="specification_of_second_level_cache.shtml" title="Specification Of second Level Cache">Next</a></td>
+  </tr> 
+</table>             
+
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+
+                <?php @include($_SERVER['DOCUMENT_ROOT'] . '/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>

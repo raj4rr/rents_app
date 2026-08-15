@@ -1,0 +1,115 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD>
+<meta http-equiv="Content-Language" content="en-us">
+<TITLE>Lifecycle management of IOC container</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name="description" CONTENT="Lifecycle 
+management of IOC container,spring tutorials,spring framework,spring mvc,spring interview question,spring framework tutorials,spring aop" >
+<meta name="keywords" CONTENT="Lifecycle 
+management of IOC container,spring tutorials,spring framework,spring mvc,spring interview question,spring framework tutorials,spring aop">
+
+<!-- header start-->	
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>Spring Framework</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+           <img src="/images/left_menu_bullet.gif" width="11" height="6"/>  <a href="/java/">Java</a>    
+		      <img src="/images/left_menu_bullet.gif" width="11" height="6"/><a href="/java/spring/">Spring</a>
+
+              </div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/spring/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	 
+
+<!-- header End--> 
+
+<div class="heading">Lifecycle management of IOC container </div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="ExampleAutoByAutodetect.shtml" title="Example Auto ByAutodetect">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="ExampleIntrusive.shtml" title="Example Intrusive">Next</a></td>
+  </tr> 
+</table>
+
+ <p><i>Introduction:</i> The IOC container provide the facility of notifying beans about the creation and destruction show that bean can perform initialization or cleanup perforation. It means that the IOC container provide the facility to notifying create of bean and destroy of bean. Initialization and destruction of a bean is notified to it.</p>
+<p>The IOC container notifying the creation and destruction either of the following two ways:</p>
+<ol>
+<li>
+Non-Intrusive approach
+</li>
+<li>
+Intrusive approach 
+</li>
+</ol>
+<p><i>Non-Intrusive approach:</i> A non-intrusive approach an initialization method is defined in the bean and is specified in the bean configuration using init-method attribute.</p>
+
+<h3>Syntax:</h3>
+<div class="code">
+<PRE>
+<FONT COLOR="#000000">&lt; </FONT><FONT COLOR="#0000ff">&lt;</FONT><FONT COLOR="#808000">bean </FONT><FONT COLOR="#800080">id</FONT><FONT COLOR="#0000ff">=</FONT><FONT COLOR="#ff00ff">"one" </FONT><FONT COLOR="#800080">class</FONT><FONT COLOR="#0000ff">=</FONT><FONT COLOR="#ff00ff">"org.r4r.One" </FONT><FONT COLOR="#800080">init-method</FONT><FONT COLOR="#0000ff">=</FONT><FONT COLOR="#ff00ff">"init"</FONT><FONT COLOR="#0000ff">/&gt;</FONT>
+</PRE>
+</div>
+
+<p><i>Intrusive approach:</i> In the intrusive approach initialization bean interface provided by the framework is implemented in the bean class and initializing logic is contain with it after property set method. This method is provided by "InitializingBean" interface.</p>
+<h3>InitializingBean</h3>
+<p>The InitializingBean interface provide cleanup operation at the time of unloading of a bean either destroy-method attribute of bean is used.</p>
+<p>This interface provide a method name which are following:</p>
+<p><i>public void afterPropertiesSet();</i></p>
+<h3>Syntax:</h3>
+<div class="code">
+<PRE>
+<FONT COLOR="#000000"> </FONT><FONT COLOR="#0000ff">&lt;</FONT><FONT COLOR="#808000">bean </FONT><FONT COLOR="#800080">id</FONT><FONT COLOR="#0000ff">=</FONT><FONT COLOR="#ff00ff">"one" </FONT><FONT COLOR="#800080">class</FONT><FONT COLOR="#0000ff">=</FONT><FONT COLOR="#ff00ff">"org.r4r.One" </FONT><FONT COLOR="#800080">destroy-method</FONT><FONT COLOR="#0000ff">=</FONT><FONT COLOR="#ff00ff">"init"</FONT><FONT COLOR="#0000ff">/&gt;</FONT>
+</PRE>
+</div>
+
+<h3>DisposableBean</h3>
+<p>This bean interface is provided by framework is implemented. This interface provide a method name destroy() if is invoked by IOC container before unload by IOC container before unloaded bean.</p>
+<p>This interface provide single method name destroy().</p>
+<p><i>public void destroy(); </i></p>  
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="ExampleAutoByAutodetect.shtml" title="Example Auto ByAutodetect">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="ExampleIntrusive.shtml" title="Example Intrusive">Next</a></td>
+  </tr> 
+</table>
+
+<!-- Footer Start-->
+
+		</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->
+

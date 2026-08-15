@@ -1,0 +1,285 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>Updating Records Using Mapped Names </TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="Updating Records Using Mapped Names " >
+<meta name="keywords" CONTENT="Updating Records Using Mapped Names ">
+
+<!-- header start-->	
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>ADO.NET</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+            <img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+            <a href="/ado.net">ADO.Net</a>
+              <img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+
+			  <a href="/ado.net/01/tutorial/ado.net/">ADO.NET Tutorials</a>
+
+              </div>
+
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/ado.net/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	 
+<!-- header End-->	
+<div class="heading">Using ADOX in the .NET Framework</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="COM%20Interoperability.shtml" title="COM Interoperability">Previous</a>
+	</td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="access.shtml" title="Connecting to MS Access Database in ASP .NET">Next</a></td>
+  </tr> 
+</table>
+
+<p>ADOX, more formally the Microsoft ADO Extensions for DDL and Security, exposes an
+object model that allows data source objects to be created and manipulated.
+The ADOX object model is shown in the following figure. Not all data sources support all
+of the objects in the model; this is determined by the specific OleDb Data Provider</p>
+
+<div class="image">
+<img src="Using%20ADOX%20in%20the%20.NET%20Framework/1.gif">
+</div>
+
+<p>The top-level object, Catalog, equates to a specific data source. This will almost always
+be a database, but specific OleDb Data Providers might expose different objects. The
+Groups and Users collections control access security for those data sources that
+implement it  The Tables object represents the tables within the database. Each table contains a
+Columns collection, which represents individual fields in the table; an Indexes collection,
+which represents physical indexes.</p>
+
+<div class="heading">Create a Database Using ADOX</div>
+<ol>
+<li> In the code editor, select makedbin the Control Name combo box,and then select Click in the Method Name combo box.
+ In the code editor, select makedbin the Control Name combo box,and then select Click in the Method Name combo box.</li>
+ <li> In the form designer, double-click Make DB.Visual Studio adds the event handler to the code.</li>
+<li>Add the following lines to the event handler, specifying the path to the Sample DBs directory on your system where indicated:</li>
+
+<li>
+<div class="code">
+<pre>
+<font color="#0000ff">string </font><font color="#000000">dsStr, dsCN;</font>
+</pre>
+</div>
+</li>
+
+<li>
+<div class="code">
+<pre>
+ <font color="#000000">ADODB.Connection adcon = </font><font color="#0000ff">new </font><font color="#000000">ADODB.Connection();</font>
+</pre>
+</div>
+</li>
+
+<li>
+<div class="code">
+<pre>
+<font color="#000000">ADOX.Catalog mdb = </font><font color="#0000ff">new </font><font color="#000000">ADOX.Catalog();</font>
+</pre>
+</div>
+</li>
+
+<li>
+<div class="code">
+<pre>
+<font color="#000000">dsStr = </font><font color="#ff00ff">&quot;&lt;&lt;specify the path to the Sample DBs directory&gt;&gt;&quot; </font><font color="#000000">_</font>
+</pre>
+</div>
+</li>
+
+<li>
+<div class="code">
+<pre>
+<font color="#000000">+ </font><font color="#ff00ff">&quot;\\test.mdb&quot;</font><font color="#000000">;</font>
+</pre>
+</div>
+</li>
+
+<li>
+<div class="code">
+<pre>
+<font color="#000000">dsCN = </font><font color="#ff00ff">&quot;Provider=Microsoft.Jet.OLEDB.4.0;Data Source=&quot; </font><font color="#000000">+</font>
+<font color="#000000">dsStr + </font><font color="#ff00ff">&quot;;&quot;</font><font color="#000000">;</font>
+</pre>
+</div>
+</li>
+
+<li>
+<div class="code">
+<pre>
+<font color="#000000">adcon.ConnectionString = dsCN;</font>
+</pre>
+</div>
+</li>
+
+<li>
+<div class="code">
+<pre>
+<font color="#000000">mdb.Create(dsCN);</font>
+</pre>
+</div>
+</li>
+
+<li>
+<div class="code">
+<pre>
+ <font color="#808000">MessageBox</font><font color="#000000">.Show(</font><font color="#ff00ff">&quot;Finished&quot;</font><font color="#000000">, </font><font color="#ff00ff">&quot;Make DB&quot;</font><font color="#000000">);</font>
+</pre>
+</div>
+</li>
+
+<li> Press F5 to run the application, and then click Make DB.</li></ol>
+
+<div class="heading">Add a Table to a Database Using ADOX</div>
+
+<ol>
+<li> In the code editor, select btnMakeTable in the Control Name combo box, and then select Click in the Method Name combo box.
+Visual Studio adds the event handler to the code.In the form designer, double-click Make Table.Visual Studio adds the event handler to the code.</li>
+<li> Add the following code to the event handler:</li>
+
+<li>
+<div class="code">
+<pre>
+ <font color="#000000">ADODB.Connection cnADO;</font>
+</pre>
+</div>
+</li>
+
+<li>
+<div class="code">
+<pre>
+<font color="#000000">ADOX.Catalog mdb = </font><font color="#0000ff">new </font><font color="#000000">ADOX.Catalog();</font>
+</pre>
+</div>
+</li>
+
+<li>
+<div class="code">
+<pre>
+ <font color="#000000">ADOX.</font><font color="#808000">Table </font><font color="#000000">dt = </font><font color="#0000ff">new </font><font color="#000000">ADOX.</font><font color="#808000">Table</font><font color="#000000">();</font>
+</pre>
+</div>
+</li>
+
+<li>
+<div class="code">
+<pre>
+<font color="#000000">cnADO = create_connection();</font>
+</pre>
+</div>
+</li>
+
+<li>
+<div class="code">
+<pre>
+<font color="#000000">cnADO.Open(cnADO.ConnectionString, </font><font color="#ff00ff">&quot;&quot;</font><font color="#000000">, </font><font color="#ff00ff">&quot;&quot;</font><font color="#000000">, -</font><font color="#800080">1</font><font color="#000000">);</font>
+</pre>
+</div>
+</li>
+
+<li>
+<div class="code">
+<pre>
+ <font color="#000000">mdb.ActiveConnection = cnADO;</font>
+</pre>
+</div>
+</li>
+
+<li>
+<div class="code">
+<pre>
+<font color="#000000">dt.Name = </font><font color="#ff00ff">&quot;New Table&quot;</font><font color="#000000">;</font>
+</pre>
+</div>
+</li>
+
+<li>
+<div class="code">
+<pre>
+ <font color="#000000">dt.Columns.Append(</font><font color="#ff00ff">&quot;TableID&quot;</font><font color="#000000">,</font>
+<font color="#000000">ADOX.DataTypeEnum.adWChar, </font><font color="#800080">5</font><font color="#000000">);</font>
+</pre>
+</div>
+</li>
+
+<li>
+<div class="code">
+<pre>
+<font color="#000000">dt.Columns.Append(</font><font color="#ff00ff">&quot;Value&quot;</font><font color="#000000">,</font>
+<font color="#000000">ADOX.DataTypeEnum.adWChar, </font><font color="#800080">20</font><font color="#000000">);</font>
+</pre>
+</div>
+</li>
+
+<li>
+<div class="code">
+<pre>
+<font color="#000000">dt.Keys.Append(</font><font color="#ff00ff">&quot;PK_NewTable&quot;</font><font color="#000000">,</font>
+<font color="#000000">ADOX.KeyTypeEnum.adKeyPrimary, </font><font color="#ff00ff">&quot;TableID&quot;</font><font color="#000000">);</font>
+</pre>
+</div>
+</li>
+
+<li>
+<div class="code">
+<pre>
+<font color="#000000">mdb. Tables.Append(dt);</font>
+</pre>
+</div>
+</li>
+
+<li>
+<div class="code">
+<pre>
+ <font color="#808000">MessageBox</font><font color="#000000">.Show(</font><font color="#ff00ff">&quot;Finished&quot;</font><font color="#000000">, </font><font color="#ff00ff">&quot;Make Table&quot;</font><font color="#000000">);</font>
+</pre>
+</div>
+</li>
+
+<li>Press F5 to run the application, and then click Make Table.</li>
+
+</ol>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="COM%20Interoperability.shtml" title="COM Interoperability">Previous</a>
+	</td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="access.shtml" title="Connecting to MS Access Database in ASP .NET">Next</a></td>
+  </tr> 
+</table>
+
+<!-- Footer Start-->		
+		</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/dotnet/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->

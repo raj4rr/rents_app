@@ -1,0 +1,121 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML>
+<TITLE>Equi Join,Natural Join,Self Join</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name="description" CONTENT="EQUI JOIN, NATURAL JOIN, SELF JOIN" >
+<meta name="keywords" CONTENT="EQUI JOIN, NATURAL JOIN, SELF JOIN">
+
+<!--header start-->
+
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>DATABASE & SQL/PLSQL</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a><img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+			<a href="/sql/">SQL </a>
+              </div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/sql/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	  
+
+                        	                        	<!-- Header End-->	
+    <div class="heading">Equi Join,Natural Join,Self Join</div>
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="cross.shtml" title="Cross Join">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="exits.shtml" title="Sub queries with EXITS Clause">Next</a></td>
+  </tr>
+</table>
+
+<h3>Equi Join</h3>
+<p>A equi join display redundant column of data in the result set, where two or more tables are compared for equality.</p>
+<h3>Example:</h3>
+<div class="code">
+<pre>SELECT *
+FROM <i> sales s</i>  JOIN <i> titles t</i>
+ON <i> s.title_id=t.title_id</i>
+JOIN <i> publishers p</i>
+ON <i> t.pub_id=p.pub_id</i>
+</pre>
+</div>
+
+<p><i>output</i></p>
+<div class="output">
+<div class="image">
+<img src="Image/equi.gif">
+</div>
+</div>
+<p>Returns the above columns in the result set.</p>
+
+<h3>Natural Join</h3>
+<p>A join that restrict the redundant column from the result set is known as natural join</p>
+
+<div class="code">
+<pre>
+SELECT<i>t.title, p.pub_name</i>
+FROM <i>titles  t </i> JOIN<i>publishers p</i>
+ON<i>t.pub_id=p.pub_id</i>
+</pre>
+</div>
+<p>Returns the all title and pub_name from respective tables.</p>
+
+<h3>Self Join</h3>
+<p>A join is said to self join when one row in a table correlates with the other rows in the same table. An alias name can differentiate the two copy of the table. All join operators except the outer join operators can be used in a self join.</p>
+<h3>Example</h3>
+
+<div class="code">
+<pre>
+SELECT<i>t1.title, t2.title, t1.price</i>
+FROM <i>titles t1  JOIN titles t2</i>ON<i>t1.price=t2.price</i>
+WHERE <i>t1.price=2.99</i>
+</pre>
+</div>
+<p><i>output</i></p>
+<div class="image">
+<div class="output">
+<img src="Image/self.gif">
+</div>
+</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="cross.shtm" title="Cross Join">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="exits.shtml" title="Sub queries with EXITS Clause">Next</a></td>
+  </tr>
+</table>
+
+                       <!--Footer  -->
+
+</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>

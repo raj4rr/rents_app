@@ -1,0 +1,108 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http:///www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML>
+
+	<HEAD>
+		<TITLE>feof() Function</TITLE>
+		<META content="Rajesh Kumar" name="author">
+		<META http-equiv="expires" content="0">
+		<META content="r4r.co.in" name="owner">
+		<META http-equiv="content-type" content="text/html; charset=iso-8859-1">
+		<meta name="description" CONTENT="">
+		<meta name="keywords" CONTENT="">
+
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>Standard Library Functions in C</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a><img src="/images/left_menu_bullet.gif"/> <a href="/c/">c</a></div>
+            	<table>
+                    <tr>
+                      <td width="19%" valign="top" style="width:20%"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/c/commonfiles/s-library-leftmenu.shtml'); ?></td>
+
+                        <td width="81%" style="80%" valign="top">
+
+                        		<!-- Header End-->	
+                     <div class="main_content">
+<div class="heading">feof() Function</div>
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="index.shtml" title="Standard Library Functions in C">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml" title="Standard Library Functions in C">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="ferror()_function_in_c.shtml" title="ferror() Function ">Next</a></td>
+  </tr> 
+</table>
+<h1>Description</h1>
+<p>The C library function, The <b>feof</b> function is Used to determine if the end of the file (stream) specified, has been reached. When a file is being read sequentially one line, or one piece of data at a time (by means of a loop, say), this is the function you check every iteration, to see if the end of the file has come.</p>
+
+<h1>Declaration</h1>
+<p>Following is the declaration for feof() function.</p>
+
+<div class="code">
+<PRE><FONT FACE="Arial"><FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">feof(FILE *stream)</FONT></FONT></PRE>
+</div>
+
+<h1>Parameters</h1>
+<p><b>stream</b> - Macro tests if end-of-file has been reached on a stream. feof is a macro that tests the given stream for an end-of-file indicator.</p>
+
+<h1>Return Value</h1>
+<p>Nonzero (true) if the end of file has been reached, zero (false) otherwise.</p>
+
+<h1>Example</h1>
+<div class="code">
+<PRE><FONT FACE="Arial"><FONT COLOR="#000000">#include &lt;stdio.h&gt;</FONT>
+
+<FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">main(</FONT><FONT COLOR="#0000ff">void</FONT><FONT COLOR="#000000">)</FONT>
+<FONT COLOR="#000000">{</FONT>
+    <FONT COLOR="#0000ff">char </FONT><FONT COLOR="#000000">buffer[</FONT><FONT COLOR="#800080">256</FONT><FONT COLOR="#000000">];</FONT>
+    <FONT COLOR="#000000">FILE * myfile;</FONT>
+
+    <FONT COLOR="#000000">myfile = fopen(</FONT><FONT COLOR="#ff00ff">"some.txt"</FONT><FONT COLOR="#000000">,</FONT><FONT COLOR="#ff00ff">"r"</FONT><FONT COLOR="#000000">);</FONT>
+
+    <FONT COLOR="#0000ff">while </FONT><FONT COLOR="#000000">(!feof(myfile))</FONT>
+    <FONT COLOR="#000000">{</FONT>
+        <FONT COLOR="#000000">fgets(buffer,</FONT><FONT COLOR="#800080">256</FONT><FONT COLOR="#000000">,myfile);</FONT>
+        <FONT COLOR="#000000">printf(</FONT><FONT COLOR="#ff00ff">"%s"</FONT><FONT COLOR="#000000">,buffer);</FONT>
+    <FONT COLOR="#000000">}</FONT>
+
+    <FONT COLOR="#000000">fclose(myfile);</FONT>
+
+    <FONT COLOR="#0000ff">return </FONT><FONT COLOR="#800080">0</FONT><FONT COLOR="#000000">;</FONT>
+<FONT COLOR="#000000">}</FONT></FONT></PRE>
+</div>
+
+<h2>Output</h2>
+<p>This example opens a file called some.txt for reading, then in a loop, reads lines from the file and outputs them to the screen. The loop continues until the end of the file has come.</p>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="index.shtml" title="Standard Library Functions in C">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml" title="Standard Library Functions in C">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="ferror()_function_in_c.shtml" title="ferror() Function ">Next</a></td>
+  </tr> 
+</table>
+
+<!--Footer  --> 	
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/c/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>

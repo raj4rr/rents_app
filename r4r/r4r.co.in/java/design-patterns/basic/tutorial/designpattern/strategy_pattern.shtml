@@ -1,0 +1,145 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD>
+<meta http-equiv="Content-Language" content="en-us">
+<TITLE>Strategy Design Pattern Pattern</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name="description" CONTENT="Strategy Design Pattern Pattern" >
+<meta name="keywords" CONTENT="Strategy Design Pattern Pattern">
+
+<!-- header start-->	
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>Design Pattern Basic Tutorial</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+
+         		 <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/java/">java</a>           
+
+              <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/java/design-patterns/">Design Pattern</a>
+
+              </div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/design-patterns/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	 
+<!-- header end--> 
+
+<div class="heading">Strategy Pattern</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="state_pattern.shtml" title="state_pattern">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="Template_pattern.shtml" title="Template_pattern">Next</a></td>
+  </tr> 
+</table>
+
+<p>The strategy pattern is also know as policy pattern. in which the algorithm is selected at the runtime. formally we can say that it is a family of algorithm, in which the algorithm is encapsulate each one.
+</p>
+<div class="heading">Benefit and use of Strategy</div>	   
+ <ol>
+ <li>
+The strategy pattern encapsulate more than one algorithms with each one.
+
+  </li><li>
+It is provide one of several algorithms dynamically.
+
+ </li><li>
+It is provide the facility of exchanging algorithms.
+
+</li><li>
+Data is transparent to the clients.
+</li><li>
+Reduce the conditional statements.
+  </li></ol>
+
+ <h3>Example</h3>
+
+ <div class="code">
+<pre>
+<font color="#0000ff">package </font><font color="#000000">r4r;</font>
+<font color="#0000ff">interface </font><font color="#000000">Cookies {</font>
+<font color="#0000ff">public void </font><font color="#000000">print();</font>
+<font color="#000000">}</font>
+<font color="#0000ff">class </font><font color="#000000">One </font><font color="#0000ff">implements </font><font color="#000000">Cookies {</font>
+<font color="#0000ff">public void </font><font color="#000000">print() {</font>
+<font color="#ff0000">System</font><font color="#000000">.out.println(</font><font color="#ff00ff">&quot;This is your turn&quot;</font><font color="#000000">);</font>
+<font color="#000000">}</font>
+<font color="#000000">}</font>
+<font color="#0000ff">class </font><font color="#000000">Two </font><font color="#0000ff">implements </font><font color="#000000">Cookies {</font>
+<font color="#0000ff">public void </font><font color="#000000">print() {</font>
+<font color="#ff0000">System</font><font color="#000000">.out.println(</font><font color="#ff00ff">&quot;Never too late to start&quot;</font><font color="#000000">);</font>
+<font color="#000000">}</font>
+<font color="#000000">}</font>
+<font color="#0000ff">class </font><font color="#000000">Zero </font><font color="#0000ff">implements </font><font color="#000000">Cookies {</font>
+<font color="#0000ff">public void </font><font color="#000000">print() {</font>
+<font color="#ff0000">System</font><font color="#000000">.out.println(</font><font color="#ff00ff">&quot;You got nothing in your hand&quot;</font><font color="#000000">);    </font>
+<font color="#000000">}</font>
+<font color="#000000">}</font>
+<font color="#0000ff">class </font><font color="#000000">Dice {</font>
+<font color="#0000ff">public int </font><font color="#000000">Playit() {</font>
+<font color="#0000ff">return </font><font color="#000000">(</font><font color="#0000ff">int</font><font color="#000000">)(</font><font color="#ff0000">Math</font><font color="#000000">.random()*</font><font color="#800080">6</font><font color="#000000">)+</font><font color="#800080">1</font><font color="#000000">;</font>
+<font color="#000000">}</font>
+<font color="#000000">}</font>
+<font color="#0000ff">public class </font><font color="#000000">strategytest {</font>
+<font color="#0000ff">static void </font><font color="#000000">Fortune() {</font>
+<font color="#0000ff">int </font><font color="#000000">luckyNum = </font><font color="#0000ff">new </font><font color="#000000">Dice().Playit();</font>
+<font color="#000000">Cookies c;</font>
+<font color="#0000ff">switch </font><font color="#000000">(luckyNum) {</font>
+<font color="#0000ff">case </font><font color="#800080">2</font><font color="#000000">: c = </font><font color="#0000ff">new </font><font color="#000000">Two();</font>
+<font color="#0000ff">break</font><font color="#000000">;</font>
+<font color="#0000ff">case </font><font color="#800080">1</font><font color="#000000">: c = </font><font color="#0000ff">new </font><font color="#000000">One();</font>
+<font color="#0000ff">break</font><font color="#000000">;</font>
+<font color="#008000">//more</font>
+<font color="#0000ff">default</font><font color="#000000">: c = </font><font color="#0000ff">new </font><font color="#000000">Zero();</font>
+<font color="#000000">}</font>
+<font color="#000000">c.print();</font>
+<font color="#000000">}</font>
+<font color="#0000ff">public static void </font><font color="#000000">main(</font><font color="#ff0000">String</font><font color="#000000">[] args) {</font>
+<font color="#000000">Fortune();</font>
+<font color="#000000">}</font>
+<font color="#000000">}</font>
+</pre>
+</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="state_pattern.shtml" title="state_pattern">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="Template_pattern.shtml" title="Template_pattern">Next</a></td>
+  </tr> 
+</table>
+
+<!-- Footer Start-->	   	
+
+		</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->

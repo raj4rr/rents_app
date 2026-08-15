@@ -1,0 +1,65 @@
+<?php
+require '../include/init.php';
+Auth::requireLogin();
+// PDO check PDO comments and look back earlier codes in project
+$conn = require '../include/db.php';
+
+$paginator = new Paginator(isset($_GET['page']) ? $_GET['page'] : 1, 50, Article::getTotal($conn));	 // php Null coalescing operator [if $_GET['page'] exist then it will show else other] + Total number of content
+
+$menus = Menu::getPage($conn, $paginator->limit, $paginator->offset);
+
+if (isset($_GET['id']))  // validate the query_string
+{
+
+	$seoarticle = Article::getByID($conn, $_GET['id']);	// PDO (function calling from Article class)
+
+	if(!$seoarticle)
+	{
+		die("Article not found.");
+	}
+
+} else {
+	die("id not supplied, article not found.");
+}
+
+$category_ids = array_column($seoarticle->getCategories($conn), 'id');
+$categories = Category::getAll($conn);
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
+		$seoarticle->title = trim($_POST['title']);
+			$seoarticle->url = trim($_POST['url']);
+			$seoarticle->keyword = trim($_POST['keyword']);
+			$seoarticle->meta_desc = trim($_POST['meta_desc']);
+	$seoarticle->aheader = $_POST['header'];
+	$seoarticle->afooter = $_POST['footer'];
+	$seoarticle->modified_user = $_SESSION['user_id'];
+	$seoarticle->modified_by = date("Y-m-d");
+	$seoarticle->published_at = $_POST['published_at'];
+	$seoarticle->main_menu = $_POST['main_menu'];
+
+	$category_ids = $_POST['category'];
+
+		if($seoarticle->updateseo($conn)){
+				$seoarticle->setCategories($conn, $category_ids);
+
+				Url::redirect("/blogs/admin/seoarticle.php?id={$seoarticle->id}");	// relative link
+			}
+		}
+?>
+<link rel="stylesheet" type="text/css" href="admin_css/grid.css"/>
+<link rel="stylesheet" type="text/css" href="admin_css/content.css"/>
+<link type="text/css" rel="stylesheet" href="admin_js/jquery-te-1.4.0.css">
+<script type="text/javascript" src="admin_js/jquery 1.6.4.js"></script>
+<script type="text/javascript" src="admin_js/popup.js"></script>
+<script src="admin_js/jquery.min.js"></script>
+<script type="text/javascript" src="admin_js/jquery-te-1.4.0.min.js" charset="utf-8"></script>
+<?php require '../header.php' ?>
+
+<h2>Edit Article</h2>
+
+<?php require 'include/seoarticle-form.php'; ?>
+
+<?php require '../footer.php' ?>
+<script src="/admin/admin_js/jquery.min.js"></script>
+<script src="/admin/admin_js/text_limit.js"></script>  

@@ -1,0 +1,128 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>Printing Controls in C#</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="Printing Controls in C#" >
+<meta name="keywords" CONTENT="Printing Controls in C#">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+     <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>C# Tutorial</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a><img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/c1/">C#</a>
+
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/c1/commonfiles/leftmenu.shtml'); ?></td>
+
+                       <td style="80%" valign="top">
+                        <div class="main_content"> 
+
+	<!-- Header End-->
+
+  <div class="heading">Printing Controls</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="dialog.shtml" title="Dialog Controls">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="data.shtml" title="Data Controls">Next</a></td>
+  </tr>
+</table>
+<p>These controls are used to take printing of documents whether in form of print screen or as printing in the content form .
+ In following figure i tried to describe about these controls how you will use in your window application.</p>
+ <p>For explaining this i had taken the previous example of dialog control, so lets proceed  with printing controls.</p>
+ <div class="image">
+ <img src="image/print2.JPG">
+ </div>
+ <p><h3>Example</h3>Code for Print Preview- For performing this action first add namespace</p>
+ <div class="code">
+<pre>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Drawing</font><font color="#000000">.</font><font color="#008080">Printing</font><font color="#000000">;</font>
+
+<font color="#000000">PrintDocument PrintDoc1 = </font><font color="#0000ff">new </font><font color="#000000">PrintDocument();</font>
+<font color="#808000">PrintPreviewDialog </font><font color="#000000">PrintPreviewDialog1= </font><font color="#0000ff">new </font><font color="#808000">PrintPreviewDialog</font><font color="#000000">();</font>
+<font color="#0000ff">private void </font><font color="#000000">printToolStripMenuItem_Click(</font><font color="#0000ff">object </font><font color="#000000">sender,</font><font color="#808000">EventArgs </font><font color="#000000">e)</font>
+<font color="#000000">{</font>
+<font color="#000000">PrintPreviewDialog1.Document = PrintDoc1;</font>
+<font color="#000000">PrintDoc1.OriginAtMargins = </font><font color="#0000ff">true</font><font color="#000000">; </font>
+<font color="#008000">//To set or Get the Position of a Graphic Object</font>
+<font color="#000000">PrintDoc1.PrintPage += PDoc_PrintPage;</font>
+<font color="#000000">PrintPreviewDialog1.ShowDialog();</font>
+
+<font color="#000000">}</font>
+</pre>
+</div>
+
+<p><h3>Example</h3>Create Method</p>
+<div class="code">
+<pre>
+<font color="#0000ff">private void </font><font color="#000000">PDoc_PrintPage(</font><font color="#0000ff">object </font><font color="#000000">sender, PrintPageEventArgs e)</font>
+<font color="#000000">{</font>
+<font color="#808000">Bitmap </font><font color="#000000">bmp = </font><font color="#0000ff">new </font><font color="#808000">Bitmap</font><font color="#000000">(</font><font color="#0000ff">this</font><font color="#000000">.Width, </font><font color="#0000ff">this</font><font color="#000000">.Height);</font>
+<font color="#0000ff">this</font><font color="#000000">.DrawToBitmap(bmp, </font><font color="#0000ff">this</font><font color="#000000">.ClientRectangle);</font>
+<font color="#0000ff">this</font><font color="#000000">.DrawToBitmap(bmp, </font><font color="#0000ff">new </font><font color="#808000">Rectangle</font><font color="#000000">(</font><font color="#800080">0</font><font color="#000000">, </font>
+<font color="#800080">0</font><font color="#000000">, bmp.Width, bmp.Height)); </font>
+<font color="#008000">//Takes the Snap of the Exact WindowForm size as </font>
+<font color="#008000">//Bitmap image</font>
+<font color="#000000">e.</font><font color="#808000">Graphics</font><font color="#000000">.DrawImage(bmp, </font><font color="#800080">0</font><font color="#000000">, </font><font color="#800080">0</font><font color="#000000">);</font>
+<font color="#000000">}</font>
+</pre>
+</div>
+
+<div class="image">
+<img src="image/print1.JPG">
+</div>
+
+<p><h3>Example</h3>Code for taking Print</p>
+<div class="code">
+<pre>
+<font color="#0000ff">private void </font><font color="#000000">printToolStripMenuItem1_Click(</font><font color="#0000ff">object </font><font color="#000000">sender,</font><font color="#808000">EventArgs </font><font color="#000000">e)</font>
+<font color="#000000">{</font>
+<font color="#000000">PrintDoc1.Print();</font>
+<font color="#000000">}</font>
+</pre>
+</div>
+
+<p><h3>Output becomes</h3></p>
+<div class="output">
+<div class="image">
+<img src="image/print.JPG">
+</div>
+</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="dialog.shtml" title="Dialog Controls">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="data.shtml" title="Data Controls">Next</a></td>
+  </tr>
+</table>	
+
+ <!--Footer-->
+   </div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/dotnet/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+     <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>

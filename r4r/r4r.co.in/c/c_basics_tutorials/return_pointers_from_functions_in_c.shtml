@@ -1,0 +1,140 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>Benefit of using function,Pointer in C</TITLE>
+<META content=r4r.co.in name=owner>
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="Benefits of using function in C with examples,Pointers in C,Data types,Array,Pointers,Functions,Union,Structures,Storage class,C constants,Data types,Preprocessors.Storage class">
+<meta name="keywords" CONTENT="Benefits of using function,Pointer in C,Types of functions in C,Function prototype,Function declaration,Nesting of function,Calling function in c,Recursive function in c,Pointers,Loops,Union,Structures,Data types,Storage class,C constants">
+<META content="Rajesh Kumar" name=author>
+<META http-equiv="expires" content="0"> 
+
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+     <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>C Programming language</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a><img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/c/">C </a>
+              <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/c/c_basics_tutorials/">Learn C in 9 days</a></div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/c/commonfiles/new-leftmenu.shtml'); ?></td>
+
+                       <td style="80%" valign="top">
+                        <div class="main_content">
+
+	 <!-- Header End--> 		
+<div class="heading"><font style="background:#FF9966; padding:7px 0px 7px 7px;">Day <font style="background:#E95409; padding:7px;">7</font></font> Pointer to Function in C Programming language: Return pointer from functions</div>    
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="passing_pointers_to_functions_in_c.shtml" title="Pointer to Function in C Programming language: Passing pointers to functions">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="string_in_c.shtml" title="Strings in C Programming language">Next</a></td>
+  </tr>
+</table>	
+
+<p>C programming language allows to return an array from a function. Similarly, C allows you to return a pointer from a function.</p>
+<div class="code">
+<pre>
+<font color="#0000ff">int </font><font color="#000000">* pointerFunction()</font>
+<font color="#000000">{</font>
+<font color="#000000">.</font>
+<font color="#000000">.</font>
+<font color="#000000">.</font>
+<font color="#000000">}</font>
+</pre>
+</div>
+<p>Consider the following function which will generate 10 random numbers and return them using an array name which represents a pointer ie address of first array element.</p>
+<div class="code">
+<pre>
+<font color="#ff0000">#include </font><font color="#000000">&lt;stdio.h&gt;</font>
+<font color="#ff0000">#include </font><font color="#000000">&lt;time.h&gt;</font>
+
+<font color="#008000">/* function to generate and retrun random numbers. */</font>
+<font color="#0000ff">int </font><font color="#000000">* randomGenrate( )</font>
+<font color="#000000">{</font>
+   <font color="#0000ff">static int  </font><font color="#000000">rdm[</font><font color="#800080">10</font><font color="#000000">];</font>
+   <font color="#0000ff">int </font><font color="#000000">i;</font>
+
+   <font color="#008000">/* set the seed */</font>
+   <font color="#000000">srand( (</font><font color="#0000ff">unsigned</font><font color="#000000">)time( NULL ) );</font>
+   <font color="#0000ff">for </font><font color="#000000">( i = </font><font color="#800080">0</font><font color="#000000">; i &lt; </font><font color="#800080">10</font><font color="#000000">; ++i)</font>
+   <font color="#000000">{</font>
+      <font color="#000000">rdm[i] = rand();</font>
+      <font color="#000000">printf(</font><font color="#ff00ff">&quot;%d\n&quot;</font><font color="#000000">, rdm[i] );</font>
+   <font color="#000000">}</font>
+
+   <font color="#0000ff">return </font><font color="#000000">rdm;</font>
+<font color="#000000">}</font>
+
+<font color="#008000">/* main function to call above defined function */</font>
+<font color="#0000ff">int </font><font color="#000000">main ()</font>
+<font color="#000000">{</font>
+   <font color="#008000">/* a pointer to an int */</font>
+   <font color="#0000ff">int </font><font color="#000000">*p;</font>
+   <font color="#0000ff">int </font><font color="#000000">i;</font>
+
+   <font color="#000000">p = randomGenrate();</font>
+   <font color="#0000ff">for </font><font color="#000000">( i = </font><font color="#800080">0</font><font color="#000000">; i &lt; </font><font color="#800080">10</font><font color="#000000">; i++ )</font>
+   <font color="#000000">{</font>
+       <font color="#000000">printf(</font><font color="#ff00ff">&quot;*(p + [%d]) : %d\n&quot;</font><font color="#000000">, i, *(p + i) );</font>
+   <font color="#000000">}</font>
+
+   <font color="#0000ff">return </font><font color="#800080">0</font><font color="#000000">;</font>
+<font color="#000000">}</font>
+</pre>
+</div>
+<div class="output"><i>Output</i>
+<p>1092595084
+<br>571930317
+<br>1691085735
+<br>579972240
+<br>1561315090
+<br>1386912705
+<br>1983578941
+<br>958880236
+<br>2026599272
+<br>376002271
+<br>*(p + [0]) : 1092595084
+<br>*(p + [1]) : 571930317
+<br>*(p + [2]) : 1691085735
+<br>*(p + [3]) : 579972240
+<br>*(p + [4]) : 1561315090
+<br>*(p + [5]) : 1386912705
+<br>*(p + [6]) : 1983578941
+<br>*(p + [7]) : 958880236
+<br>*(p + [8]) : 2026599272
+<br>*(p + [9]) : 376002271
+</p>
+</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="passing_pointers_to_functions_in_c.shtml" title="Pointer to Function in C Programming language: Passing pointers to functions">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="string_in_c.shtml" title="Strings in C Programming language">Next</a></td>
+  </tr>
+</table>
+<!--Footer  --> 	
+</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/c/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>

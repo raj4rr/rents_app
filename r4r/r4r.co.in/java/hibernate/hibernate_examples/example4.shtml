@@ -1,0 +1,359 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<HTML><HEAD><TITLE>Hibernate Update data into the database Using Hibernate|Hibernate examples</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv="content-type" content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="Hibernate Update data into the database tutorial learn Hibernate tutorial learn How Insert, delete, update,
+validate, fetch data from database in Hibernate" >
+<meta name="keywords" CONTENT="Hibernate tutorial, Examples, Basics, Beginners, Fresher, Hibernate Update data into the database Using Hibernate">
+
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<META http-equiv="Content-Language" content="en-us">
+<link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+<link href="/css/main.css" rel="stylesheet" type="text/css" />
+</HEAD>
+<BODY>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>Hibernate</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+            <img src="/images/left_menu_bullet.gif"/> <a href="/java/hibernate/">Hibernate</a>
+             </div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top">
+                            <?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/hibernate/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                       <div class="main_content">  	 
+
+      <div class="heading">Update data into the database Using Hibernate and Servlet</div>
+
+      <table id="indexing">
+
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="example3.shtml" title="Delete Data from Database">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="example5.shtml" title="Login Form Using Validation From Database">Next</a></td>
+  </tr> 
+</table>
+<p>
+    Here we will discuss how to update data into the database table without go in the database. 
+    Yes it can be possible when we work with the hibernate. For this we will take as we discussed 
+    in the last example how to fetch data form the database table data into the jsp page. 
+</p>
+<p>
+    Here in the Hibernate we can update the data which we inserted into the database. 
+    It can be done through the some basic step as we discussed in our last session of 
+    the project example of the hibernate. So now here we will create as we done before 
+    and we will show the code to implement only here.
+</p>
+<p>Step 1. take a project.</p>
+<p>Step 2. create a jsp page for input data.</p>
+<h3>InsertData.jsp</h3>
+<div class="code">
+    <pre><code class="language-java">
+&lt;html&gt;
+    &lt;head&gt;
+        &lt;meta http-equiv="Content-Type" content="text/html; charset=UTF-8"&gt;
+        &lt;title&gt;Hibernate Application Using Servlet&lt;/title&gt;
+    &lt;/head&gt;
+&lt;body&gt;
+        &lt;pre&gt;
+        &lt;form action="MyServlet" method="post"&gt;
+        First Name      &lt;input type="text" name="fist_name"/&gt;
+        Last Name       &lt;input type="text" name="last_name"/&gt;
+        Salary          &lt;input type="text" name="sal"/&gt;
+
+                        &lt;input type="submit" value="Submit"/&gt;
+      &lt;/form&gt;
+        &lt;/pre&gt;
+    &lt;/body&gt;   
+&lt;/html&gt;
+</code></pre>
+</div>
+<p>
+    Step 3. create a table in the database. Remember which database you selected on the time of 
+    the project taking all table will be created into the same database. Now we here we will use 
+    the hibernate_pro database.
+</p>
+<div class="code">
+    <pre><code class="language-sql">
+1. create table InsertData001
+   (
+     id int not null auto_increment primary key,
+     fname varchar(50),
+     lname varchar(50),
+     sal int(50));
+</code></pre>
+</div>
+<p>Step 4. Take a package type the name of the package r4r.</p>
+<p>Step 5. create a Hibernate reverse engineering file as we discussed in our last example.</p>
+<h3>hibernate.reveng.xml</h3>
+<p>Instead of using legacy <code>.hbm.xml</code> mapping files, map the entity directly using JPA annotations like <code>@Entity</code> and <code>@Table</code>.</p>
+
+<h3>InsertData001.java</h3>
+<div class="code">
+    <pre><code class="language-java">
+package r4r;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="InsertData001")
+public class InsertData001  implements java.io.Serializable {
+     @Id
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    private Integer id;
+     private String fname;
+     private String lname;
+     private Integer sal;
+
+    public InsertData001() {
+    }
+
+    public InsertData001(String fname, String lname, Integer sal) {
+       this.fname = fname;
+       this.lname = lname;
+       this.sal = sal;
+    }
+
+    public Integer getId() {
+        return this.id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+    public String getFname() {
+        return this.fname;
+    }
+
+    public void setFname(String fname) {
+        this.fname = fname;
+    }
+    public String getLname() {
+        return this.lname;
+    }
+
+    public void setLname(String lname) {
+        this.lname = lname;
+    }
+    public Integer getSal() {
+        return this.sal;
+    }
+
+    public void setSal(Integer sal) {
+        this.sal = sal;
+    }
+}
+</code></pre>
+</div>
+<p>Step 7. Now we create a servlet file for making the action to perform the value into the database.</p>
+<h3>InsertData.java</h3>
+<div class="code">
+    <pre><code class="language-java">
+package r4r;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+import org.hibernate.cfg.Configuration;
+
+public class InsertData extends HttpServlet {
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException 
+    {
+        response.setContentType("text/html;charset=UTF-8");
+        String fname,lname,sal;
+        fname = request.getParameter("fname");
+        lname = request.getParameter("lname");
+        sal = request.getParameter("sal");
+        SessionFactory sf = new Configuration().configure().buildSessionFactory();
+        Session s = sf.openSession();
+        Transaction tr = s.beginTransaction();
+        InsertData001 id = new InsertData001(fname, lname, Integer.parseInt(request.getParameter("sal")));
+        s.save(id);
+        tr.commit();
+        s.close();
+
+        try (PrintWriter out = response.getWriter()) {
+            /* TODO output your page here. You may use following sample code. */
+
+            out.println("&lt;!DOCTYPE html&gt;");
+            out.println("&lt;html&gt;");
+            out.println("&lt;head&gt;");
+            out.println("&lt;title&gt;Servlet InsertData&lt;/title&gt;");            
+            out.println("&lt;/head&gt;");
+            out.println("&lt;body&gt;");
+            out.println("&lt;h1&gt;Welcome " + fname +   "You have inserted the data&lt;/h1&gt;");
+            out.println("&lt;/body&gt;");
+            out.println("&lt;/html&gt;");
+        }
+    }
+
+        @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        processRequest(request, response);
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        processRequest(request, response);
+    }
+
+    @Override
+    public String getServletInfo() {
+        return "Short description";
+    }
+
+}
+</code></pre>
+</div>
+<p>Step 8. Now build and run the application.</p>
+<p>Step 9. create a hibernate.util file for making the connection between database and application.</p>
+<h3>HibernateUtil.java</h3>
+<div class="code">
+    <pre><code class="language-java">
+package r4r;
+
+import org.hibernate.cfg.AnnotationConfiguration;
+import org.hibernate.SessionFactory;
+
+public class HibernateUtil {
+
+    private static final SessionFactory sessionFactory;
+
+    static {
+        try {
+            sessionFactory = new AnnotationConfiguration().configure().buildSessionFactory();
+        } catch (Throwable ex) 
+        {
+            System.err.println("Initial SessionFactory creation failed." + ex);
+            throw new ExceptionInInitializerError(ex);
+        }
+    }
+
+    public static SessionFactory getSessionFactory() {
+        return sessionFactory;
+    }
+}
+</code></pre>
+</div>
+<p>
+    Step 9. Now we need to create a jsp page to update the data. In this we fetch the data form 
+    the database in a table and perform the action update.
+</p>
+<h3>FetchTableData.jsp</h3>
+<div class="code">
+    <pre><code class="language-java">
+&lt;%@include file="menu.jsp" %&gt;
+&lt;%@page import="org.hibernate.criterion.Restrictions" %&gt;
+&lt;%@page import="org.hibernate.*" %&gt;
+&lt;body&gt;
+    &lt;table width="900" border="2"&gt;&lt;tr&gt;&lt;th&gt;Sr. No&lt;/th&gt;&lt;th&gt;First Name&lt;/th&gt;&lt;th&gt;Last Name&lt;/th&gt;
+	&lt;th&gt;Age&lt;/th&gt;&lt;th&gt;Last Update&lt;/th&gt;&lt;th&gt;Operation&lt;/th&gt;&lt;/tr&gt;
+        &lt;%
+        SessionFactory sf = r4r.HibernateUtil.getSessionFactory();
+        Session s = sf.openSession();
+        Transaction tr = s.beginTransaction();
+        Criteria cr = s.createCriteria(r4r.InsertData.class);
+        java.util.List&lt;r4r.InsertData&gt; ds = cr.list();
+        for(r4r.InsertData dd : ds)
+        {
+            out.println("&lt;tr&gt;&lt;td&gt;"+dd.getId()+"&lt;td&gt;"+dd.getFirstName()+"&lt;td&gt;"
+			+dd.getLastName()+"&lt;td&gt;"+dd.getAge()+"&lt;td&gt;"+dd.getLastUpdate()+
+                    "&lt;td&gt;&lt;a href=Delete.jsp?t="+dd.getId()+"&gt;Delete&lt;/a&gt; "+"
+			/ &lt;a href=Update.jsp?t="+dd.getId()+"&gt;Update&lt;/a&gt;");
+        }
+        %&gt;   
+    &lt;/table&gt;
+</code></pre>
+</body>
+</div>
+    <p>Step 11. Create a jsp page to perform the action of update.</p>
+    <h3>Update.jsp</h3>
+    <div class="code">
+       <pre><code class="language-java">
+ &lt;%@page import="org.hibernate.criterion.Restrictions" %&gt;
+&lt;%@page import="org.hibernate.*" %&gt;
+&lt;%
+    int n = Integer.parseInt(request.getParameter("t"));
+    String fn = request.getParameter("t2");
+    String ln = request.getParameter("t3");
+
+    SessionFactory sf = r4r.HibernateUtil.getSessionFactory();
+    Session s = sf.openSession();
+    Transaction tr = s.beginTransaction();
+    r4r.InsertData001 r = (r4r.InsertData001)s.get(r4r.InsertData001.class, n);
+    if(fn!=null)
+    {
+        int sal = Integer.parseInt(request.getParameter("t4"));
+        r.setFname(fn);
+        r.setLname(ln);
+        r.setSal(sal);
+        s.update(r);
+        tr.commit();
+        response.sendRedirect("FetchTableData.jsp");
+    }
+%&gt;
+&lt;form action="Update.jsp" method="post"&gt;
+    &lt;h3&gt;&lt;pre&gt;
+            Id  :   &lt;%=r.getId()%&gt; &lt;input type="hidden" name="t" value="&lt;%=r.getId()%&gt;"/&gt;
+
+    First Name  :   &lt;input type="text" name="t2" size="20" value="&lt;%=r.getFname()%&gt;" /&gt; 
+
+      Last Name :   &lt;input type="text" name="t3" size="20" value="&lt;%=r.getLname()%&gt;" /&gt; 
+
+      Salary    :   &lt;input type="text" name="t4" size="40" value="&lt;%=r.getSal()%&gt;"/&gt;
+
+                       &lt;input type="submit" value="update"&gt;
+
+        &lt;/pre&gt;
+    &lt;/h3&gt;
+&lt;/form&gt;
+</code></pre>
+    </div>
+      <p>Step 11. Now run this file.</p>
+      <table id="indexing">
+
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="example3.shtml" title="Delete Data from Database">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="example5.shtml" title="Login Form Using Validation From Database">Next</a></td>
+  </tr> 
+</table>
+
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+
+                <?php @include($_SERVER['DOCUMENT_ROOT'] . '/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>

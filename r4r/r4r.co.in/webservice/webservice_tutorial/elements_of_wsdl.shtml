@@ -1,0 +1,165 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<HTML>
+<HEAD>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Elements of WSDL In WebServices|webservices basics|webservices examples</title>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv="content-type" content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="Elements of WSDL In WebServices -webservices tutorial learn easily shortly
+  from with r4r tutorial with basics of webservices with examples and interview question of webservices topics xml, http, web services architecture, components, examples,
+ security issues, and available standards" >
+<meta name="keywords" CONTENT="Elements of WSDL In WebServices, Introduction of Web Services,RDF in Web Services, Soap in webservices, system requirements, UDDI in Web Services, Architecture ,Web Services Flow, Why use Web Services, Characteristic of Web services,Components
+Architecture,Flow,System Requirements,XML-RPC, How to Use web Services (in ASP. NET), Elements In 
+RDF, Containers In RDF, Collection In RDF,Schema In RDF, Security In Web services,Standard of Web 
+services">
+<!-- header start-->	
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>Web Services</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+            <img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+             <a href="/webservice/">Web Services</a>
+
+              </div>
+
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/webservice/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	 
+<!-- Header End--> 
+<div class="heading">Elements of WSDL In WebServices</div>
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="wsdl_in_web_services.shtml" title="WSDL In WebServices">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="rdf_in_web_services.shtml" title="RDF In WebServices">Next</a></td>
+  </tr> 
+</table>
+<p>WSDL is extensible that allow description of endpoints and their messages regardless of what the message formats is. Following are the elements of Web Service Description Language: </p> 
+<p><i>Message:</i> The XML based definition in WSDL consists of message. It is an abstract definition of the data.</p>
+<h3>Example</h3>
+<div class="code">
+<pre>
+<font color="#000000">   </font><font color="#0000ff">&lt;</font><font color="#808000">message </font><font color="#ff0000">name</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;HelloRequest&quot;</font><font color="#0000ff">&gt;</font>
+<font color="#000000">      </font><font color="#0000ff">&lt;</font><font color="#808000">part </font><font color="#ff0000">name</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;name&quot; </font><font color="#ff0000">type</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;xsd:string&quot;</font><font color="#0000ff">/&gt;</font>
+<font color="#000000">   </font><font color="#0000ff">&lt;/</font><font color="#808000">message</font><font color="#0000ff">&gt;</font>
+<font color="#000000">   </font><font color="#0000ff">&lt;</font><font color="#808000">message </font><font color="#ff0000">name</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;HelloResponse&quot;</font><font color="#0000ff">&gt;</font>
+<font color="#000000">      </font><font color="#0000ff">&lt;</font><font color="#808000">part </font><font color="#ff0000">name</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;john&quot; </font><font color="#ff0000">type</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;xsd:string&quot;</font><font color="#0000ff">/&gt;</font>
+<font color="#000000">   </font><font color="#0000ff">&lt;/</font><font color="#808000">message</font><font color="#0000ff">&gt;</font>
+</pre>
+</div>
+<p><i>Binding:</i> This element defines port type. It is also called a data format for definning the messages. This element describes how the web service is accessed over the network.</p>
+<h3>Example</h3>
+<div class="code">
+<pre>
+<font color="#0000ff">&lt;</font><font color="#808000">definitions </font><font color="#000000">.... </font><font color="#0000ff">&gt;</font>
+<font color="#000000">    </font><font color="#0000ff">&lt;</font><font color="#808000">binding </font><font color="#ff0000">name</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;booktoken&quot; </font><font color="#ff0000">type</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;book-name&quot;</font><font color="#0000ff">&gt;</font><font color="#000000"> </font>
+<font color="#000000">        </font><font color="#0000ff">&lt;</font><font color="#808000">operation </font><font color="#ff0000">name</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;booktoken&quot;</font><font color="#0000ff">&gt;</font><font color="#000000"> </font>
+<font color="#000000">           </font><font color="#0000ff">&lt;</font><font color="#808000">input </font><font color="#ff0000">name</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;booktoken&quot;</font><font color="#800080">? </font><font color="#0000ff">&gt;</font><font color="#000000"> </font>
+<font color="#000000">           </font><font color="#0000ff">&lt;/</font><font color="#808000">input</font><font color="#0000ff">&gt;</font>
+<font color="#000000">           </font><font color="#0000ff">&lt;</font><font color="#808000">output </font><font color="#ff0000">name</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;booktoken&quot;</font><font color="#800080">? </font><font color="#0000ff">&gt;</font><font color="#000000">  </font>
+<font color="#000000">           </font><font color="#0000ff">&lt;/</font><font color="#808000">output</font><font color="#0000ff">&gt;</font>
+<font color="#000000">           </font><font color="#0000ff">&lt;</font><font color="#808000">fault </font><font color="#ff0000">name</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;booktoken&quot;</font><font color="#0000ff">&gt;</font>
+<font color="#000000">             </font><font color="#0000ff">&lt;/</font><font color="#808000">fault</font><font color="#0000ff">&gt;</font>
+<font color="#000000">        </font><font color="#0000ff">&lt;/</font><font color="#808000">operation</font><font color="#0000ff">&gt;</font>
+<font color="#000000">    </font><font color="#0000ff">&lt;/</font><font color="#808000">binding</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">definitions</font><font color="#0000ff">&gt;</font>
+</pre>
+</div>
+<p><i>PortType:</i>	A set of operations supported by one or more endpoints.For example collections of operations for binding element or binding message, such as naming a method, message business process. These collections of operations are called as Interfaces.</p>
+<h3>Example</h3>
+<div class="code">
+<pre>
+<font color="#0000ff">&lt;</font><font color="#808000">portType </font><font color="#ff0000">name</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;WebServiceInterface&quot;</font><font color="#0000ff">&gt;</font>
+<font color="#000000">      </font><font color="#0000ff">&lt;</font><font color="#808000">operation </font><font color="#ff0000">name</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;Add&quot;</font><font color="#0000ff">&gt;</font>
+<font color="#000000">         </font><font color="#0000ff">&lt;</font><font color="#808000">input </font><font color="#800080">message</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;y:AddOperation&quot;</font><font color="#0000ff">/&gt;</font>
+<font color="#000000">         </font><font color="#0000ff">&lt;</font><font color="#808000">output </font><font color="#800080">message</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;y:ResponseOperation&quot;</font><font color="#0000ff">/&gt;</font>
+<font color="#000000">      </font><font color="#0000ff">&lt;/</font><font color="#808000">operation</font><font color="#0000ff">&gt;</font>
+<font color="#000000">      </font><font color="#0000ff">&lt;</font><font color="#808000">operation </font><font color="#ff0000">name</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;Multiply&quot;</font><font color="#0000ff">&gt;</font>
+<font color="#000000">         </font><font color="#0000ff">&lt;</font><font color="#808000">input </font><font color="#800080">message</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;y:MultiplyOperation&quot;</font><font color="#0000ff">/&gt;</font>
+<font color="#000000">         </font><font color="#0000ff">&lt;</font><font color="#808000">output </font><font color="#800080">message</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;y:ResponseOperation&quot;</font><font color="#0000ff">/&gt;</font>
+<font color="#000000">      </font><font color="#0000ff">&lt;/</font><font color="#808000">operation</font><font color="#0000ff">&gt;</font>
+<font color="#000000">   </font><font color="#0000ff">&lt;/</font><font color="#808000">portType</font><font color="#0000ff">&gt;</font>
+</pre>
+</div>
+<p><i>Types:</i> The types element contains data types that exchanged data between the client and the web service. 
+<h3>Example</h3>
+<div class="code">
+<pre>
+<font color="#0000ff">&lt;</font><font color="#808000">types</font><font color="#0000ff">&gt;</font>
+<font color="#000000">    </font><font color="#0000ff">&lt;</font><font color="#808000">xs:schema</font>
+        <font color="#800080">xmlns:xs</font><font color="#0000ff">=        </font><font color="#ff00ff">&quot;http://www.indo.org/XMLSchema&quot;</font>
+        <font color="#800080">targetNamespace</font><font color="#0000ff">= </font><font color="#ff00ff">&quot;http://go.com/ServicePage/schema&quot;</font>
+        <font color="#ff0000">xmlns</font><font color="#0000ff">=           </font><font color="#ff00ff">&quot;http://go.com/ServicePage/schema&quot;</font><font color="#0000ff">&gt;</font>
+<font color="#000000">		</font><font color="#0000ff">&lt;</font><font color="#808000">xs:element </font><font color="#ff0000">name</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;Request&quot;</font>
+                     <font color="#ff0000">type</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;typeRequest&quot;</font><font color="#0000ff">/&gt;</font>
+<font color="#000000">        </font><font color="#0000ff">&lt;</font><font color="#808000">xs:sequence</font><font color="#0000ff">&gt;</font>
+<font color="#000000">          </font><font color="#0000ff">&lt;</font><font color="#808000">xs:element  </font><font color="#ff0000">name</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;date&quot; </font><font color="#ff0000">type</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;xs:date&quot;</font><font color="#0000ff">/&gt;</font>
+<font color="#000000">        </font><font color="#0000ff">&lt;/</font><font color="#808000">xs:sequence</font><font color="#0000ff">&gt;</font>
+<font color="#000000">	  </font><font color="#0000ff">&lt;</font><font color="#808000">xs:element </font><font color="#ff0000">name</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;Response&quot; </font><font color="#ff0000">type</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;xs:string&quot;</font><font color="#0000ff">/&gt;</font>
+<font color="#000000">	  </font><font color="#0000ff">&lt;</font><font color="#808000">xs:element </font><font color="#ff0000">name</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;DateError&quot; </font><font color="#ff0000">type</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;xs:string&quot;</font><font color="#0000ff">/&gt;</font>
+<font color="#000000">	  </font><font color="#0000ff">&lt;/</font><font color="#808000">xs:schema</font><font color="#0000ff">&gt;</font>
+<font color="#000000"> </font><font color="#0000ff">&lt;/</font><font color="#808000">types</font><font color="#0000ff">&gt;</font>
+</pre>
+</div>
+<p><i>Service:</i> The service element contains a URL to the service. For example http://www.go.com/Hello/.</p>
+<h3>Example</h3>
+<div class="code">
+<pre>
+<font color="#0000ff">&lt;</font><font color="#808000">definitions </font>
+   <font color="#ff0000">xmlns</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;http://www.indo.org/ns/wsdl&quot;</font>
+  <font color="#800080">xmlns:wsoap</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;http://www.indo.org/ns/wsdl/soap&quot;</font>
+ <font color="#800080">xmlns:sch </font><font color="#0000ff">= </font><font color="#ff00ff">&quot;http://go.com/ServicePage/schema&quot;</font>
+ <font color="#800080">targetNamespace</font><font color="#0000ff">= </font><font color="#ff00ff">&quot;http://go.com/ServicePage&quot;</font>
+  <font color="#800080">xmlns:y</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;http://example.org/CoreJava/&quot; </font>
+  <font color="#800080">xmlns:ns</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;http://example.org/origin/&quot; </font><font color="#0000ff">&gt;</font>
+<font color="#000000">  </font><font color="#0000ff">&lt;</font><font color="#808000">service </font><font color="#ff0000">name</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;CoreJavaService&quot;</font><font color="#0000ff">&gt;</font>
+<font color="#000000">       </font><font color="#0000ff">&lt;</font><font color="#808000">port </font><font color="#ff0000">name</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;CoreJavaEndpoint&quot; </font><font color="#800080">binding</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;y:CoreJavaSoapHttpBinding&quot;</font><font color="#0000ff">&gt;</font>
+<font color="#000000">         </font><font color="#0000ff">&lt;</font><font color="#808000">soap:address </font><font color="#800080">location</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;http://localhost/r4r.co.in&quot;</font><font color="#0000ff">/&gt;</font>
+<font color="#000000">       </font><font color="#0000ff">&lt;/</font><font color="#808000">port</font><font color="#0000ff">&gt;</font>
+<font color="#000000">   </font><font color="#0000ff">&lt;/</font><font color="#808000">service</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">definitions</font><font color="#0000ff">&gt;</font>
+</pre>
+</div>
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="wsdl_in_web_services.shtml" title="WSDL In WebServices">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="rdf_in_web_services.shtml" title="RDF In WebServices">Next</a></td>
+  </tr> 
+</table>
+
+<!--Footer start -->	
+
+		</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/webtechnology/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->
+

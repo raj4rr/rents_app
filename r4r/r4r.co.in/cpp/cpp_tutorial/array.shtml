@@ -1,0 +1,298 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>arrays in c++|c++ array tutorial|basics </TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="arrays in c++ tutorial learn c++ how to work with c++ object oriented
+language concept with best examples and interview questions Pointers,C++ String,C++ Datastructure,C++ Expressions,C++ Preprocessor
+C++ Statement,C++ I/O,C++ Exception Handling" >
+<meta name="keywords" CONTENT="array in C++, Tutorials, Learning,freshers, Beginners, Basics, Object Oriented Language,Introduction,Basics,Data Types,Variables,Constants,
+Storage Classes,Operators,Decisions Making,Loops,C++ Pointers,C++ String">
+
+<link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>C++ language</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+            <img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+            <a href="/cpp/">C++</a>
+
+              </div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/cpp/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	 
+<!-- header End-->
+<div class="heading">Arrays IN C++</div>
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="number.shtml" title=" Numbers In C++">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="pointer.shtml" title="Pointers in C++">Next</a></td>
+  </tr> 
+</table>
+<p>An array is a collection of element of same data types.Arrays are stored linearly in memory. For example, if we have to store 7 values of any type, lets say, integer values we don't have to declare 5 variables with different identifiers but we can define an array of integer type and can store the values in array directly with a unique identifier. Thus, an array named arr created in memory having 5 values can be represented as :</p>
+
+<div class="image"><img src="images/Array.png"></div>
+<p><i>Here</i>Index no. is the position of array where data can be stored, i.e. 0,1,2,3,4.</p>
+<p><i>Note:</i> In array indexing stqart from 0 to (n-1) , where n is the number of bit in array.</p>
+<h3>Address Space:</h3>
+
+<div class="table_content">	
+<table>
+<tr>
+<td class="heading" style="width:50%;">Data Type</td>
+<td class="heading" style="width:50%;">Address Space</td>
+</tr>
+<tr>
+	<td class="alternate_heading1">Char,</td>
+	<td class="alternate_heading1"> 1</td>
+</tr>
+<tr>
+	<td class="alternate_heading1">Int,</td>
+	<td class="alternate_heading1"> 2</td>
+</tr>
+<tr>
+	<td class="alternate_heading1">Float,</td>
+	<td class="alternate_heading1"> 4</td>
+</tr>
+<tr>
+	<td class="alternate_heading1">Double,</td>
+	<td class="alternate_heading1"> 8</td>
+</tr>
+<tr>
+	<td class="alternate_heading1">Long,</td>
+	<td class="alternate_heading1"> 10</td>
+</tr>
+</table></div>
+<p><i>Array memory size: </i>This can be determined by the formula </p>
+<div class="comment">Array memory size = Size * &lt;No. of byte allocated to data type&gt;</div>
+<div class="comment">For Example</div>
+<div class="code"><pre>
+ <font color="#0000ff">int </font><font color="#000000">a[</font><font color="#800080">10</font><font color="#000000">]</font>
+<font color="#000000">Array memory size = </font><font color="#800080">10 </font><font color="#000000">* </font><font color="#800080">2</font>
+           <font color="#000000">= </font><font color="#800080">20</font>
+</pre>
+</div>
+
+<h3>Declaring Arrays:</h3>
+<div class="comment">Syntax</div>
+<div class="code"><pre>
+<font color="#000000">&lt; data _type &gt;  &lt; array _name &gt; [ size ]  ;</font>
+<font color="#000000">eg: </font><font color="#0000ff">int </font><font color="#000000">a [</font><font color="#800080">10</font><font color="#000000">] ;</font>
+</pre>
+</div>
+<div class="heading">How to initialize an array:</div>
+<p>While declaring the array for a local scope e.g. for a particular function its contents will not be initialized by default and will remain undetermined till we initialized it separately. In case of array of global scope the values are initialized but having the default values of 0's for each element.
+</p>
+<p>Thus, for the array of both scopes we can initialize an array by enclosing the elements within the {} brackets. For example,</p>
+<p>int arr[5] = {1,2,3,4,5}; /* This array will be created as which one is shown in the above figure. */</p>
+<p>The no. of elements declared within the {} must not exceeds the numbers of elements defined in the [], else it could some serious trouble to your program.</p>
+<h3>Advantages of using an array:</h3>
+<ol><li> Arrays are the most convenient way of storing the fixed amount of data that can be accessed in an unpredictable fashion.</li>
+<li>Arrays are also one of the most compact data structures as in for storing the 50 elements in an array of integer type it will take the memory equivalent to the amount of memory required to store 50 elements in addition to that a few overhead bytes for whole array.</li>
+<li>Another advantage of array is that iterating through an array is more faster than compared to other data structure types like linked list because of its good locality of reference.</li></ol>
+<h3>Disadvantages of using an array:</h3>
+<ol><li>1. Performing various operations like insertion and deletion is quite a stiff task in arrays as after inserting or deleting an item from an array every other element in array have to move forward or backwards prior to your operation, which is a costly affair.</li>
+<li> In case of the static arrays the size of the array should be know up priori i.e. before the compile time.</li></ol>
+
+<h3>Accessing Array elements:</h3>
+<p>The elements of an array can be accessed easily by providing its index within [] with the identifier and can modify or read its value.</p>
+<p>Int arr[5] = {34, 78, 98, 45, 56}</p>
+<div class="table_content">	
+<table>
+<tr>
+<td class="alternate_heading1" style="width:20%;">34</td>
+<td class="alternate_heading" style="width:20%;">78</td>
+<td class="alternate_heading" style="width:20%;">98</td>
+<td class="alternate_heading" style="width:20%;">45</td>
+<td class="alternate_heading" style="width:20%;">56</td>
+</tr>
+</table></div>
+<p>The format of accessing the array element is simple as arr [index]. To fetch a value from the above array which is placed in the position 3 we can use the following syntax :</p>
+<p>int a = arr[2]; /* where a is an integer variable which will hold the value of element to be fetched 8 */</p>
+<p>and to write a value in an empty we can use the following syntax :</p>
+<p>arr [index] = value;</p>
+<p>That's how we can access the elements of an array.</p>
+<p>Also consider that it is syntactically incorrect to exceed the valid range of indices for an array. If you do so, accessing the elements out of bounds of an array will not cause any compilation error but would result in the runtime error and it can lead to hang up your system.
+</p>
+<h3>A simple program using Array:</h3>
+<div class="code"><pre>
+<font color="#ff0000"># include </font><font color="#000000">&lt;iostream.h&gt;</font>
+<font color="#ff0000"># include </font><font color="#000000">&lt;conio.h&gt;</font>
+<font color="#0000ff">int </font><font color="#000000">arr [</font><font color="#800080">5</font><font color="#000000">] = {</font><font color="#800080">1</font><font color="#000000">,</font><font color="#800080">2</font><font color="#000000">,</font><font color="#800080">3</font><font color="#000000">,</font><font color="#800080">4</font><font color="#000000">,</font><font color="#800080">5</font><font color="#000000">}; </font>
+<font color="#008000">/* declaring and initializing an array */</font>
+<font color="#0000ff">int </font><font color="#000000">i,  sum = </font><font color="#800080">0</font><font color="#000000">;</font>
+<font color="#0000ff">int </font><font color="#000000">main ()</font>
+<font color="#000000">{</font>
+   <font color="#0000ff">for </font><font color="#000000">( i=</font><font color="#800080">0</font><font color="#000000">; i&lt;</font><font color="#800080">5</font><font color="#000000">; i++)</font>
+   <font color="#000000">{</font>
+      <font color="#000000">sum = sum + arr [i]; </font>
+<font color="#008000">/* Adding the individual elements of an array */</font>
+    <font color="#000000">}</font>
+   <font color="#000000">Cout &lt;&lt; sum;</font>
+   <font color="#0000ff">return </font><font color="#800080">0</font><font color="#000000">;</font>
+ <font color="#000000">}</font>
+</pre>
+</div>
+<div class="output"><i>Output</i>
+15</div>
+<div class="heading"> Types of Arrays</div>
+<p>Arrays are of two types:</p>
+<ol><li>Single dimensional array</li>
+<li> Multi-dimensional array</li>
+<ol><li><i>Single dimensional array: </i>are the simple arrays that we have so far discussed. In previous examples we have shown how to initialize and declare one dimensional array, now we will discuss how it is represented in the memory. As we know now 1-d array are linear array in which elements are stored in the successive memory locations. The element at the very first position in the array is called its base address. Now consider the following example :</li>
+<div class="image"><img src="images/array1.png"></div>
+<p>Here we have defined an array of five elements of integer type whose first index element is at base address 100. That is, the element arr[0] is stored at base address 100. Now for calculating the starting address of the next element i.e. of a[1], we can use the following formula :</p>
+<p>Base address (B) + No. of bytes occupied by element (c) * index of element (i)</p>
+<p><i>Note: </i>/* Here C is constant integer and vary according to the data type of the array, for e.g. for integer the value of C will be 4 bytes, since an integer occupies 4 bytes of memory. */</p>
+<p>Now, we can calculate the starting address of second element of the array as :</p>
+<p>arr[1] = 100 + 4 * 1 = 104 /*Thus starting address of second element of array is 104 */</p>
+<p>Similarly other addresses can be calculated in the same manner as :</p>
+<p>arr[2] = 100 + 4 * 2 = 108</p>
+<p>
+arr[3] = 100 + 4 * 3 = 112</p>
+<p>arr[4] = 100 + 4 * 4 = 116</p>
+<h3>Example of 1-D array:</h3>
+<div class="code"><pre>
+<font color="#ff0000"># include </font><font color="#000000">&lt; iostream.h &gt;</font>
+<font color="#ff0000"># include </font><font color="#000000">&lt; conio.h &gt;</font>
+<font color="#0000ff">int </font><font color="#000000">arr [</font><font color="#800080">5</font><font color="#000000">] = { </font><font color="#800080">1 </font><font color="#000000">, </font><font color="#800080">2 </font><font color="#000000">, </font><font color="#800080">3 </font><font color="#000000">, </font><font color="#800080">4 </font><font color="#000000">, </font><font color="#800080">5 </font><font color="#000000">};           </font>
+<font color="#0000ff">int </font><font color="#000000">i, sum = </font><font color="#800080">0</font><font color="#000000">;</font>
+
+<font color="#0000ff">int </font><font color="#000000">main ()</font>
+<font color="#000000">{</font>
+   <font color="#0000ff">for </font><font color="#000000">( i = </font><font color="#800080">0 </font><font color="#000000">;  i &lt; </font><font color="#800080">5 </font><font color="#000000">;  i++)</font>
+    <font color="#000000">{</font>
+      <font color="#000000">sum = sum + arr [i];                  </font>
+     <font color="#000000">}</font>
+     <font color="#000000">Cout &lt;&lt; sum;</font>
+ <font color="#0000ff">return </font><font color="#800080">0</font><font color="#000000">;</font>
+<font color="#000000">}</font>
+</pre>
+</div>
+<div class="output"><i>Output</i>15</div>
+<li><i>Multi-dimensional array: </i> are often known as array of the array. In multidimensional arrays the array is divided into rows and columns, mainly while considering multidimensional arrays we will be discussing mainly about two dimensional arrays and a bit about three dimensional arrays. In 2-D array we can declare an array as : </li>
+<p>int arr[3][3];</p>
+<p>where first index value shows the number of the rows and second index value shows the no. of the columns in the array. We will learn about the 2-D array in detail in the next section, but now emphasize more on how these are stored in the memory.</p>
+<div class="table_content">	
+<table>
+<tr>
+<td class="alternate_heading1" style="width:20%;">arr[0][0]</td>
+<td class="alternate_heading" style="width:20%;">arr[0][1]</td>
+<td class="alternate_heading" style="width:20%;">arr[0][2]</td>
+</tr>
+
+<tr>
+<td class="alternate_heading1" style="width:20%;">arr[1][0]</td>
+<td class="alternate_heading" style="width:20%;">arr[1][1]</td>
+<td class="alternate_heading" style="width:20%;">arr[1][2]</td>
+</tr>
+
+<tr>
+<td class="alternate_heading1" style="width:20%;">arr[2][0]</td>
+<td class="alternate_heading" style="width:20%;">arr[2][1]</td>
+<td class="alternate_heading" style="width:20%;">arr[2][2]</td>
+</tr>
+
+</table></div></ol>
+<p>In 2-D array, we can declare an array as:</p>
+<div class="code"><pre>
+<font color="#0000ff">int </font><font color="#000000">arr [</font><font color="#800080">3</font><font color="#000000">] [</font><font color="#800080">3</font><font color="#000000">] = { </font><font color="#800080">1 </font><font color="#000000">, </font><font color="#800080">2 </font><font color="#000000">, </font><font color="#800080">3  </font>
+	<font color="#008000">/*   initializers for row index 0    */</font>
+ <font color="#800080">4 </font><font color="#000000">, </font><font color="#800080">5 </font><font color="#000000">, </font><font color="#800080">6    </font><font color="#008000">/*    initializers for row index 1   */</font>
+ <font color="#800080">7 </font><font color="#000000">, </font><font color="#800080">8 </font><font color="#000000">, </font><font color="#800080">9 </font><font color="#000000">} </font><font color="#008000">/*    initializers for row index 2    */  </font>
+</pre>
+</div>
+<p>where first index value shows the number of the rows and second index value shows the no. of the columns in the array.
+To access elements in 2-D array, we can do it as follows:</p>
+<p>Cout << arr [i][j] ;</p>
+<p>For eg: Cout << a [3][3]</p>
+<p>It will print the output 9, as [3][3] means third element of second row.
+</p>
+<h3>
+Example of 2-D array:</h3>
+<div class="code"><pre>
+<font color="#ff0000"># include </font><font color="#000000">&lt;iostream.h&gt;</font>
+<font color="#ff0000"># include </font><font color="#000000">&lt;conio.h&gt;</font>
+<font color="#0000ff">int </font><font color="#000000">main ()</font>
+<font color="#000000">{</font>
+  <font color="#0000ff">int </font><font color="#000000">a [</font><font color="#800080">4</font><font color="#000000">] [</font><font color="#800080">4</font><font color="#000000">] ;</font>
+  <font color="#0000ff">int </font><font color="#000000">i , j ;</font>
+   <font color="#000000">{ </font>
+     <font color="#0000ff">for </font><font color="#000000">( i = </font><font color="#800080">0 </font><font color="#000000">;  i &lt; </font><font color="#800080">4 </font><font color="#000000">, i++)</font>
+       <font color="#000000">{</font>
+          <font color="#0000ff">for </font><font color="#000000">( j = </font><font color="#800080">0 </font><font color="#000000">; j &lt; </font><font color="#800080">4 </font><font color="#000000">; J++)</font>
+            <font color="#000000">{</font>
+               <font color="#000000">a [i] [j] = </font><font color="#800080">0 </font><font color="#000000">;</font>
+               <font color="#000000">Cout &lt;&lt; a [i] [j] &lt;&lt; </font><font color="#ff00ff">'\n' </font><font color="#000000">;</font>
+            <font color="#000000">}</font>
+       <font color="#000000">}</font>
+       <font color="#0000ff">return </font><font color="#800080">0</font><font color="#000000">;</font>
+ <font color="#000000">}</font>
+<font color="#000000">}</font>
+</pre>
+</div>
+
+<div class="output"><i>Output</i>
+<pre>             1  2  3  4
+                5  6  7  8
+                9 10 11 12 
+
+</pre></div>
+<div class="comment">In 3-D array, we can declare an array as:</div>
+<pre>
+int arr [3][3][3] =         { 1 , 2 , 3
+                              4 , 5 , 6
+                              7 , 8 , 9
+                              10 , 11 , 12
+                              13 , 14 , 15
+                              16 , 17 , 18
+                              19 , 20 , 21
+                              22 , 23 , 24
+                              25 , 26 , 27 }</pre>
+
+<p><i>Note: </i>/* here we have divided array into grid for sake of convenience as in above declaration we have created 3 different grids, each have rows and columns */</p>
+<p>If we want to access the element the in 3-D array we can do it as follows :</p>
+<p>Cout << arr [i] [j] [k] ;</p>
+<h3>For Example:</h3>
+<p> Cout << a [2] [2] [2] ;</p>
+<p><i>Note: </i>/* its output will be 26, as a[2][2][2] means first value in [] corresponds to the grid no. i.e. 3 and the second value in [] means third row in the corresponding grid and last [] means third column */</p>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="number.shtml" title=" Numbers In C++">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="pointer.shtml" title="Pointers in C++">Next</a></td>
+  </tr> 
+</table>
+
+<!-- Footer Start-->
+		</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/cpp/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->
+

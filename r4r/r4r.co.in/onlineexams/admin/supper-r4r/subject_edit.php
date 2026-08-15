@@ -1,0 +1,34 @@
+<?php
+	session_start();
+	include_once('connection.php');
+
+	if(isset($_POST['edit'])){
+		$id = $_POST['id'];
+		$sub_name = $_POST['sub_name'];
+		$status = $_POST['status'];
+
+		$sql = "UPDATE mst_subject SET sub_name = '$sub_name', status = '$status' WHERE sub_id = '$id'";
+
+		//use for MySQLi OOP
+		if($conn->query($sql)){
+			$_SESSION['success'] = 'Subject updated successfully';
+		}
+		///////////////
+
+		//use for MySQLi Procedural
+		// if(mysqli_query($conn, $sql)){
+		// 	$_SESSION['success'] = 'Member updated successfully';
+		// }
+		///////////////
+
+		else{
+			$_SESSION['error'] = 'Something went wrong in updating Subject';
+		}
+	}
+	else{
+		$_SESSION['error'] = 'Select Subject to edit first';
+	}
+
+	header('location: subject.php');
+
+?>

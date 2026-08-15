@@ -1,0 +1,212 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>C Tutorial on FUNCTION with examples</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="Learn FUNCTION in C with Examples,Function Type,Arrays,Structures,Pointers,Storage class,Loops,Functions,Data types,C constants,Union,Preprocessor,Interview questions and answers" >
+<meta name="keywords" CONTENT="FUNCTION basics in C,Types of function,Function examples,Arrays,Structures,Pointers,Storage class,Loops,Functions,Data types,C constants,Union,Preprocessor,Interview questions and answers">
+
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+     <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>C Programming language</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a><img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/c/">C </a>
+              <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/c/basic_tutorials/06/">C Tutorial</a></div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/c/commonfiles/leftmenu.shtml'); ?></td>
+
+                       <td style="80%" valign="top">
+                        <div class="main_content"> 
+
+	<!-- header End-->
+
+    <div class="heading">Function in C: Types</div>
+
+<table id="indexing">
+  <tr>
+   <td style="width:33%; text-align:left;"><a href="FUNCTION.shtml" title="Function in C: Why use function">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="CALL_BY_VALUE_AND_CALL_BY_REFERENCE.shtml" title="Function in C: call by value and call by reference">Next</a></td>
+  </tr>
+</table>
+
+<h2>What is function</h2>
+<p>A function is a self-contained block of statements that perform a coherent task of some kind.</p>
+<h3>Example</h3>
+<div class="code">
+<PRE>
+<FONT COLOR="#000000">main( )</FONT>
+<FONT COLOR="#000000">{</FONT>
+<FONT COLOR="#000000">message( ) ;</FONT>
+<FONT COLOR="#000000">printf ( </FONT><FONT COLOR="#ff00ff">"\nCry, and you stop the monotony!" </FONT><FONT COLOR="#000000">) ;</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#000000">message( )</FONT>
+<FONT COLOR="#000000">{</FONT>
+<FONT COLOR="#000000">printf ( </FONT><FONT COLOR="#ff00ff">"\nSmile, and the world smiles with you..." </FONT><FONT COLOR="#000000">) ;</FONT>
+<FONT COLOR="#000000">}</FONT>
+
+<FONT COLOR="#000000">The output will be--</FONT>
+<FONT COLOR="#000000">Smile, and the world smiles with you...</FONT>
+<FONT COLOR="#000000">Cry, and you stop the monotony!</FONT>
+</PRE>
+</div>
+
+<p>In the above program the main() itself is a function. through the main we are calling the function message().that mean the control passes to the function message().  when the message() function runs out of statement to execute, the control returns to the main().thus main() becomes the "calling function" where as the message() becomes the "called function".</p>
+<p>Some important points in the the C for functions are given below:</p>
+<ol>
+   <li>Any C program contains at least one function.</li>
+   <li>If a program contains only one function, it must be main( ).</li>
+   <li>If a C program contains more than one function, then one (and only one) of these functions must be main( ), because program execution always begins with main( ).</li>
+   <li>There is no limit on the number of functions that might be present in a C program.</li>
+   <li>Each function in a program is called in the sequence specified by the function calls in main( ).</li>
+   <li>After each function has done its thing, control returns to main( ).When main( ) runs out of function calls, the program ends.</li>
+</ol>
+
+<p>Thus, we can say that-<p>
+<ol>
+   <li>A C program is a collection of one or more function.</li>
+   <li>A function gets called when the function name is followed by a semicolon. For example:
+   <div class="code">
+<PRE>
+<FONT COLOR="#000000">main( )</FONT>
+<FONT COLOR="#000000">{</FONT>
+<FONT COLOR="#000000">argentina( ) ;</FONT>
+<FONT COLOR="#000000">}</FONT>
+</PRE>
+   </div>
+    A function is defined when function name is followed by a pair of braces in which one or more statements may be present. For example-
+    <div class="code">
+<PRE>
+<FONT COLOR="#000000">argentina( )</FONT>
+<FONT COLOR="#000000">{</FONT>
+<FONT COLOR="#000000">statement </FONT><FONT COLOR="#800080">1 </FONT><FONT COLOR="#000000">;</FONT>
+<FONT COLOR="#000000">statement </FONT><FONT COLOR="#800080">2 </FONT><FONT COLOR="#000000">;</FONT>
+<FONT COLOR="#000000">statement </FONT><FONT COLOR="#800080">3 </FONT><FONT COLOR="#000000">;</FONT>
+<FONT COLOR="#000000">}</FONT>
+</PRE>
+</div>
+    </li>
+
+    <li>Any function can be called from any other function. Even main( ) can be called from other functions. For example-
+    <div class="code">
+<PRE>
+<FONT COLOR="#000000">main( )</FONT>
+<FONT COLOR="#000000">{</FONT>
+<FONT COLOR="#000000">message( ) ;</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#000000">message( )</FONT>
+<FONT COLOR="#000000">{</FONT>
+<FONT COLOR="#000000">printf ( </FONT><FONT COLOR="#ff00ff">"\nCan't imagine life without C" </FONT><FONT COLOR="#000000">) ;</FONT>
+<FONT COLOR="#000000">main( ) ;</FONT>
+<FONT COLOR="#000000">}</FONT>
+</PRE>
+    </div>
+
+     A function can be called any number of times. For example-
+     <div class="code">
+<PRE>
+<FONT COLOR="#000000">main( )</FONT>
+<FONT COLOR="#000000">{</FONT>
+<FONT COLOR="#000000">message( ) ;</FONT>
+<FONT COLOR="#000000">message( ) ;</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#000000">message( )</FONT>
+<FONT COLOR="#000000">{</FONT>
+<FONT COLOR="#000000">printf ( </FONT><FONT COLOR="#ff00ff">"\nJewel Thief!!" </FONT><FONT COLOR="#000000">) ;</FONT>
+<FONT COLOR="#000000">}</FONT>
+</PRE>
+     </div>
+</li>
+</ol>
+
+<h2>Types of functions</h2>
+<p>There are basically two types of function:</p>
+<ol>
+   <li>library function (printf(), scanf())</li>
+   <li>user defined function (brazil(), usa())</li>
+</ol>
+
+<p>We can also describe the category of the function under it's type.</p>
+<p>A function may belong to any one of the following categories:</p>
+<ol>
+   <li>Functions with no arguments and no return values.</li>
+   <li>Functions with arguments and no return values.</li>
+   <li>Functions with arguments and return values.</li>
+   <li>Functions that return multiple values.</li>
+   <li>Functions with no arguments and return values.</li>
+</ol>
+
+<div class="code">
+<PRE>
+<FONT COLOR="#000000">#include&lt;stdio.h&gt;  </FONT>
+
+<FONT COLOR="#000000">#include&lt;conio.h&gt;  </FONT>
+
+<FONT COLOR="#0000ff">void </FONT><FONT COLOR="#000000">add(</FONT><FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">x,</FONT><FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">y)  </FONT>
+
+<FONT COLOR="#000000">{  </FONT>
+
+<FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">result;  </FONT>
+
+<FONT COLOR="#000000">result = x+y;  </FONT>
+
+<FONT COLOR="#000000">printf(</FONT><FONT COLOR="#ff00ff">"Sum of %d and %d is %d.\n\n"</FONT><FONT COLOR="#000000">,x,y,result);  </FONT>
+
+<FONT COLOR="#000000">}  </FONT>
+
+<FONT COLOR="#0000ff">void </FONT><FONT COLOR="#000000">main()  </FONT>
+
+<FONT COLOR="#000000">{  </FONT>
+
+<FONT COLOR="#000000">clrscr();  </FONT>
+
+<FONT COLOR="#000000">add(</FONT><FONT COLOR="#800080">10</FONT><FONT COLOR="#000000">,</FONT><FONT COLOR="#800080">15</FONT><FONT COLOR="#000000">);  </FONT>
+
+<FONT COLOR="#000000">add(</FONT><FONT COLOR="#800080">55</FONT><FONT COLOR="#000000">,</FONT><FONT COLOR="#800080">64</FONT><FONT COLOR="#000000">);  </FONT>
+
+<FONT COLOR="#000000">add(</FONT><FONT COLOR="#800080">168</FONT><FONT COLOR="#000000">,</FONT><FONT COLOR="#800080">325</FONT><FONT COLOR="#000000">);  </FONT>
+
+<FONT COLOR="#000000">getch();  </FONT>
+
+<FONT COLOR="#000000">}  </FONT>
+</PRE>
+</div>
+
+<p>Library functions are nothing but commonly required functions grouped together and stored in what is called a Library.</p>
+
+<table id="indexing">
+  <tr>
+   <td style="width:33%; text-align:left;"><a href="FUNCTION.shtml" title="Function in C: Why use function">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="CALL_BY_VALUE_AND_CALL_BY_REFERENCE.shtml" title="Function in C: call by value and call by reference">Next</a></td>
+  </tr>
+</table>
+
+<!--Footer  --> 
+   </div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>

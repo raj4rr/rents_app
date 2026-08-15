@@ -1,0 +1,181 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD>
+<meta http-equiv="Content-Language" content="en-us">
+<TITLE>Composite Design Pattern Pattern</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name="description" CONTENT="Composite Design Pattern Pattern" >
+<meta name="keywords" CONTENT="Composite Design Pattern Pattern">
+
+<!-- header start-->	
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>Design Pattern Basic Tutorial</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+
+            		 <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/java/">java</a>           
+              <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/java/design-patterns/">Design Pattern</a>
+
+              </div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/design-patterns/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	 
+
+<!-- header end-->
+
+<div class="heading">Composite Pattern</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="adapter.shtml" title="adapter">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="decorator.shtml" title="decorator">Next</a></td>
+  </tr> 
+</table>
+
+<p>The composite pattern is used to represent the object with the tree structure. suppose that in a School multiple student in a hierarchy order. in this order the principle has its subordinates, and the Teacher is subordinates but student has no subordinate.</p>
+
+<div class="heading">Benefit of the Composite Pattern</div>
+<ol>
+<li>Composite Pattern is more flexible than the compared to the static inheritance. 
+</li><li>
+It is simplify to coding by implementing every feature in a class. 
+</li><li>
+It enhances the capability of an object as the new classes are created to add new features and make some changes. 
+</li></ol>
+
+<div class="heading">Usage of the Composite Pattern</div>
+<p>The Composite Pattern is used when the object is responsible to be added to the individual objects dynamically without affecting other objects. Where an object's responsibilities may vary from time to time. Now, lets try to solve the above problem technically.</p>
+<p>Develop a class "Student" having the getters and setters for the attributes stuname, stumark and principle subordinates.</p>
+
+<h3>Example</h3>
+<div class="code">
+<pre>
+<font color="#008000">// Create the Student class</font>
+<font color="#0000ff">package </font><font color="#000000">r4r;</font>
+<font color="#0000ff">public class </font><font color="#000000">student {</font>
+<font color="#ff0000">String </font><font color="#000000">stuname;</font>
+<font color="#0000ff">double </font><font color="#000000">stumark;</font>
+<font color="#000000">student(</font><font color="#ff0000">String </font><font color="#000000">n, </font><font color="#0000ff">double </font><font color="#000000">s){</font>
+<font color="#000000">stuname = n;</font>
+<font color="#000000">stumark = s;</font>
+<font color="#000000">}</font>
+<font color="#ff0000">String </font><font color="#000000">getName() {</font>
+<font color="#0000ff">return </font><font color="#000000">stuname;</font>
+<font color="#000000">}</font>
+<font color="#0000ff">double </font><font color="#000000">getMark() {</font>
+<font color="#0000ff">return </font><font color="#000000">stumark;</font>
+<font color="#000000">}</font>
+<font color="#0000ff">public </font><font color="#ff0000">String </font><font color="#000000">toString() {</font>
+<font color="#0000ff">return </font><font color="#ff00ff">&quot;Student&quot; </font><font color="#000000">+ stuname;</font>
+<font color="#000000">}</font>
+<font color="#000000">}</font>
+
+<font color="#008000">//Create the Principle class</font>
+<font color="#0000ff">package </font><font color="#000000">r4r;</font>
+<font color="#0000ff">public class </font><font color="#000000">principle {</font>
+<font color="#000000">principle prin;</font>
+<font color="#000000">student[] stu;</font>
+<font color="#ff0000">String </font><font color="#000000">dept;</font>
+<font color="#000000">principle(principle prin,student[] e, </font><font color="#ff0000">String </font><font color="#000000">d ) {</font>
+<font color="#0000ff">this</font><font color="#000000">(e, d);</font>
+<font color="#0000ff">this</font><font color="#000000">.prin = prin;</font>
+<font color="#000000">}</font>
+<font color="#000000">principle(student[] e, </font><font color="#ff0000">String </font><font color="#000000">d) {</font>
+<font color="#000000">stu = e;</font>
+<font color="#000000">dept =d;</font>
+<font color="#000000">}</font>
+<font color="#ff0000">String </font><font color="#000000">getDept() {</font>
+<font color="#0000ff">return </font><font color="#000000">dept;</font>
+<font color="#000000">}</font>
+<font color="#000000">principle getPrinciple() {</font>
+<font color="#0000ff">return </font><font color="#000000">prin;</font>
+<font color="#000000">}</font>
+<font color="#000000">student[] getStudent() {</font>
+<font color="#0000ff">return </font><font color="#000000">stu;</font>
+<font color="#000000">}</font>
+<font color="#0000ff">public </font><font color="#ff0000">String </font><font color="#000000">toString() {</font>
+<font color="#0000ff">return </font><font color="#000000">dept + </font><font color="#ff00ff">&quot; principle&quot;</font><font color="#000000">;</font>
+<font color="#000000">}</font>
+<font color="#000000">}</font>
+
+<font color="#008000">// Create the Main class</font>
+<font color="#0000ff">package </font><font color="#000000">r4r;</font>
+<font color="#0000ff">public class </font><font color="#000000">compositetest {</font>
+<font color="#0000ff">public static void </font><font color="#000000">main(</font><font color="#ff0000">String</font><font color="#000000">[] args)</font>
+<font color="#000000">{</font>
+<font color="#000000">student[] s1 = {</font><font color="#0000ff">new </font><font color="#000000">student(</font><font color="#ff00ff">&quot;Sumit&quot;</font><font color="#000000">, </font><font color="#800080">90</font><font color="#000000">),</font>
+<font color="#0000ff">new </font><font color="#000000">student(</font><font color="#ff00ff">&quot;Amitab&quot;</font><font color="#000000">, </font><font color="#800080">80</font><font color="#000000">)};</font>
+<font color="#000000">principle p1 = </font><font color="#0000ff">new </font><font color="#000000">principle(s1, </font><font color="#ff00ff">&quot;M. Singh&quot;</font><font color="#000000">);</font>
+
+<font color="#000000">student[] s2 = {</font><font color="#0000ff">new </font><font color="#000000">student(</font><font color="#ff00ff">&quot;Suman&quot;</font><font color="#000000">, </font><font color="#800080">60</font><font color="#000000">),</font>
+<font color="#0000ff">new </font><font color="#000000">student(</font><font color="#ff00ff">&quot;Ravindra&quot;</font><font color="#000000">, </font><font color="#800080">50</font><font color="#000000">),</font>
+<font color="#0000ff">new </font><font color="#000000">student(</font><font color="#ff00ff">&quot;Vinay&quot;</font><font color="#000000">, </font><font color="#800080">60</font><font color="#000000">)};</font>
+
+<font color="#000000">principle p2 = </font><font color="#0000ff">new </font><font color="#000000">principle(p1, s2, </font><font color="#ff00ff">&quot;Rules&quot;</font><font color="#000000">);</font>
+
+<font color="#ff0000">System</font><font color="#000000">.out.println(p2);</font>
+<font color="#000000">student[] stu = p2.getStudent();</font>
+<font color="#ff0000">Object </font><font color="#000000">stu1;</font>
+<font color="#0000ff">if </font><font color="#000000">(stu != </font><font color="#0000ff">null</font><font color="#000000">)</font>
+<font color="#0000ff">for </font><font color="#000000">(</font><font color="#0000ff">int </font><font color="#000000">k = </font><font color="#800080">0</font><font color="#000000">; k &lt; stu.length; k++)</font>
+<font color="#ff0000">System</font><font color="#000000">.out.println(</font><font color="#ff00ff">&quot; &quot;</font><font color="#000000">+stu[k]+</font><font color="#ff00ff">&quot; Mark:&quot;</font><font color="#000000">+ </font>
+<font color="#000000">stu[k].getMark()); </font>
+<font color="#000000">principle p = p2.getPrinciple();</font>
+<font color="#ff0000">String </font><font color="#000000">p3;</font>
+<font color="#ff0000">System</font><font color="#000000">.out.println(</font><font color="#ff00ff">&quot; &quot; </font><font color="#000000">+ p);</font>
+<font color="#0000ff">if </font><font color="#000000">(p1!= </font><font color="#0000ff">null</font><font color="#000000">) {</font>
+<font color="#000000">student[] stus = p.getStudent();</font>
+<font color="#0000ff">if </font><font color="#000000">(stus != </font><font color="#0000ff">null</font><font color="#000000">)</font>
+<font color="#0000ff">for </font><font color="#000000">(</font><font color="#0000ff">int </font><font color="#000000">k = </font><font color="#800080">0</font><font color="#000000">; k &lt; stus.length; k++)</font>
+<font color="#ff0000">System</font><font color="#000000">.out.println(</font><font color="#ff00ff">&quot; &quot; </font><font color="#000000">+ stus[k]+</font><font color="#ff00ff">&quot; Mark:&quot;</font><font color="#000000">+ </font>
+<font color="#000000">stus[k].getMark());</font>
+<font color="#000000">}</font>
+<font color="#000000">}</font>
+<font color="#000000">}</font>
+</pre>
+</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="adapter.shtml" title="adapter">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="decorator.shtml" title="decorator">Next</a></td>
+  </tr> 
+</table>
+
+<!-- Footer Start-->	   	
+
+		</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->
+

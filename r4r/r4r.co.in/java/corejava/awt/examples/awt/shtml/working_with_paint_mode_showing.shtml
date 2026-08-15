@@ -1,0 +1,134 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD>
+<meta http-equiv="Content-Language" content="en-us">
+<TITLE>Working With Paint Mode</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name="description" CONTENT="Working With Paint Mode ,How to Working With Paint Mode ,which type Working With Paint Mode " >
+<meta name="keywords" CONTENT="Working With Paint Mode ,How to Working With Paint Mode ,which type Working With Paint Mode ">
+
+<!-- header start-->	
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>Java AWT Tutorials</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+            <img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+            <a href="/java/">Java</a>
+			<img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/java/corejava/">Core Java</a>
+              <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/java/corejava/awt/">AWT</a>
+
+              </div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/corejava/awt/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	 
+
+<!-- header End-->
+
+<div class="heading">Working With Paint Mode Showing Pointer </div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="using_text_Field_demo.shtml" title="using text Field demo">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="working_with_paint_mode_without_Showing_Pointer.shtml" title="working with paint mode without Showing Pointer">Next</a></td>
+  </tr> 
+</table>
+
+<p>In this example we are going to set paint mode. Paint mode determines how object are drawn in a window. By default ,new output to a window overwrites any pre existing context. However it is possible have a new object XORed onto the window by using set XORed() mode.</b></p>
+
+<p>To control the Choice Box we are using three type of package. One is <b>java.awt.*</b> second is  <b>java.applet.*</b> and third is <b>java.awt.event.*;</b> .The java.awt.* is used for GUI interface. AWT classes are contain in this package. The  java.applet.* package is used to create an applet and java.awt.event.*; defined within the java.awt.*; package is a subclass of EventObject. It is a super class of all AWT-based event.</p>
+<p><b>void setXORedMode(Color xorColor):</b> xorColor specifies the color that will be XORed to the window when an object will be drawn.</p>
+<p>To return on overwrite mode call: <b>void setPaintMode():</b>
+<p>In our example, the following program display the cross hairs that track the mouse pointer. The cross hairs are XORed onto the Window and are always visible no matter what the underlying color is.</p>
+
+<h3>Example</h3>
+<div class="code">
+<PRE>
+<FONT COLOR="#008000">//Working with paint mode</FONT>
+<FONT COLOR="#0000ff">import </FONT><FONT COLOR="#000000">java.awt.*;</FONT>
+<FONT COLOR="#0000ff">import </FONT><FONT COLOR="#000000">java.applet.*;</FONT>
+<FONT COLOR="#0000ff">import </FONT><FONT COLOR="#000000">java.awt.event.*;</FONT>
+<FONT COLOR="#008000">/*</FONT>
+<FONT COLOR="#008000">&lt;applet code="XOR" width=300 height=200&gt;</FONT>
+<FONT COLOR="#008000">&lt;/applet&gt;</FONT>
+<FONT COLOR="#008000">*/</FONT>
+<FONT COLOR="#0000ff">public class </FONT><FONT COLOR="#000000">XOR </FONT><FONT COLOR="#0000ff">extends </FONT><FONT COLOR="#ff0000">Applet</FONT><FONT COLOR="#000000">{</FONT>
+<FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">chsX=</FONT><FONT COLOR="#800080">100</FONT><FONT COLOR="#000000">, chsY=</FONT><FONT COLOR="#800080">100</FONT><FONT COLOR="#000000">;</FONT>
+<FONT COLOR="#0000ff">public </FONT><FONT COLOR="#000000">XOR(){</FONT>
+<FONT COLOR="#000000">addMouseMotionListener(</FONT><FONT COLOR="#0000ff">new </FONT><FONT COLOR="#ff0000">MouseMotionAdapter</FONT><FONT COLOR="#000000">(){</FONT>
+<FONT COLOR="#0000ff">public void </FONT><FONT COLOR="#000000">mouseMoved(</FONT><FONT COLOR="#ff0000">MouseEvent </FONT><FONT COLOR="#000000">me){</FONT>
+<FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">x=me.getX();</FONT>
+<FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">y=me.getY();</FONT>
+<FONT COLOR="#000000">chsX=x-</FONT><FONT COLOR="#800080">20</FONT><FONT COLOR="#000000">;</FONT>
+<FONT COLOR="#000000">chsY=y-</FONT><FONT COLOR="#800080">20</FONT><FONT COLOR="#000000">;</FONT>
+<FONT COLOR="#000000">repaint();</FONT>
+<FONT COLOR="#000000">}});}</FONT>
+<FONT COLOR="#0000ff">public void </FONT><FONT COLOR="#000000">paint(</FONT><FONT COLOR="#ff0000">Graphics </FONT><FONT COLOR="#000000">g){</FONT>
+<FONT COLOR="#000000">g.setColor(</FONT><FONT COLOR="#ff0000">Color</FONT><FONT COLOR="#000000">.green);</FONT>
+<FONT COLOR="#000000">g.drawLine(</FONT><FONT COLOR="#800080">0</FONT><FONT COLOR="#000000">,</FONT><FONT COLOR="#800080">0</FONT><FONT COLOR="#000000">,</FONT><FONT COLOR="#800080">200</FONT><FONT COLOR="#000000">,</FONT><FONT COLOR="#800080">200</FONT><FONT COLOR="#000000">);</FONT>
+<FONT COLOR="#000000">g.setColor(</FONT><FONT COLOR="#ff0000">Color</FONT><FONT COLOR="#000000">.black);</FONT>
+<FONT COLOR="#000000">g.fillRect(</FONT><FONT COLOR="#800080">20</FONT><FONT COLOR="#000000">,</FONT><FONT COLOR="#800080">20</FONT><FONT COLOR="#000000">,</FONT><FONT COLOR="#800080">70</FONT><FONT COLOR="#000000">,</FONT><FONT COLOR="#800080">70</FONT><FONT COLOR="#000000">);</FONT>
+<FONT COLOR="#000000">g.setColor(</FONT><FONT COLOR="#ff0000">Color</FONT><FONT COLOR="#000000">.red);</FONT>
+<FONT COLOR="#000000">g.drawLine(</FONT><FONT COLOR="#800080">10</FONT><FONT COLOR="#000000">,</FONT><FONT COLOR="#800080">100</FONT><FONT COLOR="#000000">,</FONT><FONT COLOR="#800080">50</FONT><FONT COLOR="#000000">,</FONT><FONT COLOR="#800080">20</FONT><FONT COLOR="#000000">);</FONT>
+<FONT COLOR="#000000">g.setColor(</FONT><FONT COLOR="#ff0000">Color</FONT><FONT COLOR="#000000">.green);</FONT>
+<FONT COLOR="#000000">g.drawRect(</FONT><FONT COLOR="#800080">50</FONT><FONT COLOR="#000000">,</FONT><FONT COLOR="#800080">0</FONT><FONT COLOR="#000000">,</FONT><FONT COLOR="#800080">50</FONT><FONT COLOR="#000000">,</FONT><FONT COLOR="#800080">50</FONT><FONT COLOR="#000000">);</FONT>
+<FONT COLOR="#000000">g.setXORMode(</FONT><FONT COLOR="#ff0000">Color</FONT><FONT COLOR="#000000">.black);</FONT>
+<FONT COLOR="#000000">g.drawLine(chsX-</FONT><FONT COLOR="#800080">10</FONT><FONT COLOR="#000000">,chsY,chsX+</FONT><FONT COLOR="#800080">10</FONT><FONT COLOR="#000000">,chsY);</FONT>
+<FONT COLOR="#000000">g.drawLine(chsX,chsY-</FONT><FONT COLOR="#800080">10</FONT><FONT COLOR="#000000">,chsX,chsY+</FONT><FONT COLOR="#800080">10</FONT><FONT COLOR="#000000">);</FONT>
+<FONT COLOR="#000000">g.setPaintMode();</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#000000">}</FONT>
+</PRE>
+</div>
+
+<p><h3>Output Of Example</h3></p>
+<div class="output">
+<div class="image">
+<img src="../images/workin2.jpg">
+</div></div>
+
+<h3><a href="../sourcecode/XOR.java.txt">Download Source Code</a></h3>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="using_text_Field_demo.shtml" title="using text Field demo">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="working_with_paint_mode_without_Showing_Pointer.shtml" title="working with paint mode without Showing Pointer">Next</a></td>
+  </tr> 
+</table>
+
+<!-- Footer Start-->	
+
+		</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->

@@ -1,0 +1,141 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>BIG NUMBERS IN JAVA</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="BIG NUMBERS IN JAVA" >
+<meta name="keywords" CONTENT="BIG NUMBERS IN JAVA">
+
+<!-- header start-->
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>Java Programing laungage</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+            <img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+            <a href="/java/">Java</a>
+              <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/java/corejava">Core Java</a>
+               <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/java/corejava/topics/basics/">Basics</a>
+
+              </div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/corejava/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	 
+<!-- header End-->	
+
+<div class="heading">Big Numbers In Java</div>
+
+<table id="indexing">
+  <tr>
+<td style="width:33%; text-align:left;"><a href="9java_ControlFlow_contd1.shtml" title="Switch Statement, Using break, continue for breaking the Control Flow ">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="11java_Array.shtml" title="Arrays and Anonymous Arrays">Next</a></td>
+  </tr> 
+</table>
+<p>While programming if the precision of the integers and floating point number is not according to the requirements, then we can use the big numbers defined in java. </p> 
+
+<p>the big numbers are contained in <font class="point_out">java.math package</font>, BigInteger is used for manipulating the precision of the integral values while BigDecimal is used for the floating point numbers. The method valueOf(), defined in the package can turn any ordinary number to a big number.<p>
+<div class="code">
+<PRE>
+<FONT FACE="Arial">
+<FONT COLOR="#ff0000">BigInteger </FONT><FONT COLOR="#000000">num = </FONT><FONT COLOR="#ff0000">BigInteger</FONT><FONT COLOR="#000000">.valueOf(</FONT><FONT COLOR="#800080">300</FONT><FONT COLOR="#000000">);</FONT>
+</FONT>
+</PRE>
+</div>
+<p>In this example we have converted a simple integer 300 to a BigInteger type value  and assigned it to the num. Also note that we cannot use basic operators like +, -, /, * directly on the big numbers, infact we have to use predefined methods like add(), multiply() in order to combine the big numbers.<i> For e.g.</i></p>
+<div class="code">
+<PRE>
+<FONT FACE="Arial">
+<FONT COLOR="#ff0000">BigInteger </FONT><FONT COLOR="#000000">num = </FONT><FONT COLOR="#ff0000">BigInteger</FONT><FONT COLOR="#000000">.valueOf(</FONT><FONT COLOR="#800080">300</FONT><FONT COLOR="#000000">);</FONT>
+<FONT COLOR="#ff0000">BigInteger </FONT><FONT COLOR="#000000">p = num.add(</FONT><FONT COLOR="#ff0000">BigInteger</FONT><FONT COLOR="#000000">.valueOf(</FONT><FONT COLOR="#800080">200</FONT><FONT COLOR="#000000">));    </FONT>
+<FONT COLOR="#008000">// it goes as p=num+200= 300+200=500</FONT>
+</FONT>
+</PRE>
+</div>
+
+<p>Some of the methods which are defined in <font class="point_out">java.math.BigInteger </font>class and used more commonly  are :</p>
+<div class="code">
+<PRE>
+<FONT FACE="Arial">
+<FONT COLOR="#ff0000">BigInteger </FONT><FONT COLOR="#000000">add(</FONT><FONT COLOR="#ff0000">BigInteger </FONT><FONT COLOR="#000000">second)                 </FONT>
+<FONT COLOR="#008000">// returns the sum of current BigInteger with the second  </FONT>
+<FONT COLOR="#ff0000">BigInteger </FONT><FONT COLOR="#000000">multiply(</FONT><FONT COLOR="#ff0000">BigInteger </FONT><FONT COLOR="#000000">second)             </FONT>
+<FONT COLOR="#008000">// returns the multiplication of current BigInteger with the second</FONT>
+<FONT COLOR="#ff0000">BigInteger </FONT><FONT COLOR="#000000">divide(</FONT><FONT COLOR="#ff0000">BigInteger </FONT><FONT COLOR="#000000">second)              </FONT>
+<FONT COLOR="#008000">// returns the division of current BigInteger with the second</FONT>
+<FONT COLOR="#ff0000">BigInteger </FONT><FONT COLOR="#000000">subrtact(</FONT><FONT COLOR="#ff0000">BigInteger </FONT><FONT COLOR="#000000">second)           </FONT>
+<FONT COLOR="#008000">// returns the subtraction of current BigInteger with the second</FONT>
+<FONT COLOR="#ff0000">BigInteger </FONT><FONT COLOR="#000000">mod(</FONT><FONT COLOR="#ff0000">BigInteger </FONT><FONT COLOR="#000000">second)                </FONT>
+<FONT COLOR="#008000">// return the mod value of current BigInteger with the second</FONT>
+</FONT>
+</PRE>
+</div>
+
+<h3>int Java TutorialsompareTo(BigInteger second)</h3>
+<p>It compares the value of the current BigInteger with the second and then returns an integral value. If current number is greater than second than it will give a positive integer, if equal it will return 0, else it will return a negative value.</p>
+<h3>static BigInteger valueOf(Long p)</h3>
+<p>It converts an integer number  to the  Big Integer type number.</p>
+<p>Similarly we can use BigDecimal class to manipulating the precision of the floating point numbers. The frequent methods which are defined in the java.math.BigDecimal class are :</p>
+
+<div class="code">
+<PRE>
+<FONT FACE="Arial">
+<FONT COLOR="#ff0000">BigDecimal </FONT><FONT COLOR="#000000">add(</FONT><FONT COLOR="#ff0000">BigDecimal </FONT><FONT COLOR="#000000">second)                   </FONT>
+<FONT COLOR="#008000">// returns the sum of current BigDecimal with the second  </FONT>
+<FONT COLOR="#ff0000">BigDecimal </FONT><FONT COLOR="#000000">multiply(</FONT><FONT COLOR="#ff0000">BigDecimal </FONT><FONT COLOR="#000000">second)            </FONT>
+<FONT COLOR="#008000">// returns the multiplication of current BigDecimal with the second</FONT>
+<FONT COLOR="#ff0000">BigDecimal </FONT><FONT COLOR="#000000">divide(</FONT><FONT COLOR="#ff0000">BigDecimal </FONT><FONT COLOR="#000000">second, </FONT><FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">roundoff mode)</FONT>
+<FONT COLOR="#008000">//returns the divison of current BigDecimal with </FONT>
+<FONT COLOR="#000000">second one with roundoff digits</FONT>
+<FONT COLOR="#ff0000">BigDecimal </FONT><FONT COLOR="#000000">subrtact(</FONT><FONT COLOR="#ff0000">BigDecimal </FONT><FONT COLOR="#000000">second)           </FONT>
+<FONT COLOR="#008000">// returns the subtraction of current BigDecimal with the second</FONT>
+<FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">Java TutorialsompareTo(</FONT><FONT COLOR="#ff0000">BigDecimal </FONT><FONT COLOR="#000000">second)                   </FONT>
+<FONT COLOR="#008000">// return an integer after comparing the two BigDecimal type numbers</FONT>
+<FONT COLOR="#0000ff">static </FONT><FONT COLOR="#ff0000">BigDecimal </FONT><FONT COLOR="#000000">valueOf(</FONT><FONT COLOR="#ff0000">Long </FONT><FONT COLOR="#000000">p)                     </FONT>
+<FONT COLOR="#008000">// convert an simple number to the BigDecimal type number</FONT>
+<FONT COLOR="#0000ff">static </FONT><FONT COLOR="#ff0000">BigDecimal </FONT><FONT COLOR="#000000">valueOf(</FONT><FONT COLOR="#ff0000">Long </FONT><FONT COLOR="#000000">p, </FONT><FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">scale)      </FONT>
+<FONT COLOR="#008000">// converts an simple to the BigDecimal number x /10^scale</FONT>
+</FONT>
+</PRE>
+</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="9java_ControlFlow_contd1.shtml" title="Switch Statement, Using break, continue for breaking the Control Flow ">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="11java_Array.shtml" title="Arrays and Anonymous Arrays">Next</a></td>
+  </tr> 
+</table>
+
+<!-- Footer Start-->	
+
+		</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->

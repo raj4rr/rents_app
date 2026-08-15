@@ -1,0 +1,196 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD>
+<meta http-equiv="Content-Language" content="en-us">
+<TITLE>Example of Struts 2.x ,Spring 2.5 integration</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name="description" CONTENT="Show in a Message Box using Validation Summary,spring travels,spring tutorials,spring framework,spring mvc,spring interview question,spring framework tutorials,spring aop" >
+<meta name="keywords" CONTENT="Show in a Message Box using Validation Summary,spring travels,spring tutorials,spring framework,spring mvc,spring interview question,spring framework tutorials,spring aop">
+
+<!-- header start-->	
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>Spring Framework</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+           <img src="/images/left_menu_bullet.gif" width="11" height="6"/>  <a href="/java/">Java</a>    
+		      <img src="/images/left_menu_bullet.gif" width="11" height="6"/><a href="/java/spring/">Spring</a>
+
+              </div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/spring/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	 
+
+<!-- header End--> 
+
+<div class="heading">Example of Struts 2.x ,Spring 2.5 integration</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="StrutsSpring.shtml" title="How can Integrate Struts 2.x and Spring Framework">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="index.shtml" title="Home">Next</a></td>
+  </tr> 
+</table>
+
+<p><i>Introduction:</i> This tutorial provide the example to integrate between struts2 and spring framework.</p>
+
+<p>Technology use to run this source code:</p>
+<ol><li>Spring2.5 jar file</li>
+<li>Eclips Id</li>
+<li>Tomcat Server</li></ol>
+<p>Source Code</p>
+
+<h3>web.xml</h3>
+<div class="code">
+
+<pre>
+<font color="#0000ff">&lt;?xml </font><font color="#ff0000">version</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;1.0&quot; </font><font color="#ff0000">encoding</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;UTF-8&quot;</font><font color="#800080">?</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">web-app </font><font color="#800080">xmlns:xsi</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;http://www.w3.org/2001/XMLSchema-instance&quot; </font>
+<font color="#ff0000">xmlns</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;http://java.sun.com/xml/ns/javaee&quot; </font>
+<font color="#800080">xmlns:web</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd&quot; </font>
+<font color="#800080">xsi:schemaLocation</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;http://java.sun.com/xml/ns/javaee</font>
+<font color="#ff00ff">http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd&quot; </font><font color="#800080">id</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;WebApp_ID&quot; </font><font color="#ff0000">version</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;2.5&quot;</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">display-name</font><font color="#0000ff">&gt;</font><font color="#000000">Struts2Example14</font><font color="#0000ff">&lt;/</font><font color="#808000">display-name</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">filter</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">filter-name</font><font color="#0000ff">&gt;</font><font color="#000000">struts2</font><font color="#0000ff">&lt;/</font><font color="#808000">filter-name</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">filter-class</font><font color="#0000ff">&gt;</font>
+<font color="#000000">org.apache.struts2.dispatcher.ng.filter.StrutsPrepareAndExecuteFilter</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">filter-class</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">filter</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">listener</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">listener-class</font><font color="#0000ff">&gt;</font>
+<font color="#000000">org.springframework.web.context.ContextLoaderListener</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">listener-class</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">listener</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">filter-mapping</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">filter-name</font><font color="#0000ff">&gt;</font><font color="#000000">struts2</font><font color="#0000ff">&lt;/</font><font color="#808000">filter-name</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">url-pattern</font><font color="#0000ff">&gt;</font><font color="#000000">/*</font><font color="#0000ff">&lt;/</font><font color="#808000">url-pattern</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">filter-mapping</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">welcome-file-list</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">welcome-file</font><font color="#0000ff">&gt;</font><font color="#000000">index.jsp</font><font color="#0000ff">&lt;/</font><font color="#808000">welcome-file</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">welcome-file-list</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">web-app</font><font color="#0000ff">&gt;</font>
+</pre>
+</div>
+
+<h3>applicationContext.xml</h3>
+<div  class="code">
+<pre>
+<font color="#0000ff">&lt;?xml </font><font color="#ff0000">version</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;1.0&quot; </font><font color="#ff0000">encoding</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;UTF-8&quot;</font><font color="#800080">?</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;!DOCTYPE </font><font color="#800080">beans PUBLIC </font><font color="#000000">&quot;</font><font color="#800080">-</font><font color="#000000">//</font><font color="#800080">SPRING</font><font color="#000000">//</font><font color="#800080">DTD BEAN</font><font color="#000000">//</font><font color="#800080">EN</font><font color="#000000">&quot; </font>
+<font color="#000000">&quot;</font><font color="#800080">http:</font><font color="#000000">//</font><font color="#800080">www</font><font color="#000000">.</font><font color="#800080">springframework</font><font color="#000000">.</font><font color="#800080">org</font><font color="#000000">/</font><font color="#800080">dtd</font><font color="#000000">/</font><font color="#800080">spring-beans</font><font color="#000000">.</font><font color="#800080">dtd</font><font color="#000000">&quot;</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">beans</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">bean </font><font color="#800080">id</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;helloWorldClass&quot; </font><font color="#800080">class</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;org.r4r.HelloWorld&quot; </font><font color="#0000ff">&gt;</font>
+<font color="#000000">	</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">bean</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">beans</font><font color="#0000ff">&gt;</font>
+</pre>
+</div>
+
+<h3>structs.xml</h3>
+<div class="code">
+<pre>
+<font color="#0000ff">&lt;!DOCTYPE </font><font color="#800080">struts PUBLIC</font>
+<font color="#000000">&quot;</font><font color="#800080">-</font><font color="#000000">//</font><font color="#800080">Apache Software Foundation</font><font color="#000000">//</font><font color="#800080">DTD Struts Configuration 2</font><font color="#000000">.</font><font color="#800080">0</font><font color="#000000">//</font><font color="#800080">EN</font><font color="#000000">&quot;</font>
+<font color="#000000">&quot;</font><font color="#800080">http:</font><font color="#000000">//</font><font color="#800080">struts</font><font color="#000000">.</font><font color="#800080">apache</font><font color="#000000">.</font><font color="#800080">org</font><font color="#000000">/</font><font color="#800080">dtds</font><font color="#000000">/</font><font color="#800080">struts-2</font><font color="#000000">.</font><font color="#800080">0</font><font color="#000000">.</font><font color="#800080">dtd</font><font color="#000000">&quot;</font><font color="#0000ff">&gt;</font>
+
+<font color="#0000ff">&lt;</font><font color="#808000">struts</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">package </font><font color="#ff0000">name</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;default&quot; </font><font color="#800080">extends</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;struts-default&quot;</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">action </font><font color="#ff0000">name</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;helloWorld&quot; </font><font color="#800080">class</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;helloWorldClass&quot;</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">result </font><font color="#ff0000">name</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;success&quot;</font><font color="#0000ff">&gt;</font><font color="#000000">/success.jsp</font><font color="#0000ff">&lt;/</font><font color="#808000">result</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">action</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">package</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">struts</font><font color="#0000ff">&gt;</font>
+</pre>
+</div>
+
+<h3>HelloWorld.java</h3>
+<div class="code">
+<pre>
+<font color="#0000ff">package </font><font color="#000000">org.r4r;</font>
+
+<font color="#0000ff">public class </font><font color="#000000">HelloWorld {</font>
+<font color="#0000ff">private </font><font color="#ff0000">String </font><font color="#000000">message;</font>
+<font color="#0000ff">public </font><font color="#ff0000">String </font><font color="#000000">getMessage() {</font>
+<font color="#0000ff">return </font><font color="#000000">message;</font>
+<font color="#000000">}</font>
+
+<font color="#0000ff">public void </font><font color="#000000">setMessage(</font><font color="#ff0000">String </font><font color="#000000">message) {</font>
+<font color="#0000ff">this</font><font color="#000000">.message = message;</font>
+<font color="#000000">}</font>
+
+<font color="#0000ff">public </font><font color="#ff0000">String </font><font color="#000000">execute() {</font>
+<font color="#0000ff">return </font><font color="#ff00ff">&quot;success&quot;</font><font color="#000000">;</font>
+<font color="#000000">}</font>
+<font color="#000000">}</font>
+</pre>
+</div>
+
+<h3>index.jsp</h3>
+<div class="code">
+<pre>
+<font color="#800000">&lt;%@taglib uri=</font><font color="#ff00ff">&quot;/struts-tags&quot; </font><font color="#800000">prefix=</font><font color="#ff00ff">&quot;s&quot;</font><font color="#800000">%&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">s:form </font><font color="#ff0000">action</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;helloWorld&quot;</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">s:textfield </font><font color="#ff0000">name</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;message&quot; </font><font color="#ff0000">label</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;Name&quot;</font><font color="#0000ff">&gt;&lt;/</font><font color="#808000">s:textfield</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">s:submit</font><font color="#0000ff">&gt;&lt;/</font><font color="#808000">s:submit</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">s:form</font><font color="#0000ff">&gt;</font>
+</pre>
+</div>
+
+<h3>success.jsp</h3>
+<div class="code">
+
+<pre>
+<font color="#800000">&lt;%@taglib uri=</font><font color="#ff00ff">&quot;/struts-tags&quot; </font><font color="#800000">prefix=</font><font color="#ff00ff">&quot;s&quot;</font><font color="#800000">%&gt;</font>
+
+<font color="#000000">Welcome, </font><font color="#0000ff">&lt;</font><font color="#808000">s:property </font><font color="#ff0000">value</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;message&quot;</font><font color="#0000ff">/&gt;</font>
+</pre>
+</div>
+
+<p><h3>output</h3></p>
+<div class="output">
+<div class="image">
+<img src="Exampl3.jpg"></div></div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="StrutsSpring.shtml" title="How can Integrate Struts 2.x and Spring Framework">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="index.shtml" title="Home">Next</a></td>
+  </tr> 
+</table>
+
+<!-- Footer Start-->
+
+		</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->

@@ -1,0 +1,127 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>How to Change the Color of Specific Word in Richtextbox using C#</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="How to Change the Color of Specific Word in Richtextbox using C#" >
+<meta name="keywords" CONTENT="How to Change the Color of Specific Word in Richtextbox using C#">
+
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+     <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>C# Tutorial</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a><img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/c1/">C#</a>
+
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/c1/commonfiles/leftmenu.shtml'); ?></td>
+
+                       <td style="80%" valign="top">
+                        <div class="main_content"> 
+
+	<!-- Header End-->
+
+	<div class="heading">How to Change The Color of Specific Word in Rich textbox using C# </div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="How%20to%20Add%20Manually%20CheckBox%20in%20C-Sharp%20using%20Asp.net.shtml" title="How to Add Manually CheckBox in C#">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="Reading-Writing-Appending%20a%20Text%20File,%20Using%20c-Sharp.shtml" 
+    title="Reading/Writing/Appending a Text File, Using c#">Next</a></td>
+  </tr>
+</table>
+
+<h3>.CS Code</h3>
+<div class="code">
+<pre>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Collections</font><font color="#000000">.</font><font color="#008080">Generic</font><font color="#000000">;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">ComponentModel</font><font color="#000000">;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Data</font><font color="#000000">;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Drawing</font><font color="#000000">;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.Linq;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Text</font><font color="#000000">;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Windows</font><font color="#000000">.</font><font color="#008080">Forms</font><font color="#000000">;</font>
+
+<font color="#0000ff">namespace </font><font color="#000000">WindowsFormsApplication2 {</font>
+<font color="#0000ff">public </font><font color="#000000">partial </font><font color="#0000ff">class </font><font color="#000000">Form1 : </font><font color="#808000">Form </font><font color="#000000">{</font>
+<font color="#0000ff">public </font><font color="#000000">Form1() {</font>
+<font color="#000000">InitializeComponent();</font>
+<font color="#000000">}</font>
+<font color="#0000ff">static void </font><font color="#000000">HighlightPhrase(</font><font color="#808000">RichTextBox </font><font color="#000000">box, </font><font color="#0000ff">string </font><font color="#000000">phrase, Color color)</font>
+<font color="#000000">{</font>
+<font color="#0000ff">int </font><font color="#000000">pos = box.SelectionStart;</font>
+<font color="#0000ff">string </font><font color="#000000">s = box.</font><font color="#008080">Text</font><font color="#000000">;</font>
+<font color="#0000ff">for </font><font color="#000000">(</font><font color="#0000ff">int </font><font color="#000000">ix = </font><font color="#800080">0</font><font color="#000000">; ; )</font>
+<font color="#000000">{</font>
+<font color="#0000ff">int </font><font color="#000000">jx = s.IndexOf(phrase, ix, StringComparison.CurrentCultureIgnoreCase);</font>
+<font color="#0000ff">if </font><font color="#000000">(jx &lt; </font><font color="#800080">0</font><font color="#000000">)</font>
+<font color="#0000ff">break</font><font color="#000000">;</font>
+
+<font color="#000000">box.SelectionStart = jx;</font>
+<font color="#000000">box.SelectionLength = phrase.Length;</font>
+<font color="#000000">box.SelectionColor = color;</font>
+<font color="#000000">ix = jx + </font><font color="#800080">1</font><font color="#000000">;</font>
+<font color="#000000">}</font>
+<font color="#000000">box.SelectionStart = pos;</font>
+<font color="#000000">box.SelectionLength = </font><font color="#800080">0</font><font color="#000000">;</font>
+<font color="#000000">}</font>
+
+<font color="#0000ff">private void </font><font color="#000000">Form1_Load(</font><font color="#0000ff">object </font><font color="#000000">sender, </font><font color="#808000">EventArgs </font><font color="#000000">e)</font>
+<font color="#000000">{</font>
+<font color="#000000">}</font>
+
+<font color="#0000ff">private void </font><font color="#000000">button1_Click(</font><font color="#0000ff">object </font>
+<font color="#000000">sender, </font><font color="#808000">EventArgs </font><font color="#000000">e)</font>
+<font color="#000000">{</font>
+<font color="#000000">HighlightPhrase(richTextBox1, </font><font color="#ff00ff">&quot;a&quot;</font><font color="#000000">, Color.Red);</font>
+<font color="#000000">HighlightPhrase(richTextBox1, </font><font color="#ff00ff">&quot;b&quot;</font><font color="#000000">, Color.Blue);</font>
+<font color="#000000">}</font>
+<font color="#000000">}</font>
+<font color="#000000">}</font>
+</pre>
+</div>
+
+<h3>Design Output</h3>
+<div class="output">
+<div class="image">
+<img src="color.gif">
+</div>
+</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="How%20to%20Add%20Manually%20CheckBox%20in%20C-Sharp%20using%20Asp.net.shtml" title="How to Add Manually CheckBox in C#">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="Reading-Writing-Appending%20a%20Text%20File,%20Using%20c-Sharp.shtml" 
+    title="Reading/Writing/Appending a Text File, Using c#">Next</a></td>
+  </tr>
+</table>
+ <!--Footer-->
+   </div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/dotnet/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+     <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>

@@ -1,0 +1,122 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>Non-Static Inner(member) Classes</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="Non-Static Inner(member) Classes" >
+<meta name="keywords" CONTENT="Non-Static Inner(member) Classes">
+
+<!-- header start-->
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>Java Programing laungage</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+            <img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+            <a href="/java/">Java</a>
+              <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/java/corejava">Core Java</a>
+               <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/java/corejava/topics/basics/">Basics</a>
+
+              </div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/corejava/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	 
+<!-- header End-->	
+
+<div class="heading">Non-Static Inner(member) Classes</div>
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="15java_ClassContd.shtml" title="What are different types of classes in java?, Top Level Classes, Static Inner Classes">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="17java_Classcontd2.class.shtml" title="Local Classes In Java">Next</a></td>
+  </tr> 
+</table>
+
+<p>There is a very little difference between the static inner classes and non-static inner classes, but in terms of their functionalities both are very different.</p> 
+
+<p>In java each instance of the inner class is implicitly associated with an instance of its enclosing class which allows the inner class to directly access the non-static member variables and functions of its enclosing class.</p>
+<p>A non-static inner class maintains a reference to its enclosing class, an instance of a non-static inner class can not be created unless there is an instance of the enclosing class. Instances of the inner class maintain a reference to their enclosing instance which is assigned automatically upon object creation.</p><p> If your member class doesn't require access to the enclosing instance make it static to save resources. Because a non-static inner class cannot exist without an enclosing class's instance it is very rare to see non-static inner classes that aren't private or package protected. Static member classes are frequently declared public. The syntax and usage of non-static inner classes can be shown via the following code snippet,	</p>
+<h3>Example</h3>
+<div class="code">
+<PRE>
+<FONT FACE="Arial">
+<FONT COLOR="#000000">Java Tutorialsclass NonStaticInnerExample</FONT>
+<FONT COLOR="#000000">{</FONT>
+   <FONT COLOR="#0000ff">public static void </FONT><FONT COLOR="#000000">main(</FONT><FONT COLOR="#ff0000">String </FONT><FONT COLOR="#000000">args[])</FONT>
+   <FONT COLOR="#000000">{</FONT>
+     <FONT COLOR="#0000ff">new </FONT><FONT COLOR="#000000">Addition().sum();                  </FONT>
+	 <FONT COLOR="#008000">// creating the object of  Addition class and calling sum method on it.</FONT>
+     <FONT COLOR="#0000ff">new </FONT><FONT COLOR="#000000">Addition().</FONT><FONT COLOR="#0000ff">new </FONT><FONT COLOR="#000000">Addition1().sum();        </FONT>
+	 <FONT COLOR="#008000">// creating the object of Addition1 class using the object of </FONT>
+<FONT COLOR="#000000">Addition </FONT><FONT COLOR="#0000ff">class     </FONT>
+      <FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">d=</FONT><FONT COLOR="#0000ff">new </FONT><FONT COLOR="#000000">Addition().a;                               </FONT>
+<FONT COLOR="#008000">// storing value of a in d</FONT>
+      <FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">e=</FONT><FONT COLOR="#0000ff">new </FONT><FONT COLOR="#000000">exem().</FONT><FONT COLOR="#0000ff">new </FONT><FONT COLOR="#000000">Addition1().c;           </FONT>
+	  <FONT COLOR="#008000">// storing value of c in e</FONT>
+      <FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.println(</FONT><FONT COLOR="#ff00ff">"the value of a in outer class is:"</FONT><FONT COLOR="#000000">+d);      </FONT>
+	  <FONT COLOR="#008000">//printing values of d and e</FONT>
+      <FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.println(</FONT><FONT COLOR="#ff00ff">"the value of c in inner class is:"</FONT><FONT COLOR="#000000">+e);</FONT>
+     <FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#000000">Java Tutorialslass Addition                           </FONT>
+<FONT COLOR="#008000">// enclosing or top level class</FONT>
+<FONT COLOR="#000000">{</FONT>
+  <FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">a=</FONT><FONT COLOR="#800080">10</FONT><FONT COLOR="#000000">;</FONT>
+  <FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">b=</FONT><FONT COLOR="#800080">20</FONT><FONT COLOR="#000000">;</FONT>
+  <FONT COLOR="#0000ff">void </FONT><FONT COLOR="#000000">sum()</FONT>
+   <FONT COLOR="#000000">{</FONT>
+ <FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.println(</FONT><FONT COLOR="#ff00ff">"the sum of two numbers in enclosing class is:"</FONT><FONT COLOR="#000000">+(a+b));</FONT>
+   <FONT COLOR="#000000">}</FONT>
+    <FONT COLOR="#000000">Java Tutorialslass Addition1                         </FONT>
+		<FONT COLOR="#008000">// Non-Static member class</FONT>
+    <FONT COLOR="#000000">{</FONT>
+     <FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">Java Tutorials=</FONT><FONT COLOR="#800080">70</FONT><FONT COLOR="#000000">;</FONT>
+     <FONT COLOR="#0000ff">void </FONT><FONT COLOR="#000000">sum()</FONT>
+       <FONT COLOR="#000000">{ </FONT>
+         <FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.println(</FONT><FONT COLOR="#ff00ff">"The sum of three numbers in inner class is :"</FONT><FONT COLOR="#000000">+(a+b+c));</FONT>
+       <FONT COLOR="#000000">}</FONT>
+     <FONT COLOR="#000000">}</FONT>
+</FONT>
+</PRE>
+</div>   
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="15java_ClassContd.shtml" title="What are different types of classes in java?, Top Level Classes, Static Inner Classes">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="17java_Classcontd2.class.shtml" title="Local Classes In Java">Next</a></td>
+  </tr> 
+</table>
+
+<!-- Footer Start-->	
+
+		</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->

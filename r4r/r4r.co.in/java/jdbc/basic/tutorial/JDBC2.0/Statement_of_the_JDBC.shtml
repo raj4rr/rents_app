@@ -1,0 +1,116 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD>
+<meta http-equiv="Content-Language" content="en-us">
+<TITLE>Statement,PreparedStatement,CallableStatement</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name="description" CONTENT="Statement,PreparedStatement,CallableStatement" >
+<meta name="keywords" CONTENT="Statement,PreparedStatement,CallableStatement">
+
+<!-- header start-->	
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>JDBC</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+            <img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+            <a href="/java/">Java</a>
+              <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/java/jdbc">jdbc </a>
+              </div>
+
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/jdbc/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	 
+<!-- header End-->
+
+<div class="heading">Statement of the JDBC</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="Class_of_the_JDBC.shtml" title="Class and Exception of the JDBC">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="Basic_Operations_on_JDBC.shtml" title="Basic Operation on JDBC">Next</a></td>
+  </tr> 
+</table>
+
+<p>There are three types of statement is available in the JDBC, which are listed bellow-<p>
+<ol><li>Statement</li>
+<li>PreparedStatement</li>
+<li>CallableStatement</li></ol>
+
+<div class="heading"> Statement</div>
+<p>JDBC Statement is an interface of java.sql.*; package, which is used for execution of SQL statement. 
+Statement returns an object, which is contain the result. Statement interface 
+provides basic method for SELECT, UPDATE, INSERT, DELETE query in the database. 
+The query which is stored in object compiled every time when request is made. 
+the statement is little slower than preparedStatement.</p>
+
+<div class="heading"> PreparedStatement</div>
+<P>The preparedStatement is access the functionality of java.sql.Statement and add
+ some extra feature in it.This version of the statement allows to precompile the query.
+ In the preparedStatement, the query do not compile every time when the request is made.
+ Creating a PreparedStatement:-</P>
+ <div class="code">
+ <pre>
+<font color="#ff0000">PreparedStatement </font><font color="#000000">psmt=con.prepareStatement(</font><font color="#ff00ff">&quot; SELECT * from student&quot;</font><font color="#000000">);</font>
+</pre></div>
+<p>This psmt object contains the record of the Students table, which is sent to the DBMS for 
+execution.Now you are pass the parameter to psmt object as</p>
+<div class="code">
+<pre>
+<font color="#000000">psmt.setString(</font><font color="#800080">3</font><font color="#000000">,</font><font color="#ff00ff">&quot;Sam&quot;</font><font color="#000000">);</font>
+</pre>
+</div>
+<p>This sets the String "Sam" to the third column of the Student table.</p>
+
+<div class="heading">JDBC CallableStatement</div>
+<p>JDBC Callable statement is a way of calling the store procedures of the database. It procedure 
+stored in the database.It calls are written in escape syntax which may take one 
+or two forms.The CallableStatement object is created by calling a prepareCall() 
+method of connection,Syntax is given below:-</p>
+<div class="code">
+<pre>
+<font color="#ff0000">CallableStatement </font><font color="#000000">cstmt = connection.prepareCall(</font><font color="#ff00ff">&quot;CALL HI()&quot;</font><font color="#000000">);</font>
+</pre>
+</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="Class_of_the_JDBC.shtml" title="Class and Exception of the JDBC">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="Basic_Operations_on_JDBC.shtml" title="Basic Operation on JDBC">Next</a></td>
+  </tr> 
+</table>
+
+	<!-- Footer Start-->		
+		</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->

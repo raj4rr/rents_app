@@ -1,0 +1,154 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>How to Add image in Word Document using C#</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="How to Add image in Word Document using C#" >
+<meta name="keywords" CONTENT="How to Add image in Word Document using C#">
+
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+     <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>C# Tutorial</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a><img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/c1/">C#</a>
+
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/c1/commonfiles/leftmenu.shtml'); ?></td>
+
+                       <td style="80%" valign="top">
+                        <div class="main_content"> 
+
+	<!-- Header End-->
+
+	<div class="heading">How to Add image in Word Document using C#</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="Add%20rows%20to%20table%20in%20MS%20Word%20document%20using%20C-Sharp.shtml" 
+    title="Add rows to table in MS Word document using C#">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="Storing%20Database%20Connection%20Strings%20in%20App.Config.shtml" 
+    title="Storing Database Connection Strings in App.Config">Next</a></td>
+  </tr>
+</table>
+
+<ol>
+<li>Create a new windows application project and add a button to it.</li>
+<li>On click of that button, we will open a document and insert a picture to it.</li>
+<li>(In the doc file insert a table at the location where you want the picture to appear.)</li>
+<li>Than add reference to (Word 10.0 or 11.0 object library) within COM tab of Add reference dialog box.</li>
+<li>After adding reference, add this directive</li>
+</ol>
+<pre>using Microsoft.Office.Interop.Word</pre>
+<h3>.Cs Code</h3>
+
+<div class="code">
+<pre>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Collections</font><font color="#000000">.</font><font color="#008080">Generic</font><font color="#000000">;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">ComponentModel</font><font color="#000000">;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Data</font><font color="#000000">;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Drawing</font><font color="#000000">;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.Linq;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Text</font><font color="#000000">;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Windows</font><font color="#000000">.</font><font color="#008080">Forms</font><font color="#000000">;</font>
+<font color="#0000ff">using </font><font color="#000000">Word;</font>
+
+<font color="#0000ff">namespace </font><font color="#000000">WindowsFormsApplication53 {</font>
+<font color="#0000ff">public </font><font color="#000000">partial </font><font color="#0000ff">class </font><font color="#000000">createworddocument : </font><font color="#808000">Form </font><font color="#000000">{</font>
+<font color="#0000ff">public </font><font color="#000000">createworddocument(){</font>
+<font color="#000000">InitializeComponent();</font>
+<font color="#000000">}</font>
+
+<font color="#0000ff">private void </font><font color="#000000">button1_Click(</font><font color="#0000ff">object </font><font color="#000000">sender, </font><font color="#808000">EventArgs </font><font color="#000000">e)</font>
+<font color="#000000">{</font>
+<font color="#0000ff">object </font><font color="#000000">missing = </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Reflection</font><font color="#000000">.</font><font color="#808000">Missing</font><font color="#000000">.Value;</font>
+<font color="#0000ff">object </font><font color="#000000">Visible=</font><font color="#0000ff">true</font><font color="#000000">;</font>
+<font color="#0000ff">object </font><font color="#000000">start1 = </font><font color="#800080">0</font><font color="#000000">;</font>
+<font color="#0000ff">object </font><font color="#000000">end1 = </font><font color="#800080">0</font><font color="#000000">;</font>
+
+<font color="#000000">ApplicationClass WordApp = </font><font color="#0000ff">new </font><font color="#000000">ApplicationClass();</font>
+
+<font color="#000000">Document adoc = WordApp.</font><font color="#008080">Documents</font><font color="#000000">.Add(</font><font color="#0000ff">ref </font><font color="#000000">missing, </font><font color="#0000ff">ref </font>
+<font color="#000000">missing, </font><font color="#0000ff">ref </font><font color="#000000">missing, </font><font color="#0000ff">ref </font><font color="#000000">missing);</font>
+<font color="#000000">Range rng = adoc.Range(</font><font color="#0000ff">ref </font><font color="#000000">start1, </font><font color="#0000ff">ref </font><font color="#000000">missing);</font>
+
+<font color="#0000ff">try</font><font color="#000000">{  </font>
+
+<font color="#000000">rng.</font><font color="#808000">Font</font><font color="#000000">.Name = </font><font color="#ff00ff">&quot;Georgia&quot;</font><font color="#000000">;</font>
+
+<font color="#000000">rng.InsertAfter(</font><font color="#ff00ff">&quot;Hiiiiiiiiiiii I m Aditya!&quot;</font><font color="#000000">);</font>
+<font color="#0000ff">object </font><font color="#000000">filename = @</font><font color="#ff00ff">&quot;G:\MyWord.doc&quot;</font><font color="#000000">;</font>
+<font color="#000000">adoc.SaveAs(</font><font color="#0000ff">ref </font><font color="#000000">filename, </font><font color="#0000ff">ref </font><font color="#000000">missing, </font><font color="#0000ff">ref </font><font color="#000000">missing, </font>
+<font color="#0000ff">ref </font><font color="#000000">missing, </font><font color="#0000ff">ref </font><font color="#000000">missing, </font><font color="#0000ff">ref </font><font color="#000000">missing,</font><font color="#0000ff">ref </font><font color="#000000">missing,</font>
+<font color="#0000ff">ref </font><font color="#000000">missing, </font><font color="#0000ff">ref </font><font color="#000000">missing, </font><font color="#0000ff">ref </font><font color="#000000">missing, </font><font color="#0000ff">ref </font><font color="#000000">missing, </font>
+<font color="#0000ff">ref </font><font color="#000000">missing, </font><font color="#0000ff">ref </font><font color="#000000">missing,</font><font color="#0000ff">ref </font><font color="#000000">missing, </font><font color="#0000ff">ref </font><font color="#000000">missing, </font>
+ <font color="#0000ff">ref </font><font color="#000000">missing);</font>
+
+<font color="#000000">WordApp.Visible = </font><font color="#0000ff">true</font><font color="#000000">;</font>
+
+<font color="#000000">WordApp.ActiveWindow.ActivePane.</font><font color="#808000">View</font><font color="#000000">.SeekView = </font>
+	<font color="#000000">Word.WdSeekView.wdSeekPrimaryHeader;</font>
+
+<font color="#000000">rng.InlineShapes.AddPicture(@</font><font color="#ff00ff">&quot;D:\logo.Gif&quot;</font><font color="#000000">, </font>
+<font color="#0000ff">ref </font><font color="#000000">missing, </font><font color="#0000ff">ref </font><font color="#000000">missing, </font><font color="#0000ff">ref </font><font color="#000000">missing);</font>
+
+<font color="#000000">}</font>
+
+<font color="#0000ff">catch </font>
+<font color="#000000">(</font>
+<font color="#808000">Exception </font><font color="#000000">ex)</font>
+<font color="#000000">{</font>
+<font color="#808000">MessageBox</font><font color="#000000">.Show(ex.</font><font color="#808000">Message</font><font color="#000000">);</font>
+<font color="#000000">} </font>
+<font color="#000000">}</font>
+<font color="#000000">}</font>
+<font color="#000000">}</font>
+</pre>
+</div>
+
+<h3>Design</h3>
+<div class="image">
+<img src="word.gif">
+</div>
+<p><h3>Output </h3></p>
+<div class="output">
+<div class="image">
+<img src="wordoutput.gif">
+</div></div>
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="Add%20rows%20to%20table%20in%20MS%20Word%20document%20using%20C-Sharp.shtml" 
+    title="Add rows to table in MS Word document using C#">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="Storing%20Database%20Connection%20Strings%20in%20App.Config.shtml" 
+    title="Storing Database Connection Strings in App.Config">Next</a></td>
+  </tr>
+</table> <!--Footer-->
+   </div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/dotnet/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+     <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>

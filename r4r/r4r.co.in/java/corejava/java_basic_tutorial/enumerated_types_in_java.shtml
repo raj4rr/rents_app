@@ -1,0 +1,143 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<HTML><HEAD><TITLE>Enumerated Types in Java</TITLE>
+
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv="content-type" content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="Examples of the Java enum, including how to declare a Java enum, and how to use a Java enum.">
+<meta name="keywords" CONTENT="java enum, java enum example, enum in java, enum example, enum tutorial, java, enum">
+
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>Java Programing laungage</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a><img src="/images/left_menu_bullet.gif"/> <a href="/java/">Java</a><img src="/images/left_menu_bullet.gif"/> <a href="/java/corejava">Core Java</a></div>
+            	<table>
+                    <tr>
+                      <td width="19%" valign="top" style="width:20%"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/corejava/commonfiles/leftmenu.shtml'); ?></td>
+
+                      <td style="80%" valign="top">
+
+                     <div class="main_content">
+<div class="heading">Enumerated Types in Java</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="math_class_function_used_in_a_java_program.shtml" title="Math Class all Function used in a program">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml" title="Java Programming Tutorials">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="object_oriented_and_procedural_programming_in_java.shtml" title="Object Oriented Programming v/s Procedural Programming">Next</a></td>
+  </tr> 
+</table> 
+<p>Enum is a keyword which enum type is a special data type used to define   collections of constants. A Java enum type is a special kind of Java class. An enum can contain constants, methods etc. Java enum were added in Java 5. For example Number of days in Week. Enum constants are implicitly static and final and you can not change there value once created. Notice curly braces around enum constants because Enum are type like class and interface in Java. similar naming convention for enum like class and interface (first letter in Caps) and since Enum constants are implicitly static final we have used all caps to specify them like Constants in Java. The names of an enum type's fields are in uppercase letters.</p>
+<p>In the Java programming language, you define an enum type by using the enum keyword. </p>
+
+<h3>Syntax :</h3>
+<div class="code">
+<PRE><FONT FACE="Arial"><FONT COLOR="#0000ff">public enum </FONT><FONT COLOR="#000000">Day </FONT>
+<FONT COLOR="#000000">{</FONT>
+	<FONT COLOR="#000000">SUNDAY, MONDAY, TUESDAY, WEDNESDAY,</FONT>
+	<FONT COLOR="#000000">THURSDAY, FRIDAY, SATURDAY </FONT>
+<FONT COLOR="#000000">}</FONT></FONT></PRE>
+</div>
+
+<p>The enum keyword which is used in place of class or interface.</p>
+
+<h3>Example :</h3>
+<div class="code">
+<PRE><FONT FACE="Arial"><FONT COLOR="#0000ff">public class </FONT><FONT COLOR="#000000">EnumTest</FONT>
+<FONT COLOR="#000000">{</FONT>
+	<FONT COLOR="#0000ff">public enum </FONT><FONT COLOR="#000000">Day </FONT>
+	<FONT COLOR="#000000">{</FONT>
+		<FONT COLOR="#000000">SUNDAY, MONDAY, TUESDAY, WEDNESDAY,</FONT>
+		<FONT COLOR="#000000">THURSDAY, FRIDAY, SATURDAY </FONT>
+	<FONT COLOR="#000000">}</FONT>
+
+	<FONT COLOR="#000000">Day day;</FONT>
+
+	<FONT COLOR="#0000ff">public </FONT><FONT COLOR="#000000">EnumTest(Day day) </FONT>
+	<FONT COLOR="#000000">{ </FONT>
+		<FONT COLOR="#0000ff">this</FONT><FONT COLOR="#000000">.day = day;</FONT>
+	<FONT COLOR="#000000">}</FONT>
+
+	<FONT COLOR="#0000ff">public void </FONT><FONT COLOR="#000000">tellItLikeItIs()</FONT>
+	<FONT COLOR="#000000">{</FONT>
+		<FONT COLOR="#0000ff">switch </FONT><FONT COLOR="#000000">(day)</FONT>
+		<FONT COLOR="#000000">{</FONT>
+			<FONT COLOR="#0000ff">case </FONT><FONT COLOR="#000000">MONDAY:</FONT><FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.println(</FONT><FONT COLOR="#ff00ff">"Mondays are bad."</FONT><FONT COLOR="#000000">);</FONT>
+						<FONT COLOR="#0000ff">break</FONT><FONT COLOR="#000000">;</FONT>
+
+			<FONT COLOR="#0000ff">case </FONT><FONT COLOR="#000000">FRIDAY:</FONT><FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.println(</FONT><FONT COLOR="#ff00ff">"Fridays are better."</FONT><FONT COLOR="#000000">);</FONT>
+						<FONT COLOR="#0000ff">break</FONT><FONT COLOR="#000000">;</FONT>
+
+			<FONT COLOR="#0000ff">case </FONT><FONT COLOR="#000000">SATURDAY:</FONT><FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.println(</FONT><FONT COLOR="#ff00ff">"Weekends are best."</FONT><FONT COLOR="#000000">);</FONT>
+						<FONT COLOR="#0000ff">break</FONT><FONT COLOR="#000000">;</FONT>
+
+			 <FONT COLOR="#0000ff">case </FONT><FONT COLOR="#000000">SUNDAY:</FONT><FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.println(</FONT><FONT COLOR="#ff00ff">"Weekends are best."</FONT><FONT COLOR="#000000">);</FONT>
+						<FONT COLOR="#0000ff">break</FONT><FONT COLOR="#000000">;</FONT>
+
+			<FONT COLOR="#0000ff">default</FONT><FONT COLOR="#000000">:</FONT><FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.println(</FONT><FONT COLOR="#ff00ff">"Midweek days are so-so."</FONT><FONT COLOR="#000000">);</FONT>
+					<FONT COLOR="#0000ff">break</FONT><FONT COLOR="#000000">;</FONT>
+		<FONT COLOR="#000000">}</FONT>
+	<FONT COLOR="#000000">}</FONT>
+
+	<FONT COLOR="#0000ff">public static void </FONT><FONT COLOR="#000000">main(</FONT><FONT COLOR="#ff0000">String</FONT><FONT COLOR="#000000">[] args)</FONT>
+	<FONT COLOR="#000000">{</FONT>
+		<FONT COLOR="#000000">EnumTest firstDay = </FONT><FONT COLOR="#0000ff">new </FONT><FONT COLOR="#000000">EnumTest(Day.MONDAY);</FONT>
+		<FONT COLOR="#000000">firstDay.tellItLikeItIs();</FONT>
+		<FONT COLOR="#000000">EnumTest thirdDay = </FONT><FONT COLOR="#0000ff">new </FONT><FONT COLOR="#000000">EnumTest(Day.WEDNESDAY);</FONT>
+		<FONT COLOR="#000000">thirdDay.tellItLikeItIs();</FONT>
+		<FONT COLOR="#000000">EnumTest fifthDay = </FONT><FONT COLOR="#0000ff">new </FONT><FONT COLOR="#000000">EnumTest(Day.FRIDAY);</FONT>
+		<FONT COLOR="#000000">fifthDay.tellItLikeItIs();</FONT>
+		<FONT COLOR="#000000">EnumTest sixthDay = </FONT><FONT COLOR="#0000ff">new </FONT><FONT COLOR="#000000">EnumTest(Day.SATURDAY);</FONT>
+		<FONT COLOR="#000000">sixthDay.tellItLikeItIs();</FONT>
+		<FONT COLOR="#000000">EnumTest seventhDay = </FONT><FONT COLOR="#0000ff">new </FONT><FONT COLOR="#000000">EnumTest(Day.SUNDAY);</FONT>
+		<FONT COLOR="#000000">seventhDay.tellItLikeItIs();</FONT>
+	<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#000000">}</FONT></FONT></PRE>
+</div>
+
+<h3>output :</h3>
+<div class="code">
+<PRE><FONT FACE="Arial"><FONT COLOR="#000000">Mondays are bad.</FONT>
+<FONT COLOR="#000000">Midweek days are so-so.</FONT>
+<FONT COLOR="#000000">Fridays are better.</FONT>
+<FONT COLOR="#000000">Weekends are best.</FONT>
+<FONT COLOR="#000000">Weekends are best.</FONT></FONT></PRE>
+</div>
+
+<p>The enum declaration defines a class (called an enum type).  The enum class body can include methods and other fields.</p>
+<p>All enums implicitly extend java.lang.Enum. Because a class can only extend one parent.</p>
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="math_class_function_used_in_a_java_program.shtml" title="Math Class all Function used in a program">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml" title="Java Programming Tutorials">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="object_oriented_and_procedural_programming_in_java.shtml" title="Object Oriented Programming v/s Procedural Programming">Next</a></td>
+  </tr> 
+</table> 
+
+                      </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>

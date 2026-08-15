@@ -1,0 +1,152 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+
+<HTML><HEAD><TITLE>C tutorial on Instruction,Type Declaration Instructions and the Arithmetic Instruction </TITLE>
+<META content=r4r.co.in name=owner>
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="Learn C Instruction,Type Declaration Instructions In C Language,The Arithmetic Instruction in C,Pointers,Storage class,Loops,Functions,Data types,C constants,Union,Preprocessor,Interview questions and answers in C" >
+<meta name="keywords" CONTENT="C Instruction,Type Declaration Instructions In C Language,The Arithmetic Instruction in C,C examples,Pointers,Storage class,Loops,Functions,Data types,C constants,Union,Preprocessor,Interview questions and answers in C">
+<META content="Rajesh Kumar" name=author>
+<META http-equiv=expires content=0> 
+<link href="/css/main.css" rel="stylesheet" type="text/css" />
+        <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>C Programming language</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a><img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/c/">C </a><img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/c/basic_tutorials/05/">Learn C in 7 days</a></div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/c/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 
+
+	<!-- Header End-->	
+<div class="heading">C Programming Language: C Instruction</div>
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;">
+    	<a href="c_variables.shtml" title="C Programming Language: Variables">Previous</a>
+    </td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml" title="Learn C Programming Language in 7 days">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="integer_to_float_conversions.shtml" title="C Programming Language: Integer and Float conversions">Next</a></td>
+  </tr>
+</table>
+
+<p<i>C instruction are of basically three types :</i></p>
+
+<div class="heading">1. Type Declaration instructions in C Language</div>
+    	<p>This instruction is used to declare the type of variables being used in the program. Any variable used in the program must  be declared before using it in any statement. The type  declaration statements is written at the beginning of the main() function. The main purpose of type declaration instruction is to declare the type of variable C program.</p> 
+        <div class="code"><PRE>
+<FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">num;</FONT>
+<FONT COLOR="#0000ff">char </FONT><FONT COLOR="#000000">c;     </FONT><FONT COLOR="#008000">// Type Declaration</FONT>
+<FONT COLOR="#0000ff">float </FONT><FONT COLOR="#000000">f;</FONT>
+<FONT COLOR="#000000">main()</FONT>
+<FONT COLOR="#000000">{</FONT>
+   <FONT COLOR="#008000">// Statement</FONT>
+<FONT COLOR="#000000">}</FONT></PRE>
+        </div>
+    	<p><i>There are several suitable variations of the type declaration instruction:</i></p>
+        <ul>
+        	<li>While declaring  the type of the variable we can also initialize it.
+            <div class="code"><PRE>
+            	<FONT COLOR="#008000">// Example</FONT>
+                <FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">num=</FONT><FONT COLOR="#800080">10</FONT><FONT COLOR="#000000">, j=</FONT><FONT COLOR="#800080">23</FONT><FONT COLOR="#000000">;</FONT>
+                <FONT COLOR="#0000ff">float </FONT><FONT COLOR="#000000">a=</FONT><FONT COLOR="#800080">1</FONT><FONT COLOR="#000000">.</FONT><FONT COLOR="#800080">05</FONT><FONT COLOR="#000000">, b=</FONT><FONT COLOR="#800080">1</FONT><FONT COLOR="#000000">-</FONT><FONT COLOR="#800080">55</FONT><FONT COLOR="#000000">+</FONT><FONT COLOR="#800080">24</FONT><FONT COLOR="#000000">;</FONT></PRE>
+            </div>
+            </li>
+            <li>The order in which we define the variable is sometimes important sometimes not.
+            <div class="code">
+<PRE><FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">i=</FONT><FONT COLOR="#800080">10</FONT><FONT COLOR="#000000">, j=</FONT><FONT COLOR="#800080">25</FONT><FONT COLOR="#000000">; </FONT><FONT COLOR="#008000">/**is same as**/ </FONT><FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">j=</FONT><FONT COLOR="#800080">25</FONT><FONT COLOR="#000000">, i=</FONT><FONT COLOR="#800080">10</FONT><FONT COLOR="#000000">;</FONT>
+<FONT COLOR="#008000">/** However **/</FONT>
+<FONT COLOR="#0000ff">float </FONT><FONT COLOR="#000000">a=</FONT><FONT COLOR="#800080">1</FONT><FONT COLOR="#000000">.</FONT><FONT COLOR="#800080">5</FONT><FONT COLOR="#000000">, b=a+</FONT><FONT COLOR="#800080">3</FONT><FONT COLOR="#000000">.</FONT><FONT COLOR="#800080">1</FONT><FONT COLOR="#000000">;	</FONT><FONT COLOR="#008000">/** is alright  **/ </FONT>
+<FONT COLOR="#008000">/** but **/</FONT>
+<FONT COLOR="#0000ff">float </FONT><FONT COLOR="#000000">b=a+</FONT><FONT COLOR="#800080">3</FONT><FONT COLOR="#000000">.</FONT><FONT COLOR="#800080">1</FONT><FONT COLOR="#000000">, a=</FONT><FONT COLOR="#800080">1</FONT><FONT COLOR="#000000">.</FONT><FONT COLOR="#800080">5</FONT><FONT COLOR="#000000">;	</FONT><FONT COLOR="#008000">/** is not alright  **/</FONT>
+</PRE></div>
+            </li>
+            <li>The following statements would work
+
+            <div class="code"><PRE>
+<FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">a, b, c, d;</FONT>
+<FONT COLOR="#000000">a=b=c=d=</FONT><FONT COLOR="#800080">10</FONT><FONT COLOR="#000000">;</FONT>
+<FONT COLOR="#008000">/** However the following statement would not work **/</FONT>
+<FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">a=b=c=d=</FONT><FONT COLOR="#800080">10</FONT><FONT COLOR="#000000">;</FONT>
+<FONT COLOR="#008000">/** because here once again we are trying to use b without defining it **/</FONT></PRE></div>
+
+            </li>
+        </ul>
+
+<div class="heading">2. The Arithmetic Instruction in C</div>
+<p>A C arithmetic instruction consists of a variable name on the left hand side of = and variable names & constants on the right hand side of = The variable and constants appearing on the right hand side of = are connected by  arithmetic operators like +, -, * and /.</p>
+
+<p><i>Three types of C Arithmetic Statement</i></p>
+<ol>
+	<li><i>Integer mode arithmetic statement</i> : This is an arithmetic statement which all operands are either integer or integer constants.
+	<div class="code">
+<PRE>
+ <FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">i, j, l, m;</FONT>
+ <FONT COLOR="#000000">i=i+</FONT><FONT COLOR="#800080">1</FONT><FONT COLOR="#000000">;</FONT>
+ <FONT COLOR="#000000">m=i* j +l;</FONT>
+</PRE>
+	</div>
+    </li>
+    <li><i>Real Mode Arithmetic Statement</i> : These are arithmetic statement in which all operands are either real constant or real variable.
+    <div class="code">
+<PRE>
+ <FONT COLOR="#0000ff">float </FONT><FONT COLOR="#000000">si, roi, p, q ;</FONT>
+ <FONT COLOR="#000000">si = roi*p*q/100.0;</FONT>
+</PRE>
+	</div>
+    </li>
+    <li><i>Mixed mode arithmetic statements</i> : this is an arithmetic statement in which some of the operands are integer and some of the operands are real.
+    <div class="code">
+<PRE>
+ <FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">a, b, c, num ;</FONT>
+ <FONT COLOR="#000000">avg = ( a + b+ c + num)/4;</FONT>
+</PRE>
+	</div>
+
+    </li>
+</ol>
+<div class="heading">3. Control Instructions in C</div>
+<p>The Control Instructions enable us to specify the order in which instructions in a program are to be executed. or the control instructions determine the flow of control in a program. </p>
+<p><i>There are four types of control instructions in C.</i> </p>
+<ol>
+<li><i>Sequence Control Instruction</i>: The Sequence control instruction ensures that the instructions are executed in the same order in which they appear in the program.</li>
+<li><i>Selection or Decision Control Instruction</i>: Decision instructions allow the computer to take a decision as to which instruction is to be executed next.</li>
+<li><i>Repetition or Loop Control Instruction</i>: The Loop control instruction helps computer to execute a group of statements repeatedly.</li>
+<li><i>Case Control Instruction</i> same as decision control instruction.</li>
+</ol>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;">
+    	<a href="c_variables.shtml" title="C Programming Language: Variables">Previous</a>
+    </td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml" title="Learn C Programming Language in 7 days">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="integer_to_float_conversions.shtml" title="C Programming Language: Integer and Float conversions">Next</a></td>
+  </tr>
+</table>
+
+<!--Footer  --> 
+</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>

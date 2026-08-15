@@ -1,0 +1,125 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD>
+<meta http-equiv="Content-Language" content="en-us">
+<TITLE>stack implementation,how implement stack</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name="description" CONTENT="stack implementation,how implement stack" >
+<meta name="keywords" CONTENT="stack implementation,how implement stack">
+
+<!-- header start-->	
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>Java Programing laungage</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+            <img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+            <a href="/java/">Java</a>
+              <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/java/corejava">Core Java</a>
+               <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/java/corejava/packages">Package</a>
+                     <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/java/corejava/packages/lang">Java Util Package</a>
+              </div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/corejava/packages/util/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	 
+
+<div class="heading">Stack Implementation</div>
+<p>In this programming tutorials we shall be learn how to implement a stack in Java. A Stack is like a bucket in which we can put elements one-by-one in sequence and retrieve elements from the bucket according to the sequence of the last entered element.</p>
+
+<table id="indexing">
+  <tr>
+ <td style="width:33%; text-align:left;"><a href="scheduling_timertask.shtml" title="scheduling timertask">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="writing_log_record.shtml" title="writing log record">Next</a></td>
+  </tr> 
+</table>
+<!-- header End-->
+
+<p>Stack is a collection of data and follows the <b>LIFO (Last in, first out) </b>rule that mean you can insert the elements one-by-one in sequence and the last inserted element can be retrieved at once from the bucket. Elements are inserted and retrieved to/from the stack through the push() and pop() method.</p>
+
+<p><b>Stack(): </b>This constructor of the Stack class is used to creates an empty stack in which we can push the value which is mention with the creation of stack.</p>
+<p><b>Stack.push(Object obj):</b> This method is used to insert or push the data or element in the stack.</p>
+<p><b>Stack.pop():</b> This is the method to removes the objects like data or elements at the top positions of stack.</p>
+
+<h3>example</h3>
+<div class="code">
+<PRE>
+<FONT FACE="Arial">
+<FONT COLOR="#0000ff">package </FONT><FONT COLOR="#000000">r4r;</FONT>
+<FONT COLOR="#0000ff">import </FONT><FONT COLOR="#000000">java.io.</FONT><FONT COLOR="#ff0000">BufferedReader</FONT><FONT COLOR="#000000">;</FONT>
+<FONT COLOR="#0000ff">import </FONT><FONT COLOR="#000000">java.io.</FONT><FONT COLOR="#ff0000">IOException</FONT><FONT COLOR="#000000">;</FONT>
+<FONT COLOR="#0000ff">import </FONT><FONT COLOR="#000000">java.io.</FONT><FONT COLOR="#ff0000">InputStreamReader</FONT><FONT COLOR="#000000">;</FONT>
+<FONT COLOR="#0000ff">import </FONT><FONT COLOR="#000000">java.util.*;</FONT>
+<FONT COLOR="#0000ff">public class </FONT><FONT COLOR="#000000">stacktests {</FONT>
+<FONT COLOR="#ff0000">Stack</FONT><FONT COLOR="#000000">&lt;</FONT><FONT COLOR="#ff0000">Integer</FONT><FONT COLOR="#000000">&gt; stack;</FONT>
+<FONT COLOR="#ff0000">String </FONT><FONT COLOR="#000000">str;</FONT>
+<FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">num, n;</FONT>
+<FONT COLOR="#0000ff">public static void </FONT><FONT COLOR="#000000">main(</FONT><FONT COLOR="#ff0000">String</FONT><FONT COLOR="#000000">[] args){</FONT>
+<FONT COLOR="#000000">stacktests s = </FONT><FONT COLOR="#0000ff">new </FONT><FONT COLOR="#000000">stacktests();</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#0000ff">public </FONT><FONT COLOR="#000000">stacktests(){</FONT>
+<FONT COLOR="#0000ff">try</FONT><FONT COLOR="#000000">{</FONT>
+<FONT COLOR="#000000">stack = </FONT><FONT COLOR="#0000ff">new </FONT><FONT COLOR="#ff0000">Stack</FONT><FONT COLOR="#000000">&lt;</FONT><FONT COLOR="#ff0000">Integer</FONT><FONT COLOR="#000000">&gt;();</FONT>
+<FONT COLOR="#ff0000">InputStreamReader </FONT><FONT COLOR="#000000">isr = </FONT><FONT COLOR="#0000ff">new </FONT><FONT COLOR="#ff0000">InputStreamReader</FONT><FONT COLOR="#000000">(</FONT><FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.in);</FONT>
+<FONT COLOR="#ff0000">BufferedReader </FONT><FONT COLOR="#000000">br = </FONT><FONT COLOR="#0000ff">new </FONT><FONT COLOR="#ff0000">BufferedReader</FONT><FONT COLOR="#000000">(isr);</FONT>
+<FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.print(</FONT><FONT COLOR="#ff00ff">"Enter the elements No. : "</FONT><FONT COLOR="#000000">);</FONT>
+<FONT COLOR="#000000">str = br.readLine();</FONT>
+<FONT COLOR="#000000">num = </FONT><FONT COLOR="#ff0000">Integer</FONT><FONT COLOR="#000000">.parseInt(str);</FONT>
+<FONT COLOR="#0000ff">for</FONT><FONT COLOR="#000000">(</FONT><FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">i = </FONT><FONT COLOR="#800080">1</FONT><FONT COLOR="#000000">; i &lt;= num; i++){</FONT>
+<FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.print(</FONT><FONT COLOR="#ff00ff">"Enter elements : "</FONT><FONT COLOR="#000000">);</FONT>
+<FONT COLOR="#000000">str = br.readLine();</FONT>
+<FONT COLOR="#000000">n = </FONT><FONT COLOR="#ff0000">Integer</FONT><FONT COLOR="#000000">.parseInt(str);</FONT>
+<FONT COLOR="#000000">stack.push(n);</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#0000ff">catch</FONT><FONT COLOR="#000000">(</FONT><FONT COLOR="#ff0000">IOException </FONT><FONT COLOR="#000000">e){}</FONT>
+<FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.print(</FONT><FONT COLOR="#ff00ff">"Fetch elements from the stack : "</FONT><FONT COLOR="#000000">);</FONT>
+<FONT COLOR="#0000ff">while </FONT><FONT COLOR="#000000">(!stack.empty()){</FONT>
+<FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.print(stack.pop() + </FONT><FONT COLOR="#ff00ff">"  "</FONT><FONT COLOR="#000000">);</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#000000">}</FONT>
+</FONT>
+</PRE>
+</div>
+
+<table id="indexing">
+  <tr>
+ <td style="width:33%; text-align:left;"><a href="scheduling_timertask.shtml" title="scheduling timertask">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="writing_log_record.shtml" title="writing log record">Next</a></td>
+  </tr> 
+</table>
+
+<!-- Footer Start-->
+		</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->

@@ -1,0 +1,200 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>The native Modifier,The transient Modifier ,The volatile Modifier,The synchronized Modifier</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT=" The native Modifier,The transient Modifier ,The volatile Modifier,The synchronized Modifier" >
+<meta name="keywords" CONTENT=" The native Modifier,The transient Modifier ,The volatile Modifier,The synchronized Modifier">
+
+<!-- header start-->
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>Java Programing laungage</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+            <img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+            <a href="/java/">Java</a>
+              <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/java/corejava">Core Java</a>
+               <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/java/corejava/topics/basics/">Basics</a>
+
+              </div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/corejava/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 
+							 <!-- header End-->	
+
+<div class="heading">Java Native modifier, transient Modifier , volatile Modifier, synchronized Modifier</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="22java_UsageModifiersContd.shtml" title="Java abstract Modifier">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="24java_GarbageCollection.shtml" title="Garbage Collection in Java">Next</a></td>
+  </tr> 
+</table>
+<p> In java applications, sometimes we will want to use a method that exists outside the JVM. In this scenario, the native modifier can help, native modifier can only apply to a method. Just as the abstract keyword, the native keyword indicates that the implementation of the method exists elsewhere.</p>
+
+<p>In case of abstract, the implementation of a method may exist in a subclass of the class in which the abstract method is declared.</p>
+<p>But in the case of native, the implementation of the method exists in a library outside the JVM. The native method is usually implemented in a non-Java language such as C or C++. Before a native method can be invoked, a library that contains the method must be loaded and that library is loaded by making the following system call:</p>
+<div class="code">
+<pre>
+<font color="#ff0000">System</font><font color="#000000">.loadLibrary(</font><font color="#ff00ff">&quot;libraryName&quot;</font><font color="#000000">);</font>
+</pre>
+</div>
+<p>To declare a native method, precede the method with the native modifier, but do not define any body for the method. 
+ <h3>Example</h3>
+ <div class="code">
+<PRE>
+<FONT FACE="Arial">
+<FONT COLOR="#0000ff">public native  void </FONT><FONT COLOR="#000000">Nativemethod() ;</FONT>
+</FONT>
+</PRE>
+ </div>
+<p>After you declare a native method, you must write the native method and follow a complex series of steps to link it with your Java code. For example, the following code fragment presents an example of loading a library named NativeMethodDef which contains a method named<i> NativeMethod():</i></p>
+<div class="code">
+<PRE>
+<FONT FACE="Arial">
+<FONT COLOR="#000000">Java Tutorialslass NativeModifierExample</FONT>
+	<FONT COLOR="#000000">{</FONT>
+       <FONT COLOR="#0000ff">native void </FONT><FONT COLOR="#000000">NativeMethod();</FONT>
+       <FONT COLOR="#0000ff">static </FONT>
+		   <FONT COLOR="#000000">{</FONT>
+            <FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.loadLibrary(</FONT><FONT COLOR="#ff00ff">"NativeMethodDef"</FONT><FONT COLOR="#000000">);</FONT>
+           <FONT COLOR="#000000">}</FONT>
+     <FONT COLOR="#000000">}</FONT>
+</FONT>
+</PRE>
+</div>
+<p><i>Note:</i>The library is loaded in a static code block which suggest that the library is loaded at the class load time, so it is there when a call to the native method is made. One can use the native method in the same way as we use a non-native method. For example, the following two lines of code would invoke the native method,</p>
+<div class="code">
+<PRE>
+<FONT FACE="Arial">
+<FONT COLOR="#000000">NativeModifierExample obj = </FONT><FONT COLOR="#0000ff">new </FONT><FONT COLOR="#000000">NativeModifierExample();</FONT>
+<FONT COLOR="#000000">obj.NativeMethod();</FONT>
+</FONT>
+</PRE>
+</div>
+<div class="heading">The Transient Modifier </div>
+<p>In an java based application, while is in running mode, the objects are put in the random access memory (RAM) of the computer.That determines the scope and life of the object. However, if an object may be stored in persistent storage outside the JVM, for later use by the same application or by some another application. </p><p>The process of storing an object is called serialization. For an object to be serializable, the corresponding class must implement the interface Serializable. Thus, the transient modifier is related to storing an object in persistant storage. Such storage is called the objects persistent state.</p><p> A variable declared transient is not stored, and hence does not become part of the objects persistent state.The transient modifier can be used to prevent a security-sensitive piece of data from copying to a source where there is no security mechanism exists.</p>
+<p>The transient modifier can only be applied to instance variables. When you are declaring an instance variable transient, you are telling the Java Virtual Machine not to store this variable when the object, in which it is declared, is serialized. Thus, when an instance variable is declared as transient, then its value need not persist when an object is stored.</p>
+<h3>Example</h3>
+<div class="code">
+<PRE>
+<FONT FACE="Arial">
+<FONT COLOR="#000000">Java Tutorialslass TransientModifier </FONT>
+	<FONT COLOR="#000000">{</FONT>
+     <FONT COLOR="#0000ff">transient int </FONT><FONT COLOR="#000000">num1;   </FONT>
+	 <FONT COLOR="#008000">// variable will not persist</FONT>
+	 <FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">num2;            </FONT>
+	 <FONT COLOR="#008000">// variable will persist</FONT>
+	<FONT COLOR="#000000">}</FONT>
+</FONT>
+</PRE>
+</div>
+
+<div class="heading">The volatile Modifier </div>
+<p>In java the volatile modifier only applies to instance variables just like the transient modifier. The variables declared volatile are subject to asynchronous modifications. Thus we can say that, declaring a variable volatile tells the compiler that this variable might be changed unexpectedly by other parts of the program.</p><p> So, the compiler takes some special precautions to keep this variable properly updated, volatile variables are generally used in multithreaded or multiprocessor environments. The volatile modifier tells the accessing thread that it should synchronize its private copy of the variable with the original copy in the memory. Consider the following example for the better understanding,</p>
+<h3>Example</h3>
+<div class="code">
+<PRE>
+<FONT FACE="Arial">
+<FONT COLOR="#000000">Java Tutorialslass VolatileModifier </FONT><FONT COLOR="#0000ff">extends </FONT><FONT COLOR="#ff0000">Thread</FONT>
+  <FONT COLOR="#000000">{</FONT>
+    <FONT COLOR="#0000ff">private volatile static int </FONT><FONT COLOR="#000000">someVal;   </FONT>
+	<FONT COLOR="#008000">// declared a volatile variable</FONT>
+    <FONT COLOR="#000000">VolatileModifier(</FONT><FONT COLOR="#ff0000">String </FONT><FONT COLOR="#000000">str)</FONT>
+      <FONT COLOR="#000000">{</FONT>
+       <FONT COLOR="#0000ff">super</FONT><FONT COLOR="#000000">(str);</FONT>
+      <FONT COLOR="#000000">}</FONT>
+    <FONT COLOR="#0000ff">public void </FONT><FONT COLOR="#000000">run()               </FONT>
+		<FONT COLOR="#008000">// implementing the run method for threads</FONT>
+     <FONT COLOR="#000000">{</FONT>
+      <FONT COLOR="#0000ff">for </FONT><FONT COLOR="#000000">(</FONT><FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">j=</FONT><FONT COLOR="#800080">0</FONT><FONT COLOR="#000000">; j&lt;</FONT><FONT COLOR="#800080">7</FONT><FONT COLOR="#000000">; j++)</FONT>
+        <FONT COLOR="#000000">{</FONT>
+          <FONT COLOR="#0000ff">try</FONT>
+            <FONT COLOR="#000000">{</FONT>
+             <FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.println(getName() + </FONT><FONT COLOR="#ff00ff">"-&gt;"</FONT><FONT COLOR="#000000">+i);</FONT>
+             <FONT COLOR="#0000ff">if</FONT><FONT COLOR="#000000">(getName().equals(</FONT><FONT COLOR="#ff00ff">"r4r thread1"</FONT><FONT COLOR="#000000">))</FONT>
+               <FONT COLOR="#000000">{</FONT>
+                <FONT COLOR="#000000">someVal=</FONT><FONT COLOR="#800080">7</FONT><FONT COLOR="#000000">;</FONT>
+               <FONT COLOR="#000000">}</FONT>
+             <FONT COLOR="#0000ff">if</FONT><FONT COLOR="#000000">(getName().equals(</FONT><FONT COLOR="#ff00ff">"r4r thread2"</FONT><FONT COLOR="#000000">))</FONT>
+               <FONT COLOR="#000000">{</FONT>
+  <FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.println(</FONT><FONT COLOR="#ff00ff">"The value of volatile variable is :"</FONT><FONT COLOR="#000000">+someVal);</FONT>
+               <FONT COLOR="#000000">}</FONT>
+      <FONT COLOR="#ff0000">Thread</FONT><FONT COLOR="#000000">.sleep(</FONT><FONT COLOR="#800080">2000</FONT><FONT COLOR="#000000">);</FONT>
+            <FONT COLOR="#000000">}</FONT>
+			<FONT COLOR="#000000">Java Tutorialsatch(</FONT><FONT COLOR="#ff0000">InterruptedException </FONT><FONT COLOR="#000000">e)</FONT>
+             <FONT COLOR="#000000">{</FONT>
+              <FONT COLOR="#000000">e.printStackTrace();</FONT>
+             <FONT COLOR="#000000">}</FONT>
+		<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#000000">Java Tutorialslass VolatileModifierExample</FONT>
+<FONT COLOR="#000000">{</FONT>
+<FONT COLOR="#0000ff">public static void </FONT><FONT COLOR="#000000">main(</FONT><FONT COLOR="#ff0000">String </FONT><FONT COLOR="#000000">args[])</FONT>
+<FONT COLOR="#000000">{</FONT>
+<FONT COLOR="#ff0000">Thread </FONT><FONT COLOR="#000000">t=</FONT><FONT COLOR="#0000ff">new </FONT><FONT COLOR="#000000">VolatileModifier(</FONT><FONT COLOR="#ff00ff">"r4r thread1"</FONT><FONT COLOR="#000000">);     </FONT>
+<FONT COLOR="#008000">// creating a thread object</FONT>
+<FONT COLOR="#ff0000">Thread </FONT><FONT COLOR="#000000">t1=</FONT><FONT COLOR="#0000ff">new </FONT><FONT COLOR="#000000">VolatileModifier(</FONT><FONT COLOR="#ff00ff">"r4r thread2"</FONT><FONT COLOR="#000000">);</FONT>
+<FONT COLOR="#000000">t.start();                                        </FONT>
+<FONT COLOR="#008000">// starting the execution of thread</FONT>
+<FONT COLOR="#000000">t1.start();</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#000000">}</FONT>
+</FONT>
+</PRE>
+</div>
+
+ <div class="heading">The synchronized Modifier</div>
+<p> The synchronized modifier is used in multithreaded programming to control access to critical sections in the program. The synchronized keyword used to indicate that a method can be accessed by only one thread at a time. The synchronized modifier is generally used mainly in threading environment. We will discuss about it in detail in threading. Its declarative syntax is,</p>
+<div class="code">
+<PRE>
+<FONT FACE="Arial">
+<FONT COLOR="#0000ff">public synchronized void </FONT><FONT COLOR="#000000">Anymethod()</FONT>
+	<FONT COLOR="#000000">{</FONT>
+     <FONT COLOR="#008000">// some logic</FONT>
+    <FONT COLOR="#000000">} </FONT>
+</FONT>
+</PRE>
+</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="22java_UsageModifiersContd.shtml" title="Java abstract Modifier">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="24java_GarbageCollection.shtml" title="Garbage Collection in Java">Next</a></td>
+  </tr> 
+</table>
+<!-- Footer Start-->	
+
+		</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->

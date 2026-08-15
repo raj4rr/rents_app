@@ -1,0 +1,233 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+
+<HTML><HEAD>
+
+<meta http-equiv="Content-Language" content="en-us">
+
+<TITLE>Session beans</TITLE>
+
+<META content="Rajesh Kumar" name="author">
+
+<META http-equiv="expires" content="0">
+
+<META content="r4r.co.in" name="owner">
+
+<META http-equiv=Content-Type content="text/html; charset=windows-1252">
+
+<meta name="description" CONTENT="What is a Session Beans?,Session bean cab be two types,Stateless,Statefull Beans,When to using and utilizing Session Beans" >
+
+<meta name="keywords" CONTENT="What is a Session Beans?,Session bean cab be two types,Stateless,Statefull Beans,When to using and utilizing Session Beans">
+
+<!--Header start-->
+
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>EJB</h1>
+            <div class="link_menu"><A href="/">R4R</A>
+
+<img border="0" src="/images/left_menu_bullet.gif" width="11" height="6"> <A href="/java">Java</A><img border="0" src="/images/left_menu_bullet.gif" width="11" height="6"><A href="/java/ejb/">EJB</A></font> </div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/ejb/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	  
+
+<!-- header End-->
+
+<div class="heading">What is a Session Beans?</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="How%20A%20client%20invokes%20an%20EJB.shtml" title=" How A Client invokes an EJB
+">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="Creating%20a%20ession%20beans.shtml" title="Creating A Session beans">Next</a></td>
+  </tr>
+</table>
+
+<p>Session beans are distributed components which encapsulate business logic and an application. A Session beans represents a 
+single client inside the J2EE server.</p>
+
+<p>The session is access an application that 
+
+is deployed on the server, and the client invokes the session bean's methods. 
+
+The session bean performs work for its client, and shielding the client from 
+
+complexity by executing business tasks inside the server.</p>
+<p>
+
+As its name suggests, a session bean is similar to an interactive session. A 
+
+session bean is not shared, it may have just one client, in the same way that an 
+
+interactive session may have just one user. Like an interactive session, a 
+
+session bean is not persistent. (That is, its data is not saved to a database.) 
+
+When the client terminates, its session bean appears to terminate and is no 
+
+longer associated with the client.</p>
+
+<div class="heading">Session bean can be two types</div>
+
+<ol>
+<li>
+<i>Stateless:</i>
+In Stateless Session beans intermediate state is 
+
+not maintain. A stateless session bean does not maintain a conversational state 
+
+for a particular client. When a client invokes the method of a stateless bean, 
+
+the bean's instance variables may contain a state, but only for the duration of 
+
+the invocation. When the method is finished, the state is no longer retained. 
+
+Except during method invocation, all instances of a stateless bean are 
+
+equivalent, allowing the EJB container to assign an instance to any client.</li>
+
+<p>
+
+Because stateless session beans can support multiple clients, they can offer 
+
+better scalability for applications that require large numbers of clients. 
+
+Typically, an application requires fewer stateless session beans than statefull 
+
+session beans to support the same number of clients.</p>
+<p>
+At times, the EJB container may write a statefull session bean to secondary 
+
+storage. However, stateless session beans are never written to secondary 
+
+storage. Therefore, stateless beans may offer better performance than statefull 
+
+beans.</p>
+
+<p><i>Examples: </i>
+Premium alculation of insurance intermediate state is maintain.</p>
+
+<li>
+<p>
+<i>Statefull Beans:</i>
+How A client invokes an EJB.shtmlIn Statefull Session beans intermediate state is maintain. The state of an 
+
+object consists of the values of its instance variables. In a statefull session 
+
+bean, the instance variables represented to state of a unique client-bean 
+
+session. Because the client interacts (<font class="point_out">talks</font>) with its bean, this state is 
+
+often called the conversational state.</p>
+<p>
+
+The state is retained for the duration of the client-bean session. If the client 
+
+removes the bean or terminates, the session ends and the state disappears. This 
+
+transient nature of the state is not a problem, however, because when the 
+
+conversation between the client and the bean ends there is no need to retain the 
+
+state.</p></li>
+
+<p><i>Example: </i> shopping card.</p>
+</ol>
+
+<div class="heading">When to using and utilizing Session Beans:</div>
+
+<h3>
+
+In general, you should use a session bean if the following circumstances hold:</h3>
+<ul>
+
+<li>In the Session beans using to client into one client has access to the 
+
+bean instance for the given time .</li>
+
+<li>The state of the bean is not persistent, it's existing only for a short period 
+
+of time (perhaps a few hours).</li>
+</ul>
+
+<h3>Stateful session beans are appropriate if any of the following conditions are true:</h3>
+
+<ul>
+<li>The Session bean's state representing the interaction between the bean 
+
+and a specific client.</li>
+
+<li>The Session bean's needs to hold the information about the client across method 
+
+invocations.</li>
+
+<li>The Session bean's immediate between the client and the other components of the 
+
+application, presenting a simplified view to the client.</li>
+
+<li>Behind the scenes, the bean managed to all the work flow of several enterprise 
+
+beans. </li>
+</ul>
+
+<h3>To improve performance, you might choose a stateless session bean if it has any 
+
+of these traits:</h3>
+
+<ul>
+<li>The bean's state has no data for a specific client.</li>
+<li>
+The session bean's a single method invocation, the bean's performs a generic 
+
+task for all clients. </li>
+<li>
+Example, you might use a stateless session bean to send an e-mail that confirms 
+
+an online order.</li>
+
+<li>The bean fetches from a database a set of read-only data that is often used by 
+
+clients. Such a bean, Example, could retrieve the table rows that represent the products that are on 
+
+sale this month.</li>
+</ul>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="How%20A%20client%20invokes%20an%20EJB.shtml" title=" How A Client invokes an EJB
+">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="Creating%20a%20ession%20beans.shtml" title="Creating A Session beans">Next</a></td>
+  </tr>
+</table>
+
+<!-- Footer Start-->
+</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>

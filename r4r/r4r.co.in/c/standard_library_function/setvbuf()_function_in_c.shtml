@@ -1,0 +1,123 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http:///www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML>
+
+	<HEAD>
+		<TITLE>setvbuf() Function</TITLE>
+		<META content="Rajesh Kumar" name="author">
+		<META http-equiv="expires" content="0">
+		<META content="r4r.co.in" name="owner">
+		<META http-equiv="content-type" content="text/html; charset=iso-8859-1">
+		<meta name="description" CONTENT="">
+		<meta name="keywords" CONTENT="">
+
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>Standard Library Functions in C</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a><img src="/images/left_menu_bullet.gif"/> <a href="/c/">c</a></div>
+            	<table>
+                    <tr>
+                      <td width="19%" valign="top" style="width:20%"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/c/commonfiles/s-library-leftmenu.shtml'); ?></td>
+
+                        <td width="81%" style="80%" valign="top">
+
+                        		<!-- Header End-->	
+                     <div class="main_content">
+<div class="heading">setvbuf() Function</div>
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="index.shtml" title="Standard Library Functions in C">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml" title="Standard Library Functions in C">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="tmpfile()_function_in_c.shtml" title="tmpfile() Function">Next</a></td>
+  </tr> 
+</table>
+<h1>Description</h1>
+<p>The C library function, The <b>setvbuf()</b> function allows control over the buffering strategy and buffer size for a specified stream. The setvbuf() function only works in ILE C when using the integrated file system. The stream must refer to a file that has been opened, but not read or written to. The array pointed to by buf designates an area that you provide that the C library may choose to use as a buffer for the stream.</p> 
+
+<h1>Declaration</h1>
+<p>Following is the declaration for setvbuf() function.</p>
+<div class="code">
+<PRE><FONT FACE="Arial"><FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">setvbuf(FILE *stream, </FONT><FONT COLOR="#0000ff">char </FONT><FONT COLOR="#000000">*buffer, </FONT><FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">mode, size_t size)</FONT></FONT></PRE>
+</div>
+
+<h1>Parameters</h1>
+<p><b>stream</b> - A pointer to a FILE object which identifies a stream.</p>
+<p><b>buffer</b> - This is pointer to a memory block to be used as buffer for given stream. The size of this buffer must be at least BUFSIZ byte</p>
+<p><b>mode </b> -  This specifies a mode for file buffering -</p>
+
+<div class="table_content">
+<table>
+<tr>
+	<td class="heading">mode</td>
+    <td class="heading">description</td>
+</tr>
+<tr>
+	<td class="alternate_heading1">_IOFBF</td><td class="alternate_heading1">Full buffering - On output, data is written once the buffer is full. On Input the buffer is filled when an input operation is requested and the buffer is empty.</td>
+</tr>
+<tr>
+	<td class="alternate_heading2">_IOLBF</td><td class="alternate_heading2">Line buffering - On output, data is written when a newline character is inserted into the stream or when the buffer is full, what so ever happens first. On Input, the buffer is filled till the next newline character when an input operation is requested and buffer is empty.</td>
+</tr>
+<tr>
+	<td class="alternate_heading1">_IONBF</td><td class="alternate_heading1">No buffering - No buffer is used. Each I/O operation is written as soon as possible. The buffer and size parameters are ignored.</td>
+</tr>
+
+</table>
+</div>
+
+<h1>Return Value</h1>
+<p>The setvbuf() function returns 0 if successful. It returns nonzero if a value that is not valid was specified in the parameter list, or if the request cannot be performed.</p>
+
+<h1>Example</h1>
+<div class="code">
+<PRE><FONT FACE="Arial"><FONT COLOR="#000000">#include &lt;stdio.h&gt;</FONT>
+
+<FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">main ()</FONT>
+<FONT COLOR="#000000">{</FONT>
+  <FONT COLOR="#000000">FILE *pFile;</FONT>
+
+  <FONT COLOR="#000000">pFile=fopen (</FONT><FONT COLOR="#ff00ff">"myfile.txt"</FONT><FONT COLOR="#000000">,</FONT><FONT COLOR="#ff00ff">"w"</FONT><FONT COLOR="#000000">);</FONT>
+
+  <FONT COLOR="#000000">setvbuf ( pFile , NULL , _IOFBF , </FONT><FONT COLOR="#800080">1024 </FONT><FONT COLOR="#000000">);</FONT>
+
+  <FONT COLOR="#008000">// File operations here</FONT>
+
+  <FONT COLOR="#000000">fclose (pFile);</FONT>
+
+  <FONT COLOR="#0000ff">return </FONT><FONT COLOR="#800080">0</FONT><FONT COLOR="#000000">;</FONT>
+<FONT COLOR="#000000">}</FONT></FONT></PRE>
+</div>
+
+<h2>Output</h2>
+<p>A file called myfile.txt is created and a full buffer of 1024 bytes is requested for the associated stream, so the data output to this stream should only be written to the file each time the 1024-byte buffer is filled. </p>
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="index.shtml" title="Standard Library Functions in C">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml" title="Standard Library Functions in C">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="tmpfile()_function_in_c.shtml" title="tmpfile() Function">Next</a></td>
+  </tr> 
+</table>
+<!--Footer  --> 	
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/c/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>

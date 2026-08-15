@@ -1,0 +1,128 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD>
+<meta http-equiv="Content-Language" content="en-us">
+<TITLE>Regular Expression Search,how to search regular expression</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name="description" CONTENT="Regular Expression Search,how to search regular expression" >
+<meta name="keywords" CONTENT="Regular Expression Search,how to search regular expression">
+
+<!-- header start-->	
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>Java Programing laungage</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+            <img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+            <a href="/java/">Java</a>
+              <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/java/corejava">Core Java</a>
+               <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/java/corejava/packages">Package</a>
+                     <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/java/corejava/packages/lang">Java Util Package</a>
+              </div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/corejava/packages/util/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	 
+
+<div class="heading">Regular Expression Search</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="greedy_nongreedy_match.shtml" title="greedy nongreedy match">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="set_formatter_logger.shtml" title="set formatter logger">Next</a></td>
+  </tr> 
+</table>
+
+<!-- header End-->
+
+<h2>Regular Expression</h2>
+<p>It is used to perform many string related operations. This is the way of manipulate different type of operations like Editing, search and manipulating string. Its all can be performed by the regular expression. It has both type characters like literal and meta characters. In this page of the tutorials we shall be learn how to search a string from the given string exactly.</p>
+
+<h2>Program Description</h2>
+<p>This example gives us the search facility in which it takes two string or text. One text is searched in another one text or string and tells you for the occurrence of the given string for searching into a long string. If the string does not lies in the given string from which the string has to be searched.</p>
+
+<div class="heading">Code Description</div>
+<h3>Pattern</h3>
+
+<p>This is the class of the <b>java.util.regex</b> package which is the compiled representation. In this method the firstly that string is compiled which is Specified string into an instance of this class. The pattern to be used to create a matcher object which finds the character sequences for the regular expression.</p>
+
+<h3>Matcher</h3>
+<p>This is also a class of java.util.regex package which is used to match character sequences.</p>
+<h3>matcher.find()</h3>
+<p>This method is used to find the matched string in the given string for searching. This method returns a Boolean value either true or false.</p>
+
+<h3>Example</h3>
+<div class="code">
+<PRE>
+<FONT FACE="Arial">
+<FONT COLOR="#0000ff">package </FONT><FONT COLOR="#000000">r4r;</FONT>
+<FONT COLOR="#0000ff">import </FONT><FONT COLOR="#000000">java.io.</FONT><FONT COLOR="#ff0000">BufferedReader</FONT><FONT COLOR="#000000">;</FONT>
+<FONT COLOR="#0000ff">import </FONT><FONT COLOR="#000000">java.io.</FONT><FONT COLOR="#ff0000">IOException</FONT><FONT COLOR="#000000">;</FONT>
+<FONT COLOR="#0000ff">import </FONT><FONT COLOR="#000000">java.io.</FONT><FONT COLOR="#ff0000">InputStreamReader</FONT><FONT COLOR="#000000">;</FONT>
+<FONT COLOR="#0000ff">import </FONT><FONT COLOR="#000000">java.util.*;</FONT>
+<FONT COLOR="#0000ff">import </FONT><FONT COLOR="#000000">java.util.regex.</FONT><FONT COLOR="#ff0000">Matcher</FONT><FONT COLOR="#000000">;</FONT>
+<FONT COLOR="#0000ff">import </FONT><FONT COLOR="#000000">java.util.regex.</FONT><FONT COLOR="#ff0000">Pattern</FONT><FONT COLOR="#000000">;</FONT>
+<FONT COLOR="#0000ff">public class </FONT><FONT COLOR="#000000">expressionsearch {</FONT>
+<FONT COLOR="#0000ff">public static void </FONT><FONT COLOR="#000000">main(</FONT><FONT COLOR="#ff0000">String</FONT><FONT COLOR="#000000">[] args) </FONT><FONT COLOR="#0000ff">throws </FONT><FONT COLOR="#ff0000">IOException</FONT><FONT COLOR="#000000">{</FONT>
+ <FONT COLOR="#ff0000">BufferedReader </FONT><FONT COLOR="#000000">br = </FONT><FONT COLOR="#0000ff">new </FONT><FONT COLOR="#ff0000">BufferedReader</FONT><FONT COLOR="#000000">(</FONT><FONT COLOR="#0000ff">new </FONT><FONT COLOR="#ff0000">InputStreamReader</FONT><FONT COLOR="#000000">(</FONT><FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.in));</FONT>
+ <FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.print(</FONT><FONT COLOR="#ff00ff">"Enter string in which we have to search: "</FONT><FONT COLOR="#000000">);</FONT>
+ <FONT COLOR="#ff0000">String </FONT><FONT COLOR="#000000">str = br.readLine();</FONT>
+ <FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.print(</FONT><FONT COLOR="#ff00ff">"Enter character to search: "</FONT><FONT COLOR="#000000">);</FONT>
+ <FONT COLOR="#ff0000">String </FONT><FONT COLOR="#000000">str1 = br.readLine();</FONT>
+  <FONT COLOR="#ff0000">Pattern </FONT><FONT COLOR="#000000">pattern = </FONT><FONT COLOR="#ff0000">Pattern</FONT><FONT COLOR="#000000">.compile(str1);</FONT>
+ <FONT COLOR="#ff0000">Matcher </FONT><FONT COLOR="#000000">matcher = pattern.matcher(str);</FONT>
+ <FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">a = </FONT><FONT COLOR="#800080">0</FONT><FONT COLOR="#000000">;</FONT>
+ <FONT COLOR="#0000ff">while</FONT><FONT COLOR="#000000">(matcher.find()){</FONT>
+ <FONT COLOR="#000000">a = a + </FONT><FONT COLOR="#800080">1</FONT><FONT COLOR="#000000">;</FONT>
+ <FONT COLOR="#000000">}</FONT>
+ <FONT COLOR="#0000ff">if</FONT><FONT COLOR="#000000">(a == </FONT><FONT COLOR="#800080">0</FONT><FONT COLOR="#000000">)</FONT>
+ <FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.println(</FONT><FONT COLOR="#ff00ff">"String is not found."</FONT><FONT COLOR="#000000">);</FONT>
+ <FONT COLOR="#0000ff">else</FONT>
+ <FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.println(</FONT><FONT COLOR="#ff00ff">"Occurrence of the String is: " </FONT><FONT COLOR="#000000">+ a);</FONT>
+ <FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#000000">}</FONT>
+</FONT>
+</PRE>
+</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="greedy_nongreedy_match.shtml" title="greedy nongreedy match">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="set_formatter_logger.shtml" title="set formatter logger">Next</a></td>
+  </tr> 
+</table>
+
+<!-- Footer Start-->
+		</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->
+

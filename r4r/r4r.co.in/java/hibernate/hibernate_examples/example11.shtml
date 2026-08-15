@@ -1,0 +1,287 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<HTML><HEAD><TITLE>Validate data from the database using Hibernate and Struts|hibernate Examples</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv="content-type" content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="Hibernate Validate data from the database using Hibernate and Struts tutorial learn easily and shortly with hibernate tutorial,hibernate
+Examples,hibernate interview questions Step by step covers all topics of hibernate" >
+<meta name="keywords" CONTENT="Hibernate Validate data from the database tutorial,How to validate data from Database Hibernate Examples, object relation mapping(ORM), 
+hibernate query language(HQl), Presistent classes">
+
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<META http-equiv="Content-Language" content="en-us">
+<link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+<link href="/css/main.css" rel="stylesheet" type="text/css" />
+</HEAD>
+<BODY>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>Hibernate</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+            <img src="/images/left_menu_bullet.gif"/> <a href="/java/hibernate/">Hibernate</a>
+             </div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top">
+                            <?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/hibernate/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                       <div class="main_content">  	 
+
+      <div class="heading">Validate data from the database using Hibernate and Struts</div>
+
+      <table id="indexing">
+
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="example10.shtml" title="Delete Data from Database">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="example12.shtml" title="Complete Form Using All Action insert, update, delete, fetch, validate">Next</a></td>
+  </tr> 
+</table>
+
+      <p>
+          Hibernate is one of the best Java ORM tool in the current market. Recently I have written a 
+          lot for hibernate framework. So here we will discuss about the hibernate and struts 
+          application using mysql database. as we have discussed that Hibernate support the all 
+          activity using insert, update, delete, and it is also work for the many to one query 
+          and also work one to many query. For making the simple example we have to use the NetBeans. 
+          and also required to follow the some basic step which i have discussed here to create a 
+          validation application on the NetBeans togethar hibernate and struts.
+      </p> 
+      <p>
+          Step 1. First of all we need to create a database and a table in the the MySql Database. 
+          Each and every application which is connected to the database we have to first create his 
+          own database and which type of activity we want to use in the application that should be 
+          done in the database.
+      </p>
+      <p>(a) create database r4r</p>
+      <div class="code">
+          <pre><code class="language-sql">
+(b) create table ValidateData
+    	(
+	id int not null primary key auto_increment,
+	uname varchar(10),
+	pass varchar(10),
+	email varchar(50) unique,
+	dor date
+	);
+</code></pre>
+      </div>
+      <p>(c) now we need to inset value into this table</p>
+      <p>insert into ValidateData (uname,pass,email,dor) values ('admin','admiin','admin@r4r.in','2015-02-11');</p>
+
+      <p>Step 2. On the second step we need to do is that Take a new simple project in the netbeans put the name of the project which you want.</p>
+      <p>
+          Step 3. Now take the hibernate configure file in the project. Go in the menu click on the 
+          new file search the hibernate and click on the hibernate configure file and select the 
+          database which we created and then finish.
+      </p>
+
+      <h3>After the finish we find the below code of the hibernate configuration file:</h3>
+      <div class="code">
+          <pre><code class="language-java">
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN" 
+"http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd"&gt;
+&lt;hibernate-configuration&gt;
+  &lt;session-factory&gt;
+    &lt;property name="hibernate.dialect"&gt;org.hibernate.dialect.MySQLDialect&lt;/property&gt;
+    &lt;property name="hibernate.connection.driver_class"&gt;com.mysql.jdbc.Driver&lt;/property&gt;
+    &lt;property name="hibernate.connection.url"&gt;jdbc:mysql://localhost:3306/r4r?zeroDateTimeBehavior=convertToNull&lt;/property&gt;
+    &lt;property name="hibernate.connection.username"&gt;root&lt;/property&gt;
+    &lt;property name="hibernate.connection.password"&gt;root&lt;/property&gt;
+    &lt;mapping resource="r4r/Users.hbm.xml"/&gt;
+  &lt;/session-factory&gt;
+&lt;/hibernate-configuration&gt;
+</code></pre>
+      </div>
+
+      <p>
+          Step 4. Now we need the jar file of the struts2 to attatch in the project.
+      </p>
+      <p>
+          Step 5. Now we need to create a jsp file by going in the menu and taking the new file and 
+          select to the web and then jsp page. It work for only the desigin part. As we want to show 
+          the first part that can we can do. put the requried name on given place and finish.
+      </p>
+      <h3>after the change into the code we found the below code(index.jsp):</h3>
+      <div class="code">
+          <pre><code class="language-java">
+&lt;%@taglib uri="/struts-tags" prefix="s"%&gt;
+&lt;s:actionerror/&gt;
+&lt;s:form action="login"&gt;
+    &lt;s:textfield name="name" label="Name"/&gt;
+    &lt;s:password name="password" label="Password"/&gt;
+    &lt;s:submit value="Login"/&gt;
+&lt;/s:form&gt;
+</code></pre>
+      </div>
+<p>
+    Step 6. Now we need to create two package one to store the action class of java of the 
+    application and anothre for the pojo class of the hibernate.
+</p>
+<p>
+    Step 7. Now we need to create hibernate revenge file to process the action which we want to 
+    perform. The all pojo class will be store inside the r4r_pojo package.
+</p>   
+<p>Step 8. Now we can create a three java class to perform the action.That will be as shown below:</p>    
+
+<h3>(1) HibernateUtil.java</h3>
+<p>
+    package dao;
+
+import org.hibernate.SessionFactory;
+import org.hibernate.cfg.Configuration;
+
+public class HibernateUtil {
+
+    private static final SessionFactory sessionFactory=buildSessionFactory();
+
+   public static SessionFactory buildSessionFactory(){
+        try {
+            return new Configuration().configure().buildSessionFactory();
+        } catch (Throwable ex) {
+            System.err.println("Initial SessionFactory creation failed." + ex);
+            throw new ExceptionInInitializerError(ex);
+        }
+    }
+
+    public static SessionFactory getSessionFactory() {
+        return sessionFactory;
+    }
+}
+</p>
+<h3>(2) LoginAction.java</h3>
+<div class="code">
+  <pre><code class="language-java">
+  package dao;
+
+import com.opensymphony.xwork2.ActionSupport;
+public class LoginAction extends ActionSupport {
+    private static final long serialVersionUID = 1L;
+    private String name;
+    private String password;
+    User_DAO dao=new User_DAO();
+    @Override
+    public void validate(){
+        if(name.length()==(0))
+            this.addFieldError("name", "Name is required");
+        if(password.length()==(0))
+            this.addFieldError("password", "Password is required");
+    }
+    @Override
+    public String execute(){
+        if(dao.find(getName(),getPassword()))
+            return "success";
+        else
+            this.addActionError("Invalid username and password");
+            return "error";
+    }
+    public String getName() {
+        return name;
+    }
+    public void setName(String name) {
+        this.name = name;
+    }
+    public String getPassword() {
+        return password;
+    }
+    public void setPassword(String password) {
+        this.password = password;
+    }
+}
+</code></pre>
+
+</div>
+<h3>(3) User_DAO.java</h3>   
+<div class="code">
+  <pre><code class="language-java">
+  package dao;
+
+import r4r.Users;
+import java.util.Iterator;
+import java.util.List;
+import org.hibernate.*;
+
+public class User_DAO {
+
+    @SuppressWarnings("unchecked")
+    public boolean find(String name, String password) {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        //session.beginTransaction();
+        String SQL_QUERY = " from Users u where u.uname='" + name + "' and u.pwd='" + password + "'";
+        System.out.println(SQL_QUERY);
+        Query query = session.createQuery(SQL_QUERY);
+        Iterator&lt;Users&gt; it = query.iterate();
+        List&lt;Users&gt; list = query.list();
+        if (list.size() &gt; 0) {
+            session.close();
+            return true;
+        }
+        session.close();
+        return false;
+    }
+}
+</code></pre>
+</div>     
+<p>Step 9. Now we create the struts xml file to process the action. It always lives into the default package.</p>    
+<div class="code">
+    <pre><code class="language-java">
+&lt;!DOCTYPE struts PUBLIC
+"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+"http://struts.apache.org/dtds/struts-2.0.dtd"&gt;
+
+&lt;!-- Author: sarvesh --&gt;
+
+&lt;struts&gt;
+    &lt;package name="default" extends="struts-default"&gt;
+        &lt;action name="login" class="dao.LoginAction"&gt;
+            &lt;result name="success"&gt;/hello.jsp&lt;/result&gt;
+            &lt;result name="input"&gt;/index.jsp&lt;/result&gt;
+            &lt;result name="error"&gt;/index.jsp&lt;/result&gt;
+        &lt;/action&gt;
+    &lt;/package&gt;
+&lt;/struts&gt;
+</code></pre>
+</div>
+<p>
+    Step 10. Now here we also required an another file of jsp. procedure will be same as we discussed in the last step. This will work when our action will got sucess(hello.jsp).
+</p>
+<div class="code">
+    <pre><code class="language-java">
+&lt;%@taglib uri="/struts-tags" prefix="s"%&gt;
+&lt;b&gt;Welcome,&lt;s:property value="name"/&gt;&lt;/b&gt;
+</code></pre>
+</div>
+<p>Step 11. At last of the application one work is be done that is the build and run the projcet.</p>    
+       <table id="indexing">
+
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="example10.shtml" title="Delete Data from Database">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="example12.shtml" title="Complete Form Using All Action insert, update, delete, fetch, validate">Next</a></td>
+  </tr> 
+</table>
+
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+
+                <?php @include($_SERVER['DOCUMENT_ROOT'] . '/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>

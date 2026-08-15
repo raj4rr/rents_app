@@ -1,0 +1,258 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>Scrollbar Example Java Applet</TITLE>
+<META content=r4r.co.in name=owner>
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="Scrollbar Example Java Applet" >
+<meta name="keywords" CONTENT="Scrollbar Example Java Applet">
+<META content="Rajesh Kumar" name=author>
+<META http-equiv=expires content=0>
+<script type="text/javascript" src="/js/main.js"></script>
+		<link rel="stylesheet" type="text/css" href="/css/style.css" />
+	    <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+
+	</HEAD>
+	<BODY style="text-align: justify">
+		<table class="wrap" align="center"  cellpadding="0" cellspacing="0">
+			<tr>
+				<td class="m" align="left" valign="top">
+					<?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+				</td>
+						</tr>
+						<tr class="headerTR1">
+							<td>
+							<?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+							</td>
+						</tr>
+						<tr>
+							<td class="headerTR2">
+								<?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+							</td>
+						</tr>
+
+						<tr>
+							<td class="headerTR3">
+								<?php @include($_SERVER['DOCUMENT_ROOT'] . '/common-files/menu.shtml'); ?>
+							</td>
+							</td>
+
+						</tr>
+						<tr>
+							<td>
+								<?php @include($_SERVER['DOCUMENT_ROOT'] . '/common-files/gaps.shtml'); ?>
+							</td>
+						</tr>
+
+						<tr>
+
+			               <td class="content">
+								<table>
+									<tr>
+
+								  <?php @include($_SERVER['DOCUMENT_ROOT'] . '/common-files/tdgaps.shtml'); ?>
+								<td class="td1"   valign="top" >
+
+							     <DIV style="margin-left:15px;">
+			<table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse"  width="100%">
+  <tr>
+    <td width="100%">
+    <p align="justify">
+    <font face="Verdana" size="2">
+    <A href="/">R4R</A>
+<img border="0" src="/images/left_menu_bullet.gif" width="11" height="6"><a href="/sourcecode">Java SourceCode</a>
+<img border="0" src="/images/left_menu_bullet.gif" width="11" height="6"><a href=" ">Scrollbar 
+    Example Java Applet</a></font></td>
+  </tr>
+</table>
+
+	<!-- Header End-->  
+
+<P align="justify" title="Java Examples"><font color="#0066FF" face="Verdana">
+<b>Scrollbar Example Java Applet</b></font></P>
+
+<P align="justify" title="Java Examples">
+<font color="#111111" face="Verdana" size="2">In this example we 
+will learn how we can create <b>Scrollbar</b> in java. In this example we are 
+creating three&nbsp; <b>Scrollbar</b> .These Scrollbars are used to set 
+background color. Here we are using <b>
+Scrollbar</b> class to strong&nbsp; an object of scrollbar .We are using <b>
+Scrollbar(int x,int y, int x1,int y1,int m)</b> constructor to create new object 
+of scrollbar. We are using <b>Panel</b> class to create a new panel. In this 
+panel we are adding these three scrollbars.To add the scrollbars at panel we are 
+using<b> add()</b> method. We are using <b>GridLayout </b>and <b>BorderLayout</b> 
+here to set layout .To set&nbsp; layout we are using <i><b>setLayout()</b></i> 
+method. As you can see here we are using two layout. The <b>GridLayout</b> is 
+used to set component&nbsp; into panel and<b> BorderLayout </b>is used to set 
+the&nbsp;&nbsp; panel at north </font></P>
+
+<P align="justify" title="Java Examples">
+<font color="#111111" face="Verdana" size="2">As we know , we can 
+apply <b>AdjustmentListener</b> on <b>Scrollbar</b>. To <i>register</i> on 
+scrollbar we are using <i><b>addAdjustmentListener()</b></i>. We are using <i>
+<b>adjustmentValueChanged(AdjustmentEvent e) </b></i>to handle the change on 
+scrollbar .The <b>AdjustmentEvent </b>class is used to store the&nbsp; actions 
+by scrollbars into an object. We are using <i><b>getValue()</b></i> method to 
+get the current position. We are taking position of three scrollbar into three 
+variable and finally we are passing these values into <b>Color(int x,int y,int 
+z) </b>Thus we are getting different values from three scrollbars which will 
+gives different color to set the background color .
+To show three values on status bar we are using <b>showStatus(String str)</b> 
+method.</font></P>
+
+<P align="justify" title="Java Examples"><b>
+<font color="#0066FF" face="Verdana" size="2">
+SOURCE CODE</font></b></P>
+
+<table border="1" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="90%">
+  <tr>
+    <td width="100%">
+
+<div align="justify">
+
+<PRE><FONT FACE="Verdana">
+<FONT COLOR="#008000">//&lt;applet code=ScrollbarExample height=300 width=400&gt;<br>&lt;/applet&gt;</FONT>
+
+<FONT COLOR="#0000ff">import </FONT><FONT COLOR="#000000">java.applet.*;</FONT>
+<FONT COLOR="#0000ff">import </FONT><FONT COLOR="#000000">java.awt.*;</FONT>
+<FONT COLOR="#0000ff">import </FONT><FONT COLOR="#000000">java.awt.event.*;</FONT>
+<FONT COLOR="#0000ff">public class </FONT><FONT COLOR="#000000">ScrollbarExample </FONT><FONT COLOR="#0000ff">extends </FONT><FONT COLOR="#ff0000">Applet <br></FONT><FONT COLOR="#0000ff">implements </FONT><FONT COLOR="#ff0000">AdjustmentListener</FONT>
+<FONT COLOR="#000000">{</FONT>
+              <FONT COLOR="#008000">// style(0-H/1-V),initialvalue,<br>thumbsize,min,max)</FONT>
+  <FONT COLOR="#ff0000">Scrollbar </FONT><FONT COLOR="#000000">r = </FONT><FONT COLOR="#0000ff">new </FONT><FONT COLOR="#ff0000">Scrollbar</FONT><FONT COLOR="#000000">(</FONT><FONT COLOR="#800080">0</FONT><FONT COLOR="#000000">,</FONT><FONT COLOR="#800080">1</FONT><FONT COLOR="#000000">,</FONT><FONT COLOR="#800080">20</FONT><FONT COLOR="#000000">,</FONT><FONT COLOR="#800080">1</FONT><FONT COLOR="#000000">,</FONT><FONT COLOR="#800080">275</FONT><FONT COLOR="#000000">);</FONT>
+  <FONT COLOR="#ff0000">Scrollbar </FONT><FONT COLOR="#000000">g = </FONT><FONT COLOR="#0000ff">new </FONT><FONT COLOR="#ff0000">Scrollbar</FONT><FONT COLOR="#000000">(</FONT><FONT COLOR="#800080">0</FONT><FONT COLOR="#000000">,</FONT><FONT COLOR="#800080">1</FONT><FONT COLOR="#000000">,</FONT><FONT COLOR="#800080">20</FONT><FONT COLOR="#000000">,</FONT><FONT COLOR="#800080">1</FONT><FONT COLOR="#000000">,</FONT><FONT COLOR="#800080">275</FONT><FONT COLOR="#000000">);</FONT>
+  <FONT COLOR="#ff0000">Scrollbar </FONT><FONT COLOR="#000000">b = </FONT><FONT COLOR="#0000ff">new </FONT><FONT COLOR="#ff0000">Scrollbar</FONT><FONT COLOR="#000000">(</FONT><FONT COLOR="#800080">0</FONT><FONT COLOR="#000000">,</FONT><FONT COLOR="#800080">1</FONT><FONT COLOR="#000000">,</FONT><FONT COLOR="#800080">20</FONT><FONT COLOR="#000000">,</FONT><FONT COLOR="#800080">1</FONT><FONT COLOR="#000000">,</FONT><FONT COLOR="#800080">275</FONT><FONT COLOR="#000000">);</FONT>
+  <FONT COLOR="#ff0000">Panel </FONT><FONT COLOR="#000000">p = </FONT><FONT COLOR="#0000ff">new </FONT><FONT COLOR="#ff0000">Panel</FONT><FONT COLOR="#000000">();</FONT>
+
+  <FONT COLOR="#0000ff">public void </FONT><FONT COLOR="#000000">init()</FONT>
+  <FONT COLOR="#000000">{</FONT>
+    <FONT COLOR="#000000">p.setLayout(</FONT><FONT COLOR="#0000ff">new </FONT><FONT COLOR="#ff0000">GridLayout</FONT><FONT COLOR="#000000">(</FONT><FONT COLOR="#800080">3</FONT><FONT COLOR="#000000">,</FONT><FONT COLOR="#800080">1</FONT><FONT COLOR="#000000">));</FONT>
+    <FONT COLOR="#000000">setLayout(</FONT><FONT COLOR="#0000ff">new </FONT><FONT COLOR="#ff0000">BorderLayout</FONT><FONT COLOR="#000000">());</FONT>
+    <FONT COLOR="#000000">p.add(r);</FONT>
+    <FONT COLOR="#000000">p.add(g);</FONT>
+    <FONT COLOR="#000000">p.add(b);</FONT>
+    <FONT COLOR="#000000">add(p,</FONT><FONT COLOR="#ff00ff">"North"</FONT><FONT COLOR="#000000">);</FONT>
+    <FONT COLOR="#000000">r.addAdjustmentListener(</FONT><FONT COLOR="#0000ff">this</FONT><FONT COLOR="#000000">);</FONT>
+    <FONT COLOR="#000000">g.addAdjustmentListener(</FONT><FONT COLOR="#0000ff">this</FONT><FONT COLOR="#000000">);</FONT>
+    <FONT COLOR="#000000">b.addAdjustmentListener(</FONT><FONT COLOR="#0000ff">this</FONT><FONT COLOR="#000000">);</FONT>
+  <FONT COLOR="#000000">}</FONT>
+  <FONT COLOR="#0000ff">public void </FONT><FONT COLOR="#000000">adjustmentValueChanged(</FONT><FONT COLOR="#ff0000">AdjustmentEvent </FONT><FONT COLOR="#000000">e)</FONT>
+  <FONT COLOR="#000000">{</FONT>
+    <FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">cr,cg,cb;</FONT>
+    <FONT COLOR="#000000">cr =r.getValue();</FONT>
+    <FONT COLOR="#000000">cg =g.getValue();</FONT>
+    <FONT COLOR="#000000">cb =b.getValue();</FONT>
+    <FONT COLOR="#000000">showStatus(</FONT><FONT COLOR="#ff00ff">"Color is --&gt; r = "</FONT><FONT COLOR="#000000">+cr+</FONT><FONT COLOR="#ff00ff">" , g = "</FONT><FONT COLOR="#000000">+cg+</FONT><FONT COLOR="#ff00ff">" ,<br> b = "</FONT><FONT COLOR="#000000">+cb);</FONT>
+    <FONT COLOR="#000000">setBackground(</FONT><FONT COLOR="#0000ff">new </FONT><FONT COLOR="#ff0000">Color</FONT><FONT COLOR="#000000">(cr,cg,cb));</FONT>
+  <FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#000000">}</FONT>
+</FONT></PRE>
+</div>
+</td></tr>
+</table>
+
+<p align="justify"><font face="Verdana" size="2"><a href="ScrollbarExample.java.txt">Download Source File</a><br>
+&nbsp;</font></p>
+
+<p align="justify"><font color="#0066FF" face="Verdana" size="2"><b>Output of This Example</b></font></p>
+
+<p align="justify">
+<font face="Verdana" size="2">
+<img border="0" src="ScrollbarExample.gif" width="587" height="221"><br>
+
+     <!-- Footer Start-->	
+
+									</font>								
+
+									</td>
+
+										<td class="td2"  valign="top">
+
+											</font>
+
+											</font></p>
+
+											<table>
+											<?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/corejava/common-files/news1.shtml'); ?>	
+												<tr>
+													<td class="colorChange">
+
+													</td>
+												</tr>
+
+												<?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/corejava/common-files/news3.shtml'); ?>	
+
+												<tr>
+													<td class="colorChange">
+
+													</td>
+												</tr>
+
+												<?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/corejava/common-files/news3.shtml'); ?>	
+
+												<tr>
+													<td class="colorChange">
+
+													</td>
+												</tr>
+
+												<?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/corejava/common-files/news4.shtml'); ?>	
+
+		</table>
+
+										</td>
+										<?php @include($_SERVER['DOCUMENT_ROOT'] . '/common-files/tdgaps.shtml'); ?>
+									</tr>
+								 </table>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<?php @include($_SERVER['DOCUMENT_ROOT'] . '/common-files/gaps.shtml'); ?>
+							</td>
+						</tr>		
+						<tr>
+							<td>
+								<?php @include($_SERVER['DOCUMENT_ROOT'] . '/common-files/row.shtml'); ?>
+							</td>
+						</tr>
+
+						<tr>
+							<td>
+								<?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/corejava/common-files/mainlinks.shtml'); ?>
+
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<?php @include($_SERVER['DOCUMENT_ROOT'] . '/common-files/gaps.shtml'); ?>
+							</td>
+						</tr>
+
+								<tr>
+							<td>
+								<?php @include($_SERVER['DOCUMENT_ROOT'] . '/common-files/row.shtml'); ?>
+							</td>
+						</tr>
+
+						<tr >
+							<td>
+								<?php @include($_SERVER['DOCUMENT_ROOT'] . '/common-files/hotlinks.shtml'); ?>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<?php @include($_SERVER['DOCUMENT_ROOT'] . '/common-files/gaps.shtml'); ?>
+							</td>
+						</tr>
+
+						<tr>
+							<td>
+								<?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+		</table>
+
+	</BODY>
+</HTML>

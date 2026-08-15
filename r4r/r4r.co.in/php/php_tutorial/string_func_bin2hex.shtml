@@ -1,0 +1,146 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>bin2hex()and pack() Functions in PHP|Php Tutorials</TITLE>
+<META content=r4r.co.in name=owner>
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="bin2hex()and pack() Functions in PHP-learn with r4r php tutorial covers all  topics of php from basics concept to higher level php
+best examples interview questions in easy and short way" >
+<meta name="keywords" CONTENT="bin2hex()and pack() Functions in PHP,php array function, PHP, Programming, Language, Built-in Function,HTML,CSS,XML,JavaScript,DOM,jQuery Library, Web Design,Object 
+Oriented PHP, PHP Variables, Scalars,Arrays,Object Oriented In PHP,Exception In PHP">
+<META content="Rajesh Kumar" name=author>
+<!-- header start-->	
+
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>PHP Programing language</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+            <img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+            <a href="/php/">PHP</a>
+              </div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/php/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	 
+
+	   	   <div class="heading">bin2hex()and pack() Functions in PHP</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="string_function.shtml" title="String Functions">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="php_get&post.shtml" title="PHP Get&amp;Post">Next</a></td>
+  </tr>
+</table>
+
+<h3>bin2hex()</h3>
+<p>The bin2hex() function converts a string of ASCII characters to hexadecimal values. The string again converted back by using the pack() function.</p>
+<i>Syntax:</i>
+<div class="code">
+<pre>
+<font color="#000000">bin2hex(string)</font>
+</pre>
+</div>
+<h3>Example:</h3>
+<div class="code">
+<pre>
+<font color="#800000">&lt;?php </font>
+<font color="#0000ff">$</font><font color="#008080">str </font><font color="#800000">= </font><font color="#ff0000">bin2hex</font><font color="#800000">(</font><font color="#ff00ff">&quot;Gud Morning India!&quot;</font><font color="#800000">);</font>
+<font color="#0000ff">echo</font><font color="#800000">(</font><font color="#0000ff">$</font><font color="#008080">str</font><font color="#800000">); </font>
+<font color="#800000">?&gt;</font>
+</pre>
+</div>
+
+<p><i>Output:</i>
+<div class="output">
+477564204d6f726e696e6720496e64696121
+</div>
+</p>	
+
+<h3>pack()</h3>
+<p>The pack() function packs data into a binary string.</p>
+<i>Syntax:</i>
+<div class="code">
+<pre>
+<font color="#000000">pack(format,args+)</font>
+</pre>
+</div>
+<p>In above syntax, &quot;args+&quot; specifies one or more arguments to be packed and format is as fallows:</p>
+<ul>
+<li>a - NUL-padded string</li>
+<li>A - SPACE-padded string</li>
+<li>h - Hex string, low nibble first</li>
+<li>H - Hex string, high nibble first</li>
+<li>c - signed char</li>
+<li>C - unsigned char</li>
+<li>s - signed short (always 16 bit, machine byte order)</li>
+<li>S - unsigned short (always 16 bit, machine byte order)</li>
+<li>n - unsigned short (always 16 bit, big endian byte order)</li>
+<li>v - unsigned short (always 16 bit, little endian byte order)</li>
+<li>i - signed integer (machine dependent size and byte order)</li>
+<li>I - unsigned integer (machine dependent size and byte order)</li>
+<li>l - signed long (always 32 bit, machine byte order)</li>
+<li>L - unsigned long (always 32 bit, machine byte order)</li>
+<li>N - unsigned long (always 32 bit, big endian byte order)</li>
+<li>V - unsigned long (always 32 bit, little endian byte order)</li>
+<li>f - float (machine dependent size and representation)</li>
+<li>d - double (machine dependent size and representation)</li>
+<li>x - NUL byte</li>
+<li>X - Back up one byte</li>
+<li>Z - NUL-padded string</li>
+<li>@ - NUL-fill to absolute position</li>
+</ul>
+<h3>Example:</h3>
+<div class="code">
+<pre>
+<font color="#800000">&lt;?php</font>
+<font color="#0000ff">$</font><font color="#008080">str </font><font color="#800000">= </font><font color="#ff00ff">&quot;Gud Morning!&quot;</font><font color="#800000">;</font>
+<font color="#0000ff">echo </font><font color="#ff0000">bin2hex</font><font color="#800000">(</font><font color="#0000ff">$</font><font color="#008080">str</font><font color="#800000">) . </font><font color="#ff00ff">&quot;&lt;br&gt;&quot;</font><font color="#800000">;</font>
+<font color="#0000ff">echo </font><font color="#ff0000">pack</font><font color="#800000">(</font><font color="#ff00ff">&quot;H*&quot;</font><font color="#800000">,</font><font color="#ff0000">bin2hex</font><font color="#800000">(</font><font color="#0000ff">$</font><font color="#008080">str</font><font color="#800000">)) . </font><font color="#ff00ff">&quot;&lt;br&gt;&quot;</font><font color="#800000">;</font>
+<font color="#800000">?&gt;</font><font color="#000000">  </font>
+</pre>
+</div>
+<p><i>Output:</i>
+<div class="output">
+<pre>
+477564204d6f726e696e6721
+Gud Morning!
+</pre>
+</div>
+</p>	
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="string_function.shtml" title="String Functions">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="php_get&post.shtml" title="PHP Get&amp;Post">Next</a></td>
+  </tr>
+</table>
+
+</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/webtechnology/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->

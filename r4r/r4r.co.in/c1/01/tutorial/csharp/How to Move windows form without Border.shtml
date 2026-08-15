@@ -1,0 +1,121 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" 
+
+"http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>How to Move windows form without Border</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="How to Move windows form without Border:" >
+<meta name="keywords" CONTENT="How to Move windows form without Border">
+
+<!-- Header Start-->
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+     <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>C# Tutorial</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a><img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/c1/">C#</a>
+
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/c1/commonfiles/leftmenu.shtml'); ?></td>
+
+                       <td style="80%" valign="top">
+                        <div class="main_content"> 
+
+	<!-- Header End-->
+
+  <div class="heading">How to Move windows form without Border </div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="How%20to%20Create%20Screen%20Saver%20using%20C-sharp.shtml" title="How to Create Screen Saver using C#">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="How%20to%20pass%20Textbox%20value%20between%20the%20forms%20using%20the%20static%20concept.shtml" title="How to pass Textbox value between the forms using the static concept">Next</a></td>
+  </tr>
+</table>
+
+ <p>In This Example We describe How to move Window form Without Border. Some time its necessary that we want to move windows form without border. Especially when we making our form in abnormal shape rather then the normal rectangular shape. Hence we need to hide the Title bar of form and we can move the form from its Place. So here is the solution that how we can move that type of form.</p>
+ <p>Windows form will look like below</p>
+<div class="image"><img src="move.gif" ></div>
+<p><font class="point_out"> The property of Formborderstyle=none</font></p>
+
+ <h3>.CS File</h3>
+ <div class="code"><pre>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Collections</font><font color="#000000">.</font><font color="#008080">Generic</font><font color="#000000">;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">ComponentModel</font><font color="#000000">;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Data</font><font color="#000000">;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Drawing</font><font color="#000000">;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.Linq;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Text</font><font color="#000000">;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Windows</font><font color="#000000">.</font><font color="#008080">Forms</font><font color="#000000">;</font>
+<font color="#0000ff">namespace </font><font color="#000000">speech</font>
+<font color="#000000">{</font>
+<font color="#0000ff">public </font><font color="#000000">partial </font><font color="#0000ff">class </font><font color="#000000">movewindow : </font><font color="#808000">Form</font>
+<font color="#000000">{</font>
+<font color="#0000ff">public </font><font color="#000000">movewindow()</font>
+<font color="#000000">{</font>
+<font color="#000000">InitializeComponent();</font>
+<font color="#000000">}</font>
+<font color="#0000ff">bool </font><font color="#000000">flag = </font><font color="#0000ff">false</font><font color="#000000">;</font>
+<font color="#0000ff">private void </font><font color="#000000">movewindow_MouseDown(</font><font color="#0000ff">object </font><font color="#000000">sender,</font>
+	<font color="#808000">MouseEventArgs </font><font color="#000000">e)</font>
+<font color="#000000">{</font>
+<font color="#000000">flag = </font><font color="#0000ff">true</font><font color="#000000">;</font>
+<font color="#000000">}</font>
+<font color="#0000ff">private void </font><font color="#000000">movewindow_MouseMove(</font><font color="#0000ff">object </font><font color="#000000">sender,</font>
+	<font color="#808000">MouseEventArgs </font><font color="#000000">e)</font>
+<font color="#000000">{</font>
+<font color="#008000">//Check if Flag is True ??? if so then make </font>
+<font color="#008000">//form position same as Cursor position</font>
+<font color="#0000ff">if </font><font color="#000000">(flag == </font><font color="#0000ff">true</font><font color="#000000">)</font>
+<font color="#000000">{</font>
+<font color="#0000ff">this</font><font color="#000000">.Location = </font><font color="#808000">Cursor</font><font color="#000000">.Position;</font>
+<font color="#000000">}</font>
+<font color="#000000">}</font>
+<font color="#0000ff">private void </font><font color="#000000">movewindow_MouseUp(</font><font color="#0000ff">object </font><font color="#000000">sender, </font>
+	<font color="#808000">MouseEventArgs </font><font color="#000000">e)</font>
+<font color="#000000">{</font>
+<font color="#000000">flag = </font><font color="#0000ff">false</font><font color="#000000">;</font>
+<font color="#000000">}</font>
+<font color="#000000">}</font>
+<font color="#000000">}</font>
+</pre>
+</div>
+ <p>After that Window Form Move Without Border</p>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="How%20to%20Create%20Screen%20Saver%20using%20C-sharp.shtml" title="How to Create Screen Saver using C#">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="How%20to%20pass%20Textbox%20value%20between%20the%20forms%20using%20the%20static%20concept.shtml" title="How to pass Textbox value between the forms using the static concept">Next</a></td>
+  </tr>
+</table>
+
+ <!--Footer-->
+   </div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/dotnet/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+     <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>

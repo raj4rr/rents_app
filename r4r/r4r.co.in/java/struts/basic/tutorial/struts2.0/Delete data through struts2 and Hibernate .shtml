@@ -1,0 +1,341 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD>
+<meta http-equiv="Content-Language" content="en-us">
+<TITLE>struts,struts 2.0,struts tutorial,struts 2.0 tutorial,Delete data through struts2 and Hibernate 3.0 framework</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name="description" CONTENT="struts,struts 2.0,struts tutorial,struts 2.0 tutorial,Delete data through struts2 and Hibernate 3.0 framework" >
+<meta name="keywords" CONTENT="struts,struts 2.0,struts tutorial,struts 2.0 tutorial,Delete data through struts2 and Hibernate 3.0 framework">
+<!-- header start-->	
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>Struts</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+            <img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+            <a href="/java/">Java</a>
+              <img src="/images/left_menu_bullet.gif" width="11" height="6"/><A href="/java/struts/basic/tutorial/struts2.0">Struts 2.0 Basic Tutorial</a>
+              </div>
+
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/struts/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	 
+
+<div class="heading">Delete data through struts2 and Hibernate 3.0 framework</div>
+<!-- header End-->
+
+ <table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="Update%20data%20through%20struts2%20and%20Hibernate%20.shtml" title="Update data through struts2 and Hibernate 3.0 framework">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="Login%20example%20using%20struts2.0%20and%20hibernate.shtml" title="Login example using struts2.0 and Hibernate3.0 framework">Next</a></td>
+  </tr> 
+</table>
+
+<h3> Introduction: </h3>
+<p>This application provide delete data using struts2 and hibernate3.0 framework</p>
+<h3>Class/Library File Descriptions:</h3>
+<p>Require tools to run this application</p>
+<ol><li>Struts2.0 jar file</li>
+<li>Tomcat server</li>
+<li>Database Oracle10g</li>
+<li>Hibernate 3.0 jar file</li></ol>
+<h3>Source Code: </h3>
+<div class="comment">web.xml</div>
+<div class="code"><pre>
+<font color="#0000ff">&lt;?xml </font><font color="#ff0000">version</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;1.0&quot; </font><font color="#ff0000">encoding</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;UTF-8&quot;</font><font color="#800080">?</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">web-app </font><font color="#ff0000">version</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;2.5&quot; </font>
+<font color="#ff0000">xmlns</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;http://java.sun.com/xml/ns/javaee&quot; </font>
+<font color="#800080">xmlns:xsi</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;http://www.w3.org/2001/XMLSchema-instance&quot; </font>
+<font color="#800080">xsi:schemaLocation</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;http://java.sun.com/xml/ns/javaee </font>
+<font color="#ff00ff">http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd&quot;</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">welcome-file-list</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">welcome-file</font><font color="#0000ff">&gt;</font><font color="#000000">index.jsp</font><font color="#0000ff">&lt;/</font><font color="#808000">welcome-file</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">welcome-file-list</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">filter</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">filter-name</font><font color="#0000ff">&gt;</font><font color="#000000">struts2</font><font color="#0000ff">&lt;/</font><font color="#808000">filter-name</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">filter-class</font><font color="#0000ff">&gt;</font>
+<font color="#000000">org.apache.struts2.dispatcher.ng.filter</font>
+<font color="#000000">.StrutsPrepareAndExecuteFilter</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">filter-class</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">filter</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">filter-mapping</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">filter-name</font><font color="#0000ff">&gt;</font><font color="#000000">struts2</font><font color="#0000ff">&lt;/</font><font color="#808000">filter-name</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">url-pattern</font><font color="#0000ff">&gt;</font><font color="#000000">/*</font><font color="#0000ff">&lt;/</font><font color="#808000">url-pattern</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">filter-mapping</font><font color="#0000ff">&gt;&lt;/</font><font color="#808000">web-app</font><font color="#0000ff">&gt;</font>
+</pre>
+</div>
+<div class="comment">index.jsp</div>
+<div class="code"><pre>
+<font color="#0000ff">&lt;a </font><font color="#ff0000">href</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;fetch&quot;</font><font color="#0000ff">&gt;</font><font color="#000000">UserList Data Fetch</font><font color="#0000ff">&lt;/a&gt;</font>
+</pre>
+</div>
+<div class="comment">struts.xml</div>
+<div class="code"><pre>
+<font color="#0000ff">&lt;?xml </font><font color="#ff0000">version</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;1.0&quot; </font><font color="#ff0000">encoding</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;UTF-8&quot; </font><font color="#800080">?</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;!DOCTYPE </font><font color="#800080">struts PUBLIC </font><font color="#000000">&quot;</font><font color="#800080">-</font>
+<font color="#000000">//</font><font color="#800080">Apache Software Foundation</font>
+<font color="#000000">//</font><font color="#800080">DTD Struts Configuration </font>
+<font color="#800080">2</font><font color="#000000">.</font><font color="#800080">1</font><font color="#000000">//</font><font color="#800080">EN</font><font color="#000000">&quot; &quot;</font><font color="#800080">http:</font><font color="#000000">//</font><font color="#800080">struts</font><font color="#000000">.</font><font color="#800080">apache</font><font color="#000000">.</font><font color="#800080">org</font>
+<font color="#000000">/</font><font color="#800080">dtds</font><font color="#000000">/</font><font color="#800080">struts-2</font><font color="#000000">.</font><font color="#800080">1</font><font color="#000000">.</font><font color="#800080">dtd</font><font color="#000000">&quot;</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">struts</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">package </font><font color="#ff0000">name</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;demo&quot; </font><font color="#800080">extends</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;struts-default&quot;</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">action </font><font color="#ff0000">name</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;fetch&quot; </font><font color="#800080">class</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;org.r4r.UserListAction&quot;</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">result </font><font color="#ff0000">name</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;success&quot;</font><font color="#0000ff">&gt;</font><font color="#000000">/fetch.jsp</font><font color="#0000ff">&lt;/</font><font color="#808000">result</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">action</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">action </font><font color="#ff0000">name</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;delete&quot; </font>
+<font color="#800080">class</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;org.r4r.UserListAction&quot; </font><font color="#800080">method</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;delete&quot;</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">result </font><font color="#ff0000">name</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;success&quot; </font><font color="#ff0000">type</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;chain&quot;</font><font color="#0000ff">&gt;</font><font color="#000000">fetch</font><font color="#0000ff">&lt;/</font><font color="#808000">result</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">action</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">package</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">struts</font><font color="#0000ff">&gt;</font><font color="#000000"> </font>
+</pre>
+</div>
+<div class="comment">hibernate.cfg.xml</div>
+<div class="code"><pre>
+<font color="#0000ff">&lt;?xml </font><font color="#ff0000">version</font><font color="#0000ff">=</font><font color="#ff00ff">'1.0' </font><font color="#ff0000">encoding</font><font color="#0000ff">=</font><font color="#ff00ff">'UTF-8'</font><font color="#800080">?</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;!DOCTYPE </font><font color="#800080">hibernate-configuration PUBLIC</font>
+<font color="#000000">&quot;</font><font color="#800080">-</font><font color="#000000">//</font><font color="#800080">Hibernate</font><font color="#000000">/</font><font color="#800080">Hibernate Configuration DTD 3</font><font color="#000000">.</font><font color="#800080">0</font><font color="#000000">//</font><font color="#800080">EN</font><font color="#000000">&quot;</font>
+<font color="#000000">&quot;</font><font color="#800080">http:</font><font color="#000000">//</font><font color="#800080">hibernate</font><font color="#000000">.</font><font color="#800080">sourceforge</font><font color="#000000">.</font><font color="#800080">net</font>
+<font color="#000000">/</font><font color="#800080">hibernate-configuration-3</font><font color="#000000">.</font><font color="#800080">0</font><font color="#000000">.</font><font color="#800080">dtd</font><font color="#000000">&quot;</font><font color="#0000ff">&gt;</font>
+<font color="#008000">&lt;!-- Generated by MyEclipse Hibernate Tools.--&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">hibernate-configuration</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">session-factory</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">property </font><font color="#ff0000">name</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;dialect&quot;</font><font color="#0000ff">&gt;</font>
+<font color="#000000">org.hibernate.dialect.Oracle9Dialect</font><font color="#0000ff">&lt;/</font><font color="#808000">property</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">property </font><font color="#ff0000">name</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;connection.url&quot;</font><font color="#0000ff">&gt;</font>
+<font color="#000000">jdbc:oracle:thin:@localhost:1521:xe</font><font color="#0000ff">&lt;/</font><font color="#808000">property</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">property </font><font color="#ff0000">name</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;connection.username&quot;</font><font color="#0000ff">&gt;</font><font color="#000000">system</font><font color="#0000ff">&lt;/</font><font color="#808000">property</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">property </font><font color="#ff0000">name</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;connection.password&quot;</font><font color="#0000ff">&gt;</font><font color="#000000">system</font><font color="#0000ff">&lt;/</font><font color="#808000">property</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">property </font><font color="#ff0000">name</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;connection.driver_class&quot;</font><font color="#0000ff">&gt;</font>
+<font color="#000000">oracle.jdbc.driver.OracleDriver</font><font color="#0000ff">&lt;/</font><font color="#808000">property</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">mapping </font><font color="#800080">resource</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;delete.hbm.xml&quot;</font><font color="#0000ff">/&gt;</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">session-factory</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">hibernate-configuration</font><font color="#0000ff">&gt;</font>
+</pre>
+</div>
+<div class="comment">delete.hbm.xml</div>
+<div class="code"><pre>
+<font color="#0000ff">&lt;?xml </font><font color="#ff0000">version</font><font color="#0000ff">=</font><font color="#ff00ff">'1.0' </font><font color="#ff0000">encoding</font><font color="#0000ff">=</font><font color="#ff00ff">'UTF-8'</font><font color="#800080">?</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;!DOCTYPE </font><font color="#800080">hibernate-mapping PUBLIC</font>
+<font color="#000000">&quot;</font><font color="#800080">-</font><font color="#000000">//</font><font color="#800080">Hibernate</font><font color="#000000">/</font><font color="#800080">Hibernate Mapping DTD 3</font><font color="#000000">.</font><font color="#800080">0</font><font color="#000000">//</font><font color="#800080">EN</font><font color="#000000">&quot;</font>
+<font color="#000000">&quot;</font><font color="#800080">http:</font><font color="#000000">//</font><font color="#800080">hibernate</font><font color="#000000">.</font><font color="#800080">sourceforge</font><font color="#000000">.</font><font color="#800080">net</font>
+<font color="#000000">/</font><font color="#800080">hibernate-mapping-3</font><font color="#000000">.</font><font color="#800080">0</font><font color="#000000">.</font><font color="#800080">dtd</font><font color="#000000">&quot;</font><font color="#0000ff">&gt;</font>
+<font color="#008000">&lt;!-- Generated by MyEclipse Hibernate Tools.--&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">hibernate-mapping</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">class </font><font color="#ff0000">name</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;org.r4r.UserList&quot; </font><font color="#800080">table</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;userlist1&quot;</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">id </font><font color="#ff0000">name</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;id&quot; </font><font color="#ff0000">type</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;int&quot;</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">generator </font><font color="#800080">class</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;increment&quot;</font><font color="#0000ff">/&gt;</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">id</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">property </font><font color="#ff0000">name</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;name&quot;</font><font color="#0000ff">/&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">property </font><font color="#ff0000">name</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;address&quot;</font><font color="#0000ff">/&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">property </font><font color="#ff0000">name</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;city&quot;</font><font color="#0000ff">/&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">property </font><font color="#ff0000">name</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;state&quot;</font><font color="#0000ff">/&gt;</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">class</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">hibernate-mapping</font><font color="#0000ff">&gt;</font>
+</pre>
+</div>
+<div class="comment">UserList.java</div>
+<div class="code"><pre>
+<font color="#0000ff">package </font><font color="#000000">org.r4r;</font>
+<font color="#0000ff">public class </font><font color="#000000">UserList {</font>
+	<font color="#0000ff">int </font><font color="#000000">id;</font>
+	<font color="#ff0000">String </font><font color="#000000">name;</font>
+	<font color="#ff0000">String </font><font color="#000000">address;</font>
+	<font color="#ff0000">String </font><font color="#000000">city;</font>
+	<font color="#ff0000">String </font><font color="#000000">state;	</font>
+	<font color="#0000ff">public </font><font color="#000000">UserList() {</font>
+		<font color="#0000ff">super</font><font color="#000000">();</font>
+	<font color="#008000">// TODO Auto-generated constructor stub</font>
+	<font color="#000000">}</font>
+	<font color="#0000ff">public </font><font color="#000000">UserList(</font><font color="#ff0000">String </font><font color="#000000">name, </font><font color="#ff0000">String </font><font color="#000000">address,</font>
+		<font color="#ff0000">String </font><font color="#000000">city, </font><font color="#ff0000">String </font><font color="#000000">state) {</font>
+		<font color="#0000ff">super</font><font color="#000000">();</font>
+		<font color="#0000ff">this</font><font color="#000000">.name = name;</font>
+		<font color="#0000ff">this</font><font color="#000000">.address = address;</font>
+		<font color="#0000ff">this</font><font color="#000000">.city = city;</font>
+		<font color="#0000ff">this</font><font color="#000000">.state = state;</font>
+	<font color="#000000">}</font>
+	<font color="#0000ff">public </font><font color="#ff0000">String </font><font color="#000000">getName() {</font>
+		<font color="#0000ff">return </font><font color="#000000">name;</font>
+	<font color="#000000">}</font>
+	<font color="#0000ff">public void </font><font color="#000000">setName(</font><font color="#ff0000">String </font><font color="#000000">name) {</font>
+		<font color="#0000ff">this</font><font color="#000000">.name = name;</font>
+	<font color="#000000">}</font>
+	<font color="#0000ff">public </font><font color="#ff0000">String </font><font color="#000000">getAddress() {</font>
+		<font color="#0000ff">return </font><font color="#000000">address;</font>
+	<font color="#000000">}</font>
+	<font color="#0000ff">public void </font><font color="#000000">setAddress(</font><font color="#ff0000">String </font><font color="#000000">address) {</font>
+		<font color="#0000ff">this</font><font color="#000000">.address = address;</font>
+	<font color="#000000">}</font>
+	<font color="#0000ff">public </font><font color="#ff0000">String </font><font color="#000000">getCity() {</font>
+		<font color="#0000ff">return </font><font color="#000000">city;</font>
+	<font color="#000000">}</font>
+	<font color="#0000ff">public void </font><font color="#000000">setCity(</font><font color="#ff0000">String </font><font color="#000000">city) {</font>
+		<font color="#0000ff">this</font><font color="#000000">.city = city;</font>
+	<font color="#000000">}</font>
+	<font color="#0000ff">public </font><font color="#ff0000">String </font><font color="#000000">getState() {</font>
+		<font color="#0000ff">return </font><font color="#000000">state;</font>
+	<font color="#000000">}</font>
+	<font color="#0000ff">public void </font><font color="#000000">setState(</font><font color="#ff0000">String </font><font color="#000000">state) {</font>
+		<font color="#0000ff">this</font><font color="#000000">.state = state;</font>
+	<font color="#000000">}</font>
+	<font color="#0000ff">public int </font><font color="#000000">getId() {</font>
+		<font color="#0000ff">return </font><font color="#000000">id;</font>
+	<font color="#000000">}</font>
+	<font color="#0000ff">public void </font><font color="#000000">setId(</font><font color="#0000ff">int </font><font color="#000000">id) {</font>
+		<font color="#0000ff">this</font><font color="#000000">.id = id;</font>
+	<font color="#000000">}</font>
+<font color="#000000">}</font>
+</pre>
+</div>
+<div class="comment">UserListAction.java</div>
+<div class="code"><pre>
+<font color="#0000ff">package </font><font color="#000000">org.r4r;</font>
+<font color="#0000ff">import </font><font color="#000000">java.util.</font><font color="#ff0000">List</font><font color="#000000">;</font>
+<font color="#0000ff">public class </font><font color="#000000">UserListAction{</font>
+<font color="#0000ff">private static final long </font><font color="#000000">serialVersionUID = </font><font color="#800080">1L</font><font color="#000000">;</font>
+<font color="#0000ff">private </font><font color="#000000">UserList userlist;</font>
+<font color="#0000ff">private </font><font color="#ff0000">List</font><font color="#000000">&lt;UserList&gt; userlistlist;</font>
+<font color="#000000">DAO dao=</font><font color="#0000ff">new </font><font color="#000000">DAO();</font>
+<font color="#0000ff">int </font><font color="#000000">id1;</font>
+<font color="#0000ff">public </font><font color="#ff0000">String </font><font color="#000000">execute(){</font>
+<font color="#000000">userlistlist=dao.list();</font>
+<font color="#0000ff">return </font><font color="#ff00ff">&quot;success&quot;</font><font color="#000000">;</font>
+<font color="#000000">}</font>
+<font color="#0000ff">public </font><font color="#ff0000">String </font><font color="#000000">delete(){		</font>
+<font color="#000000">dao.delete(getId1());</font>
+<font color="#0000ff">return </font><font color="#ff00ff">&quot;success&quot;</font><font color="#000000">;</font>
+<font color="#000000">}</font>
+<font color="#0000ff">public </font><font color="#000000">UserList getUserlist() {</font>
+<font color="#0000ff">return </font><font color="#000000">userlist;</font>
+<font color="#000000">}</font>
+<font color="#0000ff">public void </font><font color="#000000">setUserlist(UserList userlist) {</font>
+<font color="#0000ff">this</font><font color="#000000">.userlist = userlist;</font>
+<font color="#000000">}</font>
+<font color="#0000ff">public </font><font color="#ff0000">List</font><font color="#000000">&lt;UserList&gt; getUserlistlist() {</font>
+<font color="#0000ff">return </font><font color="#000000">userlistlist;</font>
+<font color="#000000">}</font>
+<font color="#0000ff">public void </font><font color="#000000">setUserlistlist(</font>
+	<font color="#ff0000">List</font><font color="#000000">&lt;UserList&gt; userlistlist) {</font>
+<font color="#0000ff">this</font><font color="#000000">.userlistlist = userlistlist;</font>
+<font color="#000000">}</font>
+<font color="#0000ff">public int </font><font color="#000000">getId1() {</font>
+<font color="#0000ff">return </font><font color="#000000">id1;</font>
+<font color="#000000">}</font>
+<font color="#0000ff">public void </font><font color="#000000">setId1(</font><font color="#0000ff">int </font><font color="#000000">id1) {</font>
+<font color="#0000ff">this</font><font color="#000000">.id1 = id1;</font>
+<font color="#000000">}</font>
+<font color="#000000">}</font>
+</pre>
+</div>
+<div class="comment">DAO.java</div>
+<div class="code"><pre>
+<font color="#0000ff">package </font><font color="#000000">org.r4r;</font>
+<font color="#0000ff">import </font><font color="#000000">java.util.</font><font color="#ff0000">List</font><font color="#000000">;</font>
+<font color="#0000ff">import </font><font color="#000000">org.hibernate.HibernateException;</font>
+<font color="#0000ff">import </font><font color="#000000">org.hibernate.</font><font color="#ff0000">Query</font><font color="#000000">;</font>
+<font color="#0000ff">import </font><font color="#000000">org.hibernate.Session;</font>
+<font color="#0000ff">import </font><font color="#000000">org.hibernate.SessionFactory;</font>
+<font color="#0000ff">import </font><font color="#000000">org.hibernate.Transaction;</font>
+<font color="#0000ff">import </font><font color="#000000">org.hibernate.cfg.</font><font color="#ff0000">Configuration</font><font color="#000000">;</font>
+<font color="#0000ff">public class </font><font color="#000000">DAO {</font>
+<font color="#000000">@</font><font color="#0000ff">SuppressWarnings</font><font color="#000000">(</font><font color="#ff00ff">&quot;unchecked&quot;</font><font color="#000000">)</font>
+<font color="#0000ff">public </font><font color="#ff0000">List</font><font color="#000000">&lt;UserList&gt; list(){</font>
+<font color="#ff0000">Configuration </font><font color="#000000">cfg=</font><font color="#0000ff">new </font><font color="#ff0000">Configuration</font><font color="#000000">().configure();</font>
+<font color="#000000">SessionFactory f=cfg.buildSessionFactory();</font>
+<font color="#000000">Session session=f.openSession();</font>
+<font color="#000000">Transaction t=session.beginTransaction();</font>
+<font color="#ff0000">List</font><font color="#000000">&lt;UserList&gt; userlistlist=</font><font color="#0000ff">null</font><font color="#000000">;</font>
+<font color="#0000ff">try</font><font color="#000000">{</font>
+<font color="#ff0000">Query </font><font color="#000000">q=session.createQuery(</font><font color="#ff00ff">&quot;from UserList&quot;</font><font color="#000000">);</font>
+<font color="#000000">userlistlist=q.list();</font>
+<font color="#000000">}</font><font color="#0000ff">catch</font><font color="#000000">(HibernateException e){</font>
+<font color="#ff0000">System</font><font color="#000000">.out.println(e);</font>
+<font color="#000000">}</font>
+<font color="#000000">t.commit();</font>
+<font color="#000000">session.close();</font>
+<font color="#0000ff">return </font><font color="#000000">userlistlist;</font>
+<font color="#000000">}</font>
+<font color="#0000ff">public </font><font color="#000000">UserList delete(</font><font color="#0000ff">int </font><font color="#000000">id){</font>
+<font color="#ff0000">Configuration </font><font color="#000000">cfg=</font><font color="#0000ff">new </font><font color="#ff0000">Configuration</font><font color="#000000">().configure();</font>
+<font color="#000000">SessionFactory f=cfg.buildSessionFactory();</font>
+<font color="#000000">Session session=f.openSession();</font>
+<font color="#000000">Transaction t=session.beginTransaction();</font>
+<font color="#000000">UserList userlist=(UserList) session.load</font>
+	<font color="#000000">(UserList.</font><font color="#0000ff">class</font><font color="#000000">, id);</font>
+<font color="#0000ff">if</font><font color="#000000">(</font><font color="#0000ff">null</font><font color="#000000">!=userlist){</font>
+<font color="#000000">session.delete(userlist);</font>
+<font color="#000000">}</font>
+<font color="#000000">t.commit();</font>
+<font color="#000000">session.close();</font>
+<font color="#0000ff">return </font><font color="#000000">userlist;</font>
+<font color="#000000">}</font>
+<font color="#000000">}</font>
+</pre>
+</div>
+<div class="comment">fetch.jsp</div>
+<div class="code"><pre>
+<font color="#000000"> </font><font color="#800000">&lt;%@taglib uri=</font><font color="#ff00ff">&quot;/struts-tags&quot; </font><font color="#800000">prefix=</font><font color="#ff00ff">&quot;s&quot;</font><font color="#800000">%&gt;</font>
+<font color="#0000ff">&lt;table </font><font color="#ff0000">cellpadding</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;0&quot; </font><font color="#ff0000">cellspacing</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;0&quot; </font>
+<font color="#ff0000">border</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;2&quot; </font><font color="#ff0000">width</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;250&quot;</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;tr&gt;&lt;td </font><font color="#ff0000">width</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;250&quot;</font><font color="#0000ff">&gt;</font><font color="#000000">Name</font><font color="#0000ff">&lt;/td&gt;&lt;td </font><font color="#ff0000">width</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;250&quot;</font><font color="#0000ff">&gt;</font>
+<font color="#000000">Address</font><font color="#0000ff">&lt;/td&gt;&lt;td </font><font color="#ff0000">width</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;250&quot;</font><font color="#0000ff">&gt;</font>
+<font color="#000000">City</font><font color="#0000ff">&lt;/td&gt;&lt;td </font><font color="#ff0000">width</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;250&quot;</font><font color="#0000ff">&gt;</font>
+<font color="#000000">State</font><font color="#0000ff">&lt;/td&gt;&lt;td </font><font color="#ff0000">width</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;250&quot;</font><font color="#0000ff">&gt;</font><font color="#000000">Delete</font><font color="#0000ff">&lt;/td&gt;&lt;/tr&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">s:iterator </font><font color="#ff0000">value</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;userlistlist&quot; </font><font color="#800080">var</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;userlist&quot;</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;tr&gt;</font>
+<font color="#0000ff">&lt;td </font><font color="#ff0000">width</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;250&quot;</font><font color="#0000ff">&gt;&lt;</font><font color="#808000">s:property </font><font color="#ff0000">value</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;name&quot;</font><font color="#0000ff">/&gt;&lt;/td&gt;</font>
+<font color="#0000ff">&lt;td </font><font color="#ff0000">width</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;250&quot;</font><font color="#0000ff">&gt;&lt;</font><font color="#808000">s:property </font><font color="#ff0000">value</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;address&quot;</font><font color="#0000ff">/&gt;&lt;/td&gt;</font>
+<font color="#0000ff">&lt;td </font><font color="#ff0000">width</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;250&quot;</font><font color="#0000ff">&gt;&lt;</font><font color="#808000">s:property </font><font color="#ff0000">value</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;city&quot;</font><font color="#0000ff">/&gt;&lt;/td&gt;</font>
+<font color="#0000ff">&lt;td </font><font color="#ff0000">width</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;250&quot;</font><font color="#0000ff">&gt;&lt;</font><font color="#808000">s:property </font><font color="#ff0000">value</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;state&quot;</font><font color="#0000ff">/&gt;&lt;/td&gt;</font>
+<font color="#0000ff">&lt;td </font><font color="#ff0000">width</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;250&quot;</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;a </font><font color="#ff0000">href</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;delete?id1=&lt;s:property value='id'/&gt;&quot;</font><font color="#0000ff">&gt;</font>
+<font color="#000000">Delete</font><font color="#0000ff">&lt;/a&gt;&lt;/td&gt;</font>
+<font color="#0000ff">&lt;/tr&gt;&lt;/</font><font color="#808000">s:iterator</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;/table&gt;</font>
+</pre>
+</div>
+<div class="output"><i>output</i></div>
+<div class="image"><img src="image46.jpg" ></div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="Update%20data%20through%20struts2%20and%20Hibernate%20.shtml" title="Update data through struts2 and Hibernate 3.0 framework">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="Login%20example%20using%20struts2.0%20and%20hibernate.shtml" title="Login example using struts2.0 and Hibernate3.0 framework">Next</a></td>
+  </tr> 
+</table>
+<!-- Footer Start-->	
+
+		</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->

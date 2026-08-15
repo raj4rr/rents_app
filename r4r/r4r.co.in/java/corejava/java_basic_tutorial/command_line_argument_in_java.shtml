@@ -1,0 +1,116 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<HTML><HEAD><TITLE>Command Line Argument in Java</TITLE>
+
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv="content-type" content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="Java Command Line Arguments with examples, passed from the console and used in the java program as an input.">
+<meta name="keywords" CONTENT="java, command line arguments, example">
+
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>Java Programing laungage</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a><img src="/images/left_menu_bullet.gif"/> <a href="/java/">Java</a><img src="/images/left_menu_bullet.gif"/> <a href="/java/corejava">Core Java</a></div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/corejava/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+
+                     <div class="main_content">
+<div class="heading">Command Line Argument in Java</div>
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="two_dimensional_array_program_in_java.shtml" title="Two Dimensional Array Program ">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml" title="Java Programming Tutorials">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="string_args_types_in_java.shtml" title="String args Types in Java">Next</a></td>
+  </tr> 
+</table> 
+
+<p>Sometimes we will want to pass information into a program when we run it. The arguments passed from the console can be received in the java program and it can be used as an input. This is accomplished by passing command-line argument to main(). A command line argument is the information that directly follows the program's name n the command line which it is executed. To access the command-line argument inside a java program we have to use string array passed to main().</p>
+<p>The JVM calss the main() method and passes the command line argument to it as an array of string. The length of the array(i.e the number of the command line arguments) is obtained using attribute length.</p>
+<p>All java applications contain a static method named main(). It takes one argument that is an array of String objects. These objects represent any arguments that may have been entered by the user on the command line. The number of command line arguments is obtained by the expression args.length. It is of type int. We can access individual arguments by args[0], args[1] and so on...</p>
+
+<h3>Example :</h3>
+<div class="code">
+<PRE><FONT FACE="Arial"><FONT COLOR="#0000ff">class </FONT><FONT COLOR="#000000">Hello</FONT>
+<FONT COLOR="#000000">{</FONT>
+	<FONT COLOR="#0000ff">public static void </FONT><FONT COLOR="#000000">main(</FONT><FONT COLOR="#ff0000">String </FONT><FONT COLOR="#000000">args[])</FONT>
+	<FONT COLOR="#000000">{</FONT>
+		<FONT COLOR="#0000ff">for</FONT><FONT COLOR="#000000">(</FONT><FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">i=</FONT><FONT COLOR="#800080">0</FONT><FONT COLOR="#000000">;i&lt;args.length;i++)</FONT>
+		<FONT COLOR="#000000">{</FONT>
+			<FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.println(</FONT><FONT COLOR="#ff00ff">"Hello"</FONT><FONT COLOR="#000000">+args[i]);</FONT>
+		<FONT COLOR="#000000">}</FONT>
+	<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#000000">}</FONT></FONT></PRE>
+</div>
+
+<h3>output :</h3>
+<div class="image">
+<p><img src="images/commandline.png"></p>
+</div>
+
+<div class="image">
+<p><img src="images/commandline1.png"></p>
+</div>
+
+<div class="heading">Converting String to int</div>
+<p>A Numeric string can be converted into an integer using the parseInt method in the Integer class.The parseInt method is invoked as follows:</p>
+
+<div class="code">
+<PRE><FONT FACE="Arial"><FONT COLOR="#ff0000">Integer</FONT><FONT COLOR="#000000">.parseInt( NumericString );</FONT></FONT></PRE>
+</div>
+
+<p>The parseInt method returns an integer value of the numeric string.</p>
+<h3>Example :</h3>
+<div class="code">
+<PRE><FONT FACE="Arial"><FONT COLOR="#0000ff">class </FONT><FONT COLOR="#000000">Sum</FONT>
+<FONT COLOR="#000000">{</FONT>
+	<FONT COLOR="#0000ff">public static void </FONT><FONT COLOR="#000000">main(</FONT><FONT COLOR="#ff0000">String </FONT><FONT COLOR="#000000">args[])</FONT>
+	<FONT COLOR="#000000">{</FONT>
+		<FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">sum=</FONT><FONT COLOR="#800080">0</FONT><FONT COLOR="#000000">;</FONT>
+		<FONT COLOR="#0000ff">for</FONT><FONT COLOR="#000000">(</FONT><FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">i=</FONT><FONT COLOR="#800080">0</FONT><FONT COLOR="#000000">;i&lt;args.length;i++)</FONT>
+		<FONT COLOR="#000000">{</FONT>
+			<FONT COLOR="#000000">sum+=</FONT><FONT COLOR="#ff0000">Integer</FONT><FONT COLOR="#000000">.parseInt(args[i]);</FONT>
+
+		<FONT COLOR="#000000">}</FONT>
+		<FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.printf(</FONT><FONT COLOR="#ff00ff">"sum is %d"</FONT><FONT COLOR="#000000">,sum);</FONT>
+	<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#000000">}</FONT></FONT></PRE>
+</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="two_dimensional_array_program_in_java.shtml" title="Two Dimensional Array Program ">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml" title="Java Programming Tutorials">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="string_args_types_in_java.shtml" title="String args Types in Java">Next</a></td>
+  </tr> 
+</table> 
+
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>

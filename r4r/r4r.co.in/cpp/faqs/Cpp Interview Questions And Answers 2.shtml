@@ -1,0 +1,229 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+
+<HTML><HEAD><TITLE>C++ Interview Questions with Answers</TITLE>
+<META content=r4r.co.in name=owner>
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="C++ Interview Questions with Answers" >
+<meta name="keywords" CONTENT="C++ Interview Questions with Answers">
+<LINK href="/cpp/css/new_css.css" type="text/css" rel="stylesheet">
+<script type="text/javascript" src="/cpp/js/directlinks.js"></script>
+<link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+</HEAD>
+
+<BODY leftMargin="0" topMargin="0">
+<script type="text/javascript" src="/cpp/js/directlinks.js"></script>
+<link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+</HEAD>
+
+<BODY leftMargin="0" topMargin="0">
+ <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>C++ language</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+            <img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+            <a href="/cpp/">C++</a>
+
+           <img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+            <a href="/cpp/faqs">FAQ</a>
+
+              </div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/cpp/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	 
+<!-- header End-->
+<div class="heading">FAQ</div>
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="Cpp Interview Questions And Answers 1.shtml" title="Cpp Interview Questions And Answers 1">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="Cpp Interview Questions And Answers 3.shtml" title="Cpp Interview Questions And Answers 3">Next</a></td>
+  </tr> 
+</table>
+ <h3> How do you link a C++  program to C functions?</h3>
+
+   <p>By using the extern &quot;C&quot; linkage specification around the C function 
+  declarations.
+  Programmers should know about mangled function names and type-safe linkages. 
+  Then they should explain how the extern &quot;C&quot; linkage specification statement 
+  turns that feature off during compilation so that the linker properly links 
+  function calls to C functions.</p>
+  </font>
+
+<h3>Explain the scope resolution operator?</h3>
+
+  <p> It permits a program to reference an identifier in the global scope 
+  that has been hidden by another identifier with the same name in the local 
+  scope. </p>
+
+  <h3> How many ways are there to initialize an int with a constant?</h3>
+  <p><pre>
+  1. int f = 123;<br>
+  2. int bar(123); <br>
+ </pre>
+ </p>
+
+ <h3>What is your reaction to this line of code?</h3>
+
+  <p>delete this;</p>
+ <p> It is not a good programming Practice.
+  A good programmer will insist that you should absolutely never use the 
+  statement if the class is to be used by other programmers and instantiated as 
+  static, extern, or automatic objects. That much should be obvious.
+  The code has two built-in pitfalls. First, if it executes in a member function 
+  for an extern, static, or automatic object, the program will probably crash as 
+  soon as the delete statement executes.</p> <p>There is no portable way for an object 
+  to tell that it was instantiated on the heap, so the class cannot assert that 
+  its object is properly instantiated. Second, when an object commits suicide 
+  this way, the using program might not know about its demise. As far as the 
+  instantiating program is concerned, the object remains in scope and continues 
+  to exist even though the object did itself in. Subsequent dereferencing of the 
+  baller can and usually does lead to disaster. I think that the language rules 
+  should disallow the idiom, but that's another matter. </p>
+  <br>
+  </font>
+
+ <h3> What is the difference between a copy constructor and an overloaded 
+  assignment operator?</h3>
+
+  <p> A copy constructor constructs a new object by using the content of the 
+  argument object. An overloaded assignment operator assigns the contents of an 
+  existing object to another existing object of the same class. </p>
+
+ <h3> When should you use multiple inheritance?</h3>
+ <p>There are three acceptable answers:- &quot;Never,&quot; &quot;Rarely,&quot; and &quot;When the 
+  problem domain cannot be accurately modeled any other way.&quot; 
+ Consider an Asset class, Building class, Vehicle class, and CompanyCar class. 
+  All company cars are vehicles. Some company cars are assets because the 
+  organizations own them. Others might be leased. Not all assets are vehicles.</p> 
+ <p> Money accounts are assets. Real estate holdings are assets. Some real estate 
+  holdings are buildings. Not all buildings are assets. Ad infinitum. When you 
+  diagram these relationships, it becomes apparent that multiple inheritance is 
+  a likely and intuitive way to model this common problem domain. The applicant 
+  should understand, however, that multiple inheritance, like a chainsaw, is a 
+  useful tool that has its perils, needs respect, and is best avoided except 
+  when nothing else will do.</p>
+   <h3> What is a virtual destructor?</h3>
+
+   <p>The simple answer is that a virtual destructor is one that is 
+  declared with the virtual attribute.
+  The behavior of a virtual destructor is what is important. If you destroy an 
+  object through a baler or reference to a base class, and the base-class 
+  destructor is not virtual, the derived-class destructors are not executed, and 
+  the destruction might not be compile.</p>
+   <h3>Can a constructor throw a exception? How to handle the error when the 
+  constructor fails?</h3>
+
+  <p> The constructor never throws a error.</p>
+
+ <h3> What are the debugging methods you use when came across a problem?</h3>
+ <p> Debugging with tools like :</p>
+ <p> GDB, DBG, Forte, Visual Studio.</p>
+ <p> Analyzing the Core dump.</p>
+ <p> Using tusc to trace the last system call before crash.
+  Putting Debug statements in the program source code.</p>
+
+<h3> How the compilers arranges the various sections in the executable 
+  image?</h3>
+
+  <p>The executable had following sections:-</p>
+ <p> Data Section (uninitialized data variable section, initialized data variable 
+  section )</p>
+ <p> Code Section</p>
+ <p> Remember that all static variables are allocated in the initialized variable 
+  section.</p>
+   <h3> Explain the ISA and HASA class relationships. How would you implement 
+  each in a class design?</h3>
+
+  <p>A specialized class &quot;is&quot; a specialization of another class and, 
+  therefore, has the ISA relationship with the other class.</p>
+  <p>This relationship is best implemented by embedding an object of the Salary 
+  class in the Employee class.</p>
+  <h3> When is a template a better solution than a base class?</h3>
+ <p>When you are designing a generic class to contain or otherwise manage 
+  objects of other types, when the format and behavior of those other types are 
+  unimportant to their containment or management, and particularly when those 
+  other types are unknown (thus, the generality) to the designer of the 
+  container or manager class.</p>
+
+  <h3>How do you know that your class needs a virtual destructor?</h3>
+
+   <p>If your class has at least one virtual function, you should make a 
+  destructor for this class virtual. This will allow you to delete a dynamic 
+  object through a baller to a base class object. If the destructor is 
+  non-virtual, then wrong destructor will be invoked during deletion of the 
+  dynamic object. </p>
+<h3> What is the difference between new/delete and malloc/free?</h3>
+
+ <p> Malloc/free do not know about constructors and destructors. New 
+  and delete create and destroy objects, while malloc and free allocate and 
+  deallocate memory.</p>
+
+  <h3>What happens when a function throws an exception that was not specified 
+  by an exception specification for this function?</h3>
+
+ <p> Unexpected() is called, which, by default, will eventually trigger 
+  abort(). </p>
+
+ <h3> Can you think of a situation where your program would crash without 
+  reaching the breakball, which you set at the beginning of main()?</h3>
+
+ <p> C++ allows for dynamic initialization of global variables before 
+  main() is invoked. It is possible that initialization of global will invoke 
+  some function. If this function crashes the crash will occur before main() is 
+  entered. </p>
+ <h3>What issue do auto_ptr objects address?</h3>
+
+ <p> If you use auto_ptr objects you would not have to be concerned with 
+  heap objects not being deleted even if the exception is thrown. </p>
+  </font>
+
+  <h3> Is there any problem with the following:</h3>
+  <p>char *a=NULL; char&amp; p = *a;?</p>
+ <p> The result is undefined. You should never do this. A reference must always 
+  refer to some object. </p>
+
+  <h3> Why do C++ compilers need name mangling?</h3>
+   <p> Name mangling is the rule according to which C++ changes function's 
+  name into function signature before passing that function to a linker. This is 
+  how the linker differentiates between different functions with the same name.</p>
+
+ <h3> Is there anything you can do in C++ that you cannot do in C? </h3>
+ <p> No. There is nothing you can do in C++ that you cannot do in C. 
+  After all you can write a C++ compiler in C</p>
+ <table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="Cpp Interview Questions And Answers 1.shtml" title="Cpp Interview Questions And Answers 1">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="Cpp Interview Questions And Answers 3.shtml" title="Cpp Interview Questions And Answers 3">Next</a></td>
+  </tr> 
+</table>
+
+<!-- Footer Start-->
+		</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/cpp/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->

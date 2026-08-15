@@ -1,0 +1,175 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD>
+<meta http-equiv="Content-Language" content="en-us">
+<TITLE>Creation of an Object in Spring Framework</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name="description" CONTENT="Creation 
+of an Object in Spring Framework,spring travels,spring tutorials,spring framework,spring mvc,spring interview question,spring framework tutorials,spring aop" >
+<meta name="keywords" CONTENT="Creation 
+of an Object in Spring Framework,spring travels,spring tutorials,spring framework,spring mvc,spring interview question,spring framework tutorials,spring aop">
+
+<!-- header start-->	
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>Spring Framework</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+           <img src="/images/left_menu_bullet.gif" width="11" height="6"/>  <a href="/java/">Java</a>    
+		      <img src="/images/left_menu_bullet.gif" width="11" height="6"/><a href="/java/spring/">Spring</a>
+
+              </div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/spring/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	 
+
+<!-- header End--> 
+
+<div class="heading">Creation of an Object in Spring Framework</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="helloworld.shtml" title="Hello World">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="ConstructorCreEx.shtml" title="Constructor Create Example">Next</a></td>
+  </tr> 
+</table>
+
+<p><i>Introduction :</i>In the Spring Framework provide the concept IOC container which are responsible for creation of an object, satisfied the dependency and lifecycle management. First task of the IOC container is creation of an objects. Objects can be create through constructor and factory method.</p>
+<p>By default IOC container create object using constructor. In order to facilitate object creation using factory method. Information of the factory need to be provided.</p>
+<h3>Type of Object Creation</h3>
+<p>In the spring framework concept IOC container which are create an object following two types as below:</p> 
+<ol><li>Using Constructor</li>
+<li>Using Factory Method</li></ol>
+<div class="heading">Object Creation Using Constructor </div>
+<p>IOC container create object through the constructor, If  we are creating object through IOC container first you are declare parameterize constructor in our bean class and define method to print any message through the configuration file. The following syntax used in configuration file if we are create object through the constructor.</p>
+<div class="code">
+<PRE>
+<FONT FACE="Arial">
+<FONT COLOR="#000000">&lt;bean id=</FONT><FONT COLOR="#ff00ff">"hello" </FONT><FONT COLOR="#0000ff">class</FONT><FONT COLOR="#000000">=</FONT><FONT COLOR="#ff00ff">"org.r4r.Hello"</FONT><FONT COLOR="#000000">&gt;</FONT>
+<FONT COLOR="#000000">&lt;constructor-arg value=</FONT><FONT COLOR="#ff00ff">"Hello World !"</FONT><FONT COLOR="#000000">/&gt;</FONT>
+<FONT COLOR="#000000">&lt;/bean&gt;</FONT>
+</FONT>
+</PRE>
+</div>
+<div class="heading">Object Creation Using factory method </div>
+<p>IOC container create object through the factory method, If  we are creating object through IOC container first you are declare parameterize method in our bean class and print any message through the configuration file. The following syntax used in configuration  file if we are create object through the factory method.</p>
+
+<div class="code">
+<PRE>
+<FONT FACE="Arial">
+<FONT COLOR="#0000ff">&lt;</FONT><FONT COLOR="#808000">bean </FONT><FONT COLOR="#800080">id</FONT><FONT COLOR="#0000ff">=</FONT><FONT COLOR="#ff00ff">"number" </FONT><FONT COLOR="#800080">class</FONT><FONT COLOR="#0000ff">=</FONT><FONT COLOR="#ff00ff">"org.r4r.Complex" </FONT><FONT COLOR="#800080">factory-method</FONT><FONT COLOR="#0000ff">=</FONT><FONT COLOR="#ff00ff">"getNumber" </FONT><FONT COLOR="#800080">scope</FONT><FONT COLOR="#0000ff">=</FONT><FONT COLOR="#ff00ff">"prototype"</FONT><FONT COLOR="#0000ff">/&gt;</FONT>
+</FONT>
+</PRE>
+</div>
+
+<p>Factory method can be divided in following three ways:</p>
+<h3>Same class static factory</h3>
+<div class="code">
+<PRE>
+<FONT FACE="Arial">
+<FONT COLOR="#0000ff">class </FONT><FONT COLOR="#000000">A{</FONT>
+  <FONT COLOR="#0000ff">private</FONT><FONT COLOR="#000000">(){</FONT>
+<FONT COLOR="#008000">//Logic is written</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#0000ff">public static </FONT><FONT COLOR="#000000">A getA(){</FONT>
+<FONT COLOR="#0000ff">return new </FONT><FONT COLOR="#000000">A();</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#000000">}</FONT>
+</FONT>
+</PRE>
+</div>
+<p><i>Following configuration need to provided to the IOC container to use getA() factory method.</i></p>
+<h3> Different class static factory</h3>
+<div class="code">
+<PRE>
+<FONT FACE="Arial">
+<FONT COLOR="#0000ff">class </FONT><FONT COLOR="#000000">B{</FONT>
+<FONT COLOR="#000000">{</FONT>
+<FONT COLOR="#000000">==</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#0000ff">class </FONT><FONT COLOR="#000000">A{  </FONT><FONT COLOR="#008000">//Different class static factory</FONT>
+<FONT COLOR="#0000ff">public static </FONT><FONT COLOR="#000000">B getB(){</FONT>
+<FONT COLOR="#0000ff">return new </FONT><FONT COLOR="#000000">B();</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#000000">}</FONT>
+</FONT>
+</PRE>
+</div>
+
+<p>Following configuration need to provided the IOC container to use getB() factory method.</p>
+<div class="code">
+<PRE>
+<FONT FACE="Arial">
+<FONT COLOR="#0000ff">&lt;</FONT><FONT COLOR="#808000">bean </FONT><FONT COLOR="#800080">id</FONT><FONT COLOR="#0000ff">=</FONT><FONT COLOR="#ff00ff">"b" </FONT><FONT COLOR="#800080">class</FONT><FONT COLOR="#0000ff">=</FONT><FONT COLOR="#ff00ff">"A" </FONT><FONT COLOR="#800080">factory-method</FONT><FONT COLOR="#0000ff">=</FONT><FONT COLOR="#ff00ff">"getB"</FONT><FONT COLOR="#0000ff">/&gt;</FONT>
+</FONT>
+</PRE>
+</div>
+<h3> Different class non-static factory</h3>
+<div class="code">
+<PRE>
+<FONT FACE="Arial">
+<FONT COLOR="#0000ff">class </FONT><FONT COLOR="#000000">B{</FONT>
+<FONT COLOR="#000000">{</FONT>
+<FONT COLOR="#000000">==</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#0000ff">class </FONT><FONT COLOR="#000000">A{  </FONT><FONT COLOR="#008000">//Different class nonstatic factory</FONT>
+<FONT COLOR="#0000ff">public </FONT><FONT COLOR="#000000">B getB(){</FONT>
+<FONT COLOR="#0000ff">return new </FONT><FONT COLOR="#000000">B();</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#000000">}</FONT>
+</FONT>
+</PRE>
+</div>    
+
+ <p>Following configuration need to provide the IOC container to use getB() factory method.</p>
+ <div class="code">
+<PRE>
+<FONT FACE="Arial">
+<FONT COLOR="#0000ff">&lt;</FONT><FONT COLOR="#808000">bean </FONT><FONT COLOR="#800080">id</FONT><FONT COLOR="#0000ff">=</FONT><FONT COLOR="#ff00ff">"a" </FONT><FONT COLOR="#800080">class</FONT><FONT COLOR="#0000ff">=</FONT><FONT COLOR="#ff00ff">"A"</FONT><FONT COLOR="#0000ff">/&gt;</FONT>
+<FONT COLOR="#0000ff">&lt;</FONT><FONT COLOR="#808000">bean </FONT><FONT COLOR="#800080">id</FONT><FONT COLOR="#0000ff">=</FONT><FONT COLOR="#ff00ff">"b" </FONT><FONT COLOR="#800080">class</FONT><FONT COLOR="#0000ff">=</FONT><FONT COLOR="#ff00ff">"B" </FONT><FONT COLOR="#800080">factory-method</FONT><FONT COLOR="#0000ff">=</FONT><FONT COLOR="#ff00ff">"getB" </FONT><FONT COLOR="#800080">factory-bean</FONT><FONT COLOR="#0000ff">=</FONT><FONT COLOR="#ff00ff">"a"</FONT><FONT COLOR="#0000ff">/&gt;</FONT>
+</FONT>
+</PRE>
+ </div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="helloworld.shtml" title="Hello World">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="ConstructorCreEx.shtml" title="Constructor Create Example">Next</a></td>
+  </tr> 
+</table>
+
+<!-- Footer Start-->
+
+		</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->

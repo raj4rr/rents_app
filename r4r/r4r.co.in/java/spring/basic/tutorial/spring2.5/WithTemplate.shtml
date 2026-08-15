@@ -1,0 +1,405 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD>
+<meta http-equiv="Content-Language" content="en-us">
+<TITLE>Example of Spring using Template</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name="description" CONTENT="Show in a Message Box using Validation Summary,spring tutorials,spring framework,spring mvc,spring interview question,spring framework tutorials,spring aop" >
+<meta name="keywords" CONTENT="Show in a Message Box using Validation Summary,spring tutorials,spring framework,spring mvc,spring interview question,spring framework tutorials,spring aop">
+
+<!-- header start-->	
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>Spring Framework</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+           <img src="/images/left_menu_bullet.gif" width="11" height="6"/>  <a href="/java/">Java</a>    
+		      <img src="/images/left_menu_bullet.gif" width="11" height="6"/><a href="/java/spring/">Spring</a>
+
+              </div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/spring/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	 
+
+<!-- header End--> 
+
+<div class="heading">Example of Insert,update,delete and select data using Spring Template </div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="withoutTemplate.shtml" title="without Template">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="SpringMVC.shtml" title="Spring MVC Implementation">Next</a></td>
+  </tr> 
+</table>
+
+<p><i>Introduction:</i> This example provide the facility to insert, update, delete and fetch data using spring template design pattern then provide connect to JDBC.</p>
+
+<p>Technology use to run this source code</p>
+<ol>
+<li>
+    Spring 2.5 jar files
+    </li>
+    <li>
+    Eclipse IDE
+    </li>
+    <li>
+    Tomcat Server
+    </li>
+     </ol>
+
+<p>Source Code:</p>
+
+<h3>ConnectionProvider.java</h3>
+<div class="code">
+<PRE>
+<FONT COLOR="#0000ff">&lt;?xml </FONT><FONT COLOR="#ff0000">version</FONT><FONT COLOR="#0000ff">=</FONT><FONT COLOR="#ff00ff">"1.0" </FONT><FONT COLOR="#ff0000">encoding</FONT><FONT COLOR="#0000ff">=</FONT><FONT COLOR="#ff00ff">"UTF-8"</FONT><FONT COLOR="#800080">?</FONT><FONT COLOR="#0000ff">&gt;</FONT>
+<FONT COLOR="#0000ff">&lt;</FONT><FONT COLOR="#808000">beans</FONT>
+<FONT COLOR="#ff0000">xmlns</FONT><FONT COLOR="#0000ff">=</FONT><FONT COLOR="#ff00ff">"http://www.springframework.org/schema/beans"</FONT>
+<FONT COLOR="#800080">xmlns:xsi</FONT><FONT COLOR="#0000ff">=</FONT><FONT COLOR="#ff00ff">"http://www.w3.org/2001/XMLSchema-instance"</FONT>
+<FONT COLOR="#800080">xmlns:p</FONT><FONT COLOR="#0000ff">=</FONT><FONT COLOR="#ff00ff">"http://www.springframework.org/schema/p"</FONT>
+<FONT COLOR="#800080">xsi:schemaLocation</FONT><FONT COLOR="#0000ff">=</FONT><FONT COLOR="#ff00ff">"http://www.springframework.org/schema/beans</FONT>
+<FONT COLOR="#ff00ff">http://www.springframework.org/schema/beans/spring-beans-2.5.xsd"</FONT><FONT COLOR="#0000ff">&gt;</FONT>
+<FONT COLOR="#0000ff">&lt;</FONT><FONT COLOR="#808000">bean </FONT><FONT COLOR="#800080">id</FONT><FONT COLOR="#0000ff">=</FONT><FONT COLOR="#ff00ff">"ds" </FONT>
+<FONT COLOR="#800080">class</FONT><FONT COLOR="#0000ff">=</FONT><FONT COLOR="#ff00ff">"org.springframework.jdbc.datasource.DriverManagerDataSource"</FONT><FONT COLOR="#0000ff">&gt;</FONT>
+<FONT COLOR="#0000ff">&lt;</FONT><FONT COLOR="#808000">property </FONT><FONT COLOR="#ff0000">name</FONT><FONT COLOR="#0000ff">=</FONT><FONT COLOR="#ff00ff">"driverClassName" </FONT><FONT COLOR="#800080">value</FONT><FONT COLOR="#0000ff">=</FONT><FONT COLOR="#ff00ff">"com.mysql.jdbc.Driver"</FONT><FONT COLOR="#0000ff">/&gt;</FONT>
+<FONT COLOR="#0000ff">&lt;</FONT><FONT COLOR="#808000">property </FONT><FONT COLOR="#ff0000">name</FONT><FONT COLOR="#0000ff">=</FONT><FONT COLOR="#ff00ff">"url" </FONT><FONT COLOR="#800080">value</FONT><FONT COLOR="#0000ff">=</FONT><FONT COLOR="#ff00ff">"jdbc:mysql://localhost/tableone"</FONT><FONT COLOR="#0000ff">/&gt;</FONT>
+<FONT COLOR="#0000ff">&lt;</FONT><FONT COLOR="#808000">property </FONT><FONT COLOR="#ff0000">name</FONT><FONT COLOR="#0000ff">=</FONT><FONT COLOR="#ff00ff">"username" </FONT><FONT COLOR="#800080">value</FONT><FONT COLOR="#0000ff">=</FONT><FONT COLOR="#ff00ff">"root"</FONT><FONT COLOR="#0000ff">/&gt;</FONT>
+<FONT COLOR="#0000ff">&lt;</FONT><FONT COLOR="#808000">property </FONT><FONT COLOR="#ff0000">name</FONT><FONT COLOR="#0000ff">=</FONT><FONT COLOR="#ff00ff">"password" </FONT><FONT COLOR="#800080">value</FONT><FONT COLOR="#0000ff">=</FONT><FONT COLOR="#ff00ff">"root"</FONT><FONT COLOR="#0000ff">/&gt;</FONT>
+<FONT COLOR="#0000ff">&lt;/</FONT><FONT COLOR="#808000">bean</FONT><FONT COLOR="#0000ff">&gt;</FONT>
+<FONT COLOR="#0000ff">&lt;</FONT><FONT COLOR="#808000">bean </FONT><FONT COLOR="#800080">id</FONT><FONT COLOR="#0000ff">=</FONT><FONT COLOR="#ff00ff">"temp" </FONT><FONT COLOR="#800080">class</FONT><FONT COLOR="#0000ff">=</FONT><FONT COLOR="#ff00ff">"org.springframework.jdbc.core.JdbcTemplate"</FONT><FONT COLOR="#0000ff">&gt;</FONT>
+<FONT COLOR="#0000ff">&lt;</FONT><FONT COLOR="#808000">property </FONT><FONT COLOR="#ff0000">name</FONT><FONT COLOR="#0000ff">=</FONT><FONT COLOR="#ff00ff">"dataSource" </FONT><FONT COLOR="#800080">ref</FONT><FONT COLOR="#0000ff">=</FONT><FONT COLOR="#ff00ff">"ds"</FONT><FONT COLOR="#0000ff">/&gt;</FONT>
+<FONT COLOR="#0000ff">&lt;/</FONT><FONT COLOR="#808000">bean</FONT><FONT COLOR="#0000ff">&gt;</FONT>
+<FONT COLOR="#0000ff">&lt;</FONT><FONT COLOR="#808000">bean </FONT><FONT COLOR="#800080">id</FONT><FONT COLOR="#0000ff">=</FONT><FONT COLOR="#ff00ff">"dao" </FONT><FONT COLOR="#800080">class</FONT><FONT COLOR="#0000ff">=</FONT><FONT COLOR="#ff00ff">"org.r4r.EmpTemplateDao"</FONT><FONT COLOR="#0000ff">&gt;</FONT>
+<FONT COLOR="#0000ff">&lt;</FONT><FONT COLOR="#808000">property </FONT><FONT COLOR="#ff0000">name</FONT><FONT COLOR="#0000ff">=</FONT><FONT COLOR="#ff00ff">"template" </FONT><FONT COLOR="#800080">ref</FONT><FONT COLOR="#0000ff">=</FONT><FONT COLOR="#ff00ff">"temp"</FONT><FONT COLOR="#0000ff">/&gt;</FONT>
+<FONT COLOR="#0000ff">&lt;/</FONT><FONT COLOR="#808000">bean</FONT><FONT COLOR="#0000ff">&gt;</FONT>
+<FONT COLOR="#0000ff">&lt;/</FONT><FONT COLOR="#808000">beans</FONT><FONT COLOR="#0000ff">&gt;</FONT>
+</PRE>
+</div>
+
+<h3>Emp.java</h3>
+<div class="code">
+<PRE>
+<FONT COLOR="#0000ff">package </FONT><FONT COLOR="#000000">org.r4r;</FONT>
+<FONT COLOR="#0000ff">public class </FONT><FONT COLOR="#000000">Emp {</FONT>
+<FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">id;</FONT>
+<FONT COLOR="#ff0000">String </FONT><FONT COLOR="#000000">name,job;</FONT>
+<FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">salary;</FONT>
+<FONT COLOR="#0000ff">public </FONT><FONT COLOR="#000000">Emp() {</FONT>
+<FONT COLOR="#0000ff">super</FONT><FONT COLOR="#000000">();</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#0000ff">public </FONT><FONT COLOR="#000000">Emp(</FONT><FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">id, </FONT><FONT COLOR="#ff0000">String </FONT><FONT COLOR="#000000">name, </FONT><FONT COLOR="#ff0000">String </FONT><FONT COLOR="#000000">job, </FONT><FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">salary) {</FONT>
+<FONT COLOR="#0000ff">super</FONT><FONT COLOR="#000000">();</FONT>
+<FONT COLOR="#0000ff">this</FONT><FONT COLOR="#000000">.id = id;</FONT>
+<FONT COLOR="#0000ff">this</FONT><FONT COLOR="#000000">.name = name;</FONT>
+<FONT COLOR="#0000ff">this</FONT><FONT COLOR="#000000">.job = job;</FONT>
+<FONT COLOR="#0000ff">this</FONT><FONT COLOR="#000000">.salary = salary;</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#0000ff">public int </FONT><FONT COLOR="#000000">getId() {</FONT>
+<FONT COLOR="#0000ff">return </FONT><FONT COLOR="#000000">id;</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#0000ff">public void </FONT><FONT COLOR="#000000">setId(</FONT><FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">id) {</FONT>
+<FONT COLOR="#0000ff">this</FONT><FONT COLOR="#000000">.id = id;</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#0000ff">public </FONT><FONT COLOR="#ff0000">String </FONT><FONT COLOR="#000000">getName() {</FONT>
+<FONT COLOR="#0000ff">return </FONT><FONT COLOR="#000000">name;</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#0000ff">public void </FONT><FONT COLOR="#000000">setName(</FONT><FONT COLOR="#ff0000">String </FONT><FONT COLOR="#000000">name) {</FONT>
+<FONT COLOR="#0000ff">this</FONT><FONT COLOR="#000000">.name = name;</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#0000ff">public </FONT><FONT COLOR="#ff0000">String </FONT><FONT COLOR="#000000">getJob() {</FONT>
+<FONT COLOR="#0000ff">return </FONT><FONT COLOR="#000000">job;</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#0000ff">public void </FONT><FONT COLOR="#000000">setJob(</FONT><FONT COLOR="#ff0000">String </FONT><FONT COLOR="#000000">job) {</FONT>
+<FONT COLOR="#0000ff">this</FONT><FONT COLOR="#000000">.job = job;</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#0000ff">public int </FONT><FONT COLOR="#000000">getSalary() {</FONT>
+<FONT COLOR="#0000ff">return </FONT><FONT COLOR="#000000">salary;</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#0000ff">public void </FONT><FONT COLOR="#000000">setSalary(</FONT><FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">salary) {</FONT>
+<FONT COLOR="#0000ff">this</FONT><FONT COLOR="#000000">.salary = salary;</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#000000">}</FONT>
+</PRE>
+</div>	   
+
+ <h3>EmpTemplateDao.java</h3>
+<div class="code">
+<PRE>
+<FONT COLOR="#0000ff">package </FONT><FONT COLOR="#000000">org.r4r;</FONT>
+<FONT COLOR="#0000ff">import </FONT><FONT COLOR="#000000">java.sql.</FONT><FONT COLOR="#ff0000">Connection</FONT><FONT COLOR="#000000">;</FONT>
+<FONT COLOR="#0000ff">import </FONT><FONT COLOR="#000000">java.sql.</FONT><FONT COLOR="#ff0000">PreparedStatement</FONT><FONT COLOR="#000000">;</FONT>
+<FONT COLOR="#0000ff">import </FONT><FONT COLOR="#000000">java.sql.</FONT><FONT COLOR="#ff0000">ResultSet</FONT><FONT COLOR="#000000">;</FONT>
+<FONT COLOR="#0000ff">import </FONT><FONT COLOR="#000000">java.sql.</FONT><FONT COLOR="#ff0000">SQLException</FONT><FONT COLOR="#000000">;</FONT>
+<FONT COLOR="#0000ff">import </FONT><FONT COLOR="#000000">java.util.</FONT><FONT COLOR="#ff0000">List</FONT><FONT COLOR="#000000">;</FONT>
+<FONT COLOR="#0000ff">import </FONT><FONT COLOR="#000000">java.util.</FONT><FONT COLOR="#ff0000">Scanner</FONT><FONT COLOR="#000000">;</FONT>
+<FONT COLOR="#0000ff">import </FONT><FONT COLOR="#000000">org.springframework.jdbc.core.JdbcTemplate;</FONT>
+<FONT COLOR="#0000ff">import </FONT><FONT COLOR="#000000">org.springframework.jdbc.core.PreparedStatementCreator;</FONT>
+<FONT COLOR="#0000ff">import </FONT><FONT COLOR="#000000">org.springframework.jdbc.core.</FONT><FONT COLOR="#ff0000">RowMapper</FONT><FONT COLOR="#000000">;</FONT>
+<FONT COLOR="#0000ff">public class </FONT><FONT COLOR="#000000">EmpTemplateDao {</FONT>
+<FONT COLOR="#000000">JdbcTemplate template;</FONT>
+<FONT COLOR="#0000ff">public </FONT><FONT COLOR="#000000">JdbcTemplate getTemplate() {</FONT>
+<FONT COLOR="#0000ff">return </FONT><FONT COLOR="#000000">template;</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#0000ff">public void </FONT><FONT COLOR="#000000">setTemplate(JdbcTemplate template) {</FONT>
+<FONT COLOR="#0000ff">this</FONT><FONT COLOR="#000000">.template = template;</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#000000">@SuppressWarnings(</FONT><FONT COLOR="#ff00ff">"unchecked"</FONT><FONT COLOR="#000000">)</FONT>
+<FONT COLOR="#0000ff">public </FONT><FONT COLOR="#ff0000">List </FONT><FONT COLOR="#000000">getAllEmp(){</FONT>
+<FONT COLOR="#ff0000">RowMapper </FONT><FONT COLOR="#000000">mapper=</FONT><FONT COLOR="#0000ff">new </FONT><FONT COLOR="#ff0000">RowMapper</FONT><FONT COLOR="#000000">() {</FONT>
+
+<FONT COLOR="#000000">@Override</FONT>
+<FONT COLOR="#0000ff">public </FONT><FONT COLOR="#ff0000">Object </FONT><FONT COLOR="#000000">mapRow(</FONT><FONT COLOR="#ff0000">ResultSet </FONT><FONT COLOR="#000000">rset, </FONT><FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">index) </FONT>
+<FONT COLOR="#0000ff">throws </FONT><FONT COLOR="#ff0000">SQLException </FONT><FONT COLOR="#000000">{</FONT>
+<FONT COLOR="#000000">Emp e=</FONT><FONT COLOR="#0000ff">new </FONT><FONT COLOR="#000000">Emp();</FONT>
+<FONT COLOR="#000000">e.setId(rset.getInt(</FONT><FONT COLOR="#800080">1</FONT><FONT COLOR="#000000">));</FONT>
+<FONT COLOR="#000000">e.setName(rset.getString(</FONT><FONT COLOR="#800080">2</FONT><FONT COLOR="#000000">));</FONT>
+<FONT COLOR="#000000">e.setJob(rset.getString(</FONT><FONT COLOR="#800080">3</FONT><FONT COLOR="#000000">));</FONT>
+<FONT COLOR="#000000">e.setSalary(rset.getInt(</FONT><FONT COLOR="#800080">4</FONT><FONT COLOR="#000000">));</FONT>
+<FONT COLOR="#0000ff">return </FONT><FONT COLOR="#000000">e;</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#000000">};</FONT>
+<FONT COLOR="#0000ff">return </FONT><FONT COLOR="#000000">template.query(</FONT><FONT COLOR="#ff00ff">"select * from emp"</FONT><FONT COLOR="#000000">, mapper);</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#0000ff">public void </FONT><FONT COLOR="#000000">save(</FONT><FONT COLOR="#0000ff">final </FONT><FONT COLOR="#000000">Emp e){</FONT>
+<FONT COLOR="#000000">PreparedStatementCreator psc=</FONT><FONT COLOR="#0000ff">new </FONT><FONT COLOR="#000000">PreparedStatementCreator() {</FONT>
+
+<FONT COLOR="#000000">@Override</FONT>
+<FONT COLOR="#0000ff">public </FONT><FONT COLOR="#ff0000">PreparedStatement </FONT><FONT COLOR="#000000">createPreparedStatement(</FONT><FONT COLOR="#ff0000">Connection </FONT><FONT COLOR="#000000">con)</FONT>
+<FONT COLOR="#0000ff">throws </FONT><FONT COLOR="#ff0000">SQLException </FONT><FONT COLOR="#000000">{</FONT>
+<FONT COLOR="#ff0000">PreparedStatement </FONT><FONT COLOR="#000000">stmt=</FONT><FONT COLOR="#0000ff">null</FONT><FONT COLOR="#000000">;</FONT>
+<FONT COLOR="#0000ff">try</FONT><FONT COLOR="#000000">{</FONT>
+<FONT COLOR="#000000">stmt=con.prepareStatement(</FONT><FONT COLOR="#ff00ff">"insert into Emp values(?,?,?,?)"</FONT><FONT COLOR="#000000">);</FONT>
+<FONT COLOR="#000000">stmt.setInt(</FONT><FONT COLOR="#800080">1</FONT><FONT COLOR="#000000">, e.getId());</FONT>
+<FONT COLOR="#000000">stmt.setString(</FONT><FONT COLOR="#800080">2</FONT><FONT COLOR="#000000">, e.getName());</FONT>
+<FONT COLOR="#000000">stmt.setString(</FONT><FONT COLOR="#800080">3</FONT><FONT COLOR="#000000">,e.getJob());</FONT>
+<FONT COLOR="#000000">stmt.setInt(</FONT><FONT COLOR="#800080">4</FONT><FONT COLOR="#000000">, e.getSalary());</FONT>
+<FONT COLOR="#000000">}</FONT><FONT COLOR="#0000ff">catch</FONT><FONT COLOR="#000000">(</FONT><FONT COLOR="#ff0000">Exception </FONT><FONT COLOR="#000000">ex){</FONT>
+<FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.println(ex);</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#0000ff">return </FONT><FONT COLOR="#000000">stmt;</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#000000">};</FONT>
+<FONT COLOR="#000000">template.update(psc);</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#0000ff">public void </FONT><FONT COLOR="#000000">update(</FONT><FONT COLOR="#0000ff">final </FONT><FONT COLOR="#000000">Emp e){</FONT>
+<FONT COLOR="#000000">PreparedStatementCreator psc=</FONT><FONT COLOR="#0000ff">new </FONT><FONT COLOR="#000000">PreparedStatementCreator() {</FONT>
+<FONT COLOR="#000000">@Override</FONT>
+<FONT COLOR="#0000ff">public </FONT><FONT COLOR="#ff0000">PreparedStatement </FONT><FONT COLOR="#000000">createPreparedStatement(</FONT><FONT COLOR="#ff0000">Connection </FONT><FONT COLOR="#000000">con)</FONT>
+<FONT COLOR="#0000ff">throws </FONT><FONT COLOR="#ff0000">SQLException </FONT><FONT COLOR="#000000">{</FONT>
+<FONT COLOR="#ff0000">PreparedStatement </FONT><FONT COLOR="#000000">stmt=</FONT><FONT COLOR="#0000ff">null</FONT><FONT COLOR="#000000">;</FONT>
+<FONT COLOR="#0000ff">try</FONT><FONT COLOR="#000000">{</FONT>
+<FONT COLOR="#ff0000">Scanner </FONT><FONT COLOR="#000000">in=</FONT><FONT COLOR="#0000ff">new </FONT><FONT COLOR="#ff0000">Scanner</FONT><FONT COLOR="#000000">(</FONT><FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.in);</FONT>
+<FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.println(</FONT><FONT COLOR="#ff00ff">"Enter the id: "</FONT><FONT COLOR="#000000">);</FONT>
+<FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">id=in.nextInt();</FONT>
+<FONT COLOR="#000000">stmt=con.prepareStatement</FONT>
+<FONT COLOR="#000000">(</FONT><FONT COLOR="#ff00ff">"update emp set name=?,job=?,salary=? where id=?"</FONT><FONT COLOR="#000000">);</FONT>
+<FONT COLOR="#000000">stmt.setInt(</FONT><FONT COLOR="#800080">4</FONT><FONT COLOR="#000000">, id);</FONT>
+<FONT COLOR="#000000">stmt.setString(</FONT><FONT COLOR="#800080">1</FONT><FONT COLOR="#000000">, e.getName());</FONT>
+<FONT COLOR="#000000">stmt.setString(</FONT><FONT COLOR="#800080">2</FONT><FONT COLOR="#000000">, e.getJob());</FONT>
+<FONT COLOR="#000000">stmt.setInt(</FONT><FONT COLOR="#800080">3</FONT><FONT COLOR="#000000">, e.getSalary());</FONT>
+<FONT COLOR="#000000">}</FONT><FONT COLOR="#0000ff">catch</FONT><FONT COLOR="#000000">(</FONT><FONT COLOR="#ff0000">Exception </FONT><FONT COLOR="#000000">ex){</FONT>
+<FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.println(ex);</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#0000ff">return </FONT><FONT COLOR="#000000">stmt;</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#000000">};</FONT>
+<FONT COLOR="#000000">template.update(psc);</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#0000ff">public void </FONT><FONT COLOR="#000000">delete(</FONT><FONT COLOR="#0000ff">final </FONT><FONT COLOR="#000000">Emp e){</FONT>
+<FONT COLOR="#000000">PreparedStatementCreator psc=</FONT><FONT COLOR="#0000ff">new </FONT><FONT COLOR="#000000">PreparedStatementCreator() {</FONT>
+<FONT COLOR="#000000">@Override</FONT>
+<FONT COLOR="#0000ff">public </FONT><FONT COLOR="#ff0000">PreparedStatement </FONT><FONT COLOR="#000000">createPreparedStatement(</FONT><FONT COLOR="#ff0000">Connection </FONT><FONT COLOR="#000000">con)</FONT>
+<FONT COLOR="#0000ff">throws </FONT><FONT COLOR="#ff0000">SQLException </FONT><FONT COLOR="#000000">{</FONT>
+<FONT COLOR="#ff0000">PreparedStatement </FONT><FONT COLOR="#000000">stmt=</FONT><FONT COLOR="#0000ff">null</FONT><FONT COLOR="#000000">;</FONT>
+<FONT COLOR="#0000ff">try</FONT><FONT COLOR="#000000">{</FONT>
+<FONT COLOR="#ff0000">Scanner </FONT><FONT COLOR="#000000">in=</FONT><FONT COLOR="#0000ff">new </FONT><FONT COLOR="#ff0000">Scanner</FONT><FONT COLOR="#000000">(</FONT><FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.in);</FONT>
+<FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.println(</FONT><FONT COLOR="#ff00ff">"Enter the id: "</FONT><FONT COLOR="#000000">);</FONT>
+<FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">id=in.nextInt();</FONT>
+<FONT COLOR="#000000">stmt=con.prepareStatement(</FONT><FONT COLOR="#ff00ff">"delete from emp where id=?"</FONT><FONT COLOR="#000000">);</FONT>
+<FONT COLOR="#000000">stmt.setInt(</FONT><FONT COLOR="#800080">1</FONT><FONT COLOR="#000000">, id);</FONT>
+
+<FONT COLOR="#000000">}</FONT><FONT COLOR="#0000ff">catch</FONT><FONT COLOR="#000000">(</FONT><FONT COLOR="#ff0000">Exception </FONT><FONT COLOR="#000000">ex){</FONT>
+<FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.println(ex);</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#0000ff">return </FONT><FONT COLOR="#000000">stmt;</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#000000">};</FONT>
+<FONT COLOR="#000000">template.update(psc);</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#000000">}</FONT>
+</PRE>
+</div>
+
+<h3>InsertTest.java</h3>
+<div class="code">
+<PRE>
+<FONT COLOR="#0000ff">package </FONT><FONT COLOR="#000000">org.r4r;</FONT>
+<FONT COLOR="#0000ff">import </FONT><FONT COLOR="#000000">org.springframework.context.ApplicationContext;</FONT>
+<FONT COLOR="#0000ff">import </FONT><FONT COLOR="#000000">org.springframework.context.</FONT>
+<FONT COLOR="#000000">support.ClassPathXmlApplicationContext;</FONT>
+<FONT COLOR="#0000ff">public class </FONT><FONT COLOR="#000000">InsertTest {</FONT>
+<FONT COLOR="#0000ff">public static void </FONT><FONT COLOR="#000000">main(</FONT><FONT COLOR="#ff0000">String</FONT><FONT COLOR="#000000">[] args) {</FONT>
+<FONT COLOR="#000000">ApplicationContext ctx=</FONT><FONT COLOR="#0000ff">new </FONT>
+<FONT COLOR="#000000">ClassPathXmlApplicationContext(</FONT><FONT COLOR="#ff00ff">"applicationContext.xml"</FONT><FONT COLOR="#000000">);</FONT>
+<FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.println(</FONT><FONT COLOR="#ff00ff">"Obtaining dao from IOC container"</FONT><FONT COLOR="#000000">);</FONT>
+<FONT COLOR="#000000">EmpTemplateDao dao=(EmpTemplateDao)ctx.getBean(</FONT><FONT COLOR="#ff00ff">"dao"</FONT><FONT COLOR="#000000">);</FONT>
+<FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.println(</FONT><FONT COLOR="#ff00ff">"Dao saved the Emp Object"</FONT><FONT COLOR="#000000">);</FONT>
+<FONT COLOR="#000000">Emp e1=</FONT><FONT COLOR="#0000ff">new </FONT><FONT COLOR="#000000">Emp(</FONT><FONT COLOR="#800080">101</FONT><FONT COLOR="#000000">,</FONT><FONT COLOR="#ff00ff">"Amit"</FONT><FONT COLOR="#000000">,</FONT><FONT COLOR="#ff00ff">"Engineer"</FONT><FONT COLOR="#000000">,</FONT><FONT COLOR="#800080">25000</FONT><FONT COLOR="#000000">);</FONT>
+<FONT COLOR="#000000">Emp e2=</FONT><FONT COLOR="#0000ff">new </FONT><FONT COLOR="#000000">Emp(</FONT><FONT COLOR="#800080">102</FONT><FONT COLOR="#000000">,</FONT><FONT COLOR="#ff00ff">"ArshRaj"</FONT><FONT COLOR="#000000">,</FONT><FONT COLOR="#ff00ff">"Developer"</FONT><FONT COLOR="#000000">,</FONT><FONT COLOR="#800080">25000</FONT><FONT COLOR="#000000">);</FONT>
+<FONT COLOR="#000000">Emp e3=</FONT><FONT COLOR="#0000ff">new </FONT><FONT COLOR="#000000">Emp(</FONT><FONT COLOR="#800080">103</FONT><FONT COLOR="#000000">,</FONT><FONT COLOR="#ff00ff">"Dipu"</FONT><FONT COLOR="#000000">,</FONT><FONT COLOR="#ff00ff">"Business Man"</FONT><FONT COLOR="#000000">,</FONT><FONT COLOR="#800080">25000</FONT><FONT COLOR="#000000">);</FONT>
+<FONT COLOR="#000000">Emp e4=</FONT><FONT COLOR="#0000ff">new </FONT><FONT COLOR="#000000">Emp(</FONT><FONT COLOR="#800080">104</FONT><FONT COLOR="#000000">,</FONT><FONT COLOR="#ff00ff">"Amar"</FONT><FONT COLOR="#000000">,</FONT><FONT COLOR="#ff00ff">"Marketing Manager"</FONT><FONT COLOR="#000000">,</FONT><FONT COLOR="#800080">25000</FONT><FONT COLOR="#000000">);</FONT>
+<FONT COLOR="#000000">dao.save(e1);dao.save(e2);dao.save(e3);dao.save(e4);</FONT>
+<FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.println(</FONT><FONT COLOR="#ff00ff">"Emp object Save"</FONT><FONT COLOR="#000000">);</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#000000">}</FONT>
+</PRE>
+</div>
+
+<h3>UpdateTest.java</h3>
+<div class="code">
+<PRE>
+<FONT COLOR="#0000ff">package </FONT><FONT COLOR="#000000">org.r4r;</FONT>
+<FONT COLOR="#0000ff">import </FONT><FONT COLOR="#000000">org.springframework.context.ApplicationContext;</FONT>
+<FONT COLOR="#0000ff">import </FONT><FONT COLOR="#000000">org.springframework.context.</FONT>
+<FONT COLOR="#000000">support.ClassPathXmlApplicationContext;</FONT>
+<FONT COLOR="#0000ff">public class </FONT><FONT COLOR="#000000">UpdateTest {</FONT>
+<FONT COLOR="#0000ff">public static void </FONT><FONT COLOR="#000000">main(</FONT><FONT COLOR="#ff0000">String</FONT><FONT COLOR="#000000">[] args) {</FONT>
+<FONT COLOR="#000000">ApplicationContext ctx=</FONT><FONT COLOR="#0000ff">new </FONT>
+<FONT COLOR="#000000">ClassPathXmlApplicationContext(</FONT><FONT COLOR="#ff00ff">"applicationContext.xml"</FONT><FONT COLOR="#000000">);</FONT>
+<FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.println(</FONT><FONT COLOR="#ff00ff">"Obtaining dao from IOC container"</FONT><FONT COLOR="#000000">);</FONT>
+<FONT COLOR="#000000">EmpTemplateDao dao=(EmpTemplateDao)ctx.getBean(</FONT><FONT COLOR="#ff00ff">"dao"</FONT><FONT COLOR="#000000">);</FONT>
+<FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.println(</FONT><FONT COLOR="#ff00ff">"Dao update the Emp Object"</FONT><FONT COLOR="#000000">);</FONT>
+<FONT COLOR="#000000">Emp e=</FONT><FONT COLOR="#0000ff">new </FONT><FONT COLOR="#000000">Emp(</FONT><FONT COLOR="#800080">222</FONT><FONT COLOR="#000000">,</FONT><FONT COLOR="#ff00ff">"Mukund Singh"</FONT><FONT COLOR="#000000">,</FONT><FONT COLOR="#ff00ff">"Software Engineer"</FONT><FONT COLOR="#000000">,</FONT><FONT COLOR="#800080">55000</FONT><FONT COLOR="#000000">);</FONT>
+<FONT COLOR="#000000">dao.update(e);</FONT>
+<FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.println(</FONT><FONT COLOR="#ff00ff">"Emp object Update"</FONT><FONT COLOR="#000000">);</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#000000">}</FONT>
+</PRE>
+</div>
+
+<h3>DeleteTest.java</h3>
+<div class="code">
+<PRE>
+<FONT COLOR="#0000ff">package </FONT><FONT COLOR="#000000">org.r4r;</FONT>
+<FONT COLOR="#0000ff">import </FONT><FONT COLOR="#000000">org.springframework.context.ApplicationContext;</FONT>
+<FONT COLOR="#0000ff">import </FONT><FONT COLOR="#000000">org.springframework.context.</FONT>
+<FONT COLOR="#000000">support.ClassPathXmlApplicationContext;</FONT>
+<FONT COLOR="#0000ff">public class </FONT><FONT COLOR="#000000">DeleteTest {</FONT>
+<FONT COLOR="#0000ff">public static void </FONT><FONT COLOR="#000000">main(</FONT><FONT COLOR="#ff0000">String</FONT><FONT COLOR="#000000">[] args) {</FONT>
+<FONT COLOR="#000000">ApplicationContext ctx=</FONT><FONT COLOR="#0000ff">new </FONT>
+<FONT COLOR="#000000">ClassPathXmlApplicationContext(</FONT><FONT COLOR="#ff00ff">"applicationContext.xml"</FONT><FONT COLOR="#000000">);</FONT>
+<FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.println(</FONT><FONT COLOR="#ff00ff">"Obtaining dao from IOC container"</FONT><FONT COLOR="#000000">);</FONT>
+<FONT COLOR="#000000">EmpTemplateDao dao=(EmpTemplateDao)ctx.getBean(</FONT><FONT COLOR="#ff00ff">"dao"</FONT><FONT COLOR="#000000">);</FONT>
+<FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.println(</FONT><FONT COLOR="#ff00ff">"Deleting Emp Object"</FONT><FONT COLOR="#000000">);</FONT>
+<FONT COLOR="#000000">Emp e=</FONT><FONT COLOR="#0000ff">new </FONT><FONT COLOR="#000000">Emp();</FONT>
+<FONT COLOR="#000000">dao.delete(e);</FONT>
+<FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.println(</FONT><FONT COLOR="#ff00ff">"Emp object delete"</FONT><FONT COLOR="#000000">);</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#000000">}</FONT>
+</PRE>
+</div>
+
+<h3>SelectTest.java</h3>
+<div class="code">
+<PRE>
+<FONT COLOR="#0000ff">package </FONT><FONT COLOR="#000000">org.r4r;</FONT>
+<FONT COLOR="#0000ff">import </FONT><FONT COLOR="#000000">java.util.*;</FONT>
+<FONT COLOR="#0000ff">import </FONT><FONT COLOR="#000000">org.springframework.context.ApplicationContext;</FONT>
+<FONT COLOR="#0000ff">import </FONT><FONT COLOR="#000000">org.springframework.context.</FONT>
+<FONT COLOR="#000000">support.ClassPathXmlApplicationContext;</FONT>
+<FONT COLOR="#0000ff">public class </FONT><FONT COLOR="#000000">SelectTest {</FONT>
+<FONT COLOR="#000000">@SuppressWarnings(</FONT><FONT COLOR="#ff00ff">"unchecked"</FONT><FONT COLOR="#000000">)</FONT>
+<FONT COLOR="#0000ff">public static void </FONT><FONT COLOR="#000000">main(</FONT><FONT COLOR="#ff0000">String</FONT><FONT COLOR="#000000">[] args) {</FONT>
+<FONT COLOR="#000000">ApplicationContext ctx=</FONT><FONT COLOR="#0000ff">new </FONT>
+	<FONT COLOR="#000000">ClassPathXmlApplicationContext(</FONT><FONT COLOR="#ff00ff">"applicationContext.xml"</FONT><FONT COLOR="#000000">);</FONT>
+<FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.println(</FONT><FONT COLOR="#ff00ff">"Obtaining dao from IOC container"</FONT><FONT COLOR="#000000">);</FONT>
+<FONT COLOR="#000000">EmpTemplateDao dao=(EmpTemplateDao)ctx.getBean(</FONT><FONT COLOR="#ff00ff">"dao"</FONT><FONT COLOR="#000000">);</FONT>
+<FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.println(</FONT><FONT COLOR="#ff00ff">"Fetching Emp Objects"</FONT><FONT COLOR="#000000">);</FONT>
+<FONT COLOR="#ff0000">List</FONT><FONT COLOR="#000000">&lt;Emp&gt; list=dao.getAllEmp();</FONT>
+<FONT COLOR="#ff0000">Iterator</FONT><FONT COLOR="#000000">&lt;Emp&gt; itr=list.iterator();</FONT>
+<FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.println(</FONT><FONT COLOR="#ff00ff">"Following objects are fetched."</FONT><FONT COLOR="#000000">);</FONT>
+<FONT COLOR="#0000ff">while</FONT><FONT COLOR="#000000">(itr.hasNext()){</FONT>
+<FONT COLOR="#000000">Emp e=itr.next();</FONT>
+<FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.println(e.getId()+</FONT><FONT COLOR="#ff00ff">"\t"</FONT><FONT COLOR="#000000">+</FONT>
+<FONT COLOR="#000000">e.getName()+</FONT><FONT COLOR="#ff00ff">"\t"</FONT><FONT COLOR="#000000">+e.getJob()+</FONT><FONT COLOR="#ff00ff">"\t"</FONT><FONT COLOR="#000000">+e.getSalary());</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#000000">}</FONT>
+</PRE>
+</div>
+
+<p><h3>output:</h3></p>
+<div class="output">
+<PRE>
+InsertTest Result
+
+Obtaining dao from IOC container
+Dao saved the Emp Object
+Emp object Save
+UpdateTest Result:-
+
+Obtaining dao from IOC container
+Dao update the Emp Object
+Enter the id: 
+102
+Emp object Update
+DeleteTest Result:-
+Obtaining dao from IOC container
+Deleting Emp Object
+Enter the id: 
+102
+Emp object delete
+SelectTest Result:-
+
+Obtaining dao from IOC container
+Fetching Emp Objects
+Following objects are fetched.
+103	Amar	Marketing	25000
+101	ArshRaj	Develo	25000
+100	Amit	Engi	25000
+</PRE>
+</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="withoutTemplate.shtml" title="without Template">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="SpringMVC.shtml" title="Spring MVC Implementation">Next</a></td>
+  </tr> 
+</table>
+
+<!-- Footer Start-->
+
+		</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->
+

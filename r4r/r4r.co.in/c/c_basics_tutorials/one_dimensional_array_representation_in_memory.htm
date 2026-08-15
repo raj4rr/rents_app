@@ -1,0 +1,172 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>Arrays represented in c, array tutorial in c,array examples,array programs</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="How arrays are represented in the memory ? 2 dimensional array, 3 dimensional array,array malloc,c array memory,array pointer, array examples, array string in c language," >
+<meta name="keywords" CONTENT="arrays represented in c, array calloc, array malloc,c array memory,array pointer, array examples, array string in c language, arrays questions in c, 2 dimensional array, 3 dimensional array  ">
+
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="http://r4r.co.in/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <!--#include virtual="/c/../commonfiles/header.shtml" -->
+    
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>C Programming language</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a><img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/c/">C </a>
+              <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/c/c_basics_tutorials/">Learn C in 9 days</a></div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><!--#include virtual="/c/commonfiles/new-leftmenu.shtml" --></td>
+                        
+                        
+                       <td style="80%" valign="top">
+                        <div class="main_content"> 	
+                        
+                        	 <!-- Header End--> <!--#include virtual="/commonfiles/ads1.shtml" -->		
+                        	
+<div class="heading"><font style="background:#FF9966; padding:7px 0px 7px 7px;">Day <font style="background:#E95409; padding:7px;">5</font></font> Array representation in memory using C Programming language</div> 
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="access_elements_of_array.shtml" title="Access elements of Array in C Programming language">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="two_dimensional_array_representation_in_memory.shtml" title="Two dimensional Array representation in memory using C Programming language">Next</a></td>
+  </tr>
+</table>
+
+
+<p>Mainly arrays are categorized in</p>
+	<ul>
+		<li>One dimensional array</li>
+		<li>Multidimensional array</li>
+	</ul>
+<p>
+<h2># One dimensional Array representation in memory</h2>
+<p><b>One dimensional arrays</b> are the simple arrays that we have so far discussed. In <a href="access_elements_of_array.shtml">previous examples</a> we have shown how to initialize and declare one dimensional array, now we will discuss how it is represented in the memory. As we know now 1-d array are linear array in which elements are stored in the successive memory locations. The element at the very first position in the array is called its base address.</p>
+
+<div class="code">
+<pre>
+<font color="#0000ff">int </font><font color="#000000">arr[</font><font color="#800080">5</font><font color="#000000">];</font>
+</pre>
+</div>
+<i> Now consider the following example :</i>
+<table cellpadding="5" cellspacing="5">
+	<tr>
+        <td style="background:#EAEAEA; width:20%;">Element</td>
+        <td style="width:16%; background:#FBFBFB; text-align:center;">34</td>
+        <td style="width:16%; background:#FBFBFB; text-align:center;">78</td>
+        <td style="width:16%; background:#FBFBFB; text-align:center;">98</td>
+        <td style="width:16%; background:#FBFBFB; text-align:center;">45</td>
+        <td style="width:16%; background:#FBFBFB; text-align:center;">56</td>
+    </tr>
+    <tr>
+    	<td style="background:#EAEAEA;">Index</td>
+        <td style="width:16%; background:#FBFBFB; text-align:center;">arr[0] = 100</td>
+        <td style="width:16%; background:#FBFBFB; text-align:center;">arr[1] = ?</td>
+        <td style="width:16%; background:#FBFBFB; text-align:center;">arr[2] = ?</td>
+        <td style="width:16%; background:#FBFBFB; text-align:center;">arr[3] = ?</td>
+        <td style="width:16%; background:#FBFBFB; text-align:center;">arr[4] = ?</td></tr>
+</table>
+<p>Above we have defined an array of five elements of integer type whose first index element is at base address 100. i.e, the element arr[0] is stored at base address 100. Now for calculating the starting address of the next element i.e. of a[1], we can use the following 
+formula :</p>
+<p><b>Base Address (B)+ No. of bytes occupied by element (C) * index of the element (i)</b></p>
+
+<p style="color:#008000;">/* Here C is constant integer and vary according to the data type of the array, for e.g. for integer the value of C will be 4 bytes, since an integer occupies 4 bytes of memory. */</p>
+<p>Now, we can calculate the starting address of second element of the array as :</p>
+<p>arr[1] = 100 + 4 * 1 = 104<font color="#008000">/*Thus starting address of second element of array is 104 */</font></p>
+<p>Similarly other addresses can be calculated in the same manner as :</p>
+<p>arr[2] = 100 + 4 * 2 = 108</font></p>
+<p>arr[3] = 100 + 4 * 3 = 112</font></p>
+<p>arr[4] = 100 + 4 * 4 = 116</font></p>
+<p><b>Multidimensional arrays</b> are often known as array of the array. In multidimensional arrays the array is divided into rows and columns, mainly while considering multidimensional arrays we will be discussing mainly about two dimensional arrays and a bit about three dimensional 
+arrays. In 2-D array we can declare an array as :</p>
+<p><font color="#0000FF">int</font> arr[3][3];</p>
+<p>where first index value shows the number of the rows and second index value shows the no. of the columns in the array. We will learn about the 2-D array in detail in the next section, but now emphasize more on how these are stored in the memory.</font></p>
+<p>Mainly multidimensional arrays are stored in the memory in the following two ways :</p>
+<ul><li><b>Row-Major order Implementation</b></li><li><b>Column-Major order Implementation</b></li></ul>
+
+<p><b>In Row-Major Implementation of the arrays</b>, the arrays are stored in the memory in terms of the row design, i.e. first the first row of the array is stored in the memory then second and so on. Suppose we have an array named arr having 3 rows and 3 columns then it can be stored in the memory in the following manner :</p>
+<table cellpadding="5" cellspacing="5">
+	<tr>
+        <td style="width:33%; background:#FBFBFB; text-align:center;">arr[0][0]</td>
+        <td style="width:34%; background:#FBFBFB; text-align:center;">arr[0][1]</td>
+        <td style="width:33%; background:#FBFBFB; text-align:center;">arr[0][2]</td>
+    </tr>
+    <tr>
+    	<td style="width:33%; background:#FBFBFB; text-align:center;">arr[1][0]</td>
+        <td style="width:34%; background:#FBFBFB; text-align:center;">arr[1][1]</td>
+        <td style="width:33%; background:#FBFBFB; text-align:center;">arr[1][2]</td>
+    </tr>
+    <tr>
+    	<td style="width:33%; background:#FBFBFB; text-align:center;">arr[2][0]</td>
+        <td style="width:34%; background:#FBFBFB; text-align:center;">arr[2][1]</td>
+        <td style="width:33%; background:#FBFBFB; text-align:center;">arr[2][2]</td>
+    </tr>
+</table>
+<p>Thus an array of 3*3 can be declared as follows :</p>
+<p>arr[3][3] = { 1, 2, 3, 4, 5, 6, 7, 8, 9 };</p>
+<p>and it will be represented in the memory with row major implementation as follows :</p>
+<table cellpadding="5" cellspacing="5">
+	<tr>
+        <td style="background:#FBFBFB; text-align:center;">1</td>
+		<td style="background:#FBFBFB; text-align:center;">2</td>
+        <td style="background:#FBFBFB; text-align:center;">3</td>
+        <td style="background:#FBFBFB; text-align:center;">4</td>
+        <td style="background:#FBFBFB; text-align:center;">5</td>
+        <td style="background:#FBFBFB; text-align:center;">6</td>
+        <td style="background:#FBFBFB; text-align:center;">7</td>
+        <td style="background:#FBFBFB; text-align:center;">8</td>
+        <td style="background:#FBFBFB; text-align:center;">9</td>
+	</tr>
+</table>
+<p><b>In Column-Major Implementation of the arrays</b>, the arrays are stored in the memory in the term of the column design, i.e. the first column of the array is stored in the memory then the second and so on. By taking above eg. we can show it as follows :</p>
+<p>arr[3][3] = { 1, 2, 3, 4, 5, 6, 7, 8, 9 };</font></p>
+<p>and it will be represented in the memory with column major implementation as follows :</p>
+<table cellpadding="5" cellspacing="5">
+	<tr>
+		<td style="background:#FBFBFB; text-align:center;">1</td>
+		<td style="background:#FBFBFB; text-align:center;">4</td>
+		<td style="background:#FBFBFB; text-align:center;">7</td>
+		<td style="background:#FBFBFB; text-align:center;">2</td>
+		<td style="background:#FBFBFB; text-align:center;">5</td>
+		<td style="background:#FBFBFB; text-align:center;">8</td>
+		<td style="background:#FBFBFB; text-align:center;">3</td>
+		<td style="background:#FBFBFB; text-align:center;">6</td>
+		<td style="background:#FBFBFB; text-align:center;">9</td>
+	</tr>
+</table>
+
+	   	   
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="access_elements_of_array.shtml" title="Access elements of Array in C Programming language">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="multi_dimensional_array.shtml" title="Multi dimensional Array in C Programming language">Next</a></td>
+  </tr>
+</table>
+           
+                        <!--Footer  --> <!--#include virtual="/commonfiles/ads2.shtml" -->	
+ </div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<!--#include virtual="/c/commonfiles/rightmenu.shtml" -->
+           	</td></tr>
+        	
+        </table>
+    </div>
+   
+    <!--#include virtual="/c/../commonfiles/footer.shtml" -->
+    
+    
+</BODY>
+</HTML>

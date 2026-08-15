@@ -1,0 +1,39 @@
+<%--
+    Document    : welcomeStruts.jsp
+    Description : Second Page of EmailLogin Application
+--%>
+
+<%@page contentType="text/html"%>
+<%@page pageEncoding="UTF-8"%>
+
+<%@ taglib uri="http://struts.apache.org/tags-bean" prefix="bean" %>
+<%@ taglib uri="http://struts.apache.org/tags-html" prefix="html" %>
+<%@ taglib uri="http://struts.apache.org/tags-logic" prefix="logic" %>
+
+<html:html lang="true">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title><bean:message key="welcome.title"/></title>
+        <html:base/>
+    </head>
+    <body style="background-color:threedlightshadow">
+        
+        <logic:notPresent name="org.apache.struts.action.MESSAGE" scope="application">
+            <div  style="color: red">
+                ERROR:  Application resources not loaded -- check servlet container
+                logs for error messages.
+            </div>
+        </logic:notPresent>
+        
+        <h3><bean:message key="welcome.heading"/></h3>
+        <p><bean:message key="welcome.message"/></p>
+        <BR>
+        <p><b> New User please register yourself by click registration page, else click login page</b></p>
+        <BR>
+
+        <ul>
+            <p> Forward to <a style="cursor:auto ; color:green" href="registration.jsp"> Registration </a> Page </p>
+            <p> Forward to <a style="cursor: auto; color: green" href="login.jsp"> Login </a> Page </p>
+        </ul>
+    </body>
+</html:html>

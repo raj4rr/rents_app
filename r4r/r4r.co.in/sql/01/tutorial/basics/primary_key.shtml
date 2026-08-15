@@ -1,0 +1,123 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>PRIMARY KEY constraints</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="PRIMARY KEY constraints" >
+<meta name="keywords" CONTENT="PRIMARY KEY constraints">
+
+<!--header start-->
+
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>DATABASE & SQL/PLSQL</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a><img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+			<a href="/sql/">SQL </a>
+              </div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/sql/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	  
+
+                        	                        	<!-- Header End-->	
+ <div class="heading">PRIMARY KEY Constraint</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="creating_constraints.shtml" title="Creating Constraints">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="unique_cons.shtml" title="The UNIQUE Constraint">Next</a></td>
+  </tr>
+</table>
+
+<p>A Primary Key constraints is defined on a column whose values uniquely identify rows in a table. 
+These columns are referred to as the primary key columns. A primary key column can not contain 
+NULL values since it is used to uniquely identify rows in a table. the primary key 
+ensure entity integrity.</p>
+
+<p>You can define a PRIMARY KEY constraints at the time of a table creation, 
+or you can add it later by altering the table. While defining a PRIMARY KEY constraints, 
+you need to specify a name for the constraints. If a name is not specified, SQL server automatically 
+assigns a name to the constraints.</p>
+
+<div class="code">
+<pre>
+<pre>
+CREATE TABLE table_name
+(column_name data_type CONSTRAINT constraints_name PRIMARY KEY),..
+</pre>
+</div>
+
+<h3> Example:</h3>
+<div class="code">
+CREATE TABLE employee
+(emp_name char (4) CONSTRAINT  pfemp_name  PRIMARY KEY)
+</pre>
+</div>
+
+<p>The above command creates a table employee with
+<i>emp_name </i>as the primary key. The name of the constraints is <i>pfemp_name.</i>
+ </p>
+
+ <p><i>output</i></p>
+ <div class="output">
+ <div class="image">
+ <img src="Image/primary_key.gif">
+ </div>
+</div>
+
+<h3> Example:</h3>
+<p>Primary key also created after creating a table by following command:</p>
+<div class="code">
+<pre>
+ALTER TABLE  employee
+ADD CONSTRAINT  Pfemp_name PRIMARY KEY  (emp_id)
+</pre>
+</div>
+
+<p><i>output</i></p>
+<div class="output">
+<div class="image">
+<img src="Image/prim1.gif">
+</div>
+</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="creating_constraints.shtml" title="Creating Constraints">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="unique_cons.shtml" title="The UNIQUE Constraint">Next</a></td>
+  </tr>
+</table>
+
+                       <!--Footer  -->
+
+</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>

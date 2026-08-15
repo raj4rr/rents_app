@@ -1,0 +1,131 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD>
+<meta http-equiv="Content-Language" content="en-us">
+<TITLE>Query for MySQL, How to retrieving Data With PHP & MySQL,.How can Using MySQL SELECT & FROM</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name="description" CONTENT="Query for MySQL, How to retrieving Data With PHP & MySQL,.How can Using MySQL SELECT & FROM" >
+<meta name="keywords" CONTENT="Query for MySQL, How to retrieving Data With PHP & MySQL,.How can Using MySQL SELECT & FROM">
+<!-- header start-->	
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>PHP Programing language</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+            <img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+            <a href="/php/">PHP</a>
+
+              </div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/php/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	  
+
+	   	   <div class="heading">PHP MySQL Query</div>
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="php_mysql_insertdat.shtml" title="PHP MySQL Insert Data">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="php_mysql_fetcharray.shtml" title="PHP MySQL Fetch Array">Next</a></td></tr>
+</table>
+
+<!-- header End-->		   
+
+<p>The MySQL queries are uses of PHP's mysql_query function and we'll be seeing more of it as nearly all MySQL in PHP is done through the MySQL Query function. when you have created table for mysql after then inserted a data in this table. Then after perform a operation for using queries. And retrieve th information in this database.</p>
+<p><i> How to retrieving Data With PHP &amp; MySQL</i></p>
+<p>In MySQl database and with using PHP most of the work done with MySQL involves pulling down data from a MySQL database. It's&nbsp; data is retrieved with the &quot;SELECT&quot; keyword.</p> 
+<p>The SELECT keyword is working the same way as it does on your computer. And if you wanted to copy some information in a document, you would first select the desired information, then copy and paste.</p>
+<p><i>How can Using MySQL SELECT &amp; FROM</i></p>
+<p>In MySQL Database be sure that you have created a table that contains some data, preferably the same data that we had in the MySQL Insert lesson. In this example, we will output the first entry of our MySQL &quot;tablefirst&quot; table to the web browser.</p>
+
+<div class="code">
+<pre>
+<font color="#000000">PHP &amp; MySQL Code:</font>
+<font color="#800000">&lt;?php</font>
+
+<font color="#008000">// Make a MySQL Connection</font>
+
+<font color="#800000">mysql_connect(</font><font color="#ff00ff">&quot;localhost&quot;</font><font color="#800000">, </font><font color="#ff00ff">&quot;admin&quot;</font><font color="#800000">, </font><font color="#ff00ff">&quot;1admin&quot;</font><font color="#800000">) </font><font color="#0000ff">or die</font><font color="#800000">(mysql_error());</font>
+<font color="#800000">mysql_select_db(</font><font color="#ff00ff">&quot;test&quot;</font><font color="#800000">) </font><font color="#0000ff">or die</font><font color="#800000">(mysql_error());</font>
+
+<font color="#008000">// Retrieve all the data from the &quot;example&quot; table</font>
+<font color="#0000ff">$</font><font color="#008080">result </font><font color="#800000">= mysql_query(</font><font color="#ff00ff">&quot;SELECT * FROM example&quot;</font><font color="#800000">)</font>
+<font color="#0000ff">or die</font><font color="#800000">(mysql_error());  </font>
+
+<font color="#008000">// store the record of the &quot;example&quot; table into $row</font>
+<font color="#0000ff">$</font><font color="#008080">row </font><font color="#800000">= mysql_fetch_array( </font><font color="#0000ff">$</font><font color="#008080">result </font><font color="#800000">);</font>
+
+<font color="#008000">// Print out the contents of the entry </font>
+
+<font color="#0000ff">echo </font><font color="#ff00ff">&quot;Name: &quot;</font><font color="#800000">.</font><font color="#0000ff">$</font><font color="#008080">row</font><font color="#800000">[</font><font color="#ff00ff">'name'</font><font color="#800000">];</font>
+<font color="#0000ff">echo </font><font color="#ff00ff">&quot; Age: &quot;</font><font color="#800000">.</font><font color="#0000ff">$</font><font color="#008080">row</font><font color="#800000">[</font><font color="#ff00ff">'age'</font><font color="#800000">];</font>
+<font color="#800000">?&gt;</font>
+</pre>
+</div>
+
+<p><i>Output</i></p>
+<div class="output">
+Name: Amit 
+Age: 23
+</div>
+
+<p>This is an example of how to use MySQL's SELECT statement in PHP. Although the MySQL code is simple, printing out the information with PHP is somewhat more involved.</p>
+<div class="code">
+<pre>
+<font color="#000000">$result = mysql_query(&quot;SELECT * FROM example&quot;)</font>
+</pre>
+</div>
+
+<p>When you perform a SELECT query on the database it will return a MySQL Resource that holds everything from your MySQL table, &quot;tablefirst&quot;. We want to use this Resource in our PHP code, so we need to store it in a variable, $result.</p>
+
+<font class="point_out">'SELECT * FROM example'</font>
+<p>Yes, this is a partial repeat of the same line of code, but we wanted to explain this MySQL statement in greater detail again!</p>
+
+<p>In English, this line of code reads &quot;Select every entry from the table example&quot;.</p> 
+<p>The asterisk is the wild card in MySQL which just tells MySQL to include every single column for that table.</p>
+<font class="point_out">'$row = mysql_fetch_array( $result );'</font>
+
+<p>$result is now a MySQL Resource containing data from your MySQL table, &quot;example&quot;. Data is being stored in $result, but it is not yet visible to visitors of your website. When we pass $result into the mysql_fetch_array function -- mysql_fetch_array($result) -- an associative array (name, age) is returned.</p>
+
+<p>In our MySQL table &quot;example,&quot; there are only two fields that we care about: name and age. These names are the keys to extracting the data from our associative array. To get the name we use $row['name'] and to get the age we use $row['age'].</p>
+<p>PHP is case sensitive when you reference MySQL column names, so be sure to use capitalization in your PHP code that matches the MySQL column names!</p>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="php_mysql_insertdat.shtml" title="PHP MySQL Insert Data">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="php_mysql_fetcharray.shtml" title="PHP MySQL Fetch Array">Next</a></td></tr>
+</table>
+
+	<!-- Footer Start-->  	
+
+</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/php/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->

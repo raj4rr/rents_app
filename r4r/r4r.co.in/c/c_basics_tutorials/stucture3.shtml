@@ -1,0 +1,129 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+
+<HTML><HEAD><TITLE>C tutorial on Shorthand structure with typedef keyword ,Copy a structure into another structure,Structure and sizeof function</TITLE>
+
+<META content=r4r.co.in name=owner>
+
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+
+<meta name="description" CONTENT="Learn about Shorthand structure with typedef.Pointers,Array,Storage class,Loops,Functions,Data types,C constants,Union,Preprocessor,C interview questions and answersShorthand structure with typedef keyword ,Copy a structure into another structure,Structure and sizeof function">
+
+<meta name="keywords" CONTENT="Shorthand structure with typedef keyword ,Copy a structure into another structure,Structure and sizeof function,Pointers,Array,Storage class,Loops,Functions,Data types,C constants,Union,Preprocessor,C interview questions and answers">
+
+<META content="Rajesh Kumar" name=author>
+
+<META http-equiv="expires" content="0"> 
+
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+     <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>C Programming language</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a><img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/c/">C </a>
+              <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/c/c_basics_tutorials/">Learn C in 9 days</a></div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/c/commonfiles/new-leftmenu.shtml'); ?></td>
+
+                       <td style="80%" valign="top">
+                        <div class="main_content">
+
+                        <!-- Header End--> 		
+
+     <div class="heading">Structure and sizeof function</div> 
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="structure2.shtml" title="Accessing Structure Member">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="structure4.shtml" title="Structure in C: Example">Next</a></td>
+  </tr>
+</table>	
+
+<h2>Shorthand structure with typedef keyword </h2>
+<p>To make your source code more concise, you can use typedef keyword to create a synonym for a structure. This is an example of using typedef keyword to define address structure so when you want to create an instance of it you can omit the keyword struct.</p>
+<div class="code">
+<PRE>
+<FONT COLOR="#800080">1</FONT><FONT COLOR="#000000">. typedef struct{</FONT>
+<FONT COLOR="#800080">2</FONT><FONT COLOR="#000000">. unsigned </FONT><FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">house_number;</FONT>
+<FONT COLOR="#800080">3</FONT><FONT COLOR="#000000">. </FONT><FONT COLOR="#0000ff">char </FONT><FONT COLOR="#000000">street_name[</FONT><FONT COLOR="#800080">50</FONT><FONT COLOR="#000000">];</FONT>
+<FONT COLOR="#800080">4</FONT><FONT COLOR="#000000">. </FONT><FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">zip_code;</FONT>
+<FONT COLOR="#800080">5</FONT><FONT COLOR="#000000">. </FONT><FONT COLOR="#0000ff">char </FONT><FONT COLOR="#000000">country[</FONT><FONT COLOR="#800080">50</FONT><FONT COLOR="#000000">]; </FONT>
+<FONT COLOR="#800080">6</FONT><FONT COLOR="#000000">. } address;</FONT>
+<FONT COLOR="#800080">7</FONT><FONT COLOR="#000000">. address billing_addr;</FONT>
+<FONT COLOR="#800080">8</FONT><FONT COLOR="#000000">. address shipping_addr;</FONT>
+</PRE>
+</div>
+
+<h2>Copy a structure into another structure</h2>
+<p>One of major advantage of structure is you can copy it with = operator. The syntax as follows:</p>
+<div class="code">
+<PRE>
+<FONT COLOR="#800080">1</FONT><FONT COLOR="#000000">. struct_intance1 = struct_intance2 </FONT>
+</PRE>
+</div>
+
+<p>be noted that some old C compilers may not supports structure assignment so you have to assign each member variables one by one.</p>
+
+<h2>Structure and sizeof function</h2>
+<p>sizeof is used to get the size of any data types even with any structures. For example:</p>
+<div class="code">
+<PRE>
+<FONT COLOR="#000000">#include &lt;stdio.h&gt; </FONT>
+
+<FONT COLOR="#000000">typedef struct __address{ </FONT>
+
+<FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">house_number;</FONT><FONT COLOR="#008000">// 4 bytes </FONT>
+
+<FONT COLOR="#0000ff">char </FONT><FONT COLOR="#000000">street[</FONT><FONT COLOR="#800080">50</FONT><FONT COLOR="#000000">]; </FONT><FONT COLOR="#008000">// 50 bytes</FONT>
+
+<FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">zip_code; </FONT><FONT COLOR="#008000">// 4 bytes</FONT>
+
+<FONT COLOR="#0000ff">char </FONT><FONT COLOR="#000000">country[</FONT><FONT COLOR="#800080">20</FONT><FONT COLOR="#000000">];</FONT><FONT COLOR="#008000">// 20 bytes </FONT>
+
+<FONT COLOR="#000000">} address;</FONT><FONT COLOR="#008000">//78 bytes in total </FONT>
+
+ <FONT COLOR="#0000ff">void </FONT><FONT COLOR="#000000">main() </FONT>
+
+<FONT COLOR="#000000">{ </FONT>
+
+<FONT COLOR="#008000">// it returns 80 bytes </FONT>
+
+<FONT COLOR="#000000">printf(</FONT><FONT COLOR="#ff00ff">"size of address is %d bytes\n"</FONT><FONT COLOR="#000000">,sizeof(address)); </FONT>
+
+<FONT COLOR="#000000">} </FONT>
+</PRE>
+</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="structure2.shtml" title="Accessing Structure Member">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="structure4.shtml" title="Structure in C: Example">Next</a></td>
+  </tr>
+</table>		 
+
+<!--Footer  --> 	
+</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/c/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>

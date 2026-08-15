@@ -1,0 +1,120 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD>
+<meta http-equiv="Content-Language" content="en-us">
+<TITLE>remove  duplicate white space,how to remove white space</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name="description" CONTENT="remove  duplicate white space,how to remove white space" >
+<meta name="keywords" CONTENT="remove  duplicate white space,how to remove white space">
+
+<!-- header start-->	
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>Java Programing laungage</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+            <img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+            <a href="/java/">Java</a>
+              <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/java/corejava">Core Java</a>
+               <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/java/corejava/packages">Package</a>
+                     <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/java/corejava/packages/lang">Java Util Package</a>
+              </div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/corejava/packages/util/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	 
+
+<div class="heading">Removing duplicate white spaces</div>
+<p>In this programming tutorials page, we shall be learn how to remove all white spaces from the given string by using the regular expressions. This page gives us an example for the best description about the way of removing all the duplicate white spaces from the given string.</p>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="limit_sizeof_logfile.shtml" title="limit sizeof logfile">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="compare_loglevel.shtml" title="compare loglevel">Next</a></td>
+  </tr> 
+</table>
+
+<!-- header End-->	
+
+<h2>Code Description</h2>
+<h3>Pattern pattern = Pattern.compile("\\s+")</h3>
+<p>This code is used to create an instance of the Pattern class which is compile the text or regular expression i.e. used to search in the specified string.</p>
+
+<h3>Matcher matcher = pattern.matcher(string)</h3> 
+<p>This code is used to create an instance of the Matcher class which is used to match the compiled character in the string which is passed through the matcher() method of the above created instance of the Pattern class.</p>   
+
+<h3>matcher.find()</h3>
+<p>The find() method of the instance of Matcher class is used for checking the compiled string matches in the specified string or not. Is is return the Boolean value either true or false.</p>
+<h3>matcher.replaceAll(" ")</h3>
+<p>This method is used to return the whole fresh string after replacing all duplicate white spaces by the help of the single space and then it crate a fresh string and return the whole string.</p>
+
+<h3>Example</h3>
+<div class="code">
+<PRE>
+<FONT FACE="Arial">
+<FONT COLOR="#0000ff">package </FONT><FONT COLOR="#000000">r4r;</FONT>
+<FONT COLOR="#0000ff">import </FONT><FONT COLOR="#000000">java.io.</FONT><FONT COLOR="#ff0000">BufferedReader</FONT><FONT COLOR="#000000">;</FONT>
+<FONT COLOR="#0000ff">import </FONT><FONT COLOR="#000000">java.io.</FONT><FONT COLOR="#ff0000">IOException</FONT><FONT COLOR="#000000">;</FONT>
+<FONT COLOR="#0000ff">import </FONT><FONT COLOR="#000000">java.io.</FONT><FONT COLOR="#ff0000">InputStreamReader</FONT><FONT COLOR="#000000">;</FONT>
+<FONT COLOR="#0000ff">import </FONT><FONT COLOR="#000000">java.util.*;</FONT>
+<FONT COLOR="#0000ff">import </FONT><FONT COLOR="#000000">java.util.regex.</FONT><FONT COLOR="#ff0000">Matcher</FONT><FONT COLOR="#000000">;</FONT>
+<FONT COLOR="#0000ff">import </FONT><FONT COLOR="#000000">java.util.regex.</FONT><FONT COLOR="#ff0000">Pattern</FONT><FONT COLOR="#000000">;</FONT>
+<FONT COLOR="#0000ff">public class </FONT><FONT COLOR="#000000">removewhitespace {</FONT>
+<FONT COLOR="#0000ff">public static void </FONT><FONT COLOR="#000000">main(</FONT><FONT COLOR="#ff0000">String</FONT><FONT COLOR="#000000">[] args) </FONT><FONT COLOR="#0000ff">throws </FONT><FONT COLOR="#ff0000">IOException</FONT><FONT COLOR="#000000">{</FONT>
+<FONT COLOR="#ff0000">BufferedReader </FONT><FONT COLOR="#000000">br = </FONT>
+<FONT COLOR="#0000ff">new </FONT><FONT COLOR="#ff0000">BufferedReader</FONT><FONT COLOR="#000000">(</FONT><FONT COLOR="#0000ff">new </FONT><FONT COLOR="#ff0000">InputStreamReader</FONT><FONT COLOR="#000000">(</FONT><FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.in));</FONT>
+<FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.print</FONT>
+<FONT COLOR="#000000">(</FONT><FONT COLOR="#ff00ff">"Enter string in which you want to search: "</FONT><FONT COLOR="#000000">);</FONT>
+<FONT COLOR="#ff0000">String </FONT><FONT COLOR="#000000">str = br.readLine();</FONT>
+<FONT COLOR="#ff0000">Pattern </FONT><FONT COLOR="#000000">pattern = </FONT><FONT COLOR="#ff0000">Pattern</FONT><FONT COLOR="#000000">.compile(</FONT><FONT COLOR="#ff00ff">"\\s+"</FONT><FONT COLOR="#000000">);</FONT>
+<FONT COLOR="#ff0000">Matcher </FONT><FONT COLOR="#000000">matcher = pattern.matcher(str);</FONT>
+<FONT COLOR="#0000ff">boolean </FONT><FONT COLOR="#000000">check = matcher.find();</FONT>
+<FONT COLOR="#ff0000">String </FONT><FONT COLOR="#000000">str1 = matcher.replaceAll(</FONT><FONT COLOR="#ff00ff">" "</FONT><FONT COLOR="#000000">);</FONT>
+<FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.println</FONT>
+ <FONT COLOR="#000000">(</FONT><FONT COLOR="#ff00ff">"String after removing all duplicate white spaces:"</FONT><FONT COLOR="#000000">+ str1);</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#000000">}</FONT>
+</FONT>
+</PRE>
+</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="limit_sizeof_logfile.shtml" title="limit sizeof logfile">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="compare_loglevel.shtml" title="compare loglevel">Next</a></td>
+  </tr> 
+</table>
+
+<!-- Footer Start-->
+		</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->

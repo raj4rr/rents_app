@@ -1,0 +1,97 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>fread() function in C Language</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="fread() function read nitem into each elements size specified of bytes indicate,c tutorial,c basics,programming language,fread() function,examples,pointer" >
+<meta name="keywords" CONTENT="c tutorial,c basics,programming language,fread() function,examples,pointer,function,loop,else,if else,while,array,pre processor,post processor,structures,memory menagement,string,constants,variables,decisions making,c unions,c memory allocation, c operators, C pointers,c error handling, c file handling">
+
+		<link href="/css/main.css" rel="stylesheet" type="text/css" />
+        <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+
+	</HEAD>
+	<BODY>
+	<?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style="padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>C Programming language</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a><img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/c/">C</a><img src="/images/left_menu_bullet.gif" width="11" height="6"/><a href="/c/c_topics/c_file_handling/">C File Handling</a></div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/c/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 
+
+		<!-- Header End-->	
+<div class="heading">Record I/O : How to use fread( ) Function in C</div> 
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;">
+    	<a href="block_read_write_and_how_to_use_fwrite_function_in_c.shtml" title="Record I/O : What is Block Read/Write, How to use fwrite( ) Function in C">Previous</a>
+    </td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="Random_access_file_in_c_and_how_to_use_fseek().shtml" title="How to use random access File in C: fseek( ) Function">Next</a></td>
+  </tr>
+</table>
+
+<p>The <font class="point_out">fread()</font> Function is a block oriented function and used to read a block of data from the file. It provide as much control as <font class="point_out">fgetc()</font> in the program, and has the advantage of being able to read more than one character in a single I/O operation.</p>
+<div class="code"><font color="#000000">fread (ptr, size, n, fptr);</font></div>
+<p>Here ptr is the address of data item (an array or a structure) where the block of data will be stored after reading, size is the size of the data item in bytes to be read, n is the number of data items and fptr is the file pointer of type FILE structure. The fread( ) function returns the number of full data items actually read, which may be less than n (possibly 0) if function causes any error.</p>
+<div class="code">
+<PRE><FONT><FONT COLOR="#008000">/* * program to understand the use of fread() */</FONT>
+<FONT COLOR="#ff0000">#include</FONT><FONT COLOR="#000000">&lt;stdio.h&gt;</FONT>
+<FONT COLOR="#ff0000">#include</FONT><FONT COLOR="#000000">&lt;conio.h&gt;</FONT>
+<FONT COLOR="#0000ff">void </FONT><FONT COLOR="#000000">main( )</FONT>
+<FONT COLOR="#000000">{</FONT>
+	<FONT COLOR="#000000">clrscr();</FONT>
+	<FONT COLOR="#000000">FILE *fp ;</FONT>
+	<FONT COLOR="#0000ff">struct </FONT><FONT COLOR="#000000">emp</FONT>
+	<FONT COLOR="#000000">{</FONT>
+		<FONT COLOR="#0000ff">char </FONT><FONT COLOR="#000000">name[</FONT><FONT COLOR="#800080">40</FONT><FONT COLOR="#000000">] ;</FONT>
+		<FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">age ;</FONT>
+		<FONT COLOR="#0000ff">float </FONT><FONT COLOR="#000000">bs ;</FONT>
+	<FONT COLOR="#000000">} ;</FONT>
+	<FONT COLOR="#0000ff">struct </FONT><FONT COLOR="#000000">emp e ;</FONT>
+	<FONT COLOR="#000000">fp = fopen ( </FONT><FONT COLOR="#ff00ff">"EMP.DAT"</FONT><FONT COLOR="#000000">, </FONT><FONT COLOR="#ff00ff">"rb" </FONT><FONT COLOR="#000000">) ;</FONT>
+	<FONT COLOR="#0000ff">if </FONT><FONT COLOR="#000000">( fp == NULL )</FONT>
+	<FONT COLOR="#000000">{</FONT>
+		<FONT COLOR="#000000">puts ( </FONT><FONT COLOR="#ff00ff">"Cannot open file" </FONT><FONT COLOR="#000000">) ;</FONT>
+		<FONT COLOR="#000000">exit( ) ;[an error occurred </FONT><FONT COLOR="#0000ff">while </FONT><FONT COLOR="#000000">processing </FONT><FONT COLOR="#0000ff">this </FONT><FONT COLOR="#000000">directive]</FONT>
+	<FONT COLOR="#000000">}</FONT>
+	<FONT COLOR="#0000ff">while </FONT><FONT COLOR="#000000">( fread ( &amp;e, </FONT><FONT COLOR="#0000ff">sizeof </FONT><FONT COLOR="#000000">( e ), </FONT><FONT COLOR="#800080">1</FONT><FONT COLOR="#000000">, fp ) == </FONT><FONT COLOR="#800080">1 </FONT><FONT COLOR="#000000">)</FONT>
+	<FONT COLOR="#000000">printf ( </FONT><FONT COLOR="#ff00ff">"\n%s %d %f"</FONT><FONT COLOR="#000000">, e.name, e.age, e.bs ) ;</FONT>
+	<FONT COLOR="#000000">fclose ( fp ) ;</FONT>
+	<FONT COLOR="#000000">getch();</FONT>
+<FONT COLOR="#000000">};</FONT></FONT></PRE>
+</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;">
+    	<a href="block_read_write_and_how_to_use_fwrite_function_in_c.shtml" title="Record I/O : What is Block Read/Write, How to use fwrite( ) Function in C">Previous</a>
+    </td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="Random_access_file_in_c_and_how_to_use_fseek().shtml" title="How to use random access File in C">Next</a></td>
+  </tr>
+</table>
+<!--Footer  --> 
+</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>

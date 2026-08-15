@@ -1,0 +1,147 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>Queries with modified Comparison Operators</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="SUB QUERIES,Queries with modified Comparison Operators" >
+<meta name="keywords" CONTENT="SUB QUERIES,Queries with modified Comparison Operators">
+
+<!--header start-->
+
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>DATABASE & SQL/PLSQL</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a><img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+			<a href="/sql/">SQL </a>
+              </div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/sql/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	  
+
+                        	                        	<!-- Header End-->	
+    <div class="heading">Queries with modified Comparison Operators</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="exits.shtml" title="Sub queries with EXITS Clause">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="exatract.shtml" title="Extracting Data Into Another Table">Next</a></td>
+  </tr>
+</table>     
+
+<p>SQL server provides the ALL and ANY keywords that can 
+be used to modify the existing comparison operator. The sub query introduced 
+with a modified comparison operator returns zero or more values and can be 
+implemented using the GROUP BY or HAVING clause.</p>
+
+<div class="table_content">
+<table>
+<tr>
+<td class="heading" style="width:20%;">Operator</td><td class="heading" style="width:80%;">Description</td>
+</tr>
+
+  <tr>
+    	<td class="alternate_heading1"><p>&gt;ALL</td>
+   <td class="alternate_heading1"><p>Means greater than the maximum value in the list.</p>
+    <p>column_name&gt;ALL (10,20,30) means 'greater than 30'</p></td>
+  </tr>
+
+  <tr>
+	<td class="alternate_heading2">&gt;ANY</td>
+    <td class="alternate_heading2"><p>Means greater than the minimum value in the list.</p>
+     <p>column_name&gt;ANY (10,20,30) means 'greater than 10'</p></td>
+  </tr>
+
+  <tr>
+  <td class="alternate_heading1">=ANY</td>
+    <td class="alternate_heading1"><p>Means any of the values in the list. It acts in the same way 
+    as the IN clause</p><p>column_name=ANY (10,20,30) means 'equal to either 10 or 20 or 30'</p></td>
+  </tr>
+
+  <tr>
+    <td class="alternate_heading2">&lt;&gt;ANY</td>
+  <td class="alternate_heading2"><p>Means not equal to any in the list.</p>
+    <p>column_name&lt;&gt;ANY (10,20,30) means 'not equal to either 10 or 20 or 30'</p></td>
+  </tr>
+
+  <tr>
+    <td class="alternate_heading1">&lt;&gt;ALL</td>
+  <td class="alternate_heading1"><p>Means not equal to all the values in the list. It acts in the same way as the NOT IN clause.</p>
+  <p>column_name&lt;&gt;ALL (10,20,30) means 'not 
+    equal to either 10 and 20 and 30'</p></td>
+  </tr>
+  </table>
+  </div>
+
+  <h3>Example</h3>
+  <div class="code">
+  <pre>
+ SELECT <i>title_id ,title</i>
+FROM <i>titles</i>
+WHERE <i>price</i>> ALL (SELECT <i>price</i> FROM <i>titles</i> WHERE <i>pub_id</i>='0736')
+  </pre>
+  </div>
+
+  <p><i>output</i></p>
+  <div class="output">
+ <div class="image">
+ <img src="Image/sbqry4.gif"> 
+ </div>
+ </div>
+ <p>Display the title_id and title where price is greater than the maximum price of books published by the publisher with the publisher ID 0736</p>
+ <div class="code">
+ <pre>
+ SELECT <i>title_id ,title</i>
+FROM  <i>titles</i>
+WHERE  <i>price></i>ANY(SELECT  <i>price</i>  FROM <i>titles</i>  WHERE <i>pub_id</i>='0736')
+ </pre>
+ </div>
+
+  <p><i>output</i></p>
+  <div class="output">
+  <div class="image">
+  <img src="Image/sbqry4.gif">
+  </div>
+  </div>
+  <p>Display the title_id and title where price is greater than the minimum price of books published by the publisher with the publisher ID 0736</p>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="exits.shtml" title="Sub queries with EXITS Clause">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="exatract.shtml" title="Extracting Data Into Another Table">Next</a></td>
+  </tr>
+</table> 
+
+                       <!--Footer  -->
+
+</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>

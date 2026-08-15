@@ -1,0 +1,127 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD>
+<meta http-equiv="Content-Language" content="en-us">
+<TITLE>Creating Url</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name="description" CONTENT="Java Networking Tutorial,Java Networking Example" >
+<meta name="keywords" CONTENT="Java Networking Tutorial,Java Networking Example">
+<!-- header start-->
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+	<BODY>
+		<?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+        <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>Java Networking Tutorials</h1>
+            <div class="link_menu"><br><div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+            <img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+            <a href="/java/">Java</a>
+  <img src="/images/left_menu_bullet.gif" width="11" height="6"> <a href="/java/corejava/">Core Java</a>
+    <img src="/images/left_menu_bullet.gif" width="11" height="6"> <a href="/java/corejava/packages/net/">Java Networking</a>
+
+</div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/corejava/packages/net/commonfiles/leftmenu.shtml'); ?></td>                                           
+                        <td style="80%" valign="top">
+
+                        <div class="main_content"> 	 
+	   	   <div class="heading">Creating Url</div>
+<p>In this Tutorials section we cover and explain Creating Url in details for freshers and experienced</p> 
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="The introduction for URL.shtml" title="The introduction for URL">previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="FactoryMethod.shtml"title="FactoryMethod">Next</a></td>
+  </tr>
+</table>
+	<!-- header End-->
+<h2>To Creating URL</h2>
+<p>The easy way to creating a URL object or instance is from a String. and it's represents the human-readable. The human -readable form of the URL address. This is typically the form that another person will use for a URL. Java program in using , you can create a URL object or instances to using a String containing.</p>
+<p>URL myURL = new URL("http://example.com/");</p>
+<p>The URL object or instances created and his above represents an absolute URL. This absolute URL contains to all of the information necessary, and this URL is to reach the resource in question. You can also create URL objects from a relative URL address.</p>
+<h2>To Parsing URL</h2>
+<p>The URL class providing several methods that let you query URL objects or instances. You can get the protocol, authority, host name, port number, path, query, filename, and reference from a URL using these accessor methods</p>
+<b>getProtocol</b>
+<p>Returns the protocol identifier component of the URL.</p>
+<b>getAuthority</b>
+<p>Returns the authority component of the URL.</p>
+<b>getHost</b>
+<p>Returns the host name component of the URL.</p>
+<b>getPort</b>
+<p>Returns the port number component of the URL. The getPort method returns an integer that is the port number. If the port is not set, getPort returns -1.</p>
+<b>getPath</b>
+<p>Returns the path component of this URL.</p>
+<b>getQuery</b>
+<p>Returns the query component of this URL.</p>
+<b>getFile</b>
+<p>Returns the filename component of the URL. The getFile method returns the same as getPath, plus the concatenation of the value of getQuery, if any.</p>
+<b>getRef</b>
+<p>Returns the reference component of the URL.</p>
+<b><i><p>Note:</i></b>Remember that not all URL addresses contain these components. The URL class provides these methods because HTTP URLs do contain these components and are perhaps the most commonly used URLs. The URL class is somewhat HTTP-centric.</p>
+<p>You can use these getXXX methods to get information about the URL regardless of the constructor that you used to create the URL object.</p>
+<p>The URL class, along with these accessor methods, frees you from ever having to parse URLs again! Given any string specification of a URL, just create a new URL object and call any of the accessor methods for the information you need. This small example program creates a URL from a string specification and then uses the URL object's accessor methods to parse the URL</p>
+<h3>Example</h3>
+
+<div class="code">
+<pre>
+<font color="#0000ff">import </font><font color="#000000">java.net.*;</font>
+<font color="#0000ff">import </font><font color="#000000">java.io.*;</font>
+
+<font color="#0000ff">public class </font><font color="#000000">ParseURL {</font>
+<font color="#0000ff">public static void </font><font color="#000000">main(</font><font color="#ff0000">String</font><font color="#000000">[] args) </font><font color="#0000ff">throws </font><font color="#ff0000">Exception </font><font color="#000000">{</font>
+<font color="#ff0000">URL </font><font color="#000000">aURL = </font><font color="#0000ff">new </font><font color="#ff0000">URL</font><font color="#000000">(</font><font color="#ff00ff">&quot;http://example.com:80/docs/books/tutorial&quot;</font>
+<font color="#000000">+ </font><font color="#ff00ff">&quot;/index.html?name=networking#DOWNLOADING&quot;</font><font color="#000000">);</font>
+<font color="#ff0000">System</font><font color="#000000">.out.println(</font><font color="#ff00ff">&quot;protocol = &quot; </font><font color="#000000">+ aURL.getProtocol());</font>
+<font color="#ff0000">System</font><font color="#000000">.out.println(</font><font color="#ff00ff">&quot;authority = &quot; </font><font color="#000000">+ aURL.getAuthority());</font>
+<font color="#ff0000">System</font><font color="#000000">.out.println(</font><font color="#ff00ff">&quot;host = &quot; </font><font color="#000000">+ aURL.getHost());</font>
+<font color="#ff0000">System</font><font color="#000000">.out.println(</font><font color="#ff00ff">&quot;port = &quot; </font><font color="#000000">+ aURL.getPort());</font>
+<font color="#ff0000">System</font><font color="#000000">.out.println(</font><font color="#ff00ff">&quot;path = &quot; </font><font color="#000000">+ aURL.getPath());</font>
+<font color="#ff0000">System</font><font color="#000000">.out.println(</font><font color="#ff00ff">&quot;query = &quot; </font><font color="#000000">+ aURL.getQuery());</font>
+<font color="#ff0000">System</font><font color="#000000">.out.println(</font><font color="#ff00ff">&quot;filename = &quot; </font><font color="#000000">+ aURL.getFile());</font>
+<font color="#ff0000">System</font><font color="#000000">.out.println(</font><font color="#ff00ff">&quot;ref = &quot; </font><font color="#000000">+ aURL.getRef());</font>
+<font color="#000000">}</font>
+<font color="#000000">}</font>
+<font color="#000000">Here</font><font color="#ff00ff">'s the output displayed by the program:</font>
+<font color="#000000">protocol = http</font>
+<font color="#000000">authority = example.com:</font><font color="#800080">80</font>
+<font color="#000000">host = example.com</font>
+<font color="#000000">port = </font><font color="#800080">80</font>
+<font color="#000000">path = /docs/books/tutorial/index.html</font>
+<font color="#000000">query = name=networking</font>
+<font color="#000000">filename = /docs/books/tutorial/index.html?name=networking</font>
+<font color="#000000">ref = DOWNLOADING</font>
+</font>
+</pre>
+</div>
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="The introduction for URL.shtml" title="The introduction for URL">previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="FactoryMethod.shtml"title="FactoryMethod">Next</a></td>
+  </tr>
+</table>
+<!-- Footer Start-->	
+		           </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+

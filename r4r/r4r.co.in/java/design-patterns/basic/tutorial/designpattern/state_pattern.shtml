@@ -1,0 +1,157 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD>
+<meta http-equiv="Content-Language" content="en-us">
+<TITLE>State Design Pattern Pattern</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name="description" CONTENT="State Design Pattern Pattern" >
+<meta name="keywords" CONTENT="State Design Pattern Pattern">
+
+<!-- header start-->	
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>Design Pattern Basic Tutorial</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+
+         		 <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/java/">java</a>           
+
+              <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/java/design-patterns/">Design Pattern</a>
+
+              </div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/design-patterns/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	 
+
+<!-- header end--> 
+
+<div class="heading">State Pattern</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="observer.shtml" title="observer">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="strategy_pattern.shtml" title="strategy_pattern">Next</a></td>
+  </tr> 
+</table>
+
+<p>The state pattern is used to represent the state of the object in the computer programming. this is a simple way for object to change the types in the runtime. when any object change the state then it information is represented by the its member class.
+</p>
+<div class="heading">Benefit and Use of State Pattern</div>	   
+ <ol>
+ <li>
+The state pattern is control many states without using any conditional statement.
+  </li><li>
+This is use a class for representation of object state.
+ </li><li>
+In this the every state is perform the act in similar manner.
+</li><li>
+Every state contain to the subclass of the super class.
+</li><li>
+It is Simplify the program and clarify it.
+  </li></ol>
+
+ <h3>Example</h3>
+
+<div class="code">
+<pre>
+<font color="#0000ff">package </font><font color="#000000">r4r;</font>
+<font color="#0000ff">interface </font><font color="#ff0000">State </font><font color="#000000">{ </font>
+<font color="#0000ff">void </font><font color="#000000">writeName(StateView sv, </font><font color="#ff0000">String </font><font color="#000000">name);</font>
+<font color="#000000">} </font>
+
+<font color="#0000ff">class </font><font color="#000000">A </font><font color="#0000ff">implements </font><font color="#ff0000">State </font><font color="#000000">{ </font>
+<font color="#0000ff">public void </font><font color="#000000">writeName(StateView sv, </font><font color="#ff0000">String </font><font color="#000000">name) { </font>
+<font color="#ff0000">System</font><font color="#000000">.out.println(name.toUpperCase()); </font>
+<font color="#000000">sv.setState(</font><font color="#0000ff">new </font><font color="#000000">B()); </font>
+<font color="#000000">} </font>
+<font color="#000000">} </font>
+
+<font color="#0000ff">class </font><font color="#000000">B </font><font color="#0000ff">implements </font><font color="#ff0000">State </font><font color="#000000">{ </font>
+<font color="#0000ff">private int </font><font color="#000000">count=</font><font color="#800080">0</font><font color="#000000">; </font>
+<font color="#0000ff">public void </font><font color="#000000">writeName(StateView sv, </font><font color="#ff0000">String </font><font color="#000000">name){ </font>
+<font color="#ff0000">System</font><font color="#000000">.out.println(name.toLowerCase()); </font>
+<font color="#008000">// change state after B writeName() gets invoked twice</font>
+<font color="#0000ff">if</font><font color="#000000">(++count&gt;</font><font color="#800080">1</font><font color="#000000">) { </font>
+<font color="#000000">sv.setState(</font><font color="#0000ff">new </font><font color="#000000">A()); </font>
+<font color="#000000">}</font>
+<font color="#000000">}</font>
+<font color="#000000">}</font>
+<font color="#0000ff">class </font><font color="#000000">StateView {</font>
+<font color="#0000ff">private </font><font color="#ff0000">State </font><font color="#000000">myStatestatus; </font>
+<font color="#0000ff">public </font><font color="#000000">StateView() { </font>
+<font color="#000000">setState(</font><font color="#0000ff">new </font><font color="#000000">A()); </font>
+<font color="#000000">} </font>
+
+<font color="#0000ff">public void </font><font color="#000000">setState(</font><font color="#ff0000">State </font><font color="#000000">newState) { </font>
+<font color="#0000ff">this</font><font color="#000000">.myStatestatus = newState; </font>
+<font color="#000000">}</font>
+
+<font color="#0000ff">public void </font><font color="#000000">writeName(</font><font color="#ff0000">String </font><font color="#000000">name) { </font>
+<font color="#0000ff">this</font><font color="#000000">.myStatestatus.writeName(</font><font color="#0000ff">this</font><font color="#000000">, name); </font>
+<font color="#000000">}</font>
+<font color="#000000">}</font>
+
+<font color="#0000ff">public class </font><font color="#000000">statetest {</font>
+<font color="#0000ff">public static void </font><font color="#000000">main(</font><font color="#ff0000">String</font><font color="#000000">[] args) { </font>
+<font color="#000000">StateView sv = </font><font color="#0000ff">new </font><font color="#000000">StateView(); </font>
+<font color="#000000">sv.writeName(</font><font color="#ff00ff">&quot;January&quot;</font><font color="#000000">); </font>
+<font color="#000000">sv.writeName(</font><font color="#ff00ff">&quot;February&quot;</font><font color="#000000">); </font>
+<font color="#000000">sv.writeName(</font><font color="#ff00ff">&quot;March&quot;</font><font color="#000000">); </font>
+<font color="#000000">sv.writeName(</font><font color="#ff00ff">&quot;April&quot;</font><font color="#000000">); </font>
+<font color="#000000">sv.writeName(</font><font color="#ff00ff">&quot;May&quot;</font><font color="#000000">); </font>
+<font color="#000000">sv.writeName(</font><font color="#ff00ff">&quot;June&quot;</font><font color="#000000">);</font>
+<font color="#000000">sv.writeName(</font><font color="#ff00ff">&quot;July&quot;</font><font color="#000000">);</font>
+<font color="#000000">sv.writeName(</font><font color="#ff00ff">&quot;August&quot;</font><font color="#000000">);</font>
+<font color="#000000">sv.writeName(</font><font color="#ff00ff">&quot;September&quot;</font><font color="#000000">);</font>
+<font color="#000000">sv.writeName(</font><font color="#ff00ff">&quot;October&quot;</font><font color="#000000">);</font>
+<font color="#000000">sv.writeName(</font><font color="#ff00ff">&quot;November&quot;</font><font color="#000000">);</font>
+<font color="#000000">sv.writeName(</font><font color="#ff00ff">&quot;December&quot;</font><font color="#000000">);</font>
+
+<font color="#000000">}</font>
+<font color="#000000">}</font>
+</pre>
+</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="observer.shtml" title="observer">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="strategy_pattern.shtml" title="strategy_pattern">Next</a></td>
+  </tr> 
+</table>
+
+<!-- Footer Start-->	   	
+
+		</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->
+

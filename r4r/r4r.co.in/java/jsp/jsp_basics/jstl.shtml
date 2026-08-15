@@ -1,0 +1,183 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD>
+<meta http-equiv="Content-Language" content="en-us">
+<TITLE>JSP Tutorials-JSTL in JSP</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name="keywords" content="JSP, Tutorials, Learning, Beginners, Basics, Life Cycle, Examples,Request, Server Response, Http, Filters, Exceptions, Cookies, Sessions, Database Access, File Uploading, File Uploading, Internationalization." />
+<meta name="description" content="JSP Tutorial - JSTL in JSP, JSP (Java Server Pages) in simple and easy steps using this beginner's tutorial" />
+
+<!-- header start-->	
+
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+
+<?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+     <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>JSP Tutorials</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+			<img src="/images/left_menu_bullet.gif"/> <a href="/java/">Java</a>
+			<img src="/images/left_menu_bullet.gif"/> <a href="/java/jsp/">JSP</a>
+
+			       </div>
+
+            	<table>
+                    <tr>
+
+                         <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/jsp/jsp_basics/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	 
+
+<div class="heading">JSTL in JSP</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="mvc.shtml" title="MVC in JSP">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="custom.shtml" title="Custom in JSP">Next</a></td>
+  </tr> 
+</table>
+
+<!-- header End--> 
+
+<h3>JSTL (JSP Standard Tag Library)
+</h3>
+
+<p>In JSTL is shows a set of tags to simplify the JSP development.
+</p>
+
+<p>
+Advantage
+</p>
+
+<ol>
+
+<li>Fast Developement</li>
+<li>Code Reusability </li>
+<li>No need to use scriptlet tag </li>
+</ol>
+
+<h3>There are following tags:
+</h3>
+
+<div class="table_content">
+ <table>
+ <tr><td class="heading" style="width:30%;"> Tag Name</td><td class="heading" style="width:70%;">Description </td></tr>
+
+<tr><td class="alternate_heading1">core tags</td><td class="alternate_heading1">The JSTL core tag provide variable support, URL management, flow control etc. The url for the core tag is http://java.sun.com/jsp/jstl/core . The prefix of core tag is c.</td></tr>
+<tr><td class="alternate_heading2">sql tags</td><td class="alternate_heading2">The JSTL sql tags provide SQL support. The url for the sql tags is http://java.sun.com/jsp/jstl/sql and prefix is sql.</td></tr>
+<tr><td class="alternate_heading1">xml tags</td><td class="alternate_heading1">The xml sql tags provide flow control, transformation etc. The url for the xml tags is http://java.sun.com/jsp/jstl/xml and prefix is x.</td></tr>
+<tr><td class="alternate_heading2">internationalization tags</td><td class="alternate_heading2">The internationalization tags provide support for message formatting, number and date formatting etc. The url for the internationalization tags is http://java.sun.com/jsp/jstl/fmt and prefix is fmt.</td></tr>
+<tr><td class="alternate_heading1">functions tags</td><td class="alternate_heading1">The functions tags provide support for string manipulation and string length. The url for the functions tags is http://java.sun.com/jsp/jstl/functions and prefix is fn.</td></tr>
+
+</table>
+</div>
+
+<h3>Syntax used
+	</h3>
+
+<div class="code">
+	<pre>
+<span style="font-family: Arial"><span style="color: #000000">    </span><span style="color: #800000">&lt;%</span><span style="color: #800000">@ taglib uri=</span><span style="color: #ff00ff">&quot;http://java.sun.com/jsp/jstl/core&quot; </span><span style="color: #800000">prefix=</span><span style="color: #ff00ff">&quot;c&quot; </span><span style="color: #800000">%&gt;</span><span style="color: #000000">  </span>
+
+<span style="color: #000000">    </span><span style="color: #800000">&lt;%</span><span style="color: #800000">@ taglib uri=</span><span style="color: #ff00ff">&quot;http://java.sun.com/jsp/jstl/core&quot; </span><span style="color: #800000">prefix=</span><span style="color: #ff00ff">&quot;c&quot; </span><span style="color: #800000">%&gt;</span><span style="color: #000000"> </span>
+</span></pre>
+</div>
+
+<i>c:catch</i>
+
+<p>Its a global exception handling of JSP and handles the exception. </p>
+
+<h3>Example  of c:catch</h3>
+
+<div class="code">
+<pre>
+<span style="font-family: Arial"><span style="color: #000000">    </span><span style="color: #800000">&lt;%</span><span style="color: #800000">@ taglib uri=</span><span style="color: #ff00ff">&quot;http://java.sun.com/jsp/jstl/core&quot; </span><span style="color: #800000">prefix=</span><span style="color: #ff00ff">&quot;c&quot; </span><span style="color: #800000">%&gt;</span><span style="color: #000000"> </span>
+<span style="color: #000000">    </span><span style="color: #0000ff">&lt;</span><span style="color: #808000">c:catch</span><span style="color: #0000ff">&gt;</span><span style="color: #000000">  </span>
+<span style="color: #000000">    int a=10/0;  </span>
+<span style="color: #000000">    </span><span style="color: #0000ff">&lt;/</span><span style="color: #808000">c:catch</span><span style="color: #0000ff">&gt;</span><span style="color: #000000">  </span>
+
+<span style="color: #000000">    </span><span style="color: #800000">&lt;%</span><span style="color: #800000">@ taglib uri=</span><span style="color: #ff00ff">&quot;http://java.sun.com/jsp/jstl/core&quot; </span><span style="color: #800000">prefix=</span><span style="color: #ff00ff">&quot;c&quot; </span><span style="color: #800000">%&gt;</span>
+<span style="color: #000000">    </span><span style="color: #0000ff">&lt;</span><span style="color: #808000">c:catch</span><span style="color: #0000ff">&gt;</span><span style="color: #000000">  </span>
+<span style="color: #000000">    int a=10/0;  </span>
+<span style="color: #000000">    </span><span style="color: #0000ff">&lt;/</span><span style="color: #808000">c:catch</span><span style="color: #0000ff">&gt;</span><span style="color: #000000">  </span>
+</span></pre>
+</div>
+
+<i>c:out</i>
+<p>This tag as a JSP expression tag.
+</p>
+
+<h3>Example of c:out</h3>
+
+<i>index.jsp</i>
+<div class="code">
+<pre>
+<span style="font-family: Arial"><span style="color: #000000">    </span><span style="color: #0000ff">&lt;form </span><span style="color: #ff0000">action</span><span style="color: #0000ff">=</span><span style="color: #ff00ff">&quot;process.jsp&quot; </span><span style="color: #ff0000">method</span><span style="color: #0000ff">=</span><span style="color: #ff00ff">&quot;post&quot;</span><span style="color: #0000ff">&gt;</span><span style="color: #000000">  </span>
+<span style="color: #000000">    FirstName:</span><span style="color: #0000ff">&lt;input </span><span style="color: #ff0000">type</span><span style="color: #0000ff">=</span><span style="color: #ff00ff">&quot;text&quot; </span><span style="color: #ff0000">name</span><span style="color: #0000ff">=</span><span style="color: #ff00ff">&quot;fname&quot;</span><span style="color: #0000ff">/&gt;&lt;br/&gt;</span><span style="color: #000000">  </span>
+<span style="color: #000000">    LastName:</span><span style="color: #0000ff">&lt;input </span><span style="color: #ff0000">type</span><span style="color: #0000ff">=</span><span style="color: #ff00ff">&quot;text&quot; </span><span style="color: #ff0000">name</span><span style="color: #0000ff">=</span><span style="color: #ff00ff">&quot;lname&quot;</span><span style="color: #0000ff">/&gt;&lt;br/&gt;</span><span style="color: #000000">  </span>
+<span style="color: #000000">    </span><span style="color: #0000ff">&lt;input </span><span style="color: #ff0000">type</span><span style="color: #0000ff">=</span><span style="color: #ff00ff">&quot;submit&quot; </span><span style="color: #ff0000">value</span><span style="color: #0000ff">=</span><span style="color: #ff00ff">&quot;submit&quot;</span><span style="color: #0000ff">/&gt;</span><span style="color: #000000">  </span>
+<span style="color: #000000">    </span><span style="color: #0000ff">&lt;/form&gt;</span><span style="color: #000000">  </span>
+
+<span style="color: #000000">    </span><span style="color: #0000ff">&lt;form </span><span style="color: #ff0000">action</span><span style="color: #0000ff">=</span><span style="color: #ff00ff">&quot;process.jsp&quot; </span><span style="color: #ff0000">method</span><span style="color: #0000ff">=</span><span style="color: #ff00ff">&quot;post&quot;</span><span style="color: #0000ff">&gt;</span><span style="color: #000000">  </span>
+<span style="color: #000000">    FirstName:</span><span style="color: #0000ff">&lt;input </span><span style="color: #ff0000">type</span><span style="color: #0000ff">=</span><span style="color: #ff00ff">&quot;text&quot; </span><span style="color: #ff0000">name</span><span style="color: #0000ff">=</span><span style="color: #ff00ff">&quot;fname&quot;</span><span style="color: #0000ff">/&gt;&lt;br/&gt;</span><span style="color: #000000">  </span>
+<span style="color: #000000">    LastName:</span><span style="color: #0000ff">&lt;input </span><span style="color: #ff0000">type</span><span style="color: #0000ff">=</span><span style="color: #ff00ff">&quot;text&quot; </span><span style="color: #ff0000">name</span><span style="color: #0000ff">=</span><span style="color: #ff00ff">&quot;lname&quot;</span><span style="color: #0000ff">/&gt;&lt;br/&gt;</span><span style="color: #000000">  </span>
+<span style="color: #000000">    </span><span style="color: #0000ff">&lt;input </span><span style="color: #ff0000">type</span><span style="color: #0000ff">=</span><span style="color: #ff00ff">&quot;submit&quot; </span><span style="color: #ff0000">value</span><span style="color: #0000ff">=</span><span style="color: #ff00ff">&quot;submit&quot;</span><span style="color: #0000ff">/&gt;</span><span style="color: #000000">  </span>
+<span style="color: #000000">    </span><span style="color: #0000ff">&lt;/form&gt;</span><span style="color: #000000">  </span>
+</span></pre>
+</div>
+
+<i>process.jsp</i>
+
+<div class="code">
+<pre>
+<span style="font-family: Arial"><span style="color: #000000">    </span><span style="color: #800000">&lt;%</span><span style="color: #800000">@ taglib uri=</span><span style="color: #ff00ff">&quot;http://java.sun.com/jsp/jstl/core&quot; </span><span style="color: #800000">
+prefix=</span><span style="color: #ff00ff">&quot;c&quot; </span><span style="color: #800000">%&gt;</span><span style="color: #000000"> First Name:</span><span style="color: #0000ff">&lt;</span><span style="color: #808000">c:out </span><span style="color: #ff0000">value</span><span style="color: #0000ff">=</span><span style="color: #ff00ff">&quot;${param.fname}&quot;</span><span style="color: #0000ff">&gt;&lt;/</span><span style="color: #808000">c:out</span><span style="color: #0000ff">&gt;&lt;br/&gt;</span><span style="color: #000000">  </span>
+<span style="color: #000000">    Last Name:</span><span style="color: #0000ff">&lt;</span><span style="color: #808000">c:out </span><span style="color: #ff0000">value</span><span style="color: #0000ff">=</span><span style="color: #ff00ff">&quot;${param.lname}&quot;</span><span style="color: #0000ff">&gt;&lt;/</span><span style="color: #808000">c:out</span><span style="color: #0000ff">&gt;</span><span style="color: #000000">  </span>
+
+<span style="color: #000000">    </span><span style="color: #800000">&lt;%</span><span style="color: #800000">@ taglib uri=</span><span style="color: #ff00ff">&quot;http://java.sun.com/jsp/jstl/core&quot; </span><span style="color: #800000">
+prefix=</span><span style="color: #ff00ff">&quot;c&quot; </span><span style="color: #800000">%&gt;</span><span style="color: #000000"> First Name:</span><span style="color: #0000ff">&lt;</span><span style="color: #808000">c:out </span><span style="color: #ff0000">value</span><span style="color: #0000ff">=</span><span style="color: #ff00ff">&quot;${param.fname}&quot;</span><span style="color: #0000ff">&gt;&lt;/</span><span style="color: #808000">c:out</span><span style="color: #0000ff">&gt;&lt;br/&gt;</span><span style="color: #000000">  </span>
+<span style="color: #000000">    Last Name:</span><span style="color: #0000ff">&lt;</span><span style="color: #808000">c:out </span><span style="color: #ff0000">value</span><span style="color: #0000ff">=</span><span style="color: #ff00ff">&quot;${param.lname}&quot;</span><span style="color: #0000ff">&gt;&lt;/</span><span style="color: #808000">c:out</span><span style="color: #0000ff">&gt;</span><span style="color: #000000">  </span>
+</span></pre>
+</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="mvc.shtml" title="MVC in JSP">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="custom.shtml" title="Custom in JSP">Next</a></td>
+  </tr> 
+</table>
+
+	<!--Footer  --> 
+
+		</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+
+<!-- Footer End-->
+

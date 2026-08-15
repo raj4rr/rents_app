@@ -1,0 +1,140 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD>
+<meta http-equiv="Content-Language" content="en-us">
+<TITLE>File I/O,operation on file,delete,modification of file,working with directory</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name="description" CONTENT="File I/O,operation on file,delete,modification of file,working with directory" >
+<meta name="keywords" CONTENT="File I/O,operation on file,delete,modification of file,working with directory">
+<!-- header start-->	
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>Java Programing laungage</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+            <img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+            <a href="/java/">Java</a>
+              <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/java/corejava">Core Java</a>
+               <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/java/corejava/packages">Package</a>
+                     <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/java/corejava/packages/io">Java IO Package</a>
+              </div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/corejava/packages/io/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	 
+
+<div class="heading">File Input Output</div>
+<p>The file i/o is a way of the making the platform independent code  which is examine and manipulate the file. The file instances represent the file name. this class is included into the<b> java.lang; package.</b></p>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="make_class_serializable.shtml" title="make class serializable">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="working_with_directory.shtml" title="working with directory">Next</a></td>
+  </tr>
+</table>
+<!-- header End-->  
+
+<p>Why we are creating the object for file, which is not exist A program is used the object to parse a file name. we know that the file is created after passing the object to the constructor, such as FileWriter.</p>
+<p>If the file is exist, a program can examine its attribute and perform the many operation on it like deletion, renaming and changing its performance.</p>
+
+<h2>File Name</h2>
+<p>The file object contain the name string to construct it. this object is never change in hole life of the object. the program can use the file object to obtain other version of the file name.</p>
+<p>Suppose a program creates a file object with constructor invocation</p>
+<div class="code">
+<PRE>
+<FONT FACE="Courier New">
+<FONT COLOR="#ff0000">File </FONT><FONT COLOR="#000000">fl=</FONT><FONT COLOR="#0000ff">new </FONT><FONT COLOR="#ff0000">File</FONT><FONT COLOR="#000000">(</FONT><FONT COLOR="#ff00ff">"xanadu.txt"</FONT><FONT COLOR="#000000">); </FONT>
+</FONT>
+</PRE>
+</div>   	   
+<p>In this the number of method is invoke to obtain the different version of the file name. then the program is run both operating system, on Microsoft Window System and Solaries System. and there are some method return like:</p>
+
+<div class="table_content">
+<table>
+	<tr><td class="heading" style="width:33%;"> Method Invoke </td><td class="heading" style="width:33%;">Return on MS</td>
+    <td class="heading" style="width:34%;">Return on Solaries</td></tr>
+    <tr><td class="alternate_heading1">ToString();</td><td class="alternate_heading1">xanadu.txt </td><td class="alternate_heading1"> xanadu.txt</td></tr>
+     <tr><td class="alternate_heading2">getName();</td><td class="alternate_heading2">xanadu.txt</td><td class="alternate_heading2">xanadu.txt</td></tr>
+     <tr><td class="alternate_heading1">getParent();</td><td class="alternate_heading1">NULL</td><td class="alternate_heading1">NULL</td></tr>
+     <tr><td class="alternate_heading2">getAbsolutePath();</td><td class="alternate_heading2">c:\java\examples\xanadu.txt</td><td class="alternate_heading2">/home/cafe/java/examples/xanadu.txt</td></tr>
+         <tr><td class="alternate_heading1">getCanonicalPath();</td><td class="alternate_heading1">c:\java\examples\xanadu.txt </td><td class="alternate_heading1">/home/cafe/java/examples/xanadu.txt</td></tr>
+ </table>     
+   </div>
+
+<h2>Manipulating File</h2>
+<p>If a file object name is same as actual file name ,then program can use it to perform the number of the operation.this operation may be reading, writing and so on. The delete method is used to delete the file immediately but the DeleteOnExit method delete the file untill the virtual machine terminates. </p>
+
+<p>The method <b>SetLastModified()</b> is used to sets the modification date/time for file.</p>
+<h3>Example</h3>
+<div class="code">
+<PRE>
+<FONT FACE="Courier New">
+<FONT COLOR="#0000ff">new </FONT><FONT COLOR="#ff0000">File</FONT><FONT COLOR="#000000">(xanadu.txt).setLastModified(</FONT><FONT COLOR="#0000ff">new </FONT><FONT COLOR="#ff0000">Date</FONT><FONT COLOR="#000000">().getTime()); </FONT>
+</FONT>
+</PRE>
+</div>
+<p>The <b>renameTo()</b> method is used to rename the file name.  </p>
+<h3>Example</h3>
+<div class="code">
+<PRE>
+<FONT FACE="Courier New">
+<FONT COLOR="#0000ff">import </FONT><FONT COLOR="#000000">java.io.</FONT><FONT COLOR="#ff0000">File</FONT><FONT COLOR="#000000">;</FONT>
+<FONT COLOR="#0000ff">public class </FONT><FONT COLOR="#000000">Deleteexam{</FONT>
+<FONT COLOR="#0000ff">public static void </FONT><FONT COLOR="#000000">main(</FONT><FONT COLOR="#ff0000">String</FONT><FONT COLOR="#000000">[] args){</FONT>
+<FONT COLOR="#0000ff">try</FONT><FONT COLOR="#000000">{</FONT>
+<FONT COLOR="#ff0000">File </FONT><FONT COLOR="#000000">file= </FONT><FONT COLOR="#0000ff">new </FONT><FONT COLOR="#ff0000">File</FONT><FONT COLOR="#000000">(</FONT><FONT COLOR="#ff00ff">"c:\shyam.log"</FONT><FONT COLOR="#000000">);</FONT>
+<FONT COLOR="#0000ff">if</FONT><FONT COLOR="#000000">(file.delete())(</FONT>
+<FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.println(file.getName(),+</FONT><FONT COLOR="#ff00ff">"is delete"</FONT><FONT COLOR="#000000">);}</FONT>
+<FONT COLOR="#0000ff">else</FONT><FONT COLOR="#000000">{</FONT>
+<FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.println(</FONT><FONT COLOR="#ff00ff">"File already deleted"</FONT><FONT COLOR="#000000">);</FONT>
+<FONT COLOR="#000000">}}</FONT>
+<FONT COLOR="#0000ff">catch</FONT><FONT COLOR="#000000">(</FONT><FONT COLOR="#ff0000">Exception </FONT><FONT COLOR="#000000">e){</FONT>
+<FONT COLOR="#000000">e.printStackTree();</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#000000">}</FONT>
+</FONT>
+</PRE>
+</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="make_class_serializable.shtml" title="make class serializable">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="working_with_directory.shtml" title="working with directory">Next</a></td>
+  </tr>
+</table>
+
+<!-- Footer Start-->
+
+	</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->

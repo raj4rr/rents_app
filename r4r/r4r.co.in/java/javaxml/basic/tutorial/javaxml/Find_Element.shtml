@@ -1,0 +1,147 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD>
+<meta http-equiv="Content-Language" content="en-us">
+<TITLE>Find Element into XML Document</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name="description" CONTENT="Find Element into XML Document" >
+<meta name="keywords" CONTENT="Find Element into XML Document">
+<!-- header start-->	
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>JAVA XML</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+            <img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+            <a href="/java/">Java</a>
+              <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/java/javaxml">Java XML</a>
+                                   <img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+								   <a href="/java/javaxml/basic/tutorial/javaxml/">JAVA XML Basics</a>
+              </div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/javaxml/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	 
+
+<!-- header End-->
+<div class="heading">Find Element into XML Document</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="fetch_all_record.shtml" title="Fetch all XML Elements">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="Finderror.shtml" title="XML checker Error and locater">Next</a></td>
+  </tr> 
+</table>
+
+<p>In this program, we will learn to find an element in the specified XML file using DOM APIs defined in the
+org.apache.xerces.parsers.DOMParser package. Your classpath must contain xercesImpl.jar and xml-apis.jar files to run
+this program. You can download it from Xerces
+</p>
+<p>Here is the XML File: Student_Detail.xml</p>
+
+<div class="code">
+<pre>
+<font face="Arial"><font color="#0000ff">&lt;?xml </font><font color="#ff0000">version </font><font color="#0000ff">= </font><font color="#ff00ff">&quot;1.0&quot; </font><font color="#800080">?</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">Student_Detail</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">Student</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">stu_Id</font><font color="#0000ff">&gt;</font><font color="#000000"> s-001 </font><font color="#0000ff">&lt;/</font><font color="#808000">stu_Id</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">stu_Name</font><font color="#0000ff">&gt;</font><font color="#000000"> samir </font><font color="#0000ff">&lt;/</font><font color="#808000">stu_Name</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">stu_E-mail</font><font color="#0000ff">&gt;</font><font color="#000000"> sam1@gmail.com </font><font color="#0000ff">&lt;/</font><font color="#808000">stu_E-mail</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">Student</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">Student</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">stu_Id</font><font color="#0000ff">&gt;</font><font color="#000000"> s-002 </font><font color="#0000ff">&lt;/</font><font color="#808000">stu_Id</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">stu_Name</font><font color="#0000ff">&gt;</font><font color="#000000"> Ajit </font><font color="#0000ff">&lt;/</font><font color="#808000">stu_Name</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">stu_E-mail</font><font color="#0000ff">&gt;</font><font color="#000000"> Ajit2@yahoo.com </font><font color="#0000ff">&lt;/</font><font color="#808000">stu_E-mail</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">Student</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">Student</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">stu_Id</font><font color="#0000ff">&gt;</font><font color="#000000"> E-003 </font><font color="#0000ff">&lt;/</font><font color="#808000">stu_Id</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">stu_Name</font><font color="#0000ff">&gt;</font><font color="#000000"> Deepti </font><font color="#0000ff">&lt;/</font><font color="#808000">stu_Name</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">stu_E-mail</font><font color="#0000ff">&gt;</font><font color="#000000"> Deep3@yahoo.com </font><font color="#0000ff">&lt;/</font><font color="#808000">stu_E-mail</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">Student</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">Student-Detail</font><font color="#0000ff">&gt;</font></font>
+</pre>
+</div>
+
+<p>Here is the Java File: FindElement.java</p>
+<div class="code">
+<pre>
+<font face="Arial"><font color="#0000ff">package </font><font color="#000000">r4r;</font>
+<font color="#0000ff">import </font><font color="#000000">org.w3c.dom.*;</font>
+<font color="#0000ff">import </font><font color="#000000">org.apache.xerces.parsers.DOMParser;</font>
+<font color="#0000ff">import </font><font color="#000000">java.io.*;</font>
+<font color="#0000ff">public class </font><font color="#000000">findelement {</font>
+<font color="#0000ff">public static void </font><font color="#000000">main(</font><font color="#ff0000">String</font><font color="#000000">[] args) {</font>
+<font color="#0000ff">try</font><font color="#000000">{</font>
+<font color="#ff0000">BufferedReader </font><font color="#000000">br = </font><font color="#0000ff">new </font><font color="#ff0000">BufferedReader</font><font color="#000000">(</font>
+<font color="#0000ff">new </font><font color="#ff0000">InputStreamReader</font><font color="#000000">(</font><font color="#ff0000">System</font><font color="#000000">.in));</font>
+<font color="#ff0000">System</font><font color="#000000">.out.print(</font><font color="#ff00ff">&quot;Enter the file name: &quot;</font><font color="#000000">);</font>
+<font color="#ff0000">String </font><font color="#000000">str = br.readLine();</font>
+<font color="#ff0000">File </font><font color="#000000">file = </font><font color="#0000ff">new </font><font color="#ff0000">File</font><font color="#000000">(str);</font>
+<font color="#0000ff">if </font><font color="#000000">(file.exists()){</font>
+<font color="#000000">DOMParser pars = </font><font color="#0000ff">new </font><font color="#000000">DOMParser();</font>
+<font color="#000000">pars.parse(str);</font>
+<font color="#ff0000">Document </font><font color="#000000">docu = pars.getDocument();</font>
+<font color="#ff0000">System</font><font color="#000000">.out.print(</font><font color="#ff00ff">&quot;Enter element which have to find: &quot;</font><font color="#000000">);</font>
+<font color="#ff0000">String </font><font color="#000000">str1 = br.readLine();</font>
+<font color="#ff0000">NodeList </font><font color="#000000">list1 = docu.getElementsByTagName(str1);</font>
+<font color="#0000ff">if</font><font color="#000000">(list1.getLength() == </font><font color="#800080">0</font><font color="#000000">){</font>
+<font color="#ff0000">System</font><font color="#000000">.out.println(</font><font color="#ff00ff">&quot;Element doesn't exist in the &quot; </font><font color="#000000">+</font>
+<font color="#000000">str + </font><font color="#ff00ff">&quot; Document.&quot;</font><font color="#000000">);</font>
+<font color="#000000">}</font>
+<font color="#0000ff">else</font><font color="#000000">{</font>
+<font color="#ff0000">System</font><font color="#000000">.out.println(</font><font color="#ff00ff">&quot;Element occurrs &quot; </font><font color="#000000">+</font>
+<font color="#000000">list1.getLength() + </font><font color="#ff00ff">&quot; times in the &quot; </font><font color="#000000">+ str);</font>
+<font color="#000000">}</font>
+<font color="#000000">}</font>
+<font color="#0000ff">else</font><font color="#000000">{</font>
+<font color="#ff0000">System</font><font color="#000000">.out.println(</font><font color="#ff00ff">&quot;File not found!&quot;</font><font color="#000000">);</font>
+<font color="#000000">}</font>
+<font color="#000000">}</font>
+<font color="#0000ff">catch </font><font color="#000000">(</font><font color="#ff0000">Exception </font><font color="#000000">e){</font>
+<font color="#000000">e.getMessage();</font>
+<font color="#000000">}</font>
+<font color="#000000">}</font></font>
+</pre>
+</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="fetch_all_record.shtml" title="Fetch all XML Elements">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="Finderror.shtml" title="XML checker Error and locater">Next</a></td>
+  </tr> 
+</table>
+
+<!-- Footer Start-->	
+
+		</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->

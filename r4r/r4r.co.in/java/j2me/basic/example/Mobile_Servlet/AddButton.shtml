@@ -1,0 +1,153 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD>
+<meta http-equiv="Content-Language" content="en-us">
+<TITLE>Creating a J2ME Application for addButton into Form</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name="description" CONTENT="AWT Examples,AWT Tutorials,AWT Tutorials for Begginers" >
+<meta name="keywords" CONTENT="AWT Examples,AWT Tutorials,AWT Tutorials for Begginers">
+<!-- header start-->	
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>Java Programing laungage</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+            <img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+            <a href="/java/">Java</a>
+              <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/java/j2me/">J2ME</a>
+                     <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/java/j2me/basic/example/Mobile_Servlet/">J2ME BASIC TUTORIALS</a>
+              </div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/j2me/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	 
+<!-- header End-->  
+
+<div class="heading">Creating a J2ME Application for addButton into Form</div>
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="addAlert.shtml" title="addAlert">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="addCanvas.shtml" title="addCanvas">Next</a></td>
+  </tr> 
+</table>
+<h3> Application for addButton into Form</h3>
+<p><i>Command</i>The Commands may be implemented in any user interface construct that has semantics for activating a single action.</p>
+<p><i>Command command</i>= new Command(lable, commandType, priority);</p>
+<p><i>label</i> = The label strings are what the application requests to be shown to the user to represent this command</p>
+<p><i>commandType</i> = The application uses the command type to specify the intent of this command</p>
+<p><i>Priority</i> = The application uses the priority value to describe the importance of this command relative to other commands on the same screen. Priority values are integers, where a lower number indicates greater importance.</p>
+<h3>Button Program</h3>
+<div class="code">
+<pre>
+<font face="Arial">
+<font color="#008000">/*</font>
+<font color="#008000"> * Save as a addButton.java</font>
+<font color="#008000"> */</font>
+<font color="#0000ff">package </font><font color="#000000">r4r.Mobile.Basic;</font>
+
+<font color="#0000ff">import </font><font color="#000000">javax.microedition.lcdui.*;</font>
+<font color="#0000ff">import </font><font color="#000000">javax.microedition.midlet.*;</font>
+
+<font color="#008000">/**</font>
+<font color="#008000"> * @author R4R</font>
+<font color="#008000"> */</font>
+<font color="#0000ff">public class </font><font color="#000000">addButton </font><font color="#0000ff">extends </font><font color="#000000">MIDlet </font><font color="#0000ff">implements </font><font color="#000000">CommandListener {</font>
+
+    <font color="#008000">/* -- private field -- */</font>
+    <font color="#0000ff">private </font><font color="#000000">Form form;</font>
+    <font color="#0000ff">private </font><font color="#000000">Display display;</font>
+    <font color="#0000ff">private </font><font color="#000000">Command exit, select, help, back;</font>
+
+    <font color="#008000">/* -- Default constructor -- */</font>
+    <font color="#0000ff">public </font><font color="#000000">addButton() {</font>
+        <font color="#000000">display = Display.getDisplay(</font><font color="#0000ff">this</font><font color="#000000">);</font>
+
+        <font color="#008000">/* -- initialized field -- */</font>
+        <font color="#000000">form = </font><font color="#0000ff">new </font><font color="#000000">Form(</font><font color="#ff00ff">&quot;Add Button into form&quot;</font><font color="#000000">);</font>
+        <font color="#000000">select = </font><font color="#0000ff">new </font><font color="#000000">Command(</font><font color="#ff00ff">&quot;SELECT&quot;</font><font color="#000000">, Command.OK, </font><font color="#800080">1</font><font color="#000000">);</font>
+        <font color="#000000">exit = </font><font color="#0000ff">new </font><font color="#000000">Command(</font><font color="#ff00ff">&quot;EXIT&quot;</font><font color="#000000">, Command.EXIT, </font><font color="#800080">1</font><font color="#000000">);</font>
+        <font color="#000000">help = </font><font color="#0000ff">new </font><font color="#000000">Command(</font><font color="#ff00ff">&quot;HELP&quot;</font><font color="#000000">, Command.HELP, </font><font color="#800080">2</font><font color="#000000">);</font>
+        <font color="#000000">back = </font><font color="#0000ff">new </font><font color="#000000">Command(</font><font color="#ff00ff">&quot;BACK&quot;</font><font color="#000000">, Command.BACK, </font><font color="#800080">2</font><font color="#000000">);</font>
+
+        <font color="#008000">/*-- Add button into form --*/</font>
+        <font color="#000000">form.addCommand(select);</font>
+        <font color="#000000">form.addCommand(help);</font>
+        <font color="#000000">form.addCommand(back);</font>
+        <font color="#000000">form.addCommand(exit);</font>
+
+        <font color="#008000">/* -- Add button functionality -- */</font>
+        <font color="#000000">form.setCommandListener(</font><font color="#0000ff">this</font><font color="#000000">);</font>
+    <font color="#000000">}</font>
+
+    <font color="#0000ff">public void </font><font color="#000000">startApp() {</font>
+        <font color="#000000">display.setCurrent(form);</font>
+    <font color="#000000">}</font>
+
+    <font color="#0000ff">public void </font><font color="#000000">pauseApp() {</font>
+    <font color="#000000">}</font>
+
+    <font color="#0000ff">public void </font><font color="#000000">destroyApp(</font><font color="#0000ff">boolean </font><font color="#000000">unconditional) {</font>
+    <font color="#000000">}</font>
+
+    <font color="#0000ff">public void </font><font color="#000000">commandAction(Command c, Displayable d) {</font>
+        <font color="#0000ff">if </font><font color="#000000">(c == exit) {</font>
+            <font color="#000000">destroyApp(</font><font color="#0000ff">true</font><font color="#000000">);   </font><font color="#008000">// invoked MIDlet to terminate state</font>
+            <font color="#000000">notifyDestroyed(); </font>
+	<font color="#008000">// notify to application management software that MIDlet</font>
+	<font color="#008000">//has entered into Destroyed state.</font>
+        <font color="#000000">} </font><font color="#0000ff">else if </font><font color="#000000">(c == select) {</font>
+            <font color="#008000">// Add select button listner functionality. </font>
+        <font color="#000000">} </font><font color="#0000ff">else if </font><font color="#000000">(c == help) {</font>
+            <font color="#008000">// Add help button listner functionality. </font>
+        <font color="#000000">} </font><font color="#0000ff">else if </font><font color="#000000">(c == back) {</font>
+            <font color="#008000">// Add back button listner functionality. </font>
+        <font color="#000000">}</font>
+    <font color="#000000">}</font>
+<font color="#000000">}</font>
+</font>
+</pre>
+</div>
+
+<div class="output"><i>output </i></div>
+<div class="image"><img src="images/addbutton.png">
+</div>
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="addAlert.shtml" title="addAlert">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="addCanvas.shtml" title="addCanvas">Next</a></td>
+  </tr> 
+</table>
+<!-- Footer Start-->	
+
+		</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->

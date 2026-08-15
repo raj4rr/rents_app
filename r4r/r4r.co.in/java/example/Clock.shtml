@@ -1,0 +1,406 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>Java Clock Using Applet And Thread</TITLE>
+<META content=r4r.co.in name=owner>
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="Java Clock Using Applet And Thread" >
+<meta name="keywords" CONTENT="Java Clock Using Applet And Thread">
+<META content="Rajesh Kumar" name=author>
+<META http-equiv=expires content=0>
+<script type="text/javascript" src="/js/main.js"></script>
+		<link rel="stylesheet" type="text/css" href="/css/style.css" />
+	    <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+
+	</HEAD>
+	<BODY>
+		<table class="wrap" align="center"  cellpadding="0" cellspacing="0">
+			<tr>
+				<td class="m" align="left" valign="top">
+					<?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+				</td>
+						</tr>
+						<tr class="headerTR1">
+							<td>
+							<?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+							</td>
+						</tr>
+						<tr>
+							<td class="headerTR2">
+								<?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+							</td>
+						</tr>
+
+						<tr>
+							<td class="headerTR3">
+								<?php @include($_SERVER['DOCUMENT_ROOT'] . '/common-files/menu.shtml'); ?>
+							</td>
+							</td>
+
+						</tr>
+						<tr>
+							<td>
+								<?php @include($_SERVER['DOCUMENT_ROOT'] . '/common-files/gaps.shtml'); ?>
+							</td>
+						</tr>
+
+						<tr>
+
+			               <td class="content">
+								<table>
+									<tr>
+
+								  <?php @include($_SERVER['DOCUMENT_ROOT'] . '/common-files/tdgaps.shtml'); ?>
+								<td class="td1"   valign="top" >
+
+							     <DIV style="margin-left:15px;">
+			<table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse"  width="100%">
+  <tr>
+    <td width="100%">
+    <font face="Verdana" size="2">
+    <A href="/">R4R</A>
+<img border="0" src="/images/left_menu_bullet.gif" width="11" height="6"><a href="/sourcecode">Java SourceCode</a>
+<img border="0" src="/images/left_menu_bullet.gif" width="11" height="6"><a href=" ">Java 
+    Clock Using Applet And Thread</a></font></td>
+  </tr>
+</table>
+
+	<!-- Header End-->  <p align="left">
+
+ <font color="#0066FF" face="Verdana"><b>Java Clock Using Applet 
+And Thread</b></font></p>
+<p><font face="Verdana" size="2">In this program we are going to learn how we can make a clock using Java 
+Thread. We are using&nbsp; the applet for graphical presentations (GUI).</font></p>
+<p><font face="Verdana" size="2">We are making a thread which is timer thread 
+.This is for display the time clock. We&nbsp; implements the class&nbsp; by 
+Runnable interface to make a thread as we know we can make thread by two ways 
+1.By extends Thread Class and 2.by implements Runnable interface. We are using 
+Runnable interface because in java we can not make multiple inheritance .We are 
+extend here Applet here for make GUI.&nbsp;&nbsp; </font></p>
+<p><font face="Verdana" size="2">We are importing the following packages j<b>ava.util.*,java.awt.*,java.applet.* 
+and&nbsp; java.text.*</b> .The <b>java.util.*</b> package is import&nbsp; for 
+take the property of <b>Date</b> Class,<b>NumberFormatException</b> Class,<b> 
+SimpleTimeForamt</b> Class and its methods. The <b>java.awt.*</b> package is 
+import for the property those class which is used for make <b>GUI</b> ,make 
+circle and lines.The <b>java.text.*</b>&nbsp; package is import for the property 
+of&nbsp; <b>SimpleDateFormat</b>&nbsp; class and its methods.</font></p>
+<p><font face="Verdana" size="2"><b>Classes and Methods used:<br>
+</b>We are using&nbsp; following predefined methods and classes.<br>
+We are using following Classes:<br>
+Applet class:<br>
+This class is used for GUI<br>
+SimpleTimeForamt Class:<br>
+Date Class<br>
+Color Class<br>
+Font Class<br>
+NullPointerException Class<br>
+NumberFormatException Class<br>
+Graphics Class<br>
+Integer Class <br>
+Math Class<br>
+Thread Class <br>
+InterruptedException Class</font></p>
+<table border="1" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="36%" id="AutoNumber1">
+  <tr>
+    <td width="100%">
+<PRE><FONT FACE="Verdana"><FONT COLOR="#0000ff">package </FONT><FONT COLOR="#000000">com.r4r.example;</FONT>
+<FONT COLOR="#0000ff">import </FONT><FONT COLOR="#000000">java.util.*;</FONT>
+<FONT COLOR="#0000ff">import </FONT><FONT COLOR="#000000">java.awt.*;</FONT>
+<FONT COLOR="#0000ff">import </FONT><FONT COLOR="#000000">java.applet.*;</FONT>
+<FONT COLOR="#0000ff">import </FONT><FONT COLOR="#000000">java.text.*;</FONT>
+
+<FONT COLOR="#0000ff">public class </FONT><FONT COLOR="#000000">Clock </FONT><FONT COLOR="#0000ff">extends </FONT><FONT COLOR="#ff0000">Applet </FONT><FONT COLOR="#0000ff">implements
+ </FONT><FONT COLOR="#ff0000">Runnable </FONT><FONT COLOR="#000000">{</FONT>
+    <FONT COLOR="#0000ff">private volatile </FONT><FONT COLOR="#ff0000">Thread </FONT><FONT COLOR="#000000">timer;       
+</FONT><FONT COLOR="#008000">// The thread that displays clock</FONT>
+    <FONT COLOR="#0000ff">private int </FONT><FONT COLOR="#000000">lastxs, lastys, lastxm,</FONT>
+                <FONT COLOR="#000000">lastym, lastxh, lastyh;  
+</FONT><FONT COLOR="#008000">// Dimensions used to draw hands </FONT>
+    <FONT COLOR="#0000ff">private </FONT><FONT COLOR="#ff0000">SimpleDateFormat </FONT><FONT COLOR="#000000">formatter;  
+</FONT><FONT COLOR="#008000">// Formats the date displayed</FONT>
+    <FONT COLOR="#0000ff">private </FONT><FONT COLOR="#ff0000">String </FONT><FONT COLOR="#000000">lastdate;             </FONT><FONT COLOR="#008000">
+// String to hold date displayed</FONT>
+    <FONT COLOR="#0000ff">private </FONT><FONT COLOR="#ff0000">Font </FONT><FONT COLOR="#000000">clockFaceFont;          </FONT><FONT COLOR="#008000">
+// Font for number display on clock</FONT>
+    <FONT COLOR="#0000ff">private </FONT><FONT COLOR="#ff0000">Date </FONT><FONT COLOR="#000000">currentDate;            </FONT><FONT COLOR="#008000">
+// Used to get date to display</FONT>
+    <FONT COLOR="#0000ff">private </FONT><FONT COLOR="#ff0000">Color </FONT><FONT COLOR="#000000">handColor;            
+ </FONT><FONT COLOR="#008000">// Color of main hands and dial</FONT>
+    <FONT COLOR="#0000ff">private </FONT><FONT COLOR="#ff0000">Color </FONT><FONT COLOR="#000000">numberColor;           
+</FONT><FONT COLOR="#008000">// Color of second hand and numbers</FONT>
+    <FONT COLOR="#0000ff">private int </FONT><FONT COLOR="#000000">xcenter = </FONT><FONT COLOR="#800080">80</FONT><FONT COLOR="#000000">, ycenter = </FONT><FONT COLOR="#800080">55</FONT><FONT COLOR="#000000">; </FONT><FONT COLOR="#008000">
+// Center position</FONT>
+
+    <FONT COLOR="#0000ff">public void </FONT><FONT COLOR="#000000">init() {</FONT>
+        <FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">x,y;</FONT>
+        <FONT COLOR="#000000">lastxs = lastys = lastxm = lastym = 
+lastxh = lastyh = </FONT><FONT COLOR="#800080">0</FONT><FONT COLOR="#000000">;</FONT>
+        <FONT COLOR="#000000">formatter = </FONT><FONT COLOR="#0000ff">new </FONT><FONT COLOR="#ff0000">SimpleDateFormat </FONT><FONT COLOR="#000000">
+(</FONT><FONT COLOR="#ff00ff">"EEE MMM dd hh:mm:ss yyyy"</FONT><FONT COLOR="#000000">, </FONT>
+
+ <FONT COLOR="#ff0000">Locale</FONT><FONT COLOR="#000000">.getDefault());</FONT>
+        <FONT COLOR="#000000">currentDate = </FONT><FONT COLOR="#0000ff">new </FONT><FONT COLOR="#ff0000">Date</FONT><FONT COLOR="#000000">();</FONT>
+        <FONT COLOR="#000000">lastdate = formatter.format(currentDate);</FONT>
+        <FONT COLOR="#000000">clockFaceFont = </FONT><FONT COLOR="#0000ff">new </FONT><FONT COLOR="#ff0000">Font</FONT><FONT COLOR="#000000">(</FONT><FONT COLOR="#ff00ff">"Serif"</FONT><FONT COLOR="#000000">,
+ </FONT><FONT COLOR="#ff0000">Font</FONT><FONT COLOR="#000000">.PLAIN, </FONT><FONT COLOR="#800080">14</FONT><FONT COLOR="#000000">);</FONT>
+
+        <FONT COLOR="#0000ff">try </FONT><FONT COLOR="#000000">{</FONT>
+            <FONT COLOR="#000000">setBackground(</FONT><FONT COLOR="#ff0000">Color</FONT><FONT COLOR="#000000">.green);</FONT>
+        <FONT COLOR="#000000">} </FONT><FONT COLOR="#0000ff">catch </FONT><FONT COLOR="#000000">(</FONT><FONT COLOR="#ff0000">NullPointerException </FONT><FONT COLOR="#000000">e) {</FONT>
+        <FONT COLOR="#000000">} </FONT><FONT COLOR="#0000ff">catch </FONT><FONT COLOR="#000000">(</FONT><FONT COLOR="#ff0000">NumberFormatException </FONT><FONT COLOR="#000000">e) {</FONT>
+        <FONT COLOR="#000000">}</FONT>
+        <FONT COLOR="#0000ff">try </FONT><FONT COLOR="#000000">{</FONT>
+            <FONT COLOR="#000000">handColor = </FONT><FONT COLOR="#0000ff">new </FONT><FONT COLOR="#ff0000">Color</FONT><FONT COLOR="#000000">(</FONT><FONT COLOR="#800080">1</FONT><FONT COLOR="#000000">,</FONT><FONT COLOR="#800080">24</FONT><FONT COLOR="#000000">,</FONT><FONT COLOR="#800080">16</FONT><FONT COLOR="#000000">);</FONT>
+        <FONT COLOR="#000000">} </FONT><FONT COLOR="#0000ff">catch </FONT><FONT COLOR="#000000">(</FONT><FONT COLOR="#ff0000">NullPointerException </FONT><FONT COLOR="#000000">e) {</FONT>
+        <FONT COLOR="#000000">} </FONT><FONT COLOR="#0000ff">catch </FONT><FONT COLOR="#000000">(</FONT><FONT COLOR="#ff0000">NumberFormatException </FONT><FONT COLOR="#000000">e) {</FONT>
+        <FONT COLOR="#000000">}</FONT>
+        <FONT COLOR="#0000ff">try </FONT><FONT COLOR="#000000">{</FONT>
+            <FONT COLOR="#000000">numberColor = </FONT><FONT COLOR="#0000ff">new </FONT><FONT COLOR="#ff0000">Color</FONT><FONT COLOR="#000000">(</FONT><FONT COLOR="#800080">6</FONT><FONT COLOR="#000000">,</FONT><FONT COLOR="#800080">9</FONT><FONT COLOR="#000000">,</FONT><FONT COLOR="#800080">16</FONT><FONT COLOR="#000000">);</FONT>
+        <FONT COLOR="#000000">} </FONT><FONT COLOR="#0000ff">catch </FONT><FONT COLOR="#000000">(</FONT><FONT COLOR="#ff0000">NullPointerException </FONT><FONT COLOR="#000000">e) {</FONT>
+        <FONT COLOR="#000000">} </FONT><FONT COLOR="#0000ff">catch </FONT><FONT COLOR="#000000">(</FONT><FONT COLOR="#ff0000">NumberFormatException </FONT><FONT COLOR="#000000">e) {</FONT>
+        <FONT COLOR="#000000">}</FONT>
+        <FONT COLOR="#000000">resize(</FONT><FONT COLOR="#800080">300</FONT><FONT COLOR="#000000">,</FONT><FONT COLOR="#800080">300</FONT><FONT COLOR="#000000">);              
+</FONT><FONT COLOR="#008000">// Set clock window size</FONT>
+    <FONT COLOR="#000000">}</FONT>
+
+    <FONT COLOR="#008000">// Paint is the main part of the program</FONT>
+    <FONT COLOR="#0000ff">public void </FONT><FONT COLOR="#000000">update(</FONT><FONT COLOR="#ff0000">Graphics </FONT><FONT COLOR="#000000">g) {</FONT>
+        <FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">xh, yh, xm, ym, xs, ys;</FONT>
+        <FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">s = </FONT><FONT COLOR="#800080">0</FONT><FONT COLOR="#000000">, m = </FONT><FONT COLOR="#800080">10</FONT><FONT COLOR="#000000">, h = </FONT><FONT COLOR="#800080">10</FONT><FONT COLOR="#000000">;</FONT>
+        <FONT COLOR="#ff0000">String </FONT><FONT COLOR="#000000">today;</FONT>
+
+        <FONT COLOR="#000000">currentDate = </FONT><FONT COLOR="#0000ff">new </FONT><FONT COLOR="#ff0000">Date</FONT><FONT COLOR="#000000">();</FONT>
+
+        <FONT COLOR="#000000">formatter.applyPattern(</FONT><FONT COLOR="#ff00ff">"s"</FONT><FONT COLOR="#000000">);</FONT>
+        <FONT COLOR="#0000ff">try </FONT><FONT COLOR="#000000">{</FONT>
+            <FONT COLOR="#000000">s = </FONT><FONT COLOR="#ff0000">Integer</FONT><FONT COLOR="#000000">.parseInt(formatter.
+format(currentDate));</FONT>
+        <FONT COLOR="#000000">} </FONT><FONT COLOR="#0000ff">catch </FONT><FONT COLOR="#000000">(</FONT><FONT COLOR="#ff0000">NumberFormatException </FONT><FONT COLOR="#000000">n) {</FONT>
+            <FONT COLOR="#000000">s = </FONT><FONT COLOR="#800080">0</FONT><FONT COLOR="#000000">;</FONT>
+        <FONT COLOR="#000000">}</FONT>
+        <FONT COLOR="#000000">formatter.applyPattern(</FONT><FONT COLOR="#ff00ff">"m"</FONT><FONT COLOR="#000000">);</FONT>
+        <FONT COLOR="#0000ff">try </FONT><FONT COLOR="#000000">{</FONT>
+            <FONT COLOR="#000000">m = </FONT><FONT COLOR="#ff0000">Integer</FONT><FONT COLOR="#000000">.parseInt(formatter.
+format(currentDate));</FONT>
+        <FONT COLOR="#000000">} </FONT><FONT COLOR="#0000ff">catch </FONT><FONT COLOR="#000000">(</FONT><FONT COLOR="#ff0000">NumberFormatException </FONT><FONT COLOR="#000000">n) {</FONT>
+            <FONT COLOR="#000000">m = </FONT><FONT COLOR="#800080">10</FONT><FONT COLOR="#000000">;</FONT>
+        <FONT COLOR="#000000">}    </FONT>
+        <FONT COLOR="#000000">formatter.applyPattern(</FONT><FONT COLOR="#ff00ff">"h"</FONT><FONT COLOR="#000000">);</FONT>
+        <FONT COLOR="#0000ff">try </FONT><FONT COLOR="#000000">{</FONT>
+            <FONT COLOR="#000000">h = </FONT><FONT COLOR="#ff0000">Integer</FONT><FONT COLOR="#000000">.parseInt(formatter.
+format(currentDate));</FONT>
+        <FONT COLOR="#000000">} </FONT><FONT COLOR="#0000ff">catch </FONT><FONT COLOR="#000000">(</FONT><FONT COLOR="#ff0000">NumberFormatException </FONT><FONT COLOR="#000000">n) {</FONT>
+            <FONT COLOR="#000000">h = </FONT><FONT COLOR="#800080">10</FONT><FONT COLOR="#000000">;</FONT>
+        <FONT COLOR="#000000">}</FONT>
+
+        <FONT COLOR="#008000">// Set position of the ends of the hands</FONT>
+        <FONT COLOR="#000000">xs = (</FONT><FONT COLOR="#0000ff">int</FONT><FONT COLOR="#000000">) (</FONT><FONT COLOR="#ff0000">Math</FONT><FONT COLOR="#000000">.cos(s * </FONT><FONT COLOR="#ff0000">Math</FONT><FONT COLOR="#000000">.PI / </FONT><FONT COLOR="#800080">30 </FONT><FONT COLOR="#000000">
+- </FONT><FONT COLOR="#ff0000">Math</FONT><FONT COLOR="#000000">.PI / </FONT><FONT COLOR="#800080">2</FONT><FONT COLOR="#000000">) * </FONT><FONT COLOR="#800080">45 </FONT><FONT COLOR="#000000">+ xcenter);</FONT>
+        <FONT COLOR="#000000">ys = (</FONT><FONT COLOR="#0000ff">int</FONT><FONT COLOR="#000000">) (</FONT><FONT COLOR="#ff0000">Math</FONT><FONT COLOR="#000000">.sin(s * </FONT><FONT COLOR="#ff0000">Math</FONT><FONT COLOR="#000000">.PI / </FONT><FONT COLOR="#800080">30 
+</FONT><FONT COLOR="#000000">- </FONT><FONT COLOR="#ff0000">Math</FONT><FONT COLOR="#000000">.PI / </FONT><FONT COLOR="#800080">2</FONT><FONT COLOR="#000000">) * </FONT><FONT COLOR="#800080">45 </FONT><FONT COLOR="#000000">+ ycenter);</FONT>
+        <FONT COLOR="#000000">xm = (</FONT><FONT COLOR="#0000ff">int</FONT><FONT COLOR="#000000">) (</FONT><FONT COLOR="#ff0000">Math</FONT><FONT COLOR="#000000">.cos(m * </FONT><FONT COLOR="#ff0000">Math</FONT><FONT COLOR="#000000">.PI / </FONT><FONT COLOR="#800080">30
+ </FONT><FONT COLOR="#000000">- </FONT><FONT COLOR="#ff0000">Math</FONT><FONT COLOR="#000000">.PI / </FONT><FONT COLOR="#800080">2</FONT><FONT COLOR="#000000">) * </FONT><FONT COLOR="#800080">40 </FONT><FONT COLOR="#000000">+ xcenter);</FONT>
+        <FONT COLOR="#000000">ym = (</FONT><FONT COLOR="#0000ff">int</FONT><FONT COLOR="#000000">) (</FONT><FONT COLOR="#ff0000">Math</FONT><FONT COLOR="#000000">.sin(m * </FONT><FONT COLOR="#ff0000">Math</FONT><FONT COLOR="#000000">.PI / </FONT><FONT COLOR="#800080">30 
+</FONT><FONT COLOR="#000000">- </FONT><FONT COLOR="#ff0000">Math</FONT><FONT COLOR="#000000">.PI / </FONT><FONT COLOR="#800080">2</FONT><FONT COLOR="#000000">) * </FONT><FONT COLOR="#800080">40 </FONT><FONT COLOR="#000000">+ ycenter);</FONT>
+        <FONT COLOR="#000000">xh = (</FONT><FONT COLOR="#0000ff">int</FONT><FONT COLOR="#000000">) (</FONT><FONT COLOR="#ff0000">Math</FONT><FONT COLOR="#000000">.cos((h*</FONT><FONT COLOR="#800080">30 </FONT><FONT COLOR="#000000">+ m / </FONT><FONT COLOR="#800080">2</FONT><FONT COLOR="#000000">) 
+* </FONT><FONT COLOR="#ff0000">Math</FONT><FONT COLOR="#000000">.PI / </FONT><FONT COLOR="#800080">180 </FONT><FONT COLOR="#000000">- </FONT><FONT COLOR="#ff0000">Math</FONT><FONT COLOR="#000000">.PI / </FONT><FONT COLOR="#800080">2</FONT><FONT COLOR="#000000">) * </FONT><FONT COLOR="#800080">30</FONT>
+                   <FONT COLOR="#000000">+ xcenter);</FONT>
+        <FONT COLOR="#000000">yh = (</FONT><FONT COLOR="#0000ff">int</FONT><FONT COLOR="#000000">) (</FONT><FONT COLOR="#ff0000">Math</FONT><FONT COLOR="#000000">.sin((h*</FONT><FONT COLOR="#800080">30 </FONT><FONT COLOR="#000000">+ m / </FONT><FONT COLOR="#800080">2</FONT><FONT COLOR="#000000">) 
+* </FONT><FONT COLOR="#ff0000">Math</FONT><FONT COLOR="#000000">.PI / </FONT><FONT COLOR="#800080">180 </FONT><FONT COLOR="#000000">- </FONT><FONT COLOR="#ff0000">Math</FONT><FONT COLOR="#000000">.PI / </FONT><FONT COLOR="#800080">2</FONT><FONT COLOR="#000000">) * </FONT><FONT COLOR="#800080">30</FONT>
+                   <FONT COLOR="#000000">+ ycenter);</FONT>
+
+        <FONT COLOR="#008000">// Get the date to print at the bottom</FONT>
+        <FONT COLOR="#000000">formatter.applyPattern(</FONT><FONT COLOR="#ff00ff">"EEE MMM dd HH:mm:ss yyyy"</FONT><FONT COLOR="#000000">);</FONT>
+        <FONT COLOR="#000000">today = formatter.format(currentDate);</FONT>
+
+        <FONT COLOR="#000000">g.setFont(clockFaceFont);</FONT>
+        <FONT COLOR="#008000">// Erase if necessary</FONT>
+        <FONT COLOR="#000000">g.setColor(getBackground());</FONT>
+        <FONT COLOR="#0000ff">if </FONT><FONT COLOR="#000000">(xs != lastxs || ys != lastys) {</FONT>
+            <FONT COLOR="#000000">g.drawLine(xcenter, ycenter, lastxs, lastys);</FONT>
+            <FONT COLOR="#000000">g.drawString(lastdate, </FONT><FONT COLOR="#800080">5</FONT><FONT COLOR="#000000">, </FONT><FONT COLOR="#800080">125</FONT><FONT COLOR="#000000">);</FONT>
+        <FONT COLOR="#000000">}</FONT>
+        <FONT COLOR="#0000ff">if </FONT><FONT COLOR="#000000">(xm != lastxm || ym != lastym) {</FONT>
+            <FONT COLOR="#000000">g.drawLine(xcenter, ycenter-</FONT><FONT COLOR="#800080">1</FONT><FONT COLOR="#000000">, lastxm, lastym);</FONT>
+            <FONT COLOR="#000000">g.drawLine(xcenter-</FONT><FONT COLOR="#800080">1</FONT><FONT COLOR="#000000">, ycenter, lastxm, lastym); </FONT>
+        <FONT COLOR="#000000">}</FONT>
+        <FONT COLOR="#0000ff">if </FONT><FONT COLOR="#000000">(xh != lastxh || yh != lastyh) {</FONT>
+            <FONT COLOR="#000000">g.drawLine(xcenter, ycenter-</FONT><FONT COLOR="#800080">1</FONT><FONT COLOR="#000000">, lastxh, lastyh);</FONT>
+            <FONT COLOR="#000000">g.drawLine(xcenter-</FONT><FONT COLOR="#800080">1</FONT><FONT COLOR="#000000">, ycenter, lastxh, lastyh); </FONT>
+        <FONT COLOR="#000000">}</FONT>
+
+        <FONT COLOR="#008000">// Draw date and hands</FONT>
+        <FONT COLOR="#000000">g.setColor(numberColor);</FONT>
+        <FONT COLOR="#000000">g.drawString(today, </FONT><FONT COLOR="#800080">5</FONT><FONT COLOR="#000000">, </FONT><FONT COLOR="#800080">125</FONT><FONT COLOR="#000000">);    </FONT>
+        <FONT COLOR="#000000">g.drawLine(xcenter, ycenter, xs, ys);</FONT>
+        <FONT COLOR="#000000">g.setColor(handColor);</FONT>
+        <FONT COLOR="#000000">g.drawLine(xcenter, ycenter-</FONT><FONT COLOR="#800080">1</FONT><FONT COLOR="#000000">, xm, ym);</FONT>
+        <FONT COLOR="#000000">g.drawLine(xcenter-</FONT><FONT COLOR="#800080">1</FONT><FONT COLOR="#000000">, ycenter, xm, ym);</FONT>
+        <FONT COLOR="#000000">g.drawLine(xcenter, ycenter-</FONT><FONT COLOR="#800080">1</FONT><FONT COLOR="#000000">, xh, yh);</FONT>
+        <FONT COLOR="#000000">g.drawLine(xcenter-</FONT><FONT COLOR="#800080">1</FONT><FONT COLOR="#000000">, ycenter, xh, yh);</FONT>
+        <FONT COLOR="#000000">lastxs = xs; lastys = ys;</FONT>
+        <FONT COLOR="#000000">lastxm = xm; lastym = ym;</FONT>
+        <FONT COLOR="#000000">lastxh = xh; lastyh = yh;</FONT>
+        <FONT COLOR="#000000">lastdate = today;</FONT>
+        <FONT COLOR="#000000">currentDate = </FONT><FONT COLOR="#0000ff">null</FONT><FONT COLOR="#000000">;</FONT>
+    <FONT COLOR="#000000">}</FONT>
+
+    <FONT COLOR="#0000ff">public void </FONT><FONT COLOR="#000000">paint(</FONT><FONT COLOR="#ff0000">Graphics </FONT><FONT COLOR="#000000">g) {</FONT>
+        <FONT COLOR="#000000">g.setFont(clockFaceFont);</FONT>
+        <FONT COLOR="#008000">// Draw the circle and numbers</FONT>
+        <FONT COLOR="#000000">g.setColor(handColor);</FONT>
+        <FONT COLOR="#000000">g.drawArc(xcenter-</FONT><FONT COLOR="#800080">50</FONT><FONT COLOR="#000000">, ycenter-</FONT><FONT COLOR="#800080">50</FONT><FONT COLOR="#000000">, </FONT><FONT COLOR="#800080">100</FONT><FONT COLOR="#000000">, </FONT><FONT COLOR="#800080">100</FONT><FONT COLOR="#000000">, </FONT><FONT COLOR="#800080">0</FONT><FONT COLOR="#000000">, </FONT><FONT COLOR="#800080">360</FONT><FONT COLOR="#000000">);</FONT>
+        <FONT COLOR="#000000">g.setColor(numberColor);</FONT>
+        <FONT COLOR="#000000">g.drawString(</FONT><FONT COLOR="#ff00ff">"9"</FONT><FONT COLOR="#000000">, xcenter-</FONT><FONT COLOR="#800080">45</FONT><FONT COLOR="#000000">, ycenter+</FONT><FONT COLOR="#800080">3</FONT><FONT COLOR="#000000">); </FONT>
+        <FONT COLOR="#000000">g.drawString(</FONT><FONT COLOR="#ff00ff">"3"</FONT><FONT COLOR="#000000">, xcenter+</FONT><FONT COLOR="#800080">40</FONT><FONT COLOR="#000000">, ycenter+</FONT><FONT COLOR="#800080">3</FONT><FONT COLOR="#000000">);</FONT>
+        <FONT COLOR="#000000">g.drawString(</FONT><FONT COLOR="#ff00ff">"12"</FONT><FONT COLOR="#000000">, xcenter-</FONT><FONT COLOR="#800080">5</FONT><FONT COLOR="#000000">, ycenter-</FONT><FONT COLOR="#800080">37</FONT><FONT COLOR="#000000">);</FONT>
+        <FONT COLOR="#000000">g.drawString(</FONT><FONT COLOR="#ff00ff">"6"</FONT><FONT COLOR="#000000">, xcenter-</FONT><FONT COLOR="#800080">3</FONT><FONT COLOR="#000000">, ycenter+</FONT><FONT COLOR="#800080">45</FONT><FONT COLOR="#000000">);</FONT>
+
+        <FONT COLOR="#008000">// Draw date and hands</FONT>
+                <FONT COLOR="#000000">g.setColor(numberColor);</FONT>
+        <FONT COLOR="#000000">g.drawString(lastdate, </FONT><FONT COLOR="#800080">5</FONT><FONT COLOR="#000000">, </FONT><FONT COLOR="#800080">125</FONT><FONT COLOR="#000000">);    </FONT>
+        <FONT COLOR="#000000">g.drawLine(xcenter, ycenter, lastxs, lastys);</FONT>
+        <FONT COLOR="#000000">g.setColor(handColor);</FONT>
+        <FONT COLOR="#000000">g.drawLine(xcenter, ycenter-</FONT><FONT COLOR="#800080">1</FONT><FONT COLOR="#000000">, lastxm, lastym);</FONT>
+        <FONT COLOR="#000000">g.drawLine(xcenter-</FONT><FONT COLOR="#800080">1</FONT><FONT COLOR="#000000">, ycenter, lastxm, lastym);</FONT>
+        <FONT COLOR="#000000">g.drawLine(xcenter, ycenter-</FONT><FONT COLOR="#800080">1</FONT><FONT COLOR="#000000">, lastxh, lastyh);</FONT>
+        <FONT COLOR="#000000">g.drawLine(xcenter-</FONT><FONT COLOR="#800080">1</FONT><FONT COLOR="#000000">, ycenter, lastxh, lastyh); </FONT>
+    <FONT COLOR="#000000">}</FONT>
+
+    <FONT COLOR="#0000ff">public void </FONT><FONT COLOR="#000000">start() {</FONT>
+        <FONT COLOR="#000000">timer = </FONT><FONT COLOR="#0000ff">new </FONT><FONT COLOR="#ff0000">Thread</FONT><FONT COLOR="#000000">(</FONT><FONT COLOR="#0000ff">this</FONT><FONT COLOR="#000000">);</FONT>
+        <FONT COLOR="#000000">timer.start();</FONT>
+    <FONT COLOR="#000000">}</FONT>
+
+    <FONT COLOR="#0000ff">public void </FONT><FONT COLOR="#000000">stop() {</FONT>
+        <FONT COLOR="#000000">timer = </FONT><FONT COLOR="#0000ff">null</FONT><FONT COLOR="#000000">;</FONT>
+    <FONT COLOR="#000000">}</FONT>
+
+    <FONT COLOR="#0000ff">public void </FONT><FONT COLOR="#000000">run() {</FONT>
+        <FONT COLOR="#ff0000">Thread </FONT><FONT COLOR="#000000">me = </FONT><FONT COLOR="#ff0000">Thread</FONT><FONT COLOR="#000000">.currentThread();</FONT>
+        <FONT COLOR="#0000ff">while </FONT><FONT COLOR="#000000">(timer == me) {</FONT>
+            <FONT COLOR="#0000ff">try </FONT><FONT COLOR="#000000">{</FONT>
+                <FONT COLOR="#ff0000">Thread</FONT><FONT COLOR="#000000">.currentThread().sleep(</FONT><FONT COLOR="#800080">100</FONT><FONT COLOR="#000000">);</FONT>
+            <FONT COLOR="#000000">} </FONT><FONT COLOR="#0000ff">catch </FONT><FONT COLOR="#000000">(</FONT><FONT COLOR="#ff0000">InterruptedException </FONT><FONT COLOR="#000000">e) {</FONT>
+            <FONT COLOR="#000000">}</FONT>
+            <FONT COLOR="#000000">repaint();</FONT>
+        <FONT COLOR="#000000">}</FONT>
+    <FONT COLOR="#000000">}</FONT>
+
+<FONT COLOR="#000000">}</FONT>
+
+</FONT></PRE>
+</td>
+  </tr>
+</table>
+
+<p><font color="#000080" face="Verdana" size="2"><b><a href="com/r4r/example/Clock.java.txt">Download Source Code
+</a> </b></font></p>
+<p><b><font color="#0066FF"><font face="Verdana" size="2">Output Of The Clock:</font></p>
+            <font size="2" face="Verdana">
+<applet code=com.r4r.example.Clock.class width="200" height="200" >
+  Please download JVM and Install It.To see Clock 
+</applet> <br>
+
+            </font>								
+
+									</font>								
+
+									<font size="2" face="Verdana"><font color="#000080">
+
+   <!-- Footer Start-->	
+
+									</font>								
+
+									</td>
+
+										<td class="td2"  valign="top">
+
+											</font>
+
+											</font>
+
+											<table>
+											<?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/corejava/common-files/news1.shtml'); ?>	
+												<tr>
+													<td class="colorChange">
+
+													</td>
+												</tr>
+
+												<?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/corejava/common-files/news3.shtml'); ?>	
+
+												<tr>
+													<td class="colorChange">
+
+													</td>
+												</tr>
+
+												<?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/corejava/common-files/news3.shtml'); ?>	
+
+												<tr>
+													<td class="colorChange">
+
+													</td>
+												</tr>
+
+												<?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/corejava/common-files/news4.shtml'); ?>	
+
+		</table>
+
+										</td>
+										<?php @include($_SERVER['DOCUMENT_ROOT'] . '/common-files/tdgaps.shtml'); ?>
+									</tr>
+								 </table>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<?php @include($_SERVER['DOCUMENT_ROOT'] . '/common-files/gaps.shtml'); ?>
+							</td>
+						</tr>		
+						<tr>
+							<td>
+								<?php @include($_SERVER['DOCUMENT_ROOT'] . '/common-files/row.shtml'); ?>
+							</td>
+						</tr>
+
+						<tr>
+							<td>
+								<?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/corejava/common-files/mainlinks.shtml'); ?>
+
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<?php @include($_SERVER['DOCUMENT_ROOT'] . '/common-files/gaps.shtml'); ?>
+							</td>
+						</tr>
+
+								<tr>
+							<td>
+								<?php @include($_SERVER['DOCUMENT_ROOT'] . '/common-files/row.shtml'); ?>
+							</td>
+						</tr>
+
+						<tr >
+							<td>
+								<?php @include($_SERVER['DOCUMENT_ROOT'] . '/common-files/hotlinks.shtml'); ?>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<?php @include($_SERVER['DOCUMENT_ROOT'] . '/common-files/gaps.shtml'); ?>
+							</td>
+						</tr>
+
+						<tr>
+							<td>
+								<?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+		</table>
+
+	</BODY>
+</HTML>

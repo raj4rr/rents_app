@@ -1,0 +1,121 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>Attributes,When do we need attributes?</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="Attributes,When do we need attributes?" >
+<meta name="keywords" CONTENT="Attributes,When do we need attributes?">
+<!-- header start-->	
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>VB.NET Technology</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+            <img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+            <a href="/vb.net/">VB.net</a>
+              <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/vb.net/01/tutorial/vbnet/">VB.NET Tutorial</a>
+
+              </div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/vb.net/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	 
+
+<div class="heading">Attributes</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="inheritance%20and%20polymorphism.shtml" title="Inheritance">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="delegate%20and%20event.shtml" title="Delegate">Next</a></td>
+  </tr> 
+</table>
+<!-- header End-->	
+
+<p>Attributes contains a powerful method of associating declarative information with VB.Net code for types, methods, properties. Once associated with a program entity, the attribute can be queried at run time and used in any number of ways.</p>
+
+<h3>Uses of Attributes</h3>
+
+<ol>
+	<li>Associating help documentation with program entities (through a Help attribute).
+	</li>
+    <li>Associating value editors to a specific type in a GUI framework (through a Value Editor attribute).
+	</li>
+</ol>
+
+<div class="code">
+<pre>
+<font face="Arial"><font color="#000000">&lt;AttributeUsage(AttributeTargets.All)&gt; _</font>
+<font color="#0000ff">Public Class </font><font color="#000000">HelpAttribute</font>
+	<font color="#000000">Inherits System.Attribute</font>
+	<font color="#0000ff">Public </font><font color="#000000">ReadOnly Url As </font><font color="#ff0000">String</font>
+	<font color="#0000ff">Public Property </font><font color="#000000">Topic() As </font><font color="#ff0000">String</font>
+		<font color="#008000">' Topic is a named parameter</font>
+		<font color="#0000ff">Get</font>
+			<font color="#000000">Return m_topic</font>
+		<font color="#0000ff">End Get</font>
+		<font color="#0000ff">Set</font>
+			<font color="#000000">m_topic = value</font>
+		<font color="#0000ff">End Set</font>
+	<font color="#0000ff">End Property</font>
+	<font color="#0000ff">Public Sub </font><font color="#000000">New(url As </font><font color="#ff0000">String</font><font color="#000000">)</font>
+		<font color="#008000">' url is a positional parameter</font>
+		<font color="#000000">Me.Url = url</font>
+	<font color="#0000ff">End Sub</font>
+	<font color="#0000ff">Private </font><font color="#000000">m_topic As </font><font color="#ff0000">String</font>
+<font color="#0000ff">End Class</font></font>
+</pre>
+</div>
+
+<h3>When do we need attributes </h3>
+
+<ol>
+	<li>The System.ObsoleteAttribute attribute that we have just described is a good example of how an attribute is used by the compiler, certain standard attributes which are only destined for the compiler are not stored in the assembly.
+
+	</li>
+    <li>An attribute can be consumed by the CLR during execution. For example the .NET Framework offers the System.ThreadStaticAttribute attribute. When a static field is marked with this attribute the CLR makes sure that during the execution, there is only one version of this field per thread.
+
+	</li>
+    <li> An attribute can be consumed by a debugger during execution. Hence, the System.Diagnostics.DebuggerDisplayAttribute attribute allows personalizing the display of an element of the code the state of an object for example) during debugging.
+	</li>
+</ol>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="inheritance%20and%20polymorphism.shtml" title="Inheritance">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="delegate%20and%20event.shtml" title="Delegate">Next</a></td>
+  </tr> 
+</table>
+<!-- Footer Start-->		
+
+		</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/dotnet/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-

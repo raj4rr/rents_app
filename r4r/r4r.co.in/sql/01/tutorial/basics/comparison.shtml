@@ -1,0 +1,179 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>Using Comparison Operators,Using Range Operators</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="Using Comparison Operators,Using Range Operators,COMPARISON OPERATOR,RANGE OPERATOR,OPERATORS" >
+<meta name="keywords" CONTENT="Using Comparison Operators,Using Range Operators,COMPARISON OPERATOR,RANGE OPERATOR,OPERATORS">
+
+<!--header start-->
+
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>DATABASE & SQL/PLSQL</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a><img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+			<a href="/sql/">SQL </a>
+              </div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/sql/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	  
+
+                        	                        	<!-- Header End-->	
+    <div class="heading">Displaying Rows Using Comparison & Range Operators</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="logical_operator.shtml" title="Displaying Rows Using Logical & List Operators">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="string.shtml" title="Displaying Rows Using String Operator">Next</a></td>
+  </tr>
+</table>                   
+
+<h3>Using Comparison Operators</h3>
+
+<p>Comparison operator allow row retrieval from a table based on the condition specified in the WHERE clause.</p>
+
+<div class="code">
+<pre>
+SELECT column_list
+FROM table_name
+WHERE expression1 comparison_operator  expression2
+</pre>
+</div>
+
+<div class="table_content">
+<table>
+<tr>
+<td class="heading" style="width:20;">Operator</td><td class="heading" style="width:80;">Description</td>
+</tr>
+
+ <tr>
+ <td class="alternate_heading1">=</td><td class="alternate_heading1">Equal to</td>
+ </tr>
+
+  <tr>
+    <td class="alternate_heading2">&gt;<td class="alternate_heading2">Greater than</td>
+      </tr>
+
+  <tr>
+    <td class="alternate_heading1">&lt;<td class="alternate_heading1">Less than</td>
+  </tr>
+
+  <tr>
+    <td class="alternate_heading2">&gt;=<td class="alternate_heading2">Greater than or equal to</td>
+  </tr>
+
+  <tr>
+    <td  class="alternate_heading1">&lt;=<td class="alternate_heading1">Less than or equal to</td>
+  </tr>
+
+  <tr>
+    <td class="alternate_heading2">&lt;&gt;,!=<td class="alternate_heading2">Not equal to</td>
+  </tr>
+
+  <tr>
+    <td class="alternate_heading1">!&gt;<td class="alternate_heading1">Not greater than</td>
+  </tr>
+
+  <tr>
+    <td class="alternate_heading2">!&lt;<td class="alternate_heading2">Not less than</td>
+  </tr>
+
+  <tr>
+    <td class="alternate_heading1">()<td class="alternate_heading1">Controls precedence</td>
+  </tr>
+</table>
+</div>
+
+<h3> Example:</h3>
+<div class="code">
+<pre>
+SELECT pub_id
+FROM publishers
+WHERE city='Boston'
+</pre>
+</div>
+
+<h3>Using Range Operators</h3>
+<p>The range operator is used to retrieve data between range . The range operator are:</p>
+
+<ol type="1">
+<li><i> BETWEEN: </i>Specified an inclusive range to search.</li>
+
+<div class="code">
+<pre>
+SELECT column_list
+FROM table_name
+WHERE expression1 BETWEEN expression1 AND expression1
+</pre>
+</div>
+
+<h3>Example:</h3> Below query return the attribute list value between 2000 and 5000.
+
+<div class="code">
+<pre>
+SELECT *
+FROM titles
+WHERE advance BETWEEN 2000 AND 5000
+</pre>
+</div>
+
+<li><i> NOT BETWEEN:</i> This key word used to exclude the rows from the specified range in the result set.</li>
+<div class="code">
+<pre>
+SELECT column_list
+FROM table_name
+WHERE expression1 NOT BETWEEN expression1 AND expression1
+</pre>
+</div>
+
+<h3>Example:</h3> Below query return the attribute list value which not between 2000 and 5000
+<div class="code">
+<pre>
+SELECT *
+FROM titles
+WHERE advance NOT BETWEEN 2000 AND 5000
+</pre>
+</div>
+</ol>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="logical_operator.shtml" title="Displaying Rows Using Logical & List Operators">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="string.shtml" title="Displaying Rows Using String Operator">Next</a></td>
+  </tr>
+</table> 
+
+                       <!--Footer  -->
+
+</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>

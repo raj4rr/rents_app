@@ -1,0 +1,123 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD>
+<meta http-equiv="Content-Language" content="en-us">
+<TITLE>Centering Text in java</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name="description" CONTENT="Centering Text in java,How to Centering Text in java,which type Centering Text in java" >
+<meta name="keywords" CONTENT="Centering Text in java,How to Centering Text in java,which type Centering Text in java">
+
+<!-- header start-->	
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>Java AWT Tutorials</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+            <img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+            <a href="/java/">Java</a>
+			<img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/java/corejava/">Core Java</a>
+              <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/java/corejava/awt/">AWT</a>
+
+              </div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/corejava/awt/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	 
+
+<!-- header End-->  
+
+<div class="heading">Centering Text in java</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="index.shtml" title="Home">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="draw_arcs_in_java.shtml" title="draw arcs in java">Next</a></td>
+  </tr> 
+</table>
+<p>In this example we are write a text at the center of window in java using font metrics. In this we are using Graphics class and Applet class.</p>
+
+<p>void draw Centered String (String s, int h, int w, Graphics g); This method is used to write text at <b>center.g.draw String (s ,curX, curY);</b>is use for draw string</p>
+
+<p>Font metrics  use for mainly two purpose first  is to determine the spacing between line of text and the second is to determine the length of the string.</p>
+<p>Here first we are importing two packages. Then after we have write applet tag into comments. In this tag we have pass three arguments<b> code ,height  and width</b>. The code attribute is used to call the applet class. And Height , width is used for Seizing the window.</p>
+<p>Here is an example that centers <b>text, left to right, top to bottom,</b> in a window .Font metrics is use to determine the assent, descent, and the width of the string and compute the position at which it must be displayed to be center.</p>
+
+<h3>Example</h3>
+<div class="code">
+<PRE>
+<FONT COLOR="#008000">//Centering text</FONT>
+<FONT COLOR="#0000ff">import </FONT><FONT COLOR="#000000">java.awt.*;</FONT>
+<FONT COLOR="#0000ff">import </FONT><FONT COLOR="#000000">java.applet.*;</FONT>
+<FONT COLOR="#008000">/*&lt;applet code="CenteringText" width=200 hight=100&gt;</FONT>
+<FONT COLOR="#008000">&lt;/applet&gt;</FONT>
+<FONT COLOR="#008000">*/</FONT>
+<FONT COLOR="#0000ff">public class </FONT><FONT COLOR="#000000">CenteringText </FONT><FONT COLOR="#0000ff">extends </FONT><FONT COLOR="#ff0000">Applet</FONT>
+<FONT COLOR="#000000">{</FONT>
+<FONT COLOR="#0000ff">final </FONT><FONT COLOR="#ff0000">Font </FONT><FONT COLOR="#000000">f=</FONT><FONT COLOR="#0000ff">new </FONT><FONT COLOR="#ff0000">Font</FONT><FONT COLOR="#000000">(</FONT><FONT COLOR="#ff00ff">"SanfAerif"</FONT><FONT COLOR="#000000">,</FONT><FONT COLOR="#ff0000">Font</FONT><FONT COLOR="#000000">.ITALIC,</FONT><FONT COLOR="#800080">20</FONT><FONT COLOR="#000000">);</FONT>
+<FONT COLOR="#0000ff">public void </FONT><FONT COLOR="#000000">paint(</FONT><FONT COLOR="#ff0000">Graphics </FONT><FONT COLOR="#000000">g)</FONT>
+<FONT COLOR="#000000">{</FONT>
+<FONT COLOR="#ff0000">Dimension </FONT><FONT COLOR="#000000">d=</FONT><FONT COLOR="#0000ff">this</FONT><FONT COLOR="#000000">.getSize();</FONT>
+<FONT COLOR="#000000">g.setFont (f);</FONT>
+<FONT COLOR="#000000">g.setColor(</FONT><FONT COLOR="#ff0000">Color</FONT><FONT COLOR="#000000">.green);</FONT>
+<FONT COLOR="#000000">drawCenteredString(</FONT><FONT COLOR="#ff00ff">"This is centered string."</FONT><FONT COLOR="#000000">,d.width,d.height,g);</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#0000ff">public void </FONT><FONT COLOR="#000000">drawCenteredString(</FONT><FONT COLOR="#ff0000">String </FONT><FONT COLOR="#000000">s,</FONT><FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">h,</FONT><FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">w,</FONT><FONT COLOR="#ff0000">Graphics </FONT><FONT COLOR="#000000">g)</FONT>
+<FONT COLOR="#000000">{</FONT>
+<FONT COLOR="#ff0000">FontMetrics </FONT><FONT COLOR="#000000">fm=g.getFontMetrics();</FONT>
+<FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">X=(w-fm.stringWidth(s))/</FONT><FONT COLOR="#800080">2</FONT><FONT COLOR="#000000">;</FONT>
+<FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">Y=(fm.getAscent()+(h-fm.getAscent()+(fm.getDescent()))/</FONT><FONT COLOR="#800080">2</FONT><FONT COLOR="#000000">);</FONT>
+<FONT COLOR="#000000">g.drawString(s,X,Y);</FONT>
+<FONT COLOR="#000000">}}</FONT>
+</PRE>
+</div>
+
+<p><h3>Output of Example:</h3></p>
+
+<div class="output">
+<div class="image">
+<img src="../images/center3.jpg">
+</div>
+</div>
+
+<h3><a href="../sourcecode/CenteringText.java.txt">Download Source Code</a></h3>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="index.shtml" title="Home">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="draw_arcs_in_java.shtml" title="draw arcs in java">Next</a></td>
+  </tr> 
+</table>
+<!-- Footer Start-->	
+
+		</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->

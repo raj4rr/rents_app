@@ -1,0 +1,140 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD>
+<meta http-equiv="Content-Language" content="en-us">
+<TITLE>Statement of the JDBC,Statement,PreparedStatement,CallableStatement</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name="description" CONTENT="Statement of the JDBC,Statement,PreparedStatement,CallableStatement" >
+<meta name="keywords" CONTENT="Statement of the JDBC,Statement,PreparedStatement,CallableStatement">
+
+	<!-- header start-->	
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>PHP Programing language</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+            <img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+            <a href="/php/">PHP</a>
+
+              </div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/php/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	 
+
+	   	   <div class="heading">PHP HTML-Entities</div>
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="php_post&get.shtml" title="PHP Post & Get">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="php_magic_quotes.shtml" title="HP Magic quotes">Next</a></td></tr>
+</table>
+
+<!-- header End-->
+
+<p>Whenever you create a web Page and allow your users to submit text to your website, then you need in your website to be careful that you don't leave any security holes open for malicious users to exploit. If you are ever going to allow user submitted text to be visible by the public you should consider using the html entities function to prevent them from running html code and scripts that may be harmful to your visitors.</p>
+
+<h3>In PHP to Converting HTML into Entities</h3>
+
+<p>The html entities function takes a string and returns the same string. and it's working with HTML converting into HTML entities. </p>
+<h3>Example:</h3>
+<p>The string "&lt;script&gt;" would be converted to "&lt;script&gt;". And another the By converting into the &lt; and &gt; into entities, it's prevents the browser from using it as an HTML element and it prevents the code from running if you were to display some user's input on your website.</p>
+<p>If you think of the way a browser works, in separate stages, then it's becomes a little easier. Let's look at the way the function html entities changes the data at three different levels: in PHP, in raw HTML and in the web browser. The sample string is a bad script that will redirect visitors to the malicious user's own website.</p>
+
+<div class="code">
+<pre>
+<font color="#000000">// An imaginary article submission from a bad user</font>
+<font color="#000000">//  it will redirect anyone to www.r4r.co.in if the</font>
+<font color="#000000">code is run in a browser</font>
+<font color="#000000">$userInput = &quot;r4rtechoft is a very useful site !&quot;</font>
+<font color="#000000">	</font><font color="#0000ff">&lt;script </font><font color="#ff0000">type</font><font color="#0000ff">=</font><font color="#ff00ff">'text/javascript'</font><font color="#0000ff">&gt;</font>
+	<font color="#ff0000">window</font><font color="#800000">.</font><font color="#ff0000">location </font><font color="#800000">= </font><font color="#ff00ff">'/'</font>
+	<font color="#0000ff">&lt;/script&gt;</font><font color="#000000">'&quot;;</font>
+<font color="#000000">	</font>
+<font color="#000000">//Lets make it safer before we use it</font>
+<font color="#000000">$userInputEntities = htmlentities($userInput);</font>
+
+<font color="#000000">//Now we can display it</font>
+<font color="#000000">echo $userInputEntities;</font>
+</pre>
+</div>
+
+<p><i>Output:</i>The HTML output of the above script would be as follows:</p>
+
+<h3>Safe Raw HTML Code:</h3>
+<div class="code">
+<pre>
+<font color="#000000">r4rtechoft is a very useful site !</font>
+<font color="#0000ff">&lt;script </font><font color="#ff0000">type</font><font color="#0000ff">=</font><font color="#ff00ff">'text/javascript'</font><font color="#0000ff">&gt;</font>
+<font color="#ff0000">window</font><font color="#800000">.</font><font color="#ff0000">location </font><font color="#800000">= </font><font color="#ff00ff">'/'</font>
+<font color="#0000ff">&lt;/script&gt;</font><font color="#000000">'</font>
+</pre>
+</div>
+
+<p>If we had not used html entities to convert any HTML code into safe entities, this is what the raw HTML code would be and it would have redirect a visitor to <a href="/">www.r4r.co.in</a></p>
+<h3>Dangerous Raw HTML Code:</h3>
+<div class="code">
+<pre>
+<font color="#000000">r4rtechoft is avey useful site !</font>
+<font color="#0000ff">&lt;script </font><font color="#ff0000">type</font><font color="#0000ff">=</font><font color="#ff00ff">'text/javascript'</font><font color="#0000ff">&gt;</font>
+<font color="#ff0000">window</font><font color="#800000">.</font><font color="#ff0000">location </font><font color="#800000">= </font><font color="#ff00ff">'/'</font>
+<font color="#0000ff">&lt;/script&gt;</font><font color="#000000">'</font>
+</pre>
+</div>
+
+<p>There are two HTML code examples are what you would see if you were to view source on the web page. However, if you were just viewing the output normally in your browser you would see the following:</p>
+<h3>Safe Display:</h3>
+<div class="code">
+<pre>
+<font color="#000000">r4rtechoft is a very useful site ! </font>
+<font color="#0000ff">&lt;script </font><font color="#ff0000">type</font><font color="#0000ff">=</font><font color="#ff00ff">'text/javascript'</font><font color="#0000ff">&gt; </font>
+<font color="#ff0000">window</font><font color="#800000">.</font><font color="#ff0000">location </font><font color="#800000">= </font><font color="#ff00ff">'/' </font><font color="#0000ff">&lt;/script&gt;</font><font color="#000000">'</font>
+</pre>
+</div>
+
+<h3>Dangerous Display:</h3>
+<p>You'd see whatever spammer site that the malicious user had sent you to. Probably some herbal supplement site or weight loss pills would be displayed.</p>
+
+<h3>When Would You Use html entities?</h3>
+<p>you allowing users to submitting content to your website, that other visitors can see, you should consider removing the 
+ability to let them use HTML. Although this will remove a lot of cool things that your users can do, like making heavily customized content, it will prevent your site from a lot of common attacks. With some custom coding you can just remove specific tags from running.</p>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="php_post&get.shtml" title="PHP Post & Get">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="php_magic_quotes.shtml" title="PHP Magic quotes">Next</a></td></tr>
+</table>
+
+<!-- Footer Start-->	
+
+</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/php/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->

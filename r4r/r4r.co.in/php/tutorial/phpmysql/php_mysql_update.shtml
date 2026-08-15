@@ -1,0 +1,114 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD>
+<meta http-equiv="Content-Language" content="en-us">
+<TITLE>MySQL Updation, how can perform UPDATION in MYSQL,</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name="description" CONTENT="MySQL Updation, how can perform UPDATION in MYSQL," >
+<meta name="keywords" CONTENT="MySQL Updation, how can perform UPDATION in MYSQL,">
+
+<!-- header start-->	
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>PHP Programing language</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+            <img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+            <a href="/php/">PHP</a>
+
+              </div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/php/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	  
+
+	   	   <div class="heading">PHP MySQL UPDATE</div>
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="php_mysql.leftjoin.shtml" title="PHP MySQL Left Join">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="php_mysql_delete.shtml" title="PHP MySQL DELETE">Next</a></td>
+</table>
+
+<!-- header End-->	
+
+<p>In MySQl create a table and insert the data. If any condition the some data are update in this table then using query update in MySQL like as a example for in the MySQl database table that holds the information of all the employees in any company. Then if one table hold information for senior employees to how many days his work in company. So obviously for you, your job is to update these 
+numbers every month.</p>
+<p>Then after in a table you'll have to open up your MySQL administration tool and edit each entry by hand. That would take hours. On the other hand, you could master MySQL and have an automated script that you run each month to get the job done for you.</p>
+<p>In this chapter we learned at how to replace the existing data of a MySQL table with freshly supplied up-to-date data using the UPDATE MySQL query.</p>
+
+<h3>Example:</h3>
+<p>Amita has just had a birthday and she now 22 years old. Our job now is to update her age using MySQL commands like UPDATE, SET, and WHERE.</p>
+<ul>
+<li>UPDATE - Performs an update MySQL query</li>
+<li>SET - The new values to be placed into the table follow SET</li>
+<li>WHERE - Limits which rows are affected</li>
+</ul>
+
+<div class="code">
+<pre>
+<font color="#000000">PHP &amp; MySQL Code:</font>
+
+<font color="#800000">&lt;?php</font>
+<font color="#008000">// Connect to MySQL</font>
+<font color="#008000">// Get Amit's record from the &quot;example&quot; table</font>
+
+<font color="#0000ff">$</font><font color="#008080">result </font><font color="#800000">= mysql_query(</font><font color="#ff00ff">&quot;UPDATE example SET age='22' WHERE age='21'&quot;</font><font color="#800000">) </font>
+<font color="#0000ff">or die</font><font color="#800000">(mysql_error());  </font>
+
+<font color="#0000ff">$</font><font color="#008080">result </font><font color="#800000">= mysql_query(</font><font color="#ff00ff">&quot;SELECT * FROM example WHERE age='22'&quot;</font><font color="#800000">) </font>
+<font color="#0000ff">or die</font><font color="#800000">(mysql_error());  </font>
+
+<font color="#008000">// get the first (and hopefully only) entry from the result</font>
+
+<font color="#0000ff">$</font><font color="#008080">row </font><font color="#800000">= mysql_fetch_array( </font><font color="#0000ff">$</font><font color="#008080">result </font><font color="#800000">);</font>
+<font color="#0000ff">echo $</font><font color="#008080">row</font><font color="#800000">[</font><font color="#ff00ff">'name'</font><font color="#800000">].</font><font color="#ff00ff">&quot; - &quot;</font><font color="#800000">.</font><font color="#0000ff">$</font><font color="#008080">row</font><font color="#800000">[</font><font color="#ff00ff">'age'</font><font color="#800000">]. </font><font color="#ff00ff">&quot;&lt;br /&gt;&quot;</font><font color="#800000">;</font>
+<font color="#800000">?&gt;</font>
+</pre>
+</div>
+
+<p><i>Output</i></p>
+<div class="output">
+Amit - 22
+</div>
+
+<p>Now it is important to note that this query would have updated ALL records that had an age of 21 to the new age of 22. In a table where Sandy is not the only entry, this may become a problem, and a more sophisticated solution would be necessary.</p>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="php_mysql.leftjoin.shtml" title="PHP MySQL Left Join">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="php_mysql_delete.shtml" title="PHP MySQL DELETE">Next</a></td>
+</table>
+	<!-- Footer Start-->  	
+
+</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/php/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->

@@ -1,0 +1,305 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http:///www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML>
+	<HEAD>
+
+		<TITLE>Union in C,Difference between Union and Structure Union Operator With Examples</TITLE>
+		<META name="description" CONTENT="Learn C Union With Examples and Programming of Union in C Hot C Topics,Accessing Union Members, Union Examples, Programming in Union, C loops,C function,C pointers,C Data types, Easily and Shortly">
+		<META name="keywords"	CONTENT="Union in C, C Union Examples,Difference between Union And Structure, C Union Programming, Accessing Union members,C loops,C function,C pointers,C Data types, Preprocessor, Memory Management, Operator in C, Features of C , History of C, Sample of C program, C Advantages and Disadvantages">
+		<META content="Rajesh Kumar" name="author">
+		<META http-equiv="expires" content="0">
+		<META content="r4r.co.in" name="owner">
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+         <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>C Programming language</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a><img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/c/">C </a>
+              <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/c/c_topics/c_union/">C Union</a></div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/c/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	  
+
+                        		<!-- Header End-->	
+
+<div class="heading">Union in C</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="Union-in-C.shtml">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="index.shtml">Next</a></td>
+  </tr>
+</table>
+
+<b>Union in C</b> is same like a structure</font><span style="font-family: Verdana"><font size="2"> 
+except the allocation of memory for its members.</font></span><font face="Verdana" size="2">&nbsp;
+</font></p>
+<p align="left"><font face="Verdana" size="2">&nbsp;&nbsp;&nbsp;&nbsp;
+<b>Union</b> is a special data type available in C that enables you to store 
+different <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Data types in 
+the same memory location</font></p>
+<p  align="left"><font face="Verdana" size="2">&nbsp;&nbsp;&nbsp;&nbsp; Union occupies <b>lower memory space as compared to structure.</b></font><b><span style="font-family: Verdana"><font size="2"> 
+We can access single </font></span></b></p>
+<p  align="left"><font size="2"><span style="font-family: Verdana">&nbsp;&nbsp;&nbsp;&nbsp;
+</span></font><span style="font-family: Verdana"><font size="2">member of 
+union at a time, You can define a union with <b>many members</b>, but only <b>
+one </b></font></span></p>
+<p  align="left"><b><font size="2"><span style="font-family: Verdana">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></font><span style="font-family: Verdana"><font size="2">member can 
+contain a value at any given time</font></span></b></p>
+<p  align="left"><font size="2"><span style="font-family: Verdana"><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</b>In one word union is a collection of different data types which are grouped 
+together.</span></font></p>
+<p  align="left"><font size="2"><span style="font-family: Verdana">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Each element in union is called <b>member</b>.</span></font></p>
+<p  align="left"><font size="2"><b><span style="font-family: Verdana">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+Example:-</span></b></font></p>
+<p  align="left"><font size="2"><span style="font-family: Verdana">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+Union emp<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+int id;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+char name[10];<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+float sal;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }x;</span></font></p>
+<p  align="left"><span style="font-family: Verdana"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;
+</font><b>Syntax of Using Normal Variable in Union:-</b></span></p>
+<p  align="left"><font size="2"><span style="font-family: Verdana">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+union tag_name<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+data type var_name1;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+data type var_name2;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+data type var_name3;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+}</span></font></p>
+<p  align="left"><font size="2"><b><span style="font-family: Verdana">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+Example:-</span></b></font></p>
+<p  align="left"><font size="2"><span style="font-family: Verdana"><b>&nbsp;&nbsp;&nbsp;
+</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+union student<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+int mark;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+char name[11];<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+float average;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+}</span></font></p>
+<p  align="left"><span style="font-family: Verdana"><font size="2">&nbsp; <b>&nbsp;
+</b></font><b>Accessing Union members:-</b></span></p>
+<p  align="left"><span style="font-family: Verdana"><b>&nbsp;&nbsp; </b>
+<font size="2">We can access only single union member at a time and to access we 
+use two operators:<br>
+<br>
+&nbsp;&nbsp;&nbsp; 1. <b>DOT operator</b><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+Syntax: union _variable. member<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+x. id;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+x. name;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+x. sal;</font></span></p>
+<p  align="left"><font face="Verdana" size="2"><br>
+&nbsp;&nbsp;&nbsp; 2. <b>ARROW operator</b><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+Syntax: union variable -&gt;member<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+x -&gt;id;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+x-&gt;name;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+x-&gt;sal;</font></p>
+<p  align="left"><b><font face="Verdana">&nbsp;&nbsp;&nbsp;&nbsp; Advantages 
+Of Union:-</font></b></p>
+<p  align="left"><font face="Verdana" size="2">&nbsp;&nbsp; 1. Union occupy 
+same memory area for different members in a <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; union.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Same are is allocated for different data 
+types of the <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; members of union<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; eg:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; union<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+int a;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+char c;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+float f;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }temp</font></p>
+<p  align="left"><font size="2"><b><span style="font-family: Verdana">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+Memory consumption is less</span></b></font></p>
+<p  align="left"><font size="2"><span style="font-family: Verdana">&nbsp; 2. 
+We can collect multiple members together under same </span></font></p>
+<p  align="left"><font size="2"><span style="font-family: Verdana">&nbsp; 3. 
+The basic advantage is that union will use the memory space of the data type 
+which has the </span></font></p>
+<p  align="left"><font size="2"><span style="font-family: Verdana">&nbsp;&nbsp;&nbsp; 
+highest memory</span></font></p>
+<p  align="left">&nbsp;</p>
+<p  align="left"><span style="font-family: Verdana; font-weight: 700">&nbsp; 
+Disadvantages of Union:-</span></p>
+<p  align="left"><font face="Verdana" size="2">&nbsp; 1. In Union if one of 
+the member variable is updated the it will be reflected in the remaining two 
+variables.</font></p>
+<p  align="left"><font face="Verdana" size="2">&nbsp; 2.Disadvantage of 
+using union is that we can access only last entered variable as only last 
+entered variable</font></p>
+<p  align="left"><font face="Verdana" size="2">&nbsp;&nbsp; exist in memory. 
+only the last added data to the union will exist in the memory</font></p>
+<p  align="left">&nbsp;</p>
+<p  align="left"><b><font face="Verdana" size="4">Difference 
+between Union and Structure:-</font></b></p>
+<p  align="left"><font face="Verdana" size="2">1. Size of the 
+union is equal to the size of the largest member. Where in structure size is 
+equal to or greater </font></p>
+<p  align="left"><font face="Verdana" size="2">then the sum of 
+size of Its members.</font></p>
+<p  align="left"><font face="Verdana" size="2">2. In union only 
+first member can be initialize. Where in structure more then one variable can be 
+initialize</font></p>
+<p  align="left"><font face="Verdana" size="2">3. In union 
+memory is shared among the members. Where in structure each member has its own 
+unique storage</font></p>
+<p  align="left">&nbsp;</p>
+<table border="1" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="80%" id="AutoNumber1">
+  <tr>
+    <td width="50%"><font face="Verdana" size="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <font color="#0000FF">&nbsp;</font></font><font face="Verdana" color="#0000FF"><b> 
+    Structure</b></font></td>
+    <td width="50%"><b><font face="Verdana" size="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    </font><font face="Verdana" color="#0000FF">&nbsp;Union</font></b></td>
+  </tr>
+  <tr>
+    <td width="50%"><font size="2" face="Verdana"><b>1</b>.The keyword <b>struct</b> 
+    is used to define a structure</font></td>
+    <td width="50%"><font face="Verdana" size="2"><b>1</b>.The keyword union is 
+    used to define a <b>union</b></font></td>
+  </tr>
+  <tr>
+    <td width="50%"><font face="Verdana" size="2"><b>2</b>.When a variable is 
+    associated with a structure, the <br>
+    compiler allocates the memory for each member. <br>
+    The size of structure is greater than or equal to the <br>
+    sum of sizes of its members. The smaller members may end with unused slack 
+    bytes</font>.</td>
+    <td width="50%"><font face="Verdana" size="2"><b>2</b>. When a variable is 
+    associated with a union, the compiler allocates the memory by considering 
+    the size of the largest memory. So, size of union is equal to the size of 
+    largest member.</font><br>
+&nbsp;</td>
+  </tr>
+  <tr>
+    <td width="50%"><b>3</b>.<font face="Verdana" size="2">Each member within a 
+    structure is assigned unique <br>
+    storage area of location</font></td>
+    <td width="50%"><font face="Verdana" size="2"><b>3</b>. Memory allocated is 
+    shared by individual members of union</font><br>
+&nbsp;</td>
+  </tr>
+  <tr>
+    <td width="50%"><font face="Verdana" size="2"><b>4</b>.The address of each 
+    member will be in ascending order This indicates that memory for each member 
+    will start at different offset values</font></td>
+    <td width="50%"><b>4</b>.<font face="Verdana" size="2"> The address is same 
+    for all the members of a union. This indicates that every member begins at 
+    the same offset value</font></td>
+  </tr>
+  <tr>
+    <td width="50%"><font face="Verdana" size="2"><b>5</b>.Individual member can 
+    be accessed at a time</font></td>
+    <td width="50%"><b>5</b>.<font size="2" face="Verdana">Only one member can 
+    be accessed at a time.</font></td>
+  </tr>
+  <tr>
+    <td width="50%"><font face="Verdana" size="2"><b>6</b>.Several members of a 
+    structure can initialize at once.</font></td>
+    <td width="50%"><font face="Verdana" size="2"><b>6</b>.Only the first member 
+    of a union can be initialized</font></td>
+  </tr>
+</table>
+<p  align="left"><b><font face="Verdana">Example:-
+<font color="#0000FF">Program of Declare c Union</font></font></b></p>
+<p  align="left"><font face="Verdana">In this program, union 
+variable record is declared while declaring union itself as shown in the below 
+program</font></p>
+<p  align="left"><font face="Verdana" size="2">#include 
+&lt;stdio.h&gt;<br>
+#include &lt;string.h&gt;<br>
+<br>
+union student <br>
+{<br>
+char name[10];<br>
+char subject[20];<br>
+float percentage;<br>
+}record;<br>
+<br>
+int main() <br>
+{<br>
+<br>
+strcpy(record.name, &quot;Rajesh&quot;);<br>
+strcpy(record.subject, &quot;Maths&quot;);<br>
+record.percentage = 85.50;<br>
+<br>
+printf(&quot; Name : %s \n&quot;, record.name);<br>
+printf(&quot; Subject : %s \n&quot;, record.subject);<br>
+printf(&quot; Percentage : %f \n&quot;, record.percentage);<br>
+return 0;<br>
+}</font></p>
+<p  align="left">&nbsp;</p>
+<p  align="left"><font face="Verdana"><b>Output:-</b></font></p>
+<p  align="left"><font face="Verdana" size="2">Name:</font></p>
+<p  align="left"><font face="Verdana" size="2">Subject:</font></p>
+<p  align="left"><font face="Verdana" size="2">Percentage: 
+85.500000</font></p>
+<p  align="left"><font face="Verdana" size="2"><b>Note- </b>We 
+can access only one member of union at a time. We cant access all member values 
+at the same time in union But in structure can access all member values at the 
+same time. This is because, Union allocates one common storage space for all its 
+members. Where as Structure allocates storage space for all its members 
+separately</font></p>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="Union-in-C.shtml">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="index.shtml">Next</a></td>
+  </tr>
+</table>
+
+<!--Footer  --> 
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>

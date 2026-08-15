@@ -1,0 +1,185 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>Creating Slice Chart in windows using VB.Net</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="Creating Slice Chart in windows using VB.Net" >
+<meta name="keywords" CONTENT="Creating Slice Chart in windows using VB.Net">
+<!-- header start-->	
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>VB.NET Technology</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+            <img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+            <a href="/vb.net/">VB.net</a>
+              <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/vb.net/01/tutorial/vbnet/">VB.NET Tutorial</a>
+
+              </div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/vb.net/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	 
+
+<div class="heading">Creating Slice Chart in windows using VB.Net</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="background_worker_control.shtml" title="Background Worker Control">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="socket.shtml" title="Introduction of Socket ">Next</a></td>
+  </tr> 
+</table>
+<!-- header End-->	
+<h3>Introduction </h3>
+ <p>In VB.Net with the help of GDI classes we can design or draw charts or graphs is a very efficient manner in our projects. Charts are the pictorial representation of the data through chart one can easily judge or see the ups and down or profit loss in other words we can say we can show the groth rate of any business through chart. </p>
+
+ <p> Slice Charts are consider as cutting a cake into slices based on the weight. In this chart, angle of slice is linearly proportional to weight. With the help of FillPie() method slice chart can be designed.
+</p>
+
+<div class="code">
+<pre>
+<font face="Arial"><font color="#0000ff">Private Function </font><font color="#000000">FillPie(brush As Brush, x As Integer, y As Integer, width As Integer, </font>
+<font color="#000000">height As Integer, startAngle As Integer, _</font>
+	<font color="#000000">sweepAngle As Integer) As Void</font>
+<font color="#0000ff">End Function</font></font>
+</pre>
+</div>
+
+<p>FillPie function is used to fill as ellipse if sweep angle is 360. To make it a circle, we make height and width both equal to diameter of circle.
+</p>
+
+<ul>
+        	<li><p><b>Brush brush : </b>It is a brush object used to fill the Pie.</p></li>
+            <li><p><b>Int x : </b>x co-ordinate of upper left corner of the bounding rectangle that defines the ellipse from which the pie section comes.</p><p>So if the x co-ordinate of center of our circle is x0 and radius is r: -  x = x0  r; Int y: Same as x- co-ordinate. y = y0  r;</p></p></li>
+            <li><p><b>Int y :</b> Same as x- co-ordinate. y = y0  r;</p></li>
+            <li><p><b>Int width :</b> Width of bounding rectangle that defines the ellipse from which the pie section comes.  width = 2*radius;</p></li>
+            <li><p><b>Int startAngle :</b> Angle in degrees measured clockwise from the x-axis to the first side of the pie section. </p><p>So we start with 0 degrees and increment it with the sweepAngle for the next slice to start right after the end of previous slice.</p></li>
+            <li><p><b>Int sweepAngle :</b> Angle in degrees measured clockwise from the startAngle parameter to the second side of pie section. So this is span of angle based on weight.</p><p>So 360 degrees is proportionally divided into 8 parts based on the weight. Example: To draw slice chart we have to take an array named alweight. </p></li>
+</ul>
+
+<h3>Example </h3>
+ <p> To draw slice chart we have to take an array named alweight.
+</p>
+
+<h3>Code for on Form Load</h3>
+
+<div class="code">
+<pre>
+<font face="Arial"><font color="#0000ff">Private Sub </font><font color="#000000">Form1_Load(</font><font color="#0000ff">ByVal </font><font color="#000000">sender As System.Object, </font>
+	<font color="#0000ff">ByVal </font><font color="#000000">e As System.EventArgs) Handles MyBase.Load</font>
+        <font color="#000000">alWeight = New Integer() {</font><font color="#800080">13</font><font color="#000000">, </font><font color="#800080">23</font><font color="#000000">, </font><font color="#800080">33</font><font color="#000000">, </font><font color="#800080">15</font><font color="#000000">, </font><font color="#800080">20</font><font color="#000000">, </font><font color="#800080">10</font><font color="#000000">, </font><font color="#800080">4</font><font color="#000000">, </font><font color="#800080">11</font><font color="#000000">}</font>
+    <font color="#0000ff">End Sub</font></font>
+</pre>
+</div>
+
+<h3>Code for DrawSliceChart methods</h3>
+
+<div class="code">
+<pre>
+<font face="Arial"><font color="#0000ff">Private Sub </font><font color="#000000">DrawSliceChart(e As PaintEventArgs, alWeight As Integer())</font>
+	<font color="#0000ff">Dim </font><font color="#000000">numberOfSections As Integer = alWeight.Length</font>
+	<font color="#0000ff">Dim </font><font color="#000000">x0 As Integer = </font><font color="#800080">100</font>
+	<font color="#0000ff">Dim </font><font color="#000000">y0 As Integer = </font><font color="#800080">100</font>
+	<font color="#0000ff">Dim </font><font color="#000000">radius As Integer = </font><font color="#800080">100</font>
+	<font color="#0000ff">Dim </font><font color="#000000">startAngle As Integer = </font><font color="#800080">0</font>
+	<font color="#0000ff">Dim </font><font color="#000000">sweepAngle As Integer = </font><font color="#800080">0</font>
+	<font color="#0000ff">Dim </font><font color="#000000">height As Integer() = New Integer(numberOfSections - </font><font color="#800080">1</font><font color="#000000">) {}</font>
+	<font color="#0000ff">Dim </font><font color="#000000">total As Integer = SumOfArray(alWeight)</font>
+	<font color="#0000ff">Dim </font><font color="#ff0000">rnd </font><font color="#000000">As New Random()</font>
+	<font color="#0000ff">Dim </font><font color="#000000">brush As New SolidBrush(Color.Aquamarine)</font>
+	<font color="#0000ff">Dim </font><font color="#000000">pen As New Pen(Color.Black)</font>
+	<font color="#0000ff">For </font><font color="#000000">i As Integer = </font><font color="#800080">0 </font><font color="#0000ff">To </font><font color="#000000">numberOfSections - </font><font color="#800080">1</font>
+	<font color="#000000">brush.Color = Color.FromArgb(</font><font color="#ff0000">rnd</font><font color="#000000">.[</font><font color="#0000ff">Next</font><font color="#000000">](</font><font color="#800080">200</font><font color="#000000">, </font><font color="#800080">255</font><font color="#000000">), </font>
+		<font color="#ff0000">rnd</font><font color="#000000">.[</font><font color="#0000ff">Next</font><font color="#000000">](</font><font color="#800080">255</font><font color="#000000">), </font><font color="#ff0000">rnd</font><font color="#000000">.[</font><font color="#0000ff">Next</font><font color="#000000">](</font><font color="#800080">255</font><font color="#000000">), </font><font color="#ff0000">rnd</font><font color="#000000">.[</font><font color="#0000ff">Next</font><font color="#000000">](</font><font color="#800080">255</font><font color="#000000">))</font>
+		<font color="#0000ff">If </font><font color="#000000">i = numberOfSections - </font><font color="#800080">1 </font><font color="#0000ff">Then</font>
+			<font color="#000000">sweepAngle = </font><font color="#800080">360 </font><font color="#000000">- startAngle</font>
+		<font color="#0000ff">Else</font>
+			<font color="#000000">sweepAngle = (</font><font color="#800080">360 </font><font color="#000000">* alWeight(i)) \ total</font>
+		<font color="#0000ff">End If</font>
+		<font color="#000000">e.Graphics.FillPie(brush, x0 - height(i), </font>
+	<font color="#000000">y0 - height(i), </font><font color="#800080">2 </font><font color="#000000">* radius, </font><font color="#800080">2 </font><font color="#000000">* radius, startAngle, _</font>
+			<font color="#000000">sweepAngle)</font>
+		<font color="#000000">e.Graphics.DrawPie(pen, x0 - height(i),</font>
+	 <font color="#000000">y0 - height(i), </font><font color="#800080">2 </font><font color="#000000">* radius, </font><font color="#800080">2 </font><font color="#000000">* radius, startAngle, _</font>
+			<font color="#000000">sweepAngle)</font>
+		<font color="#000000">startAngle += sweepAngle</font>
+		<font color="#000000">brush.Color = Color.FromKnownColor(KnownColor.Black)</font>
+	<font color="#0000ff">Next</font>
+<font color="#0000ff">End Sub</font></font>
+</pre>
+</div>
+
+<h3>
+Code for SumofArray method
+</h3>
+
+<div class="code">
+<pre>
+<font face="Arial"><font color="#0000ff">Private </font><font color="#000000">Shared </font><font color="#0000ff">Function </font><font color="#000000">SumOfArray(intArray As Integer()) As Integer</font>
+	<font color="#0000ff">Dim </font><font color="#000000">sum As Integer = </font><font color="#800080">0</font>
+	<font color="#0000ff">For </font><font color="#000000">i As Integer = </font><font color="#800080">0 </font><font color="#0000ff">To </font><font color="#000000">intArray.Length - </font><font color="#800080">1</font>
+		<font color="#000000">sum += intArray(i)</font>
+	<font color="#0000ff">Next</font>
+	<font color="#000000">Return sum</font>
+<font color="#0000ff">End Function</font></font>
+</pre>
+</div>
+
+<h3>Difference between FillPie( ) and DrawPie( )</h3>
+
+<p>The only difference between DrawPie and FillPie is that it takes Pen object instead of Brush.</p>
+<h3>Calling DrawSliceChart Method</h3>
+
+<div class="code">
+<pre>
+<font face="Arial"><font color="#0000ff">Private Sub </font><font color="#000000">Form1_Paint(</font><font color="#0000ff">ByVal </font><font color="#000000">sender As System.Object, </font>
+	<font color="#0000ff">ByVal </font><font color="#000000">e As System.Windows.Forms.PaintEventArgs) Handles MyBase.Paint</font>
+        <font color="#000000">DrawSliceChart(e, alWeight)</font>
+    <font color="#0000ff">End Sub</font></font>
+</pre>
+</div>
+
+<div class="image">
+<img src=" slicechart.PNG">
+</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="background_worker_control.shtml" title="Background Worker Control">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="socket.shtml" title="Introduction of Socket ">Next</a></td>
+  </tr> 
+</table>
+<!-- Footer Start-->		
+
+		</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/dotnet/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->

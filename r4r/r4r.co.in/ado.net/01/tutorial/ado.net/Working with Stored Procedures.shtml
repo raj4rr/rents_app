@@ -1,0 +1,109 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>Working with Stored Procedures,Simple  insert Stored Procedure</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="Working with Stored Procedures,Simple  insert Stored Procedure" >
+<meta name="keywords" CONTENT="Working with Stored Procedures,Simple  insert Stored Procedure">
+
+<!-- header start-->	
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>ADO.NET</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+            <img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+            <a href="/ado.net">ADO.Net</a>
+              <img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+
+			  <a href="/ado.net/01/tutorial/ado.net/">ADO.NET Tutorials</a>
+
+              </div>
+
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/ado.net/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	 
+<!-- header End-->	
+<div class="heading">Working with Stored Procedures</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="Updating%20Records%20Using%20Mapped%20Names.shtml" title="Updating Records Using Mapped Names">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="Stored%20Procedures%20Comparison%20with%20functions.shtml" title="Stored Procedures Comparison with functions">Next</a></td>
+  </tr> 
+</table>
+
+<p>"a precompiled collection of SQL statements and optional control-of-flow statements stored under a name and processed as a unit". Stored procedures allow a  more flexibility offering capabilities such as conditional logic .Bandwidth and execution time are reduced because stored procedures are stored within the DBMS,.  because a single stored procedure can execute a complex set of SQL statements.  SQL Server pre-compiles stored procedures such that they execute optimally and  client developers are abstracted from complex designs. They would simply need to know the stored procedure's name and the type of data it returns.</p>
+<p>To add a new stored procedure to the Northwind Microsoft SQL database, perform these steps.</p>
+<ol>
+<li>Load SQL Server Enterprise Manager, found in the Microsoft SQL Server program group.</li>
+<li>Expand the tree "Microsoft SQL Servers," "SQL Server Group," and locate your database server. With SQL installed locally, the default server will be (LOCAL</li>
+<li>Locate and expand the Student database. Select Stored Procedures. On the right side of the screen, you'll see any default stored procedures included with the student database.</li>
+<li>Right-click anywhere on the right pane of the Enterprise Manager and select New Stored Procedure.
+
+<div class="image">
+<img src="working with storeprocedure/insertproc.gif">
+</div>
+
+<div class="heading">Simple  insert Stored Procedure</div>
+<div class="code">
+<pre>
+<font color="#000000">use student</font>
+<font color="#000000">create procedure studentinsertproc</font>
+<font color="#000000">@stdid text,@subid text,@subname text,@mark </font><font color="#0000ff">int</font>
+<font color="#0000ff">as</font>
+<font color="#000000">insert into student</font>
+<font color="#000000">(stdid ,subid,subname,mark)values(@stdid,@subid,@subname,@mark)</font>
+<font color="#000000">studentinsertproc </font><font color="#ff00ff">'10001'</font><font color="#000000">,</font><font color="#ff00ff">'101'</font><font color="#000000">,</font><font color="#ff00ff">'computer graphics'</font><font color="#000000">,</font><font color="#800080">85</font>
+<font color="#000000">studentinsertproc </font><font color="#ff00ff">'10002'</font><font color="#000000">,</font><font color="#ff00ff">'101'</font><font color="#000000">,</font><font color="#ff00ff">'computer graphics'</font><font color="#000000">,</font><font color="#800080">65</font><font color="#000000">,</font>
+<font color="#000000">studentinsertproc </font><font color="#ff00ff">'10003'</font><font color="#000000">,</font><font color="#ff00ff">'101'</font><font color="#000000">,</font><font color="#ff00ff">'computer graphics'</font><font color="#000000">,</font><font color="#800080">75</font>
+<font color="#000000">studentinsertproc </font><font color="#ff00ff">'10004'</font><font color="#000000">,</font><font color="#ff00ff">'101'</font><font color="#000000">,</font><font color="#ff00ff">'computer graphics'</font><font color="#000000">,</font><font color="#800080">55</font>
+<font color="#000000">studentinsertproc </font><font color="#ff00ff">'10005'</font><font color="#000000">,</font><font color="#ff00ff">'101'</font><font color="#000000">,</font><font color="#ff00ff">'computer graphics'</font><font color="#000000">,</font><font color="#800080">85</font>
+<font color="#000000">studentinsertproc </font><font color="#ff00ff">'10006'</font><font color="#000000">,</font><font color="#ff00ff">'101'</font><font color="#000000">,</font><font color="#ff00ff">'computer graphics'</font><font color="#000000">,</font><font color="#800080">87</font>
+<font color="#000000">select * from student</font>
+</pre>
+</div>
+</li>
+<li>select and press F5</li>
+</ol>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="Updating%20Records%20Using%20Mapped%20Names.shtml" title="Updating Records Using Mapped Names">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="Stored%20Procedures%20Comparison%20with%20functions.shtml" title="Stored Procedures Comparison with functions">Next</a></td>
+  </tr> 
+</table>
+
+<!-- Footer Start-->		
+		</div>
+                        </td>
+                    </tr>s
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/dotnet/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->

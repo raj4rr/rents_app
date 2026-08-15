@@ -1,0 +1,122 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD>
+<meta http-equiv="Content-Language" content="en-us">
+<TITLE>Android tutorial||What is User Interface ||How can use User Interface in android||User Interface in android</TITLE>
+<META content="Vinit Tyagi" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name="description" CONTENT="Android user interface learn also What is User Interface,How 
+can use User Interface,User Interface, Layout in Android android basics, architecture,application architecture, advantage, android platform,
+layout, datastorage, android api easy and short way">
+<meta name="keywords" CONTENT="What is User Interface,How can use User Interface,User Interface, 
+Layout in Android,Introduction of Android, android tutorial, services, how to setup environment of android, architecture, lifecycle, application lifecycle,
+user interface, android api, multithread, broadcast receivers, types of component, android platform, layout, datastorage, control, style,
+themes, send email, send sms, beginners, freshers, experienced">
+<!-- header start-->	
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>Android</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+            <img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+            <a href="/java/">Java</a>
+              <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/java/android/">Android</a>
+              </div>
+
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/android/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	 
+
+<div class="heading">User Interface in Android </div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="process_android.shtml" title="Android Process">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="Userinterface_Layout.shtml" title="Layout In Android">Next</a></td>
+  </tr> 
+</table>
+
+<p>View and ViewGroup objects is used for user interface in andriod. View class is basic unit. Widgets class which offer fully implemented UI objects in android like button and text field etc which is the sub class of View class. Layouts class provides different kinds of layout architecture, like linear, tabular and relative which is the sub class of ViewGroup class.View is also a point of interaction for the user and the receiver of the interaction events. setContentView() method is used to  pass a reference to the root node object that is called by the Activity.</p>
+<p>XML is used to store and transfer the data and provides layout that is readable by the human much like HTML.. View objects are leaves in the tree, ViewGroup objects are branches in the tree .</p>
+<p><i>Widgets : </i> Android provides a set of fully implemented widgets, like buttons, checkboxes, and text-entry fields. It is a View object that serves as an interface for interaction with the user. date picker, a clock, and zoom controls are some other  widget. android.widget package provides several method and class for this purpose.</p>
+
+<p><i>Layout: </i>Layout  is the process of planning and arranging in detail something that is human readable form. &lt;LinearLayout&gt; element is used to creates a Linear Layout view group and TextView  element creates a TextView. When you load a layout resource, the Android system initializes these run-time objects, corresponding to the elements in your layout.</p>
+<div class="code"><pre>
+<font color="#0000ff">&lt;?xml </font><font color="#ff0000">version</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;1.0&quot; </font><font color="#ff0000">encoding</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;utf-8&quot;</font><font color="#800080">?</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">RelativeLayout </font><font color="#800080">xmlns:android</font><font color="#0000ff">=</font>
+<font color="#ff00ff">&quot;http://schemas.android.com/apk/res/android&quot;</font>
+    <font color="#800080">android:layout_width</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;fill_parent&quot;</font>
+    <font color="#800080">android:layout_height</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;fill_parent&quot;</font><font color="#0000ff">&gt;</font>
+<font color="#000000">    </font><font color="#0000ff">&lt;</font><font color="#808000">TextView</font>
+        <font color="#800080">android:id</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;@+id/label&quot;</font>
+        <font color="#800080">android:layout_width</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;fill_parent&quot;</font>
+        <font color="#800080">android:layout_height</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;wrap_content&quot;</font>
+        <font color="#800080">android:text</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;Type here:&quot;</font><font color="#0000ff">/&gt;</font>
+<font color="#000000">    </font><font color="#0000ff">&lt;</font><font color="#808000">EditText</font>
+        <font color="#800080">android:id</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;@+id/entry&quot;</font>
+        <font color="#800080">android:layout_width</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;fill_parent&quot;</font>
+        <font color="#800080">android:layout_height</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;wrap_content&quot;</font>
+        <font color="#800080">android:background</font><font color="#0000ff">=</font>
+		<font color="#ff00ff">&quot;@android:drawable/editbox_background&quot;</font>
+        <font color="#800080">android:layout_below</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;@id/label&quot;</font><font color="#0000ff">/&gt;</font>
+<font color="#000000">    </font><font color="#0000ff">&lt;</font><font color="#808000">Button</font>
+        <font color="#800080">android:id</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;@+id/ok&quot;</font>
+        <font color="#800080">android:layout_width</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;wrap_content&quot;</font>
+        <font color="#800080">android:layout_height</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;wrap_content&quot;</font>
+        <font color="#800080">android:layout_below</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;@id/entry&quot;</font>
+        <font color="#800080">android:layout_alignParentRight</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;true&quot;</font>
+        <font color="#800080">android:layout_marginLeft</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;10dip&quot;</font>
+        <font color="#800080">android:text</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;OK&quot; </font><font color="#0000ff">/&gt;</font>
+<font color="#000000">    </font><font color="#0000ff">&lt;</font><font color="#808000">Button</font>
+        <font color="#800080">android:layout_width</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;wrap_content&quot;</font>
+        <font color="#800080">android:layout_height</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;wrap_content&quot;</font>
+        <font color="#800080">android:layout_toLeftOf</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;@id/ok&quot;</font>
+        <font color="#800080">android:layout_alignTop</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;@id/ok&quot;</font>
+        <font color="#800080">android:text</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;Cancel&quot; </font><font color="#0000ff">/&gt;</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">RelativeLayout</font><font color="#0000ff">&gt;</font>
+</pre>
+</div>
+<p><i>Menus: </i> Menus offers a reliable interface that reveals application functions and settings.Android will automatically create the necessary View hierarchy for the menu and draw each of your menu items in it. You do not define this structure yourself OnCreateOptionsMenu() or onCreateContextMenu()  methods for your Activity and declare the items that you want to include in your menu</p>
+<p><i>Adapters: </i> Adapters is used to bind your view to an external source of data. AdapterView is used for this purpose.</p>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="process_android.shtml" title="Android Process">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="Userinterface_Layout.shtml" title="Layout In Android">Next</a></td>
+  </tr> 
+</table>
+
+<!-- Footer Start-->	
+
+		</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->

@@ -1,0 +1,97 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>Transaction Processing in ADO.NET;Creating Transactions;Connection BeginTransaction Methods;Isolation Levels</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="Transaction Processing in ADO.NET;Creating Transactions;Connection BeginTransaction Methods;Isolation Levels" >
+<meta name="keywords" CONTENT="Transaction Processing in ADO.NET;Creating Transactions;Connection BeginTransaction Methods;Isolation Levels">
+
+<!-- header start-->	
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>ADO.NET</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+            <img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+            <a href="/ado.net">ADO.Net</a>
+              <img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+
+			  <a href="/ado.net/01/tutorial/ado.net/">ADO.NET Tutorials</a>
+
+              </div>
+
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/ado.net/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	 
+<!-- header End-->	
+
+<div class="heading">Transaction Processing in ADO.NET</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="ADO.NET%20and%20XML.shtml" title="ADO.NET and XML">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="Step_to_create_transaction.shtml" title="Step To Create Transactions">Next</a></td>
+  </tr> 
+</table>
+
+<p>ADO.NET supports transactions through the Transaction object, which is created against an open connection. Commands that are executed against the connection while the transaction is pending must be enrolled in the transaction by assigning a reference to the Transaction object to their Transaction property. Commands cannot be executed against the Connection outside the transaction while it is pending. If the transaction is committed, all of the commands that form a part of that transaction will be permanently written to the data source. If the transaction is rolled back, all of the commands will be discarded at the data source.</p>
+<h3>Creating Transactions</h3>
+<p>The Transaction object is implemented as part of the data provider. There is a version for  each of the intrinsic data providers: OleDbTransaction in the System.Data. OleDb namespace and SqlTransaction in the System.Data.SqlClient namespace.The SqlTransaction object is implemented using  Microsoft SQL Server transactionscreating a SqlTransaction maps directly to the BeginTransaction statement. The OleDbTransaction is implemented within OLE DB. Transactions are created by calling the BeginTransaction method of the Connection object, which returns a reference to a Transaction object. BeginTransaction is overloaded, allowing an IsolationLevel.The Connection must be valid and open when BeginTransaction is called.</p>
+<div class="heading">Connection BeginTransaction Methods</div>
+<ul>
+<p><i>BeginTransaction()</i>: Begins a transaction</p>
+<P><i>BeginTransaction(IsolationLevel)</i>: Begins a transaction at the specified Isolation Level</P>
+<p><i>BeginTransaction (TransactionName)</i>: transaction with the name specified in the Transaction Name string.</p>
+<p><i>BeginTransaction (IsolationLevel, TransactionName)</i>: Begins a transaction at the specified Isolation Level with the name specified in the Transaction Name string</p>
+</ul>
+<h2>Isolation Levels</h2>
+<ul>
+<p><i>Chaos</i>: Pending changes from more highly ranked transactions can not be over written</p>
+<p><i>ReadCommitted</i>: Shared locks are held while the data is being read, but data can be changed before the endof the transaction</p>
+<p><i>ReadUncommitted</i>: No shared locks are issued and no exclusive locks are honored</p>
+<p><i>RepeatableRead</i>: Exclusive locks are  placed  on all data used in the query.</p>
+<p><i>Serializable</i>: A rangelock is  placed  on the DataSet</p>
+<p><i>Unspecified</i>: An existing isolation level cannot be determined</p>
+</ul>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="ADO.NET%20and%20XML.shtml" title="ADO.NET and XML">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="Step_to_create_transaction.shtml" title="Step To Create Transactions">Next</a></td>
+  </tr> 
+</table>
+
+<!-- Footer Start-->		
+		</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/dotnet/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->></BODY></HTML>

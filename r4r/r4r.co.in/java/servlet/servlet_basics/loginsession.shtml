@@ -1,0 +1,284 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD>
+<meta http-equiv="Content-Language" content="en-us">
+<TITLE>Servlet HttpSession Login and Logout Example</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name="description" CONTENT="Servlet HttpSession Login and Logout Example" >
+<meta name="keywords" CONTENT="Servlet HttpSession Login and Logout Example">
+
+<!-- header start-->	
+
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+
+<?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+     <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>Servlet Tutorials</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+			<img src="/images/left_menu_bullet.gif"  width="11" height="6"/> <a href="/java/">Java</a>
+			<img src="/images/left_menu_bullet.gif"  width="11" height="6"/> <a href="/java/servlet/">Servlet</a>
+
+			      </div>
+
+            	<table>
+                    <tr>
+
+                         <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/servlet/servlet_basics/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 
+
+<div class="heading">Servlet HttpSession Login and Logout Example</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="request.shtml" title="ServletRequest Interface">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="logincookies.shtml" title="Servlet Login and Logout Example using Cookies">Next</a></td>
+  </tr> 
+</table>
+<!-- header End-->	
+
+<p>In Servlet HttpSession Login and Logout can bind the objects on HttpSession instance and get the objects by using setAttribute and getAttribute methods.
+</p>
+<p>
+Then we learnt about what is HttpSession, How to store and get data from session object etc.
+</p>
+<p>
+And now we are going to create a real world login and logout application without using database code. We are assuming that password is admin123.
+</p>
+
+<p>
+Using these links: login, logout and profile. User can't go to profile page until he/she is logged in. If user is logged out, he need to login again to visit profile.
+</p>
+
+<p>
+In this application, we have created following files.
+</p>
+<ol>
+   <li> index.html</li>
+     <li>link.html</li>
+    <li>login.html</li>
+     <li>LoginServlet.java</li>
+     <li>LogoutServlet.java</li>
+     <li>ProfileServlet.java</li>
+     <li>web.xml</li>
+
+</ol>
+
+<i>index.html</i>
+
+<div class="code">
+<pre>
+<font face="Courier New"><font color="#0000ff">&lt;!DOCTYPE </font><font color="#800080">html</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;html&gt;</font>
+<font color="#0000ff">&lt;head&gt;</font>
+<font color="#0000ff">&lt;meta </font><font color="#ff0000">charset</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;ISO-8859-1&quot;</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;title&gt;</font><font color="#000000">Servlet Login Example</font><font color="#0000ff">&lt;/title&gt;</font>
+<font color="#0000ff">&lt;/head&gt;</font>
+<font color="#0000ff">&lt;body&gt;</font>
+<font color="#0000ff">&lt;h1&gt;</font><font color="#000000">Login App using HttpSession</font><font color="#0000ff">&lt;/h1&gt;</font>
+<font color="#0000ff">&lt;a </font><font color="#ff0000">href</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;login.html&quot;</font><font color="#0000ff">&gt;</font><font color="#000000">Login</font><font color="#0000ff">&lt;/a&gt;</font><font color="#000000">|</font>
+<font color="#0000ff">&lt;a </font><font color="#ff0000">href</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;LogoutServlet&quot;</font><font color="#0000ff">&gt;</font><font color="#000000">Logout</font><font color="#0000ff">&lt;/a&gt;</font><font color="#000000">|</font>
+<font color="#0000ff">&lt;a </font><font color="#ff0000">href</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;ProfileServlet&quot;</font><font color="#0000ff">&gt;</font><font color="#000000">Profile</font><font color="#0000ff">&lt;/a&gt;</font>
+<font color="#0000ff">&lt;/body&gt;</font>
+<font color="#0000ff">&lt;/html&gt;</font>
+</font></pre>
+</div>
+
+<i>link.html</i>
+
+<div class="code">
+<pre>
+<font face="Courier New"><font color="#0000ff">&lt;a </font><font color="#ff0000">href</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;login.html&quot;</font><font color="#0000ff">&gt;</font><font color="#000000">Login</font><font color="#0000ff">&lt;/a&gt;</font><font color="#000000"> |</font>
+<font color="#0000ff">&lt;a </font><font color="#ff0000">href</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;LogoutServlet&quot;</font><font color="#0000ff">&gt;</font><font color="#000000">Logout</font><font color="#0000ff">&lt;/a&gt;</font><font color="#000000"> |</font>
+<font color="#0000ff">&lt;a </font><font color="#ff0000">href</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;ProfileServlet&quot;</font><font color="#0000ff">&gt;</font><font color="#000000">Profile</font><font color="#0000ff">&lt;/a&gt;</font>
+<font color="#0000ff">&lt;hr&gt;</font>
+</font></pre>
+</div>
+
+<i>login.html</i>
+
+<div class="code">
+<pre>
+<font face="Courier New"><font color="#0000ff">&lt;form </font><font color="#ff0000">action</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;LoginServlet&quot; </font><font color="#ff0000">method</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;post&quot;</font><font color="#0000ff">&gt;</font>
+<font color="#000000">Name:</font><font color="#0000ff">&lt;input </font><font color="#ff0000">type</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;text&quot; </font><font color="#ff0000">name</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;name&quot;</font><font color="#0000ff">&gt;&lt;br&gt;</font>
+<font color="#000000">Password:</font><font color="#0000ff">&lt;input </font><font color="#ff0000">type</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;password&quot; </font><font color="#ff0000">name</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;password&quot;</font><font color="#0000ff">&gt;&lt;br&gt;</font>
+<font color="#0000ff">&lt;input </font><font color="#ff0000">type</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;submit&quot; </font><font color="#ff0000">value</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;login&quot;</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;/form&gt;</font>
+</font></pre>
+</div>
+
+<i>LoginServlet.java</i>
+
+<div class="code">
+<pre>
+<font face="Courier New"><font color="#0000ff">import </font><font color="#000000">java.io.</font><font color="#ff0000">IOException</font><font color="#000000">;</font>
+<font color="#0000ff">import </font><font color="#000000">java.io.</font><font color="#ff0000">PrintWriter</font><font color="#000000">;</font>
+<font color="#0000ff">import </font><font color="#000000">javax.servlet.ServletException;</font>
+<font color="#0000ff">import </font><font color="#000000">javax.servlet.http.HttpServlet;</font>
+<font color="#0000ff">import </font><font color="#000000">javax.servlet.http.HttpServletRequest;</font>
+<font color="#0000ff">import </font><font color="#000000">javax.servlet.http.HttpServletResponse;</font>
+<font color="#0000ff">import </font><font color="#000000">javax.servlet.http.HttpSession;</font>
+<font color="#0000ff">public class </font><font color="#000000">LoginServlet </font><font color="#0000ff">extends </font><font color="#000000">HttpServlet {</font>
+<font color="#0000ff">protected void </font><font color="#000000">doPost(HttpServletRequest request, HttpServletResponse response)</font>
+<font color="#0000ff">throws </font><font color="#000000">ServletException, </font><font color="#ff0000">IOException </font><font color="#000000">{</font>
+<font color="#000000">response.setContentType(</font><font color="#ff00ff">&quot;text/html&quot;</font><font color="#000000">);</font>
+<font color="#ff0000">PrintWriter </font><font color="#000000">out=response.getWriter();</font>
+<font color="#000000">request.getRequestDispatcher(</font><font color="#ff00ff">&quot;link.html&quot;</font><font color="#000000">).include(request, response);</font>
+<font color="#ff0000">String </font><font color="#000000">name=request.getParameter(</font><font color="#ff00ff">&quot;name&quot;</font><font color="#000000">);</font>
+<font color="#ff0000">String </font><font color="#000000">password=request.getParameter(</font><font color="#ff00ff">&quot;password&quot;</font><font color="#000000">);</font>
+<font color="#0000ff">if</font><font color="#000000">(password.equals(</font><font color="#ff00ff">&quot;admin123&quot;</font><font color="#000000">)){</font>
+<font color="#000000">out.print(</font><font color="#ff00ff">&quot;Welcome, &quot;</font><font color="#000000">+name);</font>
+<font color="#000000">HttpSession session=request.getSession();</font>
+<font color="#000000">session.setAttribute(</font><font color="#ff00ff">&quot;name&quot;</font><font color="#000000">,name);</font>
+<font color="#000000">}</font>
+<font color="#0000ff">else</font><font color="#000000">{</font>
+<font color="#000000">out.print(</font><font color="#ff00ff">&quot;Sorry, username or password error!&quot;</font><font color="#000000">);</font>
+<font color="#000000">request.getRequestDispatcher(</font><font color="#ff00ff">&quot;login.html&quot;</font><font color="#000000">).include(request, response);</font>
+<font color="#000000">}</font>
+<font color="#000000">out.close();</font>
+<font color="#000000">}</font>
+<font color="#000000">}</font>
+</font></pre>
+</div>
+
+<i>LogoutServlet.java</i>
+
+<div class="code">
+<pre>
+<font face="Courier New"><font color="#0000ff">import </font><font color="#000000">java.io.</font><font color="#ff0000">IOException</font><font color="#000000">;</font>
+<font color="#0000ff">import </font><font color="#000000">java.io.</font><font color="#ff0000">PrintWriter</font><font color="#000000">;</font>
+<font color="#0000ff">import </font><font color="#000000">javax.servlet.ServletException;</font>
+<font color="#0000ff">import </font><font color="#000000">javax.servlet.http.HttpServlet;</font>
+<font color="#0000ff">import </font><font color="#000000">javax.servlet.http.HttpServletRequest;</font>
+<font color="#0000ff">import </font><font color="#000000">javax.servlet.http.HttpServletResponse;</font>
+<font color="#0000ff">import </font><font color="#000000">javax.servlet.http.HttpSession;</font>
+<font color="#0000ff">public class </font><font color="#000000">LogoutServlet </font><font color="#0000ff">extends </font><font color="#000000">HttpServlet {</font>
+<font color="#0000ff">protected void </font><font color="#000000">doGet(HttpServletRequest request, HttpServletResponse response)</font>
+<font color="#0000ff">throws </font><font color="#000000">ServletException, </font><font color="#ff0000">IOException </font><font color="#000000">{</font>
+<font color="#000000">response.setContentType(</font><font color="#ff00ff">&quot;text/html&quot;</font><font color="#000000">);</font>
+<font color="#ff0000">PrintWriter </font><font color="#000000">out=response.getWriter();</font>
+<font color="#000000">request.getRequestDispatcher(</font><font color="#ff00ff">&quot;link.html&quot;</font><font color="#000000">).include(request, response);</font>
+<font color="#000000">HttpSession session=request.getSession();</font>
+<font color="#000000">session.invalidate();</font>
+<font color="#000000">out.print(</font><font color="#ff00ff">&quot;You are successfully logged out!&quot;</font><font color="#000000">);</font>
+<font color="#000000">out.close();</font>
+<font color="#000000">}</font>
+<font color="#000000">}</font>
+</font></pre>
+</div>
+
+<i>ProfileServlet.java</i>
+
+<div class="code">
+<pre>
+<font face="Courier New"><font color="#0000ff">import </font><font color="#000000">java.io.</font><font color="#ff0000">IOException</font><font color="#000000">;</font>
+<font color="#0000ff">import </font><font color="#000000">java.io.</font><font color="#ff0000">PrintWriter</font><font color="#000000">;</font>
+<font color="#0000ff">import </font><font color="#000000">javax.servlet.ServletException;</font>
+<font color="#0000ff">import </font><font color="#000000">javax.servlet.http.HttpServlet;</font>
+<font color="#0000ff">import </font><font color="#000000">javax.servlet.http.HttpServletRequest;</font>
+<font color="#0000ff">import </font><font color="#000000">javax.servlet.http.HttpServletResponse;</font>
+<font color="#0000ff">import </font><font color="#000000">javax.servlet.http.HttpSession;</font>
+<font color="#0000ff">public class </font><font color="#000000">ProfileServlet </font><font color="#0000ff">extends </font><font color="#000000">HttpServlet {</font>
+<font color="#0000ff">protected void </font><font color="#000000">doGet(HttpServletRequest request, HttpServletResponse response)</font>
+<font color="#0000ff">throws </font><font color="#000000">ServletException, </font><font color="#ff0000">IOException </font><font color="#000000">{</font>
+<font color="#000000">response.setContentType(</font><font color="#ff00ff">&quot;text/html&quot;</font><font color="#000000">);</font>
+<font color="#ff0000">PrintWriter </font><font color="#000000">out=response.getWriter();</font>
+<font color="#000000">request.getRequestDispatcher(</font><font color="#ff00ff">&quot;link.html&quot;</font><font color="#000000">).include(request, response);</font>
+<font color="#000000">HttpSession session=request.getSession(</font><font color="#0000ff">false</font><font color="#000000">);</font>
+<font color="#0000ff">if</font><font color="#000000">(session!=</font><font color="#0000ff">null</font><font color="#000000">){</font>
+<font color="#ff0000">String </font><font color="#000000">name=(</font><font color="#ff0000">String</font><font color="#000000">)session.getAttribute(</font><font color="#ff00ff">&quot;name&quot;</font><font color="#000000">);</font>
+<font color="#000000">out.print(</font><font color="#ff00ff">&quot;Hello, &quot;</font><font color="#000000">+name+</font><font color="#ff00ff">&quot; Welcome to Profile&quot;</font><font color="#000000">);</font>
+<font color="#000000">}</font>
+<font color="#0000ff">else</font><font color="#000000">{</font>
+<font color="#000000">out.print(</font><font color="#ff00ff">&quot;Please login first&quot;</font><font color="#000000">);</font>
+<font color="#000000">request.getRequestDispatcher(</font><font color="#ff00ff">&quot;login.html&quot;</font><font color="#000000">).include(request, response);</font>
+<font color="#000000">}</font>
+<font color="#000000">out.close();</font>
+<font color="#000000">}</font>
+<font color="#000000">}</font>
+</font></pre>
+</div>
+
+<i>web.xml</i>
+
+<div class="code">
+<pre>
+<font face="Courier New"><font color="#000000">&lt;?xml version=</font><font color="#ff00ff">&quot;1.0&quot; </font><font color="#000000">encoding=</font><font color="#ff00ff">&quot;UTF-8&quot;</font><font color="#000000">?&gt;</font>
+<font color="#000000">&lt;web-app xmlns:xsi=</font><font color="#ff00ff">&quot;http://www.w3.org/2001/XMLSchema-instance&quot; </font>
+<font color="#000000">xmlns=</font><font color="#ff00ff">&quot;http://java.sun.com/xml/ns/javaee&quot; </font><font color="#000000">xsi:schemaLocation=</font>
+<font color="#ff00ff">&quot;http://java.sun.com/xml/ns/javaee </font>
+<font color="#000000">http:</font><font color="#008000">//java.sun.com/xml/ns/javaee/web-app_2_5.xsd&quot; id=&quot;WebApp_ID&quot; version=&quot;2.5&quot;&gt;</font>
+   <font color="#000000">&lt;servlet&gt;</font>
+    <font color="#000000">&lt;description&gt;&lt;/description&gt;</font>
+    <font color="#000000">&lt;display-name&gt;LoginServlet&lt;/display-name&gt;</font>
+    <font color="#000000">&lt;servlet-name&gt;LoginServlet&lt;/servlet-name&gt;</font>
+    <font color="#000000">&lt;servlet-</font><font color="#0000ff">class</font><font color="#000000">&gt;LoginServlet&lt;/servlet-</font><font color="#0000ff">class</font><font color="#000000">&gt;</font>
+  <font color="#000000">&lt;/servlet&gt;</font>
+  <font color="#000000">&lt;servlet-mapping&gt;</font>
+    <font color="#000000">&lt;servlet-name&gt;LoginServlet&lt;/servlet-name&gt;</font>
+    <font color="#000000">&lt;url-pattern&gt;/LoginServlet&lt;/url-pattern&gt;</font>
+  <font color="#000000">&lt;/servlet-mapping&gt;</font>
+  <font color="#000000">&lt;servlet&gt;</font>
+    <font color="#000000">&lt;description&gt;&lt;/description&gt;</font>
+    <font color="#000000">&lt;display-name&gt;ProfileServlet&lt;/display-name&gt;</font>
+    <font color="#000000">&lt;servlet-name&gt;ProfileServlet&lt;/servlet-name&gt;</font>
+    <font color="#000000">&lt;servlet-</font><font color="#0000ff">class</font><font color="#000000">&gt;ProfileServlet&lt;/servlet-</font><font color="#0000ff">class</font><font color="#000000">&gt;</font>
+  <font color="#000000">&lt;/servlet&gt;</font>
+  <font color="#000000">&lt;servlet-mapping&gt;</font>
+    <font color="#000000">&lt;servlet-name&gt;ProfileServlet&lt;/servlet-name&gt;</font>
+    <font color="#000000">&lt;url-pattern&gt;/ProfileServlet&lt;/url-pattern&gt;</font>
+  <font color="#000000">&lt;/servlet-mapping&gt;</font>
+  <font color="#000000">&lt;servlet&gt;</font>
+    <font color="#000000">&lt;description&gt;&lt;/description&gt;</font>
+    <font color="#000000">&lt;display-name&gt;LogoutServlet&lt;/display-name&gt;</font>
+    <font color="#000000">&lt;servlet-name&gt;LogoutServlet&lt;/servlet-name&gt;</font>
+    <font color="#000000">&lt;servlet-</font><font color="#0000ff">class</font><font color="#000000">&gt;LogoutServlet&lt;/servlet-</font><font color="#0000ff">class</font><font color="#000000">&gt;</font>
+  <font color="#000000">&lt;/servlet&gt;</font>
+  <font color="#000000">&lt;servlet-mapping&gt;</font>
+    <font color="#000000">&lt;servlet-name&gt;LogoutServlet&lt;/servlet-name&gt;</font>
+    <font color="#000000">&lt;url-pattern&gt;/LogoutServlet&lt;/url-pattern&gt;</font>
+  <font color="#000000">&lt;/servlet-mapping&gt;</font>
+<font color="#000000">&lt;/web-app&gt;</font>
+</font></pre>
+</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="request.shtml" title="ServletRequest Interface">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="logincookies.shtml" title="Servlet Login and Logout Example using Cookies">Next</a></td>
+  </tr> 
+</table>
+
+<!-- Footer Start-->		
+
+		</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+   </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->

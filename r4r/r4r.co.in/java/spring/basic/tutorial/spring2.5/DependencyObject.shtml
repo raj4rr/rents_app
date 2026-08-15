@@ -1,0 +1,200 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD>
+<meta http-equiv="Content-Language" content="en-us">
+<TITLE>Dependency on objects example</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name="description" CONTENT="Dependency 
+on objects example,spring travels,spring tutorials,spring framework,spring mvc,spring interview question,spring framework tutorials,spring aop" >
+<meta name="keywords" CONTENT="Dependency 
+on objects example,spring travels,spring tutorials,spring framework,spring mvc,spring interview question,spring framework tutorials,spring aop">
+
+<!-- header start-->	
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>Spring Framework</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+           <img src="/images/left_menu_bullet.gif" width="11" height="6"/>  <a href="/java/">Java</a>    
+		      <img src="/images/left_menu_bullet.gif" width="11" height="6"/><a href="/java/spring/">Spring</a>
+
+              </div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/spring/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	 
+
+<!-- header End--> 
+
+<div class="heading">Dependency on objects example</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="DependencyPrimitive.shtml" title="Dependency Primitive">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="DependencyList.shtml" title="Dependency List">Next</a></td>
+  </tr> 
+</table>
+
+ <p><i>Introduction:</i>In the case of Dependency on object, The constructor-arg is the sub element of &lt;bean ......&gt; is used to specify the dependency of an object i.e to be satisfied the constructor-arg element uses reference of an attribute which are used to specify object respectively.</p>
+ <div class="heading">Technology use to run this source code</div>
+<ol>
+<li>Spring 2.5</li>
+<li>Eclipse</li>
+<li>JDK 1.6</li>
+</ol>
+
+<h3>Source Code</h3>
+<h3>applicationContext.xml</h3>		
+<div class="code">
+<PRE>
+<FONT COLOR="#0000ff">&lt;?xml </FONT><FONT COLOR="#ff0000">version</FONT><FONT COLOR="#0000ff">=</FONT><FONT COLOR="#ff00ff">"1.0" </FONT><FONT COLOR="#ff0000">encoding</FONT><FONT COLOR="#0000ff">=</FONT><FONT COLOR="#ff00ff">"UTF-8"</FONT><FONT COLOR="#800080">?</FONT><FONT COLOR="#0000ff">&gt;</FONT>
+<FONT COLOR="#0000ff">&lt;</FONT><FONT COLOR="#808000">beans</FONT>
+<FONT COLOR="#ff0000">xmlns</FONT><FONT COLOR="#0000ff">=</FONT><FONT COLOR="#ff00ff">"http://www.springframework.org/schema/beans"</FONT>
+<FONT COLOR="#800080">xmlns:xsi</FONT><FONT COLOR="#0000ff">=</FONT><FONT COLOR="#ff00ff">"http://www.w3.org/2001/XMLSchema-instance"</FONT>
+<FONT COLOR="#800080">xmlns:p</FONT><FONT COLOR="#0000ff">=</FONT><FONT COLOR="#ff00ff">"http://www.springframework.org/schema/p"</FONT>
+<FONT COLOR="#800080">xsi:schemaLocation</FONT><FONT COLOR="#0000ff">=</FONT><FONT COLOR="#ff00ff">"http://www.springframework.org/schema/beans</FONT>
+<FONT COLOR="#ff00ff">	http://www.springframework.org/schema/beans/spring-beans-2.5.xsd"</FONT><FONT COLOR="#0000ff">&gt;</FONT>
+<FONT COLOR="#0000ff">&lt;</FONT><FONT COLOR="#808000">bean </FONT><FONT COLOR="#800080">id</FONT><FONT COLOR="#0000ff">=</FONT><FONT COLOR="#ff00ff">"c1" </FONT><FONT COLOR="#800080">class</FONT><FONT COLOR="#0000ff">=</FONT><FONT COLOR="#ff00ff">"org.r4r.Course"</FONT><FONT COLOR="#0000ff">&gt;</FONT>
+<FONT COLOR="#0000ff">&lt;</FONT><FONT COLOR="#808000">constructor-arg </FONT><FONT COLOR="#800080">value</FONT><FONT COLOR="#0000ff">=</FONT><FONT COLOR="#ff00ff">"MCA"</FONT><FONT COLOR="#0000ff">/&gt;</FONT>
+<FONT COLOR="#0000ff">&lt;</FONT><FONT COLOR="#808000">constructor-arg </FONT><FONT COLOR="#800080">value</FONT><FONT COLOR="#0000ff">=</FONT><FONT COLOR="#ff00ff">"150000"</FONT><FONT COLOR="#0000ff">/&gt;</FONT>
+<FONT COLOR="#0000ff">&lt;/</FONT><FONT COLOR="#808000">bean</FONT><FONT COLOR="#0000ff">&gt;</FONT>
+<FONT COLOR="#0000ff">&lt;</FONT><FONT COLOR="#808000">bean </FONT><FONT COLOR="#800080">id</FONT><FONT COLOR="#0000ff">=</FONT><FONT COLOR="#ff00ff">"c2" </FONT><FONT COLOR="#800080">class</FONT><FONT COLOR="#0000ff">=</FONT><FONT COLOR="#ff00ff">"org.r4r.Course"</FONT><FONT COLOR="#0000ff">&gt;</FONT>
+<FONT COLOR="#0000ff">&lt;</FONT><FONT COLOR="#808000">constructor-arg </FONT><FONT COLOR="#800080">value</FONT><FONT COLOR="#0000ff">=</FONT><FONT COLOR="#ff00ff">"MBA"</FONT><FONT COLOR="#0000ff">/&gt;</FONT>
+<FONT COLOR="#0000ff">&lt;</FONT><FONT COLOR="#808000">constructor-arg </FONT><FONT COLOR="#800080">value</FONT><FONT COLOR="#0000ff">=</FONT><FONT COLOR="#ff00ff">"250000"</FONT><FONT COLOR="#0000ff">/&gt;</FONT>
+<FONT COLOR="#0000ff">&lt;/</FONT><FONT COLOR="#808000">bean</FONT><FONT COLOR="#0000ff">&gt;</FONT>
+<FONT COLOR="#0000ff">&lt;</FONT><FONT COLOR="#808000">bean </FONT><FONT COLOR="#800080">id</FONT><FONT COLOR="#0000ff">=</FONT><FONT COLOR="#ff00ff">"ab" </FONT><FONT COLOR="#800080">class</FONT><FONT COLOR="#0000ff">=</FONT><FONT COLOR="#ff00ff">"org.r4r.Student"</FONT><FONT COLOR="#0000ff">&gt;</FONT>
+<FONT COLOR="#0000ff">&lt;</FONT><FONT COLOR="#808000">constructor-arg </FONT><FONT COLOR="#800080">value</FONT><FONT COLOR="#0000ff">=</FONT><FONT COLOR="#ff00ff">"101"</FONT><FONT COLOR="#0000ff">/&gt;</FONT>
+<FONT COLOR="#0000ff">&lt;</FONT><FONT COLOR="#808000">constructor-arg </FONT><FONT COLOR="#800080">value</FONT><FONT COLOR="#0000ff">=</FONT><FONT COLOR="#ff00ff">"Mukund"</FONT><FONT COLOR="#0000ff">/&gt;</FONT>
+<FONT COLOR="#0000ff">&lt;</FONT><FONT COLOR="#808000">constructor-arg</FONT><FONT COLOR="#0000ff">&gt;</FONT>
+<FONT COLOR="#0000ff">&lt;</FONT><FONT COLOR="#808000">set</FONT><FONT COLOR="#0000ff">&gt;</FONT>
+<FONT COLOR="#0000ff">&lt;</FONT><FONT COLOR="#808000">ref </FONT><FONT COLOR="#800080">bean</FONT><FONT COLOR="#0000ff">=</FONT><FONT COLOR="#ff00ff">"c1"</FONT><FONT COLOR="#0000ff">/&gt;</FONT>
+<FONT COLOR="#0000ff">&lt;</FONT><FONT COLOR="#808000">ref </FONT><FONT COLOR="#800080">bean</FONT><FONT COLOR="#0000ff">=</FONT><FONT COLOR="#ff00ff">"c2"</FONT><FONT COLOR="#0000ff">/&gt;</FONT>
+<FONT COLOR="#0000ff">&lt;/</FONT><FONT COLOR="#808000">set</FONT><FONT COLOR="#0000ff">&gt;</FONT>
+<FONT COLOR="#0000ff">&lt;/</FONT><FONT COLOR="#808000">constructor-arg</FONT><FONT COLOR="#0000ff">&gt;</FONT>
+<FONT COLOR="#0000ff">&lt;/</FONT><FONT COLOR="#808000">bean</FONT><FONT COLOR="#0000ff">&gt;</FONT>
+<FONT COLOR="#0000ff">&lt;/</FONT><FONT COLOR="#808000">beans</FONT><FONT COLOR="#0000ff">&gt;</FONT>
+</PRE>
+</div>
+
+ <h3>Course.java</h3>
+ <div class="code">
+<PRE>
+<FONT COLOR="#0000ff">package </FONT><FONT COLOR="#000000">org.r4r;</FONT>
+<FONT COLOR="#0000ff">public class </FONT><FONT COLOR="#000000">Course {</FONT>
+<FONT COLOR="#ff0000">String </FONT><FONT COLOR="#000000">name;</FONT>
+<FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">fee;</FONT>
+<FONT COLOR="#0000ff">public </FONT><FONT COLOR="#000000">Course(</FONT><FONT COLOR="#ff0000">String </FONT><FONT COLOR="#000000">name, </FONT><FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">fee) {</FONT>
+<FONT COLOR="#0000ff">super</FONT><FONT COLOR="#000000">();</FONT>
+<FONT COLOR="#0000ff">this</FONT><FONT COLOR="#000000">.name = name;</FONT>
+<FONT COLOR="#0000ff">this</FONT><FONT COLOR="#000000">.fee = fee;</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#0000ff">public </FONT><FONT COLOR="#ff0000">String </FONT><FONT COLOR="#000000">toString(){</FONT>
+<FONT COLOR="#ff0000">StringBuffer </FONT><FONT COLOR="#000000">b=</FONT><FONT COLOR="#0000ff">new </FONT><FONT COLOR="#ff0000">StringBuffer</FONT><FONT COLOR="#000000">();</FONT>
+<FONT COLOR="#000000">b.append(name).append(</FONT><FONT COLOR="#ff00ff">"\t\t"</FONT><FONT COLOR="#000000">).append(fee);</FONT>
+<FONT COLOR="#0000ff">return </FONT><FONT COLOR="#000000">b.toString();</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#000000">}</FONT>
+</PRE>
+ </div>
+
+  <h3>Student.java</h3>
+ <div class="code">
+<PRE>
+<FONT COLOR="#0000ff">package </FONT><FONT COLOR="#000000">org.r4r;</FONT>
+<FONT COLOR="#0000ff">import </FONT><FONT COLOR="#000000">java.util.</FONT><FONT COLOR="#ff0000">Iterator</FONT><FONT COLOR="#000000">;</FONT>
+<FONT COLOR="#0000ff">import </FONT><FONT COLOR="#000000">java.util.</FONT><FONT COLOR="#ff0000">Set</FONT><FONT COLOR="#000000">;</FONT>
+<FONT COLOR="#0000ff">public class </FONT><FONT COLOR="#000000">Student {</FONT>
+<FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">id;</FONT>
+<FONT COLOR="#ff0000">String </FONT><FONT COLOR="#000000">n;</FONT>
+<FONT COLOR="#ff0000">Set</FONT><FONT COLOR="#000000">&lt;Course&gt; course;</FONT>
+<FONT COLOR="#0000ff">public </FONT><FONT COLOR="#000000">Student(</FONT><FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">id, </FONT><FONT COLOR="#ff0000">String </FONT><FONT COLOR="#000000">n, </FONT><FONT COLOR="#ff0000">Set</FONT><FONT COLOR="#000000">&lt;Course&gt; course) {</FONT>
+<FONT COLOR="#0000ff">super</FONT><FONT COLOR="#000000">();</FONT>
+<FONT COLOR="#0000ff">this</FONT><FONT COLOR="#000000">.id = id;</FONT>
+<FONT COLOR="#0000ff">this</FONT><FONT COLOR="#000000">.n = n;</FONT>
+<FONT COLOR="#0000ff">this</FONT><FONT COLOR="#000000">.course = course;</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#0000ff">public </FONT><FONT COLOR="#ff0000">String </FONT><FONT COLOR="#000000">toString(){</FONT>
+<FONT COLOR="#ff0000">StringBuffer </FONT><FONT COLOR="#000000">b=</FONT><FONT COLOR="#0000ff">new </FONT><FONT COLOR="#ff0000">StringBuffer</FONT><FONT COLOR="#000000">();</FONT>
+<FONT COLOR="#000000">b.append(</FONT><FONT COLOR="#ff00ff">"Name:"</FONT><FONT COLOR="#000000">).append(n).append(</FONT><FONT COLOR="#ff00ff">"\n"</FONT><FONT COLOR="#000000">).append(</FONT><FONT COLOR="#ff00ff">"Course details\n"</FONT><FONT COLOR="#000000">);</FONT>
+<FONT COLOR="#ff0000">Iterator</FONT><FONT COLOR="#000000">&lt;Course&gt; itr=course.iterator();</FONT>
+<FONT COLOR="#0000ff">while</FONT><FONT COLOR="#000000">(itr.hasNext()){</FONT>
+<FONT COLOR="#000000">b.append(itr.next()).append(</FONT><FONT COLOR="#ff00ff">"\n"</FONT><FONT COLOR="#000000">);</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#0000ff">return </FONT><FONT COLOR="#000000">b.toString();</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#000000">}</FONT>
+</PRE>
+ </div>
+
+  <h3>Test.java</h3>
+ <div class="code">
+<PRE>
+<FONT COLOR="#0000ff">package </FONT><FONT COLOR="#000000">org.r4r;</FONT>
+<FONT COLOR="#0000ff">import </FONT><FONT COLOR="#000000">org.springframework.beans.factory.BeanFactory;</FONT>
+<FONT COLOR="#0000ff">import </FONT><FONT COLOR="#000000">org.springframework.beans.factory.xml.XmlBeanFactory;</FONT>
+<FONT COLOR="#0000ff">import </FONT><FONT COLOR="#000000">org.springframework.core.io.ClassPathResource;</FONT>
+<FONT COLOR="#0000ff">import </FONT><FONT COLOR="#000000">org.springframework.core.io.Resource;</FONT>
+<FONT COLOR="#0000ff">public class </FONT><FONT COLOR="#000000">Test {</FONT>
+<FONT COLOR="#0000ff">public static void </FONT><FONT COLOR="#000000">main(</FONT><FONT COLOR="#ff0000">String </FONT><FONT COLOR="#000000">ar[]){</FONT>
+<FONT COLOR="#000000">Resource r=</FONT><FONT COLOR="#0000ff">new </FONT><FONT COLOR="#000000">ClassPathResource(</FONT><FONT COLOR="#ff00ff">"applicationContext.xml"</FONT><FONT COLOR="#000000">);</FONT>
+<FONT COLOR="#000000">BeanFactory f=</FONT><FONT COLOR="#0000ff">new </FONT><FONT COLOR="#000000">XmlBeanFactory(r);</FONT>
+<FONT COLOR="#000000">Student a1=(Student)f.getBean(</FONT><FONT COLOR="#ff00ff">"ab"</FONT><FONT COLOR="#000000">);</FONT>
+<FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.println(</FONT><FONT COLOR="#ff00ff">"Student information is,"</FONT><FONT COLOR="#000000">);</FONT>
+<FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.println(a1);</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#000000">}</FONT>
+</PRE>
+ </div>
+
+ <p><h3>Output:</h3></p>
+ <div class="output">
+<PRE>
+<FONT COLOR="#000000">Student information is,</FONT>
+<FONT COLOR="#ff0000">Name</FONT><FONT COLOR="#000000">:Mukund</FONT>
+<FONT COLOR="#000000">Course details</FONT>
+<FONT COLOR="#000000">MCA </FONT><FONT COLOR="#800080">150000</FONT>
+<FONT COLOR="#000000">MBA </FONT><FONT COLOR="#800080">250000</FONT>
+</PRE>
+ </div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="DependencyPrimitive.shtml" title="Dependency Primitive">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="DependencyList.shtml" title="Dependency List">Next</a></td>
+  </tr> 
+</table>
+
+<!-- Footer Start-->
+
+		</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->

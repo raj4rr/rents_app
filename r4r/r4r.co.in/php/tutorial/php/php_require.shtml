@@ -1,0 +1,99 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD>
+<meta http-equiv="Content-Language" content="en-us">
+<TITLE>PHP-Require</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name="description" CONTENT="PHP-Require" >
+<meta name="keywords" CONTENT="PHP-Require">
+
+<!-- header start-->	
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>PHP Programing language</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+            <img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+            <a href="/php/">PHP</a>
+
+              </div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/php/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	 
+
+	   	   <div class="heading">PHP Require</div>
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="php_include.shtml" title="PHP Include">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="php_if.shtml" title="PHP IF">Next</a></td>
+</table>
+
+<!-- header End-->
+
+<p>The PHP in using a require command it's using to include a file into your PHP code. In PHP there is one huge difference between the two commands, though it might not seem that big of a deal.</p>
+
+<h3>Require Vs Include:</h3>
+<p>We can include a file with the include command and PHP cannot find it you will see an error message like the following:</p>
+<div class="code">
+<pre>
+<font color="#800000">&lt;?php</font>
+<font color="#0000ff">include </font><font color="#800000">(</font><font color="#ff00ff">&quot;This file is not here.php&quot;</font><font color="#800000">);</font>
+<font color="#0000ff">echo </font><font color="#ff00ff">&quot;r4rtechsoft!&quot;</font><font color="#800000">;</font>
+<font color="#800000">?&gt;</font>
+</pre>
+</div>
+<p><i>Output</i></p>
+<div class="output">
+r4rtechsoft!
+</div>
+<p><i>Notice:</i> That our echo statement is still executed, this is because a Warning does not prevent our PHP script from running. On the other hand, if we did the same example but used the require statement we would get something like the following example.</p>
+<div class="code">
+<pre>
+<font color="#800000">&lt;?php</font>
+<font color="#0000ff">include </font><font color="#800000">(</font><font color="#ff00ff">&quot;This file is not here.php&quot;</font><font color="#800000">);</font>
+<font color="#0000ff">echo </font><font color="#ff00ff">&quot;r4rtechsoft!&quot;</font><font color="#800000">;</font>
+<font color="#800000">?&gt;</font>
+</pre>
+</div>
+<p>The echo statement was not executed because our script execution died after the require command returned a fatal error! We recommend that you use require instead of include because your scripts should not be executing if necessary files are missing or misnamed.</p>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="php_include.shtml" title="PHP Include">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="php_if.shtml" title="PHP IF">Next</a></td>
+</table>
+<!-- Footer Start-->	
+
+</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/php/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->

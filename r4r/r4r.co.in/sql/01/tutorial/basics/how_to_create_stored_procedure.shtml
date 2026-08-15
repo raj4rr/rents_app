@@ -1,0 +1,149 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>HOW TO CREATE STORED PROCEDURE, CHECK EXISTENCE OF STORED PROCEDURE, EXECUTE THE STORED PROCEDURE</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="HOW TO CREATE STORED PROCEDURE, CHECK EXISTENCE OF STORED PROCEDURE, EXECUTE THE STORED PROCEDURE" >
+<meta name="keywords" CONTENT="HOW TO CREATE STORED PROCEDURE, CHECK EXISTENCE OF STORED PROCEDURE, EXECUTE THE STORED PROCEDURE">
+
+<!--header start-->
+
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>DATABASE & SQL/PLSQL</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a><img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+			<a href="/sql/">SQL </a>
+              </div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/sql/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	  
+
+                        	                        	<!-- Header End-->	
+ <div class="heading">How To Create Stored Procedure</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="stored_procedure.shtml" title="Stored Procedures">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="index.shtml" title="Home">Next</a></td>
+  </tr>
+</table>
+
+<h3>Guideline</h3>
+
+<ol>
+  <li>Identify the database in which the stored procedure 
+  has to be created</li>
+  <li>Determine the type of stored procedure</li>
+  <li>Determine the name for the stored procedure</li>
+  <li>Write the batch statement</li>
+</ol>
+
+<i>Syntax</i>
+<div class="code">
+<pre>
+CREATE PROCEDURE  proc_name
+AS
+BEGIN
+           sql-statement 1
+           sql-statement 1
+END
+</pre>
+</div>
+
+<p>where, <i>proc_name </i>specifies the name of the stored procedure.</p>
+
+<h3>Example</h3>
+
+<div class="code">
+<pre>
+
+CREATE PROCEDURE  empNameList
+AS
+BEGIN
+           SELECT  'Employee'=emp_name, 'Salary'=emp_sal
+           FROM  employee
+END
+
+</pre>
+
+</div>
+
+<p>Stored Procedure Created.</p>
+
+<p><b>Check the existence of the procedure in the database</b></p>
+
+<h3>Syntax</h3>
+
+<div class="code">
+<pre>
+sp_helptext  proc_name
+
+sp_helptext  empNameList
+</pre>
+</div>
+
+<p><i>output</i></p>
+<div class="output">
+<div class="image">
+<img src="Image/stored.gif">
+</div>
+</div>
+
+<h3>Execute the procedure</h3>
+
+<h3b>Syntax</h3>
+<div class="code">
+<pre>
+EXECUTE  proc_name
+
+EXECUTE  empNameList
+</pre>
+</div>
+<p><i>output</i></p>
+<div class="output">
+<div class="image">
+<img src="Image/exe_procedure.gif">
+</div>
+</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="stored_procedure.shtml" title="Stored Procedures">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="index.shtml" title="Home">Next</a></td>
+  </tr>
+</table>
+
+                       <!--Footer  -->
+
+</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>

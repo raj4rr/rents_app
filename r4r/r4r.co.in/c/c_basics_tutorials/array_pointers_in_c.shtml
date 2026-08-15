@@ -1,0 +1,169 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>Benefit of using function,Pointer in C</TITLE>
+<META content=r4r.co.in name=owner>
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="Benefits of using function in C with examples,Pointers in C,Data types,Array,Pointers,Functions,Union,Structures,Storage class,C constants,Data types,Preprocessors.Storage class">
+<meta name="keywords" CONTENT="Benefits of using function,Pointer in C,Types of functions in C,Function prototype,Function declaration,Nesting of function,Calling function in c,Recursive function in c,Pointers,Loops,Union,Structures,Data types,Storage class,C constants">
+<META content="Rajesh Kumar" name=author>
+<META http-equiv="expires" content="0"> 
+
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+     <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>C Programming language</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a><img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/c/">C </a>
+              <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/c/c_basics_tutorials/">Learn C in 9 days</a></div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/c/commonfiles/new-leftmenu.shtml'); ?></td>
+
+                       <td style="80%" valign="top">
+                        <div class="main_content">
+
+	 <!-- Header End--> 		
+<div class="heading"><font style="background:#FF9966; padding:7px 0px 7px 7px;">Day <font style="background:#E95409; padding:7px;">7</font></font> Array of Pointers in C Programming language</div>    
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="null_pointers_in_c.shtml" title="NULL Pointers in C Programming language">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="pointer_arithmetic_in_c.shtml" title="Pointer arithmetic in C Programming language">Next</a></td>
+  </tr>
+</table>	
+
+<p>Let us consider the following example, which makes use of an array of 3 integers:</p>    
+<div class="code">
+<pre>
+<font color="#ff0000">#include </font><font color="#000000">&lt;stdio.h&gt;</font>
+
+<font color="#0000ff">const int </font><font color="#000000">MAX = </font><font color="#800080">3</font><font color="#000000">;</font>
+<font color="#0000ff">void </font><font color="#000000">main ()</font>
+<font color="#000000">{</font>
+   <font color="#0000ff">int  </font><font color="#000000">var[] = {</font><font color="#800080">12</font><font color="#000000">, </font><font color="#800080">400</font><font color="#000000">, </font><font color="#800080">800</font><font color="#000000">};</font>
+   <font color="#0000ff">int </font><font color="#000000">i;</font>
+
+   <font color="#0000ff">for </font><font color="#000000">(i = </font><font color="#800080">0</font><font color="#000000">; i &lt; MAX; i++)</font>
+   <font color="#000000">{</font>
+      <font color="#000000">printf(</font><font color="#ff00ff">&quot;Value of var[%d] = %d\n&quot;</font><font color="#000000">, i, var[i] );</font>
+   <font color="#000000">}</font>
+<font color="#000000">}</font>
+</pre>
+
+</div>  
+<div class="output"><i>Output</i>
+<p>Value of var[0] = 12</p>
+<p>Value of var[1] = 400</p>
+<p>Value of var[2] = 800</p>
+</div>
+
+<h3># Following is the declaration of an array of pointers to an integer</h3>
+<p>There may be a situation when we want to maintain an array, which can store pointers to an int or char or any other data type available.</p>
+<div class="code">
+<pre>
+<font color="#0000ff">int </font><font color="#000000">*ptr[MAX];</font>
+</pre>
+</div>
+<p>Declares <font class="point_out">ptr</font> as an array of MAX integer pointers. Thus, each element in <font class="point_out">ptr</font>, now holds a pointer to an int value. </p>
+<div class="code">
+<pre>
+<font color="#ff0000">#include </font><font color="#000000">&lt;stdio.h&gt;</font>
+
+<font color="#0000ff">const int </font><font color="#000000">MAX = </font><font color="#800080">3</font><font color="#000000">;</font>
+
+<font color="#0000ff">int </font><font color="#000000">main ()</font>
+<font color="#000000">{</font>
+   <font color="#0000ff">int  </font><font color="#000000">var[] = {</font><font color="#800080">12</font><font color="#000000">, </font><font color="#800080">400</font><font color="#000000">, </font><font color="#800080">800</font><font color="#000000">};</font>
+   <font color="#0000ff">int </font><font color="#000000">j, *ptr[MAX]; </font>
+   <font color="#0000ff">for </font><font color="#000000">( j = </font><font color="#800080">0</font><font color="#000000">; j &lt; MAX; j++)</font>
+   <font color="#000000">{</font>
+      <font color="#000000">ptr[j] = &amp;var[j]; </font><font color="#008000">/* assign the address of integer. */</font>
+   <font color="#000000">}</font>
+   <font color="#0000ff">for </font><font color="#000000">( j = </font><font color="#800080">0</font><font color="#000000">; j &lt; MAX; j++)</font>
+   <font color="#000000">{</font>
+      <font color="#000000">printf(</font><font color="#ff00ff">&quot;Value of var[%d] = %d\n&quot;</font><font color="#000000">, j, *ptr[j] );</font><font color="#008000">/* value of variable */</font>
+	  <font color="#000000">printf(</font><font color="#ff00ff">&quot;Value of var[%d] = %d\n&quot;</font><font color="#000000">, j, ptr[j] ); </font><font color="#008000">/* address of variable */</font>
+   <font color="#000000">}</font>
+   <font color="#0000ff">return </font><font color="#800080">0</font><font color="#000000">;</font>
+<font color="#000000">}</font>
+</pre>
+
+</div>
+<div class="output">
+<i>Output</i>
+<p>Value of var[0] = 10</p>
+<p>Value of var[0] = 1570429008</p>
+<p>Value of var[1] = 100</p>
+<p>Value of var[1] = 1570429012</p>
+<p>Value of var[2] = 200</p>
+<p>Value of var[2] = 1570429016</p>
+</div>
+<h3># Use an array of pointers to character to store a list of strings as follows:</h3>
+<div class="code">
+<pre>
+<font color="#ff0000">#include </font><font color="#000000">&lt;stdio.h&gt;</font>
+
+<font color="#0000ff">const int </font><font color="#000000">MAX = </font><font color="#800080">4</font><font color="#000000">;</font>
+
+<font color="#0000ff">int </font><font color="#000000">main ()</font>
+<font color="#000000">{</font>
+   <font color="#0000ff">char </font><font color="#000000">*student[] = {</font>
+                   <font color="#ff00ff">&quot;ABC&quot;</font><font color="#000000">,</font>
+                   <font color="#ff00ff">&quot;XYZ&quot;</font><font color="#000000">,</font>
+                   <font color="#ff00ff">&quot;PQR&quot;</font><font color="#000000">,</font>
+                   <font color="#ff00ff">&quot;MNO&quot;</font><font color="#000000">,</font>
+   <font color="#000000">};</font>
+   <font color="#0000ff">int </font><font color="#000000">i = </font><font color="#800080">0</font><font color="#000000">;</font>
+
+   <font color="#0000ff">for </font><font color="#000000">( i = </font><font color="#800080">0</font><font color="#000000">; i &lt; MAX; i++)</font>
+   <font color="#000000">{</font>
+      <font color="#000000">printf(</font><font color="#ff00ff">&quot;Name of student[%d] = %s\n&quot;</font><font color="#000000">, i, student[i] );</font>
+	  <font color="#000000">printf(</font><font color="#ff00ff">&quot;Address value of student[%d] name = %d\n&quot;</font><font color="#000000">, i, *student[i] );</font>
+   <font color="#000000">}</font>
+   <font color="#0000ff">return </font><font color="#800080">0</font><font color="#000000">;</font>
+<font color="#000000">}</font>
+</pre>
+</div>
+<div class="output"><i>Output</i>
+<p>Name of student[0] = ABC</p>
+<p>Address value of student[0] name = 65</p>
+<p>Name of student[1] = XYZ</p>
+<p>Address value of student[1] name = 88</p>
+<p>Name of student[2] = PQR</p>
+<p>Address value of student[2] name = 80</p>
+<p>Name of student[3] = MNO</p>
+<p>Address value of student[3] name = 77</p>
+
+</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="null_pointers_in_c.shtml" title="NULL Pointers in C Programming language">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="pointer_arithmetic_in_c.shtml" title="Pointer arithmetic in C Programming language">Next</a></td>
+  </tr>
+</table>
+<!--Footer  --> 	
+</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/c/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>

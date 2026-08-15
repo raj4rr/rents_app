@@ -1,0 +1,108 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>Benefit of using function,Pointer in C</TITLE>
+<META content=r4r.co.in name=owner>
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="Benefits of using function in C with examples,Pointers in C,Data types,Array,Pointers,Functions,Union,Structures,Storage class,C constants,Data types,Preprocessors.Storage class">
+<meta name="keywords" CONTENT="Benefits of using function,Pointer in C,Types of functions in C,Function prototype,Function declaration,Nesting of function,Calling function in c,Recursive function in c,Pointers,Loops,Union,Structures,Data types,Storage class,C constants">
+<META content="Rajesh Kumar" name=author>
+<META http-equiv="expires" content="0"> 
+
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+     <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>C Programming language</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a><img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/c/">C </a>
+              <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/c/c_basics_tutorials/">Learn C in 9 days</a></div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/c/commonfiles/new-leftmenu.shtml'); ?></td>
+
+                       <td style="80%" valign="top">
+                        <div class="main_content">
+
+	 <!-- Header End--> 		
+<div class="heading"><font style="background:#FF9966; padding:7px 0px 7px 7px;">Day <font style="background:#E95409; padding:7px;">7</font></font> Adding function to the library in C Programming language</div>    
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="recursion_in_c.shtml" title="Recursive Function in C Programming language">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="pointer_in_c.shtml" title="Pointer in C Programming language, How to use Pointer, Pointer declaration">Next</a></td>
+  </tr>
+</table>	
+
+<p>We can add user-defined functions to the library. It makes sense in doing so as the functions that are to be added to the library are first compiled and then added. When we use these functions (by calling them) we save on their compilation time as they are available in the library in the compiled form.</p>
+<p>Compilers provide a utility called tlib.exe (Turbo Librarian). Let us use this utility to add a function factorial( ) to the library.</p>
+<h3>Given below are the steps to do so</h3>
+
+   <h3>Step # 1</h3>
+   <p>Write the function definition of factorial( ) in some file, say fact.c.</p>
+   <div class="code">
+<pre><font color="#0000ff">int </font><font color="#000000">factorial ( </font><font color="#0000ff">int </font><font color="#000000">num )</font>
+<font color="#000000">{</font>
+<font color="#0000ff">int </font><font color="#000000">i, f = </font><font color="#800080">1 </font><font color="#000000">;</font>
+<font color="#0000ff">for </font><font color="#000000">( i = </font><font color="#800080">1 </font><font color="#000000">; i &lt;= num ; i++ )</font>
+<font color="#000000">f = f * i ;</font>
+<font color="#0000ff">return </font><font color="#000000">( f ) ;</font>
+<font color="#000000">}</font>
+</pre>
+   </div>
+
+   <h3> Step # 2</h3>
+   <p>Compile the fact.c file using Alt F9. A new file called fact.obj would get created containing the compiled code in machine language. (c) Add the function to the library by issuing the command</p>
+   <div class="code">
+<pre><font color="#000000">C:\&gt;tlib math.lib + c:\fact.obj</font>
+</pre>
+   </div>
+   Here, math.lib is a library filename, + is a switch, which means we want to add new function to library and c:\fact.obj is the path of the .obj file.
+
+   <h3> Step # 3</h3>
+   <p>Declare the prototype of the factorial( ) function in the header file, say fact.h. This file should be included while calling the function.</p>
+
+   <h3> Step # 4</h3> <p>To use the function present inside the library, create a program as shown below:</p>
+   <div class="code">
+<pre><font color="#000000">#include </font><font color="#ff00ff">"c:\\fact.h"</font>
+<font color="#000000">main( )</font>
+<font color="#000000">{</font>
+<font color="#0000ff">int </font><font color="#000000">f ;</font>
+<font color="#000000">f = factorial ( </font><font color="#800080">5 </font><font color="#000000">) ;</font>
+<font color="#000000">printf ( </font><font color="#ff00ff">"%d"</font><font color="#000000">, f ) ;</font>
+<font color="#000000">}</font>
+</pre>
+   </div>
+
+   <h3> Step # 4</h3><p> Compile and execute the program using Ctrl F9.</p>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="adding_function_to_the_library.shtml" title="Adding function to the library in C Programming language">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="null_pointers_in_c.shtml" title="NULL Pointers in C Programming language">Next</a></td>
+  </tr>
+</table>	
+
+<!--Footer  --> 	
+</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/c/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>

@@ -1,0 +1,133 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD>
+<meta http-equiv="Content-Language" content="en-us">
+<TITLE>How a Servlet Application works</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name="description" CONTENT="How a Servlet Application works" >
+<meta name="keywords" CONTENT="How a Servlet Application works">
+
+<!-- header start-->	
+
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+
+<?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+     <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>Servlet Tutorials</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+			<img src="/images/left_menu_bullet.gif"  width="11" height="6"/> <a href="/java/">Java</a>
+			<img src="/images/left_menu_bullet.gif"  width="11" height="6"/> <a href="/java/servlet/">Servlet</a>
+
+			      </div>
+
+            	<table>
+                    <tr>
+
+                         <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/servlet/servlet_basics/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 
+
+<div class="heading">How a Servlet Application works</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="api.shtml" title="Servlet API">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="interface.shtml" title="Servlet Interface">Next</a></td>
+  </tr> 
+</table>
+
+<!-- header End-->	
+
+<h3>Servlet Application working as follows</h3>
+
+<p>In Servlet Application is provides a web container for responsible for managing execution of servlets and JSP pages for Java EE application.
+</p>
+
+<p>It performed a request comes in for a servlet,and server hands the request to the Web Container. 
+</p>
+<p>In web Container is responsible for instantiating the servlet or creating a new thread to handle the request and it gives a job of Web Container to get the request and response to the servlet. The container creates multiple threads to process multiple requests to a single servlet.
+</p>
+
+<p>In this application to get a Servlets don't have a main() method. Web Container manages the life cycle of a Servlet instance. 
+</p>
+
+<b>
+ How a Servlet works
+</b>
+
+	<ol>
+	<li>In Servlet to get a user sends request for a servlet by clicking a link that has URL to a servlet.
+
+</li>
+<li>When the container finds the servlet using deployment descriptor and creates two objects :
+<ol>
+    <li>HttpServletRequest</li>
+    <li>HttpServletResponse</li>
+</ol>
+
+</li>
+
+<li>After that the container creates or allocates a thread for that request and calls the Servlet's service() method and passes the request, response objects as arguments.
+</li>
+
+<i>call to service() method with request and response object</i>
+
+<li>The service() method, then decides which servlet method, doGet() or doPost() to call, based on HTTP Request Method(Get, Post etc) sent by the client.
+Suppose the client sent an HTTP GET request, so the service() will call Servlet's doGet() method.</li>
+
+<i>
+call to doGet() or doPost() in Servlet execution
+</i>
+
+<li>
+Then the Servlet uses response object to write the response back to the client.
+</li>
+
+<i>Sending back the response to the client after servlet execution</i>
+<li>After the service() method is completed the thread dies. And the request and response objects are ready for garbage collection.</li>
+
+<i>
+End of Servlet Execution
+</i>
+</ol>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="api.shtml" title="Servlet API">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="interface.shtml" title="Servlet Interface">Next</a></td>
+  </tr> 
+</table>
+
+<!-- Footer Start-->		
+
+		</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+   </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->

@@ -1,0 +1,289 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>ASP.NET of Life Cycle|Control in ASP.NET|HTML Server Controls|Web Server Controls|Validation Server Controls</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="ASP.net tutorial provides easy solutions for beginners freshers and
+experienced also Life Cycle of ASP.NET,Control in ASP.NET,HTML Server Controls,Web Server Controls,Validation Server Controls,
+ASP.net basics" >
+<meta name="keywords" CONTENT="ASP.NET Life Cycle,asp.net tutorial, asp.net basics, Control in ASP.NET,
+HTML Server Controls,Web Server Controls,Validation Server Controls, dropdowlist in asp.net,gridview, gridview update, hyperlink, image button, label, link button,
+Validators in ASP.Net, Database Access, ASP.Net with ADO.Net, File uploading in ASP.Net">
+
+<!--Header start-->
+
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>VB.net Tutorials with Examples</h1>
+           <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a><img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+			<a href="/vb.net/">vb.net</a><img src="/images/left_menu_bullet.gif" width="11" height="6"/>
+			<a href="/vb.net/01/tutorial/aspnet/">ASP.net using VB.net</a>
+              </div>
+
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/vb.net/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	  
+
+<!-- Header End-->	
+	<div class="heading">Life Cycle of ASP.NET</div>   
+ <table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="introduction%20of%20asp.net.shtml" title="Introduction of ASP.NET">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="State%20Management.shtml" title="State Management in Asp.net And 
+ how to Implement Viewstate">Next</a></td>
+  </tr>
+</table>
+
+<h2>Page Life Cycle Events</h2>
+<ul>
+  <li><font class="point_out">Page_Init:</font> The server controls are loaded and initialized from the Web form's view state. 
+  it is basically used for initialized the object and control </li>
+  <li><font class="point_out">Page_Load:</font> </b>The server controls are loaded in the page object. View state information is 
+  available at this point, so this is where you put code to change control 
+  settings or display text on the page. </font> </li>
+  <li><font class="point_out">Page_PreRender:</font>The application is about to render the page object. </font> </li>
+  <li><font class="point_out">Page_Unload:</font>
+  The page is unloaded from memory. </li>
+  <li><font class="point_out">Page_Disposed:</font>
+  The page object is released from memory. This is the last event in the life of 
+  a page object. </li>
+  <li><font class="point_out">Page_Error:</font>
+  An unhandled exception occurs. </li>
+  <li><font class="point_out">Page_AbortTransaction:</font>
+  A transaction is aborted. </li>
+
+  <li><font class="point_out">Page_CommitTransaction:</font>A transaction is accepted.</li>
+  <li><font class="point_out">Page_DataBinding:</font> A server control on 
+  the page binds to a data source.&nbsp; </li>
+</ul>
+<h2>Control in ASP.NET</h2>
+<ul>
+  <li>
+  HTML&nbsp; Controls - Traditional HTML tags </li>
+  <li>
+  Web Server Controls - New ASP.NET tags
+  </li>
+  <li>
+  Validation Server Controls - For input validation
+   </li>
+</ul>
+<div class="heading">HTML Server Controls </div>
+<ul> 
+<li>HTML server controls are HTML tags understood by the server.</li>
+<li>HTML elements in ASP.NET files are, by default, treated as text. To make 
+these elements programmable, add a runat=&quot;server&quot; attribute to the HTML 
+element. This attribute indicates that the element should be treated as a server 
+control. The id attribute is added to identify the server control. The id 
+reference can be used to manipulate the server control at run time.</li></ul>
+Note:</b> All HTML server controls must be within a &lt;form&gt; tag with the 
+runat=&quot;server&quot; attribute. The runat=&quot;server&quot; attribute indicates that the form 
+should be processed on the server. It also indicates that the enclosed controls 
+can be accessed by server scripts.</p>
+<h3> Design of Html control</h3>
+
+<div class="image"><img src="life_c36.jpg"></div>
+<div class="code">
+<pre>
+<font color="#0000ff">&lt;script </font><font color="#ff0000">language</font><font color="#0000ff">=</font><font color="#ff00ff">
+&quot;javascript&quot; </font><font color="#ff0000">type</font><font color="#0000ff">=</font><font color="#ff00ff">
+&quot;text/javascript&quot;</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">function </font><font color="#800000">Submit1_onclick() { </font>
+<font color="#800000">alert(</font><font color="#ff00ff">&quot;click me&quot;</font><font color="#800000">);</font>
+<font color="#800000">}</font>
+<font color="#0000ff">&lt;/script&gt;</font>
+<font color="#0000ff">&lt;/head&gt;</font>
+<font color="#0000ff">&lt;body&gt;</font>
+<font color="#0000ff">&lt;form </font><font color="#ff0000">id</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;form1&quot; </font><font color="#ff0000">runat</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;server&quot;</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;div&gt;</font>
+<font color="#0000ff">&lt;input </font><font color="#ff0000">id</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;Text1&quot; </font><font color="#ff0000">type</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;text&quot; </font><font color="#ff0000">value</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;anil&quot; </font><font color="#0000ff">/&gt;</font>
+<font color="#0000ff">&lt;input </font><font color="#ff0000">id</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;Submit1&quot; </font><font color="#ff0000">type</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;submit&quot; </font><font color="#ff0000">value</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;submit&quot; </font>
+<font color="#ff0000">onclick</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;return Submit1_onclick()&quot; </font><font color="#0000ff">/&gt;&lt;/div&gt;</font>
+<font color="#000000"> </font><font color="#0000ff">&lt;/form&gt;</font>
+<font color="#0000ff">&lt;/body&gt;</font>
+<font color="#0000ff">&lt;/html&gt;</font>
+</pre>
+</div>
+<h2>Web Server Controls</h2>
+<p>Web server controls are special ASP.NET tags understood by the server.
+Like HTML server controls, Web server controls are also created on the server and they require a runat="server" attribute to work.
+However, Web server controls do not necessarily map to any existing HTML elements and they may represent more complex elements.</p>
+<h2>The syntax for creating a Web server control is:</h2>
+<div class="image"><img src="web.gif"></div>
+<div class="code">
+<pre>
+&lt;html xmlns=&quot;<font color="#0000ff">http://www.w3.org/1999/xhtml</font><font color="#000000">&quot;&gt;</font>
+&lt;head runat=&quot;server&quot;&gt;
+&lt;title&gt;Untitled Page&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;form id=&quot;form1&quot; runat=&quot;server&quot;&gt;
+ &lt;div style=&quot;width: 246px; background-color: #66FFFF;&quot;&gt;
+ Name&amp;nbsp;
+ &lt;asp:TextBox ID=&quot;TextBox1&quot; runat=&quot;server&quot;&gt;&lt;/asp:TextBox&gt;
+ &lt;br /&gt;
+ &lt;asp:TextBox ID=&quot;TextBox2&quot;
+  runat=&quot;server&quot; &gt;&lt;/asp:TextBox&gt;
+  &lt;br /&gt;
+  &lt;br /&gt;
+  &lt;asp:Button ID=&quot;Button1&quot; runat=&quot;server&quot; onclick=&quot;Button1_Click&quot; 
+  Text=&quot;click me&quot; /&gt;
+  &lt;br /&gt;
+  &lt;br /&gt;
+  &lt;/div&gt;
+  &lt;/form&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</pre>
+</div>
+
+<h3>ASPX CODE</h3>
+<div class="code">
+<pre>
+<font color="#000000">&lt;html xmlns=</font><font color="#ff00ff">
+&quot;http://www.w3.org/1999/xhtml&quot;</font><font color="#000000">&gt;</font>
+<font color="#000000">&lt;head runat=</font><font color="#ff00ff">
+&quot;server&quot;</font><font color="#000000">&gt;</font>
+<font color="#000000">&lt;title&gt;Untitled </font><font color="#808000">Page</font><font color="#000000">&lt;/title&gt;</font>
+<font color="#000000">&lt;/head&gt;</font>
+<font color="#000000">&lt;body&gt;</font>
+ <font color="#000000">&lt;form id=</font><font color="#ff00ff">&quot;form1&quot; 
+ </font><font color="#000000">runat=</font><font color="#ff00ff">&quot;server&quot;</font><font color="#000000">&gt;</font>
+<font color="#000000">&lt;div style=</font><font color="#ff00ff">
+&quot;width: 246px; background-color: #66FFFF;&quot;</font><font color="#000000">&gt;</font>
+<font color="#000000">Name&amp;nbsp;</font>
+<font color="#000000">&lt;asp:</font><font color="#808000">TextBox
+ </font><font color="#000000">ID=</font><font color="#ff00ff">&quot;TextBox1&quot; </font><font color="#000000">runat=</font><font color="#ff00ff">
+&quot;server&quot;</font><font color="#000000">&gt;&lt;/asp:</font><font color="#808000">TextBox</font><font color="#000000">&gt;</font>
+<font color="#000000">&lt;br /&gt;</font>
+<font color="#000000">&lt;asp:</font><font color="#808000">TextBox </font><font color="#000000">ID=</font><font color="#ff00ff">&quot;TextBox2&quot;</font>
+<font color="#000000">runat=</font><font color="#ff00ff">
+&quot;server&quot; </font><font color="#000000">&gt;&lt;/asp:</font><font color="#808000">TextBox</font><font color="#000000">&gt;</font>
+<font color="#000000">&lt;br /&gt;</font>
+<font color="#000000">&lt;br /&gt;</font>
+<font color="#000000">&lt;asp:</font><font color="#808000">Button </font><font color="#000000">ID=</font><font color="#ff00ff">&quot;Button1&quot; </font><font color="#000000">runat=</font><font color="#ff00ff">
+&quot;server&quot; </font><font color="#000000">onclick=</font><font color="#ff00ff">&quot;Button1_Click&quot; </font>
+<font color="#008080">Text</font><font color="#000000">=</font><font color="#ff00ff">&quot;click me&quot; </font><font color="#000000">/&gt;</font>
+<font color="#000000">&lt;br /&gt;</font>
+<font color="#000000">&lt;br /&gt;</font>
+<font color="#000000">&lt;/div&gt;</font>
+<font color="#000000">&lt;/form&gt;</font>
+<font color="#000000">&lt;/body&gt;</font>
+<font color="#000000">&lt;/html&gt;</font>
+</pre>
+</div>
+
+<h3>VB </h3>
+<div class="code">
+<pre>
+<font color="#000000">Partial Class _Default</font>
+<font color="#000000">Inherits </font><font color="#008080">System
+</font><font color="#000000">.</font><font color="#008080">Web
+</font><font color="#000000">.</font><font color="#008080">UI
+</font><font color="#000000">.</font><font color="#808000">Page</font>
+<font color="#000000">Protected Sub Button1_Click(ByVal sender As
+ </font><font color="#808000">Object</font><font color="#000000">, ByVal e As
+  </font><font color="#008080">System</font><font color="#000000">.
+  </font><font color="#808000">EventArgs</font><font color="#000000">) Handles Button1.Click</font>
+<font color="#000000">TextBox1.</font><font color="#008080">Text
+ </font><font color="#000000">= </font><font color="#ff00ff">&quot;wiliam&quot;</font>
+<font color="#000000">TextBox2.</font><font color="#008080">Text
+ </font><font color="#000000">= </font><font color="#ff00ff">&quot;hello world&quot;</font>
+<font color="#000000">End Sub</font>
+<font color="#000000">End Class</font>
+</pre>
+</div>
+
+<h2>Validation Server Controls</h2>
+<p>Validation server controls are used to validate user-input. If the user-input 
+does not pass validation, it will display an error message to the user.</p>
+<h3> Design of validation server control</h3>
+<div class="image"><img src="validation.gif"></div>
+
+<h3>.ASPX Code</h3>
+<div class="code">
+<pre>
+<font color="#000000">&lt;html xmlns=</font><font color="#ff00ff">&quot;http://www.w3.org/1999/xhtml&quot;</font><font color="#000000">&gt;</font>
+<font color="#000000">&lt;head runat=</font><font color="#ff00ff">&quot;server&quot;</font><font color="#000000">&gt;</font>
+    <font color="#000000">&lt;title&gt;Untitled </font><font color="#808000">Page</font><font color="#000000">&lt;/title&gt;</font>
+<font color="#000000">&lt;/head&gt;</font>
+<font color="#000000">&lt;body&gt;</font>
+    <font color="#000000">&lt;form id=</font><font color="#ff00ff">&quot;form1&quot; </font><font color="#000000">runat=</font><font color="#ff00ff">&quot;server&quot;</font><font color="#000000">&gt;</font>
+    <font color="#000000">&lt;div style=</font><font color="#ff00ff">&quot;width: 414px; background-color: #66FFFF;&quot;</font><font color="#000000">&gt;</font>
+        <font color="#000000">Name&amp;nbsp;</font>
+        <font color="#000000">&lt;asp:</font><font color="#808000">TextBox </font><font color="#000000">ID=</font><font color="#ff00ff">&quot;TextBox1&quot; </font><font color="#000000">runat=</font><font color="#ff00ff">&quot;server&quot;</font><font color="#000000">&gt;&lt;/asp:</font><font color="#808000">TextBox</font><font color="#000000">&gt;</font>
+        <font color="#000000">&lt;asp:</font><font color="#808000">RequiredFieldValidator </font><font color="#000000">ID=</font><font color="#ff00ff">&quot;RequiredFieldValidator1&quot; </font><font color="#000000">runat=</font><font color="#ff00ff">&quot;server&quot; </font>
+            <font color="#000000">ControlToValidate=</font><font color="#ff00ff">&quot;TextBox1&quot; </font><font color="#000000">ErrorMessage=</font><font color="#ff00ff">&quot;Blank are not allowed&quot; </font>
+            <font color="#000000">SetFocusOnError=</font><font color="#ff00ff">&quot;True&quot;</font><font color="#000000">&gt;&lt;/asp:</font><font color="#808000">RequiredFieldValidator</font><font color="#000000">&gt;</font>
+        <font color="#000000">&lt;br /&gt;</font>
+<font color="#000000">&amp;nbsp;Address&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;</font>
+        <font color="#000000">&lt;asp:</font><font color="#808000">TextBox </font><font color="#000000">ID=</font><font color="#ff00ff">&quot;TextBox2&quot;</font>
+            <font color="#000000">runat=</font><font color="#ff00ff">&quot;server&quot; </font><font color="#000000">ontextchanged=</font><font color="#ff00ff">&quot;TextBox2_TextChanged&quot;</font><font color="#000000">&gt;&lt;/asp:</font><font color="#808000">TextBox</font><font color="#000000">&gt;</font>
+        <font color="#000000">&lt;br /&gt;</font>
+        <font color="#000000">&lt;br /&gt;</font>
+<font color="#000000">&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;</font>
+        <font color="#000000">&lt;asp:</font><font color="#808000">Button </font><font color="#000000">ID=</font><font color="#ff00ff">&quot;Button1&quot; </font><font color="#000000">runat=</font><font color="#ff00ff">&quot;server&quot; </font><font color="#000000">onclick=</font><font color="#ff00ff">&quot;Button1_Click&quot; </font>
+            <font color="#008080">Text</font><font color="#000000">=</font><font color="#ff00ff">&quot;click me&quot; </font><font color="#000000">/&gt;</font>
+        <font color="#000000">&lt;br /&gt;</font>
+        <font color="#000000">&lt;br /&gt;</font>
+    <font color="#000000">&lt;/div&gt;</font>
+    <font color="#000000">&lt;/form&gt;</font>
+<font color="#000000">&lt;/body&gt;</font>
+<font color="#000000">&lt;/html&gt;</font>
+</pre>
+</div>
+
+<h3>VB CODE</h3>
+<div class="code">
+<pre>
+<font color="#000000">Partial Class _Default</font>
+    <font color="#000000">Inherits </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Web</font><font color="#000000">.</font><font color="#008080">UI</font><font color="#000000">.</font><font color="#808000">Page</font>
+    <font color="#000000">Protected Sub Button1_Click(ByVal sender As </font><font color="#808000">Object</font><font color="#000000">, </font>
+	<font color="#000000">ByVal e As </font><font color="#008080">System</font><font color="#000000">.</font><font color="#808000">EventArgs</font><font color="#000000">) Handles Button1.Click</font>
+        <font color="#000000">TextBox1.</font><font color="#008080">Text </font><font color="#000000">= </font><font color="#ff00ff">&quot;123&quot;</font>
+        <font color="#000000">TextBox2.</font><font color="#008080">Text </font><font color="#000000">= </font><font color="#ff00ff">&quot;hello world&quot;</font>
+        <font color="#000000">Response.Write(</font><font color="#ff00ff">&quot;hi display textbox 1 value&quot; </font><font color="#000000">+ TextBox1.</font><font color="#008080">Text</font><font color="#000000">)</font>
+    <font color="#000000">End Sub</font>
+<font color="#000000">End Class</font>
+</pre>
+</div>
+ <table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="introduction%20of%20asp.net.shtml" title="Introduction of ASP.NET">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="State%20Management.shtml" title="State Management in Asp.net And 
+ how to Implement Viewstate">Next</a></td>
+  </tr>
+</table>
+
+<!--Footer  -->
+</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>

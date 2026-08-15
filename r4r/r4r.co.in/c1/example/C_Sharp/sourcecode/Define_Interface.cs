@@ -1,0 +1,45 @@
+/*Interface:- It is like an abstract class.
+it is use to support multiple inheritance
+it can not contain concrete method	
+
+	Abstract class		Interface
+	==============		===========
+	1)It can contain 	1)Not allowed
+	concrete method
+	2)Access modifiers-private 2)Public
+	3)Multiple inheritance not 3)do also
+	
+	
+
+*/
+interface a
+{
+	void display(); //it cant be public
+			//By default it is abstract and public
+}
+interface b
+{
+	void display1();
+}
+class c : a,b
+{
+	public void display()
+	{
+		System.Console.WriteLine("Interface");
+	}
+	public void display1()
+	{
+		System.Console.WriteLine("Interface one");
+	}
+}
+class d
+{
+	public static void Main()
+	{
+		c t=new c();
+		t.display();
+		t.display1();
+	}
+}
+
+

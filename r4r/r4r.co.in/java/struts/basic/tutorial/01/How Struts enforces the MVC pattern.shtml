@@ -1,0 +1,87 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>How Struts enforces the MVC pattern</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="How Struts enforces the MVC pattern" >
+<meta name="keywords" CONTENT="How Struts enforces the MVC pattern">
+
+<!-- header start-->	
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>Struts</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+            <img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+            <a href="/java/">Java</a>
+              <img src="/images/left_menu_bullet.gif" width="11" height="6"/><A href="/java/struts/basic/tutorial/01">Struts1.3 Basic Tutorials </a>
+              </div>
+
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/struts/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	 
+
+<div class="heading">How Struts enforces the MVC pattern</div>
+<!-- header End-->
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="Building%20Model%20component%20in%20framework.shtml" title="Building Model component in framework">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="Structuring%20a%20Web%20Application.shtml" title="Structuring a Web Application, Web Container">Next</a></td>
+  </tr> 
+</table>
+
+<p>The architecture of Struts provides a wonderful mechanism 
+that, ensures that the MVC pattern remains intact. Although Struts provides a 
+connections between the Controller and Model layers and between the Controller 
+and View layers, it doesnt insist on any particular View paradigm or require 
+that you construct the Model in a particular way.</p>
+<div class="image"><img src="images/MVCframework.png"></div>
+
+<ul><p><li><i>The Struts View :</i>  Struts have a weak point that it doesn't provide, nor is it dependent on, a specific presentation technology. Many Struts applications use JSP (JavaServer Pages) along with the Struts tag library (Struts and Struts-EL), JSTL (JSP Standard Tag Library), JSF (Java Server Faces) and HTML file.</li></p>
+<p><li><i>The Struts Controller : </i> The primary controller class is a Java Servlet called the ActionServlet. This class handles all user requests for Struts-managed URLs by using information from the configuration files, the ActionServlet class then gets the appropriate RequestProcessor class that collects the data that is part of the request and puts it into an ActionForm, a Bean that contains the data sent form or to the users form.  </li></p>
+<p><li>The final step of the Struts controller is to delegate control to the specific handler of this request type, and important point is this handler is always a subclass of the Action class. The Action subclass is the main workhorse of the Controller because it monitor at the data from the users request (now residing in an ActionForm) and determines what action needs to be taken. It may call on the business logic of the Model to
+perform the action, or it may forward the request to some other View. </li></p>
+ <p><li><i>The Struts Model : </i> In the MVC design pattern, the Model provides access to the necessary business data as well as the business logic needed to manipulate that data. The connection between the Controller and Model rests in the code that you write in the Action subclasses. The Action subclasses contain the analysis of the users request that determines the interaction (if any) with the Model. </li></p>
+ <p><li><i>The Struts configuration file : </i>  Although it is not really part of the Model, View, or Controller,  and it does affect the functioning of the three layers. But the Struts configuration file performs an important role in structuring your Struts application. The configuration file allows you to define exactly which of your Action subclasses should be used under what circumstances and which ActionForm should be given to that Action subclass. So you specify part of the Controller interaction in the configuration file.</li></p></ul>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="Building%20Model%20component%20in%20framework.shtml" title="Building Model component in framework">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="Structuring%20a%20Web%20Application.shtml" title="Structuring a Web Application, Web Container">Next</a></td>
+  </tr> 
+</table>
+
+<!-- Footer Start-->	
+
+		</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->

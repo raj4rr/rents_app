@@ -1,0 +1,226 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>Calculating Duration Between Two Dates in Years, Months and Days</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="Calculating Duration Between Two Dates in Years, Months and Days" >
+<meta name="keywords" CONTENT="Calculating Duration Between Two Dates in Years, Months and Days">
+
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+     <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>C# Tutorial</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a><img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/c1/">C#</a>
+
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/c1/commonfiles/leftmenu.shtml'); ?></td>
+
+                       <td style="80%" valign="top">
+                        <div class="main_content"> 
+
+	<!-- Header End-->
+
+	<div class="heading">Calculating Duration Between Two Dates in Years, Months and Days</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="How%20to%20Rotate%20Image%20using%20c-sharp.shtml" 
+    title="How to Rotate Image in Picture Box Using C#">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="advantage_of_remoting.shtml" 
+    title="Advantage of Remoting,Advantage over Web Services,Advantage over COM/DCOM">Next</a></td>
+  </tr>
+</table>
+<p>Right Click On solution Explorer -&gt; Add newitem -&gt; Add Class</p>
+<h3>Class name: DateDifference.cs</h3>
+
+<div class="code">
+<pre>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Collections</font><font color="#000000">.</font><font color="#008080">Generic</font><font color="#000000">;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Text</font><font color="#000000">;</font>
+
+<font color="#0000ff">namespace </font><font color="#000000">DurationCalculatorApp {</font>
+<font color="#0000ff">public class </font><font color="#000000">DateDifference {</font>
+
+<font color="#0000ff">private int</font><font color="#000000">[] monthDay = </font><font color="#0000ff">new int</font><font color="#000000">[</font><font color="#800080">12</font><font color="#000000">] </font>
+<font color="#000000">{ </font><font color="#800080">31</font><font color="#000000">, -</font><font color="#800080">1</font><font color="#000000">, </font><font color="#800080">31</font><font color="#000000">, </font><font color="#800080">30</font><font color="#000000">, </font><font color="#800080">31</font><font color="#000000">, </font><font color="#800080">30</font><font color="#000000">, </font><font color="#800080">31</font><font color="#000000">, </font><font color="#800080">31</font><font color="#000000">, </font><font color="#800080">30</font><font color="#000000">,</font>
+<font color="#800080">31</font><font color="#000000">, </font><font color="#800080">30</font><font color="#000000">, </font><font color="#800080">31 </font><font color="#000000">};</font>
+
+<font color="#0000ff">private </font><font color="#000000">DateTime fromDate;</font>
+<font color="#0000ff">private </font><font color="#000000">DateTime toDate;</font>
+
+<font color="#0000ff">private int </font><font color="#000000">year;</font>
+<font color="#0000ff">private int </font><font color="#000000">month;</font>
+<font color="#0000ff">private int </font><font color="#000000">day;</font>
+
+<font color="#0000ff">public </font><font color="#000000">DateDifference(DateTime d1, DateTime d2) {</font>
+<font color="#0000ff">int </font><font color="#000000">increment;</font>
+
+<font color="#0000ff">if </font><font color="#000000">(d1 &gt; d2) {</font>
+<font color="#0000ff">this</font><font color="#000000">.fromDate = d2;</font>
+<font color="#0000ff">this</font><font color="#000000">.toDate = d1;</font>
+<font color="#000000">}</font>
+<font color="#0000ff">else </font><font color="#000000">{</font>
+<font color="#0000ff">this</font><font color="#000000">.fromDate = d1;</font>
+<font color="#0000ff">this</font><font color="#000000">.toDate = d2;</font>
+<font color="#000000">}</font>
+
+<font color="#008000">/// Day Calculation</font>
+
+<font color="#000000">increment = </font><font color="#800080">0</font><font color="#000000">;</font>
+
+<font color="#0000ff">if </font><font color="#000000">(</font><font color="#0000ff">this</font><font color="#000000">.fromDate.Day &gt; </font><font color="#0000ff">this</font><font color="#000000">.toDate.Day) {</font>
+<font color="#000000">increment = </font><font color="#0000ff">this</font><font color="#000000">.monthDay[</font><font color="#0000ff">this</font><font color="#000000">.fromDate.Month - </font><font color="#800080">1</font><font color="#000000">];</font>
+<font color="#000000">}</font>
+
+<font color="#008000">/// if it is february month</font>
+<font color="#008000">/// if it's to day is less then from day</font>
+<font color="#0000ff">if </font><font color="#000000">(increment == -</font><font color="#800080">1</font><font color="#000000">){</font><font color="#0000ff">if </font><font color="#000000">(DateTime.IsLeapYear(</font><font color="#0000ff">this</font><font color="#000000">.fromDate.Year))</font>
+<font color="#000000">{</font>
+
+<font color="#008000">// leap year february contain 29 days</font>
+
+<font color="#000000">increment = </font><font color="#800080">29</font><font color="#000000">;</font>
+<font color="#000000">}</font>
+<font color="#0000ff">else</font><font color="#000000">{</font>
+<font color="#000000">increment = </font><font color="#800080">28</font><font color="#000000">;</font>
+<font color="#000000">}</font>
+<font color="#000000">}</font>
+<font color="#0000ff">if </font><font color="#000000">(increment != </font><font color="#800080">0</font><font color="#000000">) {</font>
+<font color="#000000">day = (</font><font color="#0000ff">this</font><font color="#000000">.toDate.Day + increment) - </font><font color="#0000ff">this</font><font color="#000000">.fromDate.Day; </font>
+<font color="#000000">increment = </font><font color="#800080">1</font><font color="#000000">;</font>
+<font color="#000000">}</font>
+<font color="#0000ff">else </font><font color="#000000">{</font>
+<font color="#000000">day = </font><font color="#0000ff">this</font><font color="#000000">.toDate.Day - </font><font color="#0000ff">this</font><font color="#000000">.fromDate.Day;</font>
+<font color="#000000">}</font>
+
+<font color="#008000">///month calculation</font>
+<font color="#0000ff">if </font><font color="#000000">((</font><font color="#0000ff">this</font><font color="#000000">.fromDate.Month + increment) &gt; </font><font color="#0000ff">this</font><font color="#000000">.toDate.Month) {</font>
+<font color="#0000ff">this</font><font color="#000000">.month = (</font><font color="#0000ff">this</font><font color="#000000">.toDate.Month + </font><font color="#800080">12</font><font color="#000000">) - (</font><font color="#0000ff">this</font><font color="#000000">.fromDate.Month + increment);</font>
+<font color="#000000">increment = </font><font color="#800080">1</font><font color="#000000">;</font>
+<font color="#000000">}</font>
+<font color="#0000ff">else</font>
+<font color="#000000">{</font>
+<font color="#0000ff">this</font><font color="#000000">.month = (</font><font color="#0000ff">this</font><font color="#000000">.toDate.Month) - (</font><font color="#0000ff">this</font><font color="#000000">.fromDate.Month + increment);</font>
+<font color="#000000">increment = </font><font color="#800080">0</font><font color="#000000">;</font>
+<font color="#000000">}</font>
+<font color="#008000">/// year calculation</font>
+<font color="#0000ff">this</font><font color="#000000">.year = </font><font color="#0000ff">this</font><font color="#000000">.toDate.Year - (</font><font color="#0000ff">this</font><font color="#000000">.fromDate.Year + increment);</font>
+
+<font color="#000000">}</font>
+
+<font color="#0000ff">public override string </font><font color="#000000">ToString()</font>
+<font color="#000000">{</font>
+<font color="#008000">//return base.ToString();</font>
+<font color="#0000ff">return this</font><font color="#000000">.year + </font><font color="#ff00ff">&quot; Year(s), &quot; </font><font color="#000000">+ </font><font color="#0000ff">this</font><font color="#000000">.month + </font>
+<font color="#ff00ff">&quot; month(s), &quot; </font><font color="#000000">+ </font><font color="#0000ff">this</font><font color="#000000">.day + </font><font color="#ff00ff">&quot; day(s)&quot;</font><font color="#000000">;</font>
+<font color="#000000">}</font>
+
+<font color="#0000ff">public int </font><font color="#000000">Years{</font>
+<font color="#000000">get {</font>
+<font color="#0000ff">return this</font><font color="#000000">.year;</font>
+<font color="#000000">}</font>
+<font color="#000000">}</font>
+
+<font color="#0000ff">public int </font><font color="#000000">Months {</font>
+<font color="#000000">get {</font>
+<font color="#0000ff">return this</font><font color="#000000">.month;</font>
+<font color="#000000">}</font>
+<font color="#000000">}</font>
+
+<font color="#0000ff">public int </font><font color="#000000">Days {</font>
+<font color="#000000">get {</font>
+<font color="#0000ff">return this</font><font color="#000000">.day;</font>
+<font color="#000000">}</font>
+<font color="#000000">}</font>
+
+<font color="#000000">}</font>
+<font color="#000000">}</font>
+</pre>
+</div>
+
+<h3>.cs Code</h3>
+
+<div class="code">
+<pre>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Collections</font><font color="#000000">.</font><font color="#008080">Generic</font><font color="#000000">;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">ComponentModel</font><font color="#000000">;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Data</font><font color="#000000">;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Drawing</font><font color="#000000">;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Text</font><font color="#000000">;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Windows</font><font color="#000000">.</font><font color="#008080">Forms</font><font color="#000000">;</font>
+
+<font color="#0000ff">namespace </font><font color="#000000">DurationCalculatorApp {</font>
+<font color="#0000ff">public </font><font color="#000000">partial </font><font color="#0000ff">class </font><font color="#000000">Form1 : </font><font color="#808000">Form </font><font color="#000000">{</font>
+<font color="#0000ff">public </font><font color="#000000">Form1() {</font>
+<font color="#000000">InitializeComponent();</font>
+<font color="#000000">}</font>
+
+<font color="#0000ff">private void </font><font color="#000000">Form1_FormClosed(</font><font color="#0000ff">object </font><font color="#000000">sender, </font><font color="#808000">FormClosedEventArgs </font><font color="#000000">e)</font>
+<font color="#000000">{</font>
+<font color="#808000">Application</font><font color="#000000">.Exit();</font>
+<font color="#000000">}</font>
+
+<font color="#0000ff">private void </font><font color="#000000">button1_Click(</font><font color="#0000ff">object </font><font color="#000000">sender, </font><font color="#808000">EventArgs </font><font color="#000000">e) {</font>
+
+<font color="#000000">DateDifference dateDifference = </font><font color="#0000ff">new </font><font color="#000000">DateDifference(</font><font color="#0000ff">this</font><font color="#000000">.dateTimeTo.Value, </font>
+<font color="#0000ff">this</font><font color="#000000">.dateTimeFrom.Value);</font>
+
+<font color="#0000ff">this</font><font color="#000000">.lblOutput.</font><font color="#008080">Text </font><font color="#000000">= </font><font color="#ff00ff">&quot;Difference between &quot; </font><font color="#000000">+ </font>
+<font color="#0000ff">this</font><font color="#000000">.dateTimeFrom.Value.ToShortDateString()</font>
+<font color="#000000">+ </font><font color="#ff00ff">&quot;and&quot; </font><font color="#000000">+</font>
+<font color="#0000ff">this</font><font color="#000000">.dateTimeTo.Value.ToShortDateString()+</font>
+<font color="#ff00ff">&quot;is :\n&quot;</font><font color="#000000">+ dateDifference.ToString();</font>
+<font color="#000000">}</font>
+<font color="#000000">}</font>
+<font color="#000000">}</font>
+
+</pre>
+</div>
+
+<p><h3>Output</p></h3>
+<div class="output">
+<div class="image">
+<img src="age%20cal.gif">
+</div></div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="How%20to%20Rotate%20Image%20using%20c-sharp.shtml" 
+    title="How to Rotate Image in Picture Box Using C#">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="advantage_of_remoting.shtml" 
+    title="Advantage of Remoting,Advantage over Web Services,Advantage over COM/DCOM">Next</a></td>
+  </tr>
+</table>
+
+ <!--Footer-->
+   </div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/dotnet/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+     <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>

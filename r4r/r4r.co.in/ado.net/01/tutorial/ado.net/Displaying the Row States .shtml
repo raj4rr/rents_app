@@ -1,0 +1,157 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>Displaying the Row States in C#,Filling a DataTable and Displaying the Row States in C#,Making Changes to the DataTable in C#,Setting Various Commands in C# </TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="Displaying the Row States in C#,Filling a DataTable and Displaying the Row States in C#,Making Changes to the DataTable in C#,Setting Various Commands in C# " >
+<meta name="keywords" CONTENT="Displaying the Row States in C#,Filling a DataTable and Displaying the Row States in C#,Making Changes to the DataTable in C#,Setting Various Commands in C# ">
+
+<!-- header start-->	
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>ADO.NET</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+            <img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+            <a href="/ado.net">ADO.Net</a>
+              <img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+
+			  <a href="/ado.net/01/tutorial/ado.net/">ADO.NET Tutorials</a>
+
+              </div>
+
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/ado.net/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	 
+<!-- header End-->	
+<div class="heading">Displaying the Row States in C#</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="DataView%20Object.shtml" title="DataView Object">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="Moving%20Large%20Amounts%20of%20Data%20using%20SqlBulkCopy.shtml" title="Moving Large Amounts of Data Using SqlBulkCopy">Next</a></td>
+  </tr> 
+</table>
+
+<div class="code">
+<pre>
+<font color="#0000ff">private static void </font><font color="#000000">DisplayROWs(</font><font color="#0000ff">string </font><font color="#000000">, </font><font color="#808000">DataTable </font><font color="#000000">table)</font>
+<font color="#000000">{</font>
+<font color="#808000">Console</font><font color="#000000">.Clear();</font>
+<font color="#808000">Console</font><font color="#000000">.WriteLine(</font><font color="#ff00ff">&quot;\n&quot;</font><font color="#000000">);</font>
+<font color="#808000">Console</font><font color="#000000">.WriteLine(s);</font>
+<font color="#808000">Console</font><font color="#000000">.WriteLine(</font><font color="#ff00ff">&quot;-------------------------------------------&quot;</font><font color="#000000">);</font>
+<font color="#0000ff">foreach </font><font color="#000000">(</font><font color="#808000">DataRow </font><font color="#000000">dr </font><font color="#0000ff">in </font><font color="#000000">table.Rows)</font>
+<font color="#000000">{</font>
+<font color="#808000">Console</font><font color="#000000">.WriteLine(dr.RowState.ToString());</font>
+<font color="#000000">}</font>
+<font color="#808000">Console</font><font color="#000000">.WriteLine(</font><font color="#ff00ff">&quot;\nPress Enter to Continue ..&quot;</font><font color="#000000">) ;</font>
+<font color="#808000">Console</font><font color="#000000">.Read() ;</font>
+<font color="#000000">}</font>
+</pre>
+</div>
+<p>
+<h3>Filling a DataTable and Displaying the Row States in C#</h3>
+</p>
+<div class="code">
+<pre>
+<font color="#0000ff">static void </font><font color="#000000">Main(</font><font color="#0000ff">string</font><font color="#000000">[] args)</font>
+<font color="#000000">{</font>
+<font color="#0000ff">using </font><font color="#000000">(SqlConnection scon = </font><font color="#0000ff">new </font><font color="#000000">SqlConnection(connectionString))</font>
+<font color="#000000">{</font>
+<font color="#000000">SqlCommand scmd = scon.CreateCommand();</font>
+<font color="#000000">scmd.CommandText = </font><font color="#ff00ff">&quot;Select * from student&quot;</font><font color="#000000">;</font>
+<font color="#000000">SqlDataAdapter sqlDa = </font><font color="#0000ff">new </font><font color="#000000">SqlDataAdapter(scmd);</font>
+<font color="#808000">DataTable </font><font color="#000000">StudentTable = </font><font color="#0000ff">new </font><font color="#808000">DataTable</font><font color="#000000">(</font><font color="#ff00ff">&quot;student&quot;</font><font color="#000000">);</font>
+<font color="#000000">sqlDa.Fill(StudentTable);</font>
+<font color="#000000">DisplayRowStates(</font>
+<font color="#ff00ff">&quot;Row states for a freshly filled DataTable:&quot;</font><font color="#000000">,StudentTable);</font>
+<font color="#000000">}</font>
+<font color="#000000">}</font>
+</pre>
+</div>
+
+<h3>Making Changes to the DataTable in C#</h3>
+<div clas="code">
+<pre>
+<font color="#808000">DataRow </font><font color="#000000">dr;</font>
+<font color="#008000">// Make Changes - Modify the puppy</font>
+<font color="#000000">dr = StudentTable.Rows[</font><font color="#800080">0</font><font color="#000000">];</font>
+<font color="#000000">dr[</font><font color="#ff00ff">&quot;StudentName&quot;</font><font color="#000000">] = </font><font color="#ff00ff">&quot;Anil&quot;</font><font color="#000000">;</font>
+<font color="#008000">// Make Changes - Delete the cat</font>
+<font color="#000000">dr = StudentTable.Rows[</font><font color="#800080">1</font><font color="#000000">];dr.Delete();</font>
+<font color="#008000">// Leave the Horse untouched.</font>
+<font color="#008000">// Make Changes - Insert a Record</font>
+<font color="#000000">dr = StudentTable.NewRow();</font>
+<font color="#000000">dr[</font><font color="#ff00ff">&quot;StudentID&quot;</font><font color="#000000">] = </font><font color="#800080">4</font><font color="#000000">;dr[</font><font color="#ff00ff">&quot;StudentName&quot;</font><font color="#000000">] = </font><font color="#ff00ff">&quot;Ajay&quot;</font><font color="#000000">;</font>
+<font color="#000000">StudentTable.Rows.Add(dr);</font>
+<font color="#000000">DisplayRowStates(</font><font color="#ff00ff">&quot;Row states for a modified DataTable:&quot;</font><font color="#000000">, StudentTable);</font>
+</pre>
+</div>
+
+<p>
+<h3>Setting Various Commands in C#</h3>
+</p>
+
+<div clas="code">
+<pre>
+<font color="#008000">// Update the changes back to the database.</font>
+<font color="#000000">SqlCommandBuilder sqlcommr </font>
+   <font color="#000000">= </font><font color="#0000ff">new </font><font color="#000000">SqlCommandBuilder(sqlDa);</font>
+<font color="#008000">// Setup Update Command</font>
+<font color="#000000">sqlDa.UpdateCommand = sqlcommr.GetUpdateCommand();</font>
+<font color="#808000">Console</font><font color="#000000">.WriteLine(</font><font color="#ff00ff">&quot;Update Command: &quot; </font>
+   <font color="#000000">+ sqlDa.UpdateCommand.CommandText);</font>
+<font color="#008000">// Setup Insert Command</font>
+<font color="#000000">sqlDa.InsertCommand = sqlcommr.GetInsertCommand();</font>
+<font color="#808000">Console</font><font color="#000000">.WriteLine(</font><font color="#ff00ff">&quot;Insert Command: &quot; </font>
+   <font color="#000000">+ sqlDa.InsertCommand.CommandText);</font>
+<font color="#008000">// Setup Delete Command</font>
+<font color="#000000">sqlDa.DeleteCommand = sqlcommr.GetDeleteCommand() ;</font>
+<font color="#808000">Console</font><font color="#000000">.WriteLine(</font><font color="#ff00ff">&quot;Delete Command: &quot; </font>
+   <font color="#000000">+ sqlDa.DeleteCommand.CommandText);</font>
+<font color="#000000">sqlDa.Update(animalsTable);</font>
+</pre>
+</div>
+
+ <table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="DataView%20Object.shtml" title="DataView Object">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="Moving%20Large%20Amounts%20of%20Data%20using%20SqlBulkCopy.shtml" title="Moving Large Amounts of Data Using SqlBulkCopy">Next</a></td>
+  </tr> 
+</table>
+
+<!-- Footer Start-->		
+		</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/dotnet/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->

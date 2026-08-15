@@ -1,0 +1,291 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>Set Margins Of PDF Using Java</TITLE>
+<META content=r4r.co.in name=owner>
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="Set Margins Of PDF Using Java" >
+<meta name="keywords" CONTENT="Set Margins Of PDF Using Java">
+<META content="Rajesh Kumar" name=author>
+<META http-equiv=expires content=0>
+<script type="text/javascript" src="/js/main.js"></script>
+		<link rel="stylesheet" type="text/css" href="/css/style.css" />
+	    <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+
+	</HEAD>
+	<BODY style="text-align: justify">
+		<table class="wrap" align="center"  cellpadding="0" cellspacing="0">
+			<tr>
+				<td class="m" align="left" valign="top">
+					<?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+				</td>
+						</tr>
+						<tr class="headerTR1">
+							<td>
+							<?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+							</td>
+						</tr>
+						<tr>
+							<td class="headerTR2">
+								<?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+							</td>
+						</tr>
+
+						<tr>
+							<td class="headerTR3">
+								<?php @include($_SERVER['DOCUMENT_ROOT'] . '/common-files/menu.shtml'); ?>
+							</td>
+							</td>
+
+						</tr>
+						<tr>
+							<td>
+								<?php @include($_SERVER['DOCUMENT_ROOT'] . '/common-files/gaps.shtml'); ?>
+							</td>
+						</tr>
+
+						<tr>
+
+			               <td class="content">
+								<table>
+									<tr>
+
+								  <?php @include($_SERVER['DOCUMENT_ROOT'] . '/common-files/tdgaps.shtml'); ?>
+								<td class="td1"   valign="top" >
+
+							     <DIV style="margin-left:15px;">
+			<table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse"  width="100%">
+  <tr>
+    <td width="100%">
+    <p align="justify">
+    <font face="Verdana" size="2">
+    <A href="/">R4R</A>
+<img border="0" src="/images/left_menu_bullet.gif" width="11" height="6"><a href="/sourcecode">Java SourceCode</a>
+<img border="0" src="/images/left_menu_bullet.gif" width="11" height="6"><a href=" ">Set 
+    Margins Of PDF Using Java </a></font></td>
+  </tr>
+</table>
+
+	<!-- Header End-->  
+
+<P align="justify" class="style9" title="Java Examples"><b><font face="Verdana">
+<font color="#0066FF">Set Margins Of PDF Using Java</font> </font></b> </P>
+
+<p class="style8" align="justify"><font face="Verdana" size="2">Here we are creating a PDF document with different pages that have  different margins. To set the margins we are using the <em><strong>setMargins()</strong></em>  method. Here we are using an other method <em><strong>setMarginMirroring(true)</strong></em>.This<br>
+ is used to set the mirror of previous page margins at next page.</font></p>
+
+<p class="style8" align="justify"><font face="Verdana" size="2">To create a PDF using java you need <strong>iText API</strong>.You can download from website. This is an open source jar .Then you have to set class path of this<strong> iText jar</strong>. There are basic five steps to create PDF:</font></p>
+<p class="style8" align="justify"> <font face="Verdana" size="2">
+<font color="#0066FF"> <strong>Step1</strong>:</font> Here we are creating an object of a document.</font></p>
+<p class="style8" align="justify">  <font face="Verdana" size="2">  <strong>Document</strong> document = new<strong> Document(PageSize.A5, 36, 72, 108, 180)</strong>;</font></p>
+<p class="style8" align="justify"> <font face="Verdana" size="2">
+<font color="#0066FF"> <strong> Step2:</strong></font> Here we are creating a writer that listens to the document and directs a PDF-stream to a file.</font></p>
+<p class="style9" align="justify"> <font face="Verdana" size="2">PdfWriter.getInstance(document, new FileOutputStream(  &quot;MarginsInPDF.pdf&quot;));</font></p>
+<p class="style8" align="justify"> <font face="Verdana" size="2"> <strong>
+<font color="#0066FF">Step3:</font> </strong>Here we are opening the document.</font></p>
+<p class="style9" align="justify"> <font face="Verdana" size="2">document.open();</font></p>
+<p class="style8" align="justify"> <font face="Verdana" size="2">
+<font color="#0066FF"> <strong>Step4:</strong></font> Here we are adding the paragraph in PDF document.Here margins are default.</font></p>
+<p class="style8" align="justify"><font face="Verdana" size="2">document
+  .<strong>add(new Paragraph(</strong>&quot;The left margin of this document is 36pt (0.5 inch); the right margin 72pt (1 inch); the top margin 108pt (1.5 inch); the bottom margin 180pt (2.5 inch). &quot;<strong>))</strong>;</font></p>
+<p class="style8" align="justify"> <font face="Verdana" size="2"> <strong>Paragraph</strong> paragraph = new <strong>Paragraph()</strong>;<br>
+  <strong>document.add(paragraph);</strong></font></p>
+<p class="style8" align="justify"> <font face="Verdana" size="2">Here we are setting the merging.</font></p>
+<p class="style8" align="justify"> <font face="Verdana" size="2"> <strong>document.setMargins(180, 108, 72, 36);</strong><br>
+  document<strong>.add(</strong>new <strong>Paragraph(</strong>  &quot;Now we change the margins. You will see the effect on the next page.<strong>&quot;))</strong>;<br>
+  <strong>document.add(paragraph);</strong></font></p>
+<p class="style8" align="justify"> <font face="Verdana" size="2">Here we are setting the margin mirror true. So that the margins will be mirrored on next page.</font></p>
+<p class="style8" align="justify"><font face="Verdana" size="2"><strong>document.setMarginMirroring(true);</strong></font></p>
+<p align="justify"><font face="Verdana" size="2"><span class="style9">  document
+  .add(new Paragraph(  &quot;</span><span class="style8">Starting on the next page, the margins will be mirrored.</span><span class="style9">&quot;));<br>
+  document.add(paragraph);</span></font></p>
+<p class="style8" align="justify"><font face="Verdana" size="2">
+<font color="#0066FF"><b>Step 5:</b></font> Close the document</font></p>
+<p class="style8" align="justify"><font face="Verdana" size="2"><span class="style8">document.<em><strong>close();</strong></em></span></font></p>
+<p class="style8" align="justify"><b>
+<font color="#0066FF" face="Verdana" size="2">
+SOURCE CODE</font></b></p>
+
+<table border="1" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="87%">
+  <tr>
+    <td width="100%">
+
+<div align="justify">
+
+<PRE><FONT FACE="Verdana">
+<FONT COLOR="#0000ff">package </FONT><FONT COLOR="#000000">com.itext.pdf.example.r4r;</FONT>
+<FONT COLOR="#008000">//These are package of java.io.*</FONT>
+<FONT COLOR="#0000ff">import </FONT><FONT COLOR="#000000">java.io.</FONT><FONT COLOR="#ff0000">FileOutputStream</FONT><FONT COLOR="#000000">;</FONT>
+<FONT COLOR="#0000ff">import </FONT><FONT COLOR="#000000">java.io.</FONT><FONT COLOR="#ff0000">IOException</FONT><FONT COLOR="#000000">;</FONT>
+<FONT COLOR="#008000">//These are package of iText API </FONT>
+<FONT COLOR="#0000ff">import </FONT><FONT COLOR="#000000">com.lowagie.text.</FONT><FONT COLOR="#ff0000">Document</FONT><FONT COLOR="#000000">;</FONT>
+<FONT COLOR="#0000ff">import </FONT><FONT COLOR="#000000">com.lowagie.text.DocumentException;</FONT>
+<FONT COLOR="#0000ff">import </FONT><FONT COLOR="#000000">com.lowagie.text.PageSize;</FONT>
+<FONT COLOR="#0000ff">import </FONT><FONT COLOR="#000000">com.lowagie.text.Paragraph;</FONT>
+<FONT COLOR="#0000ff">import </FONT><FONT COLOR="#000000">com.lowagie.text.pdf.PdfWriter;</FONT>
+
+<FONT COLOR="#008000">/**</FONT>
+<FONT COLOR="#008000"> *This is example of set margins of a PDF.</FONT>
+<FONT COLOR="#008000"> */</FONT>
+<FONT COLOR="#0000ff">public class </FONT><FONT COLOR="#000000">MarginsInPDF {</FONT>
+	<FONT COLOR="#008000">/**</FONT>
+<FONT COLOR="#008000">	 * Here we are creating  a PDF document with different pages <br>that have different margins.</FONT>
+<FONT COLOR="#008000">	 * To set the margins we are using the setMargins() method.</FONT>
+<FONT COLOR="#008000">	 * Here we are using an other method setMarginMirroring(true).<br>This is used to set the mirrore of previous page margins at next page</FONT>
+<FONT COLOR="#008000">	 */</FONT>
+	<FONT COLOR="#0000ff">public static void </FONT><FONT COLOR="#000000">main(</FONT><FONT COLOR="#ff0000">String</FONT><FONT COLOR="#000000">[] args) {</FONT>
+
+		<FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.println(</FONT><FONT COLOR="#ff00ff">&quot;Set margins in PDF pages.&quot;</FONT><FONT COLOR="#000000">);</FONT>
+		<FONT COLOR="#008000">// Step1:Here we are creating an object of a document.</FONT>
+		<FONT COLOR="#ff0000">Document </FONT><FONT COLOR="#000000">document = </FONT><FONT COLOR="#0000ff">new </FONT><FONT COLOR="#ff0000">Document</FONT><FONT COLOR="#000000">(PageSize.A5, </FONT><FONT COLOR="#800080">36</FONT><FONT COLOR="#000000">, </FONT><FONT COLOR="#800080">72</FONT><FONT COLOR="#000000">, </FONT><FONT COLOR="#800080">108</FONT><FONT COLOR="#000000">, </FONT><FONT COLOR="#800080">180</FONT><FONT COLOR="#000000">);</FONT>
+
+		<FONT COLOR="#0000ff">try </FONT><FONT COLOR="#000000">{</FONT>
+
+			<FONT COLOR="#008000">// Step2:Here we are creating a writer that listens to <br>the document and directs a PDF-stream to a file.</FONT>
+
+			<FONT COLOR="#000000">PdfWriter.getInstance(document, </FONT><FONT COLOR="#0000ff">new </FONT><FONT COLOR="#ff0000">FileOutputStream</FONT><FONT COLOR="#000000">(</FONT>
+					<FONT COLOR="#ff00ff">&quot;MarginsInPDF.pdf&quot;</FONT><FONT COLOR="#000000">));</FONT>
+
+			<FONT COLOR="#008000">// Step3:Here we are opening the document.</FONT>
+			<FONT COLOR="#000000">document.open();</FONT>
+
+			<FONT COLOR="#008000">// Step4:Here we are adding the paragraph in PDF document.<br>Here margins are default.</FONT>
+			<FONT COLOR="#000000">document</FONT>
+					<FONT COLOR="#000000">.add(</FONT><FONT COLOR="#0000ff">new </FONT><FONT COLOR="#000000">Paragraph(</FONT>
+							<FONT COLOR="#ff00ff">&quot;The left margin of thi<br>s document is 36pt <br>(0.5 inch); the right margin 72pt (1 inch); the <br>top margin 108pt (1.5 inch)<br>; the bottom margin 180pt (2.5 inch). &quot;</FONT><FONT COLOR="#000000">));</FONT>
+			<FONT COLOR="#000000">Paragraph paragraph = </FONT><FONT COLOR="#0000ff">new </FONT><FONT COLOR="#000000">Paragraph();</FONT>
+			<FONT COLOR="#000000">document.add(paragraph);</FONT>
+			<FONT COLOR="#008000">//Here we are setting the margings.</FONT>
+			<FONT COLOR="#000000">document.setMargins(</FONT><FONT COLOR="#800080">180</FONT><FONT COLOR="#000000">, </FONT><FONT COLOR="#800080">108</FONT><FONT COLOR="#000000">, </FONT><FONT COLOR="#800080">72</FONT><FONT COLOR="#000000">, </FONT><FONT COLOR="#800080">36</FONT><FONT COLOR="#000000">);</FONT>
+			<FONT COLOR="#000000">document</FONT>
+					<FONT COLOR="#000000">.add(</FONT><FONT COLOR="#0000ff">new </FONT><FONT COLOR="#000000">Paragraph(</FONT>
+							<FONT COLOR="#ff00ff">&quot;Now we change the margins<br>. You will see the <br>effect on the next page.&quot;</FONT><FONT COLOR="#000000">));</FONT>
+			<FONT COLOR="#000000">document.add(paragraph);</FONT>
+			<FONT COLOR="#008000">//Here we are setting the margin mirror true<br>.So that the <br>margins will be mirrored.</FONT>
+			<FONT COLOR="#000000">document.setMarginMirroring(</FONT><FONT COLOR="#0000ff">true</FONT><FONT COLOR="#000000">);</FONT>
+			<FONT COLOR="#000000">document</FONT>
+					<FONT COLOR="#000000">.add(</FONT><FONT COLOR="#0000ff">new </FONT><FONT COLOR="#000000">Paragraph(</FONT>
+							<FONT COLOR="#ff00ff">&quot;Starting on the next page<br>, the margins <br>will be mirrored.&quot;</FONT><FONT COLOR="#000000">));</FONT>
+			<FONT COLOR="#000000">document.add(paragraph);</FONT>
+		<FONT COLOR="#000000">} </FONT><FONT COLOR="#0000ff">catch </FONT><FONT COLOR="#000000">(DocumentException de) {</FONT>
+			<FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.err.println(de.getMessage());</FONT>
+		<FONT COLOR="#000000">} </FONT><FONT COLOR="#0000ff">catch </FONT><FONT COLOR="#000000">(</FONT><FONT COLOR="#ff0000">IOException </FONT><FONT COLOR="#000000">ioe) {</FONT>
+			<FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.err.println(ioe.getMessage());</FONT>
+		<FONT COLOR="#000000">}</FONT>
+
+		<FONT COLOR="#008000">// Step5:We are closing the document</FONT>
+		<FONT COLOR="#000000">document.close();</FONT>
+	<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#000000">}</FONT>
+
+</FONT></PRE>
+</div>
+    </td></tr>
+</table>
+
+<p align="justify"><font face="Verdana" size="2"><a href="/java/example/MarginsInPDF.java.txt">Download Source File</a><a href="HelloWorld.java.txt"></a><a href="ScrollbarExample.java.txt"></a><br>
+&nbsp;</font></p>
+
+<p align="justify"><font color="#000080" face="Verdana" size="2"><b>Output of This Example</b></font></p>
+
+<p align="justify">&nbsp;</p>
+
+<p align="justify"><font face="Verdana" size="2"><br>
+<font color="#FF0000">1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20</font><br>
+
+<!-- Footer Start-->	
+
+									</font>								
+
+									</td>
+
+										<td class="td2"  valign="top">
+
+											</font>
+
+											</font>
+
+											<table>
+											<?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/corejava/common-files/news1.shtml'); ?>	
+												<tr>
+													<td class="colorChange">
+
+													</td>
+												</tr>
+
+												<?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/corejava/common-files/news3.shtml'); ?>	
+
+												<tr>
+													<td class="colorChange">
+
+													</td>
+												</tr>
+
+												<?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/corejava/common-files/news3.shtml'); ?>	
+
+												<tr>
+													<td class="colorChange">
+
+													</td>
+												</tr>
+
+												<?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/corejava/common-files/news4.shtml'); ?>	
+
+		</table>
+
+										</td>
+										<?php @include($_SERVER['DOCUMENT_ROOT'] . '/common-files/tdgaps.shtml'); ?>
+									</tr>
+								 </table>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<?php @include($_SERVER['DOCUMENT_ROOT'] . '/common-files/gaps.shtml'); ?>
+							</td>
+						</tr>		
+						<tr>
+							<td>
+								<?php @include($_SERVER['DOCUMENT_ROOT'] . '/common-files/row.shtml'); ?>
+							</td>
+						</tr>
+
+						<tr>
+							<td>
+								<?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/corejava/common-files/mainlinks.shtml'); ?>
+
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<?php @include($_SERVER['DOCUMENT_ROOT'] . '/common-files/gaps.shtml'); ?>
+							</td>
+						</tr>
+
+								<tr>
+							<td>
+								<?php @include($_SERVER['DOCUMENT_ROOT'] . '/common-files/row.shtml'); ?>
+							</td>
+						</tr>
+
+						<tr >
+							<td>
+								<?php @include($_SERVER['DOCUMENT_ROOT'] . '/common-files/hotlinks.shtml'); ?>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<?php @include($_SERVER['DOCUMENT_ROOT'] . '/common-files/gaps.shtml'); ?>
+							</td>
+						</tr>
+
+						<tr>
+							<td>
+								<?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+		</table>
+
+	</BODY>
+</HTML>

@@ -1,0 +1,121 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD>
+<meta http-equiv="Content-Language" content="en-us">
+<TITLE>create auto shape in slide,how to create the autoshape in slide</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name="description" CONTENT="create auto shape in slide,how to create the autoshape in slide" >
+<meta name="keywords" CONTENT="create auto shape in slide,how to create the autoshape in slide">
+<!-- header start-->	
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>POI</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+            <img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+            <a href="/java/">Java</a>
+              <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/java/apis/poi/">POI</a>
+
+              </div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/apis/poi/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	 
+
+<div class="heading">Create Autoshapes in PowerPoint</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="change_bgof_slide.shtml" title="change bg of slide">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="drow_line.shtml" title="draw line">Next</a></td>
+  </tr> 
+</table>
+
+<!-- header End-->
+<p>In this page of the tutorials we are going to create auto shape on PowerPoint slide using java. In this program, we are going to create the object of AutoShape. We are passing the shape type into AutoShape as argument parameter.</p><p> We are passing ShapeTypes.Star32 as shape type.Then we are using setAnchor() method to give the position of the shape. To fill the color we are usingsetFillColr(Color col) method. </p>
+
+<h3>Example</h3>
+
+<div class="code">
+<pre>
+<font color="#0000ff">package </font><font color="#000000">r4r;</font>
+<font color="#0000ff">import </font><font color="#000000">org.apache.poi.hslf.HSLFSlideShow;</font>
+<font color="#0000ff">import </font><font color="#000000">org.apache.poi.hslf.model.Slide;</font>
+<font color="#0000ff">import </font><font color="#000000">org.apache.poi.hslf.model.*;</font>
+<font color="#0000ff">import </font><font color="#000000">org.apache.poi.hslf.usermodel.SlideShow;</font>
+<font color="#0000ff">import </font><font color="#000000">org.apache.poi.hslf.usermodel.*;</font>
+<font color="#0000ff">import </font><font color="#000000">java.io.*;</font>
+<font color="#0000ff">import </font><font color="#000000">java.awt.*;</font>
+<font color="#0000ff">import </font><font color="#000000">org.apache.poi.hslf.model.TextBox;</font>
+<font color="#0000ff">public class </font><font color="#000000">createautoshape {</font>
+	<font color="#0000ff">public static void </font><font color="#000000">main(</font><font color="#ff0000">String </font><font color="#000000">a[])</font>
+	  <font color="#000000">{</font>
+	  <font color="#0000ff">try</font>
+	  <font color="#000000">{ SlideShow Show = </font><font color="#0000ff">new </font><font color="#000000">SlideShow();</font>
+	 <font color="#000000">Slide slide1 = Show.createSlide();</font>
+	 <font color="#000000">AutoShape as = </font><font color="#0000ff">new </font><font color="#000000">AutoShape(ShapeTypes.Star32);</font>
+	 <font color="#000000">as.setAnchor(</font><font color="#0000ff">new </font><font color="#000000">java.awt.</font><font color="#ff0000">Rectangle</font><font color="#000000">(</font><font color="#800080">0</font><font color="#000000">, </font><font color="#800080">0</font><font color="#000000">, </font><font color="#800080">500</font><font color="#000000">, </font><font color="#800080">500</font><font color="#000000">));</font>
+	 <font color="#000000">as.setFillColor(</font><font color="#ff0000">Color</font><font color="#000000">.DARK_GRAY);</font>
+	 <font color="#000000">AutoShape as1 = </font><font color="#0000ff">new </font><font color="#000000">AutoShape(ShapeTypes.Star32);</font>
+	 <font color="#000000">as1.setAnchor(</font><font color="#0000ff">new </font><font color="#000000">java.awt.</font><font color="#ff0000">Rectangle</font><font color="#000000">(</font><font color="#800080">200</font><font color="#000000">, </font><font color="#800080">200</font><font color="#000000">, </font><font color="#800080">200</font><font color="#000000">, </font><font color="#800080">200</font><font color="#000000">));</font>
+	 <font color="#000000">as1.setFillColor(</font><font color="#ff0000">Color</font><font color="#000000">.green);</font>
+	  <font color="#000000">AutoShape as2 = </font><font color="#0000ff">new </font><font color="#000000">AutoShape(ShapeTypes.Star32);</font>
+	 <font color="#000000">as2.setAnchor(</font><font color="#0000ff">new </font><font color="#000000">java.awt.</font><font color="#ff0000">Rectangle</font><font color="#000000">(</font><font color="#800080">150</font><font color="#000000">, </font><font color="#800080">150</font><font color="#000000">, </font><font color="#800080">300</font><font color="#000000">, </font><font color="#800080">300</font><font color="#000000">));</font>
+	 <font color="#000000">as2.setFillColor(</font><font color="#ff0000">Color</font><font color="#000000">.BLUE);</font>
+	  <font color="#000000">AutoShape as3 = </font><font color="#0000ff">new </font><font color="#000000">AutoShape(ShapeTypes.Star32);</font>
+	 <font color="#000000">as3.setAnchor(</font><font color="#0000ff">new </font><font color="#000000">java.awt.</font><font color="#ff0000">Rectangle</font><font color="#000000">(</font><font color="#800080">100</font><font color="#000000">, </font><font color="#800080">100</font><font color="#000000">, </font><font color="#800080">400</font><font color="#000000">, </font><font color="#800080">400</font><font color="#000000">));</font>
+	 <font color="#000000">as3.setFillColor(</font><font color="#ff0000">Color</font><font color="#000000">.gray);</font>
+	 <font color="#000000">slide1.addShape(as);</font>
+	 <font color="#000000">slide1.addShape(as3);</font>
+	     <font color="#000000">slide1.addShape(as2);</font>
+	     <font color="#000000">slide1.addShape(as1);</font>
+	  <font color="#ff0000">FileOutputStream </font><font color="#000000">fos = </font><font color="#0000ff">new </font><font color="#ff0000">FileOutputStream</font><font color="#000000">(</font><font color="#ff00ff">&quot;autoShape.ppt&quot;</font><font color="#000000">);</font>
+	  <font color="#000000">Show.write(fos);</font>
+	  <font color="#000000">fos.close();</font>
+	  <font color="#000000">}</font><font color="#0000ff">catch</font><font color="#000000">(</font><font color="#ff0000">Exception </font><font color="#000000">e){}</font>
+	  <font color="#000000">}</font>
+<font color="#000000">}</font>
+</pre>
+</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="change_bgof_slide.shtml" title="change bg of slide">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="drow_line.shtml" title="draw line">Next</a></td>
+  </tr> 
+</table>
+
+<!-- Footer Start-->	
+
+		</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->

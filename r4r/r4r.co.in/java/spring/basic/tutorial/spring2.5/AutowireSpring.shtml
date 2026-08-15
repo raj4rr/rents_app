@@ -1,0 +1,158 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD>
+<meta http-equiv="Content-Language" content="en-us">
+<TITLE>Autowire in Spring Framework</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name="description" CONTENT="Autowire 
+in Spring Framework,spring travels,spring tutorials,spring framework,spring mvc,spring interview question,spring framework tutorials,spring aop" >
+<meta name="keywords" CONTENT="Autowire 
+in Spring Framework,spring travels,spring tutorials,spring framework,spring mvc,spring interview question,spring framework tutorials,spring aop">
+
+<!-- header start-->	
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>Spring Framework</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+           <img src="/images/left_menu_bullet.gif" width="11" height="6"/>  <a href="/java/">Java</a>    
+		      <img src="/images/left_menu_bullet.gif" width="11" height="6"/><a href="/java/spring/">Spring</a>
+
+              </div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/spring/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	 
+
+<!-- header End--> 
+
+<div class="heading">Autowire in Spring Framework</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="SetterDependenctMap.shtml" title="Setter Dependency Map">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="ExampleAutoByName.shtml" title="Example AutoByName">Next</a></td>
+  </tr> 
+</table>
+
+<p><i>Introduction:</i>An autowiring is the facility provided by framework to satisfied by dependency of manage bean without configuration information. It means that the autowiring solved problem to write very long  configuration information.</p>
+ <p> Type of method to Autowire</p>
+<p>The following four method are used by IOC container to autowire bean dependency.</p>
+<ol>
+<li>
+Autowire by Type
+</li>
+<li>
+Autowire by Name
+</li>
+<li>
+Autowire by Constructor
+</li>
+<li>
+Autowire by autodetect
+ </li>
+ </ol>
+<p><i>Autowire by Type:</i> In autowiring by type , The IOC container used the bean property by type to identified the beans to be injected i.e in order to used autowiring by type we need to simply configure one bean for each property of the target bean.</p>
+<p><i>Note:</i> Facility of autowiring are used only with object type dependency i.e primitive dependency are note autowire.</p>
+<h3>Syntax :</h3>
+
+ <div class="code">
+<PRE>
+<FONT COLOR="#000000"> </FONT><FONT COLOR="#0000ff">&lt;</FONT><FONT COLOR="#808000">bean </FONT><FONT COLOR="#800080">id</FONT><FONT COLOR="#0000ff">=</FONT><FONT COLOR="#ff00ff">"x" </FONT><FONT COLOR="#800080">class</FONT><FONT COLOR="#0000ff">=</FONT><FONT COLOR="#ff00ff">"org.r4r.A"</FONT><FONT COLOR="#0000ff">/&gt;</FONT>
+<FONT COLOR="#0000ff">&lt;</FONT><FONT COLOR="#808000">bean </FONT><FONT COLOR="#800080">id</FONT><FONT COLOR="#0000ff">=</FONT><FONT COLOR="#ff00ff">"b" </FONT><FONT COLOR="#800080">class</FONT><FONT COLOR="#0000ff">=</FONT><FONT COLOR="#ff00ff">"org.r4r.B" </FONT><FONT COLOR="#800080">autowire</FONT><FONT COLOR="#0000ff">=</FONT><FONT COLOR="#ff00ff">"byType"</FONT><FONT COLOR="#0000ff">/&gt;</FONT>
+</PRE>
+ </div>
+
+ <div class="heading"> Disadvantage of Autowire</div>
+<ol>
+<li>
+Optional dependency are specified using by type because dependency are injected by setter method.
+</li>
+<li>
+Autowiring by type can not be used if there are more than one beans. Configured for a properties type. 
+ </li>
+ </ol>
+ <p><i>Autowire by Name:</i> In this case IOC container uses the name of a bean property to fined out the bean for injecting i.e in this approach the configuration bean to be used for satisfied the dependency of the bean must have the same as the bean property.</p>
+<h3>Syntax:</h3>
+
+<div class="code">
+<PRE>
+<FONT COLOR="#0000ff">&lt;</FONT><FONT COLOR="#808000">bean </FONT><FONT COLOR="#800080">id</FONT><FONT COLOR="#0000ff">=</FONT><FONT COLOR="#ff00ff">"a" </FONT><FONT COLOR="#800080">class</FONT><FONT COLOR="#0000ff">=</FONT><FONT COLOR="#ff00ff">"org.r4r.A"</FONT><FONT COLOR="#0000ff">/&gt;</FONT>
+<FONT COLOR="#0000ff">&lt;</FONT><FONT COLOR="#808000">bean </FONT><FONT COLOR="#800080">id</FONT><FONT COLOR="#0000ff">=</FONT><FONT COLOR="#ff00ff">"y" </FONT><FONT COLOR="#800080">class</FONT><FONT COLOR="#0000ff">=</FONT><FONT COLOR="#ff00ff">"org.r4r.A"</FONT><FONT COLOR="#0000ff">/&gt;</FONT>
+<FONT COLOR="#0000ff">&lt;</FONT><FONT COLOR="#808000">bean </FONT><FONT COLOR="#800080">id</FONT><FONT COLOR="#0000ff">=</FONT><FONT COLOR="#ff00ff">"b" </FONT><FONT COLOR="#800080">class</FONT><FONT COLOR="#0000ff">=</FONT><FONT COLOR="#ff00ff">"org.r4r.B" </FONT><FONT COLOR="#800080">autowire</FONT><FONT COLOR="#0000ff">=</FONT><FONT COLOR="#ff00ff">"byName"</FONT><FONT COLOR="#0000ff">/&gt;</FONT>
+</PRE>
+</div>
+
+<h3>Disadvantage of Autowire</h3>
+<ol>
+<li>
+Only optional dependency can be autowire for this approach.
+</li>
+<li>
+This approach would work of a bean of different type is configure using the same name as the property of a bean which uses autowiring.
+ </li>
+ </ol>
+ <p><i>Autowire by Constructor:</i> In this approach type of parameter of the constructor are used to identified the bean to be injected in case of overloaded constructed has a maximum parameter will choose. This approach is same as autowiring by type accept dependency are injected through constructor in it.</p>
+
+<h3>Syntax:</h3>
+<div class="code">
+<PRE>
+<FONT COLOR="#000000"> </FONT><FONT COLOR="#0000ff">&lt;</FONT><FONT COLOR="#808000">bean </FONT><FONT COLOR="#800080">id</FONT><FONT COLOR="#0000ff">=</FONT><FONT COLOR="#ff00ff">"a" </FONT><FONT COLOR="#800080">class</FONT><FONT COLOR="#0000ff">=</FONT><FONT COLOR="#ff00ff">"org.r4r.A"</FONT><FONT COLOR="#0000ff">/&gt;</FONT>
+<FONT COLOR="#0000ff">&lt;</FONT><FONT COLOR="#808000">bean </FONT><FONT COLOR="#800080">id</FONT><FONT COLOR="#0000ff">=</FONT><FONT COLOR="#ff00ff">"b" </FONT><FONT COLOR="#800080">class</FONT><FONT COLOR="#0000ff">=</FONT><FONT COLOR="#ff00ff">"org.r4r.B" </FONT><FONT COLOR="#800080">autowire</FONT><FONT COLOR="#0000ff">=</FONT><FONT COLOR="#ff00ff">"constructor"</FONT><FONT COLOR="#0000ff">/&gt;</FONT>
+</PRE>
+</div>
+
+ <p><i>Autowire by Autodetect:</i>This approach is a combination of autowiring by constructor and autowiring by type in it dependency is injected using the type of property if target bean has a default constructor and dependency are injected using constructor injection if target bean has a parameterize constructor.</p>
+<p><i>Note:</i> This is the default strategy of the autowiring.</p>
+<h3>Syntax:</h3>
+<div class="code">
+<PRE>
+<FONT COLOR="#0000ff">&lt;</FONT><FONT COLOR="#808000">bean </FONT><FONT COLOR="#800080">id</FONT><FONT COLOR="#0000ff">=</FONT><FONT COLOR="#ff00ff">"x" </FONT><FONT COLOR="#800080">class</FONT><FONT COLOR="#0000ff">=</FONT><FONT COLOR="#ff00ff">"org.r4r.A"</FONT><FONT COLOR="#0000ff">/&gt;</FONT>
+<FONT COLOR="#0000ff">&lt;</FONT><FONT COLOR="#808000">bean </FONT><FONT COLOR="#800080">id</FONT><FONT COLOR="#0000ff">=</FONT><FONT COLOR="#ff00ff">"b" </FONT><FONT COLOR="#800080">class</FONT><FONT COLOR="#0000ff">=</FONT><FONT COLOR="#ff00ff">"org.r4r.B" </FONT><FONT COLOR="#800080">autowire</FONT><FONT COLOR="#0000ff">=</FONT><FONT COLOR="#ff00ff">"autodetect"</FONT><FONT COLOR="#0000ff">/&gt;</FONT>
+</PRE>
+</div>
+
+ <p><i>Limitation of Autowiring:</i> Major drawback of autowiring is understandability is loosed.</p>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="SetterDependenctMap.shtml" title="Setter Dependency Map">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="ExampleAutoByName.shtml" title="Example AutoByName">Next</a></td>
+  </tr> 
+</table>
+
+<!-- Footer Start-->
+
+		</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->
+

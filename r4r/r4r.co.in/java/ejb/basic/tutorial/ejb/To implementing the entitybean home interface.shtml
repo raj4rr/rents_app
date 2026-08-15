@@ -1,0 +1,140 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+
+<HTML><HEAD>
+
+<meta http-equiv="Content-Language" content="en-us">
+
+<TITLE>To implementing the entity bean interface</TITLE>
+
+<META content="Rajesh Kumar" name="author">
+
+<META http-equiv="expires" content="0">
+
+<META content="r4r.co.in" name="owner">
+
+<META http-equiv=Content-Type content="text/html; charset=windows-1252">
+
+<meta name="description" CONTENT="To Implementing the Entity Bean Home Interface" >
+
+<meta name="keywords" CONTENT="To Implementing the Entity Bean Home Interface">
+
+<!--Header start-->
+
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>EJB</h1>
+            <div class="link_menu"><A href="/">R4R</A>
+
+<img border="0" src="/images/left_menu_bullet.gif" width="11" height="6"> <A href="/java">Java</A><img border="0" src="/images/left_menu_bullet.gif" width="11" height="6"><A href="/java/ejb/">EJB</A></font></div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/ejb/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	  
+
+<!-- header End-->
+<div class="heading">To Implementing the Entity Bean Home Interface:</div>
+<p>Home interface is a primarily used for retrieving the bean reference, on which the client can request business methods.
+</p>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="Home%20Interface.shtml" title=" Home Interface
+">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="Install%20an%20enterprise%20javabeans%20server.shtml" title="Install and Enterprise JavaBean Server">Next</a></td>
+  </tr>
+</table>
+
+<ol>
+<li>Local Home interface extends <font class="point_out">javax.ejb.EJBLocalHome</font>. this packages are using in interfaces</li>
+
+<li>Remote Home interface extends <font class="point_out">javax.ejb.EJBHome</font>.this packages are using in interfaces.</li>
+</ol>
+
+<p>Home interface must contained a create method, and it'sthe client invoking to create the bean 
+instance. The Entity bean can have zero or more create methods, and Each with 
+its own defined parameters. it's all entity beans must define one or more finder 
+methods, where at least one is a findByPrimaryKey method. Optionally, you can 
+develop other finder methods, this packages are using in interfaces for the 
+bean.</p>
+<p>
+The Creation and retrieval methods, and you can provide home interface business 
+methods within the home interface. The functionality within these methods cannot 
+access data of a particular entity object. </p>
+
+<p>Instead, the purpose of these methods 
+is to provide a way to retrieve information that is not related to a single 
+entity bean instance. When the client invokes any home interface business 
+method, an entity bean is removed from the pool to service the request. Thus, 
+this method can be used to perform operations on general information related to 
+the bean.</p>
+
+<p>
+Our employee example provides the local home interface with a create, 
+find By Primary Key, find All, and calcSalary methods. The calcSalary method is a 
+home interface business method that calculates the sum of all employee salaries. 
+It does not access the information of a particular employee, but performs a SQL 
+inquiry against the database for all employees.</p>
+
+<div class="code">
+<pre>
+<font color="#0000ff">package </font><font color="#000000">employee;</font>
+<font color="#0000ff">import </font><font color="#000000">javax.ejb.*;</font>
+<font color="#0000ff">import </font><font color="#000000">java.rmi.*;</font>
+<font color="#0000ff">public interface </font><font color="#000000">employeelocalhome </font><font color="#0000ff">extends </font><font color="#000000">EJBLocalHome</font>
+<font color="#000000">{</font>
+  <font color="#0000ff">public </font><font color="#000000">employeelocal create(</font><font color="#ff0000">Integer </font><font color="#000000">empNo) </font><font color="#0000ff">throws </font><font color="#000000">CreateException;</font>
+
+  <font color="#008000">// Find an existing employee</font>
+
+  <font color="#0000ff">public </font><font color="#000000">employeelocal findByPrimaryKey (</font><font color="#ff0000">Integer </font><font color="#000000">empNo) </font><font color="#0000ff">throws </font><font color="#000000">FinderException;</font>
+
+  <font color="#008000">//Find all employees</font>
+
+  <font color="#0000ff">public </font><font color="#ff0000">Collection </font><font color="#000000">findAll() </font><font color="#0000ff">throws </font><font color="#000000">FinderException;</font>
+
+  <font color="#008000">//Calculate the Salaries of all employees</font>
+
+  <font color="#0000ff">public float </font><font color="#000000">calcSalary() </font><font color="#0000ff">throws </font><font color="#ff0000">Exception</font><font color="#000000">;</font>
+<font color="#000000">}</font>
+</pre>
+</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="Home%20Interface.shtml" title=" Home Interface
+">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="Install%20an%20enterprise%20javabeans%20server.shtml" title="Install and Enterprise JavaBean Server">Next</a></td>
+  </tr>
+</table>
+
+<!-- Footer Start-->
+</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>

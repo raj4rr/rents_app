@@ -1,0 +1,175 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>Exception Handling,Exception Handling Mechanism </TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="Exception Handling,Exception Handling Mechanism ">
+<meta name="keywords" CONTENT="Exception Handling,Exception Handling Mechanism ">
+
+<!-- header start-->	
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>Java Programing laungage</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+            <img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+            <a href="/java/">Java</a>
+              <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/java/corejava/">Core Java</a>
+
+                     <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/java/corejava/topics/exceptions-handling/">Exception Handling</a>
+              </div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/corejava/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	 
+<!-- header End-->
+
+<div class="heading">Exception Handling</div>
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="Type_of_exceptions.shtml" title="Type of exceptions">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="Using_try_and_catch.shtml" title="Using try and catch">Next</a></td>
+  </tr> 
+</table>
+
+<p>Exception is error that raised in programs during run time. Exception can be raise bcause:</p>
+
+<ol><li>
+<p>A user has entered invalid data or</p></li>
+<li>
+ <p>A file that needs to be opened cannot be found or</p>
+ </li>
+ <li>
+ <p>A network connection has been lost in the middle of communications, or the JVM has run out of memory.</p></li></ol>
+<p>Except above there may be many other reasons.</p>
+<p>When  Exception raise in method it creates an  object. This object called Exception Object contains all information regarding error and state of program. </p>
+<h2>Exception Handling Mechanism</h2>   
+<p>When Exception object raised it must be handle otherwise program will terminate. Java use five key words called exception handling </p>
+<ol>
+<li>
+try</li>
+<li>
+ catch
+ </li>
+ <li>
+  throw
+   </li>
+   <li>
+      throws
+       </li>
+       <li>
+    finally
+    </li>
+    </ol>
+ <div class="heading">The general form of exception handling block is:</div>   
+ <div class="code">
+<PRE>
+<FONT FACE="Arial">
+ <FONT COLOR="#0000ff">try</FONT>
+<FONT COLOR="#000000">{</FONT>
+<FONT COLOR="#008000">//block monitors error</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#0000ff">catch</FONT><FONT COLOR="#000000">(exceptiontype e)</FONT>
+<FONT COLOR="#000000">{</FONT>
+<FONT COLOR="#008000">//exception handler</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#0000ff">finally</FONT>
+<FONT COLOR="#000000">{</FONT>
+<FONT COLOR="#008000">// block will must execute before try ends</FONT>
+<FONT COLOR="#000000">}</FONT>
+</FONT>
+</PRE>
+ </div>
+<p>Try block contains code where exception may generate. Exception raised caught by catch block. The code that must execute before a method returns or program terminated must be written in finally block. Exception type shows type of exception raised . One example of Java exception is given below.</p>
+<h3>Example</h3>
+<div class="code">
+<PRE>
+<FONT FACE="Arial">
+<FONT COLOR="#008000">/*</FONT>
+<FONT COLOR="#008000"> * Saved as excpexmp1.java</FONT>
+<FONT COLOR="#008000"> * Show use of try and catch block</FONT>
+<FONT COLOR="#008000"> */</FONT>
+<FONT COLOR="#0000ff">package </FONT><FONT COLOR="#000000">exceptionhandling;</FONT>
+ <FONT COLOR="#0000ff">class </FONT><FONT COLOR="#000000">Excp{</FONT>
+    <FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">dividend,divisor;</FONT>
+    <FONT COLOR="#000000">Excp(</FONT><FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">n1,</FONT><FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">n2)</FONT>
+    <FONT COLOR="#000000">{</FONT>
+        <FONT COLOR="#000000">divisor=n1;</FONT>
+        <FONT COLOR="#000000">dividend =n2;</FONT>
+    <FONT COLOR="#000000">}</FONT>
+    <FONT COLOR="#0000ff">public int </FONT><FONT COLOR="#000000">div()</FONT>
+    <FONT COLOR="#000000">{</FONT>
+        <FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">i=</FONT><FONT COLOR="#800080">0</FONT><FONT COLOR="#000000">;</FONT>
+        <FONT COLOR="#0000ff">try</FONT><FONT COLOR="#000000">{</FONT>
+         <FONT COLOR="#000000">i=dividend/divisor;</FONT>
+        <FONT COLOR="#000000">}</FONT><FONT COLOR="#0000ff">catch</FONT><FONT COLOR="#000000">(</FONT><FONT COLOR="#ff0000">ArithmeticException </FONT><FONT COLOR="#000000">e)</FONT>
+        <FONT COLOR="#000000">{</FONT>
+        <FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.println(</FONT><FONT COLOR="#ff00ff">"Divide by zero"</FONT><FONT COLOR="#000000">);</FONT>
+        <FONT COLOR="#000000">}</FONT>
+        <FONT COLOR="#0000ff">return </FONT><FONT COLOR="#000000">i;</FONT>
+    <FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#0000ff">public class </FONT><FONT COLOR="#000000">excpexmp1 {</FONT>
+    <FONT COLOR="#0000ff">public static void </FONT><FONT COLOR="#000000">main(</FONT><FONT COLOR="#ff0000">String</FONT><FONT COLOR="#000000">[] str)</FONT>
+    <FONT COLOR="#000000">{</FONT>
+
+     <FONT COLOR="#000000">Excp obj=</FONT><FONT COLOR="#0000ff">new </FONT><FONT COLOR="#000000">Excp(</FONT><FONT COLOR="#800080">10</FONT><FONT COLOR="#000000">,</FONT><FONT COLOR="#800080">20</FONT><FONT COLOR="#000000">);</FONT>
+     <FONT COLOR="#000000">Excp ob1= </FONT><FONT COLOR="#0000ff">new </FONT><FONT COLOR="#000000">Excp(</FONT><FONT COLOR="#800080">0</FONT><FONT COLOR="#000000">,</FONT><FONT COLOR="#800080">10</FONT><FONT COLOR="#000000">);</FONT>
+     <FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.println(obj.div());</FONT>
+     <FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.println(ob1.div());</FONT>
+    <FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#000000">}</FONT>
+</FONT>
+</PRE>
+</div> 
+ <p><i>Output:</i></p>
+ <div class="output">
+<PRE>
+<FONT FACE="Arial">
+<FONT COLOR="#800080">2</FONT>
+<FONT COLOR="#000000">Divide by zero</FONT>
+<FONT COLOR="#800080">0</FONT>
+</FONT>
+</PRE>
+ </div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="Type_of_exceptions.shtml" title="Type of exceptions">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="Using_try_and_catch.shtml" title="Using try and catch">Next</a></td>
+  </tr> 
+</table>
+
+<!-- Footer Start-->	
+
+		</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->

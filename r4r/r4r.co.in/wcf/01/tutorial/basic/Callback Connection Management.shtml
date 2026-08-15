@@ -1,0 +1,161 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>Callback Connection Management,Duplex Factory</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="Callback Connection Management,Duplex Factory" >
+<meta name="keywords" CONTENT="Callback Connection Management,Duplex Factory">
+
+<!--Header start-->
+
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>WCF</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a><img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+			<a href="/wcf">WCF with C# </a>
+              <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/wcf/01/tutorial/basic/">WCF Tutorials</a></div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/wcf/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	  
+
+<!-- Header End-->
+<div class="heading">Callback Connection Management</div>
+
+  <table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="Singleton%20Service.shtml" title="Singleton Service
+">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="Throttling.shtml" title="Throttling">Next</a></td>
+  </tr>
+</table>
+<p>The callback mechanism provides higher-level protocol for managing the 
+connection between the service and the callback endpoint</p>
+<h3>Exapmle of Explicit callback connection management</h3>
+<div class="code">
+<pre>
+<font color="#000000">[ServiceContract(CallbackContract = </font><font color="#0000ff">typeof</font><font color="#000000">(IMyContractCallback))]</font>
+<font color="#0000ff">interface </font><font color="#000000">IMyContract</font>
+<font color="#000000">{</font>
+<font color="#000000">[OperationContract]</font>
+<font color="#0000ff">void </font><font color="#000000">operation( );</font>
+
+<font color="#000000">[OperationContract]</font>
+<font color="#0000ff">void </font><font color="#000000">Connectoperation( );</font>
+
+<font color="#000000">[OperationContract]</font>
+<font color="#0000ff">void </font><font color="#000000">DisConnectoperation( );</font>
+<font color="#000000">}</font>
+<font color="#0000ff">interface </font><font color="#000000">IMyContractCallback</font>
+<font color="#000000">{</font>
+<font color="#000000">[OperationContract]</font>
+<font color="#0000ff">void </font><font color="#000000">OnCallback( );</font>
+<font color="#000000">}</font>
+<font color="#000000">[ServiceBehavior(InstanceContextMode = InstanceContextMode.PerCall)]</font>
+<font color="#0000ff">class </font><font color="#000000">MyService : IMyContract</font>
+<font color="#000000">{</font>
+<font color="#0000ff">static </font><font color="#808000">List</font><font color="#000000">&lt;IMyContractCallback&gt; m_Callbacks = </font><font color="#0000ff">new </font><font color="#808000">List</font>
+	<font color="#000000">&lt;IMyContractCallback&gt;( );</font>
+<font color="#0000ff">public void </font><font color="#000000">Connectoperation( )</font>
+<font color="#000000">{</font>
+<font color="#000000">IMyContractCallback callback = </font><font color="#808000">OperationContext</font><font color="#000000">.Current.</font>
+<font color="#000000">GetCallbackChannel&lt;IMyContractCallback&gt;( );</font>
+<font color="#0000ff">if</font><font color="#000000">(m_Callbacks.Contains(callback) == </font><font color="#0000ff">false</font><font color="#000000">)</font>
+<font color="#000000">{</font>
+<font color="#000000">m_Callbacks.Add(callback);</font>
+<font color="#000000">}</font>
+<font color="#000000">}</font>
+<font color="#0000ff">public void </font><font color="#000000">DisConnectoperation( )</font>
+<font color="#000000">{</font>
+<font color="#000000">IMyContractCallback callback = </font><font color="#808000">OperationContext</font><font color="#000000">.Current.</font>
+<font color="#000000">GetCallbackChannel&lt;IMyContractCallback&gt;( );</font>
+<font color="#0000ff">if</font><font color="#000000">(m_Callbacks.Contains(callback) == </font><font color="#0000ff">true</font><font color="#000000">)</font>
+<font color="#000000">{</font>
+<font color="#000000">m_Callbacks.Remove(callback);</font>
+<font color="#000000">}</font>
+<font color="#0000ff">else</font>
+<font color="#000000">{</font>
+<font color="#0000ff">throw new </font><font color="#808000">InvalidOperationException</font><font color="#000000">(</font><font color="#ff00ff">&quot;Cannot find callback&quot;</font><font color="#000000">);</font>
+<font color="#000000">}</font>
+<font color="#000000">}</font>
+<font color="#0000ff">public static void </font><font color="#000000">CallClients( )</font>
+<font color="#000000">{</font>
+ <font color="#000000">Action&lt;IMyContractCallback&gt; invoke = </font><font color="#0000ff">delegate</font>
+	 <font color="#000000">(IMyContractCallback callback)</font>
+<font color="#000000">{</font>
+<font color="#000000">callback.OnCallback( );</font>
+<font color="#000000">};</font>
+<font color="#000000">m_Callbacks.ForEach(invoke);</font>
+<font color="#000000">}</font>
+<font color="#0000ff">public void </font><font color="#000000">operation( )</font>
+<font color="#000000">{...}</font>
+<font color="#000000">}</font>
+</pre>
+</div>
+
+<div class="heading">Duplex Factory</div>
+<p>WCF also provides <font class="point_out"> DuplexChannelFactory&lt;T&gt;</font>, which can be used 
+for setting up duplex proxies programmatically.
+<p><font class="point_out">DuplexChannelFactory&lt;T&gt;</font> is used as base class,
+<font class="point_out">ChannelFactory&lt;T&gt;</font>, except its constructors expect either a callback instance or a callback context.</p>
+
+<div class="code">
+<pre>
+<font color="#0000ff">public class </font><font color="#808000">DuplexChannelFactory</font><font color="#000000">&lt;T&gt; : </font><font color="#808000">ChannelFactory</font><font color="#000000">&lt;T&gt;</font>
+<font color="#000000">{</font>
+   <font color="#0000ff">public </font><font color="#808000">DuplexChannelFactory</font><font color="#000000">(</font><font color="#0000ff">object </font><font color="#000000">callback);</font>
+   <font color="#0000ff">public </font><font color="#808000">DuplexChannelFactory</font><font color="#000000">(</font><font color="#0000ff">object </font><font color="#000000">callback,</font><font color="#0000ff">string </font><font color="#000000">EPName);</font>
+   <font color="#0000ff">public </font><font color="#808000">DuplexChannelFactory</font><font color="#000000">(</font><font color="#808000">InstanceContext </font><font color="#000000">context,</font><font color="#0000ff">string </font><font color="#000000">EPName);</font>
+   <font color="#0000ff">public </font><font color="#000000">T CreateChannel(</font><font color="#808000">InstanceContext </font><font color="#000000">context);</font>
+   <font color="#0000ff">public static </font><font color="#000000">T CreateChannel(</font><font color="#0000ff">object </font><font color="#000000">callback,</font><font color="#0000ff">string </font><font color="#000000">EPName);</font>
+   <font color="#0000ff">public static </font><font color="#000000">T CreateChannel(</font><font color="#808000">InstanceContext </font><font color="#000000">context,</font><font color="#0000ff">string </font><font color="#000000">EPName);</font>
+   <font color="#0000ff">public static </font><font color="#000000">T CreateChannel(</font><font color="#0000ff">object </font><font color="#000000">callback,</font><font color="#808000">Binding </font><font color="#000000">binding,</font>
+                                <font color="#808000">EndpointAddress </font><font color="#000000">EPAddress);</font>
+   <font color="#0000ff">public static </font><font color="#000000">T CreateChannel(</font><font color="#808000">InstanceContext </font><font color="#000000">context,</font><font color="#808000">Binding </font><font color="#000000">binding,</font>
+                                 <font color="#808000">EndpointAddress </font><font color="#000000">EPAddress);</font>
+   <font color="#008000">//More members</font>
+<font color="#000000">}</font>
+</pre>
+</div>
+
+  <table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="Singleton%20Service.shtml" title="Singleton Service
+">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="Throttling.shtml" title="Throttling">Next</a></td>
+  </tr>
+</table>
+
+<!--Footer  -->
+</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/dotnet/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>

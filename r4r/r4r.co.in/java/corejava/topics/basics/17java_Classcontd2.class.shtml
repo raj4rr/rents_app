@@ -1,0 +1,160 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>Local Classes In Java</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="Local Classes In Java" >
+<meta name="keywords" CONTENT="Local Classes In Java">
+
+<!-- header start-->
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>Java Programing laungage</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+            <img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+            <a href="/java/">Java</a>
+              <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/java/corejava">Core Java</a>
+               <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/java/corejava/topics/basics/">Basics</a>
+
+              </div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/corejava/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	 
+<!-- header End-->	
+
+<div class="heading">Local Classes In Java</div>
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="16java_ClassContd1.shtml" title="Non-Static Inner (member) Classes">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="18java_ClassContd3.shtml" title="Anonymous Classes, Interface Based, Class Based Anonymous Class">Next</a></td>
+  </tr> 
+</table>
+
+<p> A local class is a class that is defined within a block of Java code. A local class is declared inside a method body while member classes are declared inside a class. It is only accessible only to the method in which it is declared, which makes local classes less generally useful than non-static inner classes. </p> 
+
+<p>Local classes are probably most frequently defined within methods and constructors, they can also be defined inside static initializer blocks and instance initializers. Since an object of a local class must be internally linked to an object of the enclosing class,therefore object of the local class cannot exist in the absence of an object of the enclosing class, thus a local class is truly an inner class.</p>
+<p>The most important benefit of using local classes has to do with accessing the members of enclosing classes. Just like with member classes, methods of a local class have direct access to all the members of the enclosing classes, including private members. Thus, the use of local classes may eliminate the requirement to connect objects together via constructor parameters.</p><p> The methods in a local class can access local variables and method parameters only if they are declared final. As with local variables, local classes cannot be declared public, protected, private, or static. Following code will show the syntax of local classes.</p>
+<h3>Example</h3>
+<div class="code">
+<PRE>
+<FONT FACE="Arial">
+<FONT COLOR="#000000">Java Tutorialslass </FONT><FONT COLOR="#ff0000">Shape          </FONT>
+<FONT COLOR="#008000">// top class </FONT>
+<FONT COLOR="#000000">{</FONT>
+ <FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">i=</FONT><FONT COLOR="#800080">5</FONT><FONT COLOR="#000000">; </FONT>
+<FONT COLOR="#000000">Java Tutorialslass </FONT><FONT COLOR="#ff0000">Rectangle               </FONT>
+	<FONT COLOR="#008000">// member class</FONT>
+ <FONT COLOR="#000000">{</FONT>
+  <FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">a=</FONT><FONT COLOR="#800080">10</FONT><FONT COLOR="#000000">;                   </FONT>
+  <FONT COLOR="#008000">// taken a variable a</FONT>
+  <FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">length;</FONT>
+  <FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">breadth;</FONT>
+  <FONT COLOR="#0000ff">public </FONT><FONT COLOR="#ff0000">Rectangle</FONT><FONT COLOR="#000000">(</FONT><FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">length, </FONT><FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">breadth)       </FONT>
+	  <FONT COLOR="#008000">// constructor declaration for Rectangle class</FONT>
+  <FONT COLOR="#000000">{</FONT>
+   <FONT COLOR="#0000ff">this</FONT><FONT COLOR="#000000">.length=length;</FONT>
+   <FONT COLOR="#0000ff">this</FONT><FONT COLOR="#000000">.breadth=breadth;</FONT>
+  <FONT COLOR="#000000">}</FONT>
+   <FONT COLOR="#0000ff">public void </FONT><FONT COLOR="#ff0000">Area</FONT><FONT COLOR="#000000">()                </FONT>
+	   <FONT COLOR="#008000">// defined a method Area(), in which we defined a local class Circle</FONT>
+   <FONT COLOR="#000000">{</FONT>
+    <FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.println(</FONT><FONT COLOR="#ff00ff">"The area of rectangle is :"</FONT><FONT COLOR="#000000">+length*breadth);</FONT>
+
+    <FONT COLOR="#000000">Java Tutorialslass Java Tutorialsircle                            </FONT>
+		<FONT COLOR="#008000">//local class declaration</FONT>
+    <FONT COLOR="#000000">{</FONT>
+     <FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">radius;</FONT>
+     <FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">y=</FONT><FONT COLOR="#800080">27</FONT><FONT COLOR="#000000">;</FONT>
+     <FONT COLOR="#0000ff">public </FONT><FONT COLOR="#000000">Java Tutorialsircle(</FONT><FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">radius)        </FONT>
+		 <FONT COLOR="#008000">// constructor of local  class</FONT>
+     <FONT COLOR="#000000">{</FONT>
+      <FONT COLOR="#0000ff">this</FONT><FONT COLOR="#000000">.radius=radius;</FONT>
+     <FONT COLOR="#000000">}</FONT>
+    <FONT COLOR="#0000ff">public void </FONT><FONT COLOR="#ff0000">Area</FONT><FONT COLOR="#000000">()             </FONT>
+		<FONT COLOR="#008000">//method Area defined in local class</FONT>
+    <FONT COLOR="#000000">{</FONT>
+     <FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.println(</FONT><FONT COLOR="#ff00ff">"The area of circle is: "</FONT><FONT COLOR="#000000">+</FONT><FONT COLOR="#ff0000">Math</FONT><FONT COLOR="#000000">.PI*radius*radius);    </FONT>
+	 <FONT COLOR="#008000">//printing area of circle</FONT>
+     <FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.println(</FONT><FONT COLOR="#ff00ff">"The value of a is given by :"</FONT><FONT COLOR="#000000">+a);                </FONT>
+	 <FONT COLOR="#008000">// printing the value </FONT>
+<FONT COLOR="#000000">of a and i defined in </FONT><FONT COLOR="#ff0000">Rectangle </FONT><FONT COLOR="#000000">and shape</FONT>
+     <FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.println(</FONT><FONT COLOR="#ff00ff">"The value of i is given by :"</FONT><FONT COLOR="#000000">+i);            </FONT>
+<FONT COLOR="#008000">// which  shows local classes</FONT>
+ <FONT COLOR="#000000">have access to members of enclosing </FONT><FONT COLOR="#0000ff">class   </FONT>
+
+<FONT COLOR="#000000">}                                                         </FONT>
+<FONT COLOR="#008000">// closing Area() method</FONT>
+   <FONT COLOR="#000000">}                                                      </FONT>
+   <FONT COLOR="#008000">// closing local class Circle</FONT>
+<FONT COLOR="#0000ff">final </FONT><FONT COLOR="#000000">Java Tutorialsircle obj=</FONT><FONT COLOR="#0000ff">new </FONT><FONT COLOR="#000000">Java Tutorialsircle(</FONT><FONT COLOR="#800080">7</FONT><FONT COLOR="#000000">);           </FONT>
+<FONT COLOR="#008000">// creating object of Circle class</FONT>
+<FONT COLOR="#000000">obj.</FONT><FONT COLOR="#ff0000">Area</FONT><FONT COLOR="#000000">();                               </FONT>
+<FONT COLOR="#008000">// calling Area() method </FONT>
+<FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.println(</FONT><FONT COLOR="#ff00ff">"The class path of enclosing class is given by :"</FONT><FONT COLOR="#000000">+getClass().getName());       </FONT>
+<FONT COLOR="#008000">//printing </FONT>
+<FONT COLOR="#000000">the </FONT><FONT COLOR="#0000ff">class </FONT><FONT COLOR="#000000">name </FONT><FONT COLOR="#0000ff">for </FONT><FONT COLOR="#ff0000">Rectangle </FONT><FONT COLOR="#0000ff">class</FONT>
+<FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.println(</FONT><FONT COLOR="#ff00ff">"The class path is given by :"</FONT><FONT COLOR="#000000">+obj.getClass().getName());                      </FONT>
+<FONT COLOR="#008000">//printing </FONT>
+<FONT COLOR="#000000">the </FONT><FONT COLOR="#0000ff">class </FONT><FONT COLOR="#000000">name </FONT><FONT COLOR="#0000ff">for  </FONT><FONT COLOR="#000000">local </FONT><FONT COLOR="#0000ff">class </FONT><FONT COLOR="#000000">Circle</FONT>
+<FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.println(</FONT><FONT COLOR="#ff00ff">"The value of a declared in Rectangle is given by :"</FONT><FONT COLOR="#000000">+</FONT><FONT COLOR="#ff0000">Rectangle</FONT><FONT COLOR="#000000">.</FONT><FONT COLOR="#0000ff">this</FONT><FONT COLOR="#000000">.a);   </FONT>
+<FONT COLOR="#008000">//printing the </FONT>
+<FONT COLOR="#000000">value of variable a defined in </FONT><FONT COLOR="#0000ff">class</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#000000">Java Tutorialslass man2                                   </FONT>
+<FONT COLOR="#008000">// controlling class</FONT>
+<FONT COLOR="#000000">{</FONT>
+  <FONT COLOR="#0000ff">public static void </FONT><FONT COLOR="#000000">main(</FONT><FONT COLOR="#ff0000">String </FONT><FONT COLOR="#000000">args[])</FONT>
+  <FONT COLOR="#000000">{</FONT>
+   <FONT COLOR="#0000ff">new </FONT><FONT COLOR="#ff0000">Shape</FONT><FONT COLOR="#000000">().</FONT><FONT COLOR="#0000ff">new </FONT><FONT COLOR="#ff0000">Rectangle</FONT><FONT COLOR="#000000">(</FONT><FONT COLOR="#800080">4</FONT><FONT COLOR="#000000">,</FONT><FONT COLOR="#800080">5</FONT><FONT COLOR="#000000">).</FONT><FONT COLOR="#ff0000">Area</FONT><FONT COLOR="#000000">();            </FONT>
+   <FONT COLOR="#008000">//invoking Area() method defined in class Rectangle</FONT>
+<FONT COLOR="#000000">}                                                    </FONT>
+<FONT COLOR="#008000">//by associating its object with top class Shape </FONT>
+<FONT COLOR="#000000">}</FONT>
+</FONT>
+</PRE>
+</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="16java_ClassContd1.shtml" title="Non-Static Inner (member) Classes">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="18java_ClassContd3.shtml" title="Anonymous Classes, Interface Based, Class Based Anonymous Class">Next</a></td>
+  </tr> 
+</table>
+
+<!-- Footer Start-->	
+
+		</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->

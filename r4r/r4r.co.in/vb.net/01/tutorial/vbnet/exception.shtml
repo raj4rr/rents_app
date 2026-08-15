@@ -1,0 +1,167 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>What is Exception?,Handling Exceptions,Exceptions Classes</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="What is Exception?,Handling Exceptions,Exceptions Classes" >
+<meta name="keywords" CONTENT="What is Exception?,Handling Exceptions,Exceptions Classes">
+<!-- header start-->	
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>VB.NET Technology</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+            <img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+            <a href="/vb.net/">VB.net</a>
+              <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/vb.net/01/tutorial/vbnet/">VB.NET Tutorial</a>
+
+              </div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/vb.net/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	 
+
+<div class="heading">What is Exception</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="delegate%20and%20event.shtml" title="Delegate">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="threading.shtml" title="What is thread ">Next</a></td>
+  </tr> 
+</table>
+<!-- header End-->	
+<p>
+The exceptions are anomalies that occur during the execution of a program. Exception handling is a mechanism in .NET framework to detect and handle run time errors. They can be because of user, logic or system errors. If a user (programmer) do not provide a mechanism to handle these anomalies, the .NET run time environment provide a default mechanism, which terminates the program execution.
+</p><p>
+In VB.Net there are three keywords <b>Try</b>, <b>Catch</b> and <b>Finally</b> for handling  exceptions.
+In <b>try </b>lock statements it might throw an exception whereas catch handles that caused by try block if one exists.
+The <b>finally </b>block is used for doing any clean up process. The statement in finally block always executes.
+</p>
+
+<h3>Example</h3>
+<div class="code">
+<pre>
+<font face="Arial"><font color="#008000">' this can cause an exception.</font>
+<font color="#000000">Try</font>
+		<font color="#008000">' for handling the exception.</font>
+<font color="#000000">Catch x As Type</font>
+		<font color="#008000">'this will execute.</font>
+<font color="#000000">Finally</font>
+<font color="#0000ff">End </font><font color="#000000">Try</font></font>
+</pre>
+</div>
+
+<h3>Handling Exceptions</h3>
+<p>
+In catch block, if don't use a brackets or arguments, we can catch all exceptions occurred inside a try block. Even we can use a catch
+block with an Exception type parameter to catch all exceptions happened inside the try block.</p>
+<p> Since in VB.net, all exceptions are directly or indirectly inherited from the Exception class.  </p>
+<h3>Example</h3>
+
+<div class="code">
+<pre>
+<font face="Arial"><font color="#0000ff">Class </font><font color="#000000">newexp</font>
+	<font color="#0000ff">Public </font><font color="#000000">Shared </font><font color="#0000ff">Sub </font><font color="#000000">Main()</font>
+		<font color="#0000ff">Dim </font><font color="#000000">a As Integer = </font><font color="#800080">0</font>
+		<font color="#0000ff">Dim </font><font color="#000000">div As Integer = </font><font color="#800080">0</font>
+		<font color="#000000">Try</font>
+			<font color="#000000">div = </font><font color="#800080">100 </font><font color="#000000">\ a</font>
+			<font color="#000000">Console.WriteLine(</font><font color="#ff00ff">&quot;This will not print&quot;</font><font color="#000000">)</font>
+		<font color="#000000">Catch</font>
+			<font color="#000000">Console.WriteLine(</font><font color="#ff00ff">&quot;oException&quot;</font><font color="#000000">)</font>
+		<font color="#0000ff">End </font><font color="#000000">Try</font>
+		<font color="#000000">Console.WriteLine(</font><font color="#ff00ff">&quot;Result is {0}&quot;</font><font color="#000000">, div)</font>
+	<font color="#0000ff">End Sub</font>
+<font color="#0000ff">End Class</font></font>
+</pre>
+
+</div>
+
+<h3>Exceptions Classes </h3>
+
+<p>Following are some common exception classes.</p>
+
+<ul>
+
+   <li><b> SystemException :</b> This exception means a failed run-time check used as a base class for other.</li> 
+
+    <li><b>AccessException :</b> This exception means failure to access a type member, such as a method or field. </li>
+
+    <li><b>ArgumentException :</b> This exception means an argument to a method was invalid.</li> 
+
+    <li><b>ArgumentNullException :</b> This exception means a null argument was passed to a method that doesn't accept it.</li>
+
+    <li><b>ArgumentOutOfRangeException :</b>This exception means argument value is out of range. </li>
+
+    <li><b>ArithmeticException :</b> This exception means arithmetic over  or underflow has occurred.</li>
+
+    <li><b>ArrayTypeMismatchException :</b> This exception means attempt to store the wrong type of object in an array.</li> 
+
+    <li><b>BadImageFormatException :</b> This exception means image is in the wrong format. </li>
+
+    <li><b>CoreException :</b> This exception means base class for exceptions thrown by the runtime.</li>
+
+    <li><b>DivideByZeroException :</b> This exception means an attempt was made to divide by zero. </li>
+
+    <li><b>FormatException :</b> This exception means the format of an argument is wrong. </li>
+
+    <li><b>IndexOutOfRangeException :</b> This exception means an array index is out of bounds. </li>
+
+    <li><b>InvalidCastExpression :</b> This exception means an attempt was made to cast to an invalid class.</li> 
+
+    <li><b>InvalidOperationException :</b> This exception means a method was called at an invalid time.</li> 
+
+    <li><b>MissingMemberException :</b> This exception means an invalid version of a DLL was accessed.</li> 
+
+    <li><b>NotFiniteNumberException :</b> This exception means a number is not valid.</li> 
+
+    <li><b>NotSupportedException :</b> This exception means indicates that a method is not implemented by a class.</li> 
+
+    <li><b>NullReferenceException :</b> This exception means attempt to use an unassigned reference. </li>
+
+    <li><b>OutOfMemoryException :</b> This exception means not enough memory to continue execution.</li>
+
+    <li><b>StackOverflowException :</b> This exception means a stack has overflow.</li>
+
+</ul>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="delegate%20and%20event.shtml" title="Delegate">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="threading.shtml" title="What is thread ">Next</a></td>
+  </tr> 
+</table>
+
+<!-- Footer Start-->		
+
+		</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/dotnet/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-

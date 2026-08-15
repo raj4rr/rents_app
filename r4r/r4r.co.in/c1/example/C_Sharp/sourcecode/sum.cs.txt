@@ -1,0 +1,13 @@
+//Command Line Argument :- PASSING number as command line argument and display sum of the numbers.
+using System;
+class x
+{
+	public static void Main(String[] args)
+	{
+		int n=Int32.Parse(args[0]);
+		int m=Int32.Parse(args[1]);
+		int sum=n+m;
+		Console.WriteLine("The sum is --->"+sum);
+	
+	}		
+}

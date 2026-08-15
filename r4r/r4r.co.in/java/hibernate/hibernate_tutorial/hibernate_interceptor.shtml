@@ -1,0 +1,194 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<HTML><HEAD><TITLE>Hibernate Interceptors</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv="content-type" content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="Hibernate Interceptors tutorial learn easily and shortly with hibernate tutorial,hibernate
+Examples,hibernate interview questions Step by step covers all topics of hibernate" >
+<meta name="keywords" CONTENT="hibernate Interceptor,What is interceptor in Hibernate, how To use interceptor In Hibernate
+ Hibernate, Tutorials, Learning, Beginners, Basics, Environment, Object Relational Mapping (ORM), Query Language, Native SQL,
+Caching">
+
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<META http-equiv="Content-Language" content="en-us">
+<link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+<link href="/css/main.css" rel="stylesheet" type="text/css" />
+</HEAD>
+<BODY>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>Hibernate</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+            <img src="/images/left_menu_bullet.gif"/> <a href="/java/hibernate/">Hibernate</a>
+             </div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top">
+                            <?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/hibernate/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                       <div class="main_content">  	 
+
+      <div class="heading">Hibernate Interceptor</div>
+
+      <table id="indexing">
+
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="hibernate_native_sql.shtml" title="Hibernate Native SQL">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="introduction.shtml" title="Introduction of Hibernate">Next</a></td>
+  </tr> 
+</table>
+      <p>
+          The Interceptor interface provides callbacks from the session to the application, 
+          it allowing the application to inspect and/or manipulate properties of a persistent object 
+          before it is saved, updated, deleted or loaded. One possible use for this is to track 
+          auditing information. 
+      </p>
+      <p>
+      <h3>Example:</h3> In the following Interceptor automatically sets the createTimestamp when an 
+          Auditable is created and updates the lastUpdateTimestamp property when an Auditable is 
+          updated. Either implement Interceptor directly or extend EmptyInterceptor.
+      </p>
+      <div class="code">
+<pre><code class="language-java">
+package r4r;
+
+import java.io.Serializable;
+import java.util.Date;
+import java.util.Iterator;
+import org.hibernate.EmptyInterceptor;
+import org.hibernate.Transaction;
+import org.hibernate.type.Type;
+
+public class HibernateInterceptor extends EmptyInterceptor {
+
+    private int updates;
+    private int creates;
+    private int loads;
+
+    public void onDelete(Object entity,
+                         Serializable id,
+                         Object[] state,
+                         String[] propertyNames,
+                         Type[] types) {
+    }
+
+    public boolean onFlushDirty(Object entity,
+                                Serializable id,
+                                Object[] currentState,
+                                Object[] previousState,
+                                String[] propertyNames,
+                                Type[] types) {
+
+        if ( entity instanceof Auditable ) {
+            updates++;
+            for ( int i=0; i &lt; propertyNames.length; i++ ) {
+                if ( "lastUpdateTimestamp".equals( propertyNames[i] ) ) {
+                    currentState[i] = new Date();
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    public boolean onLoad(Object entity,
+                          Serializable id,
+                          Object[] state,
+                          String[] propertyNames,
+                          Type[] types) {
+        if ( entity instanceof Auditable ) {
+            loads++;
+        }
+        return false;
+    }
+
+    public boolean onSave(Object entity,
+                          Serializable id,
+                          Object[] state,
+                          String[] propertyNames,
+                          Type[] types) {
+
+        if ( entity instanceof Auditable ) {
+            creates++;
+            for ( int i=0; i&lt;propertyNames.length; i++ ) {
+                if ( "createTimestamp".equals( propertyNames[i] ) ) {
+                    state[i] = new Date();
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    public void afterTransactionCompletion(Transaction tx) {
+        if ( tx.wasCommitted() ) {
+            System.out.println("Creations: " + creates + ", Updates: " + updates + ", Loads: " + loads);
+        }
+        updates=0;
+        creates=0;
+        loads=0;
+    }
+
+}
+</code></pre>
+      </div>
+
+      <div class="heading">There are two kinds of inteceptors: </div>
+      <ol>
+          <li>Session-scoped </li>
+          <li>SessionFactory-scoped.</li>
+      </ol>
+      <p>A Session-scoped interceptor is specified when a session is opened using one of the 
+          overloadedSessionFactory.openSession() methods accepting an Interceptor.
+      </p>
+      <div class="code">
+<pre><code class="language-java">
+Session session = sf.openSession( new AuditInterceptor() );
+</code></pre>
+      </div>
+      <p>
+          A SessionFactory-scoped interceptor is registered with the Configuration object prior to 
+          building the SessionFactory. Unless a session is opened explicitly specifying the 
+          interceptor to use, the supplied interceptor will be applied to all sessions opened 
+          from that SessionFactory. SessionFactory-scoped interceptors must be thread safe. 
+          Ensure that you do not store session-specific states, since multiple sessions will 
+          use this interceptor potentially concurrently.
+      </p>
+      <div class="code">
+<pre><code class="language-java">
+new Configuration().setInterceptor( new AuditInterceptor() );
+</code></pre>
+      </div>
+     <table id="indexing">
+
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="hibernate_native_sql.shtml" title="Hibernate Native SQL">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="introduction.shtml" title="Introduction of Hibernate">Next</a></td>
+  </tr> 
+</table>            
+
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+
+                <?php @include($_SERVER['DOCUMENT_ROOT'] . '/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>

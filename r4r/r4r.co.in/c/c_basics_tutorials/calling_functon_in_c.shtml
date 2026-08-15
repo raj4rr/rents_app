@@ -1,0 +1,116 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>Calling Function In C Language</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="Learn: Calling Function In C Langauge,c tutorial,c basics,programming language,examples,pointer,function,loop,else,if else,while,array,pre processor" >
+<meta name="keywords" CONTENT="c tutorial,c basics,programming language,examples,pointer,function,loop,else,if else,while,array,pre processor,post processor,structures,memory menagement,string,constants,variables,decisions making,c unions,c memory allocation, c operators, C pointers,c error handling, c file handling">
+<link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>C Programming language</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a><img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/c/">C </a>
+              <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/c/c_topics/c_function">C Functions </a></div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/c/commonfiles/new-leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 
+
+	 <!-- Header End--> 		
+
+<div class="heading"><font style="background:#FF9966; padding:7px 0px 7px 7px;">Day <font style="background:#E95409; padding:7px;">6</font></font> Calling Function in C Programming language : Call by value</div>
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="function_return_multiple_values.shtml" title="Function return multiple values using Array in C Programming language">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="calling_functon_in_c_call_by_reference.shtml" title="Calling Function in C Programming language : Call by reference">Next</a></td>
+  </tr>
+</table>
+<p>If a function is to use arguments, it must declare variables that accept the values of the arguments. While calling a function, there are two ways that arguments can be passed to a function:</p>
+	<ul>
+		<li>Call by value</li>
+		<li>Call by reference</li>
+	</ul>
+
+<h2># Call by value</h2>
+<p>Whenever we called a function and passed something to it we have always passed the 'Values' of variables to the called function. Such function is called Call By Value.</p>
+
+<p><b>Defining a Function:</b> Consider the fuction <font class="point_out">factorial()</font></p>
+<div class="code">
+<pre>
+<font color="#008000">/* Factorial of a number */</font>
+<font color="#0000ff">int </font><font color="#000000">factorial(</font><font color="#0000ff">int </font><font color="#000000">x)</font>
+<font color="#000000">{</font>
+	<font color="#0000ff">int </font><font color="#000000">f=</font><font color="#800080">1</font><font color="#000000">,i; </font><font color="#008000">/* local variable declaration */</font>
+	<font color="#0000ff">for</font><font color="#000000">(i=x; i&gt;=</font><font color="#800080">1</font><font color="#000000">; i--)</font>
+	<font color="#000000">f=f*i;</font>
+	<font color="#0000ff">return</font><font color="#000000">(f);</font>
+<font color="#000000">}</font>
+</pre>
+</div>
+<p>Now, let us call the function <font class="point_out">factorial()</font> by passing actual values as in the following example:</p>
+
+<div class="code">
+<pre>
+<font color="#ff0000">#include </font><font color="#000000">&lt;stdio.h&gt;</font>
+<font color="#ff0000">#include </font><font color="#000000">&lt;conio.h&gt;</font>
+
+<font color="#008000">/* function declaration */</font>
+<font color="#0000ff">int </font><font color="#000000">factorial (</font><font color="#0000ff">int</font><font color="#000000">);</font>
+<font color="#0000ff">void </font><font color="#000000">main</font>
+<font color="#000000">{</font>
+	<font color="#0000ff">int </font><font color="#000000">a, fact; </font><font color="#008000">/* local variable declaration */</font>
+	<font color="#000000">clrscr();</font>
+	<font color="#000000">printf(</font><font color="#ff00ff">&quot;\n Enter any number&quot;</font><font color="#000000">);</font>
+	<font color="#000000">scanf (</font><font color="#ff00ff">&quot;%d&quot;</font><font color="#000000">,&amp;a);</font><font color="#008000">/* calling a function of factorial of a number */</font>
+	<font color="#000000">fact=fatorial(a); </font><font color="#008000">/* local variable declaration */</font>
+	<font color="#000000">printf(</font><font color="#ff00ff">&quot;factorial value=%d&quot;</font><font color="#000000">,fact);</font>
+<font color="#000000">}</font>
+
+<font color="#008000">/* Factorial of a number */</font>
+<font color="#0000ff">int </font><font color="#000000">factorial(</font><font color="#0000ff">int </font><font color="#000000">x)</font>
+<font color="#000000">{</font>
+	<font color="#0000ff">int </font><font color="#000000">f=</font><font color="#800080">1</font><font color="#000000">,i; </font><font color="#008000">/* local variable declaration */</font>
+	<font color="#0000ff">for</font><font color="#000000">(i=x; i&gt;=</font><font color="#800080">1</font><font color="#000000">; i--)</font>
+	<font color="#000000">f=f*i;</font>
+	<font color="#0000ff">return</font><font color="#000000">(f);</font>
+<font color="#000000">}</font>
+</pre>
+</div>
+<div class="output"><p><i>Output</i> : Enter any number: 5 <br>factorial value=120</p></div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="function_return_multiple_values.shtml" title="Function return multiple values using Array in C Programming language">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="calling_functon_in_c_call_by_reference.shtml" title="Calling Function in C Programming language : Call by reference">Next</a></td>
+  </tr>
+</table>
+
+ <!--Footer  --> 	
+</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/c/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>

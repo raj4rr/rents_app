@@ -1,0 +1,133 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD>
+<meta http-equiv="Content-Language" content="en-us">
+<TITLE>Basic operation on JDBC,select Statement,Insert Statement,Delete Statement,connectivity of database with network address</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name="description" CONTENT="Basic operation on JDBC,select Statement,Insert Statement,Delete Statement,connectivity of database with network address" >
+<meta name="keywords" CONTENT="Basic operation on JDBC,select Statement,Insert Statement,Delete Statement,connectivity of database with network address">
+
+<!-- header start-->	
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>JDBC</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+            <img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+            <a href="/java/">Java</a>
+              <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/java/jdbc">jdbc </a>
+              </div>
+
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/jdbc/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	 
+<!-- header End-->
+
+<div class="heading">Basic Operations on JDBC</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="Statement_of_the_JDBC.shtml" title="Statement of the JDBC">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="index.shtml" title="Home">Next</a></td>
+  </tr> 
+</table>
+
+<h3>JDBC Select Statement</h3>
+<p>This statement is used to retrieve the record from the database it may be single or multiple or both.
+And result is return into the Result Set object, which is used for display the record. 
+For show the next record of table we can used next() method of Result Set. 
+The syntax of the select statement is given bellow</p>
+<div class="code">
+<pre>
+<font color="#ff0000">PreparedStatement </font><font color="#000000">stm=con.prepareStatement(select * from sam);</font>
+</pre>
+</div>
+
+<h3>JDBC Insert Statement</h3>
+<p>Insert statement is used to inter the record into the table of the database.If the field
+ has a primary key then we can insert only unique record into the table.
+ The syntax of the insert statement is listed bellow</p>
+<div class="code">
+<pre>
+<font color="#ff0000">PreparedStatement </font><font color="#000000">stm=con.prepareStatement(insert into sam values(?,?,?));</font>
+</pre>
+</div>
+
+<h3>JDBC Update Statement</h3>
+<p>With help of the JDBC update statement, we can update the particular record of the table using java 
+application program. And JDBC Update Statement object returns an int value that Represent 
+the number of the Updated row in the table.The syntax of the update statement is listed bellow-</p>
+<div class="code">
+<pre>
+<font color="#ff0000">PreparedStatement </font>
+<font color="#000000">stm=con.prepareStatement(update sam set name=suhani where id=101);</font>
+</pre>
+</div>
+
+<h3>JDBC Delete statement</h3>
+<p>JDBC delete statement is allow you to delete the particular record of the table in database
+ or delete more than one record from the table of database.
+ The syntax of the delete statement is listed bellow-</p>
+<div class="code">
+<pre>
+<font color="#ff0000">PreparedStatement </font><font color="#000000">stm=con.prepareStatement(DELETE * from sam where id=101);</font>
+</pre>
+</div>
+
+<div class="heading">Connection To The Database with use of Network Address</div>
+<p>If you are want to connect the database over a network then need to get network address of 
+database and also need to identify the network port number of the database.
+The default port no of Oracle database is 1521 and default host name is system.</p>
+<p>A JDBC URL is providing a way of identify a database host, so that the driver loaded for database.
+After identifying the port no of database, you must provide a database name.
+Suppose that if you want to connect an oracle database with your application over a network then we are load the
+<i>com.mysql.jdbc.Driver</i>.</p>
+<p>Then we are specifying the connection URL. MySql conection URL syntax is given bellow-</p>
+<div class="code">
+<pre>
+<font color="#000000">jdbc:mysql:</font><font color="#008000">//[host][,failoverhost...][:port]/[database] </font>
+<font color="#000000">[?propertyName1][=propertyValue1][&amp;propertyName2][=propertyValue2]...</font>
+</pre>
+</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="Statement_of_the_JDBC.shtml" title="Statement of the JDBC">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="index.shtml" title="Home">Next</a></td>
+  </tr> 
+</table>
+
+	<!-- Footer Start-->		
+		</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->

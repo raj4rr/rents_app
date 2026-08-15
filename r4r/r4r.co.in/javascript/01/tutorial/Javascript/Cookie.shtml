@@ -1,0 +1,183 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>Cookie in JavaScript</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="Cookie in JavaScript" >
+<meta name="keywords" CONTENT="Cookie in JavaScript">
+
+<link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>Javascript language</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+            <img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+            <a href="/javascript/">Javascript</a>
+              <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/javascript/01/tutorial/Javascript/">Javascript Example</a>
+
+              </div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/javascript/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	 
+<!-- header End-->
+<div class="heading">Cookie in JavaScript</div>
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="Image_pop.shtml"title="Show popup window onMouseOver">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="email.shtml"title="Sending email using JavaScript">Next</a></td>
+  </tr> 
+</table>
+
+<p><i>Step 1. Written below code in your application.</i></p>
+<div class="code">
+<pre>
+<pre>
+<font color="#000000">&lt;html&gt;</font>
+<font color="#000000">&lt;body&gt;</font>
+<font color="#000000">&lt;script&gt;</font>
+    <font color="#0000ff">function </font><font color="#000000">get_Cookie_Val (offset) </font>
+    <font color="#000000">{</font>
+      <font color="#0000ff">var </font><font color="#000000">end_string = </font><font color="#ff0000">document</font><font color="#000000">
+	  .cookie.indexOf (</font><font color="#ff00ff">&quot;;&quot;</font><font color="#000000">, offset);</font>
+      <font color="#0000ff">if </font><font color="#000000">(end_string == -</font><font color="#800080">1</font><font color="#000000">)</font>
+        <font color="#000000">end_string = </font><font color="#ff0000">document</font><font color="#000000">.cookie.length;</font>
+      <font color="#0000ff">return </font><font color="#000000">unescape(</font><font color="#ff0000">document</font>
+	  <font color="#000000">.cookie.substring(offset, end_string));</font>
+    <font color="#000000">}</font>
+    <font color="#0000ff">function </font><font color="#000000">get_cookie (name)</font>
+     <font color="#000000">{</font>
+      <font color="#0000ff">var </font><font color="#000000">arg = name + </font><font color="#ff00ff">&quot;=&quot;</font><font color="#000000">;</font>
+      <font color="#0000ff">var </font><font color="#000000">str_lngt = arg.length;</font>
+      <font color="#0000ff">var </font><font color="#000000">cookie_length = </font><font color="#ff0000">document</font><font color="#000000">.cookie.length;</font>
+      <font color="#0000ff">var </font><font color="#000000">i = </font><font color="#800080">0</font><font color="#000000">;</font>
+      <font color="#0000ff">while </font><font color="#000000">(i &lt; cookie_length) {</font>
+        <font color="#0000ff">var </font><font color="#000000">j = i + str_lngt;</font>
+        <font color="#0000ff">if </font><font color="#000000">(</font><font color="#ff0000">document</font><font color="#000000">
+		.cookie.substring(i, j) == arg)</font>
+          <font color="#0000ff">return </font><font color="#000000">get_Cookie_Val (j);</font>
+        <font color="#000000">i = </font><font color="#ff0000">document</font><font color="#000000">.cookie.
+		indexOf(</font><font color="#ff00ff">&quot; &quot;</font><font color="#000000">, i) + </font><font color="#800080">1</font><font color="#000000">;</font>
+        <font color="#0000ff">if </font><font color="#000000">(i == </font><font color="#800080">0</font><font color="#000000">)
+		 </font><font color="#0000ff">break</font><font color="#000000">; </font>
+
+      <font color="#000000">}</font>
+      <font color="#0000ff">return null</font><font color="#000000">;</font>
+    <font color="#000000">}</font>
+    <font color="#0000ff">function </font><font color="#000000">set_cookie (name, value)</font>
+     <font color="#000000">{</font>
+      <font color="#0000ff">var </font><font color="#000000">argv = set_cookie.arguments;</font>
+      <font color="#0000ff">var </font><font color="#000000">argc = set_cookie.arguments.length;</font>
+      <font color="#0000ff">var </font><font color="#000000">expires = (argc &gt; </font><font color="#800080">2</font><font color="#000000">) 
+	  ? argv[</font><font color="#800080">2</font><font color="#000000">] : </font><font color="#0000ff">null</font><font color="#000000">;</font>
+      <font color="#0000ff">var </font><font color="#000000">path = (argc &gt; </font><font color="#800080">3</font><font color="#000000">) ? argv
+	  [</font><font color="#800080">3</font><font color="#000000">] : </font><font color="#0000ff">null</font><font color="#000000">;</font>
+      <font color="#0000ff">var </font><font color="#000000">domain = (argc &gt; </font><font color="#800080">4</font><font color="#000000">) ? argv
+	  [</font><font color="#800080">4</font><font color="#000000">] : </font><font color="#0000ff">null</font><font color="#000000">;</font>
+      <font color="#0000ff">var </font><font color="#000000">secure = (argc &gt; </font><font color="#800080">5</font><font color="#000000">) ? argv[
+	  </font><font color="#800080">5</font><font color="#000000">] : </font><font color="#0000ff">false</font><font color="#000000">;</font>
+      <font color="#ff0000">document</font><font color="#000000">.cookie = name + </font><font color="#ff00ff">&quot;=&quot; </font><font color="#000000">
+	  + escape (value) +</font>
+        <font color="#000000">((expires == </font><font color="#0000ff">null</font><font color="#000000">) ? </font><font color="#ff00ff">&quot;&quot;
+		 </font><font color="#000000">: (</font><font color="#ff00ff">&quot;; expires=&quot; </font><font color="#000000">+ expires.toGMTString())) +</font>
+        <font color="#000000">((path == </font><font color="#0000ff">null</font><font color="#000000">) ? </font><font color="#ff00ff">&quot;&quot; </font>
+		<font color="#000000">: (</font><font color="#ff00ff">&quot;; path=&quot; </font><font color="#000000">+ path)) +</font>
+        <font color="#000000">((domain == </font><font color="#0000ff">null</font><font color="#000000">) ? </font><font color="#ff00ff">
+		&quot;&quot; </font><font color="#000000">: (</font><font color="#ff00ff">&quot;; domain=&quot; </font><font color="#000000">+ domain)) +</font>
+        <font color="#000000">((secure == </font><font color="#0000ff">true</font><font color="#000000">) ? </font><font color="#ff00ff"
+		>&quot;; secure&quot; </font><font color="#000000">: </font><font color="#ff00ff">&quot;&quot;</font><font color="#000000">);</font>
+    <font color="#000000">}</font>
+    <font color="#0000ff">function </font><font color="#000000">DeleteCookie (name) {</font>
+      <font color="#0000ff">var </font><font color="#000000">exp = </font><font color="#0000ff">new </font><font color="#ff0000">
+	  Date</font><font color="#000000">();</font>
+      <font color="#000000">exp.setTime (exp.getTime() - </font><font color="#800080">1</font><font color="#000000">); </font>
+      <font color="#0000ff">var </font><font color="#000000">cval = get_cookie (name);</font>
+      <font color="#ff0000">document</font><font color="#000000">.cookie = name + </font><font color="#ff00ff">&quot;=&quot; 
+	  </font><font color="#000000">+ cval + </font><font color="#ff00ff">&quot;; expires=&quot; </font><font color="#000000">+ exp.toGMTString();</font>
+    <font color="#000000">}</font>
+<font color="#000000">&lt;/script&gt;</font>
+<font color="#000000">&lt;form name=</font><font color="#ff00ff">&quot;demoForm&quot; </font><font color="#000000">
+onSubmit=</font><font color="#ff00ff">&quot;</font>
+    <font color="#0000ff">if</font><font color="#000000">(demoForm.Username.value.length != </font><font color="#800080">0
+	</font><font color="#000000">) {</font>
+        <font color="#0000ff">var </font><font color="#000000">expdate = </font><font color="#0000ff">new </font><font color="#ff0000">
+		Date </font><font color="#000000">(); </font>
+        <font color="#000000">expdate.setTime(expdate.getTime() + (</font><font color="#800080">24 </font><font color="#000000">*
+		 </font><font color="#800080">60 
+		</font><font color="#000000">* </font><font color="#800080">60 </font><font color="#000000">* </font><font color="#800080">
+		1000</font><font color="#000000">)); </font>
+        <font color="#000000">set_cookie(</font><font color="#ff00ff">'Demoname'</font><font color="#000000">, demoForm.Username.value, expdate); </font>
+        <font color="#000000">alert(</font><font color="#ff00ff">'Hey ' </font><font color="#000000">+ demoForm.Username.value + </font><font color="#ff00ff">
+		', </font>
+<font color="#000000">how is it going? Now all you have to </font><font color="#0000ff">do </font><font color="#000000">is click Enter</font>
+<font color="#ff00ff">');</font>
+        <font color="#0000ff">return false</font><font color="#000000">;</font>
+    <font color="#000000">} </font><font color="#0000ff">else </font><font color="#000000">{</font>
+        <font color="#000000">alert(</font><font color="#ff00ff">'You left the name field blank.'</font><font color="#000000">);</font>
+        <font color="#0000ff">return false</font><font color="#000000">;</font>
+    <font color="#000000">}</font><font color="#ff00ff">&quot;&gt;</font>
+<font color="#000000">&lt;center&gt;&lt;p&gt;&lt;font size=+</font><font color="#800080">1</font><font color="#000000">&gt;Enter Your name Here</font>
+<font color="#000000">To Request Access : &lt;/font&gt;&lt;/font&gt;&lt;/i&gt;</font>
+<font color="#000000">&lt;/b&gt;&lt;input type=</font><font color="#ff00ff">&quot;text&quot; </font><font color="#000000">
+name=</font><font color="#ff00ff">&quot;Username&quot; </font><font color="#000000">size=</font><font color="#800080">40</font><font color="#000000">
+&gt;&lt;/p&gt;&lt;/center&gt;</font>
+<font color="#000000">&lt;center&gt;&lt;p&gt;&lt;input type=</font><font color="#ff00ff">&quot;submit&quot;
+ </font><font color="#000000">value=</font><font color="#ff00ff">&quot;Submit Request&quot;</font><font color="#000000">
+ &gt;&lt;input type=</font><font color="#ff00ff">&quot;button&quot;
+ </font><font color="#000000">value=</font><font color="#ff00ff">&quot;Enter&quot;</font>
+    <font color="#000000">onClick=</font><font color="#ff00ff">&quot;</font>
+        <font color="#0000ff">if</font><font color="#000000">(get_cookie(</font><font color="#ff00ff">'Demoname'
+		</font><font color="#000000">) == </font><font color="#0000ff">null</font><font color="#000000">)</font>
+            <font color="#000000">alert(</font><font color="#ff00ff">'Did you submit request?'</font><font color="#000000">)</font>
+        <font color="#0000ff">else </font>
+            <font color="#ff0000">window</font><font color="#000000">.open(</font><font color="#ff00ff">'j15b.htm'
+			</font><font color="#000000">, </font><font color="#ff00ff">'_top'</font><font color="#000000">)</font><font color="#ff00ff">&quot;&gt;</font>
+<font color="#000000">&lt;/form&gt;</font>
+<font color="#000000">&lt;/body&gt;</font>
+<font color="#000000">&lt;/html&gt;</font>
+</font>
+</pre>
+</div>
+
+<p><i>Step 2. Run the Application. Enter your name and click to Enter the site.</i></p>
+<div class="image">
+<img src="Image/cookie.gif"> 
+</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="Image_pop.shtml"title="Show popup window onMouseOver">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="email.shtml"title="Sending email using JavaScript">Next</a></td>
+  </tr> 
+</table>
+
+<!-- Footer Start-->
+		</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->

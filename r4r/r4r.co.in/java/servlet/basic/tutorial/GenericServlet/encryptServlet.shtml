@@ -1,0 +1,308 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD>
+<meta http-equiv="Content-Language" content="en-us">
+<TITLE>Create an application for encrypt and decrypt data through servlet </TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name="description" CONTENT="Create an application for encrypt and decrypt data through servlet " >
+<meta name="keywords" CONTENT="Create an application for encrypt and decrypt data through servlet ">
+
+		<script type="text/javascript" src="/js/main.js"></script>
+		<link rel="stylesheet" type="text/css" href="/css/style.css" />
+	    <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+
+	</HEAD>
+	<BODY>
+		<table class="wrap" align="center"  cellpadding="0" cellspacing="0">
+			<tr>
+				<td class="m" align="left" valign="top">
+					<?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+				</td>
+						</tr>
+						<tr class="headerTR1">
+							<td>
+							<?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+							</td>
+						</tr>
+						<tr>
+							<td class="headerTR2">
+								<?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+							</td>
+						</tr>
+
+						<tr>
+							<td class="headerTR3">
+								<?php @include($_SERVER['DOCUMENT_ROOT'] . '/common-files/menu.shtml'); ?>
+							</td>
+							</td>
+
+						</tr>
+						<tr>
+							<td>
+								<?php @include($_SERVER['DOCUMENT_ROOT'] . '/common-files/gaps.shtml'); ?>
+							</td>
+						</tr>
+
+						<tr>
+
+			               <td class="content">
+								<table>
+									<tr>
+
+								  <?php @include($_SERVER['DOCUMENT_ROOT'] . '/common-files/tdgaps.shtml'); ?>
+								<td class="td1"   valign="top" >
+
+							     <DIV style="margin-left:15px;">
+			<table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse"  width="100%">
+  <tr>
+    <td width="100%">
+    <font face="Verdana" size="2">
+    <A href="/">R4R</A>
+<img border="0" src="/images/left_menu_bullet.gif" width="11" height="6"> <A href="/java">Java</A><img border="0" src="/images/left_menu_bullet.gif" width="11" height="6"> <A href="/java/servlet/">Servlet</A><img border="0" src="/images/left_menu_bullet.gif" width="11" height="6">  <A href="/java/servlet//Basic/tutorial/Servlet/">Servlet Basic Tutorial</A><img border="0" src="/images/left_menu_bullet.gif" width="11" height="6"> 
+	Create an application for encrypt and decrypt data through servlet </font></td>  </tr>
+</table>
+
+ <table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="100%" id="AutoNumber1">
+  <tr>
+    <td width="33%">
+<font face="Verdana" size="2">
+<a href="clientPullServlet.shtml">
+<img border="0" src="/images/previous.gif" alt="previous" width="46" height="25"></a></font></td>
+    <td width="33%">
+    <p align="center">
+<font face="Verdana" size="2">
+<a href="index.shtml">
+<img border="0" src="/images/home.gif" alt="Home" width="46" height="25"></a></font></td>
+    <td width="34%">
+    <p align="right">
+<font face="Verdana" size="2">
+<a href="primeFactorServlet.shtml">
+<img border="0" src="/images/next.gif" alt="Next" width="46" height="25"></a></font></td>
+  </tr>
+</table>
+
+<p><font color="#008000" face="Arial">Create an application for encrypt and 
+decrypt data through servlet</font> </p>
+<hr>
+<p><u><font face="Verdana" size="2" color="#0066FF">Introduction</font><font face="Arial" size="2" color="#0000FF"> </font> </u><font face="Arial" size="2" color="#0000FF">-&nbsp;</font><font face="Arial" size="2">In 
+this generic servlet program, data is encrypt and decrypt data through servlet</font></p>
+<p><font face="Verdana" size="2" color="#0066FF"><u>Web.xml File</u></font><font face="Arial" size="2" color="#0000FF"> -&nbsp; 
+			<pre style="background:#B0ECFF"><font face="Courier New"><font color="#0000ff">&lt;?xml </font><font color="#ff0000">version</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;1.0&quot; </font><font color="#ff0000">encoding</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;UTF-8&quot;</font><font color="#800080">?</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">web-app </font><font color="#ff0000">version</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;3.0&quot; </font><font color="#ff0000">xmlns</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;http://java.sun.com/xml/ns/javaee&quot; </font><font color="#800080">xmlns:xsi</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</font>
+ <font color="#800080">xsi:schemaLocation</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd&quot;</font><font color="#0000ff">&gt;</font>
+<font color="#000000">    </font><font color="#0000ff">&lt;</font><font color="#808000">servlet</font><font color="#0000ff">&gt;</font>
+<font color="#000000">	    </font><font color="#0000ff">&lt;</font><font color="#808000">servlet-name</font><font color="#0000ff">&gt;</font><font color="#000000">encryptServlet</font><font color="#0000ff">&lt;/</font><font color="#808000">servlet-name</font><font color="#0000ff">&gt;</font>
+<font color="#000000">        </font><font color="#0000ff">&lt;</font><font color="#808000">servlet-class</font><font color="#0000ff">&gt;</font><font color="#000000">r4r.GenericServlet.encryptServlet</font><font color="#0000ff">&lt;/</font><font color="#808000">servlet-class</font><font color="#0000ff">&gt;</font>
+<font color="#000000">    </font><font color="#0000ff">&lt;/</font><font color="#808000">servlet</font><font color="#0000ff">&gt;</font>
+<font color="#000000">	</font><font color="#0000ff">&lt;</font><font color="#808000">servlet-mapping</font><font color="#0000ff">&gt;</font>
+<font color="#000000">        </font><font color="#0000ff">&lt;</font><font color="#808000">servlet-name</font><font color="#0000ff">&gt;</font><font color="#000000">encryptServlet</font><font color="#0000ff">&lt;/</font><font color="#808000">servlet-name</font><font color="#0000ff">&gt;</font>
+<font color="#000000">        </font><font color="#0000ff">&lt;</font><font color="#808000">url-pattern</font><font color="#0000ff">&gt;</font><font color="#000000">/encryptServlet</font><font color="#0000ff">&lt;/</font><font color="#808000">url-pattern</font><font color="#0000ff">&gt;</font>
+<font color="#000000">    </font><font color="#0000ff">&lt;/</font><font color="#808000">servlet-mapping</font><font color="#0000ff">&gt;</font>
+<font color="#000000">	</font><font color="#0000ff">&lt;</font><font color="#808000">session-config</font><font color="#0000ff">&gt;</font>
+<font color="#000000">        </font><font color="#0000ff">&lt;</font><font color="#808000">session-timeout</font><font color="#0000ff">&gt;</font>
+<font color="#000000">            30</font>
+<font color="#000000">        </font><font color="#0000ff">&lt;/</font><font color="#808000">session-timeout</font><font color="#0000ff">&gt;</font>
+<font color="#000000">    </font><font color="#0000ff">&lt;/</font><font color="#808000">session-config</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">web-app</font><font color="#0000ff">&gt;</font></font>
+</pre>
+</font>
+			<p><font face="Verdana" size="2" color="#0066FF"><u>Index.jsp page</u></font><font face="Arial" size="2" color="#0000FF"> -&nbsp; 
+			<pre style="background:#B0ECFF"><font face="Courier New"><font color="#800000">&lt;%-- </font>
+    <font color="#800000">Document   : index.jsp</font>
+<font color="#800000">--%&gt;</font>
+
+<font color="#800000">&lt;%@page contentType=</font><font color="#ff00ff">&quot;text/html&quot; </font><font color="#800000">pageEncoding=</font><font color="#ff00ff">&quot;UTF-8&quot;</font><font color="#800000">%&gt;</font>
+<font color="#0000ff">&lt;!DOCTYPE </font><font color="#800080">html</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;html&gt;</font>
+<font color="#000000">    </font><font color="#0000ff">&lt;head&gt;</font>
+<font color="#000000">        </font><font color="#0000ff">&lt;meta </font><font color="#ff0000">http-equiv</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;Content-Type&quot; </font><font color="#ff0000">content</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;text/html; charset=UTF-8&quot;</font><font color="#0000ff">&gt;</font>
+<font color="#000000">        </font><font color="#0000ff">&lt;title&gt;</font><font color="#000000">r4r.co.in-GenericServlet</font><font color="#0000ff">&lt;/title&gt;</font>
+<font color="#000000">    </font><font color="#0000ff">&lt;/head&gt;</font>
+<font color="#000000">    </font><font color="#0000ff">&lt;body&gt;</font>
+<font color="#000000">        </font><font color="#0000ff">&lt;form&gt;</font>
+<font color="#000000">            </font><font color="#0000ff">&lt;h1&gt;</font><font color="#000000">Access GenericServlet by servlet's Name!</font><font color="#0000ff">&lt;/h1&gt;</font>
+<font color="#000000">            </font><font color="#0000ff">&lt;a </font><font color="#ff0000">href</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;encryptServlet&quot;</font><font color="#0000ff">&gt;</font><font color="#000000">encryptServlet</font><font color="#0000ff">&lt;/a&gt;</font>
+<font color="#000000">        </font><font color="#0000ff">&lt;/form&gt;</font>
+<font color="#000000">    </font><font color="#0000ff">&lt;/body&gt;</font>
+<font color="#0000ff">&lt;/html&gt;</font></font>
+</pre>
+</font>
+			<p><u><font size="2" color="#0066FF" face="Verdana">Servlet Program</font></u><font face="Arial" color="#0000FF"> 
+-&nbsp;<pre style="background:#B0ECFF"><font face="Courier New"><font color="#008000">/*</font>
+<font color="#008000"> * Save as a encryptServlet.java</font>
+<font color="#008000"> */</font>
+<font color="#0000ff">package </font><font color="#000000">r4r.GenericServlet;</font>
+
+<font color="#0000ff">import </font><font color="#000000">java.io.</font><font color="#ff0000">IOException</font><font color="#000000">;</font>
+<font color="#0000ff">import </font><font color="#000000">java.util.logging.</font><font color="#ff0000">Level</font><font color="#000000">;</font>
+<font color="#0000ff">import </font><font color="#000000">java.util.logging.</font><font color="#ff0000">Logger</font><font color="#000000">;</font>
+<font color="#0000ff">import </font><font color="#000000">javax.crypto.</font><font color="#ff0000">Cipher</font><font color="#000000">;</font>
+<font color="#0000ff">import </font><font color="#000000">javax.crypto.</font><font color="#ff0000">KeyGenerator</font><font color="#000000">;</font>
+<font color="#0000ff">import </font><font color="#000000">javax.crypto.</font><font color="#ff0000">SecretKey</font><font color="#000000">;</font>
+<font color="#0000ff">import </font><font color="#000000">javax.servlet.GenericServlet;</font>
+<font color="#0000ff">import </font><font color="#000000">javax.servlet.ServletException;</font>
+<font color="#0000ff">import </font><font color="#000000">javax.servlet.ServletRequest;</font>
+<font color="#0000ff">import </font><font color="#000000">javax.servlet.ServletResponse;</font>
+
+<font color="#008000">/**</font>
+<font color="#008000"> *</font>
+<font color="#008000"> * @author R4R</font>
+<font color="#008000"> */</font>
+<font color="#0000ff">public class </font><font color="#000000">encryptServlet </font><font color="#0000ff">extends </font><font color="#000000">GenericServlet {</font>
+
+    <font color="#000000">@</font><font color="#0000ff">Override</font>
+    <font color="#0000ff">public void </font><font color="#000000">service(ServletRequest req, ServletResponse res) </font><font color="#0000ff">throws </font><font color="#000000">ServletException, </font><font color="#ff0000">IOException </font><font color="#000000">{</font>
+        <font color="#000000">res.setContentType(</font><font color="#ff00ff">&quot;text/html;charset=UTF-8&quot;</font><font color="#000000">);</font>
+        <font color="#0000ff">try </font><font color="#000000">{</font>
+            <font color="#008000">/* TODO output your page here */</font>
+            <font color="#000000">res.getWriter().write(</font><font color="#ff00ff">&quot;&lt;html&gt;&quot;</font><font color="#000000">);</font>
+            <font color="#000000">res.getWriter().write(</font><font color="#ff00ff">&quot;&lt;head&gt;&quot;</font><font color="#000000">);</font>
+            <font color="#000000">res.getWriter().write(</font><font color="#ff00ff">&quot;&lt;title&gt;&quot; </font><font color="#000000">+ getServletInfo() + </font><font color="#ff00ff">&quot;&lt;/title&gt;&quot;</font><font color="#000000">);</font>
+            <font color="#000000">res.getWriter().write(</font><font color="#ff00ff">&quot;&lt;/head&gt;&quot;</font><font color="#000000">);</font>
+            <font color="#000000">res.getWriter().write(</font><font color="#ff00ff">&quot;&lt;body&gt;&quot;</font><font color="#000000">);</font>
+            <font color="#000000">res.getWriter().write(</font><font color="#ff00ff">&quot;&lt;h1&gt;Welcome to encryptServlet&lt;/h1&gt;&quot;</font><font color="#000000">);</font>
+            <font color="#000000">res.getWriter().write(</font><font color="#ff00ff">&quot;&lt;form action=\&quot;encryptServlet\&quot;&gt;&quot;</font><font color="#000000">);</font>
+            <font color="#000000">res.getWriter().write(</font><font color="#ff00ff">&quot;Enter massage: &lt;textarea name=\&quot;massage\&quot; rows=\&quot;4\&quot; cols=\&quot;20\&quot;&gt;&lt;/textarea&gt;&lt;BR&gt;&quot;</font><font color="#000000">);</font>
+            <font color="#000000">res.getWriter().write(</font><font color="#ff00ff">&quot;&lt;input type=\&quot;submit\&quot; value=\&quot;Encrypt Data\&quot; /&gt;&quot;</font><font color="#000000">);</font>
+            <font color="#000000">res.getWriter().write(</font><font color="#ff00ff">&quot;&lt;input type=\&quot;submit\&quot; value=\&quot;Reset\&quot; /&gt;&quot;</font><font color="#000000">);</font>
+            <font color="#000000">res.getWriter().write(</font><font color="#ff00ff">&quot;&lt;/form&gt;&quot;</font><font color="#000000">);</font>
+            <font color="#000000">res.getWriter().write(</font><font color="#ff00ff">&quot;&lt;/body&gt;&quot;</font><font color="#000000">);</font>
+            <font color="#000000">res.getWriter().write(</font><font color="#ff00ff">&quot;&lt;/html&gt;&quot;</font><font color="#000000">);</font>
+
+            <font color="#008000">/* -------------------------------------------------------- */</font>
+
+            <font color="#008000">// Generate encryption keys with a KeyGenerator object</font>
+            <font color="#ff0000">KeyGenerator </font><font color="#000000">keygenerator = </font><font color="#ff0000">KeyGenerator</font><font color="#000000">.getInstance(</font><font color="#ff00ff">&quot;DESede&quot;</font><font color="#000000">);  </font><font color="#008000">// Triple-DES encryption </font>
+            <font color="#ff0000">SecretKey </font><font color="#000000">secretkey = keygenerator.generateKey();                </font><font color="#008000">// Generate a key</font>
+            <font color="#008000">// Obtain an object to perform encryption or decryption</font>
+            <font color="#ff0000">Cipher </font><font color="#000000">cipher = </font><font color="#ff0000">Cipher</font><font color="#000000">.getInstance(</font><font color="#ff00ff">&quot;DESede&quot;</font><font color="#000000">);</font>
+            <font color="#008000">// Initialize the cipher object for encryption</font>
+            <font color="#000000">cipher.init(</font><font color="#ff0000">Cipher</font><font color="#000000">.ENCRYPT_MODE, secretkey);</font>
+            <font color="#008000">// Convert data into byte and encrypt it</font>
+            <font color="#0000ff">byte</font><font color="#000000">[] encrypted = cipher.doFinal(req.getParameter(</font><font color="#ff00ff">&quot;massage&quot;</font><font color="#000000">).getBytes());</font>
+            <font color="#008000">// Initialize the cipher object for deEncryption</font>
+            <font color="#000000">cipher.init(</font><font color="#ff0000">Cipher</font><font color="#000000">.DECRYPT_MODE, secretkey);</font>
+            <font color="#0000ff">byte</font><font color="#000000">[] decrypted = cipher.doFinal(encrypted);</font>
+            <font color="#008000">// Print output data over browser</font>
+            <font color="#000000">res.getWriter().write(</font><font color="#ff00ff">&quot;&lt;BR&gt;Encrypted text : &quot; </font><font color="#000000">+ </font><font color="#0000ff">new </font><font color="#ff0000">String</font><font color="#000000">(encrypted));</font>
+            <font color="#000000">res.getWriter().write(</font><font color="#ff00ff">&quot;&lt;BR&gt;Decrypted text : &quot; </font><font color="#000000">+ </font><font color="#0000ff">new </font><font color="#ff0000">String</font><font color="#000000">(decrypted));</font>
+        <font color="#000000">} </font><font color="#0000ff">catch </font><font color="#000000">(</font><font color="#ff0000">Exception </font><font color="#000000">ex) {</font>
+            <font color="#ff0000">Logger</font><font color="#000000">.getLogger(encryptServlet.</font><font color="#0000ff">class</font><font color="#000000">.getName()).log(</font><font color="#ff0000">Level</font><font color="#000000">.SEVERE, </font><font color="#ff00ff">&quot;An Exception Generate&quot;</font><font color="#000000">, ex);</font>
+        <font color="#000000">}</font><font color="#0000ff">finally</font><font color="#000000">{</font>
+            <font color="#000000">res.getWriter().close();    </font><font color="#008000">// close resource</font>
+        <font color="#000000">}</font>
+    <font color="#000000">}</font>
+
+    <font color="#000000">@</font><font color="#0000ff">Override</font>
+    <font color="#0000ff">public </font><font color="#ff0000">String </font><font color="#000000">getServletInfo() {</font>
+        <font color="#0000ff">return </font><font color="#ff00ff">&quot;r4r.co.in-encryptServlet&quot;</font><font color="#000000">;</font>
+    <font color="#000000">}</font>
+<font color="#000000">}</font></font>
+</pre>
+</font><p><u><font color="#0066FF" face="Verdana" size="2">Output of Program</font></u><font size="2" face="Arial"> 
+			- Run application</font>
+			</p>
+			<p>
+			<img border="0" src="GenericServlet%20Image/encryptServlet.gif" width="563" height="705"></p><table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="100%" id="AutoNumber1">
+  <tr>
+    <td width="33%">
+<font face="Verdana" size="2">
+<a href="clientPullServlet.shtml">
+<img border="0" src="/images/previous.gif" alt="previous" width="46" height="25"></a></font></td><td width="33%">
+    <p align="center">
+<font face="Verdana" size="2">
+<a href="index.shtml">
+<img border="0" src="/images/home.gif" alt="Home" width="46" height="25"></a></font></td><td width="34%">
+    <p align="right">
+<font face="Verdana" size="2">
+<a href="primeFactorServlet.shtml">
+<img border="0" src="/images/next.gif" alt="Next" width="46" height="25"></a></font></td></tr></table><!-- Footer Start--></td><td class="td2"  valign="top">
+
+											<table>
+											<?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/servlet/common-files/news1.shtml'); ?>	
+												<tr>
+													<td class="colorChange">
+
+													</td>
+												</tr>
+
+												<?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/servlet/common-files/news3.shtml'); ?>	
+
+												<tr>
+													<td class="colorChange">
+
+													</td>
+												</tr>
+
+												<?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/servlet/common-files/news3.shtml'); ?>	
+
+												<tr>
+													<td class="colorChange">
+
+													</td>
+												</tr>
+
+												<?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/servlet/common-files/news4.shtml'); ?>	
+
+		</table>
+
+										</td>
+										<?php @include($_SERVER['DOCUMENT_ROOT'] . '/common-files/tdgaps.shtml'); ?>
+									</tr>
+								 </table>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<?php @include($_SERVER['DOCUMENT_ROOT'] . '/common-files/gaps.shtml'); ?>
+							</td>
+						</tr>		
+						<tr>
+							<td>
+								<?php @include($_SERVER['DOCUMENT_ROOT'] . '/common-files/row.shtml'); ?>
+							</td>
+						</tr>
+
+						<tr>
+							<td>
+								<?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/servlet/common-files/mainlinks.shtml'); ?>
+
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<?php @include($_SERVER['DOCUMENT_ROOT'] . '/common-files/gaps.shtml'); ?>
+							</td>
+						</tr>
+
+								<tr>
+							<td>
+								<?php @include($_SERVER['DOCUMENT_ROOT'] . '/common-files/row.shtml'); ?>
+							</td>
+						</tr>
+
+						<tr >
+							<td>
+								<?php @include($_SERVER['DOCUMENT_ROOT'] . '/common-files/hotlinks.shtml'); ?>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<?php @include($_SERVER['DOCUMENT_ROOT'] . '/common-files/gaps.shtml'); ?>
+							</td>
+						</tr>
+
+						<tr>
+							<td>
+								<?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+		</table>
+
+	</BODY>
+</HTML>

@@ -1,0 +1,102 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>Life cycle of JSF ,JSF Life Cycle</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="Life cycle of JSF ,JSF Life Cycle" >
+<meta name="keywords" CONTENT="Life cycle of JSF ,JSF Life Cycle">
+
+<!-- header start-->	
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>JAVA SERVER FACES (JSF)</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+            <img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+            <a href="/java/">Java</a>
+              <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/java/jsf/">JSF</a>
+
+              </div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/jsf/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	 
+<!-- header End-->
+
+<div class="heading">Life cycle of JSF </div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="Design_goals_of_JavaServer_Faces%20.shtml" title="Design goals of Java Server Faces">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="JSF_Tag_Library.shtml" title="JSF Tag Library">Next</a></td>
+  </tr> 
+</table>
+
+<p>JSF life cycle can defines into six distinct phases, ever phase define below</p>
+
+<div class="image"><img src="images/JSF%20life%20cycle.png"></div>
+
+<div class="heading">Following Step include in the Life cycle of JSF</div>
+<ul>
+<li><i>Request: </i>A JSF interrogate the servlet/JSP request and extract the incoming parameters.
+ </li>
+<li><i>Restore view: </i>It is the first phase of the JSF lifecycle, in which request coming through the FaceContext controller. The controller examine The controller examines the request and extracts the view ID, which is determined by the name of the JSP page. If the view doesn't already exist, the JSF controller creates it</li>
+<li><i>Apply Request value: </i>The main purpose of the apply request values phase is for each component to retrieve its current state.
+ </li>
+<li><i>Process validation: </i>The first event handling of the lifecycle takes place after the apply request values phase. In which, the values entered by the user are compared to the validation rules. Now the condition check.</li>
+
+	<ul>
+	<li>If an entered value is invalid, an error message is added to FaceContext. </li>
+	<li>If there are no validation errors, JSF proceed to update model values phase.</li>
+	<li>If the validation fails, JSF calls the render response phase, which will display the current view with the validation error messages.</li>
+	</ul>
+
+<li><i>Update model value: </i>In such phase the actual value is update at server side, by updating the properties of backing beans ( managed beans).
+ </li>
+<li><i>Invoked Application: </i>JSF controller invokes the application for handle the Form submissions. At such phase, a specific outcome for a successful form submission and return that outcome to the next phase.</li>
+<li><i>Render Response: </i>Last phase of the Life cycle can be used for display the outcome from the Invoked Application.</li>
+</ul>
+<div class="heading">FacesContext in JSF</div>
+<p>The FaceContext object contain all the state information JSF needs to manage the GUI component's state for the current request in the current session. It is also store the view in its viewRoot property because the viewRoot contains all the JSF component for the current user/view ID.
+</p>
+<p>A FaceContext  instance is associated with a particular request at the beginning of request processing, and invoke by getFacesContext() method of the FacesContextFactory instance associated with the current web application. This instance remain active with current web application until a release() method not invoke, after that no further references to this instance are allowed.</p>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="Design_goals_of_JavaServer_Faces%20.shtml" title="Design goals of Java Server Faces">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="JSF_Tag_Library.shtml" title="JSF Tag Library">Next</a></td>
+  </tr> 
+</table>
+<!-- Footer Start-->	
+
+		</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->

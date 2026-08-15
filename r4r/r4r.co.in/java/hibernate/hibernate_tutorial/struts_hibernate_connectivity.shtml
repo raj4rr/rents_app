@@ -1,0 +1,499 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<HTML><HEAD><TITLE>How to connect struts with Hibernate</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv="content-type" content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="struts hibernate connectivity learn How to connect struts with Hibernate mapping, collection mapping, component mapping, HQL(Hibenate Query Language), HCQL, Named Query, Caching" >
+<meta name="keywords" CONTENT="How to connect struts with Hibernate, Struts Hibernate Connectivity, Table Per Sub Class, Table Per Class Hierarchy, Hibernate, Tutorial, beginners, Fresher, Basics, How to work with collection in hibernate, Collection In Hibernate,
+ inheritance mapping, collection mapping, component mapping, HQL, HCQL">
+
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<META http-equiv="Content-Language" content="en-us">
+<link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+<link href="/css/main.css" rel="stylesheet" type="text/css" />
+</HEAD>
+<BODY>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>Hibernate</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+            <img src="/images/left_menu_bullet.gif"/> <a href="/java/hibernate/">Hibernate</a>
+             </div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top">
+                            <?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/hibernate/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                       <div class="main_content">  	 
+
+      <div class="heading">Struts Hibernate Connectivity</div>
+
+      <table id="indexing">
+
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="working_with_collection_in_hibernate.shtml" title="Working With Collection In Hibernate">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="servlet_and_hibernate_connectivity.shtml" title="Servlet And Hibernate Connectivity">Next</a></td>
+  </tr> 
+</table>
+      <p>
+         Step 1. First of all we need to create a web application for this we go in the file 
+         menu wizard -> click on the new Project -> click on java web and then java web 
+         application -> put the name on the required field -> select the server which we 
+         want to use here to build the project -> first select to hibernate and then select 
+         to struts framework. (if we do not add the struts framework then we can use this by 
+         the adding jar file directly) -> now click on finish.
+      </p>
+      <h3>hibernate.cfg.xml</h3>
+      <div class="code">
+          <HTML>
+<BODY>
+<PRE>
+<FONT FACE="Courier New">
+<FONT COLOR="#000000">&lt;?xml version=</FONT><FONT COLOR="#ff00ff">"1.0" </FONT><FONT COLOR="#000000">encoding=</FONT><FONT COLOR="#ff00ff">"UTF-8"</FONT><FONT COLOR="#000000">?&gt;</FONT>
+<FONT COLOR="#000000">&lt;!DOCTYPE hibernate-configuration PUBLIC </FONT><FONT COLOR="#ff00ff">"-//Hibernate/Hibernate Configuration DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd"</FONT><FONT COLOR="#000000">&gt;</FONT>
+<FONT COLOR="#000000">&lt;hibernate-configuration&gt;</FONT>
+  <FONT COLOR="#000000">&lt;session-factory&gt;</FONT>
+    <FONT COLOR="#000000">&lt;property name=</FONT><FONT COLOR="#ff00ff">"hibernate.dialect"</FONT><FONT COLOR="#000000">&gt;org.hibernate.dialect.MySQLDialect&lt;/property&gt;</FONT>
+    <FONT COLOR="#000000">&lt;property name=</FONT><FONT COLOR="#ff00ff">"hibernate.connection.driver_class"</FONT><FONT COLOR="#000000">&gt;com.mysql.jdbc.</FONT><FONT COLOR="#ff0000">Driver</FONT><FONT COLOR="#000000">&lt;/property&gt;</FONT>
+    <FONT COLOR="#000000">&lt;property name=</FONT><FONT COLOR="#ff00ff">"hibernate.connection.url"</FONT><FONT COLOR="#000000">&gt;jdbc:mysql:</FONT><FONT COLOR="#008000">//localhost:3306/hibernate_pro&lt;/property&gt;</FONT>
+    <FONT COLOR="#000000">&lt;property name=</FONT><FONT COLOR="#ff00ff">"hibernate.connection.username"</FONT><FONT COLOR="#000000">&gt;root&lt;/property&gt;</FONT>
+    <FONT COLOR="#000000">&lt;property name=</FONT><FONT COLOR="#ff00ff">"hibernate.connection.password"</FONT><FONT COLOR="#000000">&gt;root&lt;/property&gt;</FONT>
+  <FONT COLOR="#000000">&lt;/session-factory&gt;</FONT>
+<FONT COLOR="#000000">&lt;/hibernate-configuration&gt;</FONT>
+</FONT>
+</PRE>
+</BODY>
+</HTML>
+      </div>
+      <p>Step 2. Now we create a table on the given database which we select on the configuration file.</p>
+      <div class="code">
+          <HTML>
+<BODY>
+<PRE>
+<FONT FACE="Courier New">
+<FONT COLOR="#000000">create table AddStruts</FONT>
+<FONT COLOR="#000000">(</FONT>
+<FONT COLOR="#000000">id </FONT><FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">not </FONT><FONT COLOR="#0000ff">null </FONT><FONT COLOR="#000000">auto_increment primary key,</FONT>
+<FONT COLOR="#000000">fname varchar(</FONT><FONT COLOR="#800080">50</FONT><FONT COLOR="#000000">),</FONT>
+<FONT COLOR="#000000">lname varchar(</FONT><FONT COLOR="#800080">50</FONT><FONT COLOR="#000000">),</FONT>
+<FONT COLOR="#000000">mob varchar(</FONT><FONT COLOR="#800080">50</FONT><FONT COLOR="#000000">),</FONT>
+<FONT COLOR="#000000">address varchar(</FONT><FONT COLOR="#800080">50</FONT><FONT COLOR="#000000">),</FONT>
+<FONT COLOR="#000000">state varchar(</FONT><FONT COLOR="#800080">50</FONT><FONT COLOR="#000000">),</FONT>
+<FONT COLOR="#000000">city varchar(</FONT><FONT COLOR="#800080">50</FONT><FONT COLOR="#000000">),</FONT>
+<FONT COLOR="#000000">pin </FONT><FONT COLOR="#0000ff">int</FONT><FONT COLOR="#000000">(</FONT><FONT COLOR="#800080">6</FONT><FONT COLOR="#000000">)</FONT>
+<FONT COLOR="#000000">)</FONT>
+</FONT>
+</PRE>
+</BODY>
+</HTML>
+      </div>
+      <p>
+          Step 3. Now we need to create a jsp page click on file menu wizard -> new file -> 
+          web and jsp -> put the name on the required field -> click on finish.
+      </p>
+      <div class="code">
+          <HTML>
+<BODY>
+<PRE>
+<FONT FACE="Courier New">
+<FONT COLOR="#000000">&lt;%@taglib uri=</FONT><FONT COLOR="#ff00ff">"/struts-tags" </FONT><FONT COLOR="#000000">prefix=</FONT><FONT COLOR="#ff00ff">"s" </FONT><FONT COLOR="#000000">%&gt;</FONT>
+<FONT COLOR="#000000">&lt;%@page contentType=</FONT><FONT COLOR="#ff00ff">"text/html" </FONT><FONT COLOR="#000000">pageEncoding=</FONT><FONT COLOR="#ff00ff">"UTF-8"</FONT><FONT COLOR="#000000">%&gt;</FONT>
+<FONT COLOR="#000000">&lt;!DOCTYPE html&gt;</FONT>
+<FONT COLOR="#000000">&lt;html&gt;</FONT>
+    <FONT COLOR="#000000">&lt;head&gt;</FONT>
+        <FONT COLOR="#000000">&lt;meta http-equiv=</FONT><FONT COLOR="#ff00ff">"Content-Type" </FONT><FONT COLOR="#000000">content=</FONT><FONT COLOR="#ff00ff">"text/html; charset=UTF-8"</FONT><FONT COLOR="#000000">&gt;</FONT>
+    <FONT COLOR="#000000">&lt;title&gt;&lt;s:text name=</FONT><FONT COLOR="#ff00ff">"Welcome Page"</FONT><FONT COLOR="#000000">/&gt;&lt;/title&gt;</FONT>
+    <FONT COLOR="#000000">&lt;/head&gt;</FONT>
+    <FONT COLOR="#000000">&lt;body&gt;</FONT>
+        <FONT COLOR="#000000">&lt;s:form action=</FONT><FONT COLOR="#ff00ff">"insert" </FONT><FONT COLOR="#000000">method=</FONT><FONT COLOR="#ff00ff">"post"</FONT><FONT COLOR="#000000">&gt;</FONT>
+            <FONT COLOR="#000000">&lt;s:textfield label=</FONT><FONT COLOR="#ff00ff">"First Name" </FONT><FONT COLOR="#000000">name=</FONT><FONT COLOR="#ff00ff">"fname"</FONT><FONT COLOR="#000000">/&gt;</FONT>
+            <FONT COLOR="#000000">&lt;s:textfield label=</FONT><FONT COLOR="#ff00ff">"Last Name" </FONT><FONT COLOR="#000000">name=</FONT><FONT COLOR="#ff00ff">"lname"</FONT><FONT COLOR="#000000">/&gt;</FONT>
+            <FONT COLOR="#000000">&lt;s:textfield label=</FONT><FONT COLOR="#ff00ff">"Address" </FONT><FONT COLOR="#000000">name=</FONT><FONT COLOR="#ff00ff">"address"</FONT><FONT COLOR="#000000">/&gt;</FONT>
+            <FONT COLOR="#000000">&lt;s:textfield label=</FONT><FONT COLOR="#ff00ff">"State" </FONT><FONT COLOR="#000000">name=</FONT><FONT COLOR="#ff00ff">"state"</FONT><FONT COLOR="#000000">/&gt;</FONT>
+            <FONT COLOR="#000000">&lt;s:textfield label=</FONT><FONT COLOR="#ff00ff">"City" </FONT><FONT COLOR="#000000">name=</FONT><FONT COLOR="#ff00ff">"city"</FONT><FONT COLOR="#000000">/&gt;</FONT>
+            <FONT COLOR="#000000">&lt;s:textfield label=</FONT><FONT COLOR="#ff00ff">"Pin Code" </FONT><FONT COLOR="#000000">name=</FONT><FONT COLOR="#ff00ff">"pin"</FONT><FONT COLOR="#000000">/&gt;</FONT>
+            <FONT COLOR="#000000">&lt;s:submit value=</FONT><FONT COLOR="#ff00ff">"Submit"</FONT><FONT COLOR="#000000">/&gt;</FONT>
+        <FONT COLOR="#000000">&lt;/s:form&gt;</FONT>
+    <FONT COLOR="#000000">&lt;/body&gt;</FONT>
+<FONT COLOR="#000000">&lt;/html&gt;</FONT>
+</FONT>
+</PRE>
+</BODY>
+</HTML>
+      </div>
+<p>
+    Step 4. Now we need to create a package to store the action and pojo class. 
+    for this we need to go in the file menu wizard and -> click on new file -> 
+    search java and the opposite side click on package -> type the name of the 
+    package which we want -> click on finish.
+</p>
+<p>
+    Step 5. Now we need to create reverse eng file . Go in the file menu wizard -> 
+    new file click on -> hibernate and reverse eng file -> select table which we 
+    created in the database -> click on finsih.
+</p>
+<div class="code">
+    <HTML>
+<BODY>
+<PRE>
+<FONT FACE="Courier New">
+<FONT COLOR="#000000">&lt;?xml version=</FONT><FONT COLOR="#ff00ff">"1.0" </FONT><FONT COLOR="#000000">encoding=</FONT><FONT COLOR="#ff00ff">"UTF-8"</FONT><FONT COLOR="#000000">?&gt;</FONT>
+<FONT COLOR="#000000">&lt;!DOCTYPE hibernate-reverse-engineering PUBLIC </FONT><FONT COLOR="#ff00ff">"-//Hibernate/Hibernate Reverse Engineering DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-reverse-engineering-3.0.dtd"</FONT><FONT COLOR="#000000">&gt;</FONT>
+<FONT COLOR="#000000">&lt;hibernate-reverse-engineering&gt;</FONT>
+  <FONT COLOR="#000000">&lt;schema-selection match-catalog=</FONT><FONT COLOR="#ff00ff">"hibernate_pro"</FONT><FONT COLOR="#000000">/&gt;</FONT>
+  <FONT COLOR="#000000">&lt;table-filter match-name=</FONT><FONT COLOR="#ff00ff">"AddStruts"</FONT><FONT COLOR="#000000">/&gt;</FONT>
+<FONT COLOR="#000000">&lt;/hibernate-reverse-engineering&gt;</FONT>
+</FONT>
+</PRE>
+</BODY>
+</HTML>
+</div>
+<p>
+    Step 5. Now create a pojo class on the created package. click on file menu wizard -> 
+    new file -> hibernate -> hibernate pojo class -> select package -> click on finish.
+</p>
+
+<h3>AddStrust.hbm.xml</h3>
+<div class="code">
+    <HTML>
+<BODY>
+<PRE>
+<FONT FACE="Courier New">
+<FONT COLOR="#000000">&lt;?xml version=</FONT><FONT COLOR="#ff00ff">"1.0"</FONT><FONT COLOR="#000000">?&gt;</FONT>
+<FONT COLOR="#000000">&lt;!DOCTYPE hibernate-mapping PUBLIC </FONT><FONT COLOR="#ff00ff">"-//Hibernate/Hibernate Mapping DTD 3.0//EN"</FONT>
+<FONT COLOR="#ff00ff">"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd"</FONT><FONT COLOR="#000000">&gt;</FONT>
+<FONT COLOR="#000000">&lt;!-- Generated </FONT><FONT COLOR="#800080">26 </FONT><FONT COLOR="#000000">Dec, </FONT><FONT COLOR="#800080">2014 11</FONT><FONT COLOR="#000000">:</FONT><FONT COLOR="#800080">55</FONT><FONT COLOR="#000000">:</FONT><FONT COLOR="#800080">13 </FONT><FONT COLOR="#000000">PM by Hibernate Tools </FONT><FONT COLOR="#800080">4</FONT><FONT COLOR="#000000">.</FONT><FONT COLOR="#800080">3</FONT><FONT COLOR="#000000">.</FONT><FONT COLOR="#800080">1 </FONT><FONT COLOR="#000000">--&gt;</FONT>
+<FONT COLOR="#000000">&lt;hibernate-mapping&gt;</FONT>
+    <FONT COLOR="#000000">&lt;</FONT><FONT COLOR="#0000ff">class </FONT><FONT COLOR="#000000">name=</FONT><FONT COLOR="#ff00ff">"r4r.AddStruts" </FONT><FONT COLOR="#000000">table=</FONT><FONT COLOR="#ff00ff">"AddStruts" </FONT><FONT COLOR="#000000">catalog=</FONT><FONT COLOR="#ff00ff">"hibernate_pro" </FONT><FONT COLOR="#000000">optimistic-lock=</FONT><FONT COLOR="#ff00ff">"version"</FONT><FONT COLOR="#000000">&gt;</FONT>
+        <FONT COLOR="#000000">&lt;id name=</FONT><FONT COLOR="#ff00ff">"id" </FONT><FONT COLOR="#000000">type=</FONT><FONT COLOR="#ff00ff">"java.lang.Integer"</FONT><FONT COLOR="#000000">&gt;</FONT>
+            <FONT COLOR="#000000">&lt;column name=</FONT><FONT COLOR="#ff00ff">"id" </FONT><FONT COLOR="#000000">/&gt;</FONT>
+            <FONT COLOR="#000000">&lt;generator </FONT><FONT COLOR="#0000ff">class</FONT><FONT COLOR="#000000">=</FONT><FONT COLOR="#ff00ff">"identity" </FONT><FONT COLOR="#000000">/&gt;</FONT>
+        <FONT COLOR="#000000">&lt;/id&gt;</FONT>
+        <FONT COLOR="#000000">&lt;property name=</FONT><FONT COLOR="#ff00ff">"fname" </FONT><FONT COLOR="#000000">type=</FONT><FONT COLOR="#ff00ff">"string"</FONT><FONT COLOR="#000000">&gt;</FONT>
+            <FONT COLOR="#000000">&lt;column name=</FONT><FONT COLOR="#ff00ff">"fname" </FONT><FONT COLOR="#000000">length=</FONT><FONT COLOR="#ff00ff">"50" </FONT><FONT COLOR="#000000">/&gt;</FONT>
+        <FONT COLOR="#000000">&lt;/property&gt;</FONT>
+        <FONT COLOR="#000000">&lt;property name=</FONT><FONT COLOR="#ff00ff">"lname" </FONT><FONT COLOR="#000000">type=</FONT><FONT COLOR="#ff00ff">"string"</FONT><FONT COLOR="#000000">&gt;</FONT>
+            <FONT COLOR="#000000">&lt;column name=</FONT><FONT COLOR="#ff00ff">"lname" </FONT><FONT COLOR="#000000">length=</FONT><FONT COLOR="#ff00ff">"50" </FONT><FONT COLOR="#000000">/&gt;</FONT>
+        <FONT COLOR="#000000">&lt;/property&gt;</FONT>
+        <FONT COLOR="#000000">&lt;property name=</FONT><FONT COLOR="#ff00ff">"mob" </FONT><FONT COLOR="#000000">type=</FONT><FONT COLOR="#ff00ff">"string"</FONT><FONT COLOR="#000000">&gt;</FONT>
+            <FONT COLOR="#000000">&lt;column name=</FONT><FONT COLOR="#ff00ff">"mob" </FONT><FONT COLOR="#000000">length=</FONT><FONT COLOR="#ff00ff">"50" </FONT><FONT COLOR="#000000">/&gt;</FONT>
+        <FONT COLOR="#000000">&lt;/property&gt;</FONT>
+        <FONT COLOR="#000000">&lt;property name=</FONT><FONT COLOR="#ff00ff">"address" </FONT><FONT COLOR="#000000">type=</FONT><FONT COLOR="#ff00ff">"string"</FONT><FONT COLOR="#000000">&gt;</FONT>
+            <FONT COLOR="#000000">&lt;column name=</FONT><FONT COLOR="#ff00ff">"address" </FONT><FONT COLOR="#000000">length=</FONT><FONT COLOR="#ff00ff">"50" </FONT><FONT COLOR="#000000">/&gt;</FONT>
+        <FONT COLOR="#000000">&lt;/property&gt;</FONT>
+        <FONT COLOR="#000000">&lt;property name=</FONT><FONT COLOR="#ff00ff">"state" </FONT><FONT COLOR="#000000">type=</FONT><FONT COLOR="#ff00ff">"string"</FONT><FONT COLOR="#000000">&gt;</FONT>
+            <FONT COLOR="#000000">&lt;column name=</FONT><FONT COLOR="#ff00ff">"state" </FONT><FONT COLOR="#000000">length=</FONT><FONT COLOR="#ff00ff">"50" </FONT><FONT COLOR="#000000">/&gt;</FONT>
+        <FONT COLOR="#000000">&lt;/property&gt;</FONT>
+        <FONT COLOR="#000000">&lt;property name=</FONT><FONT COLOR="#ff00ff">"city" </FONT><FONT COLOR="#000000">type=</FONT><FONT COLOR="#ff00ff">"string"</FONT><FONT COLOR="#000000">&gt;</FONT>
+            <FONT COLOR="#000000">&lt;column name=</FONT><FONT COLOR="#ff00ff">"city" </FONT><FONT COLOR="#000000">length=</FONT><FONT COLOR="#ff00ff">"50" </FONT><FONT COLOR="#000000">/&gt;</FONT>
+        <FONT COLOR="#000000">&lt;/property&gt;</FONT>
+        <FONT COLOR="#000000">&lt;property name=</FONT><FONT COLOR="#ff00ff">"pin" </FONT><FONT COLOR="#000000">type=</FONT><FONT COLOR="#ff00ff">"java.lang.Integer"</FONT><FONT COLOR="#000000">&gt;</FONT>
+            <FONT COLOR="#000000">&lt;column name=</FONT><FONT COLOR="#ff00ff">"pin" </FONT><FONT COLOR="#000000">/&gt;</FONT>
+        <FONT COLOR="#000000">&lt;/property&gt;</FONT>
+    <FONT COLOR="#000000">&lt;/</FONT><FONT COLOR="#0000ff">class</FONT><FONT COLOR="#000000">&gt;</FONT>
+<FONT COLOR="#000000">&lt;/hibernate-mapping&gt;</FONT>
+</FONT>
+</PRE>
+</BODY>
+</HTML>
+</div>
+<h3>AddStrust.java</h3>
+<div class="code">
+    <HTML>
+<BODY>
+<PRE>
+<FONT FACE="Courier New">
+<FONT COLOR="#0000ff">package </FONT><FONT COLOR="#000000">r4r;</FONT>
+<FONT COLOR="#0000ff">public class </FONT><FONT COLOR="#000000">AddStruts  </FONT><FONT COLOR="#0000ff">implements </FONT><FONT COLOR="#000000">java.io.</FONT><FONT COLOR="#ff0000">Serializable </FONT><FONT COLOR="#000000">{</FONT>
+     <FONT COLOR="#0000ff">private </FONT><FONT COLOR="#ff0000">Integer </FONT><FONT COLOR="#000000">id;</FONT>
+     <FONT COLOR="#0000ff">private </FONT><FONT COLOR="#ff0000">String </FONT><FONT COLOR="#000000">fname;</FONT>
+     <FONT COLOR="#0000ff">private </FONT><FONT COLOR="#ff0000">String </FONT><FONT COLOR="#000000">lname;</FONT>
+     <FONT COLOR="#0000ff">private </FONT><FONT COLOR="#ff0000">String </FONT><FONT COLOR="#000000">mob;</FONT>
+     <FONT COLOR="#0000ff">private </FONT><FONT COLOR="#ff0000">String </FONT><FONT COLOR="#000000">address;</FONT>
+     <FONT COLOR="#0000ff">private </FONT><FONT COLOR="#ff0000">String </FONT><FONT COLOR="#000000">state;</FONT>
+     <FONT COLOR="#0000ff">private </FONT><FONT COLOR="#ff0000">String </FONT><FONT COLOR="#000000">city;</FONT>
+     <FONT COLOR="#0000ff">private </FONT><FONT COLOR="#ff0000">Integer </FONT><FONT COLOR="#000000">pin;</FONT>
+
+    <FONT COLOR="#0000ff">public </FONT><FONT COLOR="#000000">AddStruts() {</FONT>
+    <FONT COLOR="#000000">}</FONT>
+
+    <FONT COLOR="#0000ff">public </FONT><FONT COLOR="#000000">AddStruts(</FONT><FONT COLOR="#ff0000">String </FONT><FONT COLOR="#000000">fname, </FONT><FONT COLOR="#ff0000">String </FONT><FONT COLOR="#000000">lname, </FONT><FONT COLOR="#ff0000">String </FONT><FONT COLOR="#000000">mob, </FONT><FONT COLOR="#ff0000">String </FONT><FONT COLOR="#000000">address, </FONT><FONT COLOR="#ff0000">String </FONT><FONT COLOR="#000000">state, </FONT><FONT COLOR="#ff0000">String </FONT><FONT COLOR="#000000">city, </FONT><FONT COLOR="#ff0000">Integer </FONT><FONT COLOR="#000000">pin) {</FONT>
+       <FONT COLOR="#0000ff">this</FONT><FONT COLOR="#000000">.fname = fname;</FONT>
+       <FONT COLOR="#0000ff">this</FONT><FONT COLOR="#000000">.lname = lname;</FONT>
+       <FONT COLOR="#0000ff">this</FONT><FONT COLOR="#000000">.mob = mob;</FONT>
+       <FONT COLOR="#0000ff">this</FONT><FONT COLOR="#000000">.address = address;</FONT>
+       <FONT COLOR="#0000ff">this</FONT><FONT COLOR="#000000">.state = state;</FONT>
+       <FONT COLOR="#0000ff">this</FONT><FONT COLOR="#000000">.city = city;</FONT>
+       <FONT COLOR="#0000ff">this</FONT><FONT COLOR="#000000">.pin = pin;</FONT>
+    <FONT COLOR="#000000">}</FONT>
+
+    <FONT COLOR="#0000ff">public </FONT><FONT COLOR="#ff0000">Integer </FONT><FONT COLOR="#000000">getId() {</FONT>
+        <FONT COLOR="#0000ff">return this</FONT><FONT COLOR="#000000">.id;</FONT>
+    <FONT COLOR="#000000">}</FONT>
+
+    <FONT COLOR="#0000ff">public void </FONT><FONT COLOR="#000000">setId(</FONT><FONT COLOR="#ff0000">Integer </FONT><FONT COLOR="#000000">id) {</FONT>
+        <FONT COLOR="#0000ff">this</FONT><FONT COLOR="#000000">.id = id;</FONT>
+    <FONT COLOR="#000000">}</FONT>
+    <FONT COLOR="#0000ff">public </FONT><FONT COLOR="#ff0000">String </FONT><FONT COLOR="#000000">getFname() {</FONT>
+        <FONT COLOR="#0000ff">return this</FONT><FONT COLOR="#000000">.fname;</FONT>
+    <FONT COLOR="#000000">}</FONT>
+
+    <FONT COLOR="#0000ff">public void </FONT><FONT COLOR="#000000">setFname(</FONT><FONT COLOR="#ff0000">String </FONT><FONT COLOR="#000000">fname) {</FONT>
+        <FONT COLOR="#0000ff">this</FONT><FONT COLOR="#000000">.fname = fname;</FONT>
+    <FONT COLOR="#000000">}</FONT>
+    <FONT COLOR="#0000ff">public </FONT><FONT COLOR="#ff0000">String </FONT><FONT COLOR="#000000">getLname() {</FONT>
+        <FONT COLOR="#0000ff">return this</FONT><FONT COLOR="#000000">.lname;</FONT>
+    <FONT COLOR="#000000">}</FONT>
+
+    <FONT COLOR="#0000ff">public void </FONT><FONT COLOR="#000000">setLname(</FONT><FONT COLOR="#ff0000">String </FONT><FONT COLOR="#000000">lname) {</FONT>
+        <FONT COLOR="#0000ff">this</FONT><FONT COLOR="#000000">.lname = lname;</FONT>
+    <FONT COLOR="#000000">}</FONT>
+    <FONT COLOR="#0000ff">public </FONT><FONT COLOR="#ff0000">String </FONT><FONT COLOR="#000000">getMob() {</FONT>
+        <FONT COLOR="#0000ff">return this</FONT><FONT COLOR="#000000">.mob;</FONT>
+    <FONT COLOR="#000000">}</FONT>
+
+    <FONT COLOR="#0000ff">public void </FONT><FONT COLOR="#000000">setMob(</FONT><FONT COLOR="#ff0000">String </FONT><FONT COLOR="#000000">mob) {</FONT>
+        <FONT COLOR="#0000ff">this</FONT><FONT COLOR="#000000">.mob = mob;</FONT>
+    <FONT COLOR="#000000">}</FONT>
+    <FONT COLOR="#0000ff">public </FONT><FONT COLOR="#ff0000">String </FONT><FONT COLOR="#000000">getAddress() {</FONT>
+        <FONT COLOR="#0000ff">return this</FONT><FONT COLOR="#000000">.address;</FONT>
+    <FONT COLOR="#000000">}</FONT>
+
+    <FONT COLOR="#0000ff">public void </FONT><FONT COLOR="#000000">setAddress(</FONT><FONT COLOR="#ff0000">String </FONT><FONT COLOR="#000000">address) {</FONT>
+        <FONT COLOR="#0000ff">this</FONT><FONT COLOR="#000000">.address = address;</FONT>
+    <FONT COLOR="#000000">}</FONT>
+    <FONT COLOR="#0000ff">public </FONT><FONT COLOR="#ff0000">String </FONT><FONT COLOR="#000000">getState() {</FONT>
+        <FONT COLOR="#0000ff">return this</FONT><FONT COLOR="#000000">.state;</FONT>
+    <FONT COLOR="#000000">}</FONT>
+
+    <FONT COLOR="#0000ff">public void </FONT><FONT COLOR="#000000">setState(</FONT><FONT COLOR="#ff0000">String </FONT><FONT COLOR="#000000">state) {</FONT>
+        <FONT COLOR="#0000ff">this</FONT><FONT COLOR="#000000">.state = state;</FONT>
+    <FONT COLOR="#000000">}</FONT>
+    <FONT COLOR="#0000ff">public </FONT><FONT COLOR="#ff0000">String </FONT><FONT COLOR="#000000">getCity() {</FONT>
+        <FONT COLOR="#0000ff">return this</FONT><FONT COLOR="#000000">.city;</FONT>
+    <FONT COLOR="#000000">}</FONT>
+
+    <FONT COLOR="#0000ff">public void </FONT><FONT COLOR="#000000">setCity(</FONT><FONT COLOR="#ff0000">String </FONT><FONT COLOR="#000000">city) {</FONT>
+        <FONT COLOR="#0000ff">this</FONT><FONT COLOR="#000000">.city = city;</FONT>
+    <FONT COLOR="#000000">}</FONT>
+    <FONT COLOR="#0000ff">public </FONT><FONT COLOR="#ff0000">Integer </FONT><FONT COLOR="#000000">getPin() {</FONT>
+        <FONT COLOR="#0000ff">return this</FONT><FONT COLOR="#000000">.pin;</FONT>
+    <FONT COLOR="#000000">}</FONT>
+
+    <FONT COLOR="#0000ff">public void </FONT><FONT COLOR="#000000">setPin(</FONT><FONT COLOR="#ff0000">Integer </FONT><FONT COLOR="#000000">pin) {</FONT>
+        <FONT COLOR="#0000ff">this</FONT><FONT COLOR="#000000">.pin = pin;</FONT>
+    <FONT COLOR="#000000">}</FONT>
+
+<FONT COLOR="#000000">}</FONT>
+</FONT>
+</PRE>
+</BODY>
+</HTML>
+</div>
+<p>
+    Step 6. Now we need to create a java class for the creating the session with 
+    the hibernate. go in file menu wizard -> click on new file -> java -> 
+    java class -> put the name on the required field -> select to package -> finish.
+</p>
+<h3>HibernatePlug.java</h3>
+<div class="code">
+    <HTML>
+<BODY>
+<PRE>
+<FONT FACE="Courier New">
+<FONT COLOR="#0000ff">package </FONT><FONT COLOR="#000000">r4r;</FONT>
+<FONT COLOR="#0000ff">import </FONT><FONT COLOR="#000000">org.hibernate.SessionFactory;</FONT>
+<FONT COLOR="#0000ff">import </FONT><FONT COLOR="#000000">org.hibernate.cfg.</FONT><FONT COLOR="#ff0000">Configuration</FONT><FONT COLOR="#000000">;</FONT>
+
+<FONT COLOR="#0000ff">public class </FONT><FONT COLOR="#000000">HibernatePlug </FONT>
+<FONT COLOR="#000000">{</FONT>
+	<FONT COLOR="#0000ff">private static </FONT><FONT COLOR="#000000">SessionFactory factory = getSessionFactory();</FONT>
+
+	<FONT COLOR="#0000ff">public static synchronized </FONT><FONT COLOR="#000000">SessionFactory getSessionFactory() </FONT>
+	<FONT COLOR="#000000">{	</FONT>
+	<FONT COLOR="#0000ff">try </FONT><FONT COLOR="#000000">{	    </FONT>
+
+	    <FONT COLOR="#ff0000">Configuration </FONT><FONT COLOR="#000000">cfg = </FONT><FONT COLOR="#0000ff">new </FONT><FONT COLOR="#ff0000">Configuration</FONT><FONT COLOR="#000000">();</FONT>
+	    <FONT COLOR="#000000">cfg.configure(</FONT><FONT COLOR="#ff00ff">"hibernate.cfg.xml"</FONT><FONT COLOR="#000000">); </FONT>
+
+	    <FONT COLOR="#000000">SessionFactory sessionFactory = cfg.buildSessionFactory();</FONT>
+	    <FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.println(</FONT><FONT COLOR="#ff00ff">" ----------   Factory Object Created  ------------"</FONT><FONT COLOR="#000000">);</FONT>
+	    <FONT COLOR="#0000ff">return </FONT><FONT COLOR="#000000">sessionFactory;</FONT>
+
+	     <FONT COLOR="#000000">}             </FONT><FONT COLOR="#0000ff">catch </FONT><FONT COLOR="#000000">(</FONT><FONT COLOR="#ff0000">Throwable </FONT><FONT COLOR="#000000">ex) {</FONT>
+	    <FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.err.println(</FONT><FONT COLOR="#ff00ff">"Initial SessionFactory creation failed." </FONT><FONT COLOR="#000000">+ ex);</FONT>
+	     <FONT COLOR="#0000ff">throw new </FONT><FONT COLOR="#ff0000">ExceptionInInitializerError</FONT><FONT COLOR="#000000">(ex);</FONT>
+	      <FONT COLOR="#000000">}</FONT>
+	  <FONT COLOR="#000000">}</FONT>
+
+	<FONT COLOR="#0000ff">public static </FONT><FONT COLOR="#000000">SessionFactory getFactory() {</FONT>
+	<FONT COLOR="#0000ff">return </FONT><FONT COLOR="#000000">factory;</FONT>
+	<FONT COLOR="#000000">}</FONT>
+
+<FONT COLOR="#000000">}</FONT>
+</FONT>
+</PRE>
+</BODY>
+</HTML>
+</div>
+<p>
+    Step 6. Now we need to create a action class. go in file menu wizard -> 
+    click on new file -> java -> java class -> put the name on the required field -> 
+    select to package -> finish.
+</p>
+<h3>AddData.java</h3>
+<div class="code">
+    <HTML>
+<BODY>
+<PRE>
+<FONT FACE="Courier New">
+<FONT COLOR="#008000">/*</FONT>
+<FONT COLOR="#008000"> * To change this license header, choose License Headers in Project Properties.</FONT>
+<FONT COLOR="#008000"> * To change this template file, choose Tools | Templates</FONT>
+<FONT COLOR="#008000"> * and open the template in the editor.</FONT>
+<FONT COLOR="#008000"> */</FONT>
+<FONT COLOR="#0000ff">package </FONT><FONT COLOR="#000000">R4R_Dao;</FONT>
+
+<FONT COLOR="#008000">/**</FONT>
+<FONT COLOR="#008000"> *</FONT>
+<FONT COLOR="#008000"> * @author sarvesh</FONT>
+<FONT COLOR="#008000"> */</FONT>
+<FONT COLOR="#0000ff">import </FONT><FONT COLOR="#000000">com.opensymphony.xwork2.ActionSupport;</FONT>
+<FONT COLOR="#0000ff">import </FONT><FONT COLOR="#000000">com.opensymphony.xwork2.ModelDriven;</FONT>
+<FONT COLOR="#0000ff">import </FONT><FONT COLOR="#000000">com.opensymphony.xwork2.Preparable;</FONT>
+<FONT COLOR="#0000ff">import </FONT><FONT COLOR="#000000">org.hibernate.HibernateException;</FONT>
+<FONT COLOR="#0000ff">import </FONT><FONT COLOR="#000000">org.hibernate.Session;</FONT>
+<FONT COLOR="#0000ff">import </FONT><FONT COLOR="#000000">org.hibernate.SessionFactory;</FONT>
+<FONT COLOR="#0000ff">import </FONT><FONT COLOR="#000000">org.hibernate.Transaction;</FONT>
+<FONT COLOR="#0000ff">import </FONT><FONT COLOR="#000000">org.hibernate.cfg.</FONT><FONT COLOR="#ff0000">Configuration</FONT><FONT COLOR="#000000">;</FONT>
+<FONT COLOR="#0000ff">import </FONT><FONT COLOR="#000000">R4R.AddStruts;</FONT>
+
+<FONT COLOR="#0000ff">public class </FONT><FONT COLOR="#000000">AddData </FONT><FONT COLOR="#0000ff">extends </FONT><FONT COLOR="#000000">ActionSupport </FONT><FONT COLOR="#0000ff">implements </FONT><FONT COLOR="#000000">ModelDriven, Preparable {</FONT>
+
+	    <FONT COLOR="#000000">AddStruts employee;</FONT>
+	    <FONT COLOR="#000000">SessionFactory sessionFactory = </FONT><FONT COLOR="#0000ff">null</FONT><FONT COLOR="#000000">;</FONT>
+	    <FONT COLOR="#000000">Session session = </FONT><FONT COLOR="#0000ff">null</FONT><FONT COLOR="#000000">;</FONT>
+
+            <FONT COLOR="#000000">@Override</FONT>
+	    <FONT COLOR="#0000ff">public </FONT><FONT COLOR="#ff0000">String </FONT><FONT COLOR="#000000">execute() {</FONT>
+	        <FONT COLOR="#0000ff">try </FONT><FONT COLOR="#000000">{</FONT>
+	            <FONT COLOR="#000000">sessionFactory = </FONT><FONT COLOR="#0000ff">new </FONT><FONT COLOR="#ff0000">Configuration</FONT><FONT COLOR="#000000">().configure().buildSessionFactory();</FONT>
+	            <FONT COLOR="#000000">session = sessionFactory.openSession();</FONT>
+	            <FONT COLOR="#000000">Transaction transaction = session.beginTransaction();</FONT>
+	            <FONT COLOR="#000000">session.saveOrUpdate(employee);</FONT>
+	            <FONT COLOR="#000000">transaction .commit();</FONT>
+	            <FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.println(</FONT><FONT COLOR="#ff00ff">"Record Inserted Successfully"</FONT><FONT COLOR="#000000">);</FONT>
+	        <FONT COLOR="#000000">} </FONT><FONT COLOR="#0000ff">catch </FONT><FONT COLOR="#000000">(HibernateException hibernateException) {</FONT>
+	            <FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.println(hibernateException.getMessage());</FONT>
+	            <FONT COLOR="#000000">session.close();</FONT>
+	            <FONT COLOR="#0000ff">return </FONT><FONT COLOR="#ff00ff">"ERROR"</FONT><FONT COLOR="#000000">;</FONT>
+	        <FONT COLOR="#000000">}</FONT>
+	        <FONT COLOR="#0000ff">return </FONT><FONT COLOR="#ff00ff">"SUCCESS"</FONT><FONT COLOR="#000000">;</FONT>
+	    <FONT COLOR="#000000">}</FONT>
+
+	    <FONT COLOR="#000000">@Override</FONT>
+	    <FONT COLOR="#0000ff">public </FONT><FONT COLOR="#000000">AddStruts getModel() {</FONT>
+	        <FONT COLOR="#0000ff">return </FONT><FONT COLOR="#000000">employee;</FONT>
+	    <FONT COLOR="#000000">}</FONT>
+	    <FONT COLOR="#000000">@Override</FONT>
+	    <FONT COLOR="#0000ff">public void </FONT><FONT COLOR="#000000">prepare() </FONT><FONT COLOR="#0000ff">throws </FONT><FONT COLOR="#ff0000">Exception </FONT><FONT COLOR="#000000">{</FONT>
+	        <FONT COLOR="#000000">employee = </FONT><FONT COLOR="#0000ff">new </FONT><FONT COLOR="#000000">AddStruts();</FONT>
+	    <FONT COLOR="#000000">}</FONT>
+	<FONT COLOR="#000000">}</FONT>
+</FONT>
+</PRE>
+</BODY>
+</HTML>
+</div>
+<p>Step 7. Now we need to modified to the struts.xml file for making the action.</p>
+<h3>struts.xml</h3>
+<div class="code">
+    <HTML>
+<BODY>
+<PRE>
+<FONT FACE="Courier New">
+<FONT COLOR="#000000">&lt;!DOCTYPE struts PUBLIC</FONT>
+<FONT COLOR="#ff00ff">"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"</FONT>
+<FONT COLOR="#ff00ff">"http://struts.apache.org/dtds/struts-2.0.dtd"</FONT><FONT COLOR="#000000">&gt;</FONT>
+
+<FONT COLOR="#000000">&lt;struts&gt;</FONT>
+    <FONT COLOR="#000000">&lt;!-- </FONT><FONT COLOR="#ff0000">Configuration </FONT><FONT COLOR="#0000ff">for </FONT><FONT COLOR="#000000">the </FONT><FONT COLOR="#0000ff">default package</FONT><FONT COLOR="#000000">. --&gt;</FONT>
+    <FONT COLOR="#000000">&lt;</FONT><FONT COLOR="#0000ff">package </FONT><FONT COLOR="#000000">name=</FONT><FONT COLOR="#ff00ff">"default" </FONT><FONT COLOR="#0000ff">extends</FONT><FONT COLOR="#000000">=</FONT><FONT COLOR="#ff00ff">"struts-default"</FONT><FONT COLOR="#000000">&gt;</FONT>
+                <FONT COLOR="#000000">&lt;action name=</FONT><FONT COLOR="#ff00ff">"insert" </FONT><FONT COLOR="#0000ff">class</FONT><FONT COLOR="#000000">=</FONT><FONT COLOR="#ff00ff">"R4R_Dao.AddData"</FONT><FONT COLOR="#000000">&gt;</FONT>
+	            <FONT COLOR="#000000">&lt;result name=</FONT><FONT COLOR="#ff00ff">"SUCCESS"</FONT><FONT COLOR="#000000">&gt;/Success.jsp&lt;/result&gt;</FONT>
+
+	             <FONT COLOR="#000000">&lt;result name=</FONT><FONT COLOR="#ff00ff">"ERROR"</FONT><FONT COLOR="#000000">&gt;/</FONT><FONT COLOR="#ff0000">Error</FONT><FONT COLOR="#000000">.jsp&lt;/result&gt;</FONT>
+	        <FONT COLOR="#000000">&lt;/action&gt;</FONT>
+    <FONT COLOR="#000000">&lt;/</FONT><FONT COLOR="#0000ff">package</FONT><FONT COLOR="#000000">&gt;</FONT>
+<FONT COLOR="#000000">&lt;/struts&gt;</FONT>
+</FONT>
+</PRE>
+</BODY>
+</HTML>
+</div>
+<p>
+    Step 8. Now we need some another jsp file for performing the action so we need 
+    to create as we already to create a jsp page so follow that step.
+</p>
+<h3>index.jsp</h3>
+<div class="code">
+    <HTML>
+<BODY>
+<PRE>
+<FONT FACE="Courier New">
+<FONT COLOR="#000000">&lt;%@page contentType=</FONT><FONT COLOR="#ff00ff">"text/html" </FONT><FONT COLOR="#000000">pageEncoding=</FONT><FONT COLOR="#ff00ff">"UTF-8" </FONT><FONT COLOR="#0000ff">import</FONT><FONT COLOR="#000000">=</FONT><FONT COLOR="#ff00ff">"R4R_Dao.AddData"</FONT><FONT COLOR="#000000">%&gt;</FONT>
+	<FONT COLOR="#000000">&lt;!DOCTYPE </FONT><FONT COLOR="#ff0000">HTML </FONT><FONT COLOR="#000000">PUBLIC </FONT><FONT COLOR="#ff00ff">"-//W3C//DTD HTML 4.01 Transitional//EN"</FONT>
+	   <FONT COLOR="#ff00ff">"http://www.w3.org/TR/html4/loose.dtd"</FONT><FONT COLOR="#000000">&gt;</FONT>
+	<FONT COLOR="#000000">&lt;%@taglib prefix=</FONT><FONT COLOR="#ff00ff">"s"  </FONT><FONT COLOR="#000000">uri=</FONT><FONT COLOR="#ff00ff">"/struts-tags"</FONT><FONT COLOR="#000000">%&gt;</FONT>
+	<FONT COLOR="#000000">&lt;html&gt;</FONT>
+	    <FONT COLOR="#000000">&lt;head&gt;</FONT>
+	        <FONT COLOR="#000000">&lt;meta http-equiv=</FONT><FONT COLOR="#ff00ff">"Content-Type" </FONT><FONT COLOR="#000000">content=</FONT><FONT COLOR="#ff00ff">"text/html; charset=UTF-8"</FONT><FONT COLOR="#000000">&gt;</FONT>
+	        <FONT COLOR="#000000">&lt;title&gt;JSP Page&lt;/title&gt;</FONT>
+    <FONT COLOR="#000000">&lt;/head&gt;</FONT>
+	    <FONT COLOR="#000000">&lt;body&gt;&lt;center&gt;</FONT>
+	            <FONT COLOR="#000000">&lt;br&gt;  &lt;br&gt;  &lt;br&gt;  &lt;br&gt;</FONT>
+	            <FONT COLOR="#000000">&lt;h1 style=</FONT><FONT COLOR="#ff00ff">"color:chocolate"</FONT><FONT COLOR="#000000">&gt; &lt;s:property value=</FONT><FONT COLOR="#ff00ff">"name"</FONT><FONT COLOR="#000000">/&gt; registered successfully !!&lt;/h1&gt;</FONT>
+	               <FONT COLOR="#000000">&lt;/center&gt;</FONT>
+	           <FONT COLOR="#000000">&lt;/body&gt;</FONT>
+	<FONT COLOR="#000000">&lt;/html&gt;</FONT>
+</FONT>
+</PRE>
+</BODY>
+</HTML>
+</div>
+        <p>Step 9. Now we will run the project. so right click on the project node -> click on clean and build -> then run</p>
+        <p>Step 10. Now check to the database table.</p>
+
+     <table id="indexing">
+
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="working_with_collection_in_hibernate.shtml" title="Working With Collection In Hibernate">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="servlet_and_hibernate_connectivity.shtml" title="Servlet And Hibernate Connectivity">Next</a></td>
+  </tr> 
+</table>
+
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+
+                <?php @include($_SERVER['DOCUMENT_ROOT'] . '/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>

@@ -1,0 +1,134 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>use of CommandBuilder;Insert Data using SqlCommandBuilder;Delete Data using SqlCommandBuilder</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="use of CommandBuilder;Insert Data using SqlCommandBuilder;Delete Data using SqlCommandBuilder" >
+<meta name="keywords" CONTENT="use of CommandBuilder;Insert Data using SqlCommandBuilder;Delete Data using SqlCommandBuilder">
+<!-- header start-->	
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>ADO.NET</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+            <img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+            <a href="/ado.net">ADO.Net</a>
+              <img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+
+			  <a href="/ado.net/01/tutorial/ado.net/">ADO.NET Tutorials</a>
+
+              </div>
+
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/ado.net/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	 
+<!-- header End-->	
+
+<div class="heading">Use of CommandBuilder</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="Connecting%20to%20Various%20Data%20Sources.shtml" title="Connecting to Various Data Sources">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="ADO.NET%20and%20XML.shtml" title="ADO.NET and XML">Next</a></td>
+  </tr> 
+</table>
+
+<p>CommandBuilder builds Parameter objects automatically and SqlCommandBuilder object to automatically create  the DeleteCommand, the InsertCommand, and the UpdateCommand properties of the SqlCommand object for a SqlDataAdapter object,</p>
+<div class="heading">Insert Data using SqlCommandBuilder</div>
+<div class="code">
+<pre>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Data</font><font color="#000000">;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Data</font><font color="#000000">.SqlClient;</font>
+<font color="#0000ff">class </font><font color="#000000">stringbuildinginsert</font>
+<font color="#000000">{</font>
+<font color="#0000ff">static void </font><font color="#000000">Main(</font><font color="#0000ff">string</font><font color="#000000">[] args)</font>
+<font color="#000000">{</font>
+<font color="#000000">SqlConnection con = </font><font color="#0000ff">new </font><font color="#000000">SqlConnection(</font>
+<font color="#ff00ff">&quot;server=(local)\\SQLEXPRESS;database=Emp;</font>
+          <font color="#000000">Integrated </font><font color="#008080">Security</font><font color="#000000">=SSPI;</font><font color="#ff00ff">&quot;);</font>
+<font color="#000000">SqlDataAdapter sda = </font><font color="#0000ff">new </font><font color="#000000">SqlDataAdapter</font>
+<font color="#000000">(</font><font color="#ff00ff">&quot;SELECT ID, FirstName, LastName FROM Employee&quot;</font><font color="#000000">, con);</font>
+<font color="#000000">SqlCommandBuilder Cmdb = </font><font color="#0000ff">new </font><font color="#000000">SqlCommandBuilder(sda);</font>
+<font color="#808000">DataSet </font><font color="#000000">ds = </font><font color="#0000ff">new </font><font color="#808000">DataSet</font><font color="#000000">();</font>
+<font color="#000000">sda.Fill(ds);</font>
+<font color="#808000">DataRow </font><font color="#000000">drow = ds.Tables[</font><font color="#800080">0</font><font color="#000000">].NewRow();</font>
+<font color="#000000">drow[</font><font color="#ff00ff">&quot;ID&quot;</font><font color="#000000">] = </font><font color="#800080">200</font><font color="#000000">;</font>
+<font color="#000000">drow[</font><font color="#ff00ff">&quot;FirstName&quot;</font><font color="#000000">] = </font><font color="#ff00ff">&quot;Kamal&quot;</font><font color="#000000">;</font>
+<font color="#000000">drow[</font><font color="#ff00ff">&quot;LastName&quot;</font><font color="#000000">] = </font><font color="#ff00ff">&quot;Mishra&quot;</font><font color="#000000">;</font>
+<font color="#000000">ds.Tables[</font><font color="#800080">0</font><font color="#000000">].Rows.Add(MyRow);</font>
+<font color="#000000">sda.Update(ds);</font>
+<font color="#000000">}</font>
+<font color="#000000">}</font>
+</pre>
+</div>
+<div class="heading">Delete Data using SqlCommandBuilder</div>
+<div class="code">
+<pre>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Data</font><font color="#000000">;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Data</font><font color="#000000">.SqlClient;</font>
+<font color="#0000ff">class </font><font color="#000000">stringbuildinginsert</font>
+<font color="#000000">{</font>
+<font color="#0000ff">static void </font><font color="#000000">Main(</font><font color="#0000ff">string</font><font color="#000000">[] args)</font>
+<font color="#000000">{</font>
+<font color="#000000">SqlConnection con = </font><font color="#0000ff">new </font><font color="#000000">SqlConnection</font>
+<font color="#000000">(</font><font color="#ff00ff">&quot;server=(local)\\SQLEXPRESS;database=Emp;Integrated </font>
+<font color="#008080">Security</font><font color="#000000">=SSPI;</font><font color="#ff00ff">&quot;);</font>
+<font color="#000000">SqlDataAdapter sda = </font><font color="#0000ff">new </font><font color="#000000">SqlDataAdapter</font>
+<font color="#000000">(</font><font color="#ff00ff">&quot;SELECT ID, FirstName, LastName FROM Employee&quot;</font><font color="#000000">, con);</font>
+<font color="#000000">SqlCommandBuilder Cmdb = </font><font color="#0000ff">new </font><font color="#000000">SqlCommandBuilder(sda);</font>
+<font color="#808000">DataSet </font><font color="#000000">ds = </font><font color="#0000ff">new </font><font color="#808000">DataSet</font><font color="#000000">();</font>
+<font color="#000000">sda.Fill(ds);</font>
+<font color="#808000">DataColumn</font><font color="#000000">[] dc = </font><font color="#0000ff">new </font><font color="#808000">DataColumn</font><font color="#000000">[</font><font color="#800080">1</font><font color="#000000">];</font>
+<font color="#000000">dc[</font><font color="#800080">0</font><font color="#000000">] = ds.Tables[</font><font color="#800080">0</font><font color="#000000">].Columns[</font><font color="#800080">0</font><font color="#000000">];</font>
+<font color="#000000">dst.Tables[</font><font color="#800080">0</font><font color="#000000">].PrimaryKey = dc;</font>
+<font color="#808000">DataRow </font><font color="#000000">drow = MyDataSet.Tables[</font><font color="#800080">0</font><font color="#000000">].Rows.Find(</font><font color="#800080">1</font><font color="#000000">);</font>
+<font color="#000000">drow.Delete();</font>
+<font color="#000000">sdar.Update(ds);</font>
+<font color="#000000">}</font>
+<font color="#000000">}</font>
+</pre>
+</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="Connecting%20to%20Various%20Data%20Sources.shtml" title="Connecting to Various Data Sources">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="ADO.NET%20and%20XML.shtml" title="ADO.NET and XML">Next</a></td>
+  </tr> 
+</table>
+
+<!-- Footer Start-->		
+		</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/dotnet/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->></BODY></HTML>

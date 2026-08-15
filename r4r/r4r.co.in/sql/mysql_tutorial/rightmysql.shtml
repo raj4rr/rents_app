@@ -1,0 +1,156 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http:///www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML>
+	<HEAD>
+
+	<meta http-equiv="Content-Language" content="en-us">
+	<TITLE>Right Join in MySQL</TITLE>
+		<META content="Rajesh Kumar" name="author">
+		<META http-equiv="expires" content="0">
+		<META content="r4r.co.in" name="owner">
+		<META http-equiv=Content-Type content="text/html; charset=windows-1252">
+		<meta name="description" CONTENT="right join in MySQL-Learn mysql with r4r tutorial provides you sql tutorial from basic level concept to higher 
+		level concept sql interview questions and sql examples">
+		<meta name="keywords" CONTENT="right join in MySQL, MySQL,Joins In MySQL,Inner Join In MySQL,Left Join In MySQL
+Right Join In MySQL,Full Join In MySQL,Union In MySQL,Select Into In MySQL,Into Select In MySQL,Create DB In MySQL
+Create Table In MySQL,DataTypes In MySQL,Normalization,Functions In MySQL">
+
+	<!-- header start-->	
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>MySQL </h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+			<img src="/images/left_menu_bullet.gif" width="11" height="6"><a href="/sql/mysql_tutorial/">MySQL</a>
+
+              </div>
+
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/sql/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	 
+
+<div class="heading">Right Join in MySQL</div>
+
+<table id="indexing">
+	<tr>
+	<td style="width:33%; text-align:left;"><a href="leftmysql.shtml" title="Left Join in MySQL">Previous</a></td>
+	<td style="width:34%; text-align:center"><a href="index.shtml" title="Home">Home</a></td>
+	<td style="width:33%; text-align:right"><a href="unionmysql.shtml" title="Union in MySQL">Next</a></td>
+	</tr>
+</table>
+
+<p>It allow us to get all the output depends on the right side of the defined table whose condition either matches the row on the other table or not</p>
+
+<h3>Syntax for right join</h3>
+<div class="code">
+<pre>
+SELECT columnname1, columnname2
+FROM tablename1
+RIGHT JOIN tablename2 
+[WHERE CLAUSE
+ORDER BY CLAUSE]
+</pre>
+</div>
+
+<p><h3>Example</h3></p>
+<div class="code">
+<pre>
+SELECT *
+FROM studadr 
+RIGHT JOIN studinfo 
+ON studinfo.sid = studadr.sid ;
+</pre>
+</div>
+
+<div class="output"><div class="image"><img src="images/right1.gif"></div></div>
+
+<p>It will display only 11 row because rightmost table "studinfo" contains only that much related common rows from the studadr table.</p> 
+
+<p><h3>Example</h3></p>
+<div class="code">
+<pre>
+SELECT *
+FROM studinfo 
+RIGHT JOIN studadr 
+ON studinfo.sid = studadr.sid ;
+</pre>
+</div>
+<div class="output"><div class="image"><img src="images/right2.gif"></div></div>
+<p> Display all the output related to studadr along with studinfo which includes 15 row and studinfo contain 11 row rest of the entity is null shown in image.</p>
+
+<p><h3>Example</h3></p>
+<div class="code">
+<pre>
+SELECT studadr.said, studinfo.sid, studinfo.fname,
+       studinfo.age, studadr.street, studadr.state
+FROM studadr 
+RIGHT JOIN studinfo 
+ON studinfo.sid = studadr.sid ;
+</pre>
+</div>
+<div class="output"><div class="image"><img src="images/right3.gif"></div></div>
+
+<p>Display the selected result because of change in right table define in the code</p>
+<p><h3>Example</h3></p>
+<div class="code">
+<pre>
+SELECT studadr.said, studinfo.sid, studinfo.fname,
+       studinfo.age, studadr.street, studadr.state
+FROM studinfo 
+RIGHT JOIN studadr 
+ON studinfo.sid = studadr.sid ;
+</pre>
+</div>
+<div class="output"><div class="image"><img src="images/right4.gif"></div></div>
+
+<p>Get the output on the basis of right table specified in the code</p>
+
+<p><h3>Example</h3></p>
+<div class="code">
+<pre>
+SELECT a.said,i.sid,i.fname,i.age,a.street,a.state
+FROM studadr a 
+LEFT JOIN studinfo i
+ON i.sid = a.sid 
+WHERE i.sid is null ;
+</pre>
+</div>
+
+<p>In the above code we get the output NULL  is present</p>
+
+<table id="indexing">
+	<tr>
+	<td style="width:33%; text-align:left;"><a href="leftmysql.shtml" title="Left Join in MySQL">Previous</a></td>
+	<td style="width:34%; text-align:center"><a href="index.shtml" title="Home">Home</a></td>
+	<td style="width:33%; text-align:right"><a href="unionmysql.shtml" title="Union in MySQL">Next</a></td>
+	</tr>
+</table>
+
+		</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->

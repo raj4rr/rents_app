@@ -1,0 +1,105 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>Define Core classes of Struts Framework,Action class in struts,Action Class design.</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="Define Core classes of Struts Framework,Action class in struts,Action Class design." >
+<meta name="keywords" CONTENT="Define Core classes of Struts Framework,Action class in struts,Action Class design.">
+<!-- header start-->	
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>Struts</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+            <img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+            <a href="/java/">Java</a>
+              <img src="/images/left_menu_bullet.gif" width="11" height="6"/><A href="/java/struts/basic/tutorial/01">Struts1.3 Basic Tutorials </a>
+              </div>
+
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/struts/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	 
+
+<div class="heading">Define Core classes of Struts Framework</div>
+<!-- header End-->
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="Define%20the%20Struts2%20Features.shtml" title="Define the Struts2 Features, Why used Struts framework">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="Class%20ActionServlet%20in%20struts.shtml" title="Class ActionServlet in struts">Next</a></td>
+  </tr> 
+</table>
+<p>The Core classes of  Struts Framework are</p>
+<ul><li>Action</li> 
+<li>ActionServlet</li>
+<li>ActionForm</li>
+<li>ActionMapping</li>
+<li>ActionForward</li>
+<li>PlugIn Classes</li></ul>
+<h3>Action class in struts</h3>
+<p>The Action Class is part of the Model and is a wrapper around the business logic. The purpose of Action Class is to translate the HttpServletRequest to the business logic. In the Action Class all the database/business processing are done. It is strongly recommended  to perform all the database related stuffs in the Action Class. The ActionServlet (org.apache.struts.action.ActionServlet) passes the parameterized class to Action Form using the execute() method. The return type of the execute method is ActionForward which is used by the Struts Framework to forward the request to the file as per the value of the returned ActionForward object. The action class define a method that executed could be depending upon servlet environment.</p>
+<div class="code"><pre>
+<font color="#000000">/*ThisistheactioncalledfromtheStrutsframework.</font>
+<font color="#000000">*@parammappingTheActionMappingusedtoselectthisinstance.</font>
+<font color="#000000">*@paramformTheoptionalActionFormbeanforthisrequest.</font>
+<font color="#000000">*@paramrequestTheHTTPRequestweareprocessing.</font>
+<font color="#000000">*@paramresponseTheHTTPResponseweareprocessing.</font>
+<font color="#000000">*@throwsjava.lang.Exception</font>
+<font color="#000000">*@return</font>
+<font color="#000000">*/</font>
+<font color="#000000">@Override</font>
+<font color="#000000">publicActionForwardexecute(ActionMappingmapping,</font>
+<font color="#000000">ActionFormform,HttpServletRequestrequest</font>
+<font color="#000000">,HttpServletResponseresponse)throwsException</font>
+<font color="#000000">}</font>
+</pre>
+</div>
+
+<p>The main goal of an Action class is to process a request, via its execute() method, and return an ActionForward object that identifies where control should be forwarded (e.g. a JSP, Tile definition, Velocity template, or another Action) to provide the appropriate response.</p>
+<h3>Action Class design</h3>
+<p>Remember the following design guidelines when coding Action classes:</p>
+<ol><li><p><i>Design Action class for multi-threaded environment : </i>In MVC/Model 2 architected, Controller servlet creates <font class="point_out">only one instance of your Action class</font>, and uses this one instance to service all requests. Then thread-safe Action classes is needed however, two general guidelines that will help you write scalable, thread-safe Action classes:</p></li>
+<ul><li><p><i> Use Local Variables : </i> An Action can be factored into several local methods, so long as all variables needed are passed as method parameters. This assures thread safety, as the JVM handles such variables internally using the call stack which is associated with a single Thread this is the most important principle that aids in thread-safe coding.</p></li>
+<li><p><i>Always Conserve Resources :</i> As a general rule, allocating scarce resources and keeping them across requests from the same user (in the user's session) can cause scalability problems. For example, if your application uses JDBC and you allocate a separate JDBC connection for every user, you are probably going to run in some scalability issues when your site suddenly shows up on Slashdot. You should strive to use pools and release resources (such as database connections) prior to forwarding control to the appropriate View component -- even if a bean method you have called throws an exception.</p></li></ul>
+<li><p><i>Exception don't throw it, catch it:</i> If  application/project specific code throws any exceptions, should be catch these exceptions in your Action class, log them in your application's log (servlet.log("Error message", exception)) and return the appropriate ActionForward.</p></li></ol>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="Define%20the%20Struts2%20Features.shtml" title="Define the Struts2 Features, Why used Struts framework">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="Class%20ActionServlet%20in%20struts.shtml" title="Class ActionServlet in struts">Next</a></td>
+  </tr> 
+</table>
+
+<!-- Footer Start-->	
+
+		</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->

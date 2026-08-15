@@ -1,0 +1,153 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>interface in C++|c++ basics </TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="interface in C++ tutorial- r4r c++ tutorials covers all topics 
+of c++ oppsconcept with live examples basic learn in easyway" >
+<meta name="keywords" CONTENT="interface In C++,object oriented language,basics, learner,Overriding,
+inheritance, Polymorphism,overloading,multiple inheritance,multi threading">
+
+<link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>C++ language</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+            <img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+            <a href="/cpp/">C++</a>
+
+              </div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/cpp/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	 
+<!-- header End-->
+<div class="heading">Interface in C++</div>
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="encapsulation.shtml" title=" Encapsulation In C++">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="multi_threading.shtml" title="Multi Threading in C++">Next</a></td>
+  </tr> 
+</table>
+<p>Interfaces procure a suitable means of resolving the fash between what a class is and what it can do. deferment interface and implementation distinct in C++ programs deferment designs fresh and support reuse. The C++ interfaces are execution using abstract classes and these abstract classes would not be flurried with data abstraction which is a notion of deferment execution information detached by a pertinent data. An interface show the behavior or abilities of a C++ class without making to a exclusive implementation of that class. It show a bond between a provider and its users, defining what it's required from each promoter, but only in spell of the services they may give, no datum how they manage to do it.
+ </p>
+<div class="code"><pre>
+<font color="#0000ff">class </font><font color="#000000">MyInterface</font>
+<font color="#000000">{</font>
+<font color="#0000ff">public</font><font color="#000000">:</font>
+           <font color="#008000">// Empty virtual destructor for proper cleanup</font>
+<font color="#0000ff">virtual </font><font color="#000000">~MyInterface() {}</font>
+
+<font color="#0000ff">virtual void </font><font color="#000000">Method1() = </font><font color="#800080">0</font><font color="#000000">;</font>
+<font color="#0000ff">virtual void </font><font color="#000000">Method2() = </font><font color="#800080">0</font><font color="#000000">;</font>
+<font color="#000000">};</font>
+<font color="#0000ff">class </font><font color="#000000">MyAbstractClass</font>
+<font color="#000000">{</font>
+<font color="#0000ff">public</font><font color="#000000">:</font>
+<font color="#0000ff">virtual </font><font color="#000000">~MyAbstractClass();</font>
+
+<font color="#0000ff">virtual void </font><font color="#000000">Method1();</font>
+<font color="#0000ff">virtual void </font><font color="#000000">Method2();</font>
+<font color="#0000ff">void </font><font color="#000000">Method3();</font>
+
+<font color="#0000ff">virtual void </font><font color="#000000">Method4() = </font><font color="#800080">0</font><font color="#000000">; </font>
+<font color="#000000">};</font>
+</pre>
+</div>
+
+<h3>Abstract Example:-</h3>
+<p>Interfaces give a suitable means of resolving the problem that sometimes occurs between what a class is and what it can do. When a provide c++ class "implements" few item of interfaces, the pattern of these class could attend any place that an object implementing 1 of whose interfaces is need. That, the interface keyword may be used as a context to a contra sty steady of objects that implement that interface. This might detonation alot as inheritance-based polymorphism, but there is a key distinction Interfaces permit you to fast condition that apply polymorphism to objects that do not provide a general base class. I suppose that by interface i mean a C++ class with only net virtual rule , instead by abstract class i mean a C++ class by virtual methods it could be overridden, and few code, but less than 1 net virtual technique it makes the class not insatiable.</p>
+<div class="code"><pre>
+<font color="#ff0000">#include </font><font color="#000000">&lt;iostream&gt;</font>
+<font color="#0000ff">using namespace </font><font color="#000000">std;</font>
+                                <font color="#008000">// Base class</font>
+<font color="#0000ff">class </font><font color="#000000">Shape </font>
+<font color="#000000">{</font>
+<font color="#0000ff">public</font><font color="#000000">:</font>
+     <font color="#008000">// pure virtual function providing interface framework.</font>
+<font color="#0000ff">virtual int </font><font color="#000000">getArea() = </font><font color="#800080">0</font><font color="#000000">;</font>
+<font color="#0000ff">void </font><font color="#000000">setWidth(</font><font color="#0000ff">int </font><font color="#000000">w)</font>
+<font color="#000000">{</font>
+<font color="#000000">width = w;</font>
+<font color="#000000">}</font>
+<font color="#0000ff">void </font><font color="#000000">setHeight(</font><font color="#0000ff">int </font><font color="#000000">h)</font>
+<font color="#000000">{</font>
+<font color="#000000">height = h;</font>
+<font color="#000000">}</font>
+<font color="#0000ff">protected</font><font color="#000000">:</font>
+<font color="#0000ff">int </font><font color="#000000">width;</font>
+<font color="#0000ff">int </font><font color="#000000">height;</font>
+<font color="#000000">};</font>
+                                       <font color="#008000">// Derived classes</font>
+<font color="#0000ff">class </font><font color="#000000">Rectangle: </font><font color="#0000ff">public </font><font color="#000000">Shape</font>
+<font color="#000000">{</font>
+<font color="#0000ff">public</font><font color="#000000">:</font>
+<font color="#0000ff">int </font><font color="#000000">getArea()</font>
+<font color="#000000">{ </font>
+<font color="#0000ff">return </font><font color="#000000">(width * height); </font>
+<font color="#000000">}</font>
+<font color="#000000">};</font>
+<font color="#0000ff">class </font><font color="#000000">Triangle: </font><font color="#0000ff">public </font><font color="#000000">Shape</font>
+<font color="#000000">{</font>
+<font color="#0000ff">public</font><font color="#000000">:</font>
+<font color="#0000ff">int </font><font color="#000000">getArea()</font>
+<font color="#000000">{ </font>
+<font color="#0000ff">return </font><font color="#000000">(width * height)/</font><font color="#800080">2</font><font color="#000000">; </font>
+<font color="#000000">}</font>
+<font color="#000000">};</font>
+<font color="#0000ff">int </font><font color="#000000">main(</font><font color="#0000ff">void</font><font color="#000000">)</font>
+<font color="#000000">{</font>
+<font color="#000000">Rectangle Rect;</font>
+<font color="#000000">Triangle Tri;</font>
+
+<font color="#000000">Rect.setWidth(</font><font color="#800080">5</font><font color="#000000">);</font>
+<font color="#000000">Rect.setHeight(</font><font color="#800080">7</font><font color="#000000">);</font>
+                       <font color="#008000">// Print the area of the object.</font>
+<font color="#0000ff">cout </font><font color="#000000">&lt;&lt; </font><font color="#ff00ff">&quot;Total Rectangle area: &quot; </font><font color="#000000">&lt;&lt; Rect.getArea() &lt;&lt; endl;</font>
+<font color="#000000">Tri.setWidth(</font><font color="#800080">5</font><font color="#000000">);</font>
+<font color="#000000">Tri.setHeight(</font><font color="#800080">7</font><font color="#000000">);</font>
+                                 <font color="#008000">// Print the area of the object.</font>
+<font color="#0000ff">cout </font><font color="#000000">&lt;&lt; </font><font color="#ff00ff">&quot;Total Triangle area: &quot; </font><font color="#000000">&lt;&lt; Tri.getArea() &lt;&lt; endl; </font>
+<font color="#0000ff">return </font><font color="#800080">0</font><font color="#000000">;</font>
+<font color="#000000">}</font>
+</pre>
+</div>
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="encapsulation.shtml" title=" Encapsulation In C++">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="multi_threading.shtml" title="Multi Threading in C++">Next</a></td>
+  </tr> 
+</table>
+
+<!-- Footer Start-->
+
+		</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->
+

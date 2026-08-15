@@ -1,0 +1,209 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>ListBox Controls,Properties of Listbox,ListBox Methods,ListBox Events,Sample Example for ListBox control</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="ListBox Controls,Properties of Listbox,ListBox Methods,ListBox Events,Sample Example for ListBox control" >
+<meta name="keywords" CONTENT="ListBox Controls,Properties of Listbox,ListBox Methods,ListBox Events,Sample Example for ListBox control">
+
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+     <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>C# Tutorial</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a><img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/c1/">C#</a>
+
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/c1/commonfiles/leftmenu.shtml'); ?></td>
+
+                       <td style="80%" valign="top">
+                        <div class="main_content"> 
+
+	<!-- Header End-->
+
+  <div class="heading">ListBox  Controls</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="Rich%20TextBox%20Control.shtml" title="Rich TextBox Control">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="ComboBox.shtml" title="ComboBox Controls">Next</a></td>
+  </tr>
+</table>
+<p>These controls are used to show a list of strings from which one or more can be selected at a time. Just like check boxes 
+and radio buttons, the list box provides a means of asking the user to make one or more selections.</p>
+<p>You should use a list box when at design time you don't know the actual number of values the user can choose from (an example
+ could be a list of co-workers). Even if you know all the possible values at design time, you should consider using a list box 
+ if there are a great number of values.</p>
+ <div class="image">
+ <img src="images/listbox.JPG">
+ </div>
+
+ <div class="heading">Properties of Listbox</div>
+ <div class="table_content">
+ <table>
+ <tr>
+ <td class="heading" style="width:20%;">Name</td>
+ <td class="heading" style="width:20%;">Availability</td>
+ <td class="heading" style="width:60%;">Description</td>
+ </tr>
+ <tr>
+ <td class="alternate_heading2">SelectedIndex</td><td class="alternate_heading2">  Read/Write</td><td class="alternate_heading2">This value indicates the zero-based index of the selected item in the list box. If the list box can contain multiple selections at the same time, this property holds the index of the first item in the selected list.</td></tr>
+ <tr><td class="alternate_heading1">ColumnWidth</td><td class="alternate_heading1">  Read/Write</td><td class="alternate_heading1">In a list box with multiple columns, this property specifies the width of the columns.</td></tr>
+ <tr><td class="alternate_heading2">Items</td><td class="alternate_heading2"> Read-only</td><td class="alternate_heading2">The Items collection contains all of the items in the list box. You use the properties of this collection to add and remove items.</td></tr>
+ <tr><td class="alternate_heading1">MultiColumn</td><td class="alternate_heading1"> Read/Write</td><td class="alternate_heading1">A list box can have more than one column. Use this property the get or set the number of columns in the list box.</td></tr>
+ <tr><td class="alternate_heading2">SelectedIndices</td><td class="alternate_heading2">Read-only</td><td class="alternate_heading2">This property is a collection, which holds all of the zero-based indices of the selected items in the list box.</td></tr>
+ <tr><td class="alternate_heading1">SelectedItem</td><td class="alternate_heading1"> Read/Write</td><td class="alternate_heading1">In a list box where only one item can be selected, this property contains the selected item if any. In a list box where more than one selection can be made, it will contain the first of the selected items.</td> </tr>
+ <tr><td class="alternate_heading2">SelectedItems</td><td class="alternate_heading2">Read-only</td><td class="alternate_heading2">This property is a collection, which contains all of the items currently selected.</td> </tr>
+ <tr><td class="alternate_heading1">SelectionMode</td><td class="alternate_heading1">  Read/Write</td><td class="alternate_heading1">
+ You can choose between four different modes of selection in a list box:</li>
+ <ol><li><i>q None:</i> No items can be selected.</li>
+ <li><i>q One:</i> Only one item can be selected at any time.</li>
+ <li><i>q MultiSimple:</i> Multiple items can be selected.</li>
+ <li><i>q MultiExtended:</i> Multiple items can be selected and the user can use the Ctrl, Shift and arrows keys to make selections.</li></ol></td> </tr>
+
+ <tr><td class="alternate_heading2">Sorted</td><td class="alternate_heading2">  Read/Write</td><td class="alternate_heading2"> Setting this property to true will cause the ListBox to sort the items it contains alphabetically.</td> </tr>
+ <tr><td class="alternate_heading1">Text</td><td class="alternate_heading1"> Read/Write</td><td class="alternate_heading1">We've seen Text properties on a number of controls, but this one works very differently than any we've seen so far. If you set the Text property of the list box control, it searches for an item that matches the text, and selects it. If you get the Text property, the value returned is the first selected item in the list. This property cannot be used if the SelectionMode is None.</td> </tr>
+ <tr><td class="alternate_heading2">CheckedIndicies</td><td class="alternate_heading2">Read-only</td><td class="alternate_heading2">(CheckedListBox only) This property is a collection, which contains all indexes in the CheckedListBox that is a checked or indeterminate state.</td> </tr>
+  <tr><td class="alternate_heading1">CheckedItems</td><td class="alternate_heading1"> Read-only</td><td class="alternate_heading1">(CheckedListBox only) This is a collection of all the items in a CheckedListBox that are in a checked or indeterminate state.</td> </tr>
+ <tr><td class="alternate_heading2">CheckOnClick</td><td class="alternate_heading2"> Read/Write</td><td class="alternate_heading2">(CheckedListBox only) If this property is true, an item will change its state whenever the user clicks it.</td> </tr>
+ <tr><td class="alternate_heading1">ThreeDCheckBoxes</td><td class="alternate_heading1"> Read/Write</td><td class="alternate_heading1">(CheckedListBox only) You can choose between Checkboxes that are flat or normal by setting this property.</td> </tr>
+ </table>
+ </div>
+
+ <h3>ListBox Methods</h3>
+ <div class="table_content">
+ <table>
+ <tr>
+ <td class="heading" style="width:30%;">Name</td>
+ <td class="heading" style="width:60%;">Description</td>
+ </tr>
+ <tr>
+ <td class="alternate_heading2">ClearSelected</td><td class="alternate_heading2">Clears all selections in the ListBox,</td></tr>
+ <tr><td class="alternate_heading1">FindString</td><td class="alternate_heading1">Finds the first string in the ListBox beginning with a string you specify for example FindString("a") will find the first string in the ListBox beginning with 'a'</td></tr>
+ <tr><td class="alternate_heading2">FindStringExact</td><td class="alternate_heading2"> Like FindString but the entire string must be matched</td></tr>
+  <tr><td class="alternate_heading1">GetSelected</td><td class="alternate_heading1">Returns a value that indicates whether an item is selected</td></tr>
+ <tr><td class="alternate_heading2">SetSelected</td><td class="alternate_heading2">Sets or clears the selection of an item</td></tr>
+ <tr><td class="alternate_heading1">ToString</td><td class="alternate_heading1">Returns the currently selected item</td></tr>
+ <tr><td class="alternate_heading2">GetItemChecked</td><td class="alternate_heading2">(CheckedListBox only) Returns a value indicating if an item is checked or not</td></tr>
+ <tr><td class="alternate_heading1">GetItemCheckState</td><td class="alternate_heading1">(CheckedListBox only) Returns a value indicating the check state of an item</td></tr>
+ <tr><td class="alternate_heading2">SetItemChecked</td><td class="alternate_heading2">(CheckedListBox only) Sets the item specified to achecked state.</td></tr>
+ <tr><td class="alternate_heading1">SetItemCheckState</td><td class="alternate_heading1">	(CheckedListBox only) Sets the check state of an item</td></tr>
+</table>
+ </div>
+
+ <div class="heading">ListBox Events</div>
+ <div class="table_content">
+ <table>
+ <tr>
+ <td class="heading" style="width:30%;">Name</td>
+ <td class="heading" style="width:60%;">Description</td>
+ </tr>
+ <tr>
+ <td class="alternate_heading2">ItemCheck</td><td class="alternate_heading2">(CheckedListBox only) Occurs when the check state of one of the list items changes</td></tr>
+ <tr><td class="alternate_heading1">SelectedIndexChanged</td><td class="alternate_heading1">Occurs when the index of the selected item changes</td></tr>
+ </table>
+ </div>
+
+ <h3>Sample Example for ListBox control</h3>
+ <p>In following image i have taken 2 ListBox controls and 4 buttons and add items in ListBox one with collection property of 
+ this.and change property according to your choice.</p>
+ <div class="image">
+ <img src="images/listbox1.JPG">
+ </div>
+
+ <p>My purpose of taking two ListBox is for moving items from listbox1 to ListBox 2 by button click ad show below with single
+  selection and multi selection if user click on button without selecting item from listbox1 then he/she will get alert message 
+  for choosing items from ListBox.</p>
+
+  <h3>Code for this is given below</h3>
+  <div class="image">
+  <img src="images/listbox12.JPG">
+  </div>
+
+  <p>Write following code on Single selection Button by double click on button.</p>
+  <div class="code">
+<pre>
+<font color="#0000ff">private void </font><font color="#000000">button1_Click(</font><font color="#0000ff">object </font><font color="#000000">sender, </font><font color="#808000">EventArgs </font><font color="#000000">e)</font>
+<font color="#000000">{</font>
+<font color="#0000ff">if </font><font color="#000000">(listBox1.SelectedIndex &gt;= </font><font color="#800080">0</font><font color="#000000">)</font>
+<font color="#000000">{</font>
+
+<font color="#0000ff">string </font><font color="#000000">selectitem = listBox1.SelectedItem.ToString();</font>
+<font color="#000000">listBox2.Items.Add(selectitem);</font>
+<font color="#000000">listBox1.Items.Remove(selectitem);</font>
+<font color="#000000">}</font>
+<font color="#0000ff">else</font>
+<font color="#000000">{</font>
+<font color="#808000">MessageBox</font><font color="#000000">.Show(</font><font color="#ff00ff">&quot;Please Choose Item to move&quot;</font><font color="#000000">, </font><font color="#ff00ff">&quot;Warning&quot;</font><font color="#000000">);</font>
+<font color="#000000">}</font>
+<font color="#000000">}</font>
+</pre>
+</div>
+
+<div class="image">
+<img src="images/listbox2.JPG">
+</div>
+
+<p>Code for moving all items from one ListBox to another</p>
+<div class="code">
+<pre>
+<font color="#0000ff">private void </font><font color="#000000">button2_Click(</font><font color="#0000ff">object </font><font color="#000000">sender, </font><font color="#808000">EventArgs </font><font color="#000000">e)</font>
+<font color="#000000">{</font>
+<font color="#0000ff">foreach </font><font color="#000000">(</font><font color="#0000ff">string </font><font color="#000000">item </font><font color="#0000ff">in </font><font color="#000000">listBox1.Items)</font>
+<font color="#000000">{</font>
+<font color="#000000">listBox2.Items.Add(item);</font>
+<font color="#000000">}</font>
+<font color="#000000">listBox1.Items.Clear();</font>
+<font color="#000000">}</font>
+</pre>
+</div>
+
+<h3>You will get output as follows</h3>
+<div class="output">
+<div class="image">
+<img src="images/listbox4.JPG">
+</div>
+</div>
+<p>Similarly you can write for moving items from listbox2 to listbox1.</p>
+<div class="output">
+<div class="image">
+<img src="images/listbox4.JPG">
+<img src="images/listbox5.JPG">
+</div>
+</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="Rich%20TextBox%20Control.shtml" title="Rich TextBox Control">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="ComboBox.shtml" title="ComboBox Controls">Next</a></td>
+  </tr>
+</table>
+							 <!--Footer-->
+   </div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/dotnet/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+     <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>

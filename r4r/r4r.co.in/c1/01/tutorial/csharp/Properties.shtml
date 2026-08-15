@@ -1,0 +1,228 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>Properties,Properties and Inheritance,Properties & Polymorphism,Abstract Properties</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="Properties,Properties and Inheritance,Properties & Polymorphism,Abstract Properties" >
+<meta name="keywords" CONTENT="Properties,Properties and Inheritance,Properties & Polymorphism,Abstract Properties">
+
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+     <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>C# Tutorial</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a><img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/c1/">C#</a>
+
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/c1/commonfiles/leftmenu.shtml'); ?></td>
+
+                       <td style="80%" valign="top">
+                        <div class="main_content"> 
+
+	<!-- Header End-->
+
+  <div class="heading">Properties</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="inheritance and polymorphism.shtml" title="Inheritance and Polymorphism">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="Attributes.shtml" title="Attributes">Next</a></td>
+  </tr>
+</table>
+<p>In C#, properties are natural extension of data fields. But C# provides a built in mechanism called properties. Usually 
+inside a class, we declare a data field as private and will provide a set of public. In C#, properties are defined using the 
+property declaration syntax. The general form of declaring a property is as follows. </p>
+<pre>
+<acces_modifier> <return_type> <property_name>
+{
+get
+{
+}
+set
+{
+}
+}
+
+SET</pre>
+<p>SET and GET methods to access the data fields, since the data fields are not directly accessible out side the class.
+ We must use the set/get methods to access the data fields.</p>
+ <h3>Example</h3>
+ <div class="code">
+<pre>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">;</font>
+<font color="#0000ff">class </font><font color="#000000">Myproperty {</font>
+<font color="#0000ff">private int </font><font color="#000000">x;</font>
+<font color="#0000ff">public int </font><font color="#000000">X {</font>
+<font color="#000000">get {</font>
+<font color="#0000ff">return </font><font color="#000000">x;</font>
+<font color="#000000">}</font>
+<font color="#000000">set {</font>
+<font color="#000000">x = value;</font>
+<font color="#000000">}</font>
+<font color="#000000">}</font>
+<font color="#000000">}</font>
+
+<font color="#0000ff">class </font><font color="#000000">Myprop {</font>
+<font color="#0000ff">public static void </font><font color="#000000">Main() {</font>
+<font color="#000000">Myproperty mc = </font><font color="#0000ff">new </font><font color="#000000">Myproperty();</font>
+<font color="#000000">mc.X = </font><font color="#800080">10</font><font color="#000000">;</font>
+<font color="#0000ff">int </font><font color="#000000">xVal = mc.X;</font>
+<font color="#808000">Console</font><font color="#000000">.WriteLine(xVal);</font>
+<font color="#008000">//Displays 10</font>
+<font color="#000000">}</font>
+<font color="#000000">} </font>
+</pre>
+</div>
+
+<div class="heading">Properties and Inheritance</div>
+<p>The properties of a Base class can be inherited to a Derived class. </p>
+<div class="code">
+<pre>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">;</font>
+<font color="#0000ff">class </font><font color="#000000">Base {</font>
+<font color="#0000ff">public int </font><font color="#000000">X {</font>
+<font color="#000000">get {</font>
+<font color="#808000">Console</font><font color="#000000">.Write(</font><font color="#ff00ff">&quot;Base GET&quot;</font><font color="#000000">);</font>
+<font color="#0000ff">return </font><font color="#800080">10</font><font color="#000000">;</font>
+<font color="#000000">}</font>
+<font color="#000000">set {</font>
+<font color="#808000">Console</font><font color="#000000">.Write(</font><font color="#ff00ff">&quot;Base SET&quot;</font><font color="#000000">);</font>
+<font color="#000000">}</font>
+<font color="#000000">}</font>
+<font color="#000000">}</font>
+
+<font color="#0000ff">class </font><font color="#000000">Derived : Base</font>
+<font color="#000000">{</font>
+<font color="#000000">}</font>
+
+<font color="#0000ff">class </font><font color="#000000">MyClient {</font>
+<font color="#0000ff">public static void </font><font color="#000000">Main() {</font>
+<font color="#000000">Derived d1 = </font><font color="#0000ff">new </font><font color="#000000">Derived();</font>
+<font color="#000000">d1.X = </font><font color="#800080">10</font><font color="#000000">;</font>
+<font color="#808000">Console</font><font color="#000000">.WriteLine(d1.X);</font><font color="#008000">//Displays 'Base SET Base GET 10'</font>
+<font color="#000000">}</font>
+<font color="#000000">}</font>
+</pre>
+</div>
+
+<div class="heading">Properties And Polymorphism</div>
+<p>A Base class property can be polymorphic overridden in a Derived class. But remember that the modifiers like virtual, 
+override etc are using at property level, not at accessor level.</p>
+<div class="code">
+<pre>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">;</font>
+<font color="#0000ff">class </font><font color="#000000">Base {</font>
+<font color="#0000ff">public virtual int </font><font color="#000000">X {</font>
+<font color="#000000">get {</font>
+<font color="#808000">Console</font><font color="#000000">.Write(</font><font color="#ff00ff">&quot;Base GET&quot;</font><font color="#000000">);</font>
+<font color="#0000ff">return </font><font color="#800080">10</font><font color="#000000">;</font>
+<font color="#000000">}</font>
+<font color="#000000">set {</font>
+<font color="#808000">Console</font><font color="#000000">.Write(</font><font color="#ff00ff">&quot;Base SET&quot;</font><font color="#000000">);</font>
+<font color="#000000">}</font>
+<font color="#000000">}</font>
+<font color="#000000">}</font>
+
+<font color="#0000ff">class </font><font color="#000000">Derived : Base {</font>
+<font color="#0000ff">public override int </font><font color="#000000">X {</font>
+<font color="#000000">get {</font>
+<font color="#808000">Console</font><font color="#000000">.Write(</font><font color="#ff00ff">&quot;Derived GET&quot;</font><font color="#000000">);</font>
+<font color="#0000ff">return </font><font color="#800080">10</font><font color="#000000">;</font>
+<font color="#000000">}</font>
+<font color="#000000">set {</font>
+<font color="#808000">Console</font><font color="#000000">.Write(</font><font color="#ff00ff">&quot;Derived SET&quot;</font><font color="#000000">);</font>
+<font color="#000000">}</font>
+<font color="#000000">}</font>
+<font color="#000000">}</font>
+
+<font color="#0000ff">class </font><font color="#000000">MyClient {</font>
+<font color="#0000ff">public static void </font><font color="#000000">Main() {</font>
+<font color="#000000">Base b1 = </font><font color="#0000ff">new </font>
+<font color="#000000">Derived();</font>
+<font color="#000000">b1.X = </font><font color="#800080">10</font><font color="#000000">;</font>
+<font color="#808000">Console</font><font color="#000000">.WriteLine(b1.X);</font>
+<font color="#008000">//Displays 'Derived SET Derived GET 10'</font>
+<font color="#000000">}</font>
+<font color="#000000">} </font>
+</pre>
+</div>
+
+<div class="heading">Abstract Properties</div>
+<p>It is declared as abstract by using the keyword abstract. Remember that an abstract property in a class carries no code
+ at all. The get/set assessors are simply represented with a semicolon. In the derived class we must implement both set and 
+ get assessors.</p>
+
+ <div class="code">
+<pre>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">;</font>
+<font color="#0000ff">class </font><font color="#000000">Base {</font>
+<font color="#0000ff">public virtual int </font><font color="#000000">X {</font>
+<font color="#000000">get {</font>
+<font color="#808000">Console</font><font color="#000000">.Write(</font><font color="#ff00ff">&quot;Base GET&quot;</font><font color="#000000">);</font>
+<font color="#0000ff">return </font><font color="#800080">10</font><font color="#000000">;</font>
+<font color="#000000">}</font>
+<font color="#000000">set {</font>
+<font color="#808000">Console</font><font color="#000000">.Write(</font><font color="#ff00ff">&quot;Base SET&quot;</font><font color="#000000">);</font>
+<font color="#000000">}</font>
+<font color="#000000">}</font>
+<font color="#000000">}</font>
+
+<font color="#0000ff">class </font><font color="#000000">Derived : Base {</font>
+<font color="#0000ff">public override int </font><font color="#000000">X {</font>
+<font color="#000000">get {</font>
+<font color="#808000">Console</font><font color="#000000">.Write(</font><font color="#ff00ff">&quot;Derived GET&quot;</font><font color="#000000">);</font>
+<font color="#0000ff">return </font><font color="#800080">10</font><font color="#000000">;</font>
+<font color="#000000">}</font>
+<font color="#000000">set {</font>
+<font color="#808000">Console</font><font color="#000000">.Write(</font><font color="#ff00ff">&quot;Derived SET&quot;</font><font color="#000000">);</font>
+<font color="#000000">}</font>
+<font color="#000000">}</font>
+<font color="#000000">}</font>
+
+<font color="#0000ff">class </font><font color="#000000">MyClient {</font>
+<font color="#0000ff">public static void </font><font color="#000000">Main() {</font>
+<font color="#000000">Base b1 = </font><font color="#0000ff">new </font><font color="#000000">Derived();</font>
+<font color="#000000">b1.X = </font><font color="#800080">10</font><font color="#000000">;</font>
+<font color="#808000">Console</font><font color="#000000">.WriteLine(b1.X);</font><font color="#008000">//Displays 'Derived SET Derived GET 10'</font>
+<font color="#000000">}</font>
+<font color="#000000">}</font>
+</pre>
+</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="inheritance and polymorphism.shtml" title="Inheritance and Polymorphism">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="Attributes.shtml" title="Attributes">Next</a></td>
+  </tr>
+</table>
+
+  <!--Footer-->
+   </div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/dotnet/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+     <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>

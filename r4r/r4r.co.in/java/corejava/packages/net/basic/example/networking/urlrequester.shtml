@@ -1,0 +1,187 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD>
+<meta http-equiv="Content-Language" content="en-us">
+<TITLE>Url requester</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name="description" CONTENT="Java Networking Tutorial,Java Networking Example" >
+<meta name="keywords" CONTENT="Java Networking Tutorial,Java Networking Example">
+<!-- header start-->
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+	<BODY>
+		<?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+        <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>Java Networking</h1>
+            <div class="link_menu"><br><div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+            <img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+            <a href="/java/">Java</a>
+  <img src="/images/left_menu_bullet.gif" width="11" height="6"> <a href="/java/corejava/">Core Java</a>
+    <img src="/images/left_menu_bullet.gif" width="11" height="6"> <a href="/java/corejava/packages/net/">Java Networking</a>
+  <img src="/images/left_menu_bullet.gif" width="11" height="6"> <a href="/java/corejava/packages/net/basic/example/networking">Url requester</a>
+</div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/corejava/packages/net/commonfiles/leftmenu.shtml'); ?></td>                                           
+                        <td style="80%" valign="top">
+
+                        <div class="main_content"> 	 
+	   	   <div class="heading">Url requester</div>
+<p>In this section we cover and explain Url requester program in details for freshers and experienced</p> 
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="to create the image view.shtml" title="to create the image view">previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="index.shtml"title="home page">Next</a></td>
+  </tr>
+</table>
+<!-- header End-->
+ <h2>A Program of URL  Requester</h2>
+ <h3>Example</h3>
+ <div class="code">
+ <pre>
+<font face="Courier New">
+<font color="#008000">/* In the book this example extends Applet.  I decided it </font>
+<font color="#008000">made more sense to extend Frame directly.  */</font>
+<font color="#0000ff">import </font><font color="#000000">java.applet.*;</font>
+<font color="#0000ff">import </font><font color="#000000">java.awt.*;</font>
+<font color="#0000ff">import </font><font color="#000000">java.net.*;</font>
+<font color="#0000ff">import </font><font color="#000000">java.io.*;</font>
+<font color="#0000ff">public class </font><font color="#000000">URLRequestor </font><font color="#0000ff">extends </font><font color="#ff0000">Frame </font><font color="#000000">{</font>
+
+  <font color="#ff0000">TextField </font><font color="#000000">url;</font>
+  <font color="#ff0000">TextArea </font><font color="#000000">textDisplay;</font>
+
+  <font color="#0000ff">public static void </font><font color="#000000">main(</font><font color="#ff0000">String</font><font color="#000000">[] args) {</font>
+
+    <font color="#000000">URLRequestor a = </font><font color="#0000ff">new </font><font color="#000000">URLRequestor();  </font>
+    <font color="#000000">a.show();</font>
+
+  <font color="#000000">}</font>
+
+  <font color="#0000ff">public </font><font color="#000000">URLRequestor() {</font>
+
+    <font color="#0000ff">super</font><font color="#000000">(</font><font color="#ff00ff">&quot;URL Requestor&quot;</font><font color="#000000">);</font>
+    <font color="#000000">resize(</font><font color="#800080">500</font><font color="#000000">,</font><font color="#800080">300</font><font color="#000000">);</font>
+    <font color="#000000">move(</font><font color="#800080">50</font><font color="#000000">,</font><font color="#800080">50</font><font color="#000000">);</font>
+    <font color="#000000">init();</font>
+
+  <font color="#000000">}</font>
+
+  <font color="#0000ff">public void </font><font color="#000000">init() {</font>
+
+    <font color="#000000">textDisplay = </font><font color="#0000ff">new </font><font color="#ff0000">TextArea</font><font color="#000000">();</font>
+    <font color="#000000">add(</font><font color="#ff00ff">&quot;Center&quot;</font><font color="#000000">, textDisplay);</font>
+    <font color="#008000">// We don't want the buttons and fields in the north and south</font>
+    <font color="#008000">// to fill their respertive sections so we'll add Panels there</font>
+    <font color="#008000">// and use FlowLayout's in the Panels</font>
+    <font color="#ff0000">Panel </font><font color="#000000">SouthPanel = </font><font color="#0000ff">new </font><font color="#ff0000">Panel</font><font color="#000000">();</font>
+    <font color="#ff0000">Panel </font><font color="#000000">NorthPanel = </font><font color="#0000ff">new </font><font color="#ff0000">Panel</font><font color="#000000">();</font>
+    <font color="#000000">NorthPanel.setLayout(</font><font color="#0000ff">new </font><font color="#ff0000">FlowLayout</font><font color="#000000">(</font><font color="#ff0000">FlowLayout</font><font color="#000000">.LEFT));</font>
+    <font color="#000000">SouthPanel.add(</font><font color="#0000ff">new </font><font color="#ff0000">Button</font><font color="#000000">(</font><font color="#ff00ff">&quot;Get URL&quot;</font><font color="#000000">));</font>
+    <font color="#000000">NorthPanel.add(</font><font color="#ff00ff">&quot;North&quot;</font><font color="#000000">, </font><font color="#0000ff">new </font><font color="#ff0000">Label</font><font color="#000000">(</font><font color="#ff00ff">&quot;URL: &quot;</font><font color="#000000">));</font>
+    <font color="#000000">url = </font><font color="#0000ff">new </font><font color="#ff0000">TextField</font><font color="#000000">(</font><font color="#800080">40</font><font color="#000000">);</font>
+    <font color="#000000">NorthPanel.add(</font><font color="#ff00ff">&quot;North&quot;</font><font color="#000000">, url);</font>
+    <font color="#000000">add(</font><font color="#ff00ff">&quot;South&quot;</font><font color="#000000">, SouthPanel);</font>
+    <font color="#000000">add(</font><font color="#ff00ff">&quot;North&quot;</font><font color="#000000">, NorthPanel);</font>
+
+  <font color="#000000">}</font>
+
+  <font color="#0000ff">public boolean </font><font color="#000000">action(</font><font color="#ff0000">Event </font><font color="#000000">e, </font><font color="#ff0000">Object </font><font color="#000000">o) {</font>
+
+    <font color="#0000ff">if </font><font color="#000000">(e.target </font><font color="#0000ff">instanceof </font><font color="#ff0000">Button</font><font color="#000000">) {</font>
+      <font color="#000000">fetchURL(url.getText());</font>
+      <font color="#0000ff">return true</font><font color="#000000">;</font>
+    <font color="#000000">}</font>
+    <font color="#0000ff">else if </font><font color="#000000">(e.target == url) {</font>
+      <font color="#000000">fetchURL(url.getText());</font>
+      <font color="#0000ff">return true</font><font color="#000000">;</font>
+    <font color="#000000">}</font>
+    <font color="#0000ff">else </font><font color="#000000">{</font>
+      <font color="#0000ff">return false</font><font color="#000000">;</font>
+    <font color="#000000">}</font>
+
+  <font color="#000000">}</font>
+
+ <font color="#0000ff">public void </font><font color="#000000">fetchURL(</font><font color="#ff0000">String </font><font color="#000000">s) {</font>
+
+   <font color="#0000ff">try </font><font color="#000000">{</font>
+     <font color="#ff0000">URL </font><font color="#000000">u = </font><font color="#0000ff">new </font><font color="#ff0000">URL</font><font color="#000000">(s);</font>
+     <font color="#0000ff">try </font><font color="#000000">{</font>
+       <font color="#ff0000">Object </font><font color="#000000">o = u.getContent();</font>
+       <font color="#0000ff">if </font><font color="#000000">(o </font><font color="#0000ff">instanceof </font><font color="#ff0000">InputStream</font><font color="#000000">)  {</font>
+         <font color="#000000">showText((</font><font color="#ff0000">InputStream</font><font color="#000000">) o);</font>
+       <font color="#000000">}</font>
+       <font color="#0000ff">else </font><font color="#000000">{</font>
+         <font color="#000000">showText(o.toString());</font>
+       <font color="#000000">}</font>
+     <font color="#000000">}</font>
+     <font color="#0000ff">catch </font><font color="#000000">(</font><font color="#ff0000">IOException </font><font color="#000000">e) {</font>
+       <font color="#000000">showText(</font><font color="#ff00ff">&quot;Could not connect to &quot; </font><font color="#000000">+ u.getHost());</font>
+     <font color="#000000">}</font>
+     <font color="#0000ff">catch </font><font color="#000000">(</font><font color="#ff0000">NullPointerException </font><font color="#000000">e) {</font>
+       <font color="#000000">showText(</font><font color="#ff00ff">&quot;There was a problem with the content&quot;</font><font color="#000000">);</font>
+     <font color="#000000">}</font>
+   <font color="#000000">}</font>
+   <font color="#0000ff">catch </font><font color="#000000">(</font><font color="#ff0000">MalformedURLException </font><font color="#000000">e) {</font>
+     <font color="#000000">showText(url.getText() + </font><font color="#ff00ff">&quot; is not a valid URL&quot;</font><font color="#000000">);</font>
+   <font color="#000000">}</font>
+
+ <font color="#000000">}</font>
+
+ <font color="#0000ff">void </font><font color="#000000">showText(</font><font color="#ff0000">String </font><font color="#000000">s) {</font>
+   <font color="#000000">textDisplay.setText(s);</font>
+ <font color="#000000">}</font>
+
+ <font color="#0000ff">void </font><font color="#000000">showText(</font><font color="#ff0000">InputStream </font><font color="#000000">is) {</font>
+
+   <font color="#ff0000">String </font><font color="#000000">nextline;</font>
+
+   <font color="#000000">textDisplay.setText(</font><font color="#ff00ff">&quot;&quot;</font><font color="#000000">);</font>
+   <font color="#0000ff">try </font><font color="#000000">{</font>
+     <font color="#ff0000">DataInputStream </font><font color="#000000">dis = </font><font color="#0000ff">new </font><font color="#ff0000">DataInputStream</font><font color="#000000">(is);</font>
+     <font color="#0000ff">while</font><font color="#000000">((nextline = dis.readLine()) != </font><font color="#0000ff">null</font><font color="#000000">) {</font>
+       <font color="#000000">textDisplay.appendText(nextline + </font><font color="#ff00ff">&quot;\n&quot;</font><font color="#000000">);</font>
+     <font color="#000000">}</font>
+   <font color="#000000">}</font>
+   <font color="#0000ff">catch </font><font color="#000000">(</font><font color="#ff0000">IOException </font><font color="#000000">e) {</font>
+     <font color="#000000">textDisplay.appendText(e.toString());</font>
+   <font color="#000000">}</font>
+
+ <font color="#000000">}</font>
+
+<font color="#000000">}</font>
+</font>
+</pre>
+</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="to create the image view.shtml" title="to create the image view">previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="index.shtml"title="home page">Next</a></td>
+  </tr>
+</table>
+<!-- Footer Start-->	
+		           </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>

@@ -1,0 +1,227 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>Sub-classing in Java Programming</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="Sub-classing in Java Programming.;Method Overriding in Java Programming;Calling Super-class Methods in Java Programming;Calling Super-class Constructors in Java Programming;Abstract Class in Java Programming" >
+<meta name="keywords" CONTENT="Sub-classing in Java Programming.;Method Overriding in Java Programming;Calling Super-class Methods in Java Programming;Calling Super-class Constructors in Java Programming;Abstract Class in Java Programming">
+
+<!-- header start-->
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+	<BODY>
+		<?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+        <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>Core Java FAQ Tutorials</h1>
+            <div class="link_menu"><br><div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+            <img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+            <a href="/java/">Java</a>
+			<img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/java/corejava/">Core Java</a>
+  <img src="/images/left_menu_bullet.gif" width="11" height="6"> <a href="/java/corejava/faqs/">FAQS</a>
+  </div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/corejava/collections/commonfiles/leftmenu.shtml'); ?></td>                                           
+                        <td style="80%" valign="top">
+
+                        <div class="main_content"> 	 
+
+	<!-- header End-->	
+
+<div class="heading">Sub-classing in Java Programming</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="corejavafaqs4.shtml" title="Important Core Classes( javaString, Wrappers)">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="index.shtml" title="Home">Next</a></td>
+  </tr> 
+</table>
+
+<p>A Java subclass is a class which inherits a method or methods from a Java superclass.</p>
+
+<div class="code">
+<PRE>
+<FONT COLOR="#0000ff">public class </FONT><FONT COLOR="#000000">Demo {</FONT>
+<FONT COLOR="#0000ff">public void </FONT><FONT COLOR="#000000">message() {</FONT>
+<FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.println(</FONT><FONT COLOR="#ff00ff">"A very simple example of overriding"</FONT><FONT COLOR="#000000">);</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#0000ff">public class </FONT><FONT COLOR="#000000">Advice </FONT><FONT COLOR="#0000ff">extends </FONT><FONT COLOR="#000000">Demo {</FONT>
+<FONT COLOR="#008000">//subclass in java programming.</FONT>
+<FONT COLOR="#008000">// override concept is utilize.</FONT>
+<FONT COLOR="#0000ff">public void </FONT><FONT COLOR="#000000">message() {</FONT>
+<FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.println(</FONT><FONT COLOR="#ff00ff">"Warning: overriding can be done."</FONT><FONT COLOR="#000000">);</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#000000">}</FONT>
+</PRE>
+</div>
+
+<div class="heading">Method Overriding in Java Programming</div>
+<p>overriding is ability to define a behaviour that's specific to the sub class type. Which means a subclass can implement a parent calss method based on its requirement.</p>
+<p><b>Rules for method overriding:</b></p>
+<ol>
+<li>
+The argument list should be exactly the same as that of the overridden method.
+</li>
+<li>
+The return type should be the same or a subtype of the return type declared in the original overridden method in the super class.
+</li>
+<li>
+The access level cannot be more restrictive than the overridden method's access level. For example: if the super class method is declared public then the overriding method in the sub class cannot be either private or public. However the access level can be less restrictive than the overridden method's access level.</li>
+<li>
+Instance methods can be overridden only if they are inherited by the subclass.
+</li>
+<li>
+A method declared final cannot be overridden.
+</li>
+<li>
+A method declared static cannot be overridden but can be re-declared.
+</li>
+<li>
+If a method cannot be inherited then it cannot be overridden.
+</li>
+<li>
+A subclass within the same package as the instance's superclass can override any superclass method that is not declared private or final.
+</li>
+<li>
+A subclass in a different package can only override the non-final methods declared public or protected.
+</li>
+<li>
+An overriding method can throw any uncheck exceptions, regardless of whether the overridden method throws exceptions or not. However the overridden method should not throw checked exceptions that are new or broader than the ones declared by the overridden method. The overriding method can throw narrower or fewer exceptions than the overridden method.</li>
+<li>
+Constructors cannot be overridden.
+</li>
+<li>
+When invoking a superclass version of an overridden method the super keyword is used.
+</li>
+</ol>
+
+<h3>Example</h3>
+<div class="code">
+<PRE>
+<FONT COLOR="#0000ff">class </FONT><FONT COLOR="#000000">Animal{</FONT>
+<FONT COLOR="#0000ff">public void </FONT><FONT COLOR="#000000">move(){ </FONT><FONT COLOR="#008000">//superclass</FONT>
+<FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.println(</FONT><FONT COLOR="#ff00ff">"Animals can move"</FONT><FONT COLOR="#000000">);</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#0000ff">class </FONT><FONT COLOR="#000000">Dog </FONT><FONT COLOR="#0000ff">extends </FONT><FONT COLOR="#000000">Animal{ </FONT><FONT COLOR="#008000">//interface concept work behind</FONT>
+<FONT COLOR="#0000ff">public void </FONT><FONT COLOR="#000000">move(){ </FONT><FONT COLOR="#008000">//subclass</FONT>
+<FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.println(</FONT><FONT COLOR="#ff00ff">"Dogs can walk and run"</FONT><FONT COLOR="#000000">);</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#0000ff">public class </FONT><FONT COLOR="#000000">TestDog{</FONT>
+<FONT COLOR="#0000ff">public static void </FONT><FONT COLOR="#000000">main(</FONT><FONT COLOR="#ff0000">String </FONT><FONT COLOR="#000000">args[]){</FONT>
+<FONT COLOR="#000000">Animal a = </FONT><FONT COLOR="#0000ff">new </FONT><FONT COLOR="#000000">Animal(); </FONT><FONT COLOR="#008000">// Animal reference and object</FONT>
+<FONT COLOR="#000000">Animal b = </FONT><FONT COLOR="#0000ff">new </FONT><FONT COLOR="#000000">Dog(); </FONT><FONT COLOR="#008000">// Animal reference but Dog object</FONT>
+<FONT COLOR="#000000">a.move(); </FONT><FONT COLOR="#008000">// runs the method in Animal class</FONT>
+<FONT COLOR="#000000">b.move(); </FONT><FONT COLOR="#008000">//Runs the method in Dog class</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#000000">}</FONT>
+</PRE>
+</div>
+
+<p><h3>Output:</h3></p>
+<div class="output">
+<pre>
+Animals can move
+Dogs can walk and run
+</pre>
+</div>
+
+<div class="heading">Calling Super-class Methods in Java Programming</div>
+<p>Super class method calling by interface (use keyword extend) and by constructor (define into super class).</p>
+<div class="heading">Calling Super-class Constructors in Java Programming</div>
+
+<h3>Example</h3>
+<div class="code">
+<PRE>
+<FONT COLOR="#0000ff">public class </FONT><FONT COLOR="#000000">box1 { </FONT><FONT COLOR="#008000">//super class</FONT>
+<FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">length; </FONT><FONT COLOR="#008000">//initialization value</FONT>
+<FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">breadth;</FONT>
+<FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">height;</FONT>
+<FONT COLOR="#0000ff">public int </FONT><FONT COLOR="#000000">getVolume() {</FONT>
+<FONT COLOR="#0000ff">return </FONT><FONT COLOR="#000000">(length * breadth * height);</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#000000">Box1() {</FONT>
+<FONT COLOR="#000000">length = </FONT><FONT COLOR="#800080">10</FONT><FONT COLOR="#000000">;</FONT>
+<FONT COLOR="#000000">breadth = </FONT><FONT COLOR="#800080">10</FONT><FONT COLOR="#000000">;</FONT>
+<FONT COLOR="#000000">height = </FONT><FONT COLOR="#800080">10</FONT><FONT COLOR="#000000">;</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#000000">Box1(</FONT><FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">l, </FONT><FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">b, </FONT><FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">h) {</FONT>
+<FONT COLOR="#000000">length = l;</FONT>
+<FONT COLOR="#000000">breadth = b;</FONT>
+<FONT COLOR="#000000">height = h;</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#0000ff">public static void </FONT><FONT COLOR="#000000">main(</FONT><FONT COLOR="#ff0000">String</FONT><FONT COLOR="#000000">[] args) {</FONT>
+<FONT COLOR="#000000">box1 boxObj1, boxObj2;</FONT>
+<FONT COLOR="#000000">boxObj1 = </FONT><FONT COLOR="#0000ff">new </FONT><FONT COLOR="#000000">box1();</FONT>
+<FONT COLOR="#000000">boxObj2 = </FONT><FONT COLOR="#0000ff">new </FONT><FONT COLOR="#000000">box(</FONT><FONT COLOR="#800080">10</FONT><FONT COLOR="#000000">, </FONT><FONT COLOR="#800080">20</FONT><FONT COLOR="#000000">, </FONT><FONT COLOR="#800080">30</FONT><FONT COLOR="#000000">);</FONT>
+<FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.println(</FONT><FONT COLOR="#ff00ff">"Volume of box1 is : " </FONT><FONT COLOR="#000000">+ boxObj1.getVolume());</FONT>
+<FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.println(</FONT><FONT COLOR="#ff00ff">"Volume of box1 is : " </FONT><FONT COLOR="#000000">+ boxObj2.getVolume());</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#000000">}</FONT>
+</PRE>
+</div>
+
+<div class="heading">Abstract Class in Java Programming</div>
+<p>To declare a class abstract, you simply use the abstract keyword in front of the class keyword at the beginning of the class declaration. There can be no objects of an abstract class. That is, an abstract class cannot be directly instantiated with the new operator. Such objects would be useless, because an abstract class is not fully defined. </p><p>Also, you cannot declare abstract constructors, or abstract static methods. Any subclass of an abstract class must either implement all of the abstract methods in the superclass, or be itself declared abstract. A Simple demonstration of abstract.</p>
+
+<h3>Example</h3>
+<div class="code">
+<PRE>
+<FONT COLOR="#0000ff">abstract class </FONT><FONT COLOR="#000000">A {</FONT>
+<FONT COLOR="#0000ff">abstract void </FONT><FONT COLOR="#000000">callme();</FONT>
+<FONT COLOR="#008000">// concrete methods are still allowed in abstract classes</FONT>
+<FONT COLOR="#0000ff">void </FONT><FONT COLOR="#000000">callmetoo() {</FONT>
+<FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.println(</FONT><FONT COLOR="#ff00ff">"This is a concrete method."</FONT><FONT COLOR="#000000">);</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#0000ff">class </FONT><FONT COLOR="#000000">B </FONT><FONT COLOR="#0000ff">extends </FONT><FONT COLOR="#000000">A {</FONT>
+<FONT COLOR="#0000ff">void </FONT><FONT COLOR="#000000">callme() {</FONT>
+<FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.println(</FONT><FONT COLOR="#ff00ff">"B's implementation of callme."</FONT><FONT COLOR="#000000">);</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#0000ff">class </FONT><FONT COLOR="#000000">AbstractDemo {</FONT>
+<FONT COLOR="#0000ff">public static void </FONT><FONT COLOR="#000000">main(</FONT><FONT COLOR="#ff0000">String </FONT><FONT COLOR="#000000">args[]) {</FONT>
+<FONT COLOR="#000000">B b = </FONT><FONT COLOR="#0000ff">new </FONT><FONT COLOR="#000000">B();</FONT>
+<FONT COLOR="#000000">b.callme();</FONT>
+<FONT COLOR="#000000">b.callmetoo();</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#000000">}</FONT>
+</PRE>
+</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="corejavafaqs4.shtml" title="Important Core Classes( javaString, Wrappers)">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="index.shtml" title="Home">Next</a></td>
+  </tr> 
+</table>
+
+<!-- Footer Start-->	
+
+		</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->

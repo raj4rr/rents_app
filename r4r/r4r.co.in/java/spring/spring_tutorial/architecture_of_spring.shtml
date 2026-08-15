@@ -1,0 +1,98 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD>
+<meta http-equiv="Content-Language" content="en-us">
+<TITLE>Spring architecture</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name="description" CONTENT="spring architecture - learn spring all topics with live examples and
+interview questions for beginners and freshers " >
+<meta name="keywords" CONTENT="Spring tutorial,architecture of spring,spring mvc architecture, spring architecture diagram,spring architecture overview, spring architecture flow
+spring architecture flow diagram,spring framework architecture, spring architecture tutorial">
+
+		<!-- header start-->	
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+     <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>Spring Tutorials</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+			<img src="/images/left_menu_bullet.gif"/> <a href="/java/spring/">Spring</a>
+
+       </div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/spring/commonfiles/leftmenucore.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content">
+<div class="heading">Architecture of Modern Spring Ecosystem</div>
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="basic_concept_of_spring.shtml" title="basic_concept_of_spring">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="modules_of_spring.shtml" title="modules_of_spring">Next</a></td>
+  </tr> 
+</table>
+
+<p>The Spring framework provides a comprehensive programming and configuration model for modern Java-based enterprise applications. The key element of Spring is infrastructural support at the application level: Spring focuses on the "plumbing" of enterprise applications so that teams can focus on application-level business logic, without unnecessary ties to specific deployment environments.</p>
+<p>Modern Spring is highly modular. While the core framework provides essential DI and AOP, developers typically compose their applications using higher-level <strong>Spring Boot Starters</strong>. Here is an overview of the modern Spring modular architecture:</p>
+
+<div class="heading">1. Core Container</div>
+<p>The Core Container provides the fundamental parts of the framework and consists of the Core, Beans, Context, and Expression Language modules:</p>
+<p><i>Beans & Core:</i> These modules provide the IoC (Inversion of Control) and Dependency Injection features. The <code>BeanFactory</code> is a sophisticated implementation of the factory pattern that separates configuration and dependencies from actual program logic.</p>
+<p><i>Context:</i> The <code>ApplicationContext</code> builds on the Core and Beans modules. It is a means to access objects in a framework-style manner, adding support for internationalization, event propagation, and resource loading.</p>
+<p><i>SpEL (Spring Expression Language):</i> A powerful expression language for querying and manipulating an object graph at runtime (e.g., used extensively in <code>@Value</code> annotations for configuration injection).</p>
+
+<div class="heading">2. Web & Reactive Architecture</div>
+<p>The web layer consists of the Web, WebMVC, WebFlux, and WebSocket modules. Modern Spring gives developers the choice between traditional blocking APIs and modern reactive/non-blocking APIs:</p>
+<p><i>Spring Web MVC:</i> The original web framework built on the Servlet API. It provides a clean separation between domain model code and web forms, and integrates with all other features of the Spring Framework.</p>
+<p><i>Spring WebFlux:</i> Introduced in Spring 5, this is a fully reactive, non-blocking web framework built on Project Reactor. It is designed to handle massive concurrency with a small number of threads, using Netty or Undertow.</p>
+<p><i>WebSockets:</i> Provides support for two-way communication between the client and the server, essential for real-time applications.</p>
+
+<div class="heading">3. Data Access & Integration</div>
+<p>The Data Access layer consists of JDBC, ORM, OXM, JMS, and the Transaction module. However, modern applications primarily use the <strong>Spring Data</strong> umbrella project:</p>
+<p><i>Spring Data JPA:</i> Greatly simplifies the implementation of data access layers by generating repository code on the fly based on interface definitions. It integrates seamlessly with Hibernate.</p>
+<p><i>Spring Data MongoDB / Redis / Cassandra:</i> First-class support for NoSQL databases, using the same familiar Repository pattern used for relational databases.</p>
+<p><i>Transaction Management:</i> Supports programmatic and declarative (<code>@Transactional</code>) transaction management for classes that implement special interfaces and for all your POJOs.</p>
+
+<div class="heading">4. Security & Cloud (The Broader Ecosystem)</div>
+<p>A modern Spring architecture is rarely just the "core" framework. It typically includes:</p>
+<p><i>Spring Security:</i> A powerful and highly customizable authentication and access-control framework. It is the de facto standard for securing Spring-based applications (OAuth2, JWT, SAML).</p>
+<p><i>Spring Cloud:</i> A suite of tools for the discovery, routing, and deployment of microservices to the cloud. It provides solutions for service registry, load balancing, circuit breakers, and API gateways.</p>
+<p><i>AOT (Ahead of Time) Compilation:</i> In Spring 6 and Spring Boot 3, the architecture supports GraalVM native images, allowing applications to compile to native executables that start in milliseconds and use a fraction of the memory.</p>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="basic_concept_of_spring.shtml" title="basic_concept_of_spring">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="modules_of_spring.shtml" title="modules_of_spring">Next</a></td>
+  </tr> 
+</table>
+
+		</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->

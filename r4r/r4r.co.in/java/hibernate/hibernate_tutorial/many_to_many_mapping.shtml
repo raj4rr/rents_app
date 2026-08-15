@@ -1,0 +1,196 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<HTML><HEAD><TITLE>MANY to Many Mapping In Hibernate</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv="content-type" content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="MANY to Many Mapping In Hibernate tutorial learn easily and shortly with hibernate tutorial,hibernate
+Examples,hibernate interview questions Step by step covers all topics of hibernate " >
+<meta name="keywords" CONTENT="Hibernate Mapping, Many To Many,  One To One Mapping tutorial, Hibernate Mapping Examples,
+Mapping Types, Many to One Mapping ,One to Many Mapping object relation mapping(ORM),">
+
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<META http-equiv="Content-Language" content="en-us">
+<link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+<link href="/css/main.css" rel="stylesheet" type="text/css" />
+</HEAD>
+<BODY>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>Hibernate</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+            <img src="/images/left_menu_bullet.gif"/> <a href="/java/hibernate/">Hibernate</a>
+             </div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top">
+                            <?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/hibernate/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                       <div class="main_content">  	 
+
+      <div class="heading">Many to Many Mapping</div>
+
+      <table id="indexing">
+
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="one_to_one_mapping.shtml" title="One-to-One Mapping">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="hql.shtml" title="HQL (Hibernate Query Language)">Next</a></td>
+  </tr> 
+</table>
+      <p>
+          A Many-to-Many mapping represents a relationship where multiple instances of one entity are associated with multiple instances of another entity. A classic example is the relationship between <code>Student</code> and <code>Course</code>. A student can enroll in multiple courses, and a course can have multiple students.
+      </p>
+      
+      <p>
+          In a relational database, this is implemented using a <strong>Join Table</strong> (also known as a junction or link table). The join table holds the foreign keys to both tables.
+      </p>
+
+      <h3>Modern JPA Approach: @ManyToMany Annotation</h3>
+      <p>
+          With modern Hibernate, we use the <code>@ManyToMany</code> and <code>@JoinTable</code> annotations to configure this relationship.
+      </p>
+
+      <div class="heading">1. The Owning Side (Student)</div>
+      <p>
+          One side of the relationship needs to be the "owner". This side will define the <code>@JoinTable</code> to specify the names of the join table and its foreign key columns.
+      </p>
+      
+      <div class="code">
+<pre><code>
+import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
+
+@Entity
+@Table(name = "Student")
+public class Student {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    private String name;
+
+    // The @JoinTable defines the junction table 'student_course'
+    @ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE })
+    @JoinTable(
+        name = "student_course", 
+        joinColumns = { @JoinColumn(name = "student_id") }, 
+        inverseJoinColumns = { @JoinColumn(name = "course_id") }
+    )
+    private Set&lt;Course&gt; courses = new HashSet&lt;&gt;();
+
+    // Utility methods to keep both sides of the relationship in sync
+    public void addCourse(Course course) {
+        courses.add(course);
+        course.getStudents().add(this);
+    }
+
+    public void removeCourse(Course course) {
+        courses.remove(course);
+        course.getStudents().remove(this);
+    }
+    
+    // Getters and Setters...
+}
+</code></pre>
+      </div>
+
+      <div class="heading">2. The Inverse Side (Course)</div>
+      <p>
+          The inverse side of the relationship uses the <code>mappedBy</code> attribute on the <code>@ManyToMany</code> annotation. This tells Hibernate that the <code>Student</code> entity is responsible for managing the join table.
+      </p>
+
+      <div class="code">
+<pre><code>
+import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
+
+@Entity
+@Table(name = "Course")
+public class Course {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    private String title;
+
+    // 'mappedBy' indicates this is the inverse side
+    @ManyToMany(mappedBy = "courses")
+    private Set&lt;Student&gt; students = new HashSet&lt;&gt;();
+
+    // Getters and Setters...
+}
+</code></pre>
+      </div>
+
+      <div class="heading">Persisting the Data</div>
+      <p>
+          When you want to save the data, you just interact with the entities and use your Hibernate Session or EntityManager.
+      </p>
+      
+      <div class="code">
+<pre><code>
+Session session = HibernateUtil.getSessionFactory().openSession();
+Transaction tx = session.beginTransaction();
+
+Student student1 = new Student();
+student1.setName("John Doe");
+
+Course course1 = new Course();
+course1.setTitle("Mathematics");
+
+Course course2 = new Course();
+course2.setTitle("Computer Science");
+
+// Use the utility method to keep both sides in sync
+student1.addCourse(course1);
+student1.addCourse(course2);
+
+// Save the entities
+session.save(student1);
+session.save(course1);
+session.save(course2);
+
+tx.commit();
+session.close();
+</code></pre>
+      </div>
+      <p>
+          Hibernate will automatically generate the required SQL to insert records into the <code>Student</code>, <code>Course</code>, and the <code>student_course</code> join table!
+      </p>
+
+     <table id="indexing">
+
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="one_to_one_mapping.shtml" title="One-to-One Mapping">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="hql.shtml" title="HQL (Hibernate Query Language)">Next</a></td>
+  </tr> 
+</table>
+
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+
+                <?php @include($_SERVER['DOCUMENT_ROOT'] . '/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>

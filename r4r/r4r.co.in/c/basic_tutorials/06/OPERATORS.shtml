@@ -1,0 +1,278 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>C Tutorial on HIERARCHY OF OPERATORS</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="Learn HIERARCHY OF OPERATORS,ASSOCIATIVITY OF OPERATOR,LOGICAL OPERATORS,USE OF LOGICAL OPERATORS,BITWISE OPERATOR,CONDITIONAL OPERATORS,Arrays,Structures,Pointers,Storage class,Loops,Functions,Data types,C constants,Union,Preprocessor" >
+<meta name="keywords" CONTENT="HIERARCHY OF OPERATORS,ASSOCIATIVITY OF OPERATOR,LOGICAL OPERATORS,USE OF LOGICAL OPERATORS,BITWISE OPERATOR,CONDITIONAL OPERATORS,Arrays,Structures,Pointers,Storage class,Loops,Functions,Data types,C constants,Union,Preprocessor,Interview questions and answers">
+
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+     <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>C Programming language</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a><img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/c/">C </a>
+              <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/c/basic_tutorials/06/">C Tutorial</a></div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/c/commonfiles/leftmenu.shtml'); ?></td>
+
+                       <td style="80%" valign="top">
+                        <div class="main_content"> 
+
+	<!-- header End-->	
+
+     <div class="heading">Operators in c</div>
+
+<table id="indexing">
+  <tr>
+   <td style="width:33%; text-align:left;"><a href="INTEGER_AND_FLOAT_CONVERSION.shtml" title="Integer and Float conversion in c">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="DECISION_CONTROL_STRUCTURE.shtml" title="Decision control in c: If statement">Next</a></td>
+  </tr>
+</table>
+
+<h2>Hierarchy of operators</h2>
+<p>There are some operators which are given bellow with their mean. The higher the position of an operator is, higher is its priority.</p>
+
+<div class="table_content">
+<table>
+<tr>
+  <td class="heading" style="width:50%;">Operator</td> 
+  <td class="heading" style="width:50%;">Type</td>
+</tr>
+<tr><td class="alternate_heading2">!</td><td class="alternate_heading1">Logical NOT</td></tr>
+<tr><td class="alternate_heading2">*/ %</td><td class="alternate_heading1">Arithmetic and modulus</td></tr>
+<tr><td class="alternate_heading2">+ -</td><td class="alternate_heading1">Arithmetic</td></tr>
+<tr><td class="alternate_heading2"><> <=>=</td><td class="alternate_heading1">Relational</td></tr>
+<tr><td class="alternate_heading2">==!=</td><td class="alternate_heading1">Relational</td></tr>
+<tr><td class="alternate_heading2">+ -</td><td class="alternate_heading1">Arithmetic</td></tr>
+<tr><td class="alternate_heading2"><> <=>=</td><td class="alternate_heading1">Relational</td></tr>
+<tr><td class="alternate_heading2">||</td><td class="alternate_heading1">Logical OR</td></tr>
+<tr><td class="alternate_heading2">=</td><td class="alternate_heading1">Assignment</td></tr>
+</table>
+</div>
+
+<h2>Associativity of operator</h2>
+<p>When an expression contains two operators of equal priority the tie between them is settled using the associatively of the operators.</p>
+<p>Associatively can be of two types&#8212;Left to Right or Right to Left.</p>
+<p>Left to Right associatively means that the left operand must be unambiguous. Unambiguous in what sense? It must not be involved in evaluation of any other sub-expression. Similarly, in case of Right to Left associatively the right operand must be unambiguous. Let us understand this with an example.</p>
+<p>Consider the expression</p>
+<div class="code">
+<PRE>
+<FONT COLOR="#000000">a = </FONT><FONT COLOR="#800080">3 </FONT><FONT COLOR="#000000">/ </FONT><FONT COLOR="#800080">2 </FONT><FONT COLOR="#000000">* </FONT><FONT COLOR="#800080">5 </FONT><FONT COLOR="#000000">;</FONT>
+</PRE>
+</div>
+
+<p>Here there is a tie between operators of same priority, that is between / and *. This tie is settled using the associatively of / and *. But both enjoy Left to Right associatively.</p>
+
+<h3>Logical operators</h3>
+<p>There are only three logical operator in C.</p>
+<div class="table_content">
+<table>
+<tr>
+  <td class="heading" style="width:50%;">Operator</td> 
+  <td class="heading" style="width:50%;">Type</td>
+</tr>
+<tr><td class="alternate_heading2">&&</td><td class="alternate_heading1">AND</td></tr>
+<tr><td class="alternate_heading2">||</td><td class="alternate_heading1">OR</td></tr>
+<tr><td class="alternate_heading2">!</td><td class="alternate_heading1">NOT</td></tr>
+</table>
+</div>
+
+<p>The first two operator allows two or more conditions to be combined in an if statement.</p>
+
+<p>The third logical operator is !(NOT) operator. This operator reverses the result of the expression evaluates to a non-zero 
+ value, then applying ! operator to it results into a 0.</p>
+
+<h2>Use of logical operators</h2>
+<p>C allows usage of three logical operators, namely, &&, || and !.These are to be read as 'AND' 'OR' and 'NOT' respectively. here we can take an example to under stand the logical operators which is given below:</p>
+<div class="code">
+<PRE>
+<FONT COLOR="#000000">main( )</FONT>
+<FONT COLOR="#000000">{</FONT>
+<FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">m1, m2, m3, m4, m5, per ;</FONT>
+<FONT COLOR="#000000">printf ( </FONT><FONT COLOR="#ff00ff">"Enter marks in five subjects " </FONT><FONT COLOR="#000000">) ;</FONT>
+<FONT COLOR="#000000">scanf ( </FONT><FONT COLOR="#ff00ff">"%d %d %d %d %d"</FONT><FONT COLOR="#000000">, &amp;m1, &amp;m2, &amp;m3, &amp;m4, &amp;m5 ) ;</FONT>
+<FONT COLOR="#000000">per = ( m1 + m2 + m3 + m4 + m5 ) / </FONT><FONT COLOR="#800080">5 </FONT><FONT COLOR="#000000">;</FONT>
+<FONT COLOR="#0000ff">if </FONT><FONT COLOR="#000000">( per &gt;= </FONT><FONT COLOR="#800080">60 </FONT><FONT COLOR="#000000">)</FONT>
+<FONT COLOR="#000000">printf ( </FONT><FONT COLOR="#ff00ff">"First division" </FONT><FONT COLOR="#000000">) ;</FONT>
+<FONT COLOR="#0000ff">if </FONT><FONT COLOR="#000000">( ( per &gt;= </FONT><FONT COLOR="#800080">50 </FONT><FONT COLOR="#000000">) &amp;&amp; ( per &lt; </FONT><FONT COLOR="#800080">60 </FONT><FONT COLOR="#000000">) )</FONT>
+<FONT COLOR="#000000">printf ( </FONT><FONT COLOR="#ff00ff">"Second division" </FONT><FONT COLOR="#000000">) ;</FONT>
+<FONT COLOR="#0000ff">if </FONT><FONT COLOR="#000000">( ( per &gt;= </FONT><FONT COLOR="#800080">40 </FONT><FONT COLOR="#000000">) &amp;&amp; ( per &lt; </FONT><FONT COLOR="#800080">50 </FONT><FONT COLOR="#000000">) )</FONT>
+<FONT COLOR="#000000">printf ( </FONT><FONT COLOR="#ff00ff">"Third division" </FONT><FONT COLOR="#000000">) ;</FONT>
+<FONT COLOR="#0000ff">if </FONT><FONT COLOR="#000000">( per &lt; </FONT><FONT COLOR="#800080">40 </FONT><FONT COLOR="#000000">)</FONT>
+<FONT COLOR="#000000">printf ( </FONT><FONT COLOR="#ff00ff">"Fail" </FONT><FONT COLOR="#000000">) ;</FONT>
+<FONT COLOR="#000000">}</FONT>
+</PRE>
+</div>
+
+<p>As can be seen from the second if statement, the &amp;&amp; operator is used to combine two conditions. 'Second division' gets printed if both the conditions evaluate to true.</p>
+<p>If one of the conditions evaluate to false then the whole thing is treated as false.</p>
+<p>By the above example we can understand the else if condition which is only the arrangement of else with if.</p>
+
+<h2>Bitwise operator</h2>
+<p>One of C's powerful features is a set of bit manipulation operators. These permit the programmer to access and manipulate individual bits 
+ within a piece of data. The various Bitwise Operators available in C are shown below:</p>
+
+ <div class="table_content">
+<table>
+<tr>
+  <td class="heading" style="width:50%;">Operator</td> 
+  <td class="heading" style="width:50%;">Meaning</td>
+</tr>
+<tr><td class="alternate_heading2">~</td><td class="alternate_heading1">one's compliment</td></tr>
+<tr><td class="alternate_heading2">>></td><td class="alternate_heading1">right shift</td></tr>
+<tr><td class="alternate_heading2"><< </td><td class="alternate_heading1">left shift</td></tr>
+<tr><td class="alternate_heading2">& </td><td class="alternate_heading1">bitwise AND</td></tr>
+<tr><td class="alternate_heading2">|</td><td class="alternate_heading1">bitwise OR</td></tr>
+<tr><td class="alternate_heading2">^</td><td class="alternate_heading1">bitwise XOR (exlucive OR)</td></tr>
+</table>
+</div>
+
+<p>These operators can operate upon ints and chars but not on floats and doubles. Before moving on to the details of the operators.</p>
+<h2>one's compliment operator</h2>
+<p>On taking one's complement of a number, all 1's present in the number are changed to 0's and all 0's are changed to 1's. For example one's complement of 1010 is 0101. Similarly, one's complement of 1111 is 0000.</p>
+
+<h2>right shift operator</h2>
+<p>The right shift operator is represented by &gt;&gt;. It needs two operands. It shifts each bit in its left operand to the right. The number of places the bits are shifted depends on the number following the operator (i.e. its right operand).</p>
+<p>For example, if the variable ch contains the bit pattern 11010111, then, ch &gt;&gt; 1 would give 01101011 and ch &gt;&gt; 2 would give 00110101.</p>
+
+<h2>left shift operator</h2>
+<p>This is similar to the right shift operator, the only difference being that the bits are shifted to the left, and for each bit shifted, a 0 is added to the right of the number.</p>
+
+<h2>bitwise AND operator</h2>
+ <p>This operator is represented as &amp;. Remember it is different than &&, the logical AND operator. The & operator operates on two operands. While operating upon these two operands they are compared on a bit-by-bit basis. Hence both the operands must be of the same type (either char or int). The second operand is often called an AND mask. The &amp; operator operates on a pair of bits to yield a resultant bit. we can make a truth table for this operator which is given below:</p>
+
+<div class="table_content">
+<table>
+<tr>
+  <td class="heading" style="width:33%;">&</td> 
+  <td class="heading" style="width:33%;">0</td>
+  <td class="heading" style="width:34%;">1</td> 
+</tr>
+<tr><td class="alternate_heading2">0</td><td class="alternate_heading1">0</td></td><td class="alternate_heading1">1</td></tr>
+<tr><td class="alternate_heading2">1</td><td class="alternate_heading1">0</td></td><td class="alternate_heading1">1</td></tr>
+</table>
+</div>
+
+<p>bitwise OR operator- Another important bitwise operator is the OR operator which is represented as |. The rules that govern the value of the resulting bit obtained after ORing of two bits is shown in the truth table below:</p>
+
+<div class="table_content">
+<table>
+<tr>
+  <td class="heading" style="width:33%;">|</td> 
+  <td class="heading" style="width:33%;">0</td>
+  <td class="heading" style="width:34%;">1</td> 
+</tr>
+<tr><td class="alternate_heading2">1</td><td class="alternate_heading1">0</td></td><td class="alternate_heading1">1</td></tr>
+<tr><td class="alternate_heading2">1</td><td class="alternate_heading1">1</td></td><td class="alternate_heading1">0</td></tr>
+</table>
+</div>
+
+<p>Using the Truth table confirm the result obtained on ORing the two operands as shown below. 11010000 Original bit pattern</p>
+<p>00000111 OR mask<br>
+ -------------<br>
+ 11010111 Resulting bit pattern</p>
+
+<p>Bitwise OR operator is usually used to put ON a particular bit in a number.</p>
+
+<h2>bitwise XOR operator</h2>
+<p>The XOR operator is represented as ^ and is also called an Exclusive OR Operator. The OR operator returns 1, when any one of the two bits or both the bits are 1, whereas XOR returns 1 only if one of the two bits is 1. The truth table for the XOR operator is given below:</p>
+
+<div class="table_content">
+<table>
+<tr>
+  <td class="heading" style="width:33%;">^</td> 
+  <td class="heading" style="width:33%;">0</td>
+  <td class="heading" style="width:34%;">1</td> 
+</tr>
+<tr><td class="alternate_heading2">0</td><td class="alternate_heading1">0</td></td><td class="alternate_heading1">1</td></tr>
+<tr><td class="alternate_heading2">1</td><td class="alternate_heading1">1</td></td><td class="alternate_heading1">0</td></tr>
+</table>
+</div>
+
+<p>XOR operator is used to toggle a bit ON or OFF. A number XORed with another number twice gives the original number.</p>
+
+<h2>Conditional operators</h2>
+<p>The conditional operators ? and : are sometimes called ternary operators since they take three arguments. In fact, they form a kind of foreshortened if-then-else. Their general form is</p>
+<div class="code">
+<HTML>
+<PRE>
+  <FONT COLOR="#000000">expression expression </FONT><FONT COLOR="#800080">2 </FONT><FONT COLOR="#000000">: expression </FONT><FONT COLOR="#800080">3</FONT>
+</PRE>
+</div>
+
+<p>the mean of the above form is ''if expression1 is true then the value returned will be expression2 otherwise the value returned will be expression3.</p>
+<p>The following points may be noted about the conditional operators:</p>
+<ol>
+  <li>It's not necessary that the conditional operators should be used only in arithmetic statements. This is illustrated in the following examples:
+  <div class="code">
+<PRE>
+<FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">i ;</FONT>
+<FONT COLOR="#000000">scanf ( </FONT><FONT COLOR="#ff00ff">"%d"</FONT><FONT COLOR="#000000">, &amp;i ) ;</FONT>
+<FONT COLOR="#000000">( i == </FONT><FONT COLOR="#800080">1 </FONT><FONT COLOR="#000000">? printf ( </FONT><FONT COLOR="#ff00ff">"Amit" </FONT><FONT COLOR="#000000">) : printf ( </FONT><FONT COLOR="#ff00ff">"All and sundry" </FONT><FONT COLOR="#000000">) ) ;</FONT>
+</PRE>
+  </div>
+  </li>
+
+  <li>The conditional operators can be nested as shown below:
+  <div class="code">
+<PRE>
+  <FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">big, a, b, c ;</FONT>
+  <FONT COLOR="#000000">big = ( a &gt; b ? ( a &gt; c ? </FONT><FONT COLOR="#800080">3</FONT><FONT COLOR="#000000">: </FONT><FONT COLOR="#800080">4 </FONT><FONT COLOR="#000000">) : ( b &gt; c ? </FONT><FONT COLOR="#800080">6</FONT><FONT COLOR="#000000">: </FONT><FONT COLOR="#800080">8 </FONT><FONT COLOR="#000000">) ) ;</FONT>
+</PRE>
+  </div>
+  <li>Check out the following conditional expression:
+  <div class="code">
+<PRE>
+ <FONT COLOR="#000000">a &gt; b ? g = a : g = b ;</FONT>
+</PRE>
+  </div>
+  </li>
+</ol>
+
+<p>This will give you an error Lvalue Required. The error can be overcome by enclosing the statement in the : part within a pair of parenthesis. This is shown below:<p>
+<div class="code">
+<PRE>
+ <FONT COLOR="#000000">a &gt; b ? g = a : ( g = b ) ;</FONT>
+</PRE>
+</div>
+
+<p>In absence of parentheses the compiler believes that b is being assigned to the result of the expression to the left of second =. Hence it reports an error.</p>
+<p> The limitation of the conditional operators is that after the ? or after the : only one C statement can occur. In practice rarely is this the requirement. Therefore, in serious C programming conditional operators arent as frequently used as the if-else.</p>
+
+<table id="indexing">
+  <tr>
+   <td style="width:33%; text-align:left;"><a href="INTEGER_AND_FLOAT_CONVERSION.shtml" title="Integer and Float conversion in c">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="DECISION_CONTROL_STRUCTURE.shtml" title="Decision control in c">Next</a></td>
+  </tr>
+</table>
+
+<!--Footer  --> 
+   </div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>

@@ -1,0 +1,116 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>Using TOP keyword,Using DISTINCT keyword</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="Using TOP keyword,Using DISTINCT keyword,TOP keyword,DISTINCT keyword" >
+<meta name="keywords" CONTENT="Using TOP keyword,Using DISTINCT keyword,TOP keyword,DISTINCT keyword">
+
+<!--header start-->
+
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>DATABASE & SQL/PLSQL</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a><img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+			<a href="/sql/">SQL </a>
+              </div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/sql/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	  
+
+                        	                        	<!-- Header End-->	
+    <div class="heading">Limits the rows by using</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="Is_null.shtml" title="IS NULL and IS NOT NULL keywords &amp; ORDER BY Clause">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="aggregate.shtml" title="Using Aggregate Functions">Next</a></td>
+  </tr>
+</table>                   
+<h3>Using TOP keyword</h3>
+
+<p>The TOP clause used with the SELECT statement. It is used to limits the number of rows returned in the result set</p>
+<div class="code">
+<pre>
+SELECT [TOP n] column_mame
+FROM table_name
+WHERE search_conditions 
+</pre>
+</div>
+<p>'n'=number of rows that you want to retrieve.</p>
+<h3>Example</h3>
+<div class="code">
+<pre>
+<font face="Courier New">
+SELECT TOP 5 pub_id,pub_name,country
+FROM publishers
+WHERE country LIKE 'U%'
+ORDER BY pub_id DESC
+</font>
+</pre>
+</div>
+<p>Returns all top 5 rows ,pub_id, pub_name and country,& from the publishers table in descending order & with respect to pub_id.</p>
+
+<h3>Using DISTINCT keyword</h3>
+
+<p>It also used to limit the result set. The DISTINCT keyword remove the duplicate row from the returned result set. It used with the SELECT statement.</p>
+<div class="code">
+<pre>
+SELECT  DISTINCTcolumn_mame
+FROM table_name
+WHERE search_conditions 
+</pre>
+</div>
+
+<h3> Example:</h3>
+<div class="code">
+<pre>
+SELECT DISTINCT country
+FROM publishers
+WHERE city LIKE 'B%'
+</pre>
+</div>
+
+<p>Return country name which started with a 'B' alphabet but no repetition, means no duplicate value of country.</p>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="Is_null.shtml" title="IS NULL and IS NOT NULL keywords &amp; ORDER BY Clause">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="aggregate.shtml" title="Using Aggregate Functions">Next</a></td>
+  </tr>
+</table>                   
+
+                       <!--Footer  -->
+
+</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>

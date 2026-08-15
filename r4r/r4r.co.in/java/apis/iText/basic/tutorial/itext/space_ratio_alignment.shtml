@@ -1,0 +1,123 @@
+<!DOCTYPE HTML PUBLIC "-/W3C/DTD HTML 4.01 Transitional/EN" "http:/www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD>
+<meta http-equiv="Content-Language" content="en-us">
+<TITLE>how to set space ratio and alignment in pdf file</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name="description" CONTENT="how to set space ratio and alignment in pdf file" >
+<meta name="keywords" CONTENT="how to set space ratio and alignment in pdf file">
+
+<!-- header start-->	
+
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>Java Programing laungage</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+            <img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+            <a href="/java/">Java</a>
+                     <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/java/apis/iText/">iText</a>
+
+              </div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/apis/iText/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	 
+
+	   	   <div class="heading">Set Space Ratio and alignment</div>
+  <table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="creating_multiple_list.shtml" title="Creating multiple list in PDF file">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="rotate_image.shtml" title="Rotate Images in file">Next</a></td>
+  </tr>
+</table>
+	<!-- Footer Start-->	
+
+<p>By help of this example, we are trying to explain how we can set space ratio and various alignment in the PDF file Text. You can make PDF with no space between the characters of a word.</p>
+<p>For setting to the alignment of the text we are calling the method setAlignment(int alignment) and if We want to set the aligment of a Paragraph then we only call to the method with the method paragraph object.</p>
+<p> The alignment can be one of the following values:</p>
+<ol>
+<li>Element.ALIGN_LEFT</li>
+<li>Element.ALIGN_CENTER</li>
+<li>Element.ALIGN_RIGHT</li>
+<li>Element.ALIGN_JUSTIFIED</li>
+</ol>
+
+<h3>Examples:</h3>
+<div class="code">
+<pre>
+<font color="#0000ff">package </font><font color="#000000">r4r;</font>
+<font color="#0000ff">import </font><font color="#000000">java.io.</font><font color="#ff0000">FileOutputStream</font><font color="#000000">;</font>
+<font color="#0000ff">import </font><font color="#000000">javax.swing.GroupLayout.Alignment;</font>
+<font color="#0000ff">import </font><font color="#000000">com.lowagie.text.</font><font color="#ff0000">Document</font><font color="#000000">;</font>
+<font color="#0000ff">import </font><font color="#000000">com.lowagie.text.</font><font color="#ff0000">Element</font><font color="#000000">;</font>
+<font color="#0000ff">import </font><font color="#000000">com.lowagie.text.PageSize;</font>
+<font color="#0000ff">import </font><font color="#000000">com.lowagie.text.Paragraph;</font>
+<font color="#0000ff">import </font><font color="#000000">com.lowagie.text.pdf.PdfWriter;</font>
+
+<font color="#0000ff">public class </font><font color="#000000">setspacetest </font>
+	<font color="#000000">{</font>
+<font color="#0000ff">public static void </font><font color="#000000">main(</font><font color="#ff0000">String</font><font color="#000000">[] args)</font><font color="#0000ff">throws </font><font color="#ff0000">Exception</font>
+	<font color="#000000">{</font>
+<font color="#ff0000">System</font><font color="#000000">.out.println(</font><font color="#ff00ff">&quot;Example of Space Word Ratio&quot;</font><font color="#000000">); </font>
+<font color="#ff0000">Document </font><font color="#000000">doc = </font><font color="#0000ff">new </font><font color="#ff0000">Document</font><font color="#000000">(PageSize.A4,</font><font color="#800080">50</font><font color="#000000">, </font><font color="#800080">350</font><font color="#000000">, </font><font color="#800080">50</font><font color="#000000">, </font><font color="#800080">50</font><font color="#000000">); </font>
+<font color="#000000">PdfWriter writer = PdfWriter.getInstance</font>
+<font color="#000000">(doc, </font><font color="#0000ff">new </font><font color="#ff0000">FileOutputStream</font><font color="#000000">(</font><font color="#ff00ff">&quot;setspacetest.pdf&quot;</font><font color="#000000">));</font>
+
+<font color="#000000">doc.open();</font>
+<font color="#ff0000">String </font><font color="#000000">in = </font><font color="#ff00ff">&quot;This is the R4R site for the Free Education. </font>
+       <font color="#000000">This site provide the good tutorials of the java</font><font color="#ff00ff">&quot;;</font>
+
+<font color="#000000">Paragraph par = </font><font color="#0000ff">new </font><font color="#000000">Paragraph(in);</font>
+<font color="#000000">par.setAlignment(</font><font color="#ff0000">Element</font><font color="#000000">.ALIGN_CENTER);</font>
+<font color="#000000">doc.add(par);</font>
+<font color="#000000">doc.newPage();</font>
+<font color="#000000">writer.setSpaceCharRatio(PdfWriter.NO_SPACE_CHAR_RATIO);</font>
+<font color="#000000">doc.add(par);</font>
+<font color="#000000">doc.close();</font>
+<font color="#000000">}</font>
+<font color="#000000">}</font>
+</pre>
+</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="creating_multiple_list.shtml" title="Creating multiple list in PDF file">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="rotate_image.shtml" title="Rotate Images in file">Next</a></td>
+  </tr>
+</table>
+
+<!-- Footer Start-->				
+
+</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->

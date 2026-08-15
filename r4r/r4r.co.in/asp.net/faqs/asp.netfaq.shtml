@@ -1,0 +1,205 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>ASP.NET Basic Subjective Question and AnswersS</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="ASP.NET Basic Subjective Question and Answers" >
+<meta name="keywords" CONTENT="ASP.NET Basic Subjective Question and Answers">
+
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+     <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>ASP.NET Technology</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a><img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/asp.net/">ASP.NET</a>
+
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/asp.net/commonfiles/leftmenu.shtml'); ?></td>
+
+                       <td style="80%" valign="top">
+                        <div class="main_content"> 
+
+<div class="heading">ASP.NET Basic Subjective Question and Answers</div>
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="/asp.net/ASP.NET_Interview_Questions_and%20Answers/ASP.NET_Interview_Questions_And_Answers.php" title="ASP.NET Interview Questions And Answers">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="index.shtml" title="Home">Next</a></td>
+  </tr>
+</table>
+
+<div class="heading">Q1: Describe the role of inetinfo.exe, aspnet_isapi.dll andaspnet_wp.exe in the page loading process.</div>
+<p><i>Answer:</i> inetinfo.exe is theMicrosoft IIS server running, handling ASP.NET requests among other things.When an ASP.NET request
+ is received (usually a file with .aspx extension), the ISAPI filter aspnet_isapi.dll takes care of it by passing the request tothe actual worker process aspnet_wp.exe.</p>
+
+<div class="heading">Q2: Whats the difference between Response.Write() andResponse.Output.Write()?</div>
+<p><i>Answer:</i> Response.Output.Write() allows you to write formatted output.</p>
+
+<div class="heading">Q3: What methods are fired during the page load?</div>
+<p><i>Answer:</i> Methods are:
+<ol>
+ <li><i>Init():</i> When the page is instantiated.</li>
+ <li><i>Load():</i> When the page is loaded into server memory.</li>
+ <li><i>PreRender():</i> The brief moment before the page is displayed to the user as HTML.</li>
+ <li><i>Unload():</i> When page finishes loading.</li>
+</ol>
+
+<div class="heading">Q4: When during the page processing cycle is ViewState available?</div>
+<p><i>Ans:</i> After the Init() and before the Page_Load(), or OnLoad() for a control.</p>
+
+<div class="heading">Q5: What namespace does the Web page belong in the .NET Framework class hierarchy?</div>
+<p><i>Ans:</i> System.Web.UI.Page</p>
+
+<div class="heading">Q6: Where do you store the information about the users locale?</div>
+<p><i>Ans:</i> System.Web.UI.Page.Culture</p>
+
+<div class="heading">Q7: Whats the difference between Codebehind="MyCode.aspx.cs" andSrc="MyCode.aspx.cs"?</div>
+<p><i>Ans:</i> CodeBehind is relevant to Visual Studio.NET only.</p>
+
+<div class="heading">Q8: Whats a bubbled event?</div>
+<p><i>Ans:</i> When you have a complex control, like DataGrid, writing an event processing routine for each object (cell, button, row, etc.) is quite tedious. The controls can bubble up their eventhandlers, allowing the main DataGrid event handler to take care of its constituents.</p>
+
+<h3>Q9: Suppose you want a certain ASP.NET function executed on MouseOver for a certain button. Where do you add an event handler?</h3>
+<p><i>Ans:</i> Add an OnMouseOver attribute to the button.</p>
+ <h3>Example:</h3>
+ <ol>
+  <li>btnSubmit.Attributes.Add("onmouseover",</li>
+ <li>"someClientCodeHere();");</li>
+ </ol>
+
+<div class="heading">Q10: What data types do the RangeValidator control support?</div>
+<p><i>Ans:</i> Integer, String, and Date.</p>
+
+<div class="heading">Q11: Explain the differences between Server-side and Client-side code?</div>
+<p><i>Ans:</i> Server-side code executes on the server. Client-side code executes in the client's browser.</p>
+
+<div class="heading">Q12: What type of code (server or client) is found in a Code-Behind class?</div>
+<p><i>Ans:</i> The answer is server-side code since code-behind is executed on the server. However, during the code-behind's execution on the server, it can render client-side code such as JavaScript to be processed in the clients browser. But just to be clear, code-behind executes on the server, thus making it server-side code.</p>
+
+<div class="heading">Q13: Should user input data validation occur server-side or client-side? Why?</div>
+<p><i>Ans:</i> All user input data validation should occur on the server at a minimum. Additionally, client-side validation can be performed where deemed appropriate and feasable to provide a richer, more responsive experience for the user.</p>
+
+<h2>Q14: What is the difference between Server.Transfer and Response.Redirect? Why would I choose one over the other?</h2>
+<p><i>Ans:</i> Server.Transfer transfers page processing from one page directly to the next page without making a round-trip back to the client's browser. This provides a faster response with a little less overhead on the server. Server.Transfer does not update the clients url history list or current url. Response.Redirect is used to redirect the user's browser to another page or site. This performas a trip back to the client where the client's browser is redirected to the new page. The user's browser history list is updated to reflect the new address.</p>
+
+<div class="heading">Q15: Can you explain the difference between an ADO.NET Dataset and an ADO Recordset?</div>
+<p><i>Ans:</i> Valid answers are:</p>
+<ol>
+  <li>A DataSet can represent an entire relational database in memory, complete with tables, relations, and views.</li>
+  <li>A DataSet is designed to work without any continuing connection to the original data source.</li>
+  <li>Data in a DataSet is bulk-loaded, rather than being loaded on demand.</li>
+  <li>There's no concept of cursor types in a DataSet.</li>
+  <li>DataSets have no current record pointer You can use For Each loops to move through the data.</li>
+  <li>You can store many edits in a DataSet, and write them to the original data source in a single operation.</li>
+  <li>Though the DataSet is universal, other objects in ADO.NET come in different versions for different data sources.</li>
+</ol>
+
+<div class="heading">Q16: What is the Global.asax used for?</div>
+<p><i>Ans:</i> The Global.asax (including the Global.asax.cs file) is used to implement application and session level events.</p>
+
+<div class="heading">Q17: What are the Application_Start and Session_Start subroutines used for?</div>
+<p><i>Ans:</i> This is where you can set the specific variables for the Application and Session objects.</p>
+
+<div class="heading">Q18: Can you explain what inheritance is and an example of when you might use it?</div>
+<p><i>Ans:</i> When you want to inherit (use the functionality of) another class. Example: With a base class named Employee, a Manager class could be derived from the Employee base class.</p>
+
+<h2>Q19: Whats an assembly and Explain what a diffgram is, and a good use for one?</h2>
+<p><i>Ans:</i> Assemblies are the building blocks of the .NET framework. Overview of assemblies from MSDN  Describe the difference between inline and code behind. Inline code written along side the html in a page. Code-behind is code written in a separate file and referenced by the .aspx page.</p>
+
+<p>The DiffGram is one of the two XML formats that you can use to render DataSet object contents to XML. A good use is reading database data to an XML file to be sent to a Web Service.</p>
+
+<h3>Q20: Whats MSIL, and why should my developers need an appreciation of it if at all?</h3>
+<p><i>Ans:</i> MSIL is the Microsoft Intermediate Language. All .NET compatible languages will get converted to MSIL. MSIL also allows the .NET Framework to JIT compile the assembly on the installed computer.</p>
+
+<h3>Q21: Which method do you invoke on the DataAdapter control to load your generated dataset with data?</h3>
+<p><i>Ans:</i> The Fill() method.</p>
+
+<div class="heading">Q22: Which template must you provide, in order to display data in a Repeater control?</div>
+<p><i>Ans:</i> ItemTemplate.</p>
+
+<div class="heading">Q23: How can you provide an alternating color scheme in a Repeater control?</div>
+<p><i>Ans:</i> Use the AlternatingItemTemplate.</p>
+
+<h3>Q24: What property must you set, and what method must you call in your code, in order to bind the data from a data source to the Repeater control?</h3>
+<p><i>Ans:</i> You must set the DataSource property and call the DataBind method.</p>
+
+<div class="heading">Q25: What base class do all Web Forms inherit from?</div>
+<p><i>Ans:</i> The Page class.</p>
+
+<div class="heading">Q26: Name two properties common in every validation control?</div>
+<p><i>Ans:</i> ControlToValidate property and Text property.</p>
+
+<h3>Q27: Which property on a Combo Box do you set with a column name, prior to setting the DataSource, to display data in the combo box?</h3>
+<p><i>Ans:</i> DataTextField property.</p>
+
+<h2>Q28: Which control would you use if you needed to make sure the values in two different controls matched?</h2>
+<p><i>Ans:</i> CompareValidator control.</p>
+
+<div class="heading">Q29: How many classes can a single .NET DLL contain?</div>
+<p><i>Ans:</i> It can contain many classes.</p><br>
+
+<div class="heading">Web Service Questions:</div>
+
+<h3>Q30: What is the transport protocol you use to call a Web service?</h3>
+<p><i>Ans:</i> SOAP (Simple Object Access Protocol) is the preferred protocol.</p>
+
+<div class="heasing">Q31: A Web service can only be written in .NET True or  False?</div>
+<p><i>Ans:</i> False</p>
+
+<div class="heading">Q32: What does WSDL stand for?</div>
+<p><i>Ans:</i> Web Services Description Language.</p>
+
+<h3>Q33: To test a Web service you must create a Windows application or Web application to consume this service. True or False?</h3>
+<p><i>Ans:</i> False, the web service comes with a test page and it provides HTTP-GET method to test.</p><br>
+
+<div class="heading">State Management Questions</div>
+
+<h2>Q34: What is ViewState?</h2>
+<p><i>Ans:</i> ViewState allows the state of objects (serializable) to be stored in a hidden field on the page. ViewState is transported to the client and back to the server, and is not stored on the server or any other external source. ViewState is used the retain the state of server-side objects between postabacks.</p>
+
+<div class="heasing">Q35: What is the lifespan for items stored in ViewState?</div>
+<p><i>Ans:</i> Item stored in ViewState exist for the life of the current page. This includes postbacks (to the same page).</p>
+
+<h2>Q36: What does the "EnableViewState" property do? Why would I want it on or off?</h2>
+<p><i>Ans:</i> It allows the page to save the users input on a form across postbacks. It saves the server-side values for a given control into ViewState, which is stored as a hidden value on the page before sending the page to the clients browser. When the page is posted back to the server the server control is recreated with the state stored in viewstate.</p>
+
+<h3>Q37: What are the different types of Session state management options available with ASP.NET?</h3>
+<p><i>Ans:</i> ASP.NET provides In-Process and Out-of-Process state management. In-Process stores the session in memory on the web server. This requires the a "sticky-server" (or no load-balancing) so that the user is always reconnected to the same web server. Out-of-Process Session state management stores data in an external data source. The external data source may be either a SQL Server or a State Server service. Out-of-Process state management requires that all objects stored in session are serializable.</p>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="/asp.net/ASP.NET_Interview_Questions_and%20Answers/ASP.NET_Interview_Questions_And_Answers.php" title="ASP.NET Interview Questions And Answers">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="index.shtml" title="Home">Next</a></td>
+  </tr>
+</table>
+
+<!--Footer  -->	
+
+   </div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/dotnet/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+

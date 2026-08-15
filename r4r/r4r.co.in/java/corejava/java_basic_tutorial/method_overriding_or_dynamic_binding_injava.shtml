@@ -1,0 +1,128 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<HTML><HEAD><TITLE>Runtime polymorphism (dynamic binding or method overriding)</TITLE>
+
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv="content-type" content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="java runtime polymorphism or java dynamic method dispatch with suitable example and java polymorphism with multilevel inheritance.">
+<meta name="keywords" CONTENT="runtime, polymorphism, java, dynamic, binding, method, dispatch, compile time, example, overriding">
+
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>Java Programing laungage</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a><img src="/images/left_menu_bullet.gif"/> <a href="/java/">Java</a><img src="/images/left_menu_bullet.gif"/> <a href="/java/corejava">Core Java</a></div>
+            	<table>
+                    <tr>
+                      <td width="19%" valign="top" style="width:20%"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/corejava/commonfiles/leftmenu.shtml'); ?></td>
+
+                      <td style="80%" valign="top">
+
+                     <div class="main_content">
+<div class="heading">Runtime polymorphism (dynamic binding or method overriding)</div>
+
+<table id="indexing">
+  <tr>
+      <td style="width:33%; text-align:left;"><a href="polymorphism_in_java.shtml" title="Polymorphism in Java">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml" title="Java Programming Tutorials">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="this_keyword_in_java.shtml" title="java basics">Next</a></td>
+  </tr> 
+</table> 
+<p>Runtime polymorphism or Dynamic Method Dispatch is a process in which a call to an overridden method is resolved at runtime rather than compile-time. Child class has the same method as of base class. In such cases child class overrides the parent class method without even touching the source code of the base class. This feature is known as method overriding.</p>
+<div class="image">
+<p><img src="images/method_overriding.jpg"></p>
+</div>
+
+<h2>Upcasting</h2>
+<p>When Parent class reference variable refers to Child class object, it is known as Upcasting.</p>
+
+<h3>Example :</h3>
+<div class="code">
+<PRE><FONT FACE="Arial"><FONT COLOR="#0000ff">class </FONT><FONT COLOR="#000000">A{}</FONT>
+
+<FONT COLOR="#0000ff">class </FONT><FONT COLOR="#000000">B </FONT><FONT COLOR="#0000ff">extends </FONT><FONT COLOR="#000000">A{}  </FONT>
+
+<FONT COLOR="#000000">A a=</FONT><FONT COLOR="#0000ff">new </FONT><FONT COLOR="#000000">B();</FONT><FONT COLOR="#008000">//upcasting  </FONT></FONT></PRE>
+</div>
+
+<h2>Rules for Method Overriding</h2>
+<ol>
+<li>applies only to inherited methods.</li>
+<li>object type (NOT reference variable type) determines which overridden method will be used at runtime.</li>
+<li>Overriding method must not have more restrictive access modifier.</li>
+<li>Abstract methods must be overridden.</li>
+<li>Static and final methods cannot be overridden.</li>
+<li>Constructors cannot be overridden.</li>
+<li>It is also known as Runtime polymorphism.</li>
+</ol>
+
+<h3>Example :</h3>
+<div class="code">
+<PRE><FONT FACE="Arial"><FONT COLOR="#0000ff">class </FONT><FONT COLOR="#000000">X</FONT>
+<FONT COLOR="#000000">{</FONT>
+    <FONT COLOR="#0000ff">public void </FONT><FONT COLOR="#000000">methodA() </FONT><FONT COLOR="#008000">//Base class method</FONT>
+    <FONT COLOR="#000000">{</FONT>
+        <FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.println (</FONT><FONT COLOR="#ff00ff">"hello, methodA of class X"</FONT><FONT COLOR="#000000">);</FONT>
+    <FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#000000">}</FONT>
+
+<FONT COLOR="#0000ff">class </FONT><FONT COLOR="#000000">Y </FONT><FONT COLOR="#0000ff">extends </FONT><FONT COLOR="#000000">X</FONT>
+<FONT COLOR="#000000">{</FONT>
+    <FONT COLOR="#0000ff">public void </FONT><FONT COLOR="#000000">methodA() </FONT><FONT COLOR="#008000">//Derived Class method</FONT>
+    <FONT COLOR="#000000">{</FONT>
+        <FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.println (</FONT><FONT COLOR="#ff00ff">"hello, methodA of class Y"</FONT><FONT COLOR="#000000">);</FONT>
+    <FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#000000">}</FONT>
+
+<FONT COLOR="#0000ff">class </FONT><FONT COLOR="#000000">Z</FONT>
+<FONT COLOR="#000000">{</FONT>
+   <FONT COLOR="#0000ff">public static void </FONT><FONT COLOR="#000000">main (</FONT><FONT COLOR="#ff0000">String </FONT><FONT COLOR="#000000">args []) {</FONT>
+       <FONT COLOR="#000000">X obj1 = </FONT><FONT COLOR="#0000ff">new </FONT><FONT COLOR="#000000">X(); </FONT><FONT COLOR="#008000">// Reference and object X</FONT>
+       <FONT COLOR="#000000">X obj2 = </FONT><FONT COLOR="#0000ff">new </FONT><FONT COLOR="#000000">Y(); </FONT><FONT COLOR="#008000">// X reference but Y object</FONT>
+       <FONT COLOR="#000000">obj1.methodA();</FONT>
+       <FONT COLOR="#000000">obj2.methodA();</FONT>
+   <FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#000000">}</FONT></FONT></PRE>
+</div>
+
+<h3>Output :</h3>
+<div class="code">
+<PRE><FONT FACE="Arial"><FONT COLOR="#000000">hello, I</FONT><FONT COLOR="#ff00ff">' methodA of class X</FONT>
+<FONT COLOR="#000000">hello, I</FONT><FONT COLOR="#ff00ff">' methodA of class Y</FONT></FONT></PRE>
+</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="polymorphism_in_java.shtml" title="Polymorphism in Java">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml" title="Java Programming Tutorials">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="this_keyword_in_java.shtml" title="java basics">Next</a></td>
+  </tr> 
+</table> 
+
+                      </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+

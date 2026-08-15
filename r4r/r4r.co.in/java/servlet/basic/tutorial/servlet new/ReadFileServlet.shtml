@@ -1,0 +1,356 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD>
+<meta http-equiv="Content-Language" content="en-us">
+<TITLE>Create an application for read data from different file through servlet </TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name="description" CONTENT="Create an application for read data from different file through servlet " >
+<meta name="keywords" CONTENT="Create an application for read data from different file through servlet ">
+<!-- header start-->	
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+   	  <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>Java Servlet Programing Laungage</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a><img src="/images/left_menu_bullet.gif"/> <a href="/java/servlet/../">Java</a><img src="/images/left_menu_bullet.gif"/><a href="/java/servlet/">Servlet</a><img src="/images/left_menu_bullet.gif"/><a href="index.shtml">http Servlet Examples</a>
+       </div>
+
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/servlet/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	 
+<!-- header End-->
+
+<div class="heading">Create an application for read data from different file through servlet </div>
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="JarServlet.shtml" title="Create an application for convert a simple file into compress (Jar) file through servlet">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="index.shtml" title="Home">Next</a></td>
+  </tr> 
+</table>
+
+<p>In 
+this program, read data from different types of file (such as .txt, .doc, .pdf, 
+.zip, .jar, .gif, .html) within a single servlet.
+This program consists of several jars. </p>
+<p>
+			<ul>
+				<li>Apache - commons- fileupload-io-1.2.2.jar (<a href="http://commons.apache.org/fileupload/">here</a>)</li>
+				<li>Apache - commons-io-2.1.jar (<a href="http://commons.apache.org/io/">here</a>)</li>
+				<li>Acme - gef-0.12.3.jar (<a href="http://acme.com/java/software/Acme.JPM.Encoders.GifEncoder.html">here</a>)</li>
+				<li>iText - itextpdf-5.1.3.jar (<a href="http://sourceforge.net/projects/itext/">here</a>)</li>
+			</ul>
+
+</p>
+<h3>Servlet directory structure</h3>
+<div class="image">
+			<img src="Servlet%20Image/readFile2.gif">
+</div>
+
+<h3>web.xml</h3>
+<div class="code">
+<pre>
+<font color="#0000ff">&lt;?xml </font><font color="#ff0000">version</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;1.0&quot; </font><font color="#ff0000">encoding</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;UTF-8&quot;</font><font color="#800080">?</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">web-app </font><font color="#ff0000">version</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;3.0&quot;</font>
+<font color="#ff0000">xmlns</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;http://java.sun.com/xml/ns/javaee&quot; </font>
+<font color="#800080">xmlns:xsi</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;http://www.w3.org/2001/XMLSchema-instance&quot; </font>
+<font color="#800080">xsi:schemaLocation</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;http://java.sun.com/xml/ns/javaee </font>
+<font color="#ff00ff">http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd&quot;</font><font color="#0000ff">&gt;</font>
+<font color="#000000">    </font><font color="#0000ff">&lt;</font><font color="#808000">servlet</font><font color="#0000ff">&gt;</font>
+<font color="#000000">     </font><font color="#0000ff">&lt;</font><font color="#808000">servlet-name</font><font color="#0000ff">&gt;</font><font color="#000000">ReadFileServlet</font><font color="#0000ff">&lt;/</font><font color="#808000">servlet-name</font><font color="#0000ff">&gt;</font>
+<font color="#000000">     </font><font color="#0000ff">&lt;</font><font color="#808000">servlet-class</font><font color="#0000ff">&gt;</font><font color="#000000">r4r.Servlet.ReadFileServlet</font><font color="#0000ff">&lt;/</font><font color="#808000">servlet-class</font><font color="#0000ff">&gt;</font>
+<font color="#000000">    </font><font color="#0000ff">&lt;/</font><font color="#808000">servlet</font><font color="#0000ff">&gt;</font>
+<font color="#000000">	</font><font color="#0000ff">&lt;</font><font color="#808000">servlet-mapping</font><font color="#0000ff">&gt;</font>
+<font color="#000000">        </font><font color="#0000ff">&lt;</font><font color="#808000">servlet-name</font><font color="#0000ff">&gt;</font><font color="#000000">ReadFileServlet</font><font color="#0000ff">&lt;/</font><font color="#808000">servlet-name</font><font color="#0000ff">&gt;</font>
+<font color="#000000">        </font><font color="#0000ff">&lt;</font><font color="#808000">url-pattern</font><font color="#0000ff">&gt;</font><font color="#000000">/ReadFileServlet</font><font color="#0000ff">&lt;/</font><font color="#808000">url-pattern</font><font color="#0000ff">&gt;</font>
+<font color="#000000">    </font><font color="#0000ff">&lt;/</font><font color="#808000">servlet-mapping</font><font color="#0000ff">&gt;</font>
+<font color="#000000">	 </font><font color="#0000ff">&lt;</font><font color="#808000">session-config</font><font color="#0000ff">&gt;</font>
+<font color="#000000">        </font><font color="#0000ff">&lt;</font><font color="#808000">session-timeout</font><font color="#0000ff">&gt;</font>
+<font color="#000000">            30</font>
+<font color="#000000">        </font><font color="#0000ff">&lt;/</font><font color="#808000">session-timeout</font><font color="#0000ff">&gt;</font>
+<font color="#000000">    </font><font color="#0000ff">&lt;/</font><font color="#808000">session-config</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">web-app</font><font color="#0000ff">&gt;</font>
+</pre>
+</div>
+
+<h3>Index.jsp</h3>
+<div class="code">
+<pre>
+<font color="#800000">&lt;%-- </font>
+    <font color="#800000">Document   : index.jsp</font>
+<font color="#800000">--%&gt;</font>
+<font color="#800000">&lt;%@page contentType=</font><font color="#ff00ff">&quot;text/html&quot; </font><font color="#800000">pageEncoding=</font><font color="#ff00ff">&quot;UTF-8&quot;</font><font color="#800000">%&gt;</font>
+<font color="#0000ff">&lt;!DOCTYPE </font><font color="#800080">html</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;html&gt;</font>
+<font color="#000000">    </font><font color="#0000ff">&lt;head&gt;</font>
+<font color="#000000">      </font><font color="#0000ff">&lt;meta </font><font color="#ff0000">http-equiv</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;Content-Type&quot;</font>
+	     <font color="#ff0000">content</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;text/html; charset=UTF-8&quot;</font><font color="#0000ff">&gt;</font>
+<font color="#000000">        </font><font color="#0000ff">&lt;title&gt;</font><font color="#000000">r4r.co.in-servlet</font><font color="#0000ff">&lt;/title&gt;</font>
+<font color="#000000">    </font><font color="#0000ff">&lt;/head&gt;</font>
+<font color="#000000">    </font><font color="#0000ff">&lt;body&gt;</font>
+<font color="#000000">        </font><font color="#0000ff">&lt;form&gt;</font>
+<font color="#000000">         </font><font color="#0000ff">&lt;h1&gt;</font><font color="#000000">Access Servlet by servlet's Name!</font><font color="#0000ff">&lt;/h1&gt;</font>
+<font color="#000000">         </font><font color="#0000ff">&lt;a </font><font color="#ff0000">href</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;ReadFileServlet&quot;</font><font color="#0000ff">&gt;</font><font color="#000000">ReadFileServlet</font><font color="#0000ff">&lt;/a&gt;</font>
+<font color="#000000">        </font><font color="#0000ff">&lt;/form&gt;</font>
+<font color="#000000">    </font><font color="#0000ff">&lt;/body&gt;</font>
+<font color="#0000ff">&lt;/html&gt;</font>
+</pre>
+</div>
+
+<h3>Servlet Program</h3>
+<div class="code">
+<pre>
+<font color="#008000">/*</font>
+<font color="#008000"> * Save as a ReadFileServlet.java</font>
+<font color="#008000"> */</font>
+<font color="#0000ff">package </font><font color="#000000">r4r.Servlet;</font>
+<font color="#0000ff">import </font><font color="#000000">java.awt.*;</font>
+<font color="#0000ff">import </font><font color="#000000">java.io.*;</font>
+<font color="#0000ff">import </font><font color="#000000">java.util.*;</font>
+<font color="#0000ff">import </font><font color="#000000">java.util.logging.*;</font>
+<font color="#0000ff">import </font><font color="#000000">java.util.zip.*;</font>
+<font color="#0000ff">import </font><font color="#000000">javax.servlet.*;</font>
+<font color="#0000ff">import </font><font color="#000000">javax.servlet.http.*;</font>
+<font color="#0000ff">import </font><font color="#000000">org.apache.commons.fileupload.FileItem;</font>
+<font color="#0000ff">import </font><font color="#000000">org.apache.commons.fileupload.disk.DiskFileItemFactory;</font>
+<font color="#0000ff">import </font><font color="#000000">org.apache.commons.fileupload.servlet.ServletFileUpload;</font>
+<font color="#0000ff">import </font><font color="#000000">Acme.JPM.Encoders.GifEncoder;</font>
+<font color="#0000ff">import </font><font color="#000000">com.itextpdf.text.pdf.PdfReader;</font>
+<font color="#0000ff">import </font><font color="#000000">com.itextpdf.text.pdf.parser.PdfTextExtractor;</font>
+
+<font color="#008000">/**</font>
+<font color="#008000"> *</font>
+<font color="#008000"> * @author R4R</font>
+<font color="#008000"> */</font>
+<font color="#0000ff">public class </font><font color="#000000">ReadFileServlet </font><font color="#0000ff">extends </font><font color="#000000">HttpServlet {</font>
+
+ <font color="#0000ff">private final static int </font><font color="#000000">MAX_SIZE = </font><font color="#800080">1 </font><font color="#000000">* </font><font color="#800080">1024 </font><font color="#000000">* </font><font color="#800080">1024</font><font color="#000000">; </font>
+             <font color="#008000">//1 MB size</font>
+
+ <font color="#0000ff">protected void </font><font color="#000000">processRequest</font>
+  <font color="#000000">(HttpServletRequest request, HttpServletResponse response)</font>
+<font color="#0000ff">throws </font><font color="#000000">ServletException, </font><font color="#ff0000">IOException </font><font color="#000000">{</font>
+  <font color="#000000">response.setContentType(</font><font color="#ff00ff">&quot;text/html;charset=UTF-8&quot;</font><font color="#000000">);</font>
+  <font color="#ff0000">PrintWriter </font><font color="#000000">out = response.getWriter();</font>
+  <font color="#0000ff">try </font><font color="#000000">{</font>
+<font color="#000000">out.println(</font><font color="#ff00ff">&quot;&lt;html&gt;&quot;</font><font color="#000000">);</font>
+<font color="#000000">out.println(</font><font color="#ff00ff">&quot;&lt;head&gt;&quot;</font><font color="#000000">);</font>
+<font color="#000000">out.println(</font><font color="#ff00ff">&quot;&lt;title&gt;&quot; </font><font color="#000000">+ getServletInfo() + </font><font color="#ff00ff">&quot;&lt;/title&gt;&quot;</font><font color="#000000">);</font>
+<font color="#000000">out.println(</font><font color="#ff00ff">&quot;&lt;/head&gt;&quot;</font><font color="#000000">);</font>
+<font color="#000000">out.println(</font><font color="#ff00ff">&quot;&lt;body&gt;&quot;</font><font color="#000000">);</font>
+<font color="#000000">out.println(</font><font color="#ff00ff">&quot;&lt;h1&gt;Servlet ReadFileServlet at &quot;</font>
+               <font color="#000000">+ request.getContextPath() + </font><font color="#ff00ff">&quot;&lt;/h1&gt;&quot;</font><font color="#000000">);</font>
+<font color="#000000">out.println(</font><font color="#ff00ff">&quot;&lt;form action=\&quot;ReadFileServlet\&quot; method=\</font>
+                   <font color="#ff00ff">&quot;POST\&quot; enctype=\&quot;multipart/form-data\&quot;&gt;&quot;</font><font color="#000000">);</font>
+<font color="#000000">out.println(</font><font color="#ff00ff">&quot;Select File:&lt;input type=\&quot;file\&quot; name=\</font>
+                 <font color="#ff00ff">&quot;myFile\&quot; value=\&quot;\&quot; width=\&quot;60\&quot;/&gt;&lt;br/&gt;&quot;</font><font color="#000000">);</font>
+<font color="#000000">out.println(</font><font color="#ff00ff">&quot;&lt;input type=\&quot;submit\&quot; value=\&quot;Process Request\&quot; /&gt;&quot;</font><font color="#000000">);</font>
+<font color="#000000">out.println(</font><font color="#ff00ff">&quot;&lt;input type=\&quot;reset\&quot; value=\&quot;Reset\&quot;/&gt;&quot;</font><font color="#000000">);</font>
+<font color="#000000">out.println(</font><font color="#ff00ff">&quot;&lt;/form&gt;&quot;</font><font color="#000000">);</font>
+<font color="#000000">out.println(</font><font color="#ff00ff">&quot;&lt;/body&gt;&quot;</font><font color="#000000">);</font>
+<font color="#000000">out.println(</font><font color="#ff00ff">&quot;&lt;/html&gt;&quot;</font><font color="#000000">);</font>
+  <font color="#000000">} </font><font color="#0000ff">finally </font><font color="#000000">{</font>
+<font color="#000000">out.close();</font>
+  <font color="#000000">}</font>
+ <font color="#000000">}</font>
+
+ <font color="#000000">@</font><font color="#0000ff">Override</font>
+ <font color="#0000ff">protected void </font><font color="#000000">doGet</font>
+	  <font color="#000000">(HttpServletRequest request, HttpServletResponse response)</font>
+<font color="#0000ff">throws </font><font color="#000000">ServletException, </font><font color="#ff0000">IOException </font><font color="#000000">{</font>
+  <font color="#000000">processRequest(request, response);</font>
+ <font color="#000000">}</font>
+
+ <font color="#000000">@</font><font color="#0000ff">Override</font>
+ <font color="#0000ff">protected void </font><font color="#000000">doPost</font>
+	  <font color="#000000">(HttpServletRequest request, HttpServletResponse response)</font>
+<font color="#0000ff">throws </font><font color="#000000">ServletException, </font><font color="#ff0000">IOException </font><font color="#000000">{</font>
+  <font color="#000000">response.setContentType(</font><font color="#ff00ff">&quot;multipart/x-mixed-replace;boundary=End&quot;</font><font color="#000000">);</font>
+  <font color="#000000">ServletOutputStream out = response.getOutputStream();</font>
+
+  <font color="#0000ff">try </font><font color="#000000">{</font>
+<font color="#008000">//check the request make from &quot;multipart/form-data&quot;</font>
+<font color="#0000ff">boolean </font><font color="#000000">isMultipartContent = </font>
+	       <font color="#000000">ServletFileUpload.isMultipartContent(request);</font>
+<font color="#0000ff">if </font><font color="#000000">(isMultipartContent) {</font>
+ <font color="#000000">DiskFileItemFactory factory = </font><font color="#0000ff">new </font><font color="#000000">DiskFileItemFactory();</font>
+ <font color="#000000">ServletFileUpload fileUpload = </font><font color="#0000ff">new </font><font color="#000000">ServletFileUpload(factory);</font>
+ <font color="#000000">fileUpload.setSizeMax(MAX_SIZE);  </font><font color="#008000">//set size boundation</font>
+
+ <font color="#008000">//store the incomming request into list</font>
+ <font color="#000000">java.util.</font><font color="#ff0000">List</font><font color="#000000">&lt;FileItem&gt; items = fileUpload.parseRequest(request);</font>
+ <font color="#ff0000">Iterator</font><font color="#000000">&lt;FileItem&gt; it = items.listIterator();</font>
+ <font color="#0000ff">while </font><font color="#000000">(it.hasNext()) {</font>
+  <font color="#000000">FileItem fileItem = it.next();</font>
+
+  <font color="#008000">/*match incoming request Content type and </font>
+<font color="#008000">  invoke appropriate method for handel request*/</font>
+  <font color="#0000ff">if </font><font color="#000000">(fileItem.getContentType().equals(</font><font color="#ff00ff">&quot;text/plain&quot;</font><font color="#000000">) </font>
+	  <font color="#000000">|| fileItem.getContentType().equals(</font><font color="#ff00ff">&quot;application/octet-stream&quot;</font><font color="#000000">)</font>
+ <font color="#000000">|| fileItem.getContentType().equals(</font><font color="#ff00ff">&quot;application/msword&quot;</font><font color="#000000">) </font>
+	  <font color="#000000">|| fileItem.getContentType().equals(</font><font color="#ff00ff">&quot;text/html&quot;</font><font color="#000000">)) {</font>
+<font color="#000000">handleTextFile(out, response, fileItem);</font>
+  <font color="#000000">} </font><font color="#0000ff">else if </font>
+	  <font color="#000000">(fileItem.getContentType().equals(</font><font color="#ff00ff">&quot;application/x-zip-compressed&quot;</font><font color="#000000">))</font>
+	  <font color="#000000">{</font>
+<font color="#000000">handleCompressedFile(out, response, fileItem);</font>
+  <font color="#000000">} </font><font color="#0000ff">else if </font><font color="#000000">(fileItem.getContentType().equals(</font><font color="#ff00ff">&quot;image/gif&quot;</font><font color="#000000">)</font>
+	           <font color="#000000">|| fileItem.getContentType().equals(</font><font color="#ff00ff">&quot;image/pjpeg&quot;</font><font color="#000000">)</font>
+ <font color="#000000">|| fileItem.getContentType().equals(</font><font color="#ff00ff">&quot;image/x-png&quot;</font><font color="#000000">)) {</font>
+<font color="#000000">handleImageFile(out, response, fileItem);</font>
+  <font color="#000000">} </font><font color="#0000ff">else if </font><font color="#000000">(fileItem.getContentType().equals(</font><font color="#ff00ff">&quot;application/pdf&quot;</font><font color="#000000">)) {</font>
+<font color="#000000">handlePdfFile(out, response, fileItem);</font>
+  <font color="#000000">} </font><font color="#0000ff">else </font><font color="#000000">{</font>
+<font color="#000000">response.sendError</font>
+<font color="#000000">(HttpServletResponse.SC_BAD_REQUEST, </font><font color="#ff00ff">&quot;File formate not reconized&quot;</font><font color="#000000">);</font>
+  <font color="#000000">}</font>
+ <font color="#000000">}</font>
+<font color="#000000">} </font><font color="#0000ff">else </font><font color="#000000">{</font>
+ <font color="#000000">response.sendError</font>
+ <font color="#000000">(HttpServletResponse.SC_BAD_REQUEST, </font><font color="#ff00ff">&quot;Request must be multipart&quot;</font><font color="#000000">);</font>
+<font color="#000000">}</font>
+  <font color="#000000">} </font><font color="#0000ff">catch </font><font color="#000000">(</font><font color="#ff0000">Exception </font><font color="#000000">ex) {</font>
+<font color="#ff0000">Logger</font><font color="#000000">.getLogger(ReadFileServlet.</font><font color="#0000ff">class</font><font color="#000000">.getName()).log(</font><font color="#ff0000">Level</font><font color="#000000">.SEVERE,</font>
+  <font color="#ff00ff">&quot;An Exception is generated while processing request&quot;</font><font color="#000000">, ex);</font>
+  <font color="#000000">} </font><font color="#0000ff">finally </font><font color="#000000">{</font>
+<font color="#000000">out.flush(); </font><font color="#008000">//free resource</font>
+<font color="#000000">out.close();</font>
+  <font color="#000000">}</font>
+ <font color="#000000">}</font>
+
+ <font color="#000000">@</font><font color="#0000ff">Override</font>
+ <font color="#0000ff">public </font><font color="#ff0000">String </font><font color="#000000">getServletInfo() {</font>
+  <font color="#0000ff">return </font><font color="#ff00ff">&quot;r4r.co.in-ReadFileServlet&quot;</font><font color="#000000">;</font>
+ <font color="#000000">}</font>
+
+ <font color="#008000">/* -- Method capable to handle plane file -- */</font>
+ <font color="#0000ff">private void </font><font color="#000000">handleTextFile</font>
+<font color="#000000">(ServletOutputStream out, HttpServletResponse response, FileItem fileItem)</font>
+<font color="#0000ff">throws </font><font color="#ff0000">FileNotFoundException</font><font color="#000000">, </font><font color="#ff0000">IOException </font><font color="#000000">{</font>
+  <font color="#ff0000">StringBuffer </font><font color="#000000">sb = </font><font color="#0000ff">new </font><font color="#ff0000">StringBuffer</font><font color="#000000">();</font>
+  <font color="#ff0000">FileReader </font><font color="#000000">fr = </font><font color="#0000ff">new </font><font color="#ff0000">FileReader</font><font color="#000000">(fileItem.getName()); </font><font color="#008000">//read incoming file</font>
+  <font color="#ff0000">BufferedReader </font><font color="#000000">br = </font><font color="#0000ff">new </font><font color="#ff0000">BufferedReader</font><font color="#000000">(fr, MAX_SIZE);</font>
+  <font color="#0000ff">int </font><font color="#000000">ch;</font>
+  <font color="#0000ff">while </font><font color="#000000">((ch = br.read()) &gt; -</font><font color="#800080">1</font><font color="#000000">) {</font>
+<font color="#000000">sb.append((</font><font color="#0000ff">char</font><font color="#000000">) ch); </font><font color="#008000">//covert into character</font>
+  <font color="#000000">}</font>
+  <font color="#008000">//send response to client browser</font>
+  <font color="#000000">response.setContentType(</font><font color="#ff00ff">&quot;text/html;charset=UTF-8&quot;</font><font color="#000000">);</font>
+  <font color="#000000">out.println(sb.toString());</font>
+ <font color="#000000">}</font>
+
+ <font color="#008000">/* -- Method capable to handle compressed file -- */</font>
+ <font color="#0000ff">private void </font><font color="#000000">handleCompressedFile</font>
+<font color="#000000">(ServletOutputStream out, HttpServletResponse response, FileItem fileItem)</font>
+<font color="#0000ff">throws </font><font color="#ff0000">FileNotFoundException</font><font color="#000000">, </font><font color="#ff0000">IOException </font><font color="#000000">{</font>
+  <font color="#ff0000">StringBuffer </font><font color="#000000">sb = </font><font color="#0000ff">new </font><font color="#ff0000">StringBuffer</font><font color="#000000">();</font>
+  <font color="#ff0000">File </font><font color="#000000">compressFile = </font><font color="#0000ff">new </font><font color="#ff0000">File</font><font color="#000000">(fileItem.getName());</font>
+
+  <font color="#ff0000">ZipInputStream </font><font color="#000000">zipInStream = </font>
+	     <font color="#0000ff">new </font><font color="#ff0000">ZipInputStream</font><font color="#000000">(</font><font color="#0000ff">new </font><font color="#ff0000">FileInputStream</font><font color="#000000">(compressFile));</font>
+  <font color="#ff0000">ZipEntry </font><font color="#000000">zipEntry = zipInStream.getNextEntry();</font>
+  <font color="#0000ff">if </font><font color="#000000">(zipEntry.getSize() == </font><font color="#800080">0</font><font color="#000000">) {</font>
+<font color="#000000">out.println</font>
+<font color="#000000">(</font><font color="#ff00ff">&quot;Zip folder contain more than one file, .zip folder must be Extract first&quot;</font><font color="#000000">);</font>
+  <font color="#000000">} </font><font color="#0000ff">else </font><font color="#000000">{</font>
+<font color="#000000">out.println(</font><font color="#ff00ff">&quot;File name inside zip folder : &lt;b&gt;&quot;</font>
+                    <font color="#000000">+ zipEntry.getName() + </font><font color="#ff00ff">&quot;&lt;/b&gt;&lt;br&gt;&quot;</font><font color="#000000">);</font>
+<font color="#ff0000">InputStreamReader </font><font color="#000000">isr = </font><font color="#0000ff">new </font><font color="#ff0000">InputStreamReader</font><font color="#000000">(zipInStream);</font>
+<font color="#0000ff">char</font><font color="#000000">[] cs = </font><font color="#0000ff">new char</font><font color="#000000">[MAX_SIZE]; </font><font color="#008000">//make a array</font>
+<font color="#0000ff">while </font><font color="#000000">((isr.read(cs, </font><font color="#800080">0</font><font color="#000000">, cs.length)) &gt; -</font><font color="#800080">1</font><font color="#000000">) {</font>
+ <font color="#000000">sb.append(cs);</font>
+<font color="#000000">}</font>
+<font color="#008000">//send response to client browser</font>
+<font color="#000000">response.setContentType(</font><font color="#ff00ff">&quot;text/html;charset=UTF-8&quot;</font><font color="#000000">);</font>
+<font color="#000000">out.println(sb.toString());</font>
+  <font color="#000000">}</font>
+ <font color="#000000">}</font>
+
+ <font color="#008000">/* -- Method capable to handle image file -- */</font>
+ <font color="#0000ff">private void </font><font color="#000000">handleImageFile</font>
+	 <font color="#000000">(ServletOutputStream out, HttpServletResponse response, FileItem fileItem)</font>
+<font color="#0000ff">throws </font><font color="#ff0000">InterruptedException</font><font color="#000000">, </font><font color="#ff0000">IOException </font><font color="#000000">{</font>
+  <font color="#ff0000">Frame </font><font color="#000000">frame = </font><font color="#0000ff">new </font><font color="#ff0000">Frame</font><font color="#000000">(); </font><font color="#008000">//create a frame</font>
+  <font color="#000000">frame.addNotify();</font>
+  <font color="#ff0000">Image </font><font color="#000000">image = </font><font color="#ff0000">Toolkit</font><font color="#000000">.getDefaultToolkit().getImage(fileItem.getName());</font>
+  <font color="#ff0000">MediaTracker </font><font color="#000000">mt = </font><font color="#0000ff">new </font><font color="#ff0000">MediaTracker</font><font color="#000000">(frame);</font>
+  <font color="#000000">mt.addImage(image, </font><font color="#800080">0</font><font color="#000000">);</font>
+  <font color="#000000">mt.waitForAll();</font>
+
+  <font color="#008000">//read valid image </font>
+  <font color="#0000ff">int </font><font color="#000000">height = image.getHeight(frame);</font>
+  <font color="#0000ff">int </font><font color="#000000">width = image.getWidth(frame);</font>
+  <font color="#0000ff">if </font><font color="#000000">(height &lt;= </font><font color="#800080">0 </font><font color="#000000">|| width &lt;= </font><font color="#800080">0</font><font color="#000000">) {</font>
+<font color="#000000">response.sendError(HttpServletResponse.SC_NO_CONTENT, </font><font color="#ff00ff">&quot;Not a valid image for read&quot;</font><font color="#000000">);</font>
+  <font color="#000000">}</font>
+  <font color="#008000">//image must be converted into gif format before send it on client browser</font>
+  <font color="#000000">response.setContentType(</font><font color="#ff00ff">&quot;image/gif&quot;</font><font color="#000000">);</font>
+  <font color="#000000">GifEncoder encoder = </font><font color="#0000ff">new </font><font color="#000000">GifEncoder(image, out);</font>
+  <font color="#000000">encoder.encode();</font>
+ <font color="#000000">}</font>
+
+ <font color="#008000">/* -- Method capable to handle PDF file -- */</font>
+ <font color="#0000ff">private void </font><font color="#000000">handlePdfFile</font>
+	 <font color="#000000">(ServletOutputStream out, HttpServletResponse response, FileItem fileItem)</font>
+<font color="#0000ff">throws </font><font color="#ff0000">FileNotFoundException</font><font color="#000000">, </font><font color="#ff0000">IOException </font><font color="#000000">{</font>
+  <font color="#ff0000">File </font><font color="#000000">pdfFile = </font><font color="#0000ff">new </font><font color="#ff0000">File</font><font color="#000000">(fileItem.getName()); </font><font color="#008000">//get the imcoming file</font>
+  <font color="#ff0000">BufferedInputStream </font><font color="#000000">bis =</font>
+	   <font color="#0000ff">new </font><font color="#ff0000">BufferedInputStream</font><font color="#000000">(</font><font color="#0000ff">new </font><font color="#ff0000">FileInputStream</font><font color="#000000">(pdfFile), MAX_SIZE);</font>
+  <font color="#000000">PdfReader reader = </font><font color="#0000ff">new </font><font color="#000000">PdfReader(bis); </font><font color="#008000">//read file </font>
+  <font color="#0000ff">int </font><font color="#000000">n = reader.getNumberOfPages();  </font><font color="#008000">//read number of page associated with file</font>
+  <font color="#0000ff">for </font><font color="#000000">(</font><font color="#0000ff">int </font><font color="#000000">i = </font><font color="#800080">1</font><font color="#000000">; i &lt;= n; i++) {</font>
+<font color="#ff0000">String </font><font color="#000000">string = PdfTextExtractor.getTextFromPage(reader, i);</font>
+<font color="#008000">//send response to client browser</font>
+<font color="#000000">response.setContentType(</font><font color="#ff00ff">&quot;text/plain&quot;</font><font color="#000000">);</font>
+<font color="#000000">out.println(string);</font>
+  <font color="#000000">}</font>
+ <font color="#000000">}</font>
+<font color="#000000">}</font>
+</pre>
+</div>
+
+<i>Output of Program</i>
+<div class="image">
+			<img src="Servlet%20Image/readFile.gif">
+</div>
+<div class="image">
+			<img src="Servlet%20Image/readFile1.gif">
+</div>
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="JarServlet.shtml" title="Create an application for convert a simple file into compress (Jar) file through servlet">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="index.shtml" title="Home">Next</a></td>
+  </tr> 
+</table>
+
+<!-- Footer Start-->		
+		</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->

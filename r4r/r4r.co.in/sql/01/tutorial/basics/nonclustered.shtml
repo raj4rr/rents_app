@@ -1,0 +1,116 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>NONCLUSTERED INDEX</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="NONCLUSTERED INDEX,HOW NONCLUSTERED INDEXES WORK" >
+<meta name="keywords" CONTENT="NONCLUSTERED INDEX,HOW NONCLUSTERED INDEXES WORK">
+
+<!--header start-->
+
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>DATABASE & SQL/PLSQL</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a><img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+			<a href="/sql/">SQL </a>
+              </div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/sql/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	  
+
+                        	                        	<!-- Header End-->	
+ <div class="heading">NONCLUSTERED INDEX</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="clustered_index.shtml" title="CLUSTERED Index">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="how_to_create_an _index.shtml" title="How to Create an Index">Next</a></td>
+  </tr>
+</table>
+
+<p>The physical order of the rows is not the same as the index order Nonclustered indexes are typically created on columns 
+  used in joins and WHERE clauses, and whose values may be modified frequently.</p>
+  <p>SQL server creates nonclustered indexes by default when the CREATE INDEX command is given</p>
+  <p>There can be as many as 249 nonclustered indexes per 
+  table Typically, nonclustered indexes are created on 
+  foreign keys.A nonclustered index would need to be rebuilt if it 
+  is built before a clustered index</p>
+
+<h3>How Nonclustered Indexes Work</h3>
+
+<ol type="1">
+<li><b>Step </b>First SQL sever find the rosot page from the sysindexes 
+table.</li>
+
+<li><b>Step </b>The search value is compared with the key values on the 
+root page.</li>
+
+<li><b>Step </b>The page with the highest key value less than or equal to 
+the search value is found.</li>
+
+<li><b>Step</b> The page pointer is followed the next lower level in the index.</li>
+
+<li><b>Step</b>Step 3 and 4 repeated until the data page is reached.</li>
+
+<li><b>Step </b>The rows are searched on the leaf page for the specified value. 
+if a matched is not found, the table contains no matching rows.</li>
+
+<li><b>Step </b>If a match is found, the pointer is followed to the data 
+page and row-ID in the table, and the requested row is retrieved.</li>
+</ol>
+
+<p><h3>Example: </h3> If the row containing 
+Eid E006 were to be searched using the nonclustered index displayed in the 
+figure, the following steps would be followed:</p>
+
+<p>SQL Server starts from page 603, the root page It searches the highest key value on the page, the page with a key value less than or equal to the search value, that is, to the page containing the pointer to Eid E005</p>  
+
+<p>The search continues from page 602 There, the Eid E005 is found and the 
+search continues on page 203. Page 203 is searched to find a pointer to the actual row.</p> 
+<p>Page 203 is the last, or the leaf page of the indexThe search then moves to page 302 of the table to find the actual row.</p>
+
+<div class="image">
+<img src="Image/unclustered.jpg">
+</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="clustered_index.shtml" title="CLUSTERED Index">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="how_to_create_an _index.shtml" title="How to Create an Index">Next</a></td>
+  </tr>
+</table>
+
+                       <!--Footer  -->
+
+</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>

@@ -1,0 +1,147 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>Build SqlConnectionStringBuilder from connection string</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="Build SqlConnectionStringBuilder from connection string" >
+<meta name="keywords" CONTENT="Build SqlConnectionStringBuilder from connection string">
+
+<!-- header start-->	
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>ADO.NET</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+            <img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+            <a href="/ado.net">ADO.Net</a>
+              <img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+
+			  <a href="/ado.net/01/tutorial/ado.net/">ADO.NET Tutorials</a>
+
+              </div>
+
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/ado.net/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	 
+<!-- header End-->	
+<div class="heading">Build SqlConnectionStringBuilder from connection string</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="Retrive.shtml" title="Retrieving Data Using a SQL Server Stored Procedure IN ASP.NET">Previous</a>
+	</td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="Disply_String.shtml" title="How To Build a connection string from component parameters and display It.">Next</a></td>
+  </tr> 
+</table>
+
+<p>Provides a simple way to create and manage the contents of connection strings used by the SqlConnection class.</p>
+<p><i>Property:</i></p>
+
+<ol>
+<li>ApplicationName</li>
+<li>AsynchronousProcessing</li>
+<li>AttachDBFilename</li>
+<li>BrowsableConnectionString</li>
+<li>ConnectionReset</li>
+<li>ConnectionString</li>
+<li>ConnectTimeout</li>
+<li>ContextConnection</li>
+<li>CurrentLanguage</li>
+<li>DataSource</li>
+<li>FailoverPartner</li>
+<li>InitialCatalog</li>
+<li>IntegratedSecurity</li>
+<li>IsFixedSize</li>
+<li>IsReadOnly</li>
+<li>LoadBalanceTimeout</li>
+<li>MaxPoolSize</li>
+<li>MinPoolSize</li>
+<li>MultipleActiveResultSets</li>
+<li>NetworkLibrary</li>
+<li>PacketSize</li>
+<li>PersistSecurityInfo</li>
+<li>TransactionBinding</li>
+<li>System.Transactions</li>
+<li>TrustServerCertificate</li>
+<li>TypeSystemVersion</li>
+<li>UserID</li>
+<li>UserInstance</li>
+<li>WorkstationID</li>
+</ol>
+
+<div class="code">
+<pre>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Configuration</font><font color="#000000">;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Data</font><font color="#000000">;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.Linq;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Web</font><font color="#000000">;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Web</font><font color="#000000">.</font><font color="#008080">Security</font><font color="#000000">;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Web</font><font color="#000000">.</font><font color="#008080">UI</font><font color="#000000">;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Web</font><font color="#000000">.</font><font color="#008080">UI</font><font color="#000000">.</font><font color="#008080">HtmlControls</font><font color="#000000">;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Web</font><font color="#000000">.</font><font color="#008080">UI</font><font color="#000000">.</font><font color="#008080">WebControls</font><font color="#000000">;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Web</font><font color="#000000">.</font><font color="#008080">UI</font><font color="#000000">.</font><font color="#008080">WebControls</font><font color="#000000">.</font><font color="#008080">WebParts</font><font color="#000000">;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Xml</font><font color="#000000">.Linq;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Data</font><font color="#000000">.SqlClient;</font>
+<font color="#0000ff">public </font><font color="#000000">partial </font><font color="#0000ff">class </font><font color="#000000">_Default : </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Web</font><font color="#000000">.</font><font color="#008080">UI</font><font color="#000000">.</font><font color="#808000">Page</font>
+<font color="#000000">{</font>
+<font color="#0000ff">string </font><font color="#000000">conString=@</font><font color="#ff00ff">&quot;Data Source=R4R-3EFD13BB468\SQLEXPRESS; </font>
+<font color="#000000">initial catalog=newDatabase;integrated security=</font><font color="#0000ff">true</font><font color="#000000">;</font>
+<font color="#000000">Min Pool Size=</font><font color="#800080">5</font><font color="#000000">;Max Pool Size=</font><font color="#800080">15</font><font color="#000000">;Connection Reset=True; Connection Lifetime=</font><font color="#800080">600</font><font color="#000000">;</font><font color="#ff00ff">&quot;;</font>
+<font color="#0000ff">protected void </font><font color="#000000">Page_Load(</font><font color="#0000ff">object </font><font color="#000000">sender, </font><font color="#808000">EventArgs </font><font color="#000000">e)</font>
+<font color="#000000">{</font>
+<font color="#000000">SqlConnectionStringBuilder sub = </font><font color="#0000ff">new </font><font color="#000000">SqlConnectionStringBuilder(conString);</font>
+<font color="#000000">Response.Write(</font><font color="#ff00ff">&quot;Parsed SQL Connection String Parameters:&quot;</font><font color="#000000">);</font>
+<font color="#000000">Response.Write(</font><font color="#ff00ff">&quot;  Database Source = &quot; </font><font color="#000000">+ sub.DataSource);</font>
+<font color="#000000">Response.Write(</font><font color="#ff00ff">&quot;  Database = &quot; </font><font color="#000000">+ sub.InitialCatalog);</font>
+<font color="#000000">Response.Write(</font><font color="#ff00ff">&quot;  Use Integrated Security = &quot; </font><font color="#000000">+ sub.IntegratedSecurity);</font>
+<font color="#000000">Response.Write(</font><font color="#ff00ff">&quot;  Min Pool Size = &quot; </font><font color="#000000">+ sub.MinPoolSize);</font>
+<font color="#000000">Response.Write(</font><font color="#ff00ff">&quot;  Max Pool Size = &quot; </font><font color="#000000">+ sub.MaxPoolSize);</font>
+<font color="#000000">Response.Write(</font><font color="#ff00ff">&quot;  Lifetime = &quot; </font><font color="#000000">+ sub.LoadBalanceTimeout);</font>
+<font color="#000000">Response.Write(</font><font color="#ff00ff">&quot;  Connection Reset = &quot; </font><font color="#000000">+ sub.ConnectionReset);</font>
+<font color="#000000">}  </font>
+<font color="#000000">}</font>
+</pre>
+</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="Retrive.shtml" title="Retrieving Data Using a SQL Server Stored Procedure IN ASP.NET">Previous</a>
+	</td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="Disply_String.shtml" title="How To Build a connection string from component parameters and display It.">Next</a></td>
+  </tr> 
+</table>
+
+<!-- Footer Start-->		
+		</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/dotnet/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->

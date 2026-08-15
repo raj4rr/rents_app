@@ -1,0 +1,121 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>ASP.NET Query String|query string in asp.net|The advantages of using query strings|how to use query string in asp.net</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="ASP.NET tutorial for beginners and fresher Query String In ASP.NET
+The advantages of using query strings how its work learn with real examples " >
+<meta name="keywords" CONTENT="ASP.NET tutorial Query String, query string in asp.net,
+ advantages of using query strings, asp.net basics, Control in ASP.NET, HTML Server Controls,Web Server Controls,Validation Server Controls, dropdowlist in asp.net,gridview, gridview update, hyperlink, image button, label, link button,
+Validators in ASP.Net, Database Access, ASP.Net with ADO.Net, File uploading in ASP.Net">
+
+<!--Header start-->
+
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>VB.net Tutorials with Examples</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a><img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+			<a href="/vb.net/">vb.net</a><img src="/images/left_menu_bullet.gif" width="11" height="6"/>
+			<a href="/vb.net/01/tutorial/aspnet/">ASP.net using VB.net</a>
+              </div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/vb.net/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	  
+
+<!-- Header End-->	
+<div class="heading">Query String In ASP.NET</div>	   
+  <table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="cookies.shtml" title="Cookies in Asp.net">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="serverside%20statemanagement.shtml" title="Server Side State Management">Next</a></td>
+  </tr>
+</table>
+
+ <p>Query string is used to Pass the values or information form one page to another 
+page.The <font class="point_out">query string</font> is 
+a holdover from the ASP days of web programming. You will see this a lot when 
+you are surfing around the internet. Basically, it is passing information to the 
+next page with the URL .You can use a query string to submit data back to 
+your page or to another page through the URL. Query strings provide a simple but 
+limited way of maintaining some state information. </p>
+<h2>The advantages 
+of using query strings are</h2>
+<ul>
+  <li>No server resources required. The query string is contained in the HTTP 
+  request for a specific URL.</li>
+  <li>Broad support. Almost all browsers and client devices support passing 
+  values in a query string</li>
+  <li>it is very easy </li>
+</ul>
+
+<h2>The disadvantages of using 
+query strings are</h2>
+<ul>
+  <li>Security. The information in the query string is directly visible to the 
+  user via the browser user interface. The query values are exposed to the 
+  Internet via the URL so in some cases security may be an issue.</li>
+  <li>Limited capacity. Most browsers and client devices impose a 255-character 
+  limit on URL length</li>
+</ul>
+<h3>.VB CODE</h3>
+<div class="code">
+<pre>
+<font color="#000000">Protected Sub btnSubmit_Click(ByVal sender As </font><font color="#808000">Object</font><font color="#000000">, </font>
+<font color="#000000">ByVal e As </font><font color="#008080">System</font><font color="#000000">.</font><font color="#808000">EventArgs</font><font color="#000000">) Handles btnSubmit.Click</font>
+<font color="#000000">Response.Redirect(</font><font color="#ff00ff">&quot;Default.aspx?Name=&quot; </font><font color="#000000">&amp; </font><font color="#808000">Convert</font><font color="#000000">.ToString(Me.txtName.</font><font color="#008080">Text</font><font color="#000000">) &amp; </font>
+<font color="#ff00ff">&quot;&amp;LastName=&quot; </font><font color="#000000">&amp; </font><font color="#808000">Convert</font><font color="#000000">.ToString(Me.txtLastName.</font><font color="#008080">Text</font><font color="#000000">))</font>
+<font color="#000000">End Sub</font>
+</pre>
+</div>
+<p>Our first code part builds a query string for your application and send 
+contents of your textboxes to second page. Now how to retrieve this values from 
+second page.Put this code to second page<font class="point_out"> page_load</font>
+<div class="code">
+<pre>
+<font color="#000000">Protected Sub Page_Load(ByVal sender As </font><font color="#808000">Object</font><font color="#000000">, </font>
+<font color="#000000">ByVal e As </font><font color="#008080">System</font><font color="#000000">.</font><font color="#808000">EventArgs</font><font color="#000000">) Handles Me.Load</font>
+        <font color="#000000">Me.txtBox1.</font><font color="#008080">Text </font><font color="#000000">= Request.QueryString(</font><font color="#ff00ff">&quot;Name&quot;</font><font color="#000000">)</font>
+        <font color="#000000">Me.txtBox2.</font><font color="#008080">Text </font><font color="#000000">= Request.QueryString(</font><font color="#ff00ff">&quot;LastName&quot;</font><font color="#000000">)</font>
+<font color="#000000">End Sub</font>
+</pre>
+</div>
+
+  <table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="cookies.shtml" title="Cookies in Asp.net">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="serverside%20statemanagement.shtml" title="Server Side State Management">Next</a></td>
+  </tr>
+</table>
+<!--Footer  -->
+</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>

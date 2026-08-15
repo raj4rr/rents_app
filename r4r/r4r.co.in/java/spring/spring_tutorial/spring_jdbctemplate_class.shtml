@@ -1,0 +1,132 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD>
+<meta http-equiv="Content-Language" content="en-us">
+<TITLE>Spring Tutorials</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name="description" CONTENT="spring tutorial covers all topics of spring live spring examples spring interview questions" >
+<meta name="keywords" CONTENT="starting from environment setup, inversion of control (IoC), dependency injection, bean scopes, bean life cycle, inner beans,
+ autowiring, different modules, aspect oriented programming (AOP)">
+
+		<!-- header start-->	
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+     <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>Spring Tutorials</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+			<img src="/images/left_menu_bullet.gif"/> <a href="/java/spring/">Spring</a>
+
+       </div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/spring/commonfiles/leftmenucore.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content">
+<!-- LEGACY BANNER START -->
+<div style="background: rgba(255, 244, 229, 0.9); border-left: 5px solid #ff9800; padding: 20px; margin-bottom: 25px; border-radius: 8px; font-family: 'Inter', sans-serif; box-shadow: 0 4px 6px rgba(0,0,0,0.05);">
+    <h3 style="margin-top: 0; color: #e65100; font-size: 1.2rem; display: flex; align-items: center; gap: 8px;">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+        Legacy Spring Framework Warning
+    </h3>
+    <p style="margin-bottom: 0; color: #5d4037; font-size: 1.05rem; line-height: 1.5;">
+        This tutorial teaches an outdated version of Spring using <strong>legacy XML configuration</strong> (<code>applicationContext.xml</code>). Modern Spring applications rely on <strong>Spring Boot</strong> and <strong>Java Annotations</strong>. This page is preserved for historical context and maintaining legacy systems.
+    </p>
+</div>
+<!-- LEGACY BANNER END -->
+ 	 
+
+<div class="heading">Introduction of Spring JdbcTemplate</div>
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="spring_jdbc_framework_introduction.shtml" title="spring_jdbc_framework_introduction">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="example_of_spring_jdbctemplate_class.shtml" title="example_of_spring_jdbctemplate_class">Next</a></td>
+  </tr> 
+</table>
+<p>Spring JdbcTemplate is a powerful mechanism to connect to the<font class="point_out"> Database and execute SQL queries</font>. It internally uses JDBC api, but eliminates a lot of problems of JDBC API.The JdbcTemplate can be used within a DAO implementation through direct instantiation with a DataSource reference, or be configured in a Spring IoC container and given to DAOs as a bean reference.</p>
+
+<div class="heading">Difficulties using of JDBC API</div>
+<p>There are several problems of JDBC API as  given below.</p>
+<ol>
+<li>
+We need to write a lot of code before and after executing the query, such as creating connection, statement, closing resultset, connection etc.
+</li>
+<li>
+We need to perform exception handling code on the database logic.
+</li>
+<li>
+We need to handle transaction.
+</li>
+<li>
+Repetition of all these codes from one to another database logic is a time consuming task.
+</li>
+</ol>
+
+<h3>Advantage of Spring JdbcTemplate</h3>
+<p>Spring JdbcTemplate eliminates all the above mentioned problems of JDBC API. It provides you methods to write the queries directly, so it saves a lot of work and time.</p>
+<div class="heading">JdbcTemplate Class</div>
+<p>The JdbcTemplate class is the central class in the JDBC core package. It handles the creation and release of resources, which helps you avoid common errors such as forgetting to close the connection. It performs the basic tasks of the core JDBC workflow such as statement creation and execution, leaving application code to provide SQL and extract results.
+</p><p>The JdbcTemplate class<font class="point_out"> executes SQL queries, update statements and stored procedure calls, performs iteration over ResultSets and extraction of returned parameter values</font>. It also catches JDBC exceptions and translates them to the generic, more informative, exception hierarchy defined in the org.springframework.dao package.</p>
+
+<p>Instances of the JdbcTemplate class are threadsafe once configured. So you can configure a single instance of a JdbcTemplate and then safely inject this shared reference into multiple DAOs.It handles the exception and provides the informative exception messages by the help of excepion classes defined in the<font class="point_out"> org.springframework.dao package.</font></p>
+<div class="heading">Configuring Data Source</div>
+<p>Let us create a database table Employee in our database Test. I assume you are working with MySQL database, if you work with any other database then you can change your DDL and SQL queries accordingly.</p>
+<div class="code">
+<pre>
+<font color="#000000">create table employee(</font>
+<font color="#000000">id </font><font color="#0000ff">int </font><font color="#000000">not </font><font color="#0000ff">null </font><font color="#000000">auto_increment,</font>
+<font color="#000000">name varchar(</font><font color="#800080">20</font><font color="#000000">) not </font><font color="#0000ff">null</font><font color="#000000">,</font>
+<font color="#000000">salary </font><font color="#0000ff">int </font><font color="#000000">not </font><font color="#0000ff">null</font><font color="#000000">,</font>
+<font color="#000000">primary key (id)</font>
+<font color="#000000">);</font>
+</pre>
+</div>
+<p>Now we need to provide a <font class="point_out">DataSource to the JdbcTemplate</font> so it can configure itself to get database access. You can configure the DataSource in the XML file with a piece of code as shown below:</p>
+<div class="code">
+<pre>
+<font color="#0000ff">&lt;</font><font color="#808000">bean </font><font color="#800080">id</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;dataSource&quot; </font><font color="#800080">class</font><font color="#0000ff">=</font>
+    <font color="#ff00ff">&quot;org.springframework.jdbc.datasource.DriverManagerDataSource&quot;</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">property </font><font color="#ff0000">name</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;driverClassName&quot; </font><font color="#800080">value</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;com.mysql.jdbc.Driver&quot;</font><font color="#0000ff">/&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">property </font><font color="#ff0000">name</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;url&quot; </font><font color="#800080">value</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;jdbc:mysql://localhost:3306/Test&quot;</font><font color="#0000ff">/&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">property </font><font color="#ff0000">name</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;username&quot; </font><font color="#800080">value</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;root&quot;</font><font color="#0000ff">/&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">property </font><font color="#ff0000">name</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;password&quot; </font><font color="#800080">value</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;root&quot;</font><font color="#0000ff">/&gt;</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">bean</font><font color="#0000ff">&gt;</font>
+</pre>
+</div>
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="spring_jdbc_framework_introduction.shtml" title="spring_jdbc_framework_introduction">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="example_of_spring_jdbctemplate_class.shtml" title="example_of_spring_jdbctemplate_class">Next</a></td>
+  </tr> 
+</table>
+
+		</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->

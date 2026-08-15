@@ -1,0 +1,116 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>Frame Control in WPF</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="Frame Control in WPF" >
+<meta name="keywords" CONTENT="Frame Control in WPF">
+<!--Header Start-->
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+     <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>WPF</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a><img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+			<a href="/wpf/">WPF with C#</a><img src="/images/left_menu_bullet.gif" width="11" height="6"/>
+			<a href="/wpf/01/tutorial/windows-based/">WPF Window Based Tutorials</a>
+
+             <table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/wpf/commonfiles/leftmenu.shtml'); ?></td>
+
+                       <td style="80%" valign="top">
+                        <div class="main_content"> 
+
+  <!-- Header End-->                                                                                                                                                             
+
+<div class="heading">Frame Control in WPF</div>   
+
+	 <table id ="indexing">
+	 <tr>
+	 <td style="width:33%; text-align:left;"><a href="content_control.shtml" title="Content Control">previous</a></td>
+	 <td style="width:34%; text-align:center;"><a href="index.shtml ">Home</a></td>
+	 <td style="width:33%; text-align:right;"><a href="groupbox_control.shtml" title="GroupBox Control">Next</a></td>
+	 </tr>
+	     </table>
+
+		 <p dir="ltr"><font color="#0066FF" face="Verdana"><b></b></font></p>
+
+<p>The Frame control in WPF 
+supports content navigation within content. A Frame can be hosted within a 
+Window, NavigationWindow, Page, UserControl, or a FlowDocument control.</p>
+<h3>XAML code :</h3>
+<div class="code">
+<pre>
+<font color="#0000ff">&lt;</font><font color="#808000">Window </font><font color="#800080">x:Class</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;WpfApplication5.Window1&quot;</font>
+    <font color="#ff0000">xmlns</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;http://schemas.microsoft.com/winfx/2006/xaml/presentation&quot;</font>
+    <font color="#800080">xmlns:x</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;http://schemas.microsoft.com/winfx/2006/xaml&quot;</font>
+    <font color="#800080">Title</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;Window1&quot; </font><font color="#800080">Height</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;300&quot; </font><font color="#800080">Width</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;300&quot;</font><font color="#0000ff">&gt;</font>
+<font color="#000000">    </font><font color="#0000ff">&lt;</font><font color="#808000">Grid </font><font color="#800080">Width</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;224&quot;</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">TextBlock</font><font color="#0000ff">&gt;</font><font color="#000000">Outside area of frame</font><font color="#0000ff">&lt;/</font><font color="#808000">TextBlock</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">Frame </font><font color="#800080">Source</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;Page1.xaml&quot;</font><font color="#0000ff">&gt;</font>
+<font color="#000000">   </font><font color="#0000ff">&lt;/</font><font color="#808000">Frame</font><font color="#0000ff">&gt;</font>
+<font color="#000000">    </font><font color="#0000ff">&lt;/</font><font color="#808000">Grid</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">Window</font><font color="#0000ff">&gt;</font>
+</pre>
+</div>
+
+<p>The Window looks like as below in picture. The Blue area is the Page1.xaml 
+and white area is outside of the Frame.</p>
+
+<div class="image">
+
+<img src="images/frame.JPG">
+</div>
+
+<p>Now you can manage contents of a frame the way you want. For 
+example, the following code rotates the contents of frame to 45 angle.</p>
+
+<div class="code">
+<pre>
+<font color="#0000ff">&lt;</font><font color="#808000">Frame </font><font color="#800080">Source</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;Page1.xaml&quot;</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">Frame</font><font color="#000000">.</font><font color="#800080">LayoutTransform</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">RotateTransform </font><font color="#800080">Angle</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;45&quot; </font><font color="#0000ff">/&gt;</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">Frame</font><font color="#000000">.</font><font color="#800080">LayoutTransform</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">Frame</font><font color="#0000ff">&gt;</font>
+</pre>
+</div>
+<div class="output"><i>Output :</i>
+<div class="image">
+<img src="images/frame1.JPG">
+</div></div>
+	 <table id ="indexing">
+	 <tr>
+	 <td style="width:33%; text-align:left;"><a href="content_control.shtml" title="Content Control">previous</a></td>
+	 <td style="width:34%; text-align:center;"><a href="index.shtml ">Home</a></td>
+	 <td style="width:33%; text-align:right;"><a href="groupbox_control.shtml" title="GroupBox Control">Next</a></td>
+	 </tr>
+	     </table>
+
+<!--footer-->                                                                                                                                                           
+
+	 </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>

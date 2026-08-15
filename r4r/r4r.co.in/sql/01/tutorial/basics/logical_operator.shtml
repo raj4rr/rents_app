@@ -1,0 +1,137 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>Using Logical Operator,Using List Operator</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="Using Logical Operator,Using List Operator,LOGICAL OPERATOR,LIST OPERATOR" >
+<meta name="keywords" CONTENT="Using Logical Operator,Using List Operator,LOGICAL OPERATOR,LIST OPERATOR">
+
+<!--header start-->
+
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>DATABASE & SQL/PLSQL</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a><img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+			<a href="/sql/">SQL </a>
+              </div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/sql/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	  
+
+                        	                        	<!-- Header End-->	
+    <div class="heading">Displaying Rows Using Logical & List Operators</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="DCl.shtml" title="DCL and TCL">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="comparison.shtml" title="Displaying Rows Using Comparison & Range Operators">Next</a></td>
+  </tr>
+</table>                        
+
+<h3>Using Logical Operator</h3>
+<p>Multiple search condition done by using logical operator. They are:</p>
+<ol type="1">
+<li><i>OR: </i>Any of the specified search condition is true.</li>
+
+<div class="code">
+<pre>
+SELECT column_list
+FROM table_name
+WHERE  condition_expression OR condition_expression
+</pre>
+</div>
+<p>Return all rows specific to the conditions, even if any one of the condition is true.</p>
+
+<li><i>AND: </i>When all specified search conditions are true.</li>
+<div class="code">
+<pre>
+SELECT column_list
+FROM table_name
+WHERE  condition_expression AND condition_expression
+</pre>
+</div>
+<p>Return all rows specific to the conditions, when both conditions are true.</p>
+
+<li><i>NOT: </i>Neutralizes the expression that follow it.</li>
+<div class="code">
+<pre>
+SELECT column_list
+FROM table_name
+WHERE  condition_expression {OR/AND} NOT  condition_expression
+</pre>
+</div>
+<p>Return all rows specific to the conditions, except the rows that match the 
+condition specified after the NOT operatoor.</p>
+</ol>
+
+<h3>Using List Operator</h3>
+<p>SQl provides IN and NOT IN operators. IN operator that allowed the selection 
+of values that match any one of the values in a list. NOT IN operator restrict 
+the selection of values that match any one of the values in a list.</p>
+<div class="code">
+<pre>
+SELECT column_list
+FROM table_name
+WHERE  condition list_operator('value_list') 
+</pre>
+</div>
+
+<ol>
+<li><i>list_operator</i> is any valid list operator.</li>
+<li><i>value_list </i> is the list of values to be included or excluded in the condition</li>
+</ol>
+
+<h3> Example:</h3>
+<div class="code">
+<pre>
+SELECT * 
+FROM publishers
+WHERE state IN ('MA','DC')
+
+SELECT * 
+FROM publishers
+WHERE state NOT IN ('MA','DC') 
+</pre>
+</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="DCl.shtml" title="DCL and TCL">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="comparison.shtml" title="Displaying Rows Using Comparison & Range Operators">Next</a></td>
+  </tr>
+</table>                        
+
+                       <!--Footer  -->
+
+</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>

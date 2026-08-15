@@ -1,0 +1,144 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>Comparing Struts 1.x and 2.x</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="Comparing Struts 1.x and 2.x" >
+<meta name="keywords" CONTENT="Comparing Struts 1.x and 2.x">
+<!-- header start-->	
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>Struts</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+            <img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+            <a href="/java/">Java</a>
+              <img src="/images/left_menu_bullet.gif" width="11" height="6"/><A href="/java/struts/basic/tutorial/01">Struts1.3 Basic Tutorials </a>
+              </div>
+
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/struts/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	 
+
+<div class="heading">Comparing Struts 1.x and 2.x</div>
+<!-- header End-->
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="Tag%20Library.shtml" title="What is Tag Library? , How many Tag Library used into struts framework?">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="Define%20the%20Struts2%20Features.shtml" title="Define the Struts2 Features, Why used Struts framework">Next</a></td>
+  </tr> 
+</table>
+
+<div class="table_content">
+<table>
+<tr>
+<td class="heading" style="width:20%;">Feature</td>
+<td class="heading" style="width:40%;">Struts 1.x</td>
+<td class="heading" style="width:40%;">Struts 2.x</td>
+
+</tr>
+<tr>
+<td class="alternate_heading1">Introduction of Struts</td>
+<td class="alternate_heading1">In 2001, version 1.0 was released.</td>
+<td class="alternate_heading1">In 2008, version 2.0 was released.</td>
+</tr>
+</tr>
+<tr>
+
+<td class="alternate_heading2">Threading Model</td>
+<td class="alternate_heading2">Struts 1 Actions are singletons and must be thread-safe since there will only be one instance of a class to handle all requests for that Action. The singleton strategy places restrictions on what can be done with Struts 1 Actions and requires extra care to develop. Action resources must be thread-safe or synchronized</td>
+<td class="alternate_heading2">Struts 2 Action objects are instantiated for each request, so there are no thread-safety issues. (In practice, servlet containers generate many throw-away objects per request, and one more object does not impose a performance penalty or impact garbage collection.)</td>
+</tr>
+</tr>
+<tr>
+<td class="alternate_heading1">Servlet Dependency</td>
+<td class="alternate_heading1">Struts 1 Actions have dependencies on the servlet API since the HttpServletRequest and HttpServletResponse is passed to the execute method when an Action is invoked.</td>
+<td class="alternate_heading1">Struts 2 Actions are not coupled to a container. Most often the servlet contexts are represented as simple Maps, allowing Actions to be tested in isolation. Struts 2 Actions can still access the original request and response, if required. However, other architectural elements reduce or eliminate the need to access the HttpServetRequest or HttpServletResponse directly.</td>
+</tr>
+</tr>
+<tr>
+<td class="alternate_heading2">Action classes</td>
+<td class="alternate_heading2">Struts 1 requires Action classes to extend an abstract base class. A common problem in Struts 1 is programming to abstract classes instead of interfaces.</td>
+<td class="alternate_heading2">An Struts 2 Action may implement an Action interface, along with other interfaces to enable optional and custom services. Struts 2 provides a base ActionSupport class to implement commonly used interfaces. Albeit, the Action interface is not required. Any POJO object with a execute signature can be used as an Struts 2 Action object.</td>
+</tr>
+</tr>
+<tr>
+<td class="alternate_heading1">Harvesting Input</td>
+<td class="alternate_heading1">Struts 1 uses an ActionForm object to capture input. Like Actions, all ActionForms must extend a base class. Since other JavaBeans cannot be used as ActionForms, developers often create redundant classes to capture input. DynaBeans can used as an alternative to creating conventional ActionForm classes, but, here too, developers may be redescribing existing JavaBeans.</td>
+<td class="alternate_heading1">Struts 2 uses Action properties as input properties, eliminating the need for a second input object. Input properties may be rich object types which may have their own properties. The Action properties can be accessed from the web page via the taglibs. Struts 2 also supports the ActionForm pattern, as well as POJO form objects and POJO Actions. Rich object types, including business or domain objects, can be used as input/output objects. The ModelDriven feature simplifies taglb references to POJO input objects.</td>
+</tr>
+</tr>
+<tr>
+<td class="alternate_heading2">Expression Language</td>
+<td class="alternate_heading2">Struts 1 integrates with JSTL, so it uses the JSTL EL. The EL has basic object graph traversal, but relatively weak collection and indexed property support.</td>
+<td class="alternate_heading2">Struts 2 can use JSTL, but the framework also supports a more powerful and flexible expression language called "Object Graph Notation Language" (OGNL).</td>
+</tr>
+<tr>
+<td class="alternate_heading1">Binding values into views</td>
+<td class="alternate_heading1">Struts 1 uses the standard JSP mechanism for binding objects into the page context for access.</td>
+<td class="alternate_heading1">Struts 2 uses a "ValueStack" technology so that the taglibs can access values without coupling your view to the object type it is rendering. The ValueStack strategy allows reuse of views across a range of types which may have the same property name but different property types.</td>
+</tr>
+<tr>
+<td class="alternate_heading2">Type Conversion</td>
+<td class="alternate_heading2">Struts 1 ActionForm properties are usually all Strings. Struts 1 uses Commons-Beanutils for type conversion. Converters are per-class, and not configurable per instance.</td>
+<td class="alternate_heading2">Struts 2 uses OGNL for type conversion. The framework includes converters for basic and common object types and primitives.</td>
+</tr>
+<tr>
+<td class="alternate_heading1">Validation</td>
+<td class="alternate_heading1">Struts 1 supports manual validation via a validate method on the ActionForm, or through an extension to the Commons Validator. Classes can have different validation contexts for the same class, but cannot chain to validations on sub-objects.</td>
+<td class="alternate_heading1">Struts 2 supports manual validation via the validate method and the XWork Validation framework. The Xwork Validation Framework supports chaining validation into sub-properties using the validations defined for the properties class type and the validation context.</td>
+</tr>
+<tr>
+<td class="alternate_heading2">Testability</td>
+<td class="alternate_heading2">A major hurdle to testing Struts 1 Actions is that the execute method exposes the Servlet API. A third-party extension, Struts TestCase, offers a set of mock object for Struts 1.</td>
+<td class="alternate_heading2">Struts 2 Actions can be tested by instantiating the Action, setting properties, and invoking methods. Dependency Injection support also makes testing simpler.</td>
+</tr>
+<tr>
+<td class="alternate_heading1">Control Of Action Execution</td>
+<td class="alternate_heading1">Struts 1 supports separate Request Processors (lifecycles) for each module, but all the Actions in the module must share the same lifecycle.</td>
+<td class="alternate_heading1">Struts 2 supports creating different lifecycles on a per Action basis via Interceptor Stacks. Custom stacks can be created and used with different Actions, as needed.</td>
+</tr>
+</table>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="Tag%20Library.shtml" title="What is Tag Library? , How many Tag Library used into struts framework?">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="Define%20the%20Struts2%20Features.shtml" title="Define the Struts2 Features, Why used Struts framework">Next</a></td>
+  </tr> 
+</table>
+
+<!-- Footer Start-->	
+
+		</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->

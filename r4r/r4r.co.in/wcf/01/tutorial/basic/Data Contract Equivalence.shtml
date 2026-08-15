@@ -1,0 +1,147 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>Data Contract Equivalence,Serialization Order</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="Data Contract Equivalence,Serialization Order" >
+<meta name="keywords" CONTENT="Data Contract Equivalence,Serialization Order">
+
+<!--Header start-->
+
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>WCF</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a><img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+			<a href="/wcf">WCF with C# </a>
+              <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/wcf/01/tutorial/basic/">WCF Tutorials</a></div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/wcf/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	  
+
+<!-- Header End-->
+<div class="heading">Data Contract Equivalence</div>
+
+  <table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="Data%20Contract%20Hierarchy.shtml" title="Data Contract Hierarchy
+">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="Data%20Contract%20Versioning.shtml" title="Data Contract Versioning">Next</a></td>
+  </tr>
+</table>
+<p>Two data contracts are considered
+equivalent if they have the same wire 
+representation means if they have the same schema. This can be the case if 
+they define the same type (but not necessarily the same version of the type) or 
+if the two data contracts refer to two different types with the same data 
+contract and data member names. Equivalent data contracts are interchangeable: 
+WCF will let any service that was defined with one data contract operate with an 
+equivalent data contract.</p>
+<h3>these two data contracts are equivalent</h3>
+<div class="code">
+<pre>
+<font color="#000000">[DataContract]</font>
+<font color="#0000ff">struct </font><font color="#000000">Contact</font>
+<font color="#000000">{</font>
+   <font color="#000000">[DataMember]</font>
+   <font color="#0000ff">public string </font><font color="#000000">FirstName;</font>
+	<font color="#000000">[DataMember]</font>
+   <font color="#0000ff">public string </font><font color="#000000">LastName;</font>
+<font color="#000000">}</font>
+<font color="#000000">[DataContract(Name = </font><font color="#ff00ff">&quot;Contact&quot;</font><font color="#000000">)]</font>
+<font color="#0000ff">struct </font><font color="#000000">Person</font>
+<font color="#000000">{</font>
+   <font color="#000000">[DataMember(Name = </font><font color="#ff00ff">&quot;FirstName&quot;</font><font color="#000000">)]</font>
+   <font color="#0000ff">public string </font><font color="#000000">Name;</font>
+	<font color="#000000">[DataMember(Name = </font><font color="#ff00ff">&quot;LastName&quot;</font><font color="#000000">)]</font>
+   <font color="#0000ff">public string </font><font color="#000000">Surname;</font>
+<font color="#000000">}</font>
+</pre>
+</div>
+
+<div class="heading">Serialization Order</div>
+<p>Equivalent data contracts must serialize and deserialize their members in the 
+same order.</p>
+<h3>when serializing a Customer instance, defined as:</h3>
+<div class="code">
+<pre>
+<font color="#000000">[DataContract]</font>
+<font color="#0000ff">class </font><font color="#000000">Contact</font>
+<font color="#000000">{</font>
+   <font color="#000000">[DataMember]</font>
+   <font color="#0000ff">public string </font><font color="#000000">FName;</font>
+
+   <font color="#000000">[DataMember]</font>
+   <font color="#0000ff">public string </font><font color="#000000">LName;</font>
+<font color="#000000">}</font>
+<font color="#000000">[DataContract]</font>
+<font color="#0000ff">class </font><font color="#000000">Customer : Contact</font>
+<font color="#000000">{</font>
+   <font color="#000000">[DataMember]</font>
+   <font color="#0000ff">public int </font><font color="#000000">CNumber;</font>
+</pre>
+</div>
+
+<p><i>The members will be serialized in the following order:</i> <font class="point_out">FName</font>,<font class="point_out">LName</font>,
+<font class="point_out">CNumber</font>.</p>
+<p>The problem is that combining data contract hierarchy with aliasing contracts and members might 
+break the serialization order</p>
+<p>To resolve this conflict,we provide WCF with the order of serialization by setting the
+<font class="point_out">Order</font> property of the <font class="point_out">DataMember</font>
+attribute. The <font class="point_out">Order</font> property defaults to -1, meaning the default WCF ordering, but you can assign to 
+it values indicating the required order.</p>
+<div class="code">
+<pre>
+<font color="#000000">[DataContract(Name = </font><font color="#ff00ff">&quot;Customer&quot;</font><font color="#000000">)]</font>
+<font color="#0000ff">public class </font><font color="#000000">Person</font>
+<font color="#000000">{</font>
+<font color="#000000">[DataMember(Name = </font><font color="#ff00ff">&quot;FirstName&quot;</font><font color="#000000">,Order = </font><font color="#800080">1</font><font color="#000000">)]</font>
+<font color="#0000ff">public string </font><font color="#000000">Name;</font>
+<font color="#000000">[DataMember(Name = </font><font color="#ff00ff">&quot;LastName&quot;</font><font color="#000000">,Order = </font><font color="#800080">2</font><font color="#000000">)]</font>
+<font color="#0000ff">public string </font><font color="#000000">Surname;</font>
+<font color="#000000">[DataMember,Order = </font><font color="#800080">3</font><font color="#000000">)]</font>
+<font color="#0000ff">public int </font><font color="#000000">CustomerNumber;blic </font><font color="#0000ff">int </font><font color="#000000">CNumber;</font>
+</pre>
+</div>
+
+ <table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="Data%20Contract%20Hierarchy.shtml" title="Data Contract Hierarchy
+">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="Data%20Contract%20Versioning.shtml" title="Data Contract Versioning">Next</a></td>
+  </tr>
+</table>
+
+<!--Footer  -->
+</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/dotnet/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>

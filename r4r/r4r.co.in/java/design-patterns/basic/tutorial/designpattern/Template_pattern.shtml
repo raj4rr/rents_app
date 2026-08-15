@@ -1,0 +1,177 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD>
+<meta http-equiv="Content-Language" content="en-us">
+<TITLE>Template Design Pattern Pattern</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name="description" CONTENT="Template Design Pattern Pattern" >
+<meta name="keywords" CONTENT="Template Design Pattern Pattern">
+
+<!-- header start-->	
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>Design Pattern Basic Tutorial</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+
+     		 <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/java/">java</a>           
+
+              <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/java/design-patterns/">Design Pattern</a>
+
+              </div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/design-patterns/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	 
+<!-- header end--> 
+
+<div class="heading">Template Method</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="strategy_pattern.shtml" title="strategy_pattern">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="visitorpattern.shtml" title="visitorpattern">Next</a></td>
+  </tr> 
+</table>
+
+<p>The Template pattern Provide a feature for class or method that is abstract definition. with the help of these feature we can redefine the behavior of the class or method without changing in its structure.
+</p>
+<div class="heading">Benefit and use of Template Pattern</div>	   
+ <ol>
+ <li>
+The Template Pattern is used to make more than one similar operations template.
+  </li><li>
+From many specialized operations to a generalized operation.
+ </li><li>
+ It is Refactor common behavior in simplify code.
+</li><li>
+It is provide the related Algorithm for improvement.
+</li><li>
+For conquer it Need good coding skill.
+</li><li>
+It May be hard to read for novice.
+</li><li>
+Easy to produce ambiguity if not written well. 
+ </li></ol>
+ <p>We can write the code Without using template method pattern, but when you write without template then you may write more lines of code. With the use of the design pattern we don't have any side effect and we don't need to cast in or out.</p>
+ <h3>Example</h3>
+
+  <div class="code">
+<pre>
+<font face="Arial">
+<font color="#0000ff">package </font><font color="#000000">r4r;</font>
+<font color="#0000ff">abstract class </font><font color="#000000">CheckBackup {</font>
+ <font color="#0000ff">public abstract void </font><font color="#000000">checkBankAccount();</font>
+<font color="#0000ff">public abstract void </font><font color="#000000">checkCreditCard();</font>
+<font color="#0000ff">public abstract void </font><font color="#000000">checkLoanApplication();</font>
+<font color="#0000ff">public abstract void </font><font color="#000000">checkStockAccount();</font>
+<font color="#0000ff">public abstract void </font><font color="#000000">checkIncometax();</font>
+
+  <font color="#008000">//work as template method Pattern</font>
+<font color="#0000ff">public void </font><font color="#000000">checkList() {</font>
+<font color="#000000">checkBankAccount();</font>
+<font color="#000000">checkCreditCard();</font>
+<font color="#000000">checkLoanApplication();</font>
+<font color="#000000">checkStockAccount();</font>
+<font color="#000000">checkIncometax(); </font>
+<font color="#000000">}</font>
+<font color="#000000">}</font>
+
+<font color="#0000ff">class </font><font color="#000000">LoanApplication </font><font color="#0000ff">extends </font><font color="#000000">CheckBackup {</font>
+<font color="#0000ff">private </font><font color="#ff0000">String </font><font color="#000000">name;</font>
+
+<font color="#0000ff">public </font><font color="#000000">LoanApplication(</font><font color="#ff0000">String </font><font color="#000000">name) {</font>
+<font color="#0000ff">this</font><font color="#000000">.name = name;</font>
+<font color="#000000">}</font>
+
+<font color="#0000ff">public </font><font color="#ff0000">String </font><font color="#000000">getName() {</font>
+<font color="#0000ff">return </font><font color="#000000">name;</font>
+<font color="#000000">}</font>
+
+<font color="#0000ff">public void </font><font color="#000000">checkBankAccount() {</font>
+
+<font color="#ff0000">System</font><font color="#000000">.out.println(</font><font color="#ff00ff">&quot;check bank account...&quot;</font><font color="#000000">);</font>
+<font color="#000000">}</font>
+
+<font color="#0000ff">public void </font><font color="#000000">checkCreditCard() {</font>
+
+<font color="#ff0000">System</font><font color="#000000">.out.println(</font><font color="#ff00ff">&quot;check credit Card...&quot;</font><font color="#000000">);</font>
+<font color="#000000">}</font>
+
+<font color="#0000ff">public void </font><font color="#000000">checkLoanApplication() {</font>
+
+<font color="#ff0000">System</font><font color="#000000">.out.println(</font><font color="#ff00ff">&quot;check other loan application...&quot;</font><font color="#000000">);</font>
+<font color="#000000">}</font>
+
+<font color="#0000ff">public void </font><font color="#000000">checkStockAccount() {</font>
+
+<font color="#ff0000">System</font><font color="#000000">.out.println(</font><font color="#ff00ff">&quot;check stock values...&quot;</font><font color="#000000">);</font>
+<font color="#000000">}</font>
+
+<font color="#0000ff">public void </font><font color="#000000">checkIncometax() {</font>
+
+<font color="#ff0000">System</font><font color="#000000">.out.println(</font><font color="#ff00ff">&quot;check income tax...&quot;</font><font color="#000000">);</font>
+<font color="#000000">}</font>
+
+<font color="#008000">//other methods</font>
+<font color="#000000">}</font>
+<font color="#0000ff">public class </font><font color="#000000">templatetest {</font>
+<font color="#0000ff">public static void </font><font color="#000000">main(</font><font color="#ff0000">String</font><font color="#000000">[] args) {</font>
+
+<font color="#000000">LoanApplication la = </font><font color="#0000ff">new </font><font color="#000000">LoanApplication(</font><font color="#ff00ff">&quot;john&quot;</font><font color="#000000">);</font>
+<font color="#ff0000">System</font><font color="#000000">.out.println(</font><font color="#ff00ff">&quot;\nCheck client &quot; </font><font color="#000000">+ </font>
+	<font color="#000000">la.getName()+ </font><font color="#ff00ff">&quot; loan application. &quot;</font><font color="#000000">);</font>
+<font color="#000000">la.checkList();</font>
+
+<font color="#000000">LoanApplication equityClient = </font><font color="#0000ff">new </font><font color="#000000">LoanApplication(</font><font color="#ff00ff">&quot;tommy&quot;</font><font color="#000000">);</font>
+<font color="#ff0000">System</font><font color="#000000">.out.println(</font><font color="#ff00ff">&quot;\nCheck client &quot; </font><font color="#000000">+ </font>
+	<font color="#000000">equityClient.getName()+ </font><font color="#ff00ff">&quot; loan application. &quot;</font><font color="#000000">);</font>
+<font color="#000000">equityClient.checkList();</font>
+<font color="#000000">}</font>
+<font color="#000000">}</font>
+</font>
+</pre>
+</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="strategy_pattern.shtml" title="strategy_pattern">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="visitorpattern.shtml" title="visitorpattern">Next</a></td>
+  </tr> 
+</table>
+
+<!-- Footer Start-->	   	
+
+		</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->
+

@@ -1,0 +1,148 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD>
+<meta http-equiv="Content-Language" content="en-us">
+<TITLE>Handling Button in java</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name="description" CONTENT="Handling Button in java ,How to Handling Button in java ,which type Handling Button in java " >
+<meta name="keywords" CONTENT="Handling Button in java ,How to Handling Button in java ,which type Handling Button in java ">
+
+<!-- header start-->	
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>Java AWT Tutorials</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+            <img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+            <a href="/java/">Java</a>
+			<img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/java/corejava/">Core Java</a>
+              <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/java/corejava/awt/">AWT</a>
+
+              </div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/corejava/awt/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	 
+
+<!-- header End--> 
+<div class="heading">Handling Button in java </div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="ellipses_and_circles.shtml" title="draw ellipses and circles">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="handling_checkbox_group_in_java.shtml" title="handling checkbox group">Next</a></td>
+  </tr> 
+</table>
+
+<p>In this example we are going to control Button. To control the button we are using three type of package. One is <b>java.awt.* </b>second is  <b>java.applet.* </b>and third is <b>java.awt.event.*;</b> .The java.awt.* is used for GUI interface. AWT classes are contain in this package. The  java.applet.* package is used to create an applet and java.awt.event.*; defined within the java.awt.*; package is a subclass of EventObject. It is a super class of all AWT-based event.</p>
+
+<h3>Button defines two constructors:</h3>
+
+<p><b>Button():</b> Is use to create an empty button.</p>
+<p><b>Button (String str)():</b> Is use to create a button that contains String str as label.</p>
+<p><b>Action Listner():</b> Defines one method to receive action event.</p>
+<p>Each time a button is pressed ,an action is generated. this is send to any listeners that previously registered an interest in receiving action from that component.</p>
+<p>In our example first we implement <b>ActionListener()</b> each listener implement the ActionLinstner. When the button is pressed or an event is occur ActionPerformed() interface is called.</p>
+<p>Now we creates  four button Jan, Nov, Dec, Feb. Each time one is pressed a message is displayed that report which button has been pressed. The label of the button is used to determine which button has been pressed. The label is obtained by calling the get.ActionCommand() method on the ActionEvent object passed to actionPerformed().  </p>
+
+<h3>Example</h3>
+<div class="code">
+<PRE>
+<FONT COLOR="#008000">//creat Button</FONT>
+<FONT COLOR="#0000ff">import </FONT><FONT COLOR="#000000">java.awt.*;</FONT>
+<FONT COLOR="#0000ff">import </FONT><FONT COLOR="#000000">java.applet.*;</FONT>
+<FONT COLOR="#0000ff">import </FONT><FONT COLOR="#000000">java.awt.event.*;</FONT>
+<FONT COLOR="#008000">/*</FONT>
+<FONT COLOR="#008000">&lt;applet code="ButtonDemo" width=300 height=200&gt;</FONT>
+<FONT COLOR="#008000">&lt;/applet&gt;</FONT>
+<FONT COLOR="#008000">*/</FONT>
+<FONT COLOR="#0000ff">public class </FONT><FONT COLOR="#000000">ButtonDemo </FONT><FONT COLOR="#0000ff">extends </FONT><FONT COLOR="#ff0000">Applet </FONT><FONT COLOR="#0000ff">implements </FONT><FONT COLOR="#ff0000">ActionListener</FONT><FONT COLOR="#000000">{</FONT>
+<FONT COLOR="#ff0000">String </FONT><FONT COLOR="#000000">msg=</FONT><FONT COLOR="#ff00ff">"which is the last month ?"</FONT><FONT COLOR="#000000">;</FONT>
+<FONT COLOR="#ff0000">Button </FONT><FONT COLOR="#000000">one,two,three,four;</FONT>
+<FONT COLOR="#0000ff">public void </FONT><FONT COLOR="#000000">init()</FONT>
+<FONT COLOR="#000000">{</FONT>
+ <FONT COLOR="#000000">one = </FONT><FONT COLOR="#0000ff">new </FONT><FONT COLOR="#ff0000">Button</FONT><FONT COLOR="#000000">(</FONT><FONT COLOR="#ff00ff">"Jan"</FONT><FONT COLOR="#000000">);</FONT>
+ <FONT COLOR="#000000">two = </FONT><FONT COLOR="#0000ff">new </FONT><FONT COLOR="#ff0000">Button</FONT><FONT COLOR="#000000">(</FONT><FONT COLOR="#ff00ff">"Nov"</FONT><FONT COLOR="#000000">);</FONT>
+ <FONT COLOR="#000000">three = </FONT><FONT COLOR="#0000ff">new </FONT><FONT COLOR="#ff0000">Button</FONT><FONT COLOR="#000000">(</FONT><FONT COLOR="#ff00ff">"Dec"</FONT><FONT COLOR="#000000">);</FONT>
+ <FONT COLOR="#000000">four = </FONT><FONT COLOR="#0000ff">new </FONT><FONT COLOR="#ff0000">Button</FONT><FONT COLOR="#000000">(</FONT><FONT COLOR="#ff00ff">"Feb"</FONT><FONT COLOR="#000000">);</FONT>
+<FONT COLOR="#000000">add(one);</FONT>
+<FONT COLOR="#000000">add(two);</FONT>
+<FONT COLOR="#000000">add(three);</FONT>
+<FONT COLOR="#000000">add(four);</FONT>
+<FONT COLOR="#000000">one.addActionListener(</FONT><FONT COLOR="#0000ff">this</FONT><FONT COLOR="#000000">);</FONT>
+<FONT COLOR="#000000">two.addActionListener(</FONT><FONT COLOR="#0000ff">this</FONT><FONT COLOR="#000000">);</FONT>
+<FONT COLOR="#000000">three.addActionListener(</FONT><FONT COLOR="#0000ff">this</FONT><FONT COLOR="#000000">);</FONT>
+<FONT COLOR="#000000">four.addActionListener(</FONT><FONT COLOR="#0000ff">this</FONT><FONT COLOR="#000000">);</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#0000ff">public void </FONT><FONT COLOR="#000000">actionPerformed(</FONT><FONT COLOR="#ff0000">ActionEvent </FONT><FONT COLOR="#000000">ae){</FONT>
+<FONT COLOR="#ff0000">String </FONT><FONT COLOR="#000000">str=ae.getActionCommand();</FONT>
+<FONT COLOR="#0000ff">if</FONT><FONT COLOR="#000000">(str.equals(</FONT><FONT COLOR="#ff00ff">"Jan"</FONT><FONT COLOR="#000000">)){</FONT>
+<FONT COLOR="#000000">msg=</FONT><FONT COLOR="#ff00ff">"Your answer is Jan"</FONT><FONT COLOR="#000000">;</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#0000ff">else if</FONT><FONT COLOR="#000000">(str.equals(</FONT><FONT COLOR="#ff00ff">"Nov"</FONT><FONT COLOR="#000000">)){</FONT>
+<FONT COLOR="#000000">msg=</FONT><FONT COLOR="#ff00ff">"Your answer is Nov"</FONT><FONT COLOR="#000000">;</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#0000ff">else if</FONT><FONT COLOR="#000000">(str.equals(</FONT><FONT COLOR="#ff00ff">"Dec"</FONT><FONT COLOR="#000000">)){</FONT>
+<FONT COLOR="#000000">msg=</FONT><FONT COLOR="#ff00ff">"Your answer is Dec"</FONT><FONT COLOR="#000000">;</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#0000ff">else if</FONT><FONT COLOR="#000000">(str.equals(</FONT><FONT COLOR="#ff00ff">"Feb"</FONT><FONT COLOR="#000000">)){</FONT>
+<FONT COLOR="#000000">msg=</FONT><FONT COLOR="#ff00ff">"Your answer is Feb"</FONT><FONT COLOR="#000000">;</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#000000">repaint();</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#0000ff">public void </FONT><FONT COLOR="#000000">paint(</FONT><FONT COLOR="#ff0000">Graphics </FONT><FONT COLOR="#000000">g){</FONT>
+<FONT COLOR="#000000">g.drawString(msg,</FONT><FONT COLOR="#800080">6</FONT><FONT COLOR="#000000">,</FONT><FONT COLOR="#800080">100</FONT><FONT COLOR="#000000">);</FONT>
+<FONT COLOR="#000000">}}</FONT>
+</FONT>
+</PRE>
+</div>
+
+<p><h3>Output Of Example:</h3></p>
+<div class="output">
+<div class="image">
+<img src="../images/handli2.jpg">
+</div></div>
+<h3><a href="../Control%20fundamental/ButtonDemo.java.txt">Download Source Code</a></h3> 
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="ellipses_and_circles.shtml" title="draw ellipses and circles">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="handling_checkbox_group_in_java.shtml" title="handling checkbox group">Next</a></td>
+  </tr> 
+</table>
+
+<!-- Footer Start-->	
+
+		</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->

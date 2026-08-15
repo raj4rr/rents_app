@@ -1,0 +1,204 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD>
+<meta http-equiv="Content-Language" content="en-us">
+<TITLE>Example of prototype bean</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name="description" CONTENT="Example 
+of prototype bean,spring tutorials,spring framework,spring mvc,spring interview question,spring framework tutorials,spring aop" >
+<meta name="keywords" CONTENT="Example 
+of prototype bean,spring tutorials,spring framework,spring mvc,spring interview question,spring framework tutorials,spring aop">
+
+<!-- header start-->	
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>Spring Framework</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+           <img src="/images/left_menu_bullet.gif" width="11" height="6"/>  <a href="/java/">Java</a>    
+		      <img src="/images/left_menu_bullet.gif" width="11" height="6"/><a href="/java/spring/">Spring</a>
+
+              </div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/spring/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	 
+
+<!-- header End--> 
+
+<div class="heading">Example of prototype bean</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="singletonExample.shtml" title="singleton Example">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="dependencyInjection.shtml" title="Dependency Injection">Next</a></td>
+  </tr> 
+</table>
+
+ <p><i>Introduction:</i>The prototype bean is the optional bean of the scope attribute that provide the facility to the user create more then one object if you are requested more then one time the prototype bean provide per request new object of same bean.</p>
+ <h3>Technology use to run this source code</h3>
+<ol>
+<li>
+    Spring 2.5
+    </li>
+    <li>
+    Eclipse
+    </li>
+    <li>
+    JDK 1.6
+</li>
+</ol>
+<div class="heading">Source Code</div>
+
+<h3>applicationContext.xml</h3>		
+<div class="code">
+<PRE>
+<FONT COLOR="#0000ff">&lt;?xml </FONT><FONT COLOR="#ff0000">version</FONT><FONT COLOR="#0000ff">=</FONT><FONT COLOR="#ff00ff">"1.0" </FONT><FONT COLOR="#ff0000">encoding</FONT><FONT COLOR="#0000ff">=</FONT><FONT COLOR="#ff00ff">"UTF-8"</FONT><FONT COLOR="#800080">?</FONT><FONT COLOR="#0000ff">&gt;</FONT>
+<FONT COLOR="#0000ff">&lt;</FONT><FONT COLOR="#808000">beans</FONT>
+<FONT COLOR="#ff0000">xmlns</FONT><FONT COLOR="#0000ff">=</FONT><FONT COLOR="#ff00ff">"http://www.springframework.org/schema/beans"</FONT>
+<FONT COLOR="#800080">xmlns:xsi</FONT><FONT COLOR="#0000ff">=</FONT><FONT COLOR="#ff00ff">"http://www.w3.org/2001/XMLSchema-instance"</FONT>
+<FONT COLOR="#800080">xmlns:p</FONT><FONT COLOR="#0000ff">=</FONT><FONT COLOR="#ff00ff">"http://www.springframework.org/schema/p"</FONT>
+<FONT COLOR="#800080">xsi:schemaLocation</FONT><FONT COLOR="#0000ff">=</FONT><FONT COLOR="#ff00ff">"http://www.springframework.org/schema/beans</FONT>
+<FONT COLOR="#ff00ff">	http://www.springframework.org/schema/beans/spring-beans-2.5.xsd"</FONT><FONT COLOR="#0000ff">&gt;</FONT>
+<FONT COLOR="#0000ff">&lt;</FONT><FONT COLOR="#808000">bean </FONT><FONT COLOR="#800080">id</FONT><FONT COLOR="#0000ff">=</FONT><FONT COLOR="#ff00ff">"number" </FONT><FONT COLOR="#800080">class</FONT><FONT COLOR="#0000ff">=</FONT><FONT COLOR="#ff00ff">"org.r4r.Complex" </FONT><FONT COLOR="#800080">factory-method</FONT><FONT COLOR="#0000ff">=</FONT><FONT COLOR="#ff00ff">"getNumber" </FONT><FONT COLOR="#800080">scope</FONT><FONT COLOR="#0000ff">=</FONT><FONT COLOR="#ff00ff">"singleton"</FONT><FONT COLOR="#0000ff">/&gt;</FONT>
+<FONT COLOR="#0000ff">&lt;/</FONT><FONT COLOR="#808000">beans</FONT><FONT COLOR="#0000ff">&gt;</FONT>
+</FONT>
+</PRE>
+</div>
+
+<h3>Number.java</h3>
+<div class="code">
+<PRE>
+<FONT COLOR="#0000ff">package </FONT><FONT COLOR="#000000">org.r4r;</FONT>
+<FONT COLOR="#0000ff">public interface </FONT><FONT COLOR="#ff0000">Number </FONT><FONT COLOR="#000000">{</FONT>
+<FONT COLOR="#0000ff">public void </FONT><FONT COLOR="#000000">display();</FONT>
+<FONT COLOR="#0000ff">public </FONT><FONT COLOR="#ff0000">Number </FONT><FONT COLOR="#000000">add(</FONT><FONT COLOR="#ff0000">Number </FONT><FONT COLOR="#000000">n);</FONT>
+<FONT COLOR="#000000">}</FONT>
+</PRE>
+
+</div>
+
+<h3>Rational.java</h3>
+<div class="code">
+<PRE>
+<FONT COLOR="#0000ff">package </FONT><FONT COLOR="#000000">org.r4r;</FONT>
+<FONT COLOR="#0000ff">import </FONT><FONT COLOR="#000000">java.util.</FONT><FONT COLOR="#ff0000">Scanner</FONT><FONT COLOR="#000000">;</FONT>
+<FONT COLOR="#0000ff">public class </FONT><FONT COLOR="#000000">Rational </FONT><FONT COLOR="#0000ff">implements </FONT><FONT COLOR="#ff0000">Number </FONT><FONT COLOR="#000000">{</FONT>
+<FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">p,q;</FONT>
+<FONT COLOR="#0000ff">public </FONT><FONT COLOR="#000000">Rational(</FONT><FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">p, </FONT><FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">q) {</FONT>
+<FONT COLOR="#0000ff">super</FONT><FONT COLOR="#000000">();</FONT>
+<FONT COLOR="#0000ff">this</FONT><FONT COLOR="#000000">.p = p;</FONT>
+<FONT COLOR="#0000ff">this</FONT><FONT COLOR="#000000">.q = q;</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#0000ff">public static </FONT><FONT COLOR="#ff0000">Number </FONT><FONT COLOR="#000000">getNumber(){</FONT>
+<FONT COLOR="#ff0000">Scanner </FONT><FONT COLOR="#000000">in=</FONT><FONT COLOR="#0000ff">new </FONT><FONT COLOR="#ff0000">Scanner</FONT><FONT COLOR="#000000">(</FONT><FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.in);</FONT>
+<FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.println(</FONT><FONT COLOR="#ff00ff">"Enter the Numerator part:-"</FONT><FONT COLOR="#000000">);</FONT>
+<FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">p=in.nextInt();</FONT>
+<FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.println(</FONT><FONT COLOR="#ff00ff">"Enter the Denominator part:-"</FONT><FONT COLOR="#000000">);</FONT>
+<FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">q=in.nextInt();</FONT>
+<FONT COLOR="#0000ff">return new </FONT><FONT COLOR="#000000">Rational(p,q);</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#000000">@Override</FONT>
+<FONT COLOR="#0000ff">public </FONT><FONT COLOR="#ff0000">Number </FONT><FONT COLOR="#000000">add(</FONT><FONT COLOR="#ff0000">Number </FONT><FONT COLOR="#000000">n) {</FONT>
+<FONT COLOR="#000000">Rational r=(Rational)n;</FONT>
+<FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">x=</FONT><FONT COLOR="#0000ff">this</FONT><FONT COLOR="#000000">.p*r.q+</FONT><FONT COLOR="#0000ff">this</FONT><FONT COLOR="#000000">.q*r.p;</FONT>
+<FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">y=</FONT><FONT COLOR="#0000ff">this</FONT><FONT COLOR="#000000">.q*r.q;</FONT>
+<FONT COLOR="#0000ff">return new </FONT><FONT COLOR="#000000">Rational(x,y);</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#000000">@Override</FONT>
+<FONT COLOR="#0000ff">public void </FONT><FONT COLOR="#000000">display() {</FONT>
+<FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.println(p+</FONT><FONT COLOR="#ff00ff">"/"</FONT><FONT COLOR="#000000">+q);</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#000000">}</FONT>
+</PRE>
+ </div>
+
+ <h3>IocNumberUser.java</h3>
+ <div class="code">
+<PRE>
+<FONT COLOR="#0000ff">package </FONT><FONT COLOR="#000000">org.r4r;</FONT>
+<FONT COLOR="#0000ff">import </FONT><FONT COLOR="#000000">org.springframework.beans.factory.BeanFactory;</FONT>
+<FONT COLOR="#0000ff">import </FONT><FONT COLOR="#000000">org.springframework.beans.factory.xml.XmlBeanFactory;</FONT>
+<FONT COLOR="#0000ff">import </FONT><FONT COLOR="#000000">org.springframework.core.io.ClassPathResource;</FONT>
+<FONT COLOR="#0000ff">import </FONT><FONT COLOR="#000000">org.springframework.core.io.Resource;</FONT>
+<FONT COLOR="#0000ff">public class </FONT><FONT COLOR="#000000">IocNumberUser {</FONT>
+<FONT COLOR="#0000ff">public static void </FONT><FONT COLOR="#000000">main(</FONT><FONT COLOR="#ff0000">String</FONT><FONT COLOR="#000000">[] args) {</FONT>
+<FONT COLOR="#000000">Resource r=</FONT><FONT COLOR="#0000ff">new </FONT><FONT COLOR="#000000">ClassPathResource(</FONT><FONT COLOR="#ff00ff">"applicationContext.xml"</FONT><FONT COLOR="#000000">);</FONT>
+<FONT COLOR="#000000">BeanFactory f=</FONT><FONT COLOR="#0000ff">new </FONT><FONT COLOR="#000000">XmlBeanFactory(r);</FONT>
+<FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.println(</FONT><FONT COLOR="#ff00ff">"Obtaining numbers n1 &amp; n2 from the IOC Container..."</FONT><FONT COLOR="#000000">);</FONT>
+<FONT COLOR="#ff0000">Number </FONT><FONT COLOR="#000000">n1=(</FONT><FONT COLOR="#ff0000">Number</FONT><FONT COLOR="#000000">)f.getBean(</FONT><FONT COLOR="#ff00ff">"number"</FONT><FONT COLOR="#000000">);</FONT>
+<FONT COLOR="#ff0000">Number </FONT><FONT COLOR="#000000">n2=(</FONT><FONT COLOR="#ff0000">Number</FONT><FONT COLOR="#000000">)f.getBean(</FONT><FONT COLOR="#ff00ff">"number"</FONT><FONT COLOR="#000000">);</FONT>
+<FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.println(</FONT><FONT COLOR="#ff00ff">"Number n1 is:"</FONT><FONT COLOR="#000000">);</FONT>
+<FONT COLOR="#000000">n1.display();</FONT>
+<FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.println(</FONT><FONT COLOR="#ff00ff">"Number n2 is:"</FONT><FONT COLOR="#000000">);</FONT>
+<FONT COLOR="#000000">n2.display();</FONT>
+<FONT COLOR="#ff0000">Number </FONT><FONT COLOR="#000000">n3=n1.add(n2);</FONT>
+<FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.println(</FONT><FONT COLOR="#ff00ff">"Sum of n1 and n2"</FONT><FONT COLOR="#000000">);</FONT>
+<FONT COLOR="#000000">n3.display();</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#000000">}</FONT>
+</PRE>
+ </div>
+
+ <p><h3>Output:</h3></p>
+ <div class="output">
+<PRE>
+<FONT COLOR="#000000">Obtaining numbers n1 &amp; n2 from the IOC </FONT><FONT COLOR="#ff0000">Container</FONT><FONT COLOR="#000000">...</FONT>
+<FONT COLOR="#000000">Enter the Numerator part:-</FONT>
+<FONT COLOR="#800080">6</FONT>
+<FONT COLOR="#000000">Enter the Denominator part:-</FONT>
+<FONT COLOR="#800080">5</FONT>
+<FONT COLOR="#000000">Enter the Numerator part:-</FONT>
+<FONT COLOR="#800080">4</FONT>
+<FONT COLOR="#000000">Enter the Denominator part:-</FONT>
+<FONT COLOR="#800080">8</FONT>
+<FONT COLOR="#ff0000">Number </FONT><FONT COLOR="#000000">n1 is:</FONT>
+<FONT COLOR="#800080">6</FONT><FONT COLOR="#000000">/</FONT><FONT COLOR="#800080">5</FONT>
+<FONT COLOR="#ff0000">Number </FONT><FONT COLOR="#000000">n2 is:</FONT>
+<FONT COLOR="#800080">4</FONT><FONT COLOR="#000000">/</FONT><FONT COLOR="#800080">8</FONT>
+<FONT COLOR="#000000">Sum of n1 and n2</FONT>
+<FONT COLOR="#800080">68</FONT><FONT COLOR="#000000">/</FONT><FONT COLOR="#800080">40</FONT>
+</PRE>
+ </div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="singletonExample.shtml" title="singleton Example">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="dependencyInjection.shtml" title="Dependency Injection">Next</a></td>
+  </tr> 
+</table>
+
+<!-- Footer Start-->
+
+		</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->

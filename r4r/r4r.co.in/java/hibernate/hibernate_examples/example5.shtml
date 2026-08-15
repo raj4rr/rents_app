@@ -1,0 +1,271 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<HTML><HEAD><TITLE>Hibernate Validation of the data using hibernate and servlet with jsp|Hibernate examples</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv="content-type" content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="Hibernate Validation of the data using hibernate learn How Insert, delete, update,
+validate, fetch data from database in Hibernate" >
+<meta name="keywords" CONTENT="Hibernate tutorial, Examples, Basics, Beginners, Fresher, Insert Data into One or More than One table in the database Using Hibernate">
+
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<META http-equiv="Content-Language" content="en-us">
+<link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+<link href="/css/main.css" rel="stylesheet" type="text/css" />
+</HEAD>
+<BODY>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>Hibernate</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+            <img src="/images/left_menu_bullet.gif"/> <a href="/java/hibernate/">Hibernate</a>
+             </div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top">
+                            <?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/hibernate/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                       <div class="main_content">  	 
+
+      <div class="heading">Validation of the data using hibernate and servlet with jsp</div>
+
+      <table id="indexing">
+
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="example4.shtml" title="Update Data into Database">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="example6.shtml" title="Simple Application Without Database">Next</a></td>
+  </tr> 
+</table>
+<p>
+    In the Hibernate we can validate the data by using the input on the jsp page and from the database 
+    table. In this process a user insert an data into the given text field of the jsp page and that data 
+    check from the database if text field value exists from the database then our action will perform 
+    which we want to do either action will not be processed.
+</p>
+<p>
+    We can do this type of activity by procedure in database and using a method and another is 
+    hibernate which help to make this action direct. To understand this we need to see the below 
+    given example which we have given:
+    For making the Validation Application we need to follow the some step which tells us how to 
+    work with the Hibernate.
+</p>
+<p>Step 1. Follow the step of the last create application of multi table inserting database. 
+    That is shown in the below link. <a href="example1">Click Here</a>
+</p>
+
+<p>Step 2. On that same application taken and create first of all database table One for store the 
+    direct value and second the login for the validation.
+</p>
+<p>Table which we use in this application code is given below:</p>
+<div class="code">
+   <pre><code class="language-sql">
+ create table Reg1
+(
+id int not null primary key auto_increment,
+fname varchar(50),
+lname varchar(50),
+quali varchar(50),
+mid varchar(50),
+uid varchar(50),
+pass varchar(50)
+)
+
+create table Login1
+(
+id int not null primary key auto_increment,
+mid varchar(59),
+uid varchar(50),
+pass varchar(50)
+)
+</code></pre>
+</div>
+
+<p>Step 3. Now create a jsp page like insert page Page. Code of that page is given below:</p>
+<div class="code">
+    <pre><code class="language-java">
+&lt;%@page contentType="text/html" pageEncoding="UTF-8"%&gt;
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+    &lt;head&gt;
+        &lt;meta http-equiv="Content-Type" content="text/html; charset=UTF-8"&gt;
+        &lt;title&gt;JSP Page&lt;/title&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;form action="InsertData" method="post"&gt;&lt;pre&gt;
+            First Name      &lt;input type="text" name="fname"/&gt;
+            Last Name       &lt;input type="text" name="lname"/&gt;
+            Email           &lt;input type="text" name="mid"/&gt;
+            User Id         &lt;input type="text" name="uid"/&gt;
+            Password        &lt;input type="password" name="pass"/&gt;
+
+            &lt;input type="submit" value="Submit"/&gt;
+
+        &lt;/form&gt;
+    &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+</div>
+<p>
+    Here we use the action name is InserData which perform 
+    the action to store the data into the database
+</p>
+<p>
+    Step 4. Now we create according to our requirement a Login page code of that page is given below:
+</p>
+<div class="code">
+    <pre><code class="language-java">
+&lt;%@page contentType="text/html" pageEncoding="UTF-8"%&gt;
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+    &lt;head&gt;
+        &lt;meta http-equiv="Content-Type" content="text/html; charset=UTF-8"&gt;
+        &lt;title&gt;JSP Page&lt;/title&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;form action="Validate" method="post"&gt;&lt;pre&gt;
+            User Id         &lt;input type="text" name="uid"/&gt;
+            Password        &lt;input type="password" name="pass"/&gt;
+
+            &lt;input type="submit" value="Login"/&gt;
+        &lt;/form&gt;
+    &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+</div>
+<p>Step 5. Now we create the reverse eng file and POJO class as we have discussed in 
+    the last example of ours.
+</p>
+<p>
+    Step 6. Now we Prepare the action page for inserting the database Name is InsertData code of 
+    that action page is given below. Here in the given code we show the selecte page (Taking 
+    servlet action is shown in the last application(click here for last application to show 
+    how to take the servlet)):
+</p>
+<div class="code">
+    <pre><code class="language-java">
+protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
+        String fname,lname,mid,uid,pass;
+        fname = request.getParameter("fname");
+        lname = request.getParameter("lname");
+        mid = request.getParameter("mid");
+        uid = request.getParameter("uid");
+        pass = request.getParameter("pass");
+        SessionFactory sf = new Configuration().configure().buildSessionFactory();
+        Session s = sf.openSession();
+        Transaction tx = s.beginTransaction();
+        Regi1 r = new Regi1(fname, lname, mid, uid, pass);
+        Login1 l = new Login1(mid, uid, pass);
+        s.save(r);
+        s.save(l);
+        tx.commit();
+        s.close();
+
+        try (PrintWriter out = response.getWriter()) {
+            /* TODO output your page here. You may use following sample code. */
+            out.println("&lt;!DOCTYPE html&gt;");
+            out.println("&lt;html&gt;");
+            out.println("&lt;head&gt;");
+            out.println("&lt;title&gt;Servlet InsertData&lt;/title&gt;");            
+            out.println("&lt;/head&gt;");
+            out.println("&lt;body&gt;");
+            out.println("&lt;h1&gt;Servlet InsertData at " + request.getContextPath() + "&lt;/h1&gt;");
+           // out.println("&lt;h1&gt;&lt;a href="login.jsp"&gt;click here for login&lt;/a&gt;"+fname+"&lt;/h1&gt;");
+
+            out.println("&lt;/body&gt;");
+            out.println("&lt;/html&gt;");
+        }
+    }
+</code></pre>
+
+</div>
+<p>Step 7. Now build and run the application.</p>
+<p>
+    Step 8. Now create the action of the Login page using validation. Code of the action page is 
+    givne page is given below. Here we will take also servlet. (It is main selected part of the 
+    action)
+</p>
+<div class="code">
+    <pre><code class="language-java">
+ protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
+
+        int a = r4r.Admin.checkId(request.getParameter("uid"),request.getParameter("pass"));
+ if(a!=0)
+      try (PrintWriter out = response.getWriter()) {
+         out.println("ok");
+      }
+  else 
+   try (PrintWriter out = response.getWriter()) {
+      out.println("not ok");
+
+  }
+</code></pre>
+
+</div>
+<p>
+    Step 9. For the connectivity we need to create a method page which hold the all 
+    conectivity panel of the action name is we use here admin java class. Which code 
+    we use in this class that is also given below:
+</p>
+<div class="code">
+   <pre><code class="language-java">
+ public class Admin 
+{
+
+    public static int checkId(String u,String ps)
+  {
+    try
+    {
+      SessionFactory sf = new Configuration().configure().buildSessionFactory();
+      Session s = sf.openSession();
+      Transaction tr = s.beginTransaction();
+      //Criteria cr = s.createCriteria(r4r.Login1.class).add(Restrictions.eq( "mid", u )); 
+
+      Query query = s.createQuery("select count(*) from Login1 where uid = "+u+" &amp;&amp; pass = "+ps+"");
+
+        query.executeUpdate();
+
+     return query.executeUpdate();
+    }catch(Exception ex) { return 0; }
+      //  return 0;
+  }
+}
+</code></pre>
+</div>
+<p>Setp 10. Right click on the node of the application and run the application of reaching on the Login page.</p>
+
+    <table id="indexing">
+
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="example4.shtml" title="Update Data into Database">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="example6.shtml" title="Simple Application Without Database">Next</a></td>
+  </tr> 
+</table>
+
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+
+                <?php @include($_SERVER['DOCUMENT_ROOT'] . '/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>

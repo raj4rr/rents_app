@@ -1,0 +1,188 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>Synchronization in C#,Introduction of Synchronization,Synchronization in Threads,Why we use Lock keyword,Using of Monitor</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="Synchronization in C#,Introduction of Synchronization,Synchronization in Threads,Why we use Lock keyword,Using of Monitor" >
+<meta name="keywords" CONTENT="Synchronization in C#,Introduction of Synchronization,Synchronization in Threads,Why we use Lock keyword,Using of Monitor">
+
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+     <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>C# Tutorial</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a><img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/c1/">C#</a>
+
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/c1/commonfiles/leftmenu.shtml'); ?></td>
+
+                       <td style="80%" valign="top">
+                        <div class="main_content"> 
+
+	<!-- Header End-->
+
+	<div class="heading">Synchronization in C#</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="setup.shtml" title="Creating Line Chart in windows using C#">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="Creating%20Word%20document%20using%20C-sharp.shtml" title="Creating Word document using C#">Next</a></td>
+  </tr>
+</table>
+
+<p>Synchronization is particularly important when threads access the same data its surprisingly easy to run aground in this 
+area.</p>
+<p>Synchronization constructs can be divided into four categories</p>
+<ol>
+<li>Simple blocking methods</li>
+<li>Locking constructs</li>
+<li>Signaling constructs</li>
+<li>No blocking synchronization constructs</li></ol>
+<h3>Synchronization in Threads</h3>
+<p> Synchronization is needed in thread when we have multiple threads that share data, we need to provide synchronized access
+ to the data. We have to deal with synchronization issues related to concurrent access to variables and objects accessible by
+  multiple threads at the same time.</p>
+
+  <div class="code">
+<pre>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Threading</font><font color="#000000">;</font>
+<font color="#0000ff">namespace </font><font color="#000000">CSharpThreadExample{</font>
+<font color="#0000ff">class </font><font color="#000000">Program</font>
+<font color="#000000">{</font>
+<font color="#0000ff">static void </font><font color="#000000">Main(</font><font color="#0000ff">string</font><font color="#000000">[] arg)</font>
+<font color="#000000">{</font>
+<font color="#808000">Console</font><font color="#000000">.WriteLine(</font><font color="#ff00ff">&quot;-----&gt;  Multiple Threads ----&gt;&quot;</font><font color="#000000">);</font>
+<font color="#000000">Printer p=</font><font color="#0000ff">new </font><font color="#000000">Printer();</font>
+<font color="#808000">Thread</font><font color="#000000">[] Threads=</font><font color="#0000ff">new </font><font color="#808000">Thread</font><font color="#000000">[</font><font color="#800080">3</font><font color="#000000">];</font>
+<font color="#0000ff">for</font><font color="#000000">(</font><font color="#0000ff">int </font><font color="#000000">i=</font><font color="#800080">0</font><font color="#000000">;i&lt;</font><font color="#800080">3</font><font color="#000000">;i++)</font>
+<font color="#000000">{</font>
+<font color="#000000">Threads[i]=</font><font color="#0000ff">new </font><font color="#808000">Thread</font><font color="#000000">(</font><font color="#0000ff">new </font><font color="#000000">ThreadStart(p.PrintNumbers));</font>
+<font color="#000000">Threads[i].Name=</font><font color="#ff00ff">&quot;Child &quot;</font><font color="#000000">+i;</font>
+<font color="#000000">}</font>
+<font color="#0000ff">foreach</font><font color="#000000">(</font><font color="#808000">Thread </font><font color="#000000">t </font><font color="#0000ff">in </font><font color="#000000">Threads)t.Start();</font>
+<font color="#808000">Console</font><font color="#000000">.ReadLine();</font>
+<font color="#000000">}</font>
+<font color="#000000">}</font>
+
+<font color="#0000ff">class </font><font color="#000000">Printer</font>
+<font color="#000000">{</font>
+<font color="#0000ff">public void </font><font color="#000000">PrintNumbers()</font>
+<font color="#000000">{</font>
+<font color="#0000ff">for </font><font color="#000000">(</font><font color="#0000ff">int </font><font color="#000000">i = </font><font color="#800080">0</font><font color="#000000">; i &lt; </font><font color="#800080">5</font><font color="#000000">; i++)</font>
+<font color="#000000">{</font>
+<font color="#808000">Thread</font><font color="#000000">.Sleep(</font><font color="#800080">100</font><font color="#000000">);</font>
+<font color="#808000">Console</font><font color="#000000">.Write(i + </font><font color="#ff00ff">&quot;,&quot;</font><font color="#000000">);</font>
+<font color="#000000">}</font>
+<font color="#808000">Console</font><font color="#000000">.WriteLine();</font>
+<font color="#000000">}</font>
+<font color="#000000">}</font>
+<font color="#000000">}</font>
+</pre>
+</div>
+
+<div class="image">
+<img src="synchronization.PNG">
+</div>
+<h3>Why we use Lock keyword</h3>
+<p>lock(object)  is used to synchronize the shared object.</p>
+<div class="code">
+<pre>
+<font color="#000000">Syntax:</font><font color="#0000ff">lock </font><font color="#000000">(objecttobelocked) </font>
+<font color="#000000">{</font>
+<font color="#000000">objecttobelocked.somemethod();</font>
+<font color="#000000">}</font>
+</pre>
+</div>
+
+<p>objecttobelocked is the object reference which is used by more than one thread to call the method on that object.</p>
+
+<p>The lock keyword requires us to specify a token (an object reference) that must be acquired by a thread to enter within
+ the lock scope.</p>
+ <h3>Using of Monitor</h3>
+ <p> The lock scope actually resolves to the Monitor class after being processed by the C# compiler. Lock keyword is just a 
+ notation for using <font class="point_out">System.Threading.Monitor class</font>.</p>
+
+ <div class="code">
+<pre>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Threading</font><font color="#000000">;</font>
+<font color="#0000ff">namespace </font><font color="#000000">CSharpThreadExample{</font>
+<font color="#0000ff">class </font><font color="#000000">Program{</font>
+<font color="#0000ff">static void </font><font color="#000000">Main(</font><font color="#0000ff">string</font><font color="#000000">[] arg)</font>
+<font color="#000000">{</font>
+<font color="#808000">Console</font><font color="#000000">.WriteLine(</font><font color="#ff00ff">&quot;; -----&gt;  Multiple Threads  -----&gt;&quot;</font><font color="#000000">;);</font>
+<font color="#000000">Printer p = </font><font color="#0000ff">new </font><font color="#000000">Printer();</font>
+<font color="#808000">Thread</font><font color="#000000">[] Threads = </font><font color="#0000ff">new </font><font color="#808000">Thread</font><font color="#000000">[</font><font color="#800080">3</font><font color="#000000">];</font>
+<font color="#0000ff">for </font><font color="#000000">(</font><font color="#0000ff">int </font><font color="#000000">i = </font><font color="#800080">0</font><font color="#000000">; i &lt; </font><font color="#800080">3</font><font color="#000000">; i++)</font>
+<font color="#000000">{</font>
+<font color="#000000">Threads[i] = </font><font color="#0000ff">new </font><font color="#808000">Thread</font><font color="#000000">(</font><font color="#0000ff">new </font><font color="#000000">ThreadStart(p.PrintNumbers));</font>
+<font color="#000000">Threads[i].Name = </font><font color="#ff00ff">&quot;Child &quot; </font><font color="#000000">+ i;</font>
+<font color="#000000">}</font>
+<font color="#0000ff">foreach </font><font color="#000000">(</font><font color="#808000">Thread </font><font color="#000000">t </font><font color="#0000ff">in </font><font color="#000000">Threads)</font>
+<font color="#000000">t.Start();</font>
+
+<font color="#808000">Console</font><font color="#000000">.ReadLine();</font>
+<font color="#000000">}</font>
+<font color="#000000">}</font>
+<font color="#0000ff">class </font><font color="#000000">Printer{</font>
+<font color="#0000ff">public void </font><font color="#000000">PrintNumbers()</font>
+<font color="#000000">{</font>
+<font color="#808000">Monitor</font><font color="#000000">.Enter(</font><font color="#0000ff">this</font><font color="#000000">);</font>
+<font color="#0000ff">try</font><font color="#000000">{</font>
+<font color="#0000ff">for </font><font color="#000000">(</font><font color="#0000ff">int </font><font color="#000000">i = </font><font color="#800080">0</font><font color="#000000">; i &lt; </font><font color="#800080">5</font><font color="#000000">; i++)</font>
+<font color="#000000">{</font>
+<font color="#808000">Thread</font><font color="#000000">.Sleep(</font><font color="#800080">100</font><font color="#000000">);</font>
+<font color="#808000">Console</font><font color="#000000">.WriteLine(i + </font><font color="#ff00ff">&quot;,&quot;</font><font color="#000000">);</font>
+<font color="#000000">}</font>
+<font color="#808000">Console</font><font color="#000000">.WriteLine();</font>
+<font color="#000000">}</font>
+<font color="#0000ff">finally</font><font color="#000000">{</font>
+<font color="#808000">Monitor</font><font color="#000000">.Exit(</font><font color="#0000ff">this</font><font color="#000000">);</font>
+<font color="#000000">}</font>
+<font color="#000000">}</font>
+<font color="#000000">}</font>
+<font color="#000000">}</font>
+</pre>
+</div>
+
+<div class="image">
+<img src="synchronization2.PNG">
+</div>
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="setup.shtml" title="Creating Line Chart in windows using C#">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="Creating%20Word%20document%20using%20C-sharp.shtml" title="Creating Word document using C#">Next</a></td>
+  </tr>
+</table>
+
+ <!--Footer-->
+   </div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/dotnet/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+     <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>

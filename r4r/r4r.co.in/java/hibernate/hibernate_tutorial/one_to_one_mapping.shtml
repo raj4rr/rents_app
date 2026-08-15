@@ -1,0 +1,135 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<HTML><HEAD><TITLE>Hibernate One To One Mapping Tutorial</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv="content-type" content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="Hibernate One To One Mapping tutorial learn easily and shortly with hibernate tutorial,hibernate
+Examples,hibernate interview questions Step by step covers all topics of hibernate architecture" >
+<meta name="keywords" CONTENT="Hibernate One To One Mapping tutorial, Hibernate Mapping Examples,
+Mapping Types, Many to One Mapping ,One to Many Mapping object relation mapping(ORM), hibernate query language(HQl), Presistent classes, Objects, association, has a mapping, hibernate architecture">
+
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<META http-equiv="Content-Language" content="en-us">
+<link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+<link href="/css/main.css" rel="stylesheet" type="text/css" />
+</HEAD>
+<BODY>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>Hibernate</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+            <img src="/images/left_menu_bullet.gif"/> <a href="/java/hibernate/">Hibernate</a>
+             </div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top">
+                            <?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/hibernate/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                       <div class="main_content">  	 
+
+      <div class="heading">One to One Mapping</div>
+
+      <table id="indexing">
+
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="has_a_mapping.shtml" title="Has-A Mapping">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="many_to_many_mapping.shtml" title="Many-To-Many Mapping">Next</a></td>
+  </tr> 
+</table>
+      <p>A One-to-One mapping represents a relationship where one entity is associated with exactly one instance of another entity. For example, an <code>Employee</code> might have exactly one <code>Address</code> or one <code>Passport</code>.</p>
+      
+      <h3>Modern JPA Approach: @OneToOne Annotation</h3>
+      <p>In modern Hibernate, we map these associations using the <code>@OneToOne</code> annotation instead of XML. Let's explore the two common ways to handle this: unidirectional and bidirectional mapping.</p>
+
+      <div class="heading">1. Unidirectional One-To-One Mapping</div>
+      <p>In a unidirectional mapping, only one entity knows about the relationship. For instance, the <code>Employee</code> knows about their <code>Passport</code>, but the <code>Passport</code> doesn't explicitly reference the <code>Employee</code>.</p>
+      
+      <p>Here, the <code>Employee</code> table will hold the foreign key (e.g., <code>passport_id</code>).</p>
+      
+      <div class="code">
+<pre><code>
+import javax.persistence.*;
+
+@Entity
+@Table(name = "Employee")
+public class Employee {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    private String name;
+
+    // Define the One-to-One relationship
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "passport_id", referencedColumnName = "id")
+    private Passport passport;
+
+    // Getters and Setters...
+}
+</code></pre>
+      </div>
+      <p>Note the use of <code>@JoinColumn</code>. It tells Hibernate to create a foreign key column named <code>passport_id</code> in the Employee table. The <code>cascade = CascadeType.ALL</code> tells Hibernate to automatically save the Passport when the Employee is saved.</p>
+
+      <div class="heading">2. Bidirectional One-To-One Mapping</div>
+      <p>In a bidirectional mapping, both entities know about each other. You can navigate from <code>Employee</code> to <code>Passport</code>, and from <code>Passport</code> to <code>Employee</code>.</p>
+      <p>To do this, we use the <code>mappedBy</code> attribute on the inverse side of the relationship (the side that does NOT own the foreign key).</p>
+
+      <div class="code">
+<pre><code>
+import javax.persistence.*;
+
+@Entity
+@Table(name = "Passport")
+public class Passport {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    private String passportNumber;
+
+    // The 'mappedBy' attribute links this to the 'passport' field in the Employee class.
+    // This tells Hibernate that the Employee entity owns the foreign key.
+    @OneToOne(mappedBy = "passport")
+    private Employee employee;
+
+    // Getters and Setters...
+}
+</code></pre>
+      </div>
+
+      <p>When you use <code>mappedBy</code>, Hibernate knows it shouldn't create a second foreign key in the Passport table. It relies completely on the foreign key existing in the Employee table.</p>
+    <table id="indexing">
+
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="has_a_mapping.shtml" title="Has-A Mapping">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="many_to_many_mapping.shtml" title="Many-To-Many Mapping">Next</a></td>
+  </tr> 
+</table>              
+
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+
+                <?php @include($_SERVER['DOCUMENT_ROOT'] . '/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>

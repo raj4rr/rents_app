@@ -1,0 +1,243 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http:///www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML>
+	<HEAD>
+
+	<meta http-equiv="Content-Language" content="en-us">
+	<TITLE>Basic Syntax in MySQL</TITLE>
+		<META content="Rajesh Kumar" name="author">
+		<META http-equiv="expires" content="0">
+		<META content="r4r.co.in" name="owner">
+		<META http-equiv=Content-Type content="text/html; charset=windows-1252">
+		<meta name="description" CONTENT="Basics Syntax of MySQL-Learn mysql with r4r tutorial provides you sql tutorial from basic level concept to higher 
+		level concept sql interview questions and sql examples">
+		<meta name="keywords" CONTENT="Start with MySQL Server ,Syntax In MySQL ,Select In MySQL,Distinct In MySQL ,Where In MySQL,And & Or In MySQL
+Order By In MySQL,Insert Into In MySQL,Update In MySQL,Delete In MySQL,Injection In MySQL ">
+
+	<!-- header start-->	
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>MySQL </h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+			<img src="/images/left_menu_bullet.gif" width="11" height="6"><a href="/sql/mysql_tutorial/">MySQL</a>
+
+              </div>
+
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/sql/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	 
+
+<div class="heading">Basic Syntax in MySQL</div>
+
+<table id="indexing">
+	<tr>
+	<td style="width:33%; text-align:left;"><a href="instmysql.shtml" title ="Installation of MySQL">Previous</a></td>
+	<td style="width:34%; text-align:center"><a href="index.shtml" title="Home">Home</a></td>
+	<td style="width:33%; text-align:right"><a href="selmysql.shtml" title="Select in MySQL">Next</a></td>
+	</tr>
+</table>
+
+<p>MySQL is a Case-insensitive language i.e commands can written in either lower or 
+uppar letter case and query search also be independent of its case.
+<p>The basic commands can be categorise, they are</p>
+<h3>General Commands</h3>
+<ol><li><i>USE :</i> we need to select to some database when we first start or connect to MySQL.</li>
+<h3>Syntax</h3>
+<div class="code">
+<pre>
+USE database_name;
+</pre>
+</div>
+
+<li><i>SHOW:</i> Listing all databases on the system.</li>
+<h3>Syntax</h3>
+<div class="code">
+<pre>
+SHOW DATABASES;
+</pre>
+</div>
+
+<li><i>SHOW TABLES:</i> Listing of  all tables from the specified database given in the command.</li>
+<h3>Syntax</h3>
+<div class="code">
+<pre>
+SHOW TABLES FROM databasename;
+</pre>
+</div>
+
+<li><i>DESCRIBE </i> or <i> DESC</i>: This commands gives the description of all the columns from 
+the given table name along with its type and other information.</li>
+<h3>Syntax</h3>
+<div class="code">
+<pre>
+DESCRIBE (or DESC) table_name;
+</pre>
+</div>
+
+<p><i>SHOW FIELDS</i> or <i>COLUMNS FROM</i> table_name gives the exact result as DESC command gives.</p></ol>
+
+<h3>Table Commands</h3>
+
+<ol><li><i>CREATE:</i> This command is used to create a new table or database.</li> 
+<h3>Syntax for creating database</h3>
+<div class="code">
+<pre>
+CREATE DATABASE database_name;
+</pre>
+</div>
+
+<h3>Syntax for creating table</h3>
+<div class="code">
+<pre>
+CREATE TABLE table_name (create_clause1, create_clause2, ...);
+</pre>
+</div>
+
+<h3>Example</h3>
+<div class="code">
+<pre>
+CREATE TABLE studadr (said int(5) not null auto_increment
+ Primary key, aid int not null references studinfo(sid),
+ blck varchar(5) not null,hno int(5) not null, 
+ street varchar(20) not null, locatn varchar(20) not null,
+state varchar(10) not null, country varchar(20) not null default'India');
+</pre>
+</div>
+
+<p>In the above create command certain clause we have use whose description
+ is given below:</p>
+<ol><li><i>AUTO_INCREMENT :</i> It is used to increase its value into 
+which is assigned along with NOT NULL value.</li>
+<li><i>PRIMARY KEY :</i> It is a  uniquily identified key in every table, which helps 
+in retrieving date. This column should also be NOT NULL.</li>
+<li><i>NOT NULL :</i> No NULL values are allowed in this column.It generates an error 
+message as the data is inserted into the table.</li>
+<li><i>DEFAULT value :</i> If a NULL value is used in the data for this column, the 
+default value is entered instead.</li></ol>
+
+<li><i>DROP: </i> Remove the table from the database we are in permanently. It can also remove
+ full database, So be careful while using this command</li>
+<h3>Syntax</h3>
+<div class="code">
+<pre>
+DROP TABLE table_name;
+or
+DROP DATABASE database_name;
+</pre>
+</div>
+
+<li><i>ALTER</i>: The type of alter define and perform it in this command.</li>
+<h3>Syntax</h3>
+<div class="code">
+<pre>
+//Adds the define columns to the table.
+ALTER TABLE table_name ADD (create_clause1, create_clause2, ...);
+
+//Drops the define columns from the table. 
+ALTER TABLE table_name DROP column_name;
+
+//Modifiers define to a column 
+ALTER TABLE table_name MODIFY create_clause;
+</pre>
+</div></ol>
+
+<div class="heading">Data Commands</div>
+<ol><li><i>INSERT</i>: This command is use to insert a complete row of data for every column 
+in the order in which the  table is define.</li>
+<h3>Syntax</h3>
+<div class="code">
+<pre>
+INSERT INTO table_name VALUES (value1, value2, ...);
+</pre>
+</div>
+
+<h3>Example</h3>
+<div class="code">
+<pre>
+//inserting all values in table define order
+INSERT INTO studadr VALUES(409,103,'d',52,
+'centralmarket','south','odisa','India');
+
+//inserting values in another way
+INSERT INTO studadr(said,aid,blck,hno,street,locatn,state, country)
+ values(410,106,'i',45,'gmd','audin','Sydney','autralia');
+</pre>
+</div>
+
+<li><i>DELETE:</i> Delete the entire row which meets the where clause. </li>
+<div class="code">
+<pre>
+DELETE FROM table_name WHERE where_clause;
+</pre>
+</div>
+
+<h3>Example</h3>
+<div class="code">
+<pre>
+DELETE FROM studadr WHERE said=410;
+</pre>
+</div></ol>
+
+<h3>Privilege Commands</h3>
+<p>Most of these commands require MySQL root access</p>
+
+<ol><li><i>Grant:</i> It is used to provide access or privilages on the 
+databases object to the users.</li>
+<h3>Example</h3>
+<div class="code">
+<pre>
+<font color="#000000">GRANT privilegename</font>
+<font color="#000000">ON objectname</font>
+<font color="#000000">TO {username |PUBLIC |rolename}</font>
+<font color="#000000">[WITH GRANT OPTION];</font>
+</pre>
+</div>
+
+<li><i>Revoke:</i> It is used to remove access or privilages to the database object.</li>
+<h3>Example</h3>
+<div class="code">
+<pre>
+<font color="#000000">REVOKE privilegename</font>
+<font color="#000000">ON objectname</font>
+<font color="#000000">FROM {username |PUBLIC |rolename} </font>
+</pre>
+</div>
+</ol>
+
+<table id="indexing">
+	<tr>
+	<td style="width:33%; text-align:left;"><a href="instmysql.shtml" title ="Installation of MySQL">Previous</a></td>
+	<td style="width:34%; text-align:center"><a href="index.shtml" title="Home">Home</a></td>
+	<td style="width:33%; text-align:right"><a href="selmysql.shtml" title="Select in MySQL">Next</a></td>
+	</tr>
+</table>
+
+		</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->

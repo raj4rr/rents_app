@@ -1,0 +1,144 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<HTML><HEAD><TITLE>User Input in Java using Scanner Class</TITLE>
+
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv="content-type" content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="Advantage of java.util.Scanner is no parsing is required while taking keyboard input. The methods include nextLine(), next(). nextInt(), nextDouble() etc.">
+<meta name="keywords" CONTENT="java scanner class tutorial,java scanner nextint, nextdouble, nextline,java scanner keyboard input,java scanner methods,java.util.scanner">
+
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>Java Programing laungage</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a><img src="/images/left_menu_bullet.gif"/> <a href="/java/">Java</a><img src="/images/left_menu_bullet.gif"/> <a href="/java/corejava">Core Java</a></div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/corejava/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+
+                     <div class="main_content">
+<div class="heading">User Input in Java using Scanner Class</div>
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="import_statement_in_java.shtml" title="Import Statement in Java">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml" title="Java Programming Tutorials">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="user_input_in_java_using_console_class.shtml" title="User Input in Java using Console Class">Next</a></td>
+  </tr> 
+</table> 
+<p>Java 1.5 introduced the Scanner class which simplifies console input.  It can also be used to read from files and Strings (among other sources). The Scanner class in Java is used for taking input from the user. The Scanner class can take input of all the data types. This class is present in java.util package. Scanner class in java is a widely use pre-defined function by the Java programmers. It has many sets of methods but it is commonly use to read the input declared on different data types like int, double, and string. The input data must be delimited by some character. By default the delimiters are white space (space, tabs, and new lines). The class provides methods for changing the delimiter.</p>
+<p>Scanner is a member of the java.util package and must be imported into your class in order to make it available for use. Import statements are coded at the top of your program:</p>
+<div class="image">
+<p><img src="images/scanner.png"></p>
+</div>
+<p>The Scanner class provides a variety of constructors that accept a data source as a parameter. Some of the most useful constructors include:</p>
+<p>
+<b>Scanner(InputStream),</b>
+<b>Scanner(File),</b>
+<b>Scanner(String).</b>
+</p>
+
+<div class="code">
+<PRE><FONT FACE="Arial"><FONT COLOR="#000000">Here are some constructor calls that builds </FONT><FONT COLOR="#ff0000">Scanner </FONT><FONT COLOR="#000000">objects </FONT><FONT COLOR="#0000ff">for </FONT><FONT COLOR="#000000">various input sources:</FONT>
+     <FONT COLOR="#008000">//Build a Scanner that reads a String object</FONT>
+     <FONT COLOR="#ff0000">Scanner </FONT><FONT COLOR="#000000">sc1 = </FONT><FONT COLOR="#0000ff">new </FONT><FONT COLOR="#ff0000">Scanner</FONT><FONT COLOR="#000000">(</FONT><FONT COLOR="#ff00ff">"This is the input string"</FONT><FONT COLOR="#000000">);</FONT>
+     <FONT COLOR="#008000">//Build a Scanner that reads the keyboard</FONT>
+     <FONT COLOR="#ff0000">Scanner </FONT><FONT COLOR="#000000">sc2 = </FONT><FONT COLOR="#0000ff">new </FONT><FONT COLOR="#ff0000">Scanner</FONT><FONT COLOR="#000000">(</FONT><FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.in);</FONT>
+     <FONT COLOR="#008000">//Build a Scanner that reads a file</FONT>
+     <FONT COLOR="#ff0000">Scanner </FONT><FONT COLOR="#000000">sc3 = </FONT><FONT COLOR="#0000ff">new </FONT><FONT COLOR="#ff0000">Scanner</FONT><FONT COLOR="#000000">(</FONT><FONT COLOR="#0000ff">new </FONT><FONT COLOR="#ff0000">File</FONT><FONT COLOR="#000000">(</FONT><FONT COLOR="#ff00ff">"c:\\java\\data.txt"</FONT><FONT COLOR="#000000">));    </FONT></FONT></PRE>
+</div>
+
+<p>The Scanner looks for tokens in the input. A token is a series of characters that ends with what Java calls whitespace. A whitespace character can be a blank, a tab character, a carriage return, or the end of the file. Thus, if we read a line that has a series of numbers separated by blanks, the scanner will take each number as a separate token. The numeric values may all be on one line with blanks between each value or may be on separate lines.   Whitespace characters (blanks or carriage returns) act as separators.  The next method returns the next input value as a string, regardless of what is keyed.  For example:</p>
+
+<div class="code">
+<PRE><FONT FACE="Arial"><FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">number = in.nextInt();</FONT>
+<FONT COLOR="#0000ff">float </FONT><FONT COLOR="#000000">real = in.nextFloat();</FONT>
+<FONT COLOR="#0000ff">long </FONT><FONT COLOR="#000000">number2 = in.nextLong();</FONT>
+<FONT COLOR="#0000ff">double </FONT><FONT COLOR="#000000">real2 = in.nextDouble();</FONT>
+<FONT COLOR="#ff0000">String </FONT><FONT COLOR="#000000">string = in.next();</FONT></FONT></PRE>
+</div>
+
+    <div class="table_content">
+<table>
+<tr>
+	<td class="heading">Method</td>
+    <td class="heading">Description</td>
+ </tr>
+	<tr><td class="alternate_heading1">public String next()</td><td class="alternate_heading1">it returns the next token from the scanner.</td></tr>
+<tr>
+	<td class="alternate_heading2">public String nextLine()</td><td class="alternate_heading2">it moves the scanner position to the next line and returns the value as a string</td></tr>
+<tr>
+	<td class="alternate_heading1">public byte nextByte()</td><td class="alternate_heading1">it scans the next token as a byte.</td>
+</tr>
+<tr>
+	<td class="alternate_heading2">public short nextShort()</td><td class="alternate_heading2">it scans the next token as a short value.</td>
+</tr>
+<tr>
+	<td class="alternate_heading1">public int nextInt()</td><td class="alternate_heading1">it scans the next token as an int value.</td>
+</tr>
+<tr>
+	<td class="alternate_heading2">public long nextLong()</td><td class="alternate_heading2">it scans the next token as a long value.</td>
+</tr>
+<tr>
+	<td class="alternate_heading1">public float nextFloat()</td><td class="alternate_heading1">it scans the next token as a float value.</td></tr>
+ <tr>
+ <td class="alternate_heading2">public double nextDouble()</td><td class="alternate_heading2">it scans the next token as a double value.</td></tr>
+
+</table>
+</div>
+
+<h3>Example :</h3>
+<div class="code">
+<PRE><FONT FACE="Arial"><FONT COLOR="#0000ff">import </FONT><FONT COLOR="#000000">java.util.</FONT><FONT COLOR="#ff0000">Scanner</FONT><FONT COLOR="#000000">;</FONT>
+<FONT COLOR="#0000ff">class </FONT><FONT COLOR="#000000">Sum</FONT>
+<FONT COLOR="#000000">{</FONT>
+	<FONT COLOR="#0000ff">public static void </FONT><FONT COLOR="#000000">main(</FONT><FONT COLOR="#ff0000">String </FONT><FONT COLOR="#000000">args[])</FONT>
+	<FONT COLOR="#000000">{</FONT>
+		<FONT COLOR="#ff0000">Scanner </FONT><FONT COLOR="#000000">sc;</FONT>
+		<FONT COLOR="#000000">sc=</FONT><FONT COLOR="#0000ff">new </FONT><FONT COLOR="#ff0000">Scanner</FONT><FONT COLOR="#000000">(</FONT><FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.in);</FONT>
+		<FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">a,b,c;</FONT>
+		<FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.print(</FONT><FONT COLOR="#ff00ff">"pls enter first number :"</FONT><FONT COLOR="#000000">);</FONT>
+		<FONT COLOR="#000000">a=sc.nextInt();</FONT>
+		<FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.print(</FONT><FONT COLOR="#ff00ff">"pls enter second number :"</FONT><FONT COLOR="#000000">);</FONT>
+		<FONT COLOR="#000000">b=sc.nextInt();</FONT>
+		<FONT COLOR="#000000">c=a+b;</FONT>
+		<FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.print(</FONT><FONT COLOR="#ff00ff">"sum is "</FONT><FONT COLOR="#000000">+c);</FONT>
+	<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#000000">}</FONT></FONT></PRE>
+</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="import_statement_in_java.shtml" title="Import Statement in Java">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml" title="Java Programming Tutorials">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="user_input_in_java_using_console_class.shtml" title="User Input in Java using Console Class">Next</a></td>
+  </tr> 
+</table> 
+
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>

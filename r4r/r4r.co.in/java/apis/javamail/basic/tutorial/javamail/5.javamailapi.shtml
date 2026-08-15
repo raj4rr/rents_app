@@ -1,0 +1,156 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD>
+<meta http-equiv="Content-Language" content="en-us">
+<TITLE>JavaMailAPI In Using Reviewing Core Classes</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name="description" CONTENT="JavaMailAPI In Using Reviewing Core Classes" >
+<meta name="keywords" CONTENT="JavaMailAPI In Using Reviewing Core Classes">
+
+<!-- header start-->	
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>Java mail</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+            <img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+            <a href="/java/">Java</a>
+
+                                   <img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+								   <a href="/java/apis/javamail/">JAVA Mail</a>
+              </div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/apis/javamail/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	 
+
+<!-- header End-->
+<div class="heading"> JavaMailAPI In Using Reviewing Core Classes </div>
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="4.javamailapi.shtml" >Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="6.javamailapi.shtml" >Next</a></td>
+  </tr> 
+</table>
+
+      <p>In this phase walks to through the core classes that make up the API: Session, Message , Address , Authenticator, Transport, Store and Folder. All these classes is implementing in the JavMailAPI , and this package is known as javax.mail , and it's package import in the Java Mail API. You'll frequently find this classes and using in the javax.mail.internet package.</p>
+
+    <h3>Session</h3>
+      <p>The Session class defines a basic mail session. Actually Session is the object and this takes the advantages of java.util.properties. this object get information n like mail server, username, password, and other information that can be
+shared across your entire application. The constructor of this class are private. If you can access this class  then you can get a single default session can be shared with the<i> getDefaultInstance () </i>method:  </p>
+		<div class="code">
+        <pre><font color="#ff0000">Properties </font><font color="#000000">props = </font><font color="#0000ff">new </font><font color="#ff0000">Properties</font><font color="#000000">();</font>
+<font color="#008000">// fill props with any information</font>
+<font color="#000000">Session session = Session.getDefaultInstance(props, </font><font color="#0000ff">null</font><font color="#000000">);</font>
+</pre>
+
+        </div>
+      <p>If you can create a unique Session with <i>getInstance ();</i></p>
+      <div class="code">
+      <pre><font color="#ff0000">Properties </font><font color="#000000">props = </font><font color="#0000ff">new </font><font color="#ff0000">Properties</font><font color="#000000">();</font>
+<font color="#008000">// fill props with any information</font>
+<font color="#000000">Session session = Session.getDefaultInstance(props, </font><font color="#0000ff">null</font><font color="#000000">);</font>
+</pre>
+      </div>
+
+    <h3>Message</h3>
+      <p>If you have your Session object, then you send the Message . Then this time type the Message. Actually the Message is the Abstract Class, and you are working to subclass, in most cases using javax.mail.internet.MimeMessage . The MimeMessage is an e-mail message that's understand to MIME types and headers , as defined in the different RFCs. The message headers are restricted to US-ASCII characters only.
+      <p>To create a <i>Message</i>, pass along the <i>Session</i> object to the <i>MimeMessage constructor:</i>
+<p><i>MimeMessage message = new MimeMessage(session);</i></p>
+
+   <p> If you have a Message then after you set the parts, as Message implements the  part interface (Then MimeMessage implementing MimePart ). And the basic mechanism to set the content is the setContent()  method.</p>                                     
+   <p><i>message.setContent("r4r", "text/plain");</i></p>
+
+And when time you are working with a MimeMessage, and if your message is write on plain text then you can using <i>setText ()</i> method , which only requires the actual content, defaulting to the MIME type of text/plain:<i>message.setText("r4r");</i>
+For setting the subject then you using <i>setsubject () </i> method <i>message.setSubject("hello r4r");</i>
+
+    <h3>Address</h3>
+      <p>when you set Session And Message. because you set the Message field then filled the Message with content , so it's  essential to using the Address class. The Address class like as the Message class ,it means is a Abstract class. then you use the  javax.mail.internet.InternetAddress class. And you create the only e-mail address , pass the e-mail address to the constructor.
+      <p><i>Address address = new InternetAddress("helloraj@gmail.com");</i></p>
+     </p>
+    <p>If you want to show the name next to e mail then using to pass that along to the constructor too;</p>
+    <p><i>Address address = new InternetAddress("helloraj@gmail.com", "RAJ");</i></p>
+
+    <p>You will need to create address objects for the message's from field as well as the to field. Unless your mail server prevents you, there is nothing stopping you from sending a message that appears to be from anyone.  When you have created the Addresses then you can connect to the message for one of two ways.</p>
+    <p>For identifying the sender,  you using the setForm() And setReplyTo() methods. <i>message.setFrom(address)</i></p>
+
+    <p>If your message needs to show multiple from addresses, use the<i> addFrom() method:Address address[] = ...;
+message.addFrom(address); </i></p>
+
+    <p>you identifying the message recipients, you use the <i> addRecipient () method . </i></p>
+
+   <p>This Method Requires a <i>Message.RecipientType</i> besides the address.<i>message.addRecipient (type, address)</i>
+</p> 
+
+Most Probably there are three predefined type of address are:</p>    
+<ol>
+       <li>Message.RecipientType.TO
+            </li>
+        <li>Message.RecipientType.CC
+         </li>
+        <li>Message.RecipientType.BCC 
+         </li>
+</ol> 
+
+<div class="code">   
+<pre><font color="#000000">Address toAddress = </font><font color="#0000ff">new </font><font color="#000000">InternetAddress(</font><font color="#ff00ff">&quot;helloraj@gmail.com&quot;</font><font color="#000000">);</font>
+<font color="#000000">Address ccAddress = </font><font color="#0000ff">new </font><font color="#000000">InternetAddress(</font><font color="#ff00ff">&quot;first.vijay@gmail.com&quot;</font><font color="#000000">);</font>
+<font color="#000000">message.addRecipient(Message.RecipientType.TO, toAddress);</font>
+<font color="#000000">message.addRecipient(Message.RecipientType.CC, ccAddress);</font>
+</pre>
+</div>
+
+   <h3>Authenticator</h3>
+      <p>The java.net classes, The JavaMail can take advantage of an Authenticator .The Authenticator access the protected resources via a username and password. For the JavaMail API is resources is mail server. The Authenticator found the javax.mail package and is different from the Java.net class of the same name. The two don't share the same Authenticator as the JavaMail API works with Java 1.1, which didn't have the java.net variety. 
+      </p>
+      <p> Authenticator you using your subclass the abstract class and return a Password Authentication instance for the <i>getPasswordAuthentication () </i>method. When you created the Session then you must register the Authenticator. Then your Authenticator will be notified when Authentication is necessary. Then you could pop the window and read a username and password from a configuration file. it's not encrypted then it's not secure. and returning them to caller and PasswordAuthetication objects.
+      </p>
+
+<div class="code">
+<pre><font color="#ff0000">Properties </font><font color="#000000">props = </font><font color="#0000ff">new </font><font color="#ff0000">Properties</font><font color="#000000">();</font>
+<font color="#008000">// fill props with any information</font>
+<font color="#ff0000">Authenticator </font><font color="#000000">auth = </font><font color="#0000ff">new </font><font color="#000000">MyAuthenticator();</font>
+<font color="#000000">Session session = Session.getDefaultInstance(props, auth);</font>
+</pre>
+</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="4.javamailapi.shtml" >Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="6.javamailapi.shtml" >Next</a></td>
+  </tr> 
+</table>
+<!-- Footer Start-->	
+
+		</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->

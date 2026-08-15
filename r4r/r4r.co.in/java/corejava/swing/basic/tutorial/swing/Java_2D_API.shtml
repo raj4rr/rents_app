@@ -1,0 +1,117 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>Java 2D API</TITLE>
+<META content="r4r.co.in" name="owner">
+<META http-equiv="content-type" content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="Java 2D API,how to apply java 2D API" >
+<meta name="keywords" CONTENT="Java 2D API,how to apply java 2D API">
+	<!-- header start-->	
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>Java Swing Tutorials</h1>
+          <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+		  <img src="/images/left_menu_bullet.gif"/> <a href="/java/">Java</a>
+		  <img src="/images/left_menu_bullet.gif"/> <a href="/java/corejava/">Core Java</a>
+		  <img src="/images/left_menu_bullet.gif"/> <a href="/java/corejava/swing/">Swing</a>
+              </div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/corejava/swing/commonfiles/leftmenu.shtml'); ?></td>                            
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	 
+
+<!-- header End-->
+	   <div class="heading">Java 2D API</div>
+ <table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="internationalization.shtml" title="internationalization">previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="index.shtml"title="home page">next</a></td>
+  </tr>
+</table>
+
+<p>We can make the Programming more interactive with Java 2D API. we can add figures, images, animation to our GUI and even pass visual information with the help of Java 2D API. We can easily use 2D within Swing components such as drop shadows since Swing is built on 2D package.</p>
+<h3>Pluggable Look and Feel</h3>
+<p>The Java Swing supports the look and feel features. Which means the dramatically changes in the component of the java swing like JFrame, JWindow etc. for visit it in several types of window we can create our own look and feel using Synth package. There are many types of the existing look and feels which are available to Swing programs provided by GTK+ look and feel. Moreover, the look and feel of the platform can be specified by the program while running and also to use Java look and feel can be specified by it.</p>
+
+<h3>Example</h3>
+<div class="code"><pre>
+<font color="#0000ff">package </font><font color="#000000">r4r;</font>
+<font color="#0000ff">import </font><font color="#000000">java.awt.*;</font>
+<font color="#0000ff">import </font><font color="#000000">java.awt.event.*;</font>
+<font color="#0000ff">import </font><font color="#000000">javax.swing.*;</font>
+<font color="#0000ff">import </font><font color="#000000">javax.swing.border.*;</font>
+<font color="#0000ff">public class </font><font color="#000000">twoDAPItest </font><font color="#0000ff">extends </font><font color="#ff0000">JFrame</font><font color="#000000">{</font>
+<font color="#ff0000">JLabel </font><font color="#000000">msgLab;</font>
+<font color="#0000ff">public </font><font color="#000000">twoDAPItest(){</font>
+<font color="#0000ff">super</font><font color="#000000">(</font><font color="#ff00ff">&quot;Swing&quot;</font><font color="#000000">);</font>
+<font color="#000000">setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);</font>
+<font color="#000000">addWindowListener(</font><font color="#0000ff">new </font><font color="#ff0000">WindowAdapter</font><font color="#000000">(){</font>
+<font color="#0000ff">public void </font><font color="#000000">windowClosing(</font><font color="#ff0000">WindowEvent </font><font color="#000000">e){</font>
+<font color="#ff0000">System</font><font color="#000000">.exit(</font><font color="#800080">0</font><font color="#000000">);</font>
+<font color="#000000">}</font>
+<font color="#000000">});</font>
+<font color="#ff0000">ActionListener </font><font color="#000000">actl = </font><font color="#0000ff">new </font><font color="#ff0000">ActionListener</font><font color="#000000">(){</font>
+<font color="#0000ff">public void </font><font color="#000000">actionPerformed(</font><font color="#ff0000">ActionEvent </font><font color="#000000">ae){</font>
+<font color="#000000">msgLab.setText(((</font><font color="#ff0000">JButton</font><font color="#000000">)ae.getSource()).getText());</font>
+<font color="#000000">}</font>
+<font color="#000000">};</font>
+<font color="#ff0000">JButton </font><font color="#000000">btn;</font>
+<font color="#ff0000">JPanel </font><font color="#000000">btnPanel = </font><font color="#0000ff">new </font><font color="#ff0000">JPanel</font><font color="#000000">();</font>
+<font color="#000000">btnPanel.setBorder(</font><font color="#0000ff">new </font><font color="#ff0000">TitledBorder</font><font color="#000000">(</font><font color="#ff00ff">&quot;Click at button&quot;</font><font color="#000000">));</font>
+<font color="#0000ff">for </font><font color="#000000">(</font><font color="#0000ff">int </font><font color="#000000">i = </font><font color="#800080">0</font><font color="#000000">; i &lt; </font><font color="#800080">3</font><font color="#000000">; i++){</font>
+<font color="#000000">btn = </font><font color="#0000ff">new </font><font color="#ff0000">JButton</font><font color="#000000">(</font><font color="#ff00ff">&quot;Button &quot; </font><font color="#000000">+ (i + </font><font color="#800080">1</font><font color="#000000">));</font>
+<font color="#000000">btn.addActionListener(actl);</font>
+<font color="#000000">btnPanel.add(btn);</font>
+<font color="#000000">}</font>
+<font color="#ff0000">JPanel </font><font color="#000000">panel2 = </font><font color="#0000ff">new </font><font color="#ff0000">JPanel</font><font color="#000000">(</font><font color="#0000ff">new </font><font color="#ff0000">BorderLayout</font><font color="#000000">());</font>
+<font color="#000000">panel2.setBorder(</font><font color="#0000ff">new </font><font color="#ff0000">EmptyBorder</font><font color="#000000">(</font><font color="#800080">8</font><font color="#000000">, </font><font color="#800080">8</font><font color="#000000">, </font><font color="#800080">8</font><font color="#000000">, </font><font color="#800080">8</font><font color="#000000">));</font>
+<font color="#000000">msgLab = </font><font color="#0000ff">new </font><font color="#ff0000">JLabel</font><font color="#000000">(</font><font color="#ff00ff">&quot;No button pressed!&quot;</font><font color="#000000">);</font>
+<font color="#000000">panel2.add(msgLab, </font><font color="#ff0000">BorderLayout</font><font color="#000000">.NORTH);</font>
+<font color="#000000">panel2.add(btnPanel, </font><font color="#ff0000">BorderLayout</font><font color="#000000">.CENTER);</font>
+<font color="#000000">setContentPane(panel2);</font>
+<font color="#000000">pack();</font>
+<font color="#000000">setVisible(</font><font color="#0000ff">true</font><font color="#000000">);</font>
+<font color="#000000">}</font>
+<font color="#0000ff">public static void </font><font color="#000000">main(</font><font color="#ff0000">String</font><font color="#000000">[] args){</font>
+<font color="#0000ff">new </font><font color="#000000">twoDAPItest();</font>
+<font color="#000000">}</font>
+<font color="#000000">}</font>
+</pre>
+</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="internationalization.shtml" title="internationalization">previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="index.shtml"title="home page">next</a></td>
+  </tr>
+</table>
+<!-- Footer Start-->	
+
+</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->

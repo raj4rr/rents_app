@@ -1,0 +1,132 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<HTML><HEAD><TITLE>Fetch Data From Database on JSP Page Using Hibernate</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv="content-type" content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="Fetch Data From Database on JSP Page Using Hibernate- Learn How to Fetch data from database
+ on jsp(java Server Pages) Using Hibernate " >
+<meta name="keywords" CONTENT="Hibernate How to fetch data from database tutorial,Fetch Data From Database on JSP Page Using Hibernate,  Hibernate Examples, object relation mapping(ORM), 
+hibernate query language(HQl), Presistent classes">
+
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<META http-equiv="Content-Language" content="en-us">
+<link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+<link href="/css/main.css" rel="stylesheet" type="text/css" />
+</HEAD>
+<BODY>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>Hibernate</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+            <img src="/images/left_menu_bullet.gif"/> <a href="/java/hibernate/">Hibernate</a>
+             </div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top">
+                            <?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/hibernate/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                       <div class="main_content">  	 
+
+      <div class="heading">Fetching the table data from the database on the jsp page using servlet in Hibernate</div>
+
+      <table id="indexing">
+
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="example1.shtml" title="Insert Data into Database">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="example3.shtml" title="Delete Data from Database">Next</a></td>
+  </tr> 
+</table>
+      <p>
+          For making these application we are using the NetBeans and appache tomcat server and mysql 
+          server. As we discussed in last application There we have discussed how to send data into 
+          the database using hibernate with the action of servlet. Now we will work how can we show 
+          the data on the jsp page in a table formate for showing the report chart.
+          For this time of Application we need to Follow some basic step which we have given here:
+      </p>
+      <p>
+          Step 1. We will work on the same application(HibernateApplicationUsingServlet) name as we 
+          given in the insert operation example and here database will be same and table name also 
+          will be same.
+      </p>
+      <p>
+          In the above image we can see the what we need to do in this session. By which 
+          action and where we need to peroform the action.
+      </p> 
+      <p>
+          Step 2. Now we need to create a jsp page(FetchDataList) for making the action to show 
+          the database table on the jsp page in a table formate. For this we need to go in the 
+          File menu wizared as we given in the last example for taking the jsp file. Than we 
+          need to go in the New file option of File Menu Wizard then search to web and click on 
+          jsp page which is shown in the next tab of the web and after the clicking on the next 
+          a window will be open put name of that file and click finish.
+      </p>
+
+      <h3>index.jsp</h3>
+      <div class="code">
+          <pre><code class="language-java">
+&lt;%@page import="org.hibernate.criterion.Restrictions" %&gt;
+&lt;%@page import="org.hibernate.*" %&gt;
+&lt;body bgcolor="lightyellow"&gt;
+    &lt;table width="500" border="1"&gt;&lt;tr&gt;&lt;th&gt;Sr. No&lt;/th&gt;&lt;th&gt;First Name&lt;/th&gt;&lt;th&gt;Last Name&lt;/th&gt;&lt;th&gt;Age&lt;/th&gt;
+	&lt;th&gt;When Inserted&lt;/th&gt;&lt;/tr&gt;
+        &lt;%
+            SessionFactory sf = r4r.HibernateUtil.getSessionFactory();
+            Session s = sf.openSession();
+            Transaction tr = s.beginTransaction();
+            Criteria cr = s.createCriteria(r4r.InsertData.class);
+            java.util.List&lt;r4r.InsertData&gt; us = cr.list();
+            for(r4r.InsertData dr : us)
+            {
+
+                out.println("&lt;tr&gt;&lt;td&gt;"+dr.getId()+
+					"&lt;/td&gt;&lt;td&gt;"+dr.getFirstName()+"&lt;/td&gt;&lt;td&gt;"
+				+dr.getLastName()+"&lt;/td&gt;&lt;td&gt;"+dr.getAge()+
+					"&lt;/td&gt;&lt;td&gt;"+dr.getLastUpdate()+"&lt;/td&gt;&lt;tr&gt;");
+            }
+            out.println("&lt;h2&gt;We have found these some data which is given in the table from the database");
+        %&gt; 
+    &lt;/table&gt;
+&lt;/body&gt;
+</code></pre>
+      </div>
+    <p>
+        Step 4. Now build the project and run the project.
+    </p>
+
+    <p>
+        Here the above example we can show the database data into the jsp page as a table formate. 
+        If any where we required any kind of report.
+    </p>
+    <table id="indexing">
+
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="example1.shtml" title="Insert Data into Database">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="example3.shtml" title="Delete Data from Database">Next</a></td>
+  </tr> 
+</table>
+
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+
+                <?php @include($_SERVER['DOCUMENT_ROOT'] . '/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>

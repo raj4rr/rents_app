@@ -1,0 +1,226 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+
+<HTML><HEAD>
+
+<meta http-equiv="Content-Language" content="en-us">
+
+<TITLE>Enterprise container</TITLE>
+
+<META content="Rajesh Kumar" name="author">
+
+<META http-equiv="expires" content="0">
+
+<META content="r4r.co.in" name="owner">
+
+<META http-equiv=Content-Type content="text/html; charset=windows-1252">
+
+<meta name="description" CONTENT="Introduction Enterprise Container,Transaction Management,Security,The Resource and Life Cycle Management,Remote Accessibility,Concurrency Control,Collision,In EJB Container Interface type is 3 types,Control mechanism,Clustering and load-balancing" >
+
+<meta name="keywords" CONTENT="Introduction Enterprise Container,Transaction Management,Security,The Resource and Life Cycle Management,Remote Accessibility,Concurrency Control,Collision,In EJB Container Interface type is 3 types,Control mechanism,Clustering and load-balancing">
+
+<!--Header start-->
+
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>EJB</h1>
+            <div class="link_menu"><A href="/">R4R</A>
+
+<img border="0" src="/images/left_menu_bullet.gif" width="11" height="6"> <A href="/java">Java</A><img border="0" src="/images/left_menu_bullet.gif" width="11" height="6"><A href="/java/ejb/">EJB</A></font> </div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/ejb/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	  
+
+<!-- header End-->
+<div class="heading">Introduction Of Enterprise Container:</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="Features%20of%20EJB.shtml" title=" Features of EJB
+">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="How%20A%20client%20invokes%20an%20EJB.shtml" title="How A Client invokes an EJB">Next</a></td>
+  </tr>
+</table>
+<p>
+Enterprise beans are software components and EJB is a specific architecture to run in a special environment called an EJB container.</p>
+
+<p>The container is hosting and manages an enterprise bean in the same manner that the Java Web Server 
+hosting a servlet or an HTML browser hosts a Java applet. An enterprise bean cannot function outside of an EJB container. The EJB container manages every 
+aspect of an enterprise bean at runtimes including remote access to the bean, 
+security, persistence, transactions, concurrency, and it's access to and pooling 
+of resources.</p>
+
+<p>
+The container is isolating the enterprise bean from direct access by client 
+
+applications. When a client application invoking a remote method on an 
+
+enterprise bean, The Container first intercepts the invocation to ensure 
+
+persistence, transactions, and security are applied properly to every operation 
+
+a client performs on the bean. </p>
+<p>The container manages security, transactions, and 
+
+persistence automatically for the bean, so the bean developer doesn't have to 
+
+write this type of logic into the bean code itself. The enterprise bean 
+
+developer can focus on encapsulating business rules, while the container takes 
+
+care of everything else.</p>
+<p>
+An EJB container is nothing but the program that runs on the server and 
+implements the EJB specifications. EJB container providing a special type of the 
+environment, this is suitable for running the enterprise components. Enterprise 
+beans are using in distributed applications that is typically contains the 
+business logic. The container performs the various tasks few of them are 
+illustrated below.</p>
+<h3>Transaction Management:</h3>
+
+<p>EJB container are specially allowing to transaction management that enables the 
+
+transaction services, and low level implementation for transaction management 
+
+and co-ordination. The container using the Java Transaction APIs to exposed the 
+
+transaction services. JTA, a high level interface is used to control 
+
+transactions.</p>
+
+<h3>Security: </h3>
+
+<p>
+
+In EJB container how to contains data and secure data .Then JSE mainly focuses 
+
+on how to become the environment more secure. Enterprise beans in adding this 
+
+feature to provide transparent security so that access to the beans can be made 
+
+secure just by applying the security attributes rather than coding against the 
+
+security API.</p>
+
+<div class="heading">The Resource and Life Cycle Management</div>
+
+<p>
+In EJB container managing to all the data's , resources like database 
+
+connections and threads and socket on behalf of enterprise beans. The container 
+
+creating, destroying, registers the objects and also activates and passivates 
+
+them. The container is also capable of re-using them whenever required.</p>
+
+<h3>Remote Accessibility:</h3>
+
+<p>
+A client on the remote machine containing JVM can invoke an enterprise bean 
+
+running on the host machine. To support the remote accessibility the container 
+
+uses the remote procedure call technology. When the software is developed by 
+
+using the OOPs concept then Remote procedure call (RPC) may be referred to as 
+
+Remote Method Invocation (RMI).</p>
+
+<h3>Concurrency Control:</h3>
+<p>
+Concurrency control is necessary to know the basics of collisions and type of 
+
+collisions that can occur. If you are not interested to occur them then you can 
+
+bypass them later they will cause to create problems. So try to detect and 
+
+resolve them. To do so the EJB Container supports for various types of 
+
+concurrency controls. First we will concentrate on collision and then techniques 
+
+to resolve these collisions.</p>
+<h3>Collision:</h3>
+
+<p>
+A collision can occur when two or more transactions tries to change the entities 
+
+within a system of records. </p>
+
+<div class="heading">Types of Interface in EJB Container:</div>
+<ol>
+<li>
+Dirty read</li>
+
+<li>
+Non Repeatable read</li>
+
+<li>Phantom read</li>
+</ol>
+
+<h3>Control mechanism:</h3>
+<p>
+Mainly two mechanism are used to control the concurrency.</p>
+
+<ol>
+<li>
+Optimistic Locking</li>
+
+<li>
+Pessimistic Locking</li>
+</ol>
+
+<h3>Clustering and load-balancing:</h3>
+
+<p>
+
+Clustering is the process of combining the multiple peripherals, computers and 
+
+other resources into a single unit. A clustered system then works as load 
+
+balanced system. In a distributed system when a request is send to the server, 
+
+an algorithm running on the server decides which server has less load and sends 
+
+the request to that server. EJB container encapsulates these features to provide 
+
+smooth and efficient service.</p>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="Features%20of%20EJB.shtml" title=" Features of EJB
+">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="How%20A%20client%20invokes%20an%20EJB.shtml" title="How A Client invokes an EJB">Next</a></td>
+  </tr>
+</table>
+
+<!-- Footer Start-->
+</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>

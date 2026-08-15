@@ -1,0 +1,131 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>Passing arrays to functions in c</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="Passing arrays to functions,array in c,c programs,c programming examples,passing arrays examples,c tutorial,programs,questions,answers,basics,interview questions,freshers,c program with examples" >
+<meta name="keywords" CONTENT="Passing arrays to functions,array in c,c programs,c programming examples,passing arrays examples,c tutorial,programs,questions,answers,basics,interview questions,freshers,pdf,ebooks,c program with examples">
+
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>C Programming language</h1>
+           <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a><img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/c/">C </a><img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/c/c_topics/c_array_basics">C Array Basics</a></div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/c/commonfiles/new-leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	
+
+          	 <!-- Header End--> 		
+
+<div class="heading">Passing Arrays as Function Arguments in C</div> 
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="multi_dimensional_array.shtml">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="c_array_of_pointers.shtml">Next</a></td>
+  </tr>
+</table>	   
+
+<h2>Can we pass an array to a function just like we pass any variable ?</h2>
+<p>The answer to the above question is definitely YES, we can pass array to function just like we pass any other variable. But the only difference would that the array is passed via call by reference method inside the function as we know that array as itself like a pointer in which base element acts like a pointer for the entire array</p>
+<p>Just like any other normal we can pass an array to a function as :</p>
+<div class="code">void funarr(int arr[])</div>
+<p>The above function funarr accepts an array of integers as its parameter. For passing the array as function we must declare array as,</p>
+<div class="code">int arr[10];</div>
+<p>Equivalently we can also pass only the name of the array as parameter in the calling function as</p>
+<div class="code">void funarr(arr);</div>
+<p>The following code snippet will demonstrate how can we pass array as a parameter to a function :</p>
+
+<div class="code">
+    <FONT COLOR="#ff0000">#include </FONT><FONT COLOR="#000000">&lt;stdio.h&gt;</FONT><br>
+    <FONT COLOR="#ff0000">#include</FONT><FONT COLOR="#000000">&lt;conio.h&gt;</FONT><br>
+    <FONT COLOR="#0000ff">void </FONT><FONT COLOR="#000000">funarr(</FONT><FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">arr[], </FONT>	<FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">len)</FONT><br>
+    <FONT COLOR="#000000">{</FONT><br>
+    <FONT COLOR="#000000">printf(</FONT><FONT COLOR="#ff00ff">"\nEnter the length of array :"</FONT><FONT COLOR="#000000">);</FONT><br>
+    <FONT COLOR="#000000">scanf(</FONT><FONT COLOR="#ff00ff">"%\nd"</FONT><FONT COLOR="#000000">,&amp;len);</FONT><br>
+    <FONT COLOR="#000000">printf(</FONT><FONT COLOR="#ff00ff">"\nEnter the elements of the array :"</FONT><FONT COLOR="#000000">);</FONT><br>
+    <FONT COLOR="#0000ff">for</FONT><FONT COLOR="#000000">(i=</FONT><FONT COLOR="#800080">0</FONT><FONT COLOR="#000000">; i&lt;len; i++)</FONT><br>
+                    <FONT COLOR="#000000">{</FONT><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;
+         <FONT COLOR="#000000">scanf(</FONT><FONT COLOR="#ff00ff">"%d"</FONT><FONT COLOR="#000000">,&amp;arr[i]);</FONT><br>
+                    <FONT COLOR="#000000">}</FONT><br>
+    <FONT COLOR="#000000">printf(</FONT><FONT COLOR="#ff00ff">"\nThe elements of the array are as follows :"</FONT><FONT COLOR="#000000">);</FONT><br>
+    <FONT COLOR="#0000ff">for</FONT><FONT COLOR="#000000">(i=</FONT><FONT COLOR="#800080">0</FONT><FONT COLOR="#000000">; i&lt;len; i++)</FONT><br>
+                    <FONT COLOR="#000000">{</FONT><br>
+    &nbsp;&nbsp;&nbsp;
+        <FONT COLOR="#000000">printf(</FONT><FONT COLOR="#ff00ff">"\n%d"</FONT><FONT COLOR="#000000">,arr[i]);</FONT><br>
+                    <FONT COLOR="#000000">}</FONT><br>
+    <FONT COLOR="#000000">}</FONT><br>
+    <FONT COLOR="#0000ff">void </FONT><FONT COLOR="#000000">main()</FONT><br>
+    <FONT COLOR="#000000">{</FONT><br>
+    <FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">myarr[</FONT><FONT COLOR="#800080">100</FONT><FONT COLOR="#000000">];</FONT><br>
+    <FONT COLOR="#000000">clrscr();</FONT><br>
+    <FONT COLOR="#000000">funarr(myarr, </FONT><FONT COLOR="#800080">7</FONT><FONT COLOR="#000000">);</FONT><br>
+    <FONT COLOR="#000000">getch();</FONT><br>
+    <FONT COLOR="#000000">}</FONT></FONT>
+</div>
+
+<p><i>Output</i> : The output of the following program will be as follow :</p>
+<p>Enter the length of array :</p>
+<p>7</p>
+<p>Enter the elements of the array :</p>
+<p>1</p>
+<p>3</p>
+<p>4</p>
+<p>5</p>
+<p>3</p>
+<p>2</p>
+<p>6</p>
+<p>The elements of the array are as follows :</p>
+<p>1</p>
+<p>3</p>
+<p>4</p>
+<p>5</p>
+<p>3</p>
+<p>2</p>
+<p>6</p>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="multi_dimensional_array.shtml">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="c_array_of_pointers.shtml">Next</a></td>
+  </tr>
+</table>
+
+                        <!--Footer  --> 	
+                        </div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/c/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    </div>
+
+    </div>
+
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>

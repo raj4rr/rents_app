@@ -1,0 +1,129 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>Identifier and Scope in VC++|VC++ basics|VC++ tutorials|visual C++ tutorial</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="Identifier and Scope in VC++ tutorial learn covers all topics of vc++
+best examples of each and every topics Introduction,  History of Visual C++, App Wizard, Data Type, Variables, Function, Structure, Classes, Construtors, Statements and Expression In VC++, Operators In VC++
+Dialog Boxes In VC++, OOps Concept In VC++, Identifier and Scope,Fonts" >
+<meta name="keywords" CONTENT="Identifier and Scope in VC++ tutorial, Introduction of VC++, History of Visual C++,Visual C++ includes the tools , App Wizard, Data Type In VC++, Variables In VC++
+Function In VC++, Structure In VC++, Classes In VC++, Construtors In VC++, Statements and Expression In VC++, Operators In VC++
+Dialog Boxes In VC++, OOps Concept In VC++, Message and Driven In VC++,Font In VC++, Icon Cursor In VC++">
+
+<!-- header start-->	
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>VC++ tutorial</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+            <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/vcpp/">VC++</a>
+
+              </div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/vcpp/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 
+
+<div class="heading">Identifier and Scope in VC++ </div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="oops_concept_in_vc++.shtml" title="oops concept in vc++">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="message_and_driven_in_vc++.shtml" title="message and driven in vc++">Next</a></td>
+  </tr> 
+</table>
+
+<p>Every identifire has a scope that is determined by where it is declared. Identifire Socpe in a program is the regions of the program within which the identifire can be used. if a variable is in scope at a certain point in a program, it is visible and can be used in most circumstances. if it is "out of socpe," it is not visible, and your program will not be capable of using that variable.</p>
+<p>The name from the most local scope is used. If the name is not defined in any enclosing scope, then the compiler will report an error.</p>
+
+<div class="heading "> Types of Scops:</div>
+<p><i>File Scope:</i>	A name has file scope if its declaration appears outside of the blocks and classes.A name with file scope is visible from the point where it is declared to the end of the source file. The name is also made accessible for the initialization of global variables.</p>
+<p><i>Note:</i>	File scope is available in C++ for backward compatibility with C, but we prefer to use namespaces or static class members instead.</p>
+<div class="code">
+<pre>
+<font color="#ff0000">#include </font><font color="#000000">&lt;iostream&gt;</font>
+<font color="#0000ff">using namespace </font><font color="#000000">std;</font>
+<font color="#0000ff">const double </font><font color="#000000">pi = </font><font color="#800080">3</font><font color="#000000">.</font><font color="#800080">141</font><font color="#000000">;</font>
+<font color="#0000ff">double </font><font color="#000000">circleArea(</font><font color="#0000ff">double</font><font color="#000000">);</font>
+<font color="#0000ff">int </font><font color="#000000">main()</font>
+<font color="#000000">{</font>
+	<font color="#0000ff">double </font><font color="#000000">radius;</font>
+	<font color="#0000ff">cout </font><font color="#000000">&lt;&lt;</font><font color="#ff00ff">&quot;Enter a radius:&quot;</font><font color="#000000">;</font>
+	<font color="#0000ff">cin </font><font color="#000000">&gt;&gt; radius;</font>
+	<font color="#0000ff">double </font><font color="#000000">area = circleArea(radius);</font>
+	<font color="#0000ff">return </font><font color="#800080">0</font><font color="#000000">;</font>
+<font color="#000000">}</font>
+<font color="#0000ff">double </font><font color="#000000">circleArea(</font><font color="#0000ff">double </font><font color="#000000">r)</font>
+<font color="#000000">{</font>
+	<font color="#0000ff">return </font><font color="#000000">pi*r*r</font>
+<font color="#000000">}</font>
+</pre>
+</div>
+<p><i>Function Scope:</i> Labels in C/C++ have their own scope. They are accessible before and after their declaration, for the whole function. The only type of identifier with function scope is a label name. A label is implicitly declared by its appearance in the program text and is visible throughout the function that declares it.</p>
+
+<p><i>Class Scope:</i>An identifier that is declared inside a class definition has class scope. Class scope is anywhere in the class definition or in the bodies of member functions. All identifiers used in a class, union, or structure are tightly associated with the class and have class scope. An identifier with class scope can be used anywhere within the class, union, or structure.</p>
+<div class="code">
+<pre>
+<font color="#0000ff">int </font><font color="#000000">x = </font><font color="#800080">25</font><font color="#000000">;</font>
+<font color="#0000ff">void </font><font color="#000000">fn1()</font>
+<font color="#000000">{</font>
+	<font color="#0000ff">cout</font><font color="#000000">&lt;&lt;</font><font color="#ff00ff">&quot;Global x is &quot;</font><font color="#000000">&lt;&lt; x &lt;&lt; endl;</font>
+<font color="#000000">}</font>
+<font color="#0000ff">void </font><font color="#000000">fn2 ()</font>
+<font color="#000000">{</font>
+	<font color="#0000ff">cout</font><font color="#000000">&lt;&lt;</font><font color="#ff00ff">&quot;Global x is &quot;</font><font color="#000000">&lt;&lt; x &lt;&lt; endl;</font>
+	<font color="#0000ff">for </font><font color="#000000">(</font><font color="#0000ff">int </font><font color="#000000">x = </font><font color="#800080">0</font><font color="#000000">; x &lt; </font><font color="#800080">10</font><font color="#000000">; x++)</font>
+	<font color="#000000">{</font>
+		<font color="#0000ff">cout </font><font color="#000000">&lt;&lt; </font><font color="#ff00ff">&quot;Inner x is &quot; </font><font color="#000000">&lt;&lt; x &lt;&lt; endl;</font>
+		<font color="#0000ff">cout </font><font color="#000000">&lt;&lt; </font><font color="#ff00ff">&quot;Global x is &quot; </font><font color="#000000">&lt;&lt; ::x &lt;&lt; endl;</font>
+	<font color="#000000">}</font>
+	<font color="#000000">fn3(x);</font>
+	<font color="#0000ff">cout </font><font color="#000000">&lt;&lt; x &lt;&lt; endl;</font>
+<font color="#000000">}</font>
+<font color="#0000ff">void </font><font color="#000000">fn3(</font><font color="#0000ff">int </font><font color="#000000">x)</font>
+<font color="#000000">{</font>
+	<font color="#000000">x = -</font><font color="#800080">5</font><font color="#000000">;</font>
+	<font color="#0000ff">cout </font><font color="#000000">&lt;&lt; </font><font color="#ff00ff">&quot;Parameter x is&quot; </font><font color="#000000">&lt;&lt; x &lt;&lt; endl;</font>
+	<font color="#0000ff">cout </font><font color="#000000">&lt;&lt; </font><font color="#ff00ff">&quot;Global x is&quot; </font><font color="#000000">&lt;&lt; ::x &lt;&lt; endl;</font>
+<font color="#000000">}</font>
+</pre>
+</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="oops_concept_in_vc++.shtml" title="oops concept in vc++">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="message_and_driven_in_vc++.shtml" title="message and driven in vc++">Next</a></td>
+  </tr> 
+</table>
+
+		</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->

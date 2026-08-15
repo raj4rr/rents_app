@@ -1,0 +1,260 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>How to Read a file using C</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="How to Read a  file in C with example,array,pre processor,post processor,structures,memory menagement,string,constants,variables,decisions making,c unions" >
+<meta name="keywords" CONTENT="c tutorial,c basics,programming language,examples,pointer,function,loop,else,if else,while,array,pre processor,post processor,structures,memory menagement,string,constants,variables,decisions making,c unions,c memory allocation, c operators, C pointers,c error handling, c file handling">
+<script type="text/javascript" src="http://r4r.co.in/js/main.js"></script>
+		<link rel="stylesheet" type="text/css" href="http://r4r.co.in/css/style.css" />
+	    <link href="http://r4r.co.in/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+
+	</HEAD>
+	<BODY>
+		<table class="wrap" align="center"  cellpadding="0" cellspacing="0">
+			<tr>
+				<td class="m" align="left" valign="top">
+					<!--#include file="/common-files/topheader.shtml" -->
+				</td>
+						</tr>
+						<tr class="headerTR1">
+							<td>
+							<!--#include file="/common-files/header.shtml" -->
+							</td>
+						</tr>
+						<tr>
+							<td class="headerTR2">
+								<!--#include file="/common-files/bottomheader.shtml" -->
+							</td>
+						</tr>
+
+						<tr>
+							<td class="headerTR3">
+								<!--#include file="/common-files/menu.shtml" -->
+							</td>
+							</td>
+
+						</tr>
+						<tr>
+							<td>
+								<!--#include file="/common-files/gaps.shtml" -->
+							</td>
+						</tr>
+						
+						<tr>
+						
+			               <td class="content">
+								<table>
+									<tr>
+									
+								  <!--#include file="/common-files/tdgaps.shtml" -->
+								<td class="td1"   valign="top" >
+							    <!--#include file="/common-files/ads1.shtml" -->
+							    <DIV style="margin-left:15px;">
+			<table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse"  width="100%">
+  <tr>
+    <td width="100%">
+    <A href="/"><font face="Verdana">R4R</font></A><font face="Verdana" size="2">
+<img border="0" src="/images/left_menu_bullet.gif" width="11" height="6"> </font> <A href="/c">
+    <font face="Verdana">C</font></A><font face="Verdana" size="2"><img border="0" src="/images/left_menu_bullet.gif" width="11" height="6"></font><A href="/c/c_topics/"><font face="Verdana">C Topics</font></A><font face="Verdana" size="2"><img border="0" src="/images/left_menu_bullet.gif" width="11" height="6"></font><A href="/c/c_topics/c_file_handling"><font face="Verdana">C File Handling</font></A><font face="Verdana" size="2"><img border="0" src="/images/left_menu_bullet.gif" width="11" height="6"></font><A href=""><font face="Verdana">Reading 
+    a file using C</font></A><font face="Verdana" size="2"></font></font></td>
+  </tr>
+</table>
+
+
+		<!-- Header End-->	<!--#include virtual="/commonfiles/ads1.shtml" -->
+
+	   
+<table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="100%" id="AutoNumber1">
+  <tr>
+    <td width="33%">
+<a href="How_to_write_a_file_in_c5.shtml">
+<font face="Verdana">
+<img border="0" src="/images/previous.gif" alt="Previous" width="46" height="25"></font></a></td>
+    <td width="33%">
+    <p align="center">
+<a href="index.shtml">
+<font face="Verdana">
+<img border="0" src="/images/home.gif" alt="Home" width="46" height="25"></font></a></td>
+    <td width="34%">
+    <p align="right">
+<a href="how_to_close_the_file_and_file_modes6.shtml">
+<font face="Verdana">
+<img border="0" src="/images/next.gif" alt="Next" width="46" height="25"></font></a></td>
+  </tr>
+</table>
+ <!--#include virtual="/c/common-files/leftmenu.shtml" -->
+<p class="MsoNormal" style="margin-right: -33.55pt" dir="ltr">
+<font face="Verdana"><span lang="en-gb"><b>
+<font size="2" color="#3399FF">Reading a file using C</font><font size="2" color="#000000"> </font></b></span>
+</font></p>
+	<p class="MsoNormal" style="margin-right: -33.55pt" dir="ltr">
+	<font face="Verdana" size="2">
+	<span lang="en-gb"><font color="#000000">Once The file has been opened for reading using fopen( ) function .</font></span><font color="#000000">the 
+file&#8217;s contents are brought into memory and a pointer points to the very first 
+character. To read the file&#8217;s contents from memory there exists a function 
+called fgetc( ) . </font></font></p>
+	<table border="1" width="66%">
+		<tr>
+			<td>
+
+<PRE><font size="2" color="#008000" face="Verdana">/* 
+ * program to read data form file
+ */</font></PRE>
+			<PRE>&nbsp;</PRE>
+			<PRE><FONT FACE="Verdana"><FONT COLOR="#ff0000">#include</FONT><FONT COLOR="#000000">&lt;stdio.h&gt;</FONT>
+<FONT COLOR="#0000ff">void</FONT><FONT COLOR="#000000"> main()</FONT>
+<FONT COLOR="#000000">{</FONT>
+	<FONT COLOR="#000000">FILE *fp1;</FONT>
+	<FONT COLOR="#0000ff">char </FONT><FONT COLOR="#000000">a;</FONT>
+	<FONT COLOR="#0000ff">if </FONT><FONT COLOR="#000000">((fp1=fopen(</FONT><FONT COLOR="#ff00ff">&quot;myfile.txt&quot;</FONT><FONT COLOR="#000000">,</FONT><FONT COLOR="#ff00ff">&quot;r&quot;</FONT><FONT COLOR="#000000">))==NULL)</FONT>
+		<FONT COLOR="#000000">printf(</FONT><FONT COLOR="#ff00ff">&quot;this file does not exist\n&quot;</FONT><FONT COLOR="#000000">);</FONT>
+	<FONT COLOR="#0000ff">else</FONT>
+	<FONT COLOR="#000000">{</FONT>
+		<FONT COLOR="#0000ff">while</FONT><FONT COLOR="#000000">((a==fgetc(fp1))!EOF)</FONT>
+			<FONT COLOR="#000000">printf(</FONT><FONT COLOR="#ff00ff">&quot;%c&quot;</FONT><FONT COLOR="#000000">,a);</FONT>
+	<FONT COLOR="#000000">}</FONT> <!--#include file="/common-files/ads6.shtml" -->
+	<FONT COLOR="#000000">}</FONT></FONT></PRE>
+			</td>
+		</tr>
+	</table>
+<PRE><font size="2" color="#FF0000" face="Verdana">
+</font><font face="Verdana" size="2" color="#000000">Output: I am working in R4R Tech Soft as c/c++ programmer.
+</font></PRE>
+
+<table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="100%" id="AutoNumber1">
+  <tr>
+    <td width="33%">
+<a href="How_to_write_a_file_in_c5.shtml">
+<font face="Verdana">
+<img border="0" src="/images/previous.gif" alt="Previous" width="46" height="25"></font></a></td>
+    <td width="33%">
+    <p align="center">
+<a href="index.shtml">
+<font face="Verdana">
+<img border="0" src="/images/home.gif" alt="Home" width="46" height="25"></font></a></td>
+    <td width="34%">
+    <p align="right">
+<a href="how_to_close_the_file_and_file_modes6.shtml">
+<font face="Verdana">
+<img border="0" src="/images/next.gif" alt="Next" width="46" height="25"></font></a></td>
+  </tr>
+</table>
+
+<a href="/"><font face="Verdana">R4R</font></A><font face="Verdana" size="2">
+<img border="0" src="/images/left_menu_bullet.gif" width="11" height="6"> </font> <A href="/c">
+            <font face="Verdana">C</font></A><font face="Verdana" size="2"><img border="0" src="/images/left_menu_bullet.gif" width="11" height="6"></font><A href="/c/c_topics/"><font face="Verdana">C Topics</font></A><font face="Verdana" size="2"><img border="0" src="/images/left_menu_bullet.gif" width="11" height="6"></font><A href="/c/c_topics/c_file_handling"><font face="Verdana">C File Handling</font></A><font face="Verdana" size="2"><img border="0" src="/images/left_menu_bullet.gif" width="11" height="6"></font><A href=""><font face="Verdana">Reading 
+            a file using C</font></A><font face="Verdana" size="2"></font> 
+
+<!-- Footer Start-->	
+		
+		<!--#include file="/common-files/ads2.shtml" -->								
+										
+									</td>
+											
+										<td class="td2"  valign="top">
+											
+											</font>
+											
+											<table>
+											<!--#include file="/c/common-files/news1.shtml" -->	
+												<tr>
+													<td class="colorChange">
+													<!--#include file="/common-files/ads3.shtml" -->	
+														
+													</td>
+												</tr>
+		
+												<!--#include file="/common-files/adsnewsgaps.shtml" -->												
+												
+												<!--#include file="/c/common-files/news2.shtml" -->	
+												
+												<tr>
+													<td class="colorChange">
+													<!--#include file="/common-files/ads4.shtml" -->	
+													
+													
+													</td>
+												</tr>
+												<!--#include file="/common-files/adsnewsgaps.shtml" -->	
+												
+												<!--#include file="/c/common-files/news3.shtml" -->	
+												
+												<tr>
+													<td class="colorChange">
+													<!--#include file="/common-files/ads5.shtml" -->	
+														
+													</td>
+												</tr>
+												<!--#include file="/common-files/adsnewsgaps.shtml" -->
+													
+												<!--#include file="/c/common-files/news4.shtml" -->	
+												
+		</table>
+
+											
+											
+											
+										</td>
+										<!--#include file="/common-files/tdgaps.shtml" -->
+									</tr>
+								 </table>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<!--#include file="/common-files/gaps.shtml" -->
+							</td>
+						</tr>		
+						<tr>
+							<td>
+								<!--#include file="/common-files/row.shtml" -->
+							</td>
+						</tr>
+						
+						<tr>
+							<td>
+								<!--#include file="/c/common-files/mainlinks.shtml" -->
+							
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<!--#include file="/common-files/gaps.shtml" -->
+							</td>
+						</tr>
+						
+								<tr>
+							<td>
+								<!--#include file="/common-files/row.shtml" -->
+							</td>
+						</tr>
+						
+						
+						<tr >
+							<td>
+								<!--#include file="/common-files/hotlinks.shtml" -->
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<!--#include file="/common-files/gaps.shtml" -->
+							</td>
+						</tr>
+						
+						
+						<tr>
+							<td>
+								<!--#include file="/common-files/footer.shtml" -->
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+		</table>
+
+	    </table>
+
+	</BODY>
+</HTML>

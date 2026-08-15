@@ -1,0 +1,23 @@
+//Display public attribute with public method
+
+class a
+{
+	public int k; //attribute
+	//Public method
+	public void display()
+	{
+		System.Console.WriteLine("R4R");
+	}
+}
+class b 
+{
+	public static void Main()
+	{
+		//Object of class a
+		a x;
+		x=new a(); 
+		x.display();
+		x.k=100;
+		System.Console.WriteLine(x.k);
+	}
+}

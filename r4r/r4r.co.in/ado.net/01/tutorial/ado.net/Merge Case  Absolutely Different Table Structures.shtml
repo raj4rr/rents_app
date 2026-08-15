@@ -1,0 +1,168 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>Absolutely Different Table Structures </TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="Absolutely Different Table Structures " >
+<meta name="keywords" CONTENT="Absolutely Different Table Structures ">
+
+<!-- header start-->	
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>ADO.NET</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+            <img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+            <a href="/ado.net">ADO.Net</a>
+              <img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+
+			  <a href="/ado.net/01/tutorial/ado.net/">ADO.NET Tutorials</a>
+
+              </div>
+
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/ado.net/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	 
+<!-- header End-->	
+<div class="heading">Merge Case 5: Absolutely Different Table Structures</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="Merge%20Case%20%20Common%20Column,%20with%20Primary%20Key.shtml" title="Merge Case : Common Column, with Primary Key">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="Adding%20Records%20Using%20Mapped%20Names.shtml" title="Adding Records Using Mapped Names">Next</a></td>
+  </tr> 
+</table>
+
+<ol>
+<li>In this case, the two table structures have nothing in common. All the columns differ
+<div class="image">
+<img src="images/Merge_Case_Absolutely_Different_Table_Structures2.jpg">
+</div>
+</li>
+<li>create the different column
+<div class="code">
+<pre>
+<font color="#808000">DataTable </font><font color="#000000">ftb = </font><font color="#0000ff">new </font><font color="#808000">DataTable</font><font color="#000000">();</font>
+<font color="#808000">DataTable </font><font color="#000000">stb = </font><font color="#0000ff">new </font><font color="#808000">DataTable</font><font color="#000000">();</font>
+<font color="#000000">ftb.Columns.Add(</font><font color="#ff00ff">&quot;Sno&quot;</font><font color="#000000">, </font><font color="#0000ff">typeof</font><font color="#000000">(Int32));</font>
+<font color="#000000">ftb.Columns.Add(</font><font color="#ff00ff">&quot;Sname&quot;</font><font color="#000000">, </font><font color="#0000ff">typeof</font><font color="#000000">(</font><font color="#808000">String</font><font color="#000000">));</font>
+<font color="#000000">ftb.PrimaryKey = </font><font color="#0000ff">new </font><font color="#808000">DataColumn</font><font color="#000000">[] { ftb.Columns[</font><font color="#ff00ff">&quot;Sno&quot;</font><font color="#000000">] };</font>
+<font color="#000000">stb.Columns.Add(</font><font color="#ff00ff">&quot;Smark&quot;</font><font color="#000000">, </font><font color="#0000ff">typeof</font><font color="#000000">(Int32));</font>
+<font color="#000000">stb.Columns.Add(</font><font color="#ff00ff">&quot;Sgrade&quot;</font><font color="#000000">, </font><font color="#0000ff">typeof</font><font color="#000000">(</font><font color="#808000">String</font><font color="#000000">));</font>
+</pre>
+</div>
+
+<div class="image">
+<img src="images/Merge_Case_Absolutely_Different_Table_Structures4.jpg">
+</div>
+</li>
+
+<li>write the code
+<div class="code">
+<pre>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Collections</font><font color="#000000">.</font><font color="#008080">Generic</font><font color="#000000">;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">ComponentModel</font><font color="#000000">;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Data</font><font color="#000000">;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Drawing</font><font color="#000000">;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.Linq;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Text</font><font color="#000000">;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Windows</font><font color="#000000">.</font><font color="#008080">Forms</font><font color="#000000">;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Data</font><font color="#000000">.OleDb;</font>
+<font color="#0000ff">namespace </font><font color="#000000">WindowsFormsApplication15</font>
+<font color="#000000">{</font>
+<font color="#0000ff">public </font><font color="#000000">partial </font><font color="#0000ff">class </font><font color="#000000">Form1 : </font><font color="#808000">Form</font>
+<font color="#000000">{</font>
+<font color="#0000ff">public </font><font color="#000000">Form1()</font>
+<font color="#000000">{</font>
+<font color="#000000">InitializeComponent();</font>
+<font color="#000000">}</font>
+<font color="#808000">DataTable </font><font color="#000000">ftb = </font><font color="#0000ff">new </font><font color="#808000">DataTable</font><font color="#000000">();</font>
+<font color="#808000">DataTable </font><font color="#000000">stb = </font><font color="#0000ff">new </font><font color="#808000">DataTable</font><font color="#000000">();</font>
+<font color="#0000ff">private void </font><font color="#000000">Form1_Load(</font><font color="#0000ff">object </font><font color="#000000">sender, </font><font color="#808000">EventArgs </font><font color="#000000">e)</font>
+<font color="#000000">{</font>
+<font color="#000000">ftb.Columns.Add(</font><font color="#ff00ff">&quot;Sno&quot;</font><font color="#000000">, </font><font color="#0000ff">typeof</font><font color="#000000">(Int32));</font>
+<font color="#000000">ftb.Columns.Add(</font><font color="#ff00ff">&quot;Sname&quot;</font><font color="#000000">, </font><font color="#0000ff">typeof</font><font color="#000000">(</font><font color="#808000">String</font><font color="#000000">));</font>
+<font color="#008000">// ftb.PrimaryKey = new DataColumn[] { ftb.Columns[&quot;Sno&quot;] };</font>
+<font color="#000000">ftb.LoadDataRow(</font><font color="#0000ff">new object</font><font color="#000000">[] { </font><font color="#ff00ff">&quot;1&quot;</font><font color="#000000">, </font><font color="#ff00ff">&quot;Ashish&quot; </font><font color="#000000">}, </font><font color="#0000ff">true</font><font color="#000000">);</font>
+<font color="#000000">ftb.LoadDataRow(</font><font color="#0000ff">new object</font><font color="#000000">[] { </font><font color="#ff00ff">&quot;2&quot;</font><font color="#000000">, </font><font color="#ff00ff">&quot;KAMAL&quot; </font><font color="#000000">}, </font><font color="#0000ff">true</font><font color="#000000">);</font>
+<font color="#000000">ftb.LoadDataRow(</font><font color="#0000ff">new object</font><font color="#000000">[] { </font><font color="#ff00ff">&quot;3&quot;</font><font color="#000000">, </font><font color="#ff00ff">&quot;Mohit&quot; </font><font color="#000000">}, </font><font color="#0000ff">true</font><font color="#000000">);</font>
+<font color="#000000">ftb.LoadDataRow(</font><font color="#0000ff">new object</font><font color="#000000">[] { </font><font color="#ff00ff">&quot;4&quot;</font><font color="#000000">, </font><font color="#ff00ff">&quot;Aditya&quot; </font><font color="#000000">}, </font><font color="#0000ff">true</font><font color="#000000">);</font>
+<font color="#000000">stb.Columns.Add(</font><font color="#ff00ff">&quot;Smark&quot;</font><font color="#000000">, </font><font color="#0000ff">typeof</font><font color="#000000">(Int32));</font>
+<font color="#000000">stb.Columns.Add(</font><font color="#ff00ff">&quot;Sgrade&quot;</font><font color="#000000">, </font><font color="#0000ff">typeof</font><font color="#000000">(</font><font color="#0000ff">string</font><font color="#000000">));</font>
+<font color="#000000">stb.LoadDataRow(</font><font color="#0000ff">new object</font><font color="#000000">[] { </font><font color="#ff00ff">&quot;480&quot;</font><font color="#000000">, </font><font color="#ff00ff">&quot;I&quot; </font><font color="#000000">}, </font><font color="#0000ff">true</font><font color="#000000">);</font>
+<font color="#000000">stb.LoadDataRow(</font><font color="#0000ff">new object</font><font color="#000000">[] { </font><font color="#ff00ff">&quot;255&quot;</font><font color="#000000">, </font><font color="#ff00ff">&quot;II&quot; </font><font color="#000000">}, </font><font color="#0000ff">true</font><font color="#000000">);</font>
+<font color="#000000">stb.LoadDataRow(</font><font color="#0000ff">new object</font><font color="#000000">[] { </font><font color="#ff00ff">&quot;295&quot;</font><font color="#000000">, </font><font color="#ff00ff">&quot;II&quot; </font><font color="#000000">}, </font><font color="#0000ff">true</font><font color="#000000">);</font>
+<font color="#000000">stb.LoadDataRow(</font><font color="#0000ff">new object</font><font color="#000000">[] { </font><font color="#ff00ff">&quot;380&quot;</font><font color="#000000">, </font><font color="#ff00ff">&quot;I&quot; </font><font color="#000000">}, </font><font color="#0000ff">true</font><font color="#000000">);</font>
+<font color="#000000">dataGridView1.DataSource = ftb;</font>
+<font color="#000000">dataGridView2.DataSource = stb;  </font>
+<font color="#000000">}</font>
+<font color="#0000ff">private void </font><font color="#000000">button1_Click(</font><font color="#0000ff">object </font><font color="#000000">sender, </font><font color="#808000">EventArgs </font><font color="#000000">e)</font>
+<font color="#000000">{</font>
+<font color="#000000">ftb.Merge(stb);</font>
+<font color="#000000">dataGridView3.DataSource=ftb;</font>
+<font color="#000000">dataGridView1.Visible = </font><font color="#0000ff">false</font><font color="#000000">;</font>
+<font color="#000000">dataGridView2.Visible = </font><font color="#0000ff">false</font><font color="#000000">;</font>
+<font color="#000000">dataGridView3.Visible =</font><font color="#0000ff">true</font><font color="#000000">;  </font>
+<font color="#000000">label1.</font><font color="#008080">Text </font><font color="#000000">= </font><font color="#ff00ff">&quot;After Merging&quot;</font><font color="#000000">;</font>
+<font color="#000000">label2.Visible = </font><font color="#0000ff">false</font><font color="#000000">;</font>
+<font color="#000000">}</font>
+<font color="#000000">}</font>
+<font color="#000000">}</font>
+</pre>
+</div>
+</li>
+
+<li>Run the program
+
+<div class="image">
+<img src="images/Merge_Case_Absolutely_Different_Table_Structures6.jpg">
+</div>
+
+<div class="image">
+<img src="images/Merge_Case_Absolutely_Different_Table_Structures8.jpg">
+</div>
+</li>
+</ol>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="Merge%20Case%20%20Common%20Column,%20with%20Primary%20Key.shtml" title="Merge Case : Common Column, with Primary Key">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="Adding%20Records%20Using%20Mapped%20Names.shtml" title="Adding Records Using Mapped Names">Next</a></td>
+  </tr> 
+</table>
+
+<!-- Footer Start-->		
+		</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/dotnet/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->

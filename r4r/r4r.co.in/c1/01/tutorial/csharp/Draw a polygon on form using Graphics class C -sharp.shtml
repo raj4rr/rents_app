@@ -1,0 +1,131 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>Draw a polygon on form using Graphics class C #.net</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="Draw a polygon on form using Graphics class C #.net" >
+<meta name="keywords" CONTENT="Draw a polygon on form using Graphics class C #.net">
+
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+     <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>C# Tutorial</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a><img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/c1/">C#</a>
+
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/c1/commonfiles/leftmenu.shtml'); ?></td>
+
+                       <td style="80%" valign="top">
+                        <div class="main_content"> 
+
+	<!-- Header End-->
+
+	<div class="heading">Draw a polygon on form using Graphics class C #.net</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="Draw%20a%20curve%20on%20form%20using%20Graphics%20class%20%20C%20-sharp.shtml" 
+    title="Draw a curve on form using Graphics class in C#.net">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="Drawing%20Lines%20in%20C-sharp.shtml" 
+    title="Drawing Lines in C#">Next</a></td>
+  </tr>
+</table>
+<p>In this simple Example you will learn that how to draw polygon on the form using Graphics class in C #.net.</p>
+<p>In order to draw polygon on the form, firstly you should know the behavior of the form. While playing with
+ the graphics you must keep the following point in your mind</p>
+<p>You cannot draw graphics on simple load event of the form. To create graphics on the form, you must override
+ the onpaint() function of the form.</p>
+
+<h3>Polygons draw function</h3>
+<p>In order to draw a polygon, graphics class provides us a function named as drawPolygon(). It is an overloaded function. 
+By using this function you can draw polygon on the form. Depending on your requirement you can use any of the overloaded 
+function. </p>
+<p>In this function takes two arguments. The first argument is the object of Pen class. Pen class has the four overloaded 
+constructor. You can use any of the constructors to initialize the object of pen class.</p>
+<h3>Example</h3>
+<div class="code">
+<pre>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Collections</font><font color="#000000">.</font><font color="#008080">Generic</font><font color="#000000">;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">ComponentModel</font><font color="#000000">;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Data</font><font color="#000000">;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Drawing</font><font color="#000000">;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.Linq;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Text</font><font color="#000000">;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Windows</font><font color="#000000">.</font><font color="#008080">Forms</font><font color="#000000">;</font>
+
+<font color="#0000ff">namespace </font><font color="#000000">WindowsFormsApplication1 {</font>
+<font color="#0000ff">public </font><font color="#000000">partial </font><font color="#0000ff">class </font><font color="#000000">graphics : </font><font color="#808000">Form </font><font color="#000000">{</font>
+<font color="#0000ff">public </font><font color="#000000">graphics()</font>
+<font color="#000000">{</font>
+<font color="#000000">InitializeComponent();</font>
+<font color="#000000">}</font>
+
+<font color="#0000ff">private void </font><font color="#000000">graphics_Paint(</font><font color="#0000ff">object </font><font color="#000000">sender, </font><font color="#808000">PaintEventArgs </font><font color="#000000">e)</font>
+<font color="#000000">{</font>
+<font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Drawing</font><font color="#000000">.</font><font color="#808000">Pen </font><font color="#000000">pen = </font><font color="#0000ff">new </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Drawing</font><font color="#000000">.</font><font color="#808000">Pen</font><font color="#000000">(</font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Drawing</font><font color="#000000">.Color.Red);</font>
+<font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Drawing</font><font color="#000000">.</font><font color="#808000">Graphics </font><font color="#000000">obj;</font>
+<font color="#000000">obj = </font><font color="#0000ff">this</font><font color="#000000">.CreateGraphics();</font>
+<font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Drawing</font><font color="#000000">.Point[] points = </font><font color="#0000ff">new </font><font color="#000000">Point[</font><font color="#800080">5</font><font color="#000000">];</font>
+<font color="#000000">points[] = </font><font color="#0000ff">new </font><font color="#000000">Point(</font><font color="#800080">75</font><font color="#000000">, </font><font color="#800080">35</font><font color="#000000">);</font>
+<font color="#000000">points[</font><font color="#800080">1</font><font color="#000000">] = </font><font color="#0000ff">new </font><font color="#000000">Point(</font><font color="#800080">85</font><font color="#000000">, </font><font color="#800080">35</font><font color="#000000">);</font>
+<font color="#000000">points[</font><font color="#800080">2</font><font color="#000000">] = </font><font color="#0000ff">new </font><font color="#000000">Point(</font><font color="#800080">45</font><font color="#000000">, </font><font color="#800080">95</font><font color="#000000">);</font>
+<font color="#000000">points[</font><font color="#800080">3</font><font color="#000000">] = </font><font color="#0000ff">new </font><font color="#000000">Point(</font><font color="#800080">65</font><font color="#000000">, </font><font color="#800080">25</font><font color="#000000">);</font>
+<font color="#000000">points[</font><font color="#800080">4</font><font color="#000000">] = </font><font color="#0000ff">new </font><font color="#000000">Point(</font><font color="#800080">65</font><font color="#000000">, </font><font color="#800080">55</font><font color="#000000">);</font>
+<font color="#000000">obj.DrawPolygon(pen, points);</font>
+<font color="#000000">obj.Dispose();</font>
+<font color="#000000">}</font>
+
+<font color="#0000ff">private void </font><font color="#000000">graphics_Load(</font><font color="#0000ff">object </font><font color="#000000">sender, </font><font color="#808000">EventArgs </font><font color="#000000">e)</font>
+<font color="#000000">{</font>
+<font color="#000000">}</font>
+<font color="#000000">}</font>
+<font color="#000000">}</font>
+</pre>
+</div>
+
+<p><h3>Output</h3></p>
+<div class="output">
+<div class="image">
+<img src="polygun.gif">
+</div></div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="Draw%20a%20curve%20on%20form%20using%20Graphics%20class%20%20C%20-sharp.shtml" 
+    title="Draw a curve on form using Graphics class in C#.net">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="Drawing%20Lines%20in%20C-sharp.shtml" 
+    title="Drawing Lines in C#">Next</a></td>
+  </tr>
+</table>
+
+ <!--Footer-->
+   </div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/dotnet/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+     <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>

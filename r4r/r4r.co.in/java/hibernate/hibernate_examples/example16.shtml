@@ -1,0 +1,196 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<HTML><HEAD><TITLE>hibernate Delete data from the table Using Hibernate and swing</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv="content-type" content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="Hibernate tutorial learn easily and shortly with hibernate tutorial,hibernate
+Examples,hibernate interview questions Step by step covers all topics of hibernate architecture, object relation mapping(ORM), interceptors" >
+<meta name="keywords" CONTENT="Hibernate tutorial, Delete data from the table Using Hibernate and swing Hibernate Examples, object relation mapping(ORM), 
+hibernate query language(HQl), Presistent classes">
+
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<META http-equiv="Content-Language" content="en-us">
+<link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+<link href="/css/main.css" rel="stylesheet" type="text/css" />
+</HEAD>
+<BODY>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>Hibernate</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+            <img src="/images/left_menu_bullet.gif"/> <a href="/java/hibernate/">Hibernate</a>
+             </div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top">
+                            <?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/hibernate/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                       <div class="main_content">  	 
+
+      <div class="heading">Deletion the data from the table Using Hibernate and swing</div>
+
+      <table id="indexing">
+
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="example15.shtml" title="Update Data into Database">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="example17.shtml" title="Login Form Using Validation From Database">Next</a></td>
+  </tr> 
+</table>
+      <p>
+          As we have discussed in the all above example the inserting data value process. Here we do 
+          as we done in our last examples. For checking the last example to inserting the value and 
+          displaying the value in the form we can also visit on the given page. For the visit on the 
+          last page of example we need to click on the given link that is as click here
+      </p>
+      <p>
+          Now here also we do the same thing for the deletion the operation. Here only we need to 
+          take a form to perform the action page and a java class to store the action method. And 
+          all other method will be same as we have discussed in out last solved example to inserting 
+          data and updating the data also given fetching the data on the form.
+      </p>
+      <p>
+          First of all we need to take the Swing JForm. Go into the File menu wizard -> new file -> 
+          put the name on the required field -> click on finsh. In this form we desing the form as 
+          we want to show on the our form also remember that value will be taken which we have taken 
+          into the Database table.
+      </p>
+      <p>
+          Now we need to perform the action code on the form. that is given below:
+      </p>
+      <h3>Admin.java//it shows the method to fethc the id of the inserted data form the database of 
+          the table.
+      </h3>
+      <div class="code">
+         <pre><code class="language-java">
+ package swing.delete;
+
+import java.util.ArrayList;
+import java.util.List;
+import org.hibernate.Criteria;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+import org.hibernate.cfg.Configuration;
+
+public class Admin 
+{
+     public static List&lt;String&gt; getId() 
+   {
+     List&lt;String&gt; a = new ArrayList&lt;String&gt;();   
+     try
+     {
+        SessionFactory sf = new Configuration().configure().buildSessionFactory();
+        Session s = sf.openSession();
+        Transaction tr = s.beginTransaction();
+        Criteria cr = s.createCriteria(r4r.InserSwingData.class);
+        java.util.List&lt;r4r.InserSwingData&gt; ds = cr.list();
+        for(r4r.InserSwingData dd : ds)
+        {
+            //a.add(dd.getId());   
+            a.add(Integer.toString(dd.getId()));
+
+         }   
+     }catch(Exception ex) { a.add(ex.getMessage()); }
+     return a;
+   }
+
+}
+</code></pre>
+      </div>
+
+      <h3>DeletePage.java//this page will be taken in the project applicaation</h3>
+      <h3>//Below given code will help to fetch Id form the database.</h3>
+      <div class="code">
+          <pre><code class="language-java">
+public DeletePage() {
+        initComponents();
+        fname.setEditable(false);
+        lname.setEditable(false);
+        address.setEditable(false);
+        List&lt;String&gt; a = Admin.getId();
+           for(String s : a)
+           Id.addItem(s);
+</code></pre> 
+      </div>
+
+      <h3>//Below given code will help to perform the Id event change action</h3>
+
+      <div class="code">
+          <pre><code class="language-java">
+private void IdActionPerformed(java.awt.event.ActionEvent evt) {                                   
+                Id = (JComboBox) evt.getSource();
+            Object selected = Id.getSelectedItem();
+            int n = new Integer (Id.getSelectedItem().toString());
+            SessionFactory sf = r4r.HibernateUtil.getSessionFactory();
+            Session s = sf.openSession();
+            Transaction tx = s.beginTransaction();
+            InserSwingData r = (InserSwingData)s.get(r4r.InserSwingData.class, n);          
+            fname.setText(r.getFirstName());
+                lname.setText(r.getLastName());
+                address.setText(r.getAddress());
+
+    }  
+</code></pre>
+      </div>
+
+      <h3>// Below given code will help us the make the action on the button delete which shows in the image</h3>
+
+      <div class="code">
+          <pre><code class="language-java">
+private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {                                         
+               // Id.removeAllItems();
+                int n = new Integer(Id.getSelectedItem().toString());
+                SessionFactory sf = r4r.HibernateUtil.getSessionFactory();
+                Session s = sf.openSession();
+                Transaction tr= s.beginTransaction();
+                r4r.InserSwingData r = (r4r.InserSwingData)s.get(r4r.InserSwingData.class, n);
+                 s.delete(r);
+                tr.commit();
+                JOptionPane.showMessageDialog(this, "One Record Deleted");
+                clear();
+    }                                        
+       void clear()
+       {
+        //Id.removeAllItems();
+        fname.setText("");
+        lname.setText("");
+        address.setText("");
+       }
+</code></pre>
+      </div>
+
+      <p>Now we need to build and run the project.</p>
+
+       <table id="indexing">
+
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="example15.shtml" title="Update Data into Database">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="example17.shtml" title="Login Form Using Validation From Database">Next</a></td>
+  </tr> 
+</table>
+
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+
+                <?php @include($_SERVER['DOCUMENT_ROOT'] . '/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>

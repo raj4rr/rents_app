@@ -1,0 +1,125 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD>
+<meta http-equiv="Content-Language" content="en-us">
+<TITLE>How to connect MySQL database,How to connect MySQL</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name="description" CONTENT="How to connect MySQL database,How to connect MySQL" >
+<meta name="keywords" CONTENT="How to connect MySQL database,How to connect MySQL">
+
+<!-- header start-->	
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>PHP Programing language</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+            <img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+            <a href="/php/">PHP</a>
+
+              </div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/php/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	  
+
+	   	   <div class="heading">PHP MySQL Connection</div>
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="php_mysql_database.shtml" title="PHP MySQL Database">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="php_mysql_createtable.shtml" title="PHP MySQL Create Table">Next</a></td>
+	</tr>
+</table>
+
+<!-- header End-->		   
+<p>The PHp programmer are connecting the program with MySQL Database , and it's first establish a connection to your web host's MySQL database. This is done with the MySQL connect function.</p>
+
+<h3>The MySQL localhost</h3>
+<p>If you've working in internet , then you using the IP addresses, the IP addresses are used as identifiers for computers and web servers. In this example 
+of a connection script, we assume that the MySQL service is running on the same machine as the script.</p>
+<p>When we using the PHP script and MySQL are on the same machine, after that we can use localhost as the address you wish to connect to. The localhost is a shortcut to just have the machine connect to itself. and if your MySQL service is running at a separate location you will need to insert the IP address or URL in place of localhost. Please contact your web host for more details if localhost does not work.</p>
+<div class="code">
+<pre>
+<font color="#000000">PHP &amp; MySQL Code:</font>
+<font color="#800000">&lt;?php</font>
+<font color="#800000">mysql_connect (</font><font color="#ff00ff">&quot;localhost&quot;</font><font color="#800000">, </font><font color="#ff00ff">&quot;admin&quot;</font><font color="#800000">, </font><font color="#ff00ff">&quot;1admin&quot;</font><font color="#800000">) </font><font color="#0000ff">or die </font><font color="#800000">(mysql_error());</font>
+<font color="#0000ff">echo </font><font color="#ff00ff">&quot;Connected to MySQL&lt;br /&gt;&quot;</font><font color="#800000">;</font>
+<font color="#800000">?&gt;</font>
+</pre>
+</div>
+<p><i>Output:</i></p>
+<div class="output">
+Connected to MySQL</div>
+
+<p>If you load the above PHP script to your webserver and everything works properly, then you should see &quot;Connected to MySQL&quot; displayed when you view the .php 
+page.</p>
+<p>The mysql_connect function takes three arguments. Server, username, and password.</p>
+<p>In our example above these arguments were:</p>
+<ol>
+<li>Server - localhost</li>
+<li>Username - admin</li>
+<li>Password - 1admin</li>
+</ol>
+<p>The &quot;or die(mysql...&quot; code displays an error message in your browser , when you've probably guessed it -- there is an error in processing the connection! Double-check your username, password, or server if you receive this error.</p>
+
+<h3>How to Choose the Working Database</h3>
+<p>After establishing a MySQL connection with the code above, you then need to choose which database you will be using with this connection. This is done with 
+the mysql_select_db function.</p>
+<div class="code">
+<pre>
+<font color="#000000">PHP &amp; MySQL Code:</font>
+<font color="#800000">&lt;?php</font>
+<font color="#800000">mysql_connect (</font><font color="#ff00ff">&quot;localhost&quot;</font><font color="#800000">, </font><font color="#ff00ff">&quot;admin&quot;</font><font color="#800000">, </font><font color="#ff00ff">&quot;1admin&quot;</font><font color="#800000">) </font><font color="#0000ff">or die</font><font color="#800000">(mysql_error());</font>
+<font color="#0000ff">echo </font><font color="#ff00ff">&quot;Connected to MySQL&lt;br /&gt;&quot;</font><font color="#800000">;</font>
+<font color="#800000">mysql_select_db (</font><font color="#ff00ff">&quot;test&quot;</font><font color="#800000">) </font><font color="#0000ff">or die </font><font color="#800000">(mysql_error());</font>
+<font color="#0000ff">echo </font><font color="#ff00ff">&quot;Connected to Database&quot;</font><font color="#800000">;</font>
+<font color="#800000">?&gt;</font>
+</pre>
+</div>
+
+<p><i>Output:</i></p>
+<div class="output">
+Connected to MySQL
+Connected to Database 
+</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="php_mysql_database.shtml" title="PHP MySQL Database">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="php_mysql_createtable.shtml" title="PHP MySQL Create Table">Next</a></td>
+	</tr>
+</table>
+
+	<!-- Footer Start-->  	
+
+</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/php/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->

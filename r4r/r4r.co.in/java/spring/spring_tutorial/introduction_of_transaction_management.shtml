@@ -1,0 +1,164 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD>
+<meta http-equiv="Content-Language" content="en-us">
+<TITLE>Spring transaction management introduction|Spring tutorial</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name="description" CONTENT="Spring transaction management tutorial provides you spring all topics in detail from
+basics level concepts to higher level concepts" >
+<meta name="keywords" CONTENT="Spring Transaction Management introduction,ORM (Object XML Mappers), Inttroduction of Spring expression Language, what is Spring expression Language
+,Transaction Management">
+
+		<!-- header start-->	
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+     <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>Spring Tutorials</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+			<img src="/images/left_menu_bullet.gif"/> <a href="/java/spring/">Spring</a>
+
+       </div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/spring/commonfiles/leftmenucore.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content">
+<!-- LEGACY BANNER START -->
+<div style="background: rgba(255, 244, 229, 0.9); border-left: 5px solid #ff9800; padding: 20px; margin-bottom: 25px; border-radius: 8px; font-family: 'Inter', sans-serif; box-shadow: 0 4px 6px rgba(0,0,0,0.05);">
+    <h3 style="margin-top: 0; color: #e65100; font-size: 1.2rem; display: flex; align-items: center; gap: 8px;">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+        Legacy Spring Framework Warning
+    </h3>
+    <p style="margin-bottom: 0; color: #5d4037; font-size: 1.05rem; line-height: 1.5;">
+        This tutorial teaches an outdated version of Spring using <strong>legacy XML configuration</strong> (<code>applicationContext.xml</code>). Modern Spring applications rely on <strong>Spring Boot</strong> and <strong>Java Annotations</strong>. This page is preserved for historical context and maintaining legacy systems.
+    </p>
+</div>
+<!-- LEGACY BANNER END -->
+ 	 
+
+<div class="heading">Introduction of Spring Framework Transaction Management</div>
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="variable_in_spel.shtml" title="variable_in_spel">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="spring_framework_transaction_abstraction.shtml" title="spring_framework_transaction_abstraction">Next</a></td>
+  </tr> 
+</table>
+<p>The Sequence of action that will be performed to complete database operation is called transaction and its management is known as Transaction Management. All these action in combination will be treated as ONE action only. Transaction management is an important part of RDBMS oriented enterprise applications to ensure data integrity and consistency.</p><p> The concept of transactions can be described with following four key properties described as ACID: </p>
+<ol>
+<li>
+<i>Atomicity:</i> A transaction should be treated as a single unit of operation which means either the entire sequence of operations is successful or unsuccessful.</li>
+<li>
+<i>Consistency:</i> This represents the consistency of the referential integrity of the database, unique primary keys in tables etc.</li>
+<li>
+<i>Isolation:</i> There may be many transactions processing with the same data set at the same time, each transaction should be isolated from others to prevent data corruption.</li>
+<li>
+<i>Durability:</i> Once a transaction has completed, the results of this transaction have to be made permanent and cannot be erased from the database due to system failure.</li>
+</ol>
+<p>A real RDBMS database system will consider all the four properties for each transaction. The simple view of a transaction issued to the database using SQL is following as:</p>
+<ol>
+<li>
+Begin the transaction using begin transaction command.
+</li><li>
+Perform various deleted, update or insert operations using SQL queries. 
+</li><li>
+If all the operation are successful then perform commit otherwise rollback all the operations.
+</li></ol>
+
+<div class="heading">Advantages of the Spring Frameworks Transaction Management</div>
+<p>The Spring Framework provides a consistent abstraction for transaction management that shows the following benefits:</p>
+<ol>
+<li>
+Consistent programming model across different transaction APIs such as Java Transaction API (JTA), JDBC, Hibernate, Java Persistence API (JPA), and Java Data Objects (JDO).
+</li><li>
+Support for declarative transaction management.
+</li><li>
+Simpler API for programmatic transaction management than complex transaction APIs such as JTA.
+</li><li>
+Excellent integration with Springs data access abstractions.
+</li><li>
+Use the Spring Frameworks transaction abstraction instead of EJB Container-Managed Transactions (CMT) or choosing to drive local transactions through a proprietary API such as Hibernate.
+</li><li>
+Synchronizing resources with transactionsdescribes how the application code ensures that resources are created, reused, and cleaned up properly.
+</li><li>
+Spring Frameworks transaction management provide Global and Local Transaction for Java EE developers .</li>
+<p>Global transactions enable you to work with<font class="point_out"> multiple transactional resources</font>, typically relational databases and message queues.
+Local transactions are resource-specific, such as a transaction associated with a JDBC connection. Local transactions may be easier to use.</p>
+</ol>
+<div class="heading">Type of Spring Transaction Management</div>
+<p>In J2EE, Transaction Management can be divided in two types.</p>
+<ol>
+<li>
+Global Transaction
+</li>
+<li>
+Local Transaction
+</li>
+</ol>
+<div class="heading">Global Transaction</div>
+<ol>
+<li>
+Use to work with multiple transaction resources like RDBMS or Message Queue.
+</li>
+<li>
+Managed by Application Server (WebSphere, Weblogic) using JTA .
+</li>
+<li>
+JNDI is required to use JTA.
+</li>
+<li>
+Code can not be reused as JTA is available at server level.
+</li>
+<li>
+Example of Global Transaction: EJB CMT.
+</li>
+</ol>
+<div class="heading">Local Transaction</div>
+<ol>
+<li>
+Use to work with specific resource (transaction associated with JDBC).
+</li>
+<li>
+Can not work across multiple transaction resource opposite to Global transaction.
+</li>
+<li>
+Most of web application uses only single resources hence it is best option to use in normal application.
+</li>
+</ol>
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="variable_in_spel.shtml" title="variable_in_spel">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="spring_framework_transaction_abstraction.shtml" title="spring_framework_transaction_abstraction">Next</a></td>
+  </tr> 
+</table>
+
+		</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->

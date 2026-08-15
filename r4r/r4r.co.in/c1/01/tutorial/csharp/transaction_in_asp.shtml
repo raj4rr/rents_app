@@ -1,0 +1,184 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>Transaction in ASP.NET</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="Transaction in ASP.NET" >
+<meta name="keywords" CONTENT="Transaction in ASP.NET">
+
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+     <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>C# Tutorial</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a><img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/c1/">C#</a>
+
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/c1/commonfiles/leftmenu.shtml'); ?></td>
+
+                       <td style="80%" valign="top">
+                        <div class="main_content"> 
+
+	<!-- Header End-->
+
+	<div class="heading">Transaction in asp</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="remoting_in_asp.shtml" 
+    title="Remoting in asp">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="AutoComplete%20TextBox%20in%20C-sharp.shtml" 
+    title="AutoComplete TextBox in C#">Next</a></td>
+  </tr>
+</table>
+<h3>Introduction</h3>
+<p>A transaction is a group of operations combined into a logical unit of work that is either guaranteed to be executed as a whole or rolled 
+back. A transaction can be described to cover the ACID properties for mission critical applications</p>
+<h3>Transaction Acid Properties</h3>
+<p><i>Atomicity- </i>All the steps an a transaction must execute in a single group.</p>
+<p><i>Consistency-</i>Consistency: Transaction should be consistence in the database i.e. database after the transaction should be in consistence
+ state, it should not damage the DB.</p>
+<p><i>Isolation- </i>One transaction should not be affected by other transactions.</p>
+<p><i>Durability-</i> Transaction should be durable even after system crash.</p>
+<h3>Example</h3>
+<div class="image">
+<img src="untitled.gif">
+</div>
+
+<h3>.CS Code</h3>
+
+<div class="code">
+<pre>
+<font color="#000000">&lt;!DOCTYPE HTML PUBLIC </font><font color="#ff00ff">&quot;-//W3C//DTD HTML 4.01 Transitional//EN&quot; </font><font color="#000000">&gt;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Collections</font><font color="#000000">;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Configuration</font><font color="#000000">;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Data</font><font color="#000000">;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.Linq;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Web</font><font color="#000000">;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Web</font><font color="#000000">.</font><font color="#008080">Security</font><font color="#000000">;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Web</font><font color="#000000">.</font><font color="#008080">UI</font><font color="#000000">;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Web</font><font color="#000000">.</font><font color="#008080">UI</font><font color="#000000">.</font><font color="#008080">HtmlControls</font><font color="#000000">;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Web</font><font color="#000000">.</font><font color="#008080">UI</font><font color="#000000">.</font><font color="#008080">WebControls</font><font color="#000000">;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Web</font><font color="#000000">.</font><font color="#008080">UI</font><font color="#000000">.</font><font color="#008080">WebControls</font><font color="#000000">.</font><font color="#008080">WebParts</font><font color="#000000">;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Xml</font><font color="#000000">.Linq;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Data</font><font color="#000000">.OleDb;</font>
+
+<font color="#0000ff">public </font><font color="#000000">partial </font><font color="#0000ff">class </font><font color="#000000">Default3 : </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Web</font><font color="#000000">.</font><font color="#008080">UI</font><font color="#000000">.</font><font color="#808000">Page </font><font color="#000000">{</font>
+<font color="#0000ff">protected void </font><font color="#000000">Page_Load(</font><font color="#0000ff">object </font><font color="#000000">sender, </font><font color="#808000">EventArgs </font><font color="#000000">e)</font>
+<font color="#000000">{</font>
+
+<font color="#000000">}</font>
+<font color="#0000ff">protected void </font><font color="#000000">TransferFund(</font><font color="#0000ff">object </font><font color="#000000">sender, </font><font color="#808000">EventArgs </font><font color="#000000">e)</font>
+<font color="#000000">{</font>
+
+<font color="#008000">//String strSQL = &quot; select balance from transaction where</font>
+ <font color="#000000">accountnumber=</font><font color="#ff00ff">'&quot; + txtFrom.Text + &quot;'</font><font color="#ff00ff">&quot;;</font>
+
+<font color="#0000ff">double </font><font color="#000000">dCurrBalance;</font>
+
+<font color="#000000">OleDbConnection Conn = </font><font color="#0000ff">new </font><font color="#000000">OleDbConnection(</font>
+<font color="#ff00ff">&quot;PROVIDER=Microsoft.Jet.OLEDB.4.0; </font>
+<font color="#000000">DATA SOURCE=D:\\dbbalance.mdb</font><font color="#ff00ff">&quot;);</font>
+
+<font color="#000000">Conn.Open();</font>
+<font color="#000000">OleDbDataReader oReader;</font>
+
+<font color="#000000">OleDbCommand cmd = </font><font color="#0000ff">new </font><font color="#000000">OleDbCommand(</font><font color="#ff00ff">&quot; </font>
+<font color="#000000">select balance1 from transaction1 where</font>
+ <font color="#000000">accountnumber1= </font><font color="#ff00ff">'&quot;  + txtFrom.Text + &quot;'</font><font color="#ff00ff">&quot;, Conn);</font>
+
+<font color="#000000">OleDbTransaction Trans = Conn.BeginTransaction</font>
+<font color="#000000">(IsolationLevel.ReadCommitted);</font>
+
+<font color="#000000">cmd.Transaction = Trans;</font>
+
+<font color="#0000ff">try</font><font color="#000000">{</font>
+<font color="#000000">oReader = cmd.ExecuteReader();</font>
+<font color="#000000">oReader.Read();</font>
+<font color="#000000">dCurrBalance = oReader.GetDouble(</font><font color="#800080">0</font><font color="#000000">);</font>
+<font color="#000000">oReader.Close();</font>
+
+<font color="#0000ff">if </font><font color="#000000">(dCurrBalance &lt; </font><font color="#808000">Convert</font><font color="#000000">.ToDouble(txtAmt.</font><font color="#008080">Text</font><font color="#000000">))</font>
+<font color="#000000">{</font>
+
+  <font color="#000000">lbltxt.</font><font color="#008080">Text</font><font color="#000000">=</font><font color="#ff00ff">&quot;;Sorry Mr/Mrs &quot; </font><font color="#000000">+ txtName.</font><font color="#008080">Text </font>
+  <font color="#000000">+   </font><font color="#ff00ff">&quot; &quot; </font><font color="#000000">+ </font><font color="#ff00ff">&quot;Your balance is&quot; </font><font color="#000000">+ dCurrBalance +</font><font color="#ff00ff">&quot;&quot;</font><font color="#000000">;</font>
+<font color="#0000ff">throw </font><font color="#000000">(</font><font color="#0000ff">new </font><font color="#808000">Exception</font><font color="#000000">(</font><font color="#ff00ff">&quot;Insufficient funds for transfer&quot;</font><font color="#000000">));</font>
+
+<font color="#000000">}</font>
+
+<font color="#0000ff">string </font><font color="#000000">strSQL = </font><font color="#ff00ff">&quot;;Update transaction1 set balance1 = balance1 - &quot; </font>
+<font color="#000000">+ txtAmt.</font><font color="#008080">Text </font><font color="#000000">+ </font><font color="#ff00ff">&quot;where accountnumber1 = '&quot;</font><font color="#000000">+ txtFrom.</font><font color="#008080">Text </font><font color="#000000">+ </font><font color="#ff00ff">&quot;'&quot;</font><font color="#000000">;</font>
+
+<font color="#000000">cmd.CommandText = strSQL;</font>
+<font color="#000000">cmd.ExecuteNonQuery();</font>
+
+<font color="#000000">strSQL = </font><font color="#ff00ff">&quot;Update transaction1 set balance1 =  balance1 + &quot; </font>
+ <font color="#000000">+ txtAmt. </font><font color="#008080">Text </font><font color="#000000">+ </font><font color="#ff00ff">&quot; where accountnumber1 = '&quot;</font><font color="#000000">+ txtTo.</font><font color="#008080">Text </font><font color="#000000">+ </font><font color="#ff00ff">&quot;'&quot;</font><font color="#000000">;</font>
+
+<font color="#000000">cmd.CommandText = strSQL;</font>
+<font color="#000000">cmd.ExecuteNonQuery();</font>
+
+<font color="#000000">Trans.Commit();</font>
+
+<font color="#000000">lbl.</font><font color="#008080">Text </font><font color="#000000">= </font><font color="#ff00ff">&quot;Your Transaction is successfully&quot;</font><font color="#000000">;</font>
+<font color="#000000">}</font>
+
+<font color="#0000ff">catch </font><font color="#000000">(</font><font color="#808000">Exception </font><font color="#000000">ex)</font>
+<font color="#000000">{</font>
+<font color="#000000">Trans.Rollback();</font>
+
+<font color="#000000">lbl.</font><font color="#008080">Text </font><font color="#000000">= </font><font color="#ff00ff">&quot;Error: &quot; </font><font color="#000000">+ ex.</font><font color="#808000">Message</font><font color="#000000">;</font>
+<font color="#000000">}</font>
+
+<font color="#0000ff">finally </font><font color="#000000">{</font>
+<font color="#000000">Conn.Close();</font>
+<font color="#000000">}</font>
+<font color="#000000">}</font>
+<font color="#000000">}</font>
+</pre>
+</div>
+
+<h3>Design Output</h3>
+<div class="image">
+<div class="output">
+<img src="transjaction.gif">
+</div></div>
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="remoting_in_asp.shtml" 
+    title="Remoting in asp">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="AutoComplete%20TextBox%20in%20C-sharp.shtml" 
+    title="AutoComplete TextBox in C#">Next</a></td>
+  </tr>
+</table>
+ <!--Footer-->
+   </div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/dotnet/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+     <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>

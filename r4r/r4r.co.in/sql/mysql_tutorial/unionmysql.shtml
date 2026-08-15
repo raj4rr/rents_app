@@ -1,0 +1,149 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http:///www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML>
+	<HEAD>
+
+	<meta http-equiv="Content-Language" content="en-us">
+	<TITLE>Union in MySQL</TITLE>
+		<META content="Rajesh Kumar" name="author">
+		<META http-equiv="expires" content="0">
+		<META content="r4r.co.in" name="owner">
+		<META http-equiv=Content-Type content="text/html; charset=windows-1252">
+		<meta name="description" CONTENT="union in MySQL-
+Tutorial covers all topics of Mysql with best  examples to give a immense startup to yourself">
+		<meta name="keywords" CONTENT="union in MySQL, Syntax In MySQL ,Select In MySQL,Distinct In MySQL ,Where In MySQL,And & Or In MySQL
+Order By In MySQL,Insert Into In MySQL,Update In MySQL,Delete In MySQL">
+
+	<!-- header start-->	
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>MySQL </h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+			<img src="/images/left_menu_bullet.gif" width="11" height="6"><a href="/sql/mysql_tutorial/">MySQL</a>
+
+              </div>
+
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/sql/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	 
+
+<div class="heading">Union In  MySQL</div>
+<table id="indexing">
+	<tr>
+	<td style="width:33%; text-align:left;"><a href="rightmysql.shtml" title="Right Join in MySQL">Previous</a></td>
+	<td style="width:34%; text-align:center"><a href="index.shtml" title="Home">Home</a></td>
+	<td style="width:33%; text-align:right"><a href="createdbmysql.shtml" title="Create Database in MySQL">Next</a></td>
+	</tr>
+</table>
+<p>It allow us to add one or more column from one or more table in a single output. It follow some conditions to perform they are: <p>
+<ol><li>Number of column should be equal in both sides.</li>
+<li>Both the matched column should have some type of data. </li>
+</ol>
+
+<h3>Syntax for Union</h3>
+<div class="code">
+<pre>
+SELECT columnname1, columnname2
+FROM table1
+UNION DISTINCT | ALL
+SELECT columnname1, columnname2
+FROM table2
+[WHERE CLAUSE
+ORDER BY CLAUSE]
+</pre>
+</div>
+
+<p><h3>Example</h3></p>
+<div class="code">
+<pre>
+SELECT ocuptn, sex
+FROM studptin
+UNION
+SELECT fname,age
+FROM studinfo ;
+</pre>
+</div>
+
+<div class="output"><div class="image"><img src="images/union1.gif"></div></div>
+
+<p>Default value use in union is distinct.</p>
+
+<p><h3>Example</h3></p>
+<div class="code">
+<pre>
+SELECT fname,age
+FROM studinfo
+UNION ALL
+SELECT ocuptn, sex
+FROM studptin ;
+</pre>
+</div>
+<div class="output"><div class="image"><img src="images/union2.gif"></div></div>
+<p> The full output can be shown by all in union condition.</p> 
+
+<p><h3>Example</h3></p>
+<div class="code">
+<pre>
+SELECT ocuptn, sex
+FROM studptin
+UNION 
+SELECT fname,age
+FROM studinfo 
+WHERE age>23
+ORDER BY ocuptn;
+</pre>
+</div>
+<div class="output"><div class="image"><img src="images/union3.gif"></div></div>
+<p>Include the where and order b y condition in the above code.</p>
+
+<p><h3>Example</h3></p>
+<div class="code">
+<pre>
+( SELECT ocuptn, sex
+FROM studptin )
+UNION 
+( SELECT fname,age
+FROM studinfo )
+ORDER BY 2,1;
+</pre>
+</div>
+<div class="output"><div class="image"><img src="images/union4.gif"></div></div>
+<p>The type of order define in terms of the second select column name define in the code.</p>
+
+<table id="indexing">
+	<tr>
+	<td style="width:33%; text-align:left;"><a href="rightmysql.shtml" title="Right Join in MySQL">Previous</a></td>
+	<td style="width:34%; text-align:center"><a href="index.shtml" title="Home">Home</a></td>
+	<td style="width:33%; text-align:right"><a href="createdbmysql.shtml" title="Create Database in MySQL">Next</a></td>
+	</tr>
+</table>
+
+		</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->

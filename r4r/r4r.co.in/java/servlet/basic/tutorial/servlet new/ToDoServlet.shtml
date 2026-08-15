@@ -1,0 +1,360 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD>
+<meta http-equiv="Content-Language" content="en-us">
+<TITLE>Create an application for create a ToDoList through servlet </TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name="description" CONTENT="Create an application for create a ToDoList through servlet " >
+<meta name="keywords" CONTENT="Create an application for create a ToDoList through servlet ">
+<!-- header start-->	
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+   	  <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>Java Servlet Programing Laungage</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a><img src="/images/left_menu_bullet.gif"/> <a href="/java/servlet/../">Java</a><img src="/images/left_menu_bullet.gif"/><a href="/java/servlet/">Servlet</a><img src="/images/left_menu_bullet.gif"/><a href="index.shtml">http Servlet Examples</a>
+       </div>
+
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/servlet/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	 
+<!-- header End-->
+
+<div class="heading">Create an application for create a ToDoList through servlet</div>
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="setHeaderServlet.shtml" title="Create an application for set property into Header through servlet">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="sessionBindingServlet.shtml" title="Create an application for access HttpSessionBindingListener Interface 
+through servlet">Next</a></td>
+  </tr> 
+</table>
+
+<p>In 
+this program, header property set through servlet</p>
+
+<h3>web.xml</h3>
+<div class="code">
+<pre>
+<font color="#0000ff">&lt;?xml </font><font color="#ff0000">version</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;1.0&quot; </font><font color="#ff0000">encoding</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;UTF-8&quot;</font><font color="#800080">?</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">web-app </font><font color="#ff0000">version</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;3.0&quot;</font>
+<font color="#ff0000">xmlns</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;http://java.sun.com/xml/ns/javaee&quot;</font>
+<font color="#800080">xmlns:xsi</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;http://www.w3.org/2001/XMLSchema-instance&quot; </font>
+<font color="#800080">xsi:schemaLocation</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;http://java.sun.com/xml/ns/javaee</font>
+<font color="#ff00ff">http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd&quot;</font><font color="#0000ff">&gt;</font>
+<font color="#000000">    </font><font color="#0000ff">&lt;</font><font color="#808000">servlet</font><font color="#0000ff">&gt;</font>
+<font color="#000000">      </font><font color="#0000ff">&lt;</font><font color="#808000">servlet-name</font><font color="#0000ff">&gt;</font><font color="#000000">ToDoServlet</font><font color="#0000ff">&lt;/</font><font color="#808000">servlet-name</font><font color="#0000ff">&gt;</font>
+<font color="#000000">      </font><font color="#0000ff">&lt;</font><font color="#808000">servlet-class</font><font color="#0000ff">&gt;</font><font color="#000000">r4r.servlet.ToDoServlet</font><font color="#0000ff">&lt;/</font><font color="#808000">servlet-class</font><font color="#0000ff">&gt;</font>
+<font color="#000000">    </font><font color="#0000ff">&lt;/</font><font color="#808000">servlet</font><font color="#0000ff">&gt;</font>
+<font color="#000000">	</font><font color="#0000ff">&lt;</font><font color="#808000">servlet-mapping</font><font color="#0000ff">&gt;</font>
+<font color="#000000">        </font><font color="#0000ff">&lt;</font><font color="#808000">servlet-name</font><font color="#0000ff">&gt;</font><font color="#000000">ToDoServlet</font><font color="#0000ff">&lt;/</font><font color="#808000">servlet-name</font><font color="#0000ff">&gt;</font>
+<font color="#000000">        </font><font color="#0000ff">&lt;</font><font color="#808000">url-pattern</font><font color="#0000ff">&gt;</font><font color="#000000">/ToDoServlet</font><font color="#0000ff">&lt;/</font><font color="#808000">url-pattern</font><font color="#0000ff">&gt;</font>
+<font color="#000000">    </font><font color="#0000ff">&lt;/</font><font color="#808000">servlet-mapping</font><font color="#0000ff">&gt;</font>
+<font color="#000000">	 </font><font color="#0000ff">&lt;</font><font color="#808000">session-config</font><font color="#0000ff">&gt;</font>
+<font color="#000000">        </font><font color="#0000ff">&lt;</font><font color="#808000">session-timeout</font><font color="#0000ff">&gt;</font>
+<font color="#000000">            30</font>
+<font color="#000000">        </font><font color="#0000ff">&lt;/</font><font color="#808000">session-timeout</font><font color="#0000ff">&gt;</font>
+<font color="#000000">    </font><font color="#0000ff">&lt;/</font><font color="#808000">session-config</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">web-app</font><font color="#0000ff">&gt;</font>
+</pre>
+</div>
+
+<h3>Index.jsp</h3>
+<div class="code">
+<pre>
+<font color="#800000">&lt;%-- </font>
+    <font color="#800000">Document   : index.jsp</font>
+<font color="#800000">--%&gt;</font>
+<font color="#800000">&lt;%@page contentType=</font><font color="#ff00ff">&quot;text/html&quot; </font><font color="#800000">pageEncoding=</font><font color="#ff00ff">&quot;UTF-8&quot;</font><font color="#800000">%&gt;</font>
+<font color="#0000ff">&lt;!DOCTYPE </font><font color="#800080">html</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;html&gt;</font>
+<font color="#000000">   </font><font color="#0000ff">&lt;head&gt;</font>
+<font color="#000000">     </font><font color="#0000ff">&lt;meta </font><font color="#ff0000">http-equiv</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;Content-Type&quot;</font>
+	     <font color="#ff0000">content</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;text/html; charset=UTF-8&quot;</font><font color="#0000ff">&gt;</font>
+<font color="#000000">     </font><font color="#0000ff">&lt;title&gt;</font><font color="#000000">r4r.co.in-servlet</font><font color="#0000ff">&lt;/title&gt;</font>
+<font color="#000000">    </font><font color="#0000ff">&lt;/head&gt;</font>
+<font color="#000000">    </font><font color="#0000ff">&lt;body&gt;</font>
+<font color="#000000">        </font><font color="#0000ff">&lt;form&gt;</font>
+<font color="#000000">         </font><font color="#0000ff">&lt;h1&gt;</font><font color="#000000">Access Servlet by servlet's Name!</font><font color="#0000ff">&lt;/h1&gt;</font>
+<font color="#000000">         </font><font color="#0000ff">&lt;a </font><font color="#ff0000">href</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;ToDoServlet&quot;</font><font color="#0000ff">&gt;</font><font color="#000000">ToDoServlet</font><font color="#0000ff">&lt;/a&gt;</font>
+<font color="#000000">        </font><font color="#0000ff">&lt;/form&gt;</font>
+<font color="#000000">    </font><font color="#0000ff">&lt;/body&gt;</font>
+<font color="#0000ff">&lt;/html&gt;</font>
+</pre>
+</div>
+
+<h3>Servlet Program</h3>
+<div class="code">
+<pre>
+<font color="#008000">/*</font>
+<font color="#008000"> * Save as ToDoServlet.java</font>
+<font color="#008000"> */</font>
+<font color="#0000ff">package </font><font color="#000000">r4r.servlet;</font>
+<font color="#0000ff">import </font><font color="#000000">java.io.*;</font>
+<font color="#0000ff">import </font><font color="#000000">java.text.*;</font>
+<font color="#0000ff">import </font><font color="#000000">java.util.*;</font>
+<font color="#0000ff">import </font><font color="#000000">java.util.logging.*;</font>
+<font color="#0000ff">import </font><font color="#000000">javax.servlet.ServletException;</font>
+<font color="#0000ff">import </font><font color="#000000">javax.servlet.http.*;</font>
+<font color="#008000">/**</font>
+<font color="#008000"> *</font>
+<font color="#008000"> * @author R4R</font>
+<font color="#008000"> */</font>
+<font color="#0000ff">public class </font><font color="#000000">ToDoServlet </font><font color="#0000ff">extends </font><font color="#000000">HttpServlet {</font>
+
+ <font color="#0000ff">private </font><font color="#000000">ToDoClass toDoClass;</font>
+ <font color="#0000ff">private </font><font color="#ff0000">List</font><font color="#000000">&lt;ToDoClass&gt; toDoClasseList;</font>
+ <font color="#0000ff">private </font><font color="#ff0000">DateFormat </font><font color="#000000">dateFormat;</font>
+ <font color="#0000ff">private </font><font color="#ff0000">String </font><font color="#000000">newDate;</font>
+
+ <font color="#000000">@</font><font color="#0000ff">Override</font>
+ <font color="#0000ff">public void </font><font color="#000000">init() </font><font color="#0000ff">throws </font><font color="#000000">ServletException {</font>
+  <font color="#000000">toDoClass = </font><font color="#0000ff">new </font><font color="#000000">ToDoClass(</font><font color="#0000ff">null</font><font color="#000000">, </font><font color="#0000ff">null</font><font color="#000000">, </font><font color="#0000ff">null</font><font color="#000000">, </font><font color="#0000ff">null</font><font color="#000000">);</font>
+  <font color="#000000">toDoClasseList = </font><font color="#0000ff">new </font><font color="#ff0000">ArrayList</font><font color="#000000">&lt;ToDoClass&gt;();</font>
+  <font color="#008000">// get the current date/Time in custom format</font>
+  <font color="#000000">dateFormat = </font><font color="#0000ff">new </font><font color="#ff0000">SimpleDateFormat</font><font color="#000000">(</font><font color="#ff00ff">&quot;dd/mm/yyyy&quot;</font><font color="#000000">);</font>
+  <font color="#000000">newDate = dateFormat.format(</font><font color="#ff0000">Calendar</font><font color="#000000">.getInstance().getTime());</font>
+ <font color="#000000">}</font>
+
+ <font color="#0000ff">protected void </font><font color="#000000">processRequest</font>
+	 <font color="#000000">(HttpServletRequest request, HttpServletResponse response)</font>
+<font color="#0000ff">throws </font><font color="#000000">ServletException, </font><font color="#ff0000">IOException </font><font color="#000000">{</font>
+  <font color="#000000">response.setContentType(</font><font color="#ff00ff">&quot;text/html;charset=UTF-8&quot;</font><font color="#000000">);</font>
+  <font color="#ff0000">PrintWriter </font><font color="#000000">out = response.getWriter();</font>
+  <font color="#0000ff">try </font><font color="#000000">{</font>
+<font color="#008000">/* TODO output your page here */</font>
+<font color="#000000">out.println(</font><font color="#ff00ff">&quot;&lt;html&gt;&quot;</font><font color="#000000">);</font>
+<font color="#000000">out.println(</font><font color="#ff00ff">&quot;&lt;head&gt;&quot;</font><font color="#000000">);</font>
+<font color="#000000">out.println(</font><font color="#ff00ff">&quot;&lt;title&gt;&quot; </font><font color="#000000">+ getServletInfo() + </font><font color="#ff00ff">&quot;&lt;/title&gt;&quot;</font><font color="#000000">);</font>
+<font color="#000000">out.println(</font><font color="#ff00ff">&quot;&lt;/head&gt;&quot;</font><font color="#000000">);</font>
+<font color="#000000">out.println(</font><font color="#ff00ff">&quot;&lt;body&gt;&quot;</font><font color="#000000">);</font>
+<font color="#000000">out.println(</font><font color="#ff00ff">&quot;&lt;h1&gt;Servlet ToDoServlet at &quot;</font>
+           <font color="#000000">+ request.getContextPath() + </font><font color="#ff00ff">&quot;&lt;/h1&gt;&quot;</font><font color="#000000">);</font>
+<font color="#000000">out.println(</font><font color="#ff00ff">&quot;&lt;form action=\&quot;ToDoServlet\&quot; method=\&quot;POST\&quot;&gt;&quot;</font><font color="#000000">);</font>
+<font color="#000000">out.println(</font><font color="#ff00ff">&quot;Set Title:&lt;input type=\&quot;text\&quot; name=\&quot;title\</font>
+        <font color="#ff00ff">&quot; value=\&quot;\&quot; size=\&quot;30\&quot; maxlength=\&quot;20\&quot;/&gt;&lt;BR&gt;&quot;</font><font color="#000000">);</font>
+<font color="#000000">out.println(</font><font color="#ff00ff">&quot;Description: &lt;textarea name=\</font>
+     <font color="#ff00ff">&quot;description\&quot; rows=\&quot;4\&quot; cols=\&quot;25\&quot;&gt;&lt;/textarea&gt;&lt;BR&gt;&quot;</font><font color="#000000">);</font>
+<font color="#000000">out.println(</font><font color="#ff00ff">&quot;Priority: &lt;select name=\&quot;priority\&quot;&gt;&quot;</font><font color="#000000">);</font>
+<font color="#000000">out.println(</font><font color="#ff00ff">&quot;&lt;option&gt; LOW &lt;/option&gt;&quot;</font><font color="#000000">);</font>
+<font color="#000000">out.println(</font><font color="#ff00ff">&quot;&lt;option&gt; MEDIUM &lt;/option&gt;&quot;</font><font color="#000000">);</font>
+<font color="#000000">out.println(</font><font color="#ff00ff">&quot;&lt;option&gt; HIGH &lt;/option&gt;&lt;/select&gt;&lt;BR&gt;&quot;</font><font color="#000000">);</font>
+<font color="#000000">out.println(</font><font color="#ff00ff">&quot; Create On: &lt;input type=\&quot;text\&quot; name=\&quot;date\&quot; value=\&quot;&quot; </font>
+	<font color="#000000">+ newDate + </font><font color="#ff00ff">&quot;\&quot; size=\&quot;30\&quot; readonly=\&quot;readonly\&quot; /&gt;&lt;BR&gt;&quot;</font><font color="#000000">);</font>
+<font color="#000000">out.println(</font><font color="#ff00ff">&quot;&lt;input type=\&quot;submit\&quot; value=\&quot;Submit\&quot; /&gt;&quot;</font><font color="#000000">);</font>
+<font color="#000000">out.println(</font><font color="#ff00ff">&quot;&lt;input type=\&quot;reset\&quot; value=\&quot;Reset\&quot; /&gt;&quot;</font><font color="#000000">);</font>
+<font color="#000000">out.println(</font><font color="#ff00ff">&quot;&lt;/form&gt;&quot;</font><font color="#000000">);</font>
+<font color="#000000">out.println(</font><font color="#ff00ff">&quot;&lt;/body&gt;&quot;</font><font color="#000000">);</font>
+<font color="#000000">out.println(</font><font color="#ff00ff">&quot;&lt;/html&gt;&quot;</font><font color="#000000">);</font>
+  <font color="#000000">} </font><font color="#0000ff">finally </font><font color="#000000">{</font>
+<font color="#000000">out.close();</font>
+  <font color="#000000">}</font>
+ <font color="#000000">}</font>
+
+ <font color="#000000">@</font><font color="#0000ff">Override</font>
+ <font color="#0000ff">protected void </font><font color="#000000">doGet</font>
+	 <font color="#000000">(HttpServletRequest request, HttpServletResponse response)</font>
+<font color="#0000ff">throws </font><font color="#000000">ServletException, </font><font color="#ff0000">IOException </font><font color="#000000">{</font>
+  <font color="#000000">processRequest(request, response);</font>
+ <font color="#000000">}</font>
+
+ <font color="#000000">@</font><font color="#0000ff">Override</font>
+ <font color="#0000ff">protected void </font><font color="#000000">doPost</font>
+	 <font color="#000000">(HttpServletRequest request, HttpServletResponse response)</font>
+<font color="#0000ff">throws </font><font color="#000000">ServletException, </font><font color="#ff0000">IOException </font><font color="#000000">{</font>
+  <font color="#000000">response.setContentType(</font><font color="#ff00ff">&quot;text/html;charset=UTF-8&quot;</font><font color="#000000">);</font>
+  <font color="#ff0000">PrintWriter </font><font color="#000000">out = response.getWriter();</font>
+
+  <font color="#008000">// Get value from textField </font>
+  <font color="#ff0000">String </font><font color="#000000">title = request.getParameter(</font><font color="#ff00ff">&quot;title&quot;</font><font color="#000000">);</font>
+  <font color="#ff0000">String </font><font color="#000000">description = request.getParameter(</font><font color="#ff00ff">&quot;description&quot;</font><font color="#000000">);</font>
+  <font color="#ff0000">String </font><font color="#000000">priority = request.getParameter(</font><font color="#ff00ff">&quot;priority&quot;</font><font color="#000000">);</font>
+  <font color="#ff0000">String </font><font color="#000000">date = request.getParameter(</font><font color="#ff00ff">&quot;date&quot;</font><font color="#000000">);</font>
+
+  <font color="#008000">// User can't allow to leave TextField empty</font>
+  <font color="#0000ff">if </font><font color="#000000">(!title.equals(</font><font color="#ff00ff">&quot;&quot;</font><font color="#000000">) &amp;&amp; !description.equals(</font><font color="#ff00ff">&quot;&quot;</font><font color="#000000">)) {</font>
+<font color="#000000">toDoClass = </font><font color="#0000ff">new </font><font color="#000000">ToDoClass(title, description, priority, date);</font>
+
+<font color="#008000">// add record into list</font>
+<font color="#000000">toDoClasseList.add(toDoClass);</font>
+
+<font color="#008000">// Invoke methods in doPost</font>
+<font color="#000000">printHeader(out);</font>
+<font color="#000000">printDataList(out);</font>
+<font color="#000000">printFooter(out);</font>
+
+<font color="#008000">//Free all resource</font>
+<font color="#000000">out.close();</font>
+  <font color="#000000">} </font><font color="#0000ff">else </font><font color="#000000">{</font>
+<font color="#000000">out.println(</font><font color="#ff00ff">&quot;Don't leave any Field empty !&quot;</font><font color="#000000">);</font>
+<font color="#000000">out.println</font>
+<font color="#000000">(</font><font color="#ff00ff">&quot;&lt;BR&gt;&lt;BLINK&gt;&lt;a href=\&quot;ToDoServlet\&quot;&gt;Return to Home page:&lt;/a&gt;&lt;/BLINK&gt;&quot;</font><font color="#000000">);</font>
+  <font color="#000000">}</font>
+ <font color="#000000">}</font>
+
+ <font color="#000000">@</font><font color="#0000ff">Override</font>
+ <font color="#0000ff">public </font><font color="#ff0000">String </font><font color="#000000">getServletInfo() {</font>
+  <font color="#0000ff">return </font><font color="#ff00ff">&quot;r4r.co.in-ToDoServlet&quot;</font><font color="#000000">;</font>
+ <font color="#000000">}</font>
+
+ <font color="#008000">/* -- Private Method -- */</font>
+ <font color="#008000">// Method handel output form Header</font>
+ <font color="#0000ff">private void </font><font color="#000000">printHeader(</font><font color="#ff0000">PrintWriter </font><font color="#000000">out) {</font>
+  <font color="#000000">out.println(</font><font color="#ff00ff">&quot;&lt;html&gt;&quot;</font><font color="#000000">);</font>
+  <font color="#000000">out.println(</font><font color="#ff00ff">&quot;&lt;head&gt;&quot;</font><font color="#000000">);</font>
+  <font color="#000000">out.println(</font><font color="#ff00ff">&quot;&lt;title&gt;r4r.co.in-List&lt;/title&gt;&quot;</font><font color="#000000">);</font>
+  <font color="#000000">out.println(</font><font color="#ff00ff">&quot;&lt;/head&gt;&quot;</font><font color="#000000">);</font>
+  <font color="#000000">out.println(</font><font color="#ff00ff">&quot;&lt;body&gt;&quot;</font><font color="#000000">);</font>
+  <font color="#000000">out.println(</font><font color="#ff00ff">&quot;&lt;h1&gt;ToDo Data list&lt;/h1&gt;&quot;</font><font color="#000000">);</font>
+ <font color="#000000">}</font>
+
+ <font color="#008000">//Method Handel output form center</font>
+ <font color="#0000ff">private void </font><font color="#000000">printDataList(</font><font color="#ff0000">PrintWriter </font><font color="#000000">out) {</font>
+  <font color="#ff0000">Iterator </font><font color="#000000">iterator = toDoClasseList.iterator();</font>
+  <font color="#0000ff">while </font><font color="#000000">(iterator.hasNext()) {</font>
+<font color="#000000">ToDoClass object = (ToDoClass) iterator.next();</font>
+<font color="#000000">out.println(</font><font color="#ff00ff">&quot; &lt;hr align=\&quot;left\&quot; width=\&quot;35%\&quot;/&gt;&quot;</font><font color="#000000">);</font>
+<font color="#000000">out.println(</font><font color="#ff00ff">&quot;&lt;BR&gt;Title : &quot; </font><font color="#000000">+ </font><font color="#ff00ff">&quot; &lt;b&gt; &quot;</font>
+            <font color="#000000">+ object.getTitle() + </font><font color="#ff00ff">&quot;&lt;/b&gt;&quot;</font><font color="#000000">);</font>
+<font color="#000000">out.println(</font><font color="#ff00ff">&quot;&lt;BR&gt;Description  : &quot; </font><font color="#000000">+ </font><font color="#ff00ff">&quot; &lt;b&gt; &quot;</font>
+            <font color="#000000">+ object.getDescription() + </font><font color="#ff00ff">&quot;&lt;/b&gt;&quot;</font><font color="#000000">);</font>
+<font color="#000000">out.println(</font><font color="#ff00ff">&quot;&lt;BR&gt;Priority : &quot; </font><font color="#000000">+ </font><font color="#ff00ff">&quot; &lt;b&gt; &quot;</font>
+           <font color="#000000">+ object.getPriority() + </font><font color="#ff00ff">&quot;&lt;/b&gt;&quot;</font><font color="#000000">);</font>
+<font color="#000000">out.println(</font><font color="#ff00ff">&quot;&lt;BR&gt;Create Date  : &quot; </font><font color="#000000">+ </font><font color="#ff00ff">&quot;&lt;b&gt; &quot; </font>
+	        <font color="#000000">+ object.getDate() + </font><font color="#ff00ff">&quot;&lt;/b&gt;&quot;</font><font color="#000000">);</font>
+  <font color="#000000">}</font>
+  <font color="#0000ff">try </font><font color="#000000">{</font>
+<font color="#008000">// Slow down current Thread for 1 min, then processing request</font>
+<font color="#ff0000">Thread</font><font color="#000000">.sleep(</font><font color="#800080">1000</font><font color="#000000">);</font>
+  <font color="#000000">} </font><font color="#0000ff">catch </font><font color="#000000">(</font><font color="#ff0000">InterruptedException </font><font color="#000000">ex) {</font>
+<font color="#ff0000">Logger</font><font color="#000000">.getLogger(ToDoServlet.</font><font color="#0000ff">class</font><font color="#000000">.getName()).</font>
+	<font color="#000000">log(</font><font color="#ff0000">Level</font><font color="#000000">.SEVERE,</font>
+  <font color="#ff00ff">&quot;InterruptedException generated while processing request&quot;</font><font color="#000000">, ex);</font>
+  <font color="#000000">}</font>
+ <font color="#000000">}</font>
+
+ <font color="#008000">// Method Handel Output Form Footer</font>
+ <font color="#0000ff">private void </font><font color="#000000">printFooter(</font><font color="#ff0000">PrintWriter </font><font color="#000000">out) {</font>
+  <font color="#000000">out.println(</font><font color="#ff00ff">&quot;&lt;/body&gt;&quot;</font><font color="#000000">);</font>
+  <font color="#000000">out.println(</font><font color="#ff00ff">&quot;&lt;/html&gt;&quot;</font><font color="#000000">);</font>
+  <font color="#000000">out.println(</font><font color="#ff00ff">&quot;&lt;BR&gt;&lt;BR&gt;&lt;BLINK&gt;&lt;a href=\&quot;ToDoServlet\</font>
+                <font color="#ff00ff">&quot;&gt;Add More Data into List&lt;/a&gt;&lt;/BLINK&gt;&quot;</font><font color="#000000">);</font>
+ <font color="#000000">}</font>
+<font color="#000000">}</font>
+</pre>
+</div>
+
+<h3>ToDoClass Program</h3>
+<div class="code">
+<pre>
+<font color="#008000">/*</font>
+<font color="#008000"> * Save as a ToDoClass.java</font>
+<font color="#008000"> */</font>
+<font color="#0000ff">class </font><font color="#000000">ToDoClass {</font>
+
+    <font color="#008000">/*</font>
+<font color="#008000">     * This class act as Bean class.</font>
+<font color="#008000">     * This class might also be used as insert </font>
+<font color="#008000">	 and fetch data form database</font>
+<font color="#008000">     */</font>
+    <font color="#008000">//---------------- Private Field</font>
+    <font color="#0000ff">private </font><font color="#ff0000">String </font><font color="#000000">title;</font>
+    <font color="#0000ff">private </font><font color="#ff0000">String </font><font color="#000000">description;</font>
+    <font color="#0000ff">private </font><font color="#ff0000">String </font><font color="#000000">priority;</font>
+    <font color="#0000ff">private </font><font color="#ff0000">String </font><font color="#000000">date;</font>
+
+    <font color="#008000">//------- Full Constructor</font>
+    <font color="#0000ff">public </font><font color="#000000">ToDoClass</font>
+<font color="#000000">(</font><font color="#ff0000">String </font><font color="#000000">title, </font><font color="#ff0000">String </font><font color="#000000">description, </font><font color="#ff0000">String </font><font color="#000000">priority, </font><font color="#ff0000">String </font><font color="#000000">date) </font>
+		<font color="#000000">{</font>
+        <font color="#0000ff">this</font><font color="#000000">.title = title;</font>
+        <font color="#0000ff">this</font><font color="#000000">.description = description;</font>
+        <font color="#0000ff">this</font><font color="#000000">.priority = priority;</font>
+        <font color="#0000ff">this</font><font color="#000000">.date = date;</font>
+    <font color="#000000">}</font>
+
+    <font color="#008000">//--------------------------------- Getter/Setter</font>
+    <font color="#0000ff">public </font><font color="#ff0000">String </font><font color="#000000">getDate() {</font>
+        <font color="#0000ff">return </font><font color="#000000">date;</font>
+    <font color="#000000">}</font>
+
+    <font color="#0000ff">public void </font><font color="#000000">setDate(</font><font color="#ff0000">String </font><font color="#000000">date) {</font>
+        <font color="#0000ff">this</font><font color="#000000">.date = date;</font>
+    <font color="#000000">}</font>
+
+    <font color="#0000ff">public </font><font color="#ff0000">String </font><font color="#000000">getDescription() {</font>
+        <font color="#0000ff">return </font><font color="#000000">description;</font>
+    <font color="#000000">}</font>
+
+    <font color="#0000ff">public void </font><font color="#000000">setDescription(</font><font color="#ff0000">String </font><font color="#000000">description) {</font>
+        <font color="#0000ff">this</font><font color="#000000">.description = description;</font>
+    <font color="#000000">}</font>
+
+    <font color="#0000ff">public </font><font color="#ff0000">String </font><font color="#000000">getPriority() {</font>
+        <font color="#0000ff">return </font><font color="#000000">priority;</font>
+    <font color="#000000">}</font>
+
+    <font color="#0000ff">public void </font><font color="#000000">setPriority(</font><font color="#ff0000">String </font><font color="#000000">priority) {</font>
+        <font color="#0000ff">this</font><font color="#000000">.priority = priority;</font>
+    <font color="#000000">}</font>
+
+    <font color="#0000ff">public </font><font color="#ff0000">String </font><font color="#000000">getTitle() {</font>
+        <font color="#0000ff">return </font><font color="#000000">title;</font>
+    <font color="#000000">}</font>
+
+    <font color="#0000ff">public void </font><font color="#000000">setTitle(</font><font color="#ff0000">String </font><font color="#000000">title) {</font>
+        <font color="#0000ff">this</font><font color="#000000">.title = title;</font>
+    <font color="#000000">}</font>
+<font color="#000000">}</font>
+</pre>
+</div>
+
+<i>Output of Program</i>
+<div class="image">
+			<img src="Servlet%20Image/ToDoServlet.gif">
+
+</div>
+<div class="image">
+			<img src="Servlet%20Image/ToDoServlet1.gif">
+
+</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="setHeaderServlet.shtml" title="Create an application for set property into Header through servlet">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="sessionBindingServlet.shtml" title="Create an application for access HttpSessionBindingListener Interface 
+through servlet">Next</a></td>
+  </tr> 
+</table>
+
+<!-- Footer Start-->		
+		</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->

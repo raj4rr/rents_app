@@ -1,0 +1,150 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HEAD><TITLE>CREATING CONSTRAINTS</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="CREATING CONSTRAINTS" >
+<meta name="keywords" CONTENT="CREATING CONSTRAINTS,DROPPING CONSTRAINTS,TYPES OF CONSTRAINTS">
+
+<!--header start-->
+
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>DATABASE & SQL/PLSQL</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a><img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+			<a href="/sql/">SQL </a>
+              </div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/sql/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	  
+
+                        	                        	<!-- Header End-->	
+    <div class="heading">CREATING CONSTRAINTS</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="data_intigrity.shtml" title="Data Integrity">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="primary_key.shtml" title="PRIMARY KEY Constraint">Next</a></td>
+  </tr>
+</table>                  
+
+<p>Constraints can be be enforced at two levels.</p>
+
+<ol type="1">
+  <li>Column level</li>
+  <li>Table level</li>
+</ol>
+
+<p >A constraints can be defined on a column at the time of creating a table. It can be created with the CREATE TABLE 
+statement.</p>
+
+<h3>CREATE TABLE statement:</h3>
+<div class="code">
+<pre>
+CREATE TABLE <i> table_name</i>
+<i>column_name</i> CONSTRAINTS <i> constraints_name constraints_type</i> 
+[, CONSTRAITS <i>constraints_name constraints_type</i>]
+</pre>
+</div>
+
+<p>where, <i>column_name</i> is the name of the column on 
+which the constraints is to be defined.</p>
+
+<p><i>constraints_name </i>is the name of the constraints 
+to be created and must follow the rules for the identifier.</p>
+
+<p><i>constraints_type </i>is the type of constraints to 
+be added.</p>
+
+<h3> ALTER TABLE statement:</h3>
+<div class="code">
+<pre>
+ALTER TABLE  table_name
+[WITH CHECK or WITH NOCHECK]
+ADD CONSTRAINTS  constraints_name constraints_type
+</pre>
+</div>
+
+<p>where, <i>table_name</i> is the name of the table that 
+is to be altered for adding a constraints.</p>
+
+<p>WITH CHECK and WITH NOCHECK specifies whether the 
+existing data is to be checked or not checked for a newly added constraints or a 
+re-enabled constraints</p>
+
+<p><i>constraints_name</i> specifies the name of the 
+constraints to be created and must follow the rule for identifier.</p>
+
+<p><i>constraints_type</i> specifies the type of constraints</p>
+
+<h3>DROPPING CONSTRAINTS</h3>
+
+<p>A constraints dropped using the ALTER TABLE statement in the Query Analyzer.</p>
+
+<p>All constraints defined in the table are dropped automatically when the table 
+is dropped.</p>
+</div>
+
+<div class="code">
+<pre>
+ALTER TABLE  table_name
+DROP CONSTRAINTS  constraints_name
+</pre>
+</div>
+
+<p>where,<i> table_name </i>is the name of the table that constraints to be 
+dropped.</p>
+
+<p><i>constraints_name </i>is the name of the constraints to be dropped.</p>
+
+<h3>TYPES OF CONSTRAINTS</h3>
+
+<ol type="1">
+<p><li> <a href="primary_key.shtml">PRIMARY KEY constraints</a></li></p>
+<p><li> <a href="unique_cons.shtml">UNIQUE constraints</a></li></p>
+<p><li> <a href="foreign_key.shtml">FOREIGN KEY constraints</a></li></p>
+<p><li> <a href="check_con.shtml">CHECK constraints</a></li></p>
+<p><li> <a href="default_cons.shtml">DEFAULT constraints</a></li></p>
+</ol>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="data_intigrity.shtml" title="Data Integrity">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="primary_key.shtml" title="PRIMARY KEY Constraint">Next</a></td>
+  </tr>
+</table>                  
+
+                       <!--Footer  -->
+
+</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>

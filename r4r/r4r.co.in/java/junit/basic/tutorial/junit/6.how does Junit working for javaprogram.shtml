@@ -1,0 +1,191 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD>
+<meta http-equiv="Content-Language" content="en-us">
+<TITLE>How does JUnit working for Java Program?</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name="description" CONTENT="How does JUnit working for Java Program?" >
+<meta name="keywords" CONTENT="How does JUnit working for Java Program?">
+
+<!-- header start-->	
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>Junit</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+            <img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+            <a href="/java/">Java</a>
+              <img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+
+			  <a href="/java/junit">Junit</a>
+              </div>
+
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/junit/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	 
+<!-- header End-->	 
+<div class="heading">
+How does JUnit working for Java Program
+</div>
+
+ <table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="5.If%20the%20test%20is%20fail.shtml" title="Using MyEclipse and Run your Java Program">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="7.shtml" title="The JUNIT Main() Testing in which Creating Java program Calculator to Coding Convention For testing Program Explanation">Next</a></td>
+  </tr> 
+</table>
+<p>JUnit is a Library package.In this library file in jar file inbuilt. You can define 
+in other word thing it contains a tool (called test runner) to run your test files. </p>
+<p>
+Basically it is not an automated testing tool, it means it's not working for automated, it's work 
+for manually to write your test files by hand. JUnit does give you some support so that you can 
+write those test file conveniently.</p>
+<p>
+Suppose you want test your Java program. and in your program you have
+class A that you want to test this class. Then we'll write the tests in a new class, when you want to test this class then 
+time this class call it Atest. This Atest is our test file. We will typically group the tests in bunch of methods called 
+test methods.</p>
+<p>
+To actually test A we need to executing test class Atest.This is done by calling 
+Junit's test runner tool; then we can pass the name Atest to it. The JUnit 
+framework will execute Atest for your program.</p>
+<p>
+JUnit report how many of the test methods in Atest succeed, and how many 
+failure. The detail of each failure will be reported.</p>
+
+<p><i>Note:</i> If you don't have JUnit, then you 
+need to downloaded it. To use it you just need the jar file. A full download also contains it's documentation.
+The using of jar file to test the program. this jar file name is junit-<font class="point_out">version-number</font>.jar.
+If you use the JUnit then you will need to add a full path to this jar to your class path.</p>
+
+<div class="heading">The First Simple Example:</div>
+
+<p>A simple program generated and after that we want to test this class. but firstly we explained a bit about what 
+it is.The class is called Subscription an instance of it represented by a subscription to something. like as 
+example newspaper, but it does not really matter here.</p>
+<div class ="code">
+<pre>
+<font color="#0000ff">package </font><font color="#000000">R4R;</font>
+<font color="#0000ff">public class </font><font color="#000000">Calculation {</font>
+<font color="#0000ff">public static </font><font color="#ff0000">Class </font><font color="#000000">java;</font>
+<font color="#0000ff">int </font><font color="#000000">add( </font><font color="#0000ff">int </font><font color="#000000">i, </font><font color="#0000ff">int </font><font color="#000000">j)</font>
+<font color="#000000">{</font>
+<font color="#0000ff">return </font><font color="#000000">i+j;</font>
+<font color="#000000">}</font>
+<font color="#0000ff">int </font><font color="#000000">sub(</font><font color="#0000ff">int </font><font color="#000000">i,</font><font color="#0000ff">int </font><font color="#000000">j)</font>
+<font color="#000000">{</font>
+<font color="#0000ff">return </font><font color="#000000">i-j;</font>
+<font color="#000000">}</font>
+<font color="#0000ff">int </font><font color="#000000">mul(</font><font color="#0000ff">int </font><font color="#000000">i, </font><font color="#0000ff">int </font><font color="#000000">j)</font>
+<font color="#000000">{</font>
+<font color="#0000ff">return </font><font color="#000000">i*j;</font>
+<font color="#000000">}</font>
+<font color="#0000ff">int </font><font color="#000000">divide(</font><font color="#0000ff">int </font><font color="#000000">i, </font><font color="#0000ff">int </font><font color="#000000">j)</font>
+<font color="#000000">{</font>
+<font color="#0000ff">return </font><font color="#000000">i/j;</font>
+<font color="#000000">}</font>
+<font color="#000000">}</font>
+</pre>
+</div>
+
+<div class="heading">And you test this program for JUnit.</div>
+<div class="code">
+<pre>
+<font color="#0000ff">package </font><font color="#000000">R4R;</font>
+<font color="#0000ff">import </font><font color="#000000">junit.framework.TestCase;</font>
+<font color="#0000ff">import </font><font color="#000000">junit.framework.TestSuite;</font>
+<font color="#0000ff">public class </font><font color="#000000">CalculationTest </font><font color="#0000ff">extends </font><font color="#000000">TestCase </font>
+<font color="#000000">{</font>
+<font color="#0000ff">private </font><font color="#000000">Calculation calcR4R;</font>
+<font color="#0000ff">protected void </font><font color="#000000">setUp() </font><font color="#0000ff">throws </font><font color="#ff0000">Exception </font>
+<font color="#000000">{</font>
+<font color="#0000ff">super</font><font color="#000000">.setUp();</font>
+<font color="#000000">}</font>
+<font color="#0000ff">protected void </font><font color="#000000">tearDown() </font><font color="#0000ff">throws </font><font color="#ff0000">Exception </font>
+<font color="#000000">{</font>
+<font color="#0000ff">super</font><font color="#000000">.tearDown();</font>
+<font color="#000000">}</font>
+<font color="#0000ff">public </font><font color="#000000">CalculationTest(</font><font color="#ff0000">String </font><font color="#000000">arg[]) </font>
+<font color="#000000">{</font>
+<font color="#0000ff">super</font><font color="#000000">(arg[</font><font color="#800080">0</font><font color="#000000">]);</font>
+<font color="#000000">calcR4R = </font><font color="#0000ff">new </font><font color="#000000">Calculation();</font>
+<font color="#000000">}</font>
+<font color="#008000">// test case method name should start with test.</font>
+<font color="#0000ff">public final void </font><font color="#000000">testAdd() {</font>
+<font color="#000000">assertEquals(calcR4R.add(</font><font color="#800080">20</font><font color="#000000">, </font><font color="#800080">30</font><font color="#000000">), </font><font color="#800080">50</font><font color="#000000">);</font>
+<font color="#000000">}</font>
+<font color="#008000">// test case method name should start with test.</font>
+<font color="#0000ff">public final void </font><font color="#000000">testSubtract() {</font>
+<font color="#000000">assertEquals(calcR4R.sub(</font><font color="#800080">60</font><font color="#000000">, </font><font color="#800080">30</font><font color="#000000">), </font><font color="#800080">30</font><font color="#000000">);</font>
+<font color="#000000">}</font>
+<font color="#008000">// test case method name should start with test.</font>
+<font color="#0000ff">public final void </font><font color="#000000">testMultiply() {</font>
+<font color="#000000">assertEquals(calcR4R.mul(</font><font color="#800080">100</font><font color="#000000">, </font><font color="#800080">3</font><font color="#000000">), </font><font color="#800080">300</font><font color="#000000">);</font>
+<font color="#000000">}</font>
+<font color="#008000">// test case method name should start with test.</font>
+<font color="#0000ff">public final void </font><font color="#000000">testDivide() {</font>
+<font color="#000000">assertEquals(calcR4R.divide(</font><font color="#800080">333</font><font color="#000000">, </font><font color="#800080">3</font><font color="#000000">), </font><font color="#800080">111</font><font color="#000000">);</font>
+<font color="#0000ff">try </font><font color="#000000">{</font>
+<font color="#000000">assertEquals(calcR4R.divide(</font><font color="#800080">100</font><font color="#000000">, </font><font color="#800080">0</font><font color="#000000">), </font><font color="#800080">20</font><font color="#000000">);</font>
+<font color="#000000">} </font><font color="#0000ff">catch </font><font color="#000000">(</font><font color="#ff0000">Exception </font><font color="#000000">e) {</font>
+<font color="#008000">// Exception is expected so asserting for true.</font>
+<font color="#000000">assertTrue(</font><font color="#0000ff">true</font><font color="#000000">);</font>
+<font color="#000000">}</font>
+<font color="#000000">}</font>
+<font color="#008000">//Sample JUnit code to run in text mode (CLI  command line).</font>
+<font color="#008000">//Add this code to the CalculationTest.java to run in CLI.</font>
+<font color="#0000ff">public static void </font><font color="#000000">main(</font><font color="#ff0000">String</font><font color="#000000">[] args) {</font>
+<font color="#000000">junit.textui.TestRunner.run(CalculationTest.suite());</font>
+<font color="#000000">}</font>
+<font color="#0000ff">private static </font><font color="#000000">TestSuite suite() {</font>
+<font color="#000000">TestSuite suite = </font><font color="#0000ff">new </font><font color="#000000">TestSuite(</font><font color="#ff00ff">&quot;Test for R4R.Calculation.java&quot;</font><font color="#000000">);</font>
+<font color="#008000">//$JUnit-BEGIN$</font>
+<font color="#000000">suite.addTestSuite(CalculationTest.</font><font color="#0000ff">class</font><font color="#000000">);</font>
+<font color="#008000">//$JUnit-END$</font>
+<font color="#0000ff">return </font><font color="#000000">suite;</font>
+<font color="#000000">}</font>
+<font color="#000000">}</font>
+</pre>
+</div>
+
+ <table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="5.If%20the%20test%20is%20fail.shtml" title="Using MyEclipse and Run your Java Program">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="7.shtml" title="The JUNIT Main() Testing in which Creating Java program Calculator to Coding Convention For testing Program Explanation">Next</a></td>
+  </tr> 
+</table>
+
+<!-- Footer Start-->	
+		</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->

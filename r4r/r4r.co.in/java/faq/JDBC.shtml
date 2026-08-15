@@ -1,0 +1,285 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>jdbc Basic questions and answers,jdbc Subjective questions and answers</TITLE>
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<META content=r4r.co.in name=owner>
+<meta name="description" CONTENT="jdbc Basic questions and answers,jdbc Subjective questions and answers" >
+<meta name="keywords" CONTENT="jdbc Basic questions and answers,jdbc Subjective questions and answers">
+<!--Header start-->
+
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>FAQ</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a><img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+			<a href="/java/">Java </a>
+              <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/java/faq">Faqs</a>
+
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/corejava/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	  
+
+<!-- header End-->
+
+<div class="heading">Java JDBC Interview Question with Ansewser</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="index_struts2.shtml" title="Struts Basic Questions and Answers
+">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="Networking.shtml" title="Java Networking Interview Question with Ansewser">Next</a></td>
+  </tr>
+</table>
+
+<div class="heading">Q.1	What are the steps involved in establishing a connection? </div>
+<p><i>Answer: </i>This involves two steps:</p>
+<ol><li> loading the driver</li>
+<li> making the connection.</li>
+</ol>
+
+<div class="heading">Q.2	How can you load the drivers?</div>
+<p><i>Answer: </i>Loading the driver or drivers you want to use is very simple and involves just one line of code. If, for example, you want to use the JDBC-ODBC Bridge driver, the following code will load it: </p>
+<h3>Example: </h3>
+
+<div class="code">
+<pre>
+<font color="#ff0000">Class</font><font color="#000000">.forName(</font><font color="#ff00ff">&quot;sun.jdbc.odbc.JdbcOdbcDriver&quot;</font><font color="#000000">); </font>
+</pre>
+</div>
+
+<p>Your driver documentation will give you the class name to use. For instance, if the class name is jdbc.DriverXYZ , you would load the driver with the following line of code:
+</p>
+<h3>Example: </h3>
+<div class="code">
+<pre>
+<font color="#ff0000">Class</font><font color="#000000">.forName(</font><font color="#ff00ff">&quot;jdbc.DriverXYZ&quot;</font><font color="#000000">); </font>
+</pre>
+</div>
+
+<div class="heading">Q.3	What Class.forName will do while loading drivers?</div>
+<p><i>Answer: </i>It is used to create an instance of a driver and register it with the DriverManager. </p>
+<p>When you have loaded a driver, it is available for making a connection with a DBMS. </p>
+
+<div class="heading">Q.4	How can you make the connection? </div>
+<p><i>Answer: </i>In establishing a connection is to have the appropriate driver connect to the DBMS. The following line of code illustrates the general idea:</p>
+<h3>Example: </h3>
+<div class="code">
+<pre>
+<font color="#ff0000">String </font><font color="#000000">url = </font><font color="#ff00ff">&quot;jdbc:odbc:Fred&quot;</font><font color="#000000">;</font>
+<font color="#ff0000">Connection </font><font color="#000000">con = </font><font color="#ff0000">DriverManager</font><font color="#000000">.getConnection(url, </font><font color="#ff00ff">&quot;Fernanda&quot;</font><font color="#000000">, </font><font color="#ff00ff">&quot;J8&quot;</font><font color="#000000">); </font>
+</pre>
+</div>
+
+<div class="heading">Q.5	How can you create JDBC statements?</div>
+<p><i>Answer: </i>A Statement object is what sends your SQL statement to the DBMS. You simply create a Statement object and then execute it, supplying the appropriate execute method with the SQL statement you want to send. For a SELECT statement, the method to use is executeQuery. For statements that create or modify tables, the method to use is executeUpdate.</p>
+
+<p><i>Example: </i>It takes an instance of an active connection to create a Statement object. In the following example, we use our Connection object con to create the Statement object stmt : </p>
+
+<div class="code">
+<pre>
+<font color="#ff0000">Statement </font><font color="#000000">stmt = con.createStatement(); </font>
+</pre>
+</div>
+
+<div class="heading">Q.6	How can you retrieve data from the ResultSet?</div>
+
+<h3>Answer: </h3>
+<p><i>Step 1: </i>JDBC returns results in a ResultSet object, so we need to declare an instance of the class ResultSet to hold our results. The following code demonstrates declaring the ResultSet object rs.</p>
+
+<h3>Example: </h3>
+<div class="code">
+<pre>
+<font color="#ff0000">ResultSet </font><font color="#000000">rs = stmt.executeQuery(</font><font color="#ff00ff">&quot;SELECT COF_NAME,PRICE FROM COFFEES&quot;</font><font color="#000000">);</font>
+</pre>
+</div>
+<p><i>Step 2: </i>
+
+<div class="code">
+<pre>
+<font color="#ff0000">String </font><font color="#000000">s = rs.getString(</font><font color="#ff00ff">&quot;COF_NAME&quot;</font><font color="#000000">); </font>
+</pre>
+</div>
+
+<p>The method getString is invoked on the ResultSet object rs , so getString will retrieve (get) the value stored in the column COF_NAME in the current row of rs </p>
+
+<div class="heading">Q.7	What are the different types of Statements?</div>
+<p><i>Answer: </i>
+
+<ol><li>Statement (use createStatement method)</li>
+<li>Prepared Statement (Use prepareStatement method)</li>
+<li>Callable Statement (Use prepareCall) </li>
+</ol>
+
+<div class="heading">Q.8	How can you use PreparedStatement?</div>
+<p><i>Answer: </i>This special type of statement is derived from the more general class, Statement.If you want to execute a Statement object many times, it will normally reduce execution time to use a PreparedStatement object instead.</p>
+<p>The advantage to this is that in most cases, this SQL statement will be sent to the DBMS right away, where it will be compiled. As a result, the PreparedStatement object contains not just an SQL statement, but an SQL statement that has been precompiled. This means that when the PreparedStatement is executed, the DBMS can just run the PreparedStatement 's SQL statement without having to compile it first.</p>
+
+<h3>Example: </h3>
+<div class="code">
+<pre>
+<font color="#ff0000">PreparedStatement </font><font color="#000000">updateSales = con.prepareStatement</font>
+<font color="#000000">(</font><font color="#ff00ff">&quot;UPDATE COFFEES SET SALES = ? WHERE COF_NAME LIKE ?&quot;</font><font color="#000000">);</font>
+</pre>
+</div>
+
+<div class="heading">Q.9	What setAutoCommit does?</div>
+<p><i>Answer: </i>When a connection is created, it is in auto-commit mode. This means that each individual SQL statement is treated as a transaction and will be automatically committed right after it is executed. The way to allow two or more statements to be grouped into a transaction is to disable auto-commit mode </p>
+
+<h3>Example: </h3>
+<div class="code">
+<pre>
+<font color="#000000">con.setAutoCommit(</font><font color="#0000ff">false</font><font color="#000000">); </font>
+</pre>
+</div>
+
+<p>Once auto-commit mode is disabled, no SQL statements will be committed until you call the method commit explicitly. </p>
+<h3>Example: </h3>
+
+<div class="code">
+<pre>
+<font color="#000000">con.setAutoCommit(</font><font color="#0000ff">false</font><font color="#000000">);</font>
+<font color="#ff0000">PreparedStatement </font><font color="#000000">updateSales = con.prepareStatement</font>
+<font color="#000000">(</font><font color="#ff00ff">&quot;UPDATE COFFEES SET SALES = ? WHERE COF_NAME LIKE ?&quot;</font><font color="#000000">);</font>
+<font color="#000000">updateSales.setInt(</font><font color="#800080">1</font><font color="#000000">, </font><font color="#800080">50</font><font color="#000000">);</font>
+<font color="#000000">updateSales.setString(</font><font color="#800080">2</font><font color="#000000">, </font><font color="#ff00ff">&quot;Colombian&quot;</font><font color="#000000">);</font>
+<font color="#000000">updateSales.executeUpdate();</font>
+<font color="#ff0000">PreparedStatement </font><font color="#000000">updateTotal = con.prepareStatement</font>
+<font color="#000000">(</font><font color="#ff00ff">&quot;UPDATE COFFEES SET TOTAL = TOTAL + ? WHERE COF_NAME LIKE ?&quot;</font><font color="#000000">);</font>
+<font color="#000000">updateTotal.setInt(</font><font color="#800080">1</font><font color="#000000">, </font><font color="#800080">50</font><font color="#000000">);</font>
+<font color="#000000">updateTotal.setString(</font><font color="#800080">2</font><font color="#000000">, </font><font color="#ff00ff">&quot;Colombian&quot;</font><font color="#000000">);</font>
+<font color="#000000">updateTotal.executeUpdate();</font>
+<font color="#000000">con.commit();</font>
+<font color="#000000">con.setAutoCommit(</font><font color="#0000ff">true</font><font color="#000000">);</font>
+</pre>
+</div>
+
+<div class="heading">Q.10	How to call a Strored Procedure from JDBC? </div>
+
+<p><i>Answer: </i>The first step is to create a CallableStatement object. As with Statement an and PreparedStatement objects, this is done with an open Connection object. A CallableStatement object contains a call to a stored procedure.</p>
+<h3>Example: </h3>
+<div class="code">
+<pre>
+<font color="#ff0000">CallableStatement </font><font color="#000000">cs = con.prepareCall(</font><font color="#ff00ff">&quot;{call SHOW_SUPPLIERS}&quot;</font><font color="#000000">);</font>
+<font color="#ff0000">ResultSet </font><font color="#000000">rs = cs.executeQuery(); </font>
+</pre>
+</div>
+
+<div class="heading">Q.11	How to Retrieve Warnings? </div>
+<p><i>Answer: </i>SQLWarning objects are a subclass of SQLException that deal with database access warnings. Warnings do not stop the execution of an application, as exceptions do; they simply alert the user that something did not happen as planned.</p>
+<p>A warning can be reported on a Connection object, a Statement object (including PreparedStatement and CallableStatement objects), or a ResultSet object. Each of these classes has a getWarnings method, which you must invoke in order to see the first warning reported on the calling object.</p>
+
+<div class="code">
+<pre>
+<font color="#ff0000">SQLWarning </font><font color="#000000">warning = stmt.getWarnings();</font>
+<font color="#0000ff">if </font><font color="#000000">(warning != </font><font color="#0000ff">null</font><font color="#000000">) {</font>
+<font color="#ff0000">System</font><font color="#000000">.out.println(</font><font color="#ff00ff">&quot;\n---Warning---\n&quot;</font><font color="#000000">);</font>
+<font color="#0000ff">while </font><font color="#000000">(warning != </font><font color="#0000ff">null</font><font color="#000000">) {</font>
+<font color="#ff0000">System</font><font color="#000000">.out.println(</font><font color="#ff00ff">&quot;Message: &quot; </font><font color="#000000">+ warning.getMessage());</font>
+<font color="#ff0000">System</font><font color="#000000">.out.println(</font><font color="#ff00ff">&quot;SQLState: &quot; </font><font color="#000000">+ warning.getSQLState());</font>
+<font color="#ff0000">System</font><font color="#000000">.out.print(</font><font color="#ff00ff">&quot;Vendor error code: &quot;</font><font color="#000000">);</font>
+<font color="#ff0000">System</font><font color="#000000">.out.println(warning.getErrorCode());</font>
+<font color="#ff0000">System</font><font color="#000000">.out.println(</font><font color="#ff00ff">&quot;&quot;</font><font color="#000000">);</font>
+<font color="#000000">warning = warning.getNextWarning();</font>
+<font color="#000000">}</font>
+<font color="#000000">} </font>
+</pre>
+</div>
+
+<div class="heading">Q.12	How can you Move the Cursor in Scrollable Result Sets ? </div>
+<p><i>Answer: </i>One of the new features in the JDBC 2.0 API is the ability to move a result set's cursor backward as well as forward. There are also methods that let you move the cursor to a particular row and check the position of the cursor.</p>
+
+<h3>Example: </h3>
+
+<div class="code">
+<pre>
+<font color="#ff0000">Statement </font><font color="#000000">stmt = con.createStatement</font>
+<font color="#000000">(</font><font color="#ff0000">ResultSet</font><font color="#000000">.TYPE_SCROLL_SENSITIVE,</font>
+<font color="#ff0000">ResultSet</font><font color="#000000">.CONCUR_READ_ONLY);</font>
+<font color="#ff0000">ResultSet </font><font color="#000000">srs = stmt.executeQuery</font>
+<font color="#000000">(</font><font color="#ff00ff">&quot;SELECT COF_NAME, PRICE FROM COFFEES&quot;</font><font color="#000000">);</font>
+</pre>
+</div>
+
+<p>The first argument is one of three constants added to the ResultSet API to indicate the type of a ResultSet object: TYPE_FORWARD_ONLY, TYPE_SCROLL_INSENSITIVE , and TYPE_SCROLL_SENSITIVE .</p>
+
+<p>The second argument is one of two ResultSet constants for specifying whether a result set is read-only or updatable: CONCUR_READ_ONLY and CONCUR_UPDATABLE . The point to remember here is that if you specify a type, you must also specify whether it is read-only or updatable. Also, you must specify the type first, and because both parameters are of type int , the compiler will not complain if you switch the order.</p>
+<p>Specifying the constant TYPE_FORWARD_ONLY creates a nonscrollable result set, that is, one in which the cursor moves only forward. If you do not specify any constants for the type and updatability of a ResultSet object, you will automatically get one that is TYPE_FORWARD_ONLY and CONCUR_READ_ONLY </p>
+
+<h3>Q.13	What is the difference between TYPE_SCROLL_INSENSITIVE, and TYPE_SCROLL_SENSITIVE?</h3>
+<p><i>Answer: </i>You will get a scrollable ResultSet object if you specify one of these ResultSet constants.The difference between the two has to do with whether a result set reflects changes that are made to it while it is open and whether certain methods can be called to detect these changes. Generally speaking, a result set that is TYPE_SCROLL_INSENSITIVE does not reflect changes made while it is still open and one that is TYPE_SCROLL_SENSITIVE does. All three types of result sets will make changes visible if they are closed and then reopened .</p>
+
+<h3>Example: </h3>
+
+<div class="code">
+<pre>
+<font color="#ff0000">Statement </font><font color="#000000">stmt = con.createStatement</font>
+<font color="#000000">(</font><font color="#ff0000">ResultSet</font><font color="#000000">.TYPE_SCROLL_INSENSITIVE, </font><font color="#ff0000">ResultSet</font><font color="#000000">.CONCUR_READ_ONLY);</font>
+<font color="#ff0000">ResultSet </font><font color="#000000">srs = stmt.executeQuery</font>
+<font color="#000000">(</font><font color="#ff00ff">&quot;SELECT COF_NAME, PRICE FROM COFFEES&quot;</font><font color="#000000">);</font>
+<font color="#000000">srs.afterLast();</font>
+<font color="#0000ff">while </font><font color="#000000">(srs.previous()) {</font>
+<font color="#ff0000">String </font><font color="#000000">name = srs.getString(</font><font color="#ff00ff">&quot;COF_NAME&quot;</font><font color="#000000">);</font>
+<font color="#0000ff">float </font><font color="#000000">price = srs.getFloat(</font><font color="#ff00ff">&quot;PRICE&quot;</font><font color="#000000">);</font>
+<font color="#ff0000">System</font><font color="#000000">.out.println(name + </font><font color="#ff00ff">&quot; &quot; </font><font color="#000000">+ price);</font>
+<font color="#000000">} </font>
+</pre>
+</div>
+
+<div class="heading">Q.14	How to Make Updates to Updatable Result Sets?</div>
+
+<p><i>Answer: </i>Another new feature in the JDBC 2.0 API is the ability to update rows in a result set using methods in the Java programming language rather than having to send an SQL command. But before you can take advantage of this capability, you need to create a ResultSet object that is updatable. In order to do this, you supply the ResultSet constant CONCUR_UPDATABLE to the createStatement method. </p>
+
+<h3>Example: </h3>
+
+<div class="code">
+<pre>
+<font color="#ff0000">Connection </font><font color="#000000">con = </font><font color="#ff0000">DriverManager</font><font color="#000000">.getConnection</font>
+<font color="#000000">(</font><font color="#ff00ff">&quot;jdbc:mySubprotocol:mySubName&quot;</font><font color="#000000">);</font>
+<font color="#ff0000">Statement </font><font color="#000000">stmt = con.createStatement</font>
+<font color="#000000">(</font><font color="#ff0000">ResultSet</font><font color="#000000">.TYPE_SCROLL_SENSITIVE,</font>
+<font color="#ff0000">ResultSet</font><font color="#000000">.CONCUR_UPDATABLE);</font>
+<font color="#ff0000">ResultSet </font><font color="#000000">uprs = stmt.executeQuery</font>
+<font color="#000000">(</font><font color="#ff00ff">&quot;SELECT COF_NAME, PRICE FROM COFFEES&quot;</font><font color="#000000">); </font>
+</pre>
+</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="index_struts2.shtml" title="Struts Basic Questions and Answers
+">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="Networking.shtml" title="Java Networking Interview Question with Ansewser">Next</a></td>
+  </tr>
+</table>
+
+<!-- Footer Start-->
+
+</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>

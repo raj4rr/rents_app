@@ -1,0 +1,212 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>Operations in WCF,Request-Reply Operations,One-Way Operations,Configuring One-Way Operations,One-Way Operations and Sessionful Services,Per-call services and one-way exceptions,Callback Operations</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="Operations in WCF,Request-Reply Operations,One-Way Operations,Configuring One-Way Operations,One-Way Operations and Sessionful Services,Per-call services and one-way exceptions,Callback Operations" >
+<meta name="keywords" CONTENT="Operations in WCF,Request-Reply Operations,One-Way Operations,Configuring One-Way Operations,One-Way Operations and Sessionful Services,Per-call services and one-way exceptions,Callback Operations">
+
+<!--Header start-->
+
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>WCF</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a><img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+			<a href="/wcf">WCF with C# </a>
+              <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/wcf/01/tutorial/basic/">WCF Tutorials</a></div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/wcf/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	  
+
+<!-- Header End-->
+<div class="heading">Operations in WCF</div>
+
+  <table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="Defining%20and%20configuring%20a%20callback%20contract.shtml" title="Defining and configuring a callback contract">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="Singleton%20Service.shtml" title="Singleton Service">Next</a></td>
+  </tr>
+</table>
+
+<p>There are three operations: </p>
+<ol>
+<li>Request-Reply Operations</li>
+<li>One-Way Operations</li>
+<li>Callback Operations</li>
+</ol>
+
+<p><i>1)Request-Reply Operations: </i>
+Request-Reply Operations implies the client 
+issues a request in the form of a message, and blocks until it get the reply 
+message. If the service does not respond within a default timeout of one minute, 
+the client will get a <font class="point_out">TimeoutException</font>. 
+Request-reply is the default operation mode. Programming against request-reply 
+operations is simple enough and resembles programming using the classic 
+client/server model.</p>
+<p> The returned response message containing the results or 
+returned values is converted to normal method returned values. In addition, the 
+proxy will throw an exception on the client side if there are any communication 
+or service-side exceptions. With the exception of the
+<font class="point_out">NetPeerTcpBinding </font>
+and <font class="point_out">NetMsmqBinding </font>
+all bindings support request-reply operations.</p>
+
+<p><i>2)One-Way Operations: </i>In One-Way operation mode, client will send a request to the server and does 
+not care whether it is success or failure of service execution. There are cases 
+when an operation has no returned values, and the client does not care about the 
+success or failure of the invocation.There is no need to wait, till server 
+execute.</p>
+<p>There is no return from the server side, it is one-way 
+communication.Client will be blocked only for a moment till it dispatches its 
+call to service. If any exception thrown by service will not reach the 
+server.Client can continue to execute its statement, after making one-way call 
+to server.</p>
+
+<h3>Configuring One-Way Operations: </h3>
+
+<p>The OperationContract attribute offers the Boolean IsOneWay property:</p>
+<div class="code">
+<pre>
+<font color="#000000">[AttributeUsage(AttributeTargets.Method)]</font>
+<font color="#0000ff">public sealed class </font><font color="#808000">OperationContractAttribute </font><font color="#000000">: </font><font color="#808000">Attribute</font>
+<font color="#000000">{</font>
+   <font color="#0000ff">public bool </font><font color="#000000">a</font>
+   <font color="#000000">{get;set;}</font>
+   <font color="#008000">//More members</font>
+<font color="#000000">}</font>
+</pre>
+</div>
+
+<p>IsOneWay defaults to false, which means a request-reply operation (hence the WCF default). However, setting IsOneWay to TRue configures the method as a one-way operation:</p>
+<div class="code">
+<pre>
+<font color="#000000">[ServiceContract]</font>
+<font color="#0000ff">interface </font><font color="#000000">IMyContract</font>
+<font color="#000000">{</font>
+   <font color="#000000">[OperationContract(a = </font><font color="#0000ff">true</font><font color="#000000">)]</font>
+   <font color="#0000ff">void </font><font color="#000000">show( );</font>
+<font color="#000000">}</font>
+</pre>
+</div>
+
+<h3>One-Way Operations and Sessionful Services</h3>
+<p>WCF design a sessionful contract with one-way operations:</p>
+<div class="code">
+<pre>
+<font color="#000000">[ServiceContract(SessionMode = SessionMode.Required)]</font>
+<font color="#0000ff">interface </font><font color="#000000">IMyContract</font>
+<font color="#000000">{</font>
+   <font color="#000000">[OperationContract(IsOneWay = </font><font color="#0000ff">true</font><font color="#000000">)]</font>
+   <font color="#0000ff">void </font><font color="#000000">show( )</font>
+<font color="#000000">}</font>
+</pre>
+</div>
+
+<h3>Per-call services and one-way exceptions</h3>
+<p>In the case of a per-call service, when there is no transport session , if an exception takes place when invoking a one-way operation, the client is unaffected and can continue to issue calls on the same proxy instance:</p>
+<div class="code">
+<pre>
+<font color="#000000">[ServiceContract]</font>
+<font color="#0000ff">interface </font><font color="#000000">IMyContract</font>
+<font color="#000000">{</font>
+<font color="#000000">[OperationContract(IsOneWay = </font><font color="#0000ff">true</font><font color="#000000">)]</font>
+<font color="#0000ff">void </font><font color="#000000">operation1( );</font>
+<font color="#000000">[OperationContract]</font>
+<font color="#0000ff">void </font><font color="#000000">operation2( );</font>
+<font color="#000000">}</font>
+<font color="#0000ff">class </font><font color="#000000">MyService : IMyContract</font>
+<font color="#000000">{</font>
+<font color="#0000ff">public void </font><font color="#000000">operation1( )</font>
+<font color="#000000">{</font>
+  <font color="#0000ff">throw new </font><font color="#808000">Exception</font><font color="#000000">( );</font>
+<font color="#000000">}</font>
+<font color="#0000ff">public void </font><font color="#000000">operation2( )</font>
+<font color="#000000">{}</font>
+<font color="#000000">}</font>
+<font color="#008000">//Client side when using basic binding:</font>
+<font color="#000000">MyContractClient proxy = </font><font color="#0000ff">new </font><font color="#000000">MyContractClient( );</font>
+<font color="#000000">proxy.operation1( );</font>
+<font color="#000000">proxy.operation2( );</font>
+<font color="#000000">proxy.Close( );</font>
+</pre>
+</div>
+<p><i>3)Callback Operations: </i>WCF supports allowing the service to call back to its clients.A service contract can have at most one callback contract. Callback operations are part of the service contract.It is up to the service contract to define its own callback contract.</p>
+<p> Once defined, the clients are required to support the callback and provide the callback endpoint to the service in every call. To define a callback contract, the ServiceContract attribute offers the CallbackContract property of the type Type:</p>
+
+<div class="code">
+<pre>
+<font color="#000000">[AttributeUsage(AttributeTargets.Interface|AttributeTargets.Class)]</font>
+<font color="#0000ff">public sealed class </font><font color="#808000">ServiceContractAttribute </font><font color="#000000">: </font><font color="#808000">Attribute</font>
+<font color="#000000">{</font>
+   <font color="#0000ff">public </font><font color="#808000">Type </font><font color="#000000">CallbackContract</font>
+   <font color="#000000">{get;set;}</font>
+   <font color="#008000">//More members</font>
+<font color="#000000">}</font>
+</pre>
+</div>
+<h3>Example: </h3>
+<div class="code">
+<pre>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Collections</font><font color="#000000">.</font><font color="#008080">Generic</font><font color="#000000">;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Text</font><font color="#000000">;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">ServiceModel</font><font color="#000000">;</font>
+
+<font color="#0000ff">namespace </font><font color="#000000">CallbackApp</font>
+<font color="#000000">{</font>
+<font color="#0000ff">public interface </font><font color="#000000">IMathCalculationCallback</font>
+<font color="#000000">{</font>
+<font color="#000000">[OperationContract]</font>
+<font color="#0000ff">void </font><font color="#000000">calculate();</font>
+<font color="#000000">}</font>
+ <font color="#000000">[ServiceContract(CallbackContract = </font><font color="#0000ff">typeof</font><font color="#000000">(IMathCalculationCallback))</font>
+<font color="#0000ff">public interface </font><font color="#000000">IMathCalculation</font>
+<font color="#000000">{</font>
+<font color="#000000">[OperationContract]</font>
+<font color="#0000ff">void </font><font color="#000000">LongCalculations(</font><font color="#0000ff">int </font><font color="#000000">nParam1, </font><font color="#0000ff">int </font><font color="#000000">nParam2);</font>
+<font color="#000000">}</font>
+<font color="#000000">}</font>
+</pre>
+</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="Defining%20and%20configuring%20a%20callback%20contract.shtml" title="Defining and configuring a callback contract">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="Singleton%20Service.shtml" title="Singleton Service">Next</a></td>
+  </tr>
+</table>
+
+ <!--Footer  -->
+</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/dotnet/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>

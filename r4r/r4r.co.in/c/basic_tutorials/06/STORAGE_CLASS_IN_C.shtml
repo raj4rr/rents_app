@@ -1,0 +1,165 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>C Tutorial on STORAGE CLASS and theire types with examples</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="Learn STORAGE CLASS IN C,AUTOMATIC STORAGE CLASS,REGISTER STORAGE CLASS,STATIC STORAGE CLASS,EXTERNAL STORAGE CLASS" >
+<meta name="keywords" CONTENT="STORAGE CLASS IN C with examples,AUTOMATIC STORAGE CLASS,REGISTER STORAGE CLASS,STATIC STORAGE CLASS,EXTERNAL STORAGE CLASS,C examples,Arrays,Structures,Pointers,Storage class,Loops,Functions,Data types,C constants,Union,Preprocessor,Interview questions and answers">
+
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+     <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>C Programming language</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a><img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/c/">C </a>
+              <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/c/basic_tutorials/06/">C Tutorial</a></div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/c/commonfiles/leftmenu.shtml'); ?></td>
+
+                       <td style="80%" valign="top">
+                        <div class="main_content"> 
+
+	<!-- header End-->
+
+     <div class="heading">Storage class in C</div>
+
+<table id="indexing">
+  <tr>
+   <td style="width:33%; text-align:left;"><a href="ADDING_FUNCTION_TO_THE_LIBRARY.shtml" title="Adding function to library in C">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="C_PREPROCESSOR.shtml" title="Pre processor in C">Next</a></td>
+  </tr>
+</table>
+
+<h2>Storage class in C</h2>
+<p>From C compilers point of view, a variable name identifies some physical location within the computer where the string of bits representing the variables value is stored. There are basically two kinds of locations in a computer where such a value may be kept Memory and CPU registers. It is the variables storage class that determines in which of these two locations the value is stored.</p>
+<p>Moreover, a variables storage class tells us:</p>
+
+<ol>
+   <li>Where the variable would be stored.</li>
+   <li>What will be the initial value of the variable, if initial value is not specifically assigned.(i.e. the default initial value).</li>
+   <li> What is the scope of the variable; i.e. in which functions the value of the variable would be available.</li>
+   <li>What is the life of the variable; i.e. how long would the variable exist.</li>
+</ol>
+
+<p>There are four storage classes in C:</p>
+<ol>
+   <li>Automatic storage class</li>
+   <li>Register storage class</li>
+   <li>Static storage class</li>
+   <li>External storage class</li>
+</ol>
+
+<h2>Automatic storage class</h2>
+<p>The features of a variable defined to have an automatic storage class are as under:</p>
+<p>Storage - Memory.<br>
+Default initial value - An unpredictable value, which is often called a garbage value.<br>
+Scope - Local to the block in which the variable is defined.<br>
+Life - Till the control remains within the block in which the variable is defined.</p>
+
+<p>Following program shows how an automatic storage class variable is declared, and the fact that if the variable is not initialized it contains a garbage value:</p>
+
+<div class="code">
+<PRE>
+<FONT COLOR="#000000">main( )</FONT>
+<FONT COLOR="#000000">{</FONT>
+<FONT COLOR="#000000">auto </FONT><FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">i, j ;</FONT>
+<FONT COLOR="#000000">printf ( </FONT><FONT COLOR="#ff00ff">"\n%d %d"</FONT><FONT COLOR="#000000">, i, j ) ;</FONT>
+<FONT COLOR="#000000">}</FONT>
+
+<FONT COLOR="#000000">The output of the above program could be...</FONT>
+<FONT COLOR="#800080">1211 221</FONT>
+</PRE>
+</div>
+
+<p>where, 1211 and 221 are garbage values of i and j. When you run this program you may get different values, since garbage values are unpredictable. So always make it a point that you initialize the automatic variables properly, otherwise you are likely to get unexpected results. Note that the keyword for this storage class is auto, and not automatic.</p>
+
+<h2>Register storage class</h2>
+<p>The features of a variable defined to be of register storage class are as under:</p>
+<p>Storage - CPU registers.<br>
+Default initial value - Garbage value.<br>
+Scope - Local to the block in which the variable is defined.<br>
+Life - Till the control remains within the block in which the variable is defined.</p>
+
+<h2>Static storage class</h2>
+<p>The features of a variable defined to have a static storage class are as under:</p>
+<p>Storage - Memory.<br>
+Default initial value - Zero.<br>
+Scope - Local to the block in which the variable is defined.<br>
+Life - Value of the variable persists between different function calls.</p>
+
+<h2>External storage class</h2>
+<p>Storage - Memory.<br>
+Default initial value - Zero.<br>
+Scope - Global.<br>
+Life - As long as the programs execution doesnt come to an end.<br>
+
+<p> External variables differ from those we have already discussed in b that their scope is global, not local. External variables are declared outside all functions.</p>
+
+<h3>Example</h3>
+<div class="code">
+<PRE>
+<FONT COLOR="#000000">main( )</FONT>
+<FONT COLOR="#000000">{</FONT>
+<FONT COLOR="#000000">printf ( </FONT><FONT COLOR="#ff00ff">"\ni = %d"</FONT><FONT COLOR="#000000">, i ) ;</FONT>
+<FONT COLOR="#000000">increment( ) ;</FONT>
+<FONT COLOR="#000000">increment( ) ;</FONT>
+<FONT COLOR="#000000">decrement( ) ;</FONT>
+<FONT COLOR="#000000">decrement( ) ;</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#000000">increment( )</FONT>
+<FONT COLOR="#000000">{</FONT>
+<FONT COLOR="#000000">i = i + </FONT><FONT COLOR="#800080">1 </FONT><FONT COLOR="#000000">;</FONT>
+<FONT COLOR="#000000">printf ( </FONT><FONT COLOR="#ff00ff">"\non incrementing i = %d"</FONT><FONT COLOR="#000000">, i ) ;</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#000000">decrement( )</FONT>
+<FONT COLOR="#000000">{</FONT>
+<FONT COLOR="#000000">i = i - </FONT><FONT COLOR="#800080">1 </FONT><FONT COLOR="#000000">;</FONT>
+<FONT COLOR="#000000">printf ( </FONT><FONT COLOR="#ff00ff">"\non decrementing i = %d"</FONT><FONT COLOR="#000000">, i ) ;</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#000000">The output would be:</FONT>
+<FONT COLOR="#000000">i = </FONT><FONT COLOR="#800080">0</FONT>
+<FONT COLOR="#000000">on incrementing i = </FONT><FONT COLOR="#800080">1</FONT>
+<FONT COLOR="#000000">on incrementing i = </FONT><FONT COLOR="#800080">2</FONT>
+<FONT COLOR="#000000">on decrementing i = </FONT><FONT COLOR="#800080">1</FONT>
+<FONT COLOR="#000000">on decrementing i = </FONT><FONT COLOR="#800080">0</FONT>
+</PRE>
+</div>
+
+<p>As is obvious from the above output, the value of i is available to the functions increment( ) and decrement( ) since i has been declared outside all functions.</p>
+
+<table id="indexing">
+  <tr>
+   <td style="width:33%; text-align:left;"><a href="ADDING_FUNCTION_TO_THE_LIBRARY.shtml" title="Adding function to library in C">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="C_PREPROCESSOR.shtml" title="Pre processor in C">Next</a></td>
+  </tr>
+</table>
+
+<!--Footer  --> 
+   </div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>

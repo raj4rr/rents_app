@@ -1,0 +1,157 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+
+<HTML><HEAD>
+
+<meta http-equiv="Content-Language" content="en-us">
+
+<TITLE>Install and enterprize java beans</TITLE>
+
+<META content="Rajesh Kumar" name="author">
+
+<META http-equiv="expires" content="0">
+
+<META content="r4r.co.in" name="owner">
+
+<META http-equiv=Content-Type content="text/html; charset=windows-1252">
+
+<meta name="description" CONTENT="Install an Enterprise JavaBeans Server,Building A Stateless Session bean,Remote Interface" >
+
+<meta name="keywords" CONTENT="Install an Enterprise JavaBeans Server,Building A Stateless Session bean,Remote Interface">
+
+<!--Header start-->
+
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>EJB</h1>
+            <div class="link_menu"><A href="/">R4R</A>
+
+<img border="0" src="/images/left_menu_bullet.gif" width="11" height="6"> <A href="/java">Java</A><img border="0" src="/images/left_menu_bullet.gif" width="11" height="6"><A href="/java/ejb/">EJB</A></font> </div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/ejb/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	  
+
+<!-- header End-->
+
+<div class="heading">Install an Enterprise JavaBeans Server</div>
+ <table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="To%20implementing%20the%20entitybean%20home%20interface.shtml" title=" Implementing the Entity Beans Home Interface
+">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="What%20is%20JNDI.shtml" title="What is JNDI">Next</a></td>
+  </tr>
+</table>
+
+<p>EJB components run inside Enterprise JavaBeans containers, which are supplied by Enterprise JavaBeans 
+server vendors and the all instructions below will assist in downloading and 
+installing a BEA Weblogic server in which the DemoBean will run.</p>
+
+ <ol><li>
+First Downloaded BEA WebLogic's server from the BEA WebLogic web site.</li>
+<li>Then extract the distribution using jar or the unzip utility. and the throughout 
+this tutorial it is assumed that Weblogic is installed in the <font class="point_out">/export directory</font>, 
+for example, <font class="point_out">/export/weblogic</font>.</li>
+
+<li>After that downloading the latest version of the Java Development Kit from the Java Development Kit for Solaris web site.</li>
+
+<li>Set your CLASSPATH on the server host:</li>
+
+<li>Add <font class="point_out">weblogic/classes</font> and <font class="point_out">weblogic/lib/weblogicaux.jar </font>to your Java CLASSPATH. 
+
+Make sure you have <font class="point_out">.</font> or your current directory in the CLASSPATH as well.</li>
+
+<li>Add weblogic/lib/solaris to your LD_LIBRARY_PATH</li>
+
+<li>Edit the BEA WebLogic properties file weblogic.properties</li>
+
+<li>Set the system password property, weblogic.password.system</li>
+
+<li>Start the Weblogic server using the startWebLogic.sh script.</li></ol>
+
+<p>After following the steps in this tutorial to build and deploy the example bean, 
+check that the Enterprise JavaBeans bean has been deployed correctly, either by 
+checking the server command-line window, or by opening the Console and examining 
+<font class="point_out">EJB</font> under the <font class="point_out">Distributed Objects</font> you should see DemoBean deployed, and you 
+can monitor its activity.</p>
+
+<div class="heading">Building A Stateless Session bean:</div>
+
+<i>Remote Interface:</i>
+
+<ul>
+<li>This step we are creating 
+
+the Enterprise JavaBeans remote interface.</li>
+<li>
+Save the code example to a file as indicated.</li>
+</ul>
+
+<p>Remote interface is the client's view of the Enterprise JavaBeans, and the task 
+of the Enterprise JavaBeans developer is to declaring this interface using Java 
+RMI syntax. It is the responsibility of the Enterprise JavaBeans' container 
+tools provider to generate the code of this interface. </p>
+
+<p><i>Note: </i> The limitations on what can be specified in this interface. For a full total list to see the Enterprise 
+JavaBeans Specification, and it's important that, all objects are using, the 
+parameters, return values, and exceptions are valid types in the <font class="point_out">Java</font> to IDL 
+Mapping Specification.</p>
+
+<p>For the simple DemoBean here is the remote interface source. Save this to a file named Demo.java.</p>
+
+<div class="code">
+<pre>
+<font color="#0000ff">package </font><font color="#000000">ejb.demo;</font>
+<font color="#0000ff">import </font><font color="#000000">java.rmi.</font><font color="#ff0000">RemoteException</font><font color="#000000">;</font>
+<font color="#0000ff">import </font><font color="#000000">java.rmi.</font><font color="#ff0000">Remote</font><font color="#000000">;</font>
+<font color="#0000ff">import </font><font color="#000000">javax.ejb.*;</font>
+<font color="#0000ff">public interface </font><font color="#000000">Demo </font><font color="#0000ff">extends </font><font color="#000000">EJBObject, </font><font color="#ff0000">Remote </font>
+	<font color="#000000">{</font>
+
+   <font color="#008000">// NB this simple example does not even do a</font>
+
+  <font color="#008000">// lookup in the database</font>
+
+  <font color="#0000ff">public </font><font color="#ff0000">String </font><font color="#000000">demoSelect() </font><font color="#0000ff">throws </font><font color="#ff0000">RemoteException</font><font color="#000000">;</font>
+ <font color="#000000">}</font>
+ </pre>
+</div>
+
+ <table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="To%20implementing%20the%20entitybean%20home%20interface.shtml" title=" Implementing the Entity Beans Home Interface
+">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="What%20is%20JNDI.shtml" title="What is JNDI">Next</a></td>
+  </tr>
+</table>
+
+<!-- Footer Start-->
+</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>

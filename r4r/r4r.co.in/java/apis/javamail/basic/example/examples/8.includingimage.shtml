@@ -1,0 +1,130 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD>
+<meta http-equiv="Content-Language" content="en-us">
+<TITLE>Including Image With Your Mail 
+Using JavaMail API</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name="description" CONTENT="Including Image With Your Mail 
+Using JavaMail API" >
+<meta name="keywords" CONTENT="Including Image With Your Mail 
+Using JavaMail API">
+
+<!-- header start-->	
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>JAVA MAIL API</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+            <img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+            <a href="/java/">java</a>
+              <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/java/apis/javamail/basic/example/examples">JAVA MAIL API</a>
+
+              </div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/apis/javamail/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	 
+
+<div class="heading">Including Image With Your Mail Using JavaMail API</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="7.sending attachment.shtml" >Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="9.multipartsend.shtml">Next</a></td>
+  </tr> 
+</table>
+<!-- header End-->
+
+<p>If you want to send  images then attach images in to your Mesages and then send. you using JavaMail API attach your image. This images attachment and  reference the image with a special cid <b>URL</b>, where the cid is a reference to the <b>Content-ID</b> header of the image attachment.</p>
+<p> The attaching images or embedding images on your messages like as similar to attaching the file in your message. The only difference for you have to tell the MimeMultipart that the part are related by setting it's subtype. The subtype in the Constructor or <b>setSubType ()</b> and set the <b>Content-ID</b> header for the image to a random string which is used as the src for the image in the <b>img </b>tag. The following demonstrates this completely.
+</p>
+
+<div class="code">
+<pre><font face="code"><font color="#0000ff">package </font><font color="#000000">R4R;</font>
+<font color="#0000ff">import </font><font color="#000000">javax.activation.DataHandler;</font>
+<font color="#0000ff">import </font><font color="#000000">javax.activation.</font><font color="#ff0000">DataSource</font><font color="#000000">;</font>
+<font color="#0000ff">import </font><font color="#000000">javax.activation.FileDataSource;</font>
+<font color="#0000ff">import </font><font color="#000000">javax.mail.*;</font>
+<font color="#0000ff">import </font><font color="#000000">javax.mail.internet.*;</font>
+<font color="#0000ff">import </font><font color="#000000">java.io.</font><font color="#ff0000">File</font><font color="#000000">;</font>
+<font color="#0000ff">public class </font><font color="#000000">ImageAttach {</font>
+  <font color="#0000ff">public static void </font><font color="#000000">main(</font><font color="#ff0000">String </font><font color="#000000">args[]) </font><font color="#0000ff">throws </font><font color="#ff0000">Exception </font><font color="#000000">{</font>
+  <font color="#000000">Session session = </font><font color="#0000ff">null</font><font color="#000000">;</font>
+<font color="#000000">Message message = </font><font color="#0000ff">new </font><font color="#000000">MimeMessage(session);</font>
+<font color="#008000">// Fill its headers</font>
+<font color="#000000">message.setSubject(</font><font color="#ff00ff">&quot;Embedded Image&quot;</font><font color="#000000">);</font>
+<font color="#ff0000">String </font><font color="#000000">from = </font><font color="#0000ff">null</font><font color="#000000">;</font>
+<font color="#000000">message.setFrom(</font><font color="#0000ff">new </font><font color="#000000">InternetAddress(from));</font>
+<font color="#ff0000">String </font><font color="#000000">to = </font><font color="#0000ff">null</font><font color="#000000">;</font>
+<font color="#000000">message.addRecipient(Message.RecipientType.TO, </font>
+  <font color="#0000ff">new </font><font color="#000000">InternetAddress(to));</font>
+<font color="#008000">// Create your new message part</font>
+<font color="#000000">BodyPart messageBodyPart = </font><font color="#0000ff">new </font><font color="#000000">MimeBodyPart();</font>
+<font color="#ff0000">String </font><font color="#000000">htmlText = </font><font color="#ff00ff">&quot;&lt;H1&gt;Hello&lt;/H1&gt;&quot; </font><font color="#000000">+ </font>
+  <font color="#ff00ff">&quot;&lt;img src=\&quot;cid:memememe\&quot;&gt;&quot;</font><font color="#000000">;</font>
+<font color="#000000">messageBodyPart.setContent(htmlText, </font><font color="#ff00ff">&quot;text/html&quot;</font><font color="#000000">);</font>
+<font color="#008000">// Create a related multi-part to combine the parts</font>
+<font color="#000000">MimeMultipart multipart = </font><font color="#0000ff">new </font><font color="#000000">MimeMultipart(</font><font color="#ff00ff">&quot;related&quot;</font><font color="#000000">);</font>
+<font color="#000000">multipart.addBodyPart(messageBodyPart);</font>
+<font color="#008000">// Create part for the image</font>
+<font color="#000000">messageBodyPart = </font><font color="#0000ff">new </font><font color="#000000">MimeBodyPart();</font>
+<font color="#008000">// Fetch the image and associate to part</font>
+<font color="#ff0000">Object </font><font color="#000000">file = </font><font color="#0000ff">null</font><font color="#000000">;</font>
+<font color="#ff0000">DataSource </font><font color="#000000">fds = </font><font color="#0000ff">new </font><font color="#000000">FileDataSource((</font><font color="#ff0000">File</font><font color="#000000">) file);</font>
+<font color="#000000">messageBodyPart.setDataHandler(</font><font color="#0000ff">new </font><font color="#000000">DataHandler(fds));</font>
+<font color="#000000">messageBodyPart.setHeader(</font><font color="#ff00ff">&quot;Content-ID&quot;</font><font color="#000000">,</font><font color="#ff00ff">&quot;&lt;memememe&gt;&quot;</font><font color="#000000">);</font>
+<font color="#008000">// Add part to multi-part</font>
+<font color="#000000">multipart.addBodyPart(messageBodyPart);</font>
+<font color="#008000">// Associate multi-part with message</font>
+<font color="#000000">message.setContent(multipart);</font>
+<font color="#000000">Message forward = </font><font color="#0000ff">null</font><font color="#000000">;</font>
+<font color="#008000">// Send message</font>
+  <font color="#000000">Transport.send(forward);</font>
+  <font color="#ff0000">System</font><font color="#000000">.out.println(</font><font color="#ff00ff">&quot;The total messages are  forward ....&quot;</font><font color="#000000">);</font>
+  <font color="#000000">}</font>
+<font color="#000000">} </font></font>
+</pre>
+</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="7.sending attachment.shtml" >Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="9.multipartsend.shtml">Next</a></td>
+  </tr> 
+</table>
+
+<!-- Footer Start-->		
+
+		</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->

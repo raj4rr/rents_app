@@ -1,0 +1,143 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<HTML><HEAD><TITLE>Fetch Data into a table in swing using hibernate|Hibernate EXamples</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv="content-type" content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="Hibernate Fetch Data into a table in swing using hibernate tutorial learn easily and shortly with hibernate tutorial,hibernate
+Examples,hibernate interview questions Step by step covers all topics" >
+<meta name="keywords" CONTENT="Hibernate Fetch Data into a table in swing using hibernate tutorial, Learn How to fetch data Hibernate Examples,
+into a table, object relation mapping(ORM), hibernate query language(HQl), Presistent classes, ">
+
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<META http-equiv="Content-Language" content="en-us">
+<link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+<link href="/css/main.css" rel="stylesheet" type="text/css" />
+</HEAD>
+<BODY>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>Hibernate</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+            <img src="/images/left_menu_bullet.gif"/> <a href="/java/hibernate/">Hibernate</a>
+             </div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top">
+                            <?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/hibernate/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                       <div class="main_content">  	 
+
+      <div class="heading">Fetch Data into a table in swing using hibernate</div>
+
+      <table id="indexing">
+
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="example13.shtml" title="Insert Data into Database">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="example15.shtml" title="Update Data into Database">Next</a></td>
+  </tr> 
+</table>
+      <p>
+          In this session we will learn how to fetch data from the database and how will show in a table using 
+          JFrame. Here in this session we will use Hibernate and swing with Netbeans and MySQL also will be 
+          workable here. 
+      </p>
+      <p>
+          So as we have told that in swing we can insert data by the help of the hibernate. In the 
+          hibernate we all know that hibernate work with the POJO class that help us to make data 
+          to workable with the database
+      </p>
+      <p>
+          For show the data from the database on a table formate we need to follow the some basic step. 
+          Those step will tell us how to fetch data on a Form using hibernate. All those step are given 
+          below:
+      </p>
+      <p>
+          Step 1: Here we will use that application which we discussed in the last example of the 
+          swing. So open the same application in the panel of the netbeans and same database will 
+          be workable here. In our last session we learn how to insert data into one or more table 
+          using hibernate.
+      </p>
+      <p>
+          Step 2. Now create a JFrame Form under the hibernateapplicationwithswing. Go in the file menu 
+          wizard -> click on new file -> click on swing gui forms and then click on the JFrame Form -> 
+          click on next -> type the name of the given place (FetchData) -> click on finish.
+      </p>
+      <p>
+          Step 3. Now add a table in the Form. Go in the menu wizard -> click on Window -> IDE Tool -> 
+          Palette -> drag table on to the form. Now click on the properties -> click on model -> and 
+          delete all item which are listed in the table.Step 4. Now go in the source of the Jform. and 
+          edit (put the name of the table go in navigation and the put name of table).
+      </p>
+      <p>
+          Step 4. Now go in the source of the Jform. and edit (put the name of the table go in navigation and the put name of table).
+      </p>
+
+      <div class="code">
+          <pre><code class="language-java">
+private void tableAncestorAdded(javax.swing.event.AncestorEvent evt) {                                    
+        SessionFactory sf = util.HibernateUtil.getSessionFactory();
+             Session s = sf.openSession();
+             Transaction tr = s.beginTransaction();
+             Vector&lt;String&gt; th = new Vector&lt;String&gt;();
+             Vector tableData = new Vector();
+             Vector&lt;Object&gt; ow = new Vector&lt;Object&gt;();
+             th.add("S.no");
+             th.add("First name");
+             th.add("last name");
+             th.add("Address");
+
+             Criteria cr = s.createCriteria(r4r.InserSwingData.class);
+             java.util.List&lt;r4r.InserSwingData&gt; ds = cr.list();
+
+             for(r4r.InserSwingData dd : ds)
+
+             {
+                 ow = new Vector&lt;Object&gt;();
+                 ow.add(dd.getId());
+                 ow.add(dd.getFirstName());
+                 ow.add(dd.getLastName());
+                 ow.add(dd.getAddress());
+                 tableData.add(ow);
+
+             }
+
+             table.setModel(new DefaultTableModel(tableData, th));
+    }   
+</code></pre>                           
+
+      </div>
+      <p>Step 5. Now buid and run the application. </p>
+
+         <table id="indexing">
+
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="example13.shtml" title="Insert Data into Database">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="example15.shtml" title="Update Data into Database">Next</a></td>
+  </tr> 
+</table>
+
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+
+                <?php @include($_SERVER['DOCUMENT_ROOT'] . '/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>

@@ -1,0 +1,145 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>Binding Data to Controls,Class Hierarchies Relevant to Data Binding,Methods Binding</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="Binding Data to Controls,Class Hierarchies Relevant to Data Binding,Methods Binding" >
+<meta name="keywords" CONTENT="Binding Data to Controls,Class Hierarchies Relevant to Data Binding,Methods Binding">
+
+<!-- header start-->	
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>ADO.NET</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+            <img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+            <a href="/ado.net">ADO.Net</a>
+              <img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+
+			  <a href="/ado.net/01/tutorial/ado.net/">ADO.NET Tutorials</a>
+
+              </div>
+
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/ado.net/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	 
+<!-- header End-->	
+
+<div class="heading">Binding Data to Controls</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="Step_to_create_transaction.shtml" title="Step To Create Transactions">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="Connectionpooling.shtml" title="Connection pooling">Next</a></td>
+  </tr> 
+</table>
+
+<p>Simple data binding is the ability to bind a control to a single data element. When you need to display and manipulate more than one data element at a 
+time,then this is called complex data binding.Complex data binding is the ability to bind a control to more than one data element and more than one record in a database.</p>
+<h3>Class Hierarchies Relevant to Data Binding</h3>
+
+<div class="code">
+<pre>
+<font color="#008000">//Text box controlsUsed to display, or accept as input, </font>
+<font color="#008000">//a single line of text.Can also support multilines.</font>
+<font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Windows</font><font color="#000000">.</font><font color="#008080">Forms</font><font color="#000000">.</font><font color="#808000">TextBox </font><font color="#0000ff">class</font>
+<font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Windows</font><font color="#000000">.</font><font color="#008080">Forms</font><font color="#000000">.</font><font color="#808000">DataGridTextBox </font><font color="#000000">subclass</font>
+<font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Web</font><font color="#000000">.</font><font color="#008080">UI</font><font color="#000000">.</font><font color="#008080">WebControls</font><font color="#000000">.Textbox </font><font color="#0000ff">class</font>
+<font color="#008000">//List controlsEnable you to display a list of items to </font>
+<font color="#008000">//the user that the user can select by clicking.</font>
+<font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Windows</font><font color="#000000">.</font><font color="#008080">Forms</font><font color="#000000">.</font><font color="#808000">ListControl </font><font color="#0000ff">class</font>
+<font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Windows</font><font color="#000000">.</font><font color="#008080">Forms</font><font color="#000000">.</font><font color="#808000">ComboBox </font><font color="#000000">subclass</font>
+<font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Windows</font><font color="#000000">.</font><font color="#008080">Forms</font><font color="#000000">.</font><font color="#808000">ListBox </font><font color="#000000">subclass</font>
+<font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Web</font><font color="#000000">.</font><font color="#008080">UI</font><font color="#000000">.</font><font color="#008080">WebControls</font><font color="#000000">.ListControls </font><font color="#0000ff">class</font>
+<font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Web</font><font color="#000000">.</font><font color="#008080">UI</font><font color="#000000">.</font><font color="#008080">WebControls</font><font color="#000000">.</font><font color="#808000">CheckBoxList </font><font color="#000000">subclass</font>
+<font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Web</font><font color="#000000">.</font><font color="#008080">UI</font><font color="#000000">.</font><font color="#008080">WebControls</font><font color="#000000">.</font><font color="#808000">DropDownList </font><font color="#000000">subclass</font>
+<font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Web</font><font color="#000000">.</font><font color="#008080">UI</font><font color="#000000">.</font><font color="#008080">WebControls</font><font color="#000000">.</font><font color="#808000">ListBox </font><font color="#000000">subclass</font>
+<font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Web</font><font color="#000000">.</font><font color="#008080">UI</font><font color="#000000">.</font><font color="#008080">WebControls</font><font color="#000000">.</font><font color="#808000">RadioButtonList </font><font color="#000000">subclass</font>
+<font color="#008000">//DataGrid controlsUsed to display data in a </font>
+<font color="#008000">//scrollable, tabular grid.</font>
+<font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Windows</font><font color="#000000">.</font><font color="#008080">Forms</font><font color="#000000">.</font><font color="#808000">DataGrid </font><font color="#0000ff">class</font>
+<font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Web</font><font color="#000000">.</font><font color="#008080">UI</font><font color="#000000">.</font><font color="#008080">WebControls</font><font color="#000000">.</font><font color="#808000">DataGrid </font><font color="#0000ff">class</font>
+</pre>
+</div>
+<p>
+
+<div class="heading">Methods Binding</div>
+</p>
+
+<p>For ListBox controls, you can bind the control to a DataSet class using the DataSource and DisplayMember properties as you have seen in our Windows Forms example:</p>
+
+<div class="code">
+<pre>
+<font color="#000000">ListBox1.DataSource = customer</font>
+<font color="#000000">ListBox1.DisplayMember = </font><font color="#ff00ff">&quot;Customers.CompanyName&quot;</font>
+</pre>
+</div>
+
+<p>Or, you can use the DataBinding method programmatically to achieve the same results.</p>
+
+<div class="code">
+<pre>
+<font color="#000000">ListBox1.DataBindings.Add(New </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Windows</font><font color="#000000">.</font><font color="#008080">Forms</font><font color="#000000">.</font><font color="#808000">Binding</font>
+<font color="#000000">(</font><font color="#ff00ff">&quot;SelectedItem&quot;</font><font color="#000000">, customer, </font><font color="#ff00ff">&quot;Customers.CompanyName&quot;</font><font color="#000000">))</font>
+</pre>
+</div>
+
+<p>For DataGrid controls, you bind the control to a DataSet class using the DataSource and DataMember properties:</p>
+
+<div class="code">
+<pre>
+<font color="#000000">DataGrid1.DataMember = </font><font color="#ff00ff">&quot;Customers.CustomersOrders&quot;</font>
+<font color="#000000">DataGrid1.DataSource = customer</font>
+</pre>
+</div>
+
+<p>Or, use the SetDataBinding method programmatically to achieve the same results:</p>
+
+<div class="code">
+<pre>
+<font color="#000000">DataGrid1.SetDataBinding(customer,</font>
+<font color="#ff00ff">&quot;Customers.CustomersOrders&quot;</font><font color="#000000">)</font>
+</pre>
+</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="Step_to_create_transaction.shtml" title="Step To Create Transactions">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="Connectionpooling.shtml" title="Connection pooling">Next</a></td>
+  </tr> 
+</table>
+
+<!-- Footer Start-->		
+		</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/dotnet/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->></BODY></HTML>

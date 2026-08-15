@@ -1,0 +1,229 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD>
+<meta http-equiv="Content-Language" content="en-us">
+<TITLE>struts,struts 2.0,struts tutorial,struts 2.0 tutorial,Implementation of Struts2.0 Interceptor Interface</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name="description" CONTENT="struts,struts 2.0,struts tutorial,struts 2.0 tutorial,Implementation of Struts2.0 Interceptor Interface" >
+<meta name="keywords" CONTENT="struts,struts 2.0,struts tutorial,struts 2.0 tutorial,Implementation of Struts2.0 Interceptor Interface">
+<!-- header start-->	
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>Struts</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+            <img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+            <a href="/java/">Java</a>
+              <img src="/images/left_menu_bullet.gif" width="11" height="6"/><A href="/java/struts/basic/tutorial/struts2.0">Struts 2.0 Basic Tutorial</a>
+              </div>
+
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/struts/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	 
+
+<div class="heading">Implementation of Struts2.0 Interceptor Interface</div>
+<!-- header End-->
+
+ <table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="page22.shtml" title="Concept of Struts2.0 Interceptor">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="page24.shtml" title="Implementation of Struts2.0 Result Interface">Next</a></td>
+  </tr> 
+</table>
+
+<h3>Introduction:</h3>
+<p>An interceptor is an object which provides some services to the action before execution of action or after the result is render. Functionality of interceptor is defined by Interceptor Interface. Which is implemented by all interceptors? This interface provides lifecycle method of interceptor.</p>
+<h3>Class/Library File Descriptions:</h3>
+<font class="point_out">The lifecycle method of an interceptor:</font>
+<ul><li><i> init(): </i>It is invoked only one just after an interceptor is created. It is used to initialize interceptor.</li>
+<i>public void init();</i>
+<li><i> intercept ():</i> This method is invoked each time a request for the action on which intercept is apply preprocessing or post processing logic.</li>
+<i>public String intercept( ActionInvocation  ai );</i>
+<li><i> destroy(): </i>This method is invoked only once just before an interceptor are unloaded.</li>
+
+<i>public void destroy(); </i></ul>
+
+<h3>Source Course: </h3>
+<div class="comment">web.xml</div>
+<div class="code"><pre>
+<font color="#0000ff">&lt;?xml </font><font color="#ff0000">version</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;1.0&quot; </font><font color="#ff0000">encoding</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;UTF-8&quot;</font><font color="#800080">?</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">web-app </font><font color="#ff0000">version</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;2.5&quot;</font>
+<font color="#ff0000">xmlns</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;http://java.sun.com/xml</font>
+<font color="#ff00ff">/ns/javaee&quot; </font>
+<font color="#800080">xmlns:xsi</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;http://www.w3.org/2001</font>
+<font color="#ff00ff">/XMLSchema-instance&quot; </font>
+<font color="#800080">xsi:schemaLocation</font><font color="#0000ff">=</font>
+<font color="#ff00ff">&quot;http://java.sun.com/xml/ns/javaee </font>
+<font color="#ff00ff">http://java.sun.com/xml/ns</font>
+<font color="#ff00ff">/javaee/web-app_2_5.xsd&quot;</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">filter</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">filter-name</font><font color="#0000ff">&gt;</font><font color="#000000">f1</font><font color="#0000ff">&lt;/</font><font color="#808000">filter-name</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">filter-class</font><font color="#0000ff">&gt;</font><font color="#000000">org.apache.struts2.dispatcher</font>
+<font color="#000000">.FilterDispatcher</font><font color="#0000ff">&lt;/</font><font color="#808000">filter-class</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">filter</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">filter-mapping</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">filter-name</font><font color="#0000ff">&gt;</font><font color="#000000">f1</font><font color="#0000ff">&lt;/</font><font color="#808000">filter-name</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">url-pattern</font><font color="#0000ff">&gt;</font><font color="#000000">/*</font><font color="#0000ff">&lt;/</font><font color="#808000">url-pattern</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">filter-mapping</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">web-app</font><font color="#0000ff">&gt;</font>
+</pre>
+</div>
+<div class="comment">index.jsp</div>
+<div class="code"><pre>
+<font color="#800000">&lt;%</font><font color="#800000">@taglib uri=</font><font color="#ff00ff">&quot;/struts-tags&quot; </font><font color="#800000">prefix=</font><font color="#ff00ff">&quot;s&quot;</font><font color="#800000">%&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">s:form </font><font color="#800080">action</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;login&quot;</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">s:textfield </font><font color="#ff0000">name</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;name&quot; </font><font color="#800080">label</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;Name&quot;</font><font color="#0000ff">/&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">s:password </font><font color="#ff0000">name</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;password&quot; </font>
+<font color="#800080">label</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;Password&quot;</font><font color="#0000ff">/&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">s:submit </font><font color="#800080">value</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;Login&quot;</font><font color="#0000ff">/&gt;</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">s:form</font><font color="#0000ff">&gt;</font>
+</pre>
+</div>
+<div class="comment">struts.xml</div>
+<div class="code"><pre>
+<font color="#0000ff">&lt;!DOCTYPE </font><font color="#800080">struts PUBLIC </font>
+<font color="#000000">&quot;</font><font color="#800080">-</font><font color="#000000">//</font><font color="#800080">Apache Software Foundation</font>
+<font color="#000000">//</font><font color="#800080">DTD Struts Configuration 2</font><font color="#000000">.</font><font color="#800080">0</font><font color="#000000">//</font><font color="#800080">EN</font><font color="#000000">&quot;</font>
+<font color="#000000">&quot;</font><font color="#800080">http:</font><font color="#000000">//</font><font color="#800080">struts</font><font color="#000000">.</font><font color="#800080">apache</font><font color="#000000">.</font><font color="#800080">org</font><font color="#000000">/</font><font color="#800080">dtds</font><font color="#000000">/</font><font color="#800080">struts-2</font><font color="#000000">.</font><font color="#800080">0</font><font color="#000000">.</font><font color="#800080">dtd</font><font color="#000000">&quot;</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">struts</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">package </font><font color="#ff0000">name</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;demo&quot;</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">result-types</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">result-type </font><font color="#ff0000">name</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;dispatcher&quot; </font>
+<font color="#800080">class</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;org.apache.struts2.dispatcher</font>
+<font color="#ff00ff">.ServletDispatcherResult&quot; </font>
+<font color="#800080">default</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;true&quot;</font><font color="#0000ff">/&gt;</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">result-types</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">interceptors</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">interceptor </font><font color="#ff0000">name</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;paramSetter&quot; </font>
+<font color="#800080">class</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;mypack.MyInterceptor&quot;</font><font color="#0000ff">/&gt;</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">interceptors</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">action </font><font color="#ff0000">name</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;login&quot;</font>
+<font color="#800080">class</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;mypack.LoginAction&quot;</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">interceptor-ref </font><font color="#ff0000">name</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;paramSetter&quot;</font><font color="#0000ff">/&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">result </font><font color="#ff0000">name</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;success&quot;</font><font color="#0000ff">&gt;</font><font color="#000000">/hello.jsp</font><font color="#0000ff">&lt;/</font><font color="#808000">result</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">result </font><font color="#ff0000">name</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;failure&quot;</font><font color="#0000ff">&gt;</font><font color="#000000">/relogin.jsp</font><font color="#0000ff">&lt;/</font><font color="#808000">result</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">action</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">package</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">struts</font><font color="#0000ff">&gt;</font>
+</pre>
+</div>
+<div class="comment">MyInterceptor.java</div>
+<div class="code"><pre>
+<font color="#0000ff">package </font><font color="#000000">mypack;</font>
+<font color="#0000ff">import </font><font color="#000000">java.util.</font><font color="#ff0000">Enumeration</font><font color="#000000">;</font>
+<font color="#0000ff">import </font><font color="#000000">javax.servlet.ServletRequest;</font>
+<font color="#0000ff">import </font><font color="#000000">org.apache.struts2</font>
+<font color="#000000">.ServletActionContext;</font>
+<font color="#0000ff">import </font><font color="#000000">com.opensymphony</font>
+<font color="#000000">.xwork2.ActionInvocation;</font>
+<font color="#0000ff">import </font><font color="#000000">com.opensymphony</font>
+<font color="#000000">.xwork2.interceptor.</font><font color="#ff0000">Interceptor</font><font color="#000000">;</font>
+<font color="#0000ff">import </font><font color="#000000">com.opensymphony</font>
+<font color="#000000">.xwork2.util.ValueStack;</font>
+<font color="#0000ff">public class </font><font color="#000000">MyInterceptor </font>
+	<font color="#0000ff">implements </font><font color="#ff0000">Interceptor </font><font color="#000000">{</font>
+<font color="#0000ff">public void </font><font color="#000000">destroy() { }</font>
+<font color="#0000ff">public void </font><font color="#000000">init() { }</font>
+<font color="#0000ff">public </font><font color="#ff0000">String </font><font color="#000000">intercept(ActionInvocation ai)</font>
+	<font color="#0000ff">throws </font><font color="#ff0000">Exception </font><font color="#000000">{</font>
+<font color="#000000">ServletRequest request=ServletActionContext</font>
+	<font color="#000000">.getRequest();</font>
+<font color="#000000">ValueStack vs=ai.getStack();</font>
+<font color="#ff0000">Enumeration</font><font color="#000000">&lt;</font><font color="#ff0000">String</font><font color="#000000">&gt; e=request</font>
+	<font color="#000000">.getParameterNames();</font>
+<font color="#0000ff">while</font><font color="#000000">(e.hasMoreElements())</font>
+<font color="#000000">{</font>
+<font color="#ff0000">String </font><font color="#000000">pName=e.nextElement();</font>
+<font color="#ff0000">String </font><font color="#000000">pValue=request.getParameter(pName);</font>
+<font color="#ff0000">System</font><font color="#000000">.out.println(pName+</font><font color="#ff00ff">&quot;\t&quot;</font><font color="#000000">+pValue);</font>
+<font color="#000000">vs.setValue(pName,pValue );</font>
+<font color="#000000">}</font><font color="#ff0000">String </font><font color="#000000">str=ai.invoke();</font>
+<font color="#0000ff">return </font><font color="#000000">str;</font>
+<font color="#000000">}</font>
+<font color="#000000">}</font>
+</pre>
+</div>
+<div class="comment">LoginAction.java</div>
+<div class="code"><pre>
+<font color="#0000ff">package </font><font color="#000000">mypack;</font>
+<font color="#0000ff">public class </font><font color="#000000">LoginAction {</font>
+<font color="#0000ff">private </font><font color="#ff0000">String </font><font color="#000000">name,password;</font>
+<font color="#0000ff">public </font><font color="#ff0000">String </font><font color="#000000">execute(){ </font>
+<font color="#0000ff">if</font><font color="#000000">(name.startsWith(</font><font color="#ff00ff">&quot;a&quot;</font><font color="#000000">)&amp;&amp;</font>
+	<font color="#000000">password.startsWith(</font><font color="#ff00ff">&quot;b&quot;</font><font color="#000000">)) </font>
+<font color="#0000ff">return </font><font color="#ff00ff">&quot;success&quot;</font><font color="#000000">; </font>
+<font color="#0000ff">else </font>
+<font color="#0000ff">return </font><font color="#ff00ff">&quot;failure&quot;</font><font color="#000000">;</font>
+<font color="#000000">}</font>
+<font color="#0000ff">public </font><font color="#ff0000">String </font><font color="#000000">getName() { </font>
+<font color="#0000ff">return </font><font color="#000000">name;</font>
+<font color="#000000">}</font>
+<font color="#0000ff">public void </font><font color="#000000">setName(</font><font color="#ff0000">String </font><font color="#000000">name) { </font>
+<font color="#0000ff">this</font><font color="#000000">.name = name;</font>
+<font color="#000000">}</font>
+<font color="#0000ff">public </font><font color="#ff0000">String </font><font color="#000000">getPassword() { </font>
+<font color="#0000ff">return </font><font color="#000000">password;</font>
+<font color="#000000">}</font>
+<font color="#0000ff">public void </font><font color="#000000">setPassword(</font><font color="#ff0000">String </font><font color="#000000">password) {</font>
+<font color="#0000ff">this</font><font color="#000000">.password = password;</font>
+<font color="#000000">}</font>
+<font color="#000000">}</font>
+</pre>
+</div>
+<div class="comment">hello.jsp</div>
+<div class="code"><pre>
+<font color="#800000">&lt;%@taglib uri=</font><font color="#ff00ff">&quot;/struts-tags&quot; </font><font color="#800000">prefix=</font><font color="#ff00ff">&quot;s&quot;</font><font color="#800000">%&gt;</font>
+<font color="#000000"> </font><font color="#0000ff">&lt;b&gt;</font><font color="#000000">Welcome, </font><font color="#0000ff">&lt;</font><font color="#808000">s:property </font><font color="#ff0000">value</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;name&quot;</font><font color="#0000ff">/&gt;&lt;/b&gt;</font>
+</pre>
+</div>
+<div class="comment">relogin.jsp</div>
+<div class="code"><pre>
+<font color="#0000ff">&lt;b&gt;</font><font color="#000000">Invalid UserName and Password !</font><font color="#0000ff">&lt;/b&gt;</font>
+<font color="#0000ff">&lt;jsp:include </font><font color="#ff0000">page</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;index.jsp&quot;</font><font color="#0000ff">/&gt;</font>
+</pre>
+</div>
+<div class="output"><i>Output: </i></div>
+<div class="image"><img src="image23.jpg"></div>
+
+ <table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="page22.shtml" title="Concept of Struts2.0 Interceptor">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="page24.shtml" title="Implementation of Struts2.0 Result Interface">Next</a></td>
+  </tr> 
+</table>
+
+<!-- Footer Start-->	
+
+		</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->

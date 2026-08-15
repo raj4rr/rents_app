@@ -1,0 +1,221 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<HTML><HEAD><TITLE>Hibernate Struts Simple Application Without Database|Hibernate examples</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv="content-type" content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="Hibernate Struts Simple Application Without Database Using Hibernate tutorial learn How Insert, delete, update,
+validate, fetch data from database in Hibernate" >
+<meta name="keywords" CONTENT="Hibernate tutorial, Examples, Basics, Beginners, Fresher, Hibernate Struts Simple Application Without Database">
+
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<META http-equiv="Content-Language" content="en-us">
+<link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+<link href="/css/main.css" rel="stylesheet" type="text/css" />
+</HEAD>
+<BODY>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>Hibernate</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+            <img src="/images/left_menu_bullet.gif"/> <a href="/java/hibernate/">Hibernate</a>
+             </div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top">
+                            <?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/hibernate/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                       <div class="main_content">  	 
+
+      <div class="heading">Struts Simple Application Without Database</div>
+
+      <table id="indexing">
+
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="example5.shtml" title="Login Form Using Validation From Database">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="example7.shtml" title="Insert Data into Database">Next</a></td>
+  </tr> 
+</table> 
+      <p>Here we will discuss about the how we can create a web application using struts2 
+          without database. For creating a web application using struts we need to follow 
+          some basic step which is given below:</p>
+      <p>
+          Step 1. Take a project by going in File Menu Wizard -> New Project -> click on 
+          Java Web and then web application next -> put the name of the project on the 
+          required place and next -> select server on which we want to build the project 
+          and then next -> now select to struts2 (if not available then select to struts 
+          and attatch the jar file of the struts2) -> click on finish
+      </p>
+      <p>
+          Step 2. Now Design The Jsp Page. For Creating A Jsp Page Go In File Menu Wizard -> 
+          Click On New File -> Click On Web And Then Jsp -> Put The Required Name On The Given 
+          Field For The Name -> Finish.
+      </p>
+      <div class="code">
+          <pre><code class="language-java">
+&lt;%@taglib prefix="s" uri="/struts-tags"%&gt;
+&lt;head&gt;
+        &lt;title&gt;&lt;s:text name="StrutsApplicationWithoutDatabase"/&gt;&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;s:form action="validate" name="fom"&gt;
+        &lt;s:textfield label="First Name" name="first_name"/&gt;
+        &lt;s:password label="Password" name="pass"/&gt;
+        &lt;s:password label="Re-Password" name="rpass"/&gt;
+
+        &lt;s:submit value="Insert"/&gt;
+
+    &lt;/s:form&gt;
+&lt;/body&gt;
+</code></pre>
+      </div>
+
+<p>Step 3. Now again we need to create a jsp page. follow the above step instruction.</p>
+<div class="code">
+   <pre><code class="language-java">
+ &lt;%@page import="r4r.UserLogin" %&gt;
+&lt;%@page contentType="text/html" pageEncoding="UTF-8"%&gt;
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+    &lt;head&gt;
+        &lt;meta http-equiv="Content-Type" content="text/html; charset=UTF-8"&gt;
+        &lt;title&gt;Success&lt;/title&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        Welcome &lt;%=request.getAttribute("u")%&gt;
+    &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+</div>
+    <p>
+        Step 4. Now again we need to create a jsp page. follow the above step(Step no 2) instruction.
+    </p>
+    <div class="code">
+	<pre><code class="language-java">
+&lt;H1&gt;This is an error page......&lt;/H1&gt;
+</code></pre>
+	</DIV>>
+    <p>
+        Step 5. Now we need to create a package. for this we need to go in the file menu wizard 
+        then click on new file -> java and then package as shown in image then next -> put the 
+        required name of the package on the place and then finish.
+    </p>
+    <p>
+        Step 6. Now we need to create a java class. for this we need to go in the file menu 
+        wizard  -> click on new file and -> java and then click on java class -> put the 
+        required name on the place of name of the file -> select the package and then finish.
+    </p>
+    <div class="code">
+       <pre><code class="language-java">
+ package r4r;
+
+import javax.servlet.http.HttpServletRequest;
+import org.apache.struts2.ServletActionContext;
+
+public class UserLogin 
+{
+    private String first_name;
+    private String pass;
+    private String rpass;
+    public String exec()
+    {
+        if(getPass().equals(getRpass()))   
+        {
+            HttpServletRequest req = ServletActionContext.getRequest();
+            req.setAttribute("u", getFirst_name());
+            return "S";
+        }
+        else
+            return "F";
+    }
+
+    public String getFirst_name() {
+        return first_name;
+    }
+
+    public void setFirst_name(String first_name) {
+        this.first_name = first_name;
+    }
+
+    public String getPass() {
+        return pass;
+    }
+
+    public void setPass(String pass) {
+        this.pass = pass;
+    }
+
+    public String getRpass() {
+        return rpass;
+    }
+
+    public void setRpass(String rpass) {
+        this.rpass = rpass;
+    }
+}
+</code></pre>
+    </div>
+    <p>
+        Step 7. Now we set the action into the struts xml file which create in the struts2 by 
+        default in the default package or if we don't have the struts 2 then we need to add this.
+    </p>
+    <div class="code">
+        <pre><code class="language-java">
+&lt;!DOCTYPE struts PUBLIC
+"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+"http://struts.apache.org/dtds/struts-2.0.dtd"&gt;
+
+&lt;struts&gt;
+    &lt;!-- Configuration for the default package. --&gt;
+    &lt;package name="default" extends="struts-default"&gt;
+        &lt;action name="validate" class="r4r.UserLogin" method="exec" &gt;
+            &lt;result name="S"&gt;/Sucess.jsp&lt;/result&gt;
+            &lt;result name="F"&gt;/error.jsp&lt;/result&gt;
+        &lt;/action&gt;
+    &lt;/package&gt;
+&lt;/struts&gt;
+</code></pre>
+    </div>
+    <p>
+        Step 8. Now we need to do the build and run the project. for this we go in the file menu 
+        wizard -> click on run menu button and -> then build and then run.
+    </p>
+    <p>
+        Step 9. Put the required value in the jsp page field in the browser.
+    </p>
+    <p>
+        Step 10. If we make the wrong value then we go in the error page which is shown in the image that is below.
+    </p>
+
+      <table id="indexing">
+
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="example5.shtml" title="Login Form Using Validation From Database">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="example7.shtml" title="Insert Data into Database">Next</a></td>
+  </tr> 
+</table> 
+
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+
+                <?php @include($_SERVER['DOCUMENT_ROOT'] . '/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>

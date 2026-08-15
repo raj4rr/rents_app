@@ -1,0 +1,105 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD>
+<meta http-equiv="Content-Language" content="en-us">
+<TITLE>how to get previous date,next date,current date,get previous next date of week</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name="description" CONTENT="how to get previous date,next date,current date,get previous next date of week" >
+<meta name="keywords" CONTENT="how to get previous date,next date,current date,get previous next date of week">
+
+<!-- header start-->	
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>Java Programing laungage</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+            <img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+            <a href="/java/">Java</a>
+              <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/java/corejava">Core Java</a>
+               <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/java/corejava/packages">Package</a>
+                     <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/java/corejava/packages/lang">Java Util Package</a>
+              </div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/corejava/packages/util/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	 
+
+<div class="heading">Getting Previous, Current and Next Day Date</div>
+<p>In this page of the tutorials, we shall be learn how to get previous, current and next date in java. The java util package provides the facility for it. </p>
+
+<table id="indexing">
+  <tr>
+ <td style="width:33%; text-align:left;"><a href="calculate_processtime.shtml" title="calculate process time">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="save_retrieve_preference.shtml" title="save retrieve preference">Next</a></td>
+  </tr> 
+</table>
+<!-- header End-->
+
+<h2>Program Description</h2>
+<p>This example is help us to get the previous, current and next date to Date() constructor of <b>java.util.*;</b> package. at First we are need to put a current date in the GMT format. <b>SimpleDateFormat()</b>changes the GMT format according to user's requirements. For getting the previous date subtract a day in <b>MILLIS_IN_DAY </b>and add a day for getting the next date. </p>
+
+<h3>Example</h3>
+<div class="code">
+<PRE>
+<FONT FACE="Arial">
+<FONT COLOR="#0000ff">package </FONT><FONT COLOR="#000000">r4r;</FONT>
+<FONT COLOR="#0000ff">import </FONT><FONT COLOR="#000000">java.text.</FONT><FONT COLOR="#ff0000">SimpleDateFormat</FONT><FONT COLOR="#000000">;</FONT>
+<FONT COLOR="#0000ff">import </FONT><FONT COLOR="#000000">java.util.*;</FONT>
+<FONT COLOR="#0000ff">public class </FONT><FONT COLOR="#000000">currentdatetest {</FONT>
+<FONT COLOR="#0000ff">public static void </FONT><FONT COLOR="#000000">main(</FONT><FONT COLOR="#ff0000">String</FONT><FONT COLOR="#000000">[] args) {</FONT>
+<FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">MILLIS_IN_DAY = </FONT><FONT COLOR="#800080">1000 </FONT><FONT COLOR="#000000">* </FONT><FONT COLOR="#800080">60 </FONT><FONT COLOR="#000000">* </FONT><FONT COLOR="#800080">60 </FONT><FONT COLOR="#000000">* </FONT><FONT COLOR="#800080">24</FONT><FONT COLOR="#000000">;</FONT>
+<FONT COLOR="#ff0000">Date </FONT><FONT COLOR="#000000">day = </FONT><FONT COLOR="#0000ff">new </FONT><FONT COLOR="#ff0000">Date</FONT><FONT COLOR="#000000">();</FONT>
+
+<FONT COLOR="#ff0000">SimpleDateFormat Format </FONT><FONT COLOR="#000000">= </FONT><FONT COLOR="#0000ff">new </FONT><FONT COLOR="#ff0000">SimpleDateFormat</FONT><FONT COLOR="#000000">(</FONT><FONT COLOR="#ff00ff">"dd/MM/yy"</FONT><FONT COLOR="#000000">);</FONT>
+<FONT COLOR="#ff0000">String </FONT><FONT COLOR="#000000">preDate = </FONT><FONT COLOR="#ff0000">Format</FONT><FONT COLOR="#000000">.format(day.getTime() - MILLIS_IN_DAY);</FONT>
+<FONT COLOR="#ff0000">String </FONT><FONT COLOR="#000000">curDate = </FONT><FONT COLOR="#ff0000">Format</FONT><FONT COLOR="#000000">.format(day.getTime());</FONT>
+<FONT COLOR="#ff0000">String </FONT><FONT COLOR="#000000">NextDate = </FONT><FONT COLOR="#ff0000">Format</FONT><FONT COLOR="#000000">.format(day.getTime() + MILLIS_IN_DAY);</FONT>
+<FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.println(</FONT><FONT COLOR="#ff00ff">"Previous date is: " </FONT><FONT COLOR="#000000">+ preDate);</FONT>
+<FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.println(</FONT><FONT COLOR="#ff00ff">"Currnent date is: " </FONT><FONT COLOR="#000000">+ curDate);</FONT>
+<FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.println(</FONT><FONT COLOR="#ff00ff">"Next date is: " </FONT><FONT COLOR="#000000">+ NextDate);</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#000000">}</FONT>
+</FONT>
+</PRE>
+</div>
+
+<table id="indexing">
+  <tr>
+ <td style="width:33%; text-align:left;"><a href="calculate_processtime.shtml" title="calculate process time">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="save_retrieve_preference.shtml" title="save retrieve preference">Next</a></td>
+  </tr> 
+</table>
+
+<!-- Footer Start-->
+		</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->

@@ -1,0 +1,132 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>Calling Function In C Language</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="Learn: Calling Function In C Langauge,c tutorial,c basics,programming language,examples,pointer,function,loop,else,if else,while,array,pre processor" >
+<meta name="keywords" CONTENT="c tutorial,c basics,programming language,examples,pointer,function,loop,else,if else,while,array,pre processor,post processor,structures,memory menagement,string,constants,variables,decisions making,c unions,c memory allocation, c operators, C pointers,c error handling, c file handling">
+<link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>C Programming language</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a><img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/c/">C </a>
+              <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/c/c_topics/c_function">C Functions </a></div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/c/commonfiles/new-leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 
+
+	 <!-- Header End--> 		
+
+<div class="heading"><font style="background:#FF9966; padding:7px 0px 7px 7px;">Day <font style="background:#E95409; padding:7px;">6</font></font> Calling Function in C Programming language : Call by Reference</div>
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="calling_functon_in_c.shtml" title="Calling Function in C Programming language : Call by value">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="recursion_in_c.shtml" title="Recursion in C programming language">Next</a></td>
+  </tr>
+</table>
+
+<h2># Call by reference</h2>
+<p>We know that variables are stored somewhere in memory. So instead of passing the value of a variable to a function, we pass the address of argument then it is called Call By Reference. Inside the function, the address is used to access the actual argument.</p>
+
+<p><b>Defining a Function:</b> Consider the fuction <font class="point_out">swaping()</font></p>
+<div class="code">
+<pre>
+<font color="#008000">/* function definition to swap the values */</font>
+<font color="#0000ff">void </font><font color="#000000">swaping(</font><font color="#0000ff">int </font><font color="#000000">*a, </font><font color="#0000ff">int </font><font color="#000000">*b)</font>
+<font color="#000000">{</font>
+   <font color="#0000ff">int </font><font color="#000000">c;</font>
+   <font color="#000000">c = *a;    </font><font color="#008000">/* save the value at address a */</font>
+   <font color="#000000">*a = *b;      </font><font color="#008000">/* put b into a */</font>
+   <font color="#000000">*b = c;    </font><font color="#008000">/* put c into b */</font>
+
+   <font color="#0000ff">return</font><font color="#000000">;</font>
+<font color="#000000">}</font>
+</pre>
+</div>
+<p>Now, let us call the function <font class="point_out">swaping()</font> bby passing values by reference as in the following example:</p>
+
+<div class="code">
+<pre>
+<font color="#ff0000">#include </font><font color="#000000">&lt;stdio.h&gt;</font>
+
+<font color="#008000">/* function declaration */</font>
+<font color="#0000ff">void </font><font color="#000000">swap(</font><font color="#0000ff">int </font><font color="#000000">*a, </font><font color="#0000ff">int </font><font color="#000000">*b);</font>
+
+<font color="#0000ff">int </font><font color="#000000">main ()</font>
+<font color="#000000">{</font>
+   <font color="#008000">/* local variable definition */</font>
+   <font color="#0000ff">int </font><font color="#000000">m = </font><font color="#800080">100</font><font color="#000000">;</font>
+   <font color="#0000ff">int </font><font color="#000000">n = </font><font color="#800080">200</font><font color="#000000">;</font>
+
+   <font color="#000000">printf(</font><font color="#ff00ff">&quot;Before swap, value of a : %d\n&quot;</font><font color="#000000">, m );</font>
+   <font color="#000000">printf(</font><font color="#ff00ff">&quot;Before swap, value of b : %d\n&quot;</font><font color="#000000">, n );</font>
+
+   <font color="#008000">/* calling a function to swap the values.</font>
+<font color="#008000">    * &amp;a indicates pointer to a ie. address of variable a and </font>
+<font color="#008000">    * &amp;b indicates pointer to b ie. address of variable b.</font>
+<font color="#008000">   */</font>
+   <font color="#000000">swap(&amp;m, &amp;n);</font>
+
+   <font color="#000000">printf(</font><font color="#ff00ff">&quot;After swap, value of a : %d\n&quot;</font><font color="#000000">, m );</font>
+   <font color="#000000">printf(</font><font color="#ff00ff">&quot;After swap, value of b : %d\n&quot;</font><font color="#000000">, n );</font>
+
+   <font color="#0000ff">return </font><font color="#800080">0</font><font color="#000000">;</font>
+<font color="#000000">}</font>
+<font color="#008000">/* function definition to swap the values */</font>
+<font color="#0000ff">void </font><font color="#000000">swap(</font><font color="#0000ff">int </font><font color="#000000">*x, </font><font color="#0000ff">int </font><font color="#000000">*y)</font>
+<font color="#000000">{</font>
+   <font color="#0000ff">int </font><font color="#000000">temp;</font>
+   <font color="#000000">temp = *x;    </font><font color="#008000">/* save the value at address x */</font>
+   <font color="#000000">*x = *y;      </font><font color="#008000">/* put y into x */</font>
+   <font color="#000000">*y = temp;    </font><font color="#008000">/* put temp into y */</font>
+
+   <font color="#0000ff">return</font><font color="#000000">;</font>
+<font color="#000000">}</font>
+</pre>
+</div>
+<div class="output"><p><i>Output</i> :</p>
+<pre>
+<font color="#000000">Before swap, value of a :</font><font color="#800080">100</font>
+<font color="#000000">Before swap, value of b :</font><font color="#800080">200</font>
+<font color="#000000">After swap, value of a :</font><font color="#800080">200</font>
+<font color="#000000">After swap, value of b :</font><font color="#800080">100</font>
+</pre>
+</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="calling_functon_in_c.shtml" title="Calling Function in C Programming language : Call by value">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="recursion_in_c.shtml" title="Recursion in C programming language">Next</a></td>
+  </tr>
+</table>
+
+ <!--Footer  --> 	
+</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/c/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>

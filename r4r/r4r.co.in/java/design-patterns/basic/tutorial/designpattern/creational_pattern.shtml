@@ -1,0 +1,219 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD>
+<meta http-equiv="Content-Language" content="en-us">
+<TITLE>Creational Design Pattern Pattern</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name="description" CONTENT="Creational Design Pattern Pattern" >
+<meta name="keywords" CONTENT="Creational Design Pattern Pattern">
+
+<!-- header start-->	
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>Design Pattern Basic Tutorial</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+
+              <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/java/">java</a>
+              <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/java/design-patterns/">Design Pattern</a>
+
+              </div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/design-patterns/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	 
+
+<!--header end-->                        	
+
+<div class="heading">Creational Pattern</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="Introduction.shtml" title="Introduction">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="prototype_pattern.shtml" title="prototype_pattern">Next</a></td>
+  </tr> 
+</table>
+<!-- header End--> 
+
+<p>The creational design pattern is the part of the design pattern by help of this pattern we can create the class creation and object creation pattern . the class pattern is use inheritance in instantiation process and the object creation pattern get the job done for this use to delegation. the creational pattern is used to define the best possible way to the instantiate of the object.</p>
+<p>There are five type of the creational pattern, which is listed here:</p>
+<ol>
+<li>
+Abstract Factory Pattern
+</li>
+<li>
+Builder Pattern
+</li>
+<li>
+Factory Method Pattern
+</li>
+<li>
+Singleton Pattern
+</li>
+<li>
+Prototype Pattern
+ </li></ol>
+
+<div class="heading">Abstract Factory Pattern</div>
+<p>Abstract Factory is Provide one level of interface which is higher than the factory pattern. and this is used for return more than one factories.</p>
+<h3>Use of the Abstract Factory</h3>
+<ol>
+<li>
+Create one ar more families of related or dependent objects.
+</li>
+<li>
+It is Provide products of a class library, and exposing to interface not implementation.
+</li>
+<li>
+Needs to isolate concrete classes from their super classes.
+</li>
+<li>
+A system needs independent of how its product are created, composed, and represented.
+</li>
+<li>
+Try to enforce a constraint.
+</li>
+<li>
+An alternative to Facade to hide platform-specific classes.
+</li>
+<li>
+Easily extensible to a family.
+</li></ol>
+
+<div class="heading">Benefit of the Abstract Factory</div>
+<ol>
+<li>
+Factory method, which is often implemented with an abstract factory.
+</li>
+<li>
+Singleton, which is often implemented with an abstract factory.
+</li>
+<li>
+Prototype, which is often implemented with an abstract factory.
+</li>
+<li>
+Facade, which is often used with an abstract factory by providing an interface for creating implementing class.
+</li></ol>
+
+<h3>Example</h3>
+<div class="code">
+<pre>
+<font color="#0000ff">package </font><font color="#000000">r4r;</font>
+<font color="#0000ff">class </font><font color="#000000">Information {}</font>
+<font color="#0000ff">interface </font><font color="#000000">ConnectionFactory {</font>
+<font color="#000000">Loc getLocalConnection();</font>
+<font color="#000000">Rem getRemoteConnection();</font>
+<font color="#000000">}</font>
+
+<font color="#0000ff">interface </font><font color="#000000">Loc {</font>
+<font color="#000000">Information[] loadDB(</font><font color="#ff0000">String </font><font color="#000000">filename);</font>
+<font color="#000000">}</font>
+
+<font color="#0000ff">interface </font><font color="#000000">Rem </font><font color="#0000ff">extends </font><font color="#000000">Loc{</font>
+<font color="#0000ff">void </font><font color="#000000">connect2WWW(</font><font color="#ff0000">String </font><font color="#000000">url);</font>
+<font color="#000000">}</font>
+
+<font color="#0000ff">class </font><font color="#000000">LMode </font><font color="#0000ff">implements </font><font color="#000000">Loc {</font>
+<font color="#0000ff">public </font><font color="#000000">Information[] loadDB(</font><font color="#ff0000">String </font><font color="#000000">name) {</font>
+<font color="#ff0000">System</font><font color="#000000">.out.print(</font><font color="#ff00ff">&quot;Loading the data from a local database &quot;</font><font color="#000000">);</font>
+<font color="#0000ff">return null</font><font color="#000000">;</font>
+<font color="#000000">}</font>
+<font color="#000000">}</font>
+
+<font color="#0000ff">class </font><font color="#000000">RMode </font><font color="#0000ff">implements </font><font color="#000000">Rem {</font>
+<font color="#0000ff">public void </font><font color="#000000">connect2WWW(</font><font color="#ff0000">String </font><font color="#000000">url) {</font>
+<font color="#ff0000">System</font><font color="#000000">.out.println(</font><font color="#ff00ff">&quot;Connect to a remote database &quot;</font><font color="#000000">);</font>
+<font color="#000000">}</font>
+<font color="#0000ff">public </font><font color="#000000">Information[] loadDB(</font><font color="#ff0000">String </font><font color="#000000">name) {</font>
+<font color="#ff0000">System</font><font color="#000000">.out.println(</font><font color="#ff00ff">&quot;Loading data from a remote database &quot;</font><font color="#000000">);</font>
+<font color="#0000ff">return null</font><font color="#000000">;</font>
+<font color="#000000">}</font>
+<font color="#000000">}</font>
+
+<font color="#0000ff">class </font><font color="#000000">DManager </font><font color="#0000ff">implements </font><font color="#000000">ConnectionFactory {</font>
+<font color="#0000ff">boolean </font><font color="#000000">local = </font><font color="#0000ff">false</font><font color="#000000">;</font>
+<font color="#000000">Information[] data;</font>
+
+<font color="#0000ff">public </font><font color="#000000">Loc getLocalConnection() {</font>
+<font color="#0000ff">return new </font><font color="#000000">LMode();</font>
+<font color="#000000">}</font>
+<font color="#0000ff">public </font><font color="#000000">Rem getRemoteConnection() {</font>
+<font color="#0000ff">return new </font><font color="#000000">RMode();</font>
+<font color="#000000">}</font>
+<font color="#000000">publicvoid loadData() {</font>
+<font color="#0000ff">if</font><font color="#000000">(local){</font>
+<font color="#000000">Loc conn = getLocalConnection();</font>
+<font color="#000000">data = conn.loadDB(</font><font color="#ff00ff">&quot;db.db&quot;</font><font color="#000000">);</font>
+<font color="#000000">}</font><font color="#0000ff">else </font><font color="#000000">{</font>
+<font color="#000000">Rem conn = getRemoteConnection();</font>
+<font color="#000000">conn.connect2WWW(</font><font color="#ff00ff">&quot;www.some.where.com&quot;</font><font color="#000000">);</font>
+<font color="#000000">data = conn.loadDB(</font><font color="#ff00ff">&quot;db.db&quot;</font><font color="#000000">);</font>
+<font color="#000000">}</font>
+
+<font color="#000000">}</font>
+<font color="#0000ff">public void </font><font color="#000000">setConnection(</font><font color="#0000ff">boolean </font><font color="#000000">a) {</font>
+<font color="#000000">local = a;</font>
+<font color="#000000">}</font>
+<font color="#000000">}</font>
+
+<font color="#0000ff">public class </font><font color="#000000">abstractpattern {</font>
+<font color="#0000ff">public static void </font><font color="#000000">main(</font><font color="#ff0000">String</font><font color="#000000">[] args) {</font>
+<font color="#000000">DManager d1 = </font><font color="#0000ff">new </font><font color="#000000">DManager();</font>
+<font color="#000000">Information[] in = </font><font color="#0000ff">null</font><font color="#000000">;</font>
+<font color="#ff0000">String </font><font color="#000000">dbFileName = </font><font color="#ff00ff">&quot;db.db&quot;</font><font color="#000000">;</font>
+<font color="#0000ff">if </font><font color="#000000">(args.length == </font><font color="#800080">0</font><font color="#000000">) {</font>
+<font color="#000000">d1.setConnection(</font><font color="#0000ff">true</font><font color="#000000">);</font>
+<font color="#000000">LMode lm = (LMode)d1.getLocalConnection(); </font>
+<font color="#000000">in = lm.loadDB(dbFileName); </font>
+<font color="#000000">} </font>
+<font color="#0000ff">else </font><font color="#000000">{</font>
+<font color="#000000">RMode rm = (RMode)d1.getRemoteConnection();</font>
+<font color="#000000">rm.connect2WWW(</font><font color="#ff00ff">&quot;www.javacamp.org/db/&quot;</font><font color="#000000">);</font>
+<font color="#000000">in = rm.loadDB(dbFileName); </font>
+<font color="#000000">}</font>
+<font color="#000000">}</font>
+<font color="#000000">}</font>
+</pre>
+</div>	   
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="Introduction.shtml" title="Introduction">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="prototype_pattern.shtml" title="prototype_pattern">Next</a></td>
+  </tr> 
+</table>
+
+<!-- Footer Start-->	   	
+
+		</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->

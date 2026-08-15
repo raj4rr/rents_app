@@ -1,0 +1,26 @@
+# Security Headers
+<IfModule mod_headers.c>
+	Header set X-XSS-Protection "1; mode=block"
+	Header set X-Frame-Options "SAMEORIGIN"
+	Header set X-Content-Type-Options "nosniff"
+	Header always set Strict-Transport-Security "max-age=63072000; includeSubDomains"
+	# Header set Content-Security-Policy ...
+	Header set Referrer-Policy "same-origin"
+	Header set Feature-Policy "geolocation 'self'; vibrate 'none'"
+#	Header add Content-Security-Policy "default-src 'self';"
+	Header always unset "X-Powered-By"
+    Header always unset "X-Runtime"
+	Header add Access-Control-Allow-Origin "*"
+    Header add Access-Control-Allow-Headers "origin, x-requested-with, content-type"
+    Header add Access-Control-Allow-Methods "GET, POST, OPTIONS"
+</IfModule>
+RewriteEngine On
+RewriteCond %{HTTP_HOST} ^www\.
+RewriteRule ^(.*)$ https://r4r.co.in/$1 [R=301,L]
+RewriteBase /
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_URI} .*/([^/]+)/?  [NC]
+RewriteRule .*  articles/?title=%1   [L]
+
+

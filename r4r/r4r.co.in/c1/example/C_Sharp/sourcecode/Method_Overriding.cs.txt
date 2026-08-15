@@ -1,0 +1,34 @@
+//Method Overriding:-same name / same signature 
+class a
+{
+	public virtual void display()
+	{
+		System.Console.WriteLine("Method Overriding Using C#:A Class ");
+	}
+}
+class b : a //b is child of a
+{
+	public override void display()
+	{
+		System.Console.WriteLine("Method Overriding Using C#:B Class ");
+	}
+}
+class d : b //d is child of b
+{
+	public override  void display()
+	{
+		System.Console.WriteLine("Method Overriding Using C#:D Class ");
+	}
+}
+
+class c 
+{
+	public static void Main()
+	{
+		d x=new d();//Normally object of child
+		x.display();
+	}
+}
+
+
+

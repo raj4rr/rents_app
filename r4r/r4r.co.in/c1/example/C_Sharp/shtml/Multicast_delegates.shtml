@@ -1,0 +1,123 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+
+<HTML><HEAD><TITLE>Multicast Delegates Using C#</TITLE>
+<META content=r4r.co.in name=owner>
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="Multicast Delegates Using C#" >
+<meta name="keywords" CONTENT="Multicast Delegates Using C#">
+<META content="Rajesh Kumar" name=author>
+
+<!--header start-->
+
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+  <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+     <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>C# Tutorial</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a><img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/c1/">C#</a>
+
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/c1/commonfiles/leftmenu.shtml'); ?></td>
+
+                       <td style="80%" valign="top">
+                        <div class="main_content"> 
+
+	<!-- Header End-->	
+
+<div class="heading">Multicast Delegates Using C#</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="multilevel_inheritence.shtml" title="Multilevel Inheritance Example C#">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="methodOverloading.shtml" title="Example of Method Overloading Using C#">Next</a></td>
+  </tr>
+</table>
+
+<div class="code">
+<pre>
+<font color="#008000">//Multicast  Delegates:- when a Delegates contain reference</font>
+<font color="#008000">//of multiple function</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">;</font>
+
+<font color="#0000ff">delegate void </font><font color="#000000">MyDelegate(</font><font color="#0000ff">string </font><font color="#000000">s);</font>
+
+<font color="#0000ff">class </font><font color="#000000">MyClass</font>
+<font color="#000000">{</font>
+<font color="#0000ff">public static void </font><font color="#000000">Hello(</font><font color="#0000ff">string </font><font color="#000000">s)</font>
+<font color="#000000">{</font>
+<font color="#808000">Console</font><font color="#000000">.WriteLine(</font><font color="#ff00ff">&quot;  Hello, {0}!&quot;</font><font color="#000000">, s);</font>
+<font color="#000000">}</font>
+
+<font color="#0000ff">public static void </font><font color="#000000">Goodbye(</font><font color="#0000ff">string </font><font color="#000000">s)</font>
+<font color="#000000">{</font>
+<font color="#808000">Console</font><font color="#000000">.WriteLine(</font><font color="#ff00ff">&quot;  Goodbye, {0}!&quot;</font><font color="#000000">, s);</font>
+<font color="#000000">}</font>
+
+<font color="#0000ff">public static void </font><font color="#000000">Main()</font>
+<font color="#000000">{</font>
+<font color="#000000">MyDelegate a, b, c, d;</font>
+
+<font color="#008000">// Create the delegate object a that references </font>
+<font color="#008000">// the method Hello:</font>
+<font color="#000000">a = </font><font color="#0000ff">new </font><font color="#000000">MyDelegate(Hello);</font>
+<font color="#008000">// Create the delegate object b that references </font>
+<font color="#008000">// the method Goodbye:</font>
+<font color="#000000">b = </font><font color="#0000ff">new </font><font color="#000000">MyDelegate(Goodbye);</font>
+<font color="#008000">// The two delegates, a and b, are composed to form c: </font>
+<font color="#000000">c = a + b;</font>
+<font color="#008000">// Remove a from the composed delegate, leaving d, </font>
+<font color="#008000">// which calls only the method Goodbye:</font>
+<font color="#000000">d = c - a;</font>
+
+<font color="#808000">Console</font><font color="#000000">.WriteLine(</font><font color="#ff00ff">&quot;Invoking delegate a:&quot;</font><font color="#000000">);</font>
+<font color="#000000">a(</font><font color="#ff00ff">&quot;A&quot;</font><font color="#000000">);</font>
+<font color="#808000">Console</font><font color="#000000">.WriteLine(</font><font color="#ff00ff">&quot;Invoking delegate b:&quot;</font><font color="#000000">);</font>
+<font color="#000000">b(</font><font color="#ff00ff">&quot;B&quot;</font><font color="#000000">);</font>
+<font color="#808000">Console</font><font color="#000000">.WriteLine(</font><font color="#ff00ff">&quot;Invoking delegate c:&quot;</font><font color="#000000">);</font>
+<font color="#000000">c(</font><font color="#ff00ff">&quot;C&quot;</font><font color="#000000">);</font>
+<font color="#808000">Console</font><font color="#000000">.WriteLine(</font><font color="#ff00ff">&quot;Invoking delegate d:&quot;</font><font color="#000000">);</font>
+<font color="#000000">d(</font><font color="#ff00ff">&quot;D&quot;</font><font color="#000000">);</font>
+<font color="#000000">}</font>
+<font color="#000000">}</font>
+</pre>
+</div>
+
+<a href="../sourcecode/Multicast_delegates.cs.txt"><font color="#000080">Download Source Code</font></a></p>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="multilevel_inheritence.shtml" title="Multilevel Inheritance Example C#">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="methodOverloading.shtml" title="Example of Method Overloading Using C#">Next</a></td>
+  </tr>
+</table>
+
+<!--Footer  -->
+   </div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/dotnet/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!--footer end-->
+

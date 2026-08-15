@@ -1,0 +1,140 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD>
+<meta http-equiv="Content-Language" content="en-us">
+<TITLE>find the recor in column wise,how to find the record</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name="description" CONTENT="find the recor in column wise,how to find the record" >
+<meta name="keywords" CONTENT="find the recor in column wise,how to find the record">
+<!-- header start-->	
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>POI</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+            <img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+            <a href="/java/">Java</a>
+              <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/java/apis/poi/">POI</a>
+
+              </div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/apis/poi/commonfiles/leftmenu.shtml'); ?>
+
+                        </td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	 
+
+<div class="heading">Find Value of Column</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="find_record.shtml" title="create auto shape">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="makecolor_fultitleofppt.shtml" title="find string value of cell">Next</a></td>
+  </tr> 
+</table>
+
+<p>
+In this page of the tutorials we are going to find the value of row from the 
+column of an excel sheet using POI2.5 API Event. The 
+org.apache.poi.hssf.record.NumberRecord class extends Record and implements 
+CellValueRecord interface, </p>
+java.lang.Comparable interface.<br>
+<div class="heading">Methods Description</div>
+<p>
+getRow():-</p>
+This methods get the row from cell.<br>
+<br>
+getColumn():-<br>
+This methods get the column from cell defines within the row. <br>
+
+getNumStrings():-
+This methods fine the number of strings.
+
+<div class="heading">Example:-</div>
+<div class="code">
+<PRE>
+<FONT COLOR="#0000ff">package </FONT><FONT COLOR="#000000">r4r;</FONT>
+<FONT COLOR="#0000ff">import </FONT><FONT COLOR="#000000">java.io.*;</FONT>
+<FONT COLOR="#0000ff">import </FONT><FONT COLOR="#000000">org.apache.poi.hssf.usermodel.*;</FONT>
+<FONT COLOR="#0000ff">import </FONT><FONT COLOR="#000000">org.apache.poi.poifs.filesystem.*;</FONT>
+<FONT COLOR="#0000ff">import </FONT><FONT COLOR="#000000">org.apache.poi.hssf.usermodel.HSSFRow;</FONT>
+<FONT COLOR="#0000ff">import </FONT><FONT COLOR="#000000">org.apache.poi.hssf.eventusermodel.*;</FONT>
+<FONT COLOR="#0000ff">import </FONT><FONT COLOR="#000000">org.apache.poi.hssf.record.*;</FONT>
+<FONT COLOR="#0000ff">import </FONT><FONT COLOR="#000000">org.apache.poi.hssf.dev.EFHSSF;</FONT>
+<FONT COLOR="#0000ff">public class </FONT><FONT COLOR="#000000">findvalueofcolumn </FONT><FONT COLOR="#0000ff">implements </FONT><FONT COLOR="#000000">HSSFListener {</FONT>
+	<FONT COLOR="#0000ff">public static void </FONT><FONT COLOR="#000000">main(</FONT><FONT COLOR="#ff0000">String</FONT><FONT COLOR="#000000">[] args) </FONT><FONT COLOR="#0000ff">throws </FONT><FONT COLOR="#ff0000">IOException</FONT>
+	  <FONT COLOR="#000000">{</FONT>
+
+	  <FONT COLOR="#ff0000">FileInputStream </FONT><FONT COLOR="#000000">fis = </FONT><FONT COLOR="#0000ff">new </FONT><FONT COLOR="#ff0000">FileInputStream</FONT><FONT COLOR="#000000">(args[</FONT><FONT COLOR="#800080">0</FONT><FONT COLOR="#000000">]);</FONT>
+
+	  <FONT COLOR="#000000">POIFSFileSystem pfs = </FONT><FONT COLOR="#0000ff">new </FONT><FONT COLOR="#000000">POIFSFileSystem(fis);</FONT>
+	  <FONT COLOR="#ff0000">InputStream </FONT><FONT COLOR="#000000">in = pfs.createDocumentInputStream</FONT>
+	<FONT COLOR="#000000">(</FONT><FONT COLOR="#ff00ff">"Workbook"</FONT><FONT COLOR="#000000">);</FONT>
+	  <FONT COLOR="#000000">HSSFRequest hreq = </FONT><FONT COLOR="#0000ff">new </FONT><FONT COLOR="#000000">HSSFRequest();</FONT>
+	 <FONT COLOR="#000000">hreq.addListenerForAllRecords(</FONT><FONT COLOR="#0000ff">new </FONT><FONT COLOR="#000000">findvalueofcolumn());</FONT>
+	 <FONT COLOR="#000000">HSSFEventFactory fact = </FONT><FONT COLOR="#0000ff">new </FONT><FONT COLOR="#000000">HSSFEventFactory();</FONT>
+	  <FONT COLOR="#000000">fact.processEvents(hreq, in);</FONT>
+	  <FONT COLOR="#000000">fis.close();</FONT>
+	 <FONT COLOR="#000000">in.close();</FONT>
+	  <FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.println(</FONT><FONT COLOR="#ff00ff">"STOP"</FONT><FONT COLOR="#000000">);</FONT>
+	  <FONT COLOR="#000000">}</FONT>
+	  <FONT COLOR="#0000ff">public void </FONT><FONT COLOR="#000000">processRecord(Record record)</FONT>
+	  <FONT COLOR="#000000">{</FONT>
+	  <FONT COLOR="#0000ff">switch </FONT><FONT COLOR="#000000">(record.getSid())  {</FONT>
+
+	  <FONT COLOR="#0000ff">case </FONT><FONT COLOR="#000000">NumberRecord.sid:</FONT>
+	  <FONT COLOR="#000000">NumberRecord numrecord = (NumberRecord) </FONT>
+	<FONT COLOR="#000000">record;</FONT>
+	  <FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.println(</FONT><FONT COLOR="#ff00ff">"found value in Cell  "</FONT>
+	 <FONT COLOR="#000000">+ numrecord.getValue()</FONT>
+	  <FONT COLOR="#000000">+ </FONT><FONT COLOR="#ff00ff">" at row " </FONT><FONT COLOR="#000000">+ numrecord.getRow() +</FONT>
+	 <FONT COLOR="#ff00ff">" and column " </FONT><FONT COLOR="#000000">+ numrecord.getColumn());</FONT>
+	  <FONT COLOR="#0000ff">break</FONT><FONT COLOR="#000000">;</FONT>
+	  <FONT COLOR="#0000ff">case </FONT><FONT COLOR="#000000">SSTRecord.sid:</FONT>
+	  <FONT COLOR="#000000">SSTRecord sstrecord = (SSTRecord) record;</FONT>
+	  <FONT COLOR="#0000ff">for </FONT><FONT COLOR="#000000">(</FONT><FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">k = </FONT><FONT COLOR="#800080">0</FONT><FONT COLOR="#000000">; k &lt; sstrecord.</FONT>
+	<FONT COLOR="#000000">getNumUniqueStrings(); k++)</FONT>
+	  <FONT COLOR="#000000">{</FONT>
+	  <FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.println(</FONT><FONT COLOR="#ff00ff">"String value " </FONT><FONT COLOR="#000000">+ k + </FONT>
+	<FONT COLOR="#ff00ff">" \t " </FONT><FONT COLOR="#000000">+ sstrecord.getString(k));</FONT>
+	  <FONT COLOR="#000000">}</FONT>
+	  <FONT COLOR="#0000ff">break</FONT><FONT COLOR="#000000">;</FONT>
+	  <FONT COLOR="#000000">}</FONT>
+	 <FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#000000">}</FONT>
+
+</PRE>
+</div>
+<!-- Footer Start-->	
+
+		</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->

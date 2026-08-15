@@ -1,0 +1,298 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>Set Standard Type 1 Fonts Of PDF Using Java </TITLE>
+<META content=r4r.co.in name=owner>
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="Set Standard Type 1 Fonts Of PDF Using Java " >
+<meta name="keywords" CONTENT="Set Standard Type 1 Fonts Of PDF Using Java ">
+<META content="Rajesh Kumar" name=author>
+<META http-equiv=expires content=0>
+<script type="text/javascript" src="/js/main.js"></script>
+		<link rel="stylesheet" type="text/css" href="/css/style.css" />
+	    <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+
+	</HEAD>
+	<BODY>
+		<table class="wrap" align="center"  cellpadding="0" cellspacing="0">
+			<tr>
+				<td class="m" align="left" valign="top">
+					<?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+				</td>
+						</tr>
+						<tr class="headerTR1">
+							<td>
+							<?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+							</td>
+						</tr>
+						<tr>
+							<td class="headerTR2">
+								<?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+							</td>
+						</tr>
+
+						<tr>
+							<td class="headerTR3">
+								<?php @include($_SERVER['DOCUMENT_ROOT'] . '/common-files/menu.shtml'); ?>
+							</td>
+							</td>
+
+						</tr>
+						<tr>
+							<td>
+								<?php @include($_SERVER['DOCUMENT_ROOT'] . '/common-files/gaps.shtml'); ?>
+							</td>
+						</tr>
+
+						<tr>
+
+			               <td class="content">
+								<table>
+									<tr>
+
+								  <?php @include($_SERVER['DOCUMENT_ROOT'] . '/common-files/tdgaps.shtml'); ?>
+								<td class="td1"   valign="top" >
+
+							     <DIV style="margin-left:15px;">
+			<table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse"  width="100%">
+  <tr>
+    <td width="100%">
+    <font face="Verdana" size="2">
+    <A href="/">R4R</A>
+<img border="0" src="/images/left_menu_bullet.gif" width="11" height="6"><a href="/sourcecode">Java SourceCode</a>
+<img border="0" src="/images/left_menu_bullet.gif" width="11" height="6"><a href=" ">Set 
+    Standard Type 1 Fonts Of PDF Using Java </a></font></td>
+  </tr>
+</table>
+
+	<!-- Header End-->  
+
+<P class="style8" title="Java Examples">
+<font face="Verdana" color="#0066FF">
+<strong>Set Standard Type 1 Fonts Of PDF Using Java </strong></font></P>
+
+<P class="style7" title="Java Examples"> <font face="Verdana" size="2">Here we are enerating a PDF file with the 14 standard Type 1 Fonts</font></P>
+<P class="style7" title="Java Examples"><font face="Verdana" size="2">To create a PDF using java you need<strong> iText API</strong>.You can download from website.This is an open source jar .Then you have to <strong>set class path</strong> of this<strong> iText jar</strong>.</font></P>
+<P class="style7" title="Java Examples"><font face="Verdana" size="2">Generates a PDF with the 14 Standard Type 1 Fonts. There are 14 standard fonts that should be available by default in each PDF reader. These fonts are Courier Bold,Courier, Courier Bold,  Courier Italic (Oblique) and Italic, Helvetica Bold,Helvetica,  Helvetica Italic (Oblique), Helvetica Bold and Times Roman Bold,Italic, Times Roman,   Times Roman Bold,Times Roman Italic and Italic, Symbol and ZapfDingBats&reg; (see also the section on built-in fonts). As you can see the different faces (bold, normal,  italic and bolditalic) of the same type face (Helvetica,Courier,  Times Roman) are considered to be different fonts.</font></P>
+<P class="style7" title="Java Examples"><font face="Verdana" size="2">There are basic five steps to create PDF:</font></P>
+<P class="style7" title="Java Examples">  <font face="Verdana" size="2">  <strong>
+<font color="#0066FF">Step1:</font> </strong>Creation of a document-object<br>
+  </font>
+  </P>
+<P class="style7" title="Java Examples"><font face="Verdana" size="2"><strong>Document</strong> document = new <strong>Document()</strong>;<br>
+  </font>
+  </P>
+<P class="style7" title="Java Examples"><font face="Verdana" size="2">
+<font color="#0066FF"><strong>Step2: </strong></font>Create a writer that listens to the document and directs a  PDF-stream to a file.<br>
+  </font>
+  </P>
+<P class="style6" title="Java Examples"><font face="Verdana" size="2">PdfWriter.getInstance(document, new FileOutputStream(<br>
+  &quot;StandardType1FontsPDF.pdf&quot;));</font></P>
+<p class="style7">  <font face="Verdana" size="2"><font color="#0066FF">  <strong>Step3:</strong></font> Open the document<br>
+  </font>
+  </p>
+<p class="style7"><font face="Verdana" size="2"><strong>document.open();</strong><br>
+  </font>
+  </p>
+<p class="style7"> <font face="Verdana" size="2"><font color="#0066FF"> <strong>Step4</strong>:
+</font>Here we are creating the  the 14 standard fonts in PDF.I will suggest you  don't use this <strong>Font</strong> constructor this is for demonstration purposes only, use<strong> FontFactory</strong>.<br>
+  <strong>Font[]</strong> fonts = new <strong>Font[14]</strong>;</font></p>
+<p class="style7"><font face="Verdana" size="2">Here we are adding the contant into documents .</font></p>
+<p class="style7"><font face="Verdana" size="2">for (int i = 0; i &lt; 14; i++) {<br>
+document.<strong>add(</strong>new Paragraph(&quot;R4R Example Of Generates a PDF with the 14 Standard Type 1 Fonts&quot;,<br>
+fonts[i]<strong>))</strong>;<br>
+}</font></p>
+<p class="style7"><font face="Verdana" size="2"><strong><font color="#0066FF">
+Step 5:</font> </strong>Close the document<br>
+  </font>
+  </p>
+<p class="style6"><font face="Verdana" size="2">document.close();:</font></p>
+<P title="Java Examples"><font color="#FF0000" face="Verdana" size="2">
+<br>
+<b>SOURCE CODE</b></font></P>
+
+<table border="1" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="97%">
+  <tr>
+    <td width="100%">
+
+<PRE><FONT FACE="Verdana">
+<FONT COLOR="#0000ff">package </FONT><FONT COLOR="#000000">com.itext.pdf.example.r4r;</FONT>
+
+<FONT COLOR="#0000ff">import </FONT><FONT COLOR="#000000">java.io.</FONT><FONT COLOR="#ff0000">FileOutputStream</FONT><FONT COLOR="#000000">;</FONT>
+<FONT COLOR="#0000ff">import </FONT><FONT COLOR="#000000">java.io.</FONT><FONT COLOR="#ff0000">IOException</FONT><FONT COLOR="#000000">;</FONT>
+
+<FONT COLOR="#0000ff">import </FONT><FONT COLOR="#000000">com.lowagie.text.</FONT><FONT COLOR="#ff0000">Document</FONT><FONT COLOR="#000000">;</FONT>
+<FONT COLOR="#0000ff">import </FONT><FONT COLOR="#000000">com.lowagie.text.DocumentException;</FONT>
+<FONT COLOR="#0000ff">import </FONT><FONT COLOR="#000000">com.lowagie.text.</FONT><FONT COLOR="#ff0000">Font</FONT><FONT COLOR="#000000">;</FONT>
+<FONT COLOR="#0000ff">import </FONT><FONT COLOR="#000000">com.lowagie.text.Paragraph;</FONT>
+<FONT COLOR="#0000ff">import </FONT><FONT COLOR="#000000">com.lowagie.text.pdf.PdfWriter;</FONT>
+
+<FONT COLOR="#008000">/**</FONT>
+<FONT COLOR="#008000"> * Generates a PDF with the 14 Standard Type 1 Fonts. There are 14 standard</FONT>
+<FONT COLOR="#008000"> * fonts that should be available by default in each PDF reader. These fonts are</FONT>
+<FONT COLOR="#008000"> * Courier Bold,Courier,  Courier Italic (Oblique), Courier Bold and Italic,</FONT>
+<FONT COLOR="#008000"> * Helvetica Bold,Helvetica,  Helvetica Italic (Oblique), Helvetica Bold and</FONT>
+<FONT COLOR="#008000"> * Times Roman Bold,Italic, Times Roman,  Times Roman Italic, Times Roman Bold</FONT>
+<FONT COLOR="#008000"> * and Italic, Symbol and ZapfDingBats&reg; (see also the section on built-in</FONT>
+<FONT COLOR="#008000"> * fonts). As you can see the different faces (bold, normal,  italic and</FONT>
+<FONT COLOR="#008000"> * bolditalic) of the same type face (Helvetica,Courier,  Times Roman) are</FONT>
+<FONT COLOR="#008000"> * considered to be different fonts. </FONT>
+<FONT COLOR="#008000"> */</FONT>
+
+<FONT COLOR="#0000ff">public class </FONT><FONT COLOR="#000000">StandardType1Fonts {</FONT>
+
+	<FONT COLOR="#008000">/**</FONT>
+<FONT COLOR="#008000">	 * Here we are enerating a PDF file with the 14 standard Type 1 Fonts</FONT>
+<FONT COLOR="#008000">	 */</FONT>
+	<FONT COLOR="#0000ff">public static void </FONT><FONT COLOR="#000000">main(</FONT><FONT COLOR="#ff0000">String</FONT><FONT COLOR="#000000">[] args) {</FONT>
+
+		<FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.println(</FONT><FONT COLOR="#ff00ff">&quot;14 Standard Type 1 fonts used to create a PDF file&quot;</FONT><FONT COLOR="#000000">);</FONT>
+
+		<FONT COLOR="#008000">// Step1: Here we are creating an object of a document.</FONT>
+		<FONT COLOR="#ff0000">Document </FONT><FONT COLOR="#000000">document = </FONT><FONT COLOR="#0000ff">new </FONT><FONT COLOR="#ff0000">Document</FONT><FONT COLOR="#000000">();</FONT>
+		<FONT COLOR="#0000ff">try </FONT><FONT COLOR="#000000">{</FONT>
+			<FONT COLOR="#008000">// Step2:Here we are creating a writer that listens to the document</FONT>
+			<FONT COLOR="#000000">PdfWriter.getInstance(document, </FONT><FONT COLOR="#0000ff">new </FONT><FONT COLOR="#ff0000">FileOutputStream</FONT><FONT COLOR="#000000">(</FONT>
+					<FONT COLOR="#ff00ff">&quot;StandardType1FontsPDF.pdf&quot;</FONT><FONT COLOR="#000000">));</FONT>
+
+			<FONT COLOR="#008000">// Step3:Here we are opening the document</FONT>
+			<FONT COLOR="#000000">document.open();</FONT>
+			<FONT COLOR="#008000">// Step4:Here we are creating the  the 14 standard fonts in PDF.<br>I will suggest you  don't use this Font constructor this is for demonstration <br>purposes only, use FontFactory</FONT>
+			<FONT COLOR="#ff0000">Font</FONT><FONT COLOR="#000000">[] fonts = </FONT><FONT COLOR="#0000ff">new </FONT><FONT COLOR="#ff0000">Font</FONT><FONT COLOR="#000000">[</FONT><FONT COLOR="#800080">14</FONT><FONT COLOR="#000000">];</FONT>
+			<FONT COLOR="#000000">fonts[</FONT><FONT COLOR="#800080">0</FONT><FONT COLOR="#000000">] =</FONT><FONT COLOR="#0000ff">new </FONT><FONT COLOR="#ff0000">Font</FONT><FONT COLOR="#000000">(</FONT><FONT COLOR="#ff0000">Font</FONT><FONT COLOR="#000000">.COURIER, </FONT><FONT COLOR="#ff0000">Font</FONT><FONT COLOR="#000000">.DEFAULTSIZE, </FONT><FONT COLOR="#ff0000">Font</FONT><FONT COLOR="#000000">.ITALIC);</FONT>
+			<FONT COLOR="#000000">fonts[</FONT><FONT COLOR="#800080">1</FONT><FONT COLOR="#000000">] =  </FONT><FONT COLOR="#0000ff">new </FONT><FONT COLOR="#ff0000">Font</FONT><FONT COLOR="#000000">(</FONT><FONT COLOR="#ff0000">Font</FONT><FONT COLOR="#000000">.COURIER, </FONT><FONT COLOR="#ff0000">Font</FONT><FONT COLOR="#000000">.DEFAULTSIZE, </FONT><FONT COLOR="#ff0000">Font</FONT><FONT COLOR="#000000">.NORMAL);</FONT>
+			<FONT COLOR="#000000">fonts[</FONT><FONT COLOR="#800080">2</FONT><FONT COLOR="#000000">] = </FONT><FONT COLOR="#0000ff">new </FONT><FONT COLOR="#ff0000">Font</FONT><FONT COLOR="#000000">(</FONT><FONT COLOR="#ff0000">Font</FONT><FONT COLOR="#000000">.COURIER, </FONT><FONT COLOR="#ff0000">Font</FONT><FONT COLOR="#000000">.DEFAULTSIZE, </FONT><FONT COLOR="#ff0000">Font</FONT><FONT COLOR="#000000">.BOLD);</FONT>
+			<FONT COLOR="#000000">fonts[</FONT><FONT COLOR="#800080">3</FONT><FONT COLOR="#000000">] = </FONT><FONT COLOR="#0000ff">new </FONT><FONT COLOR="#ff0000">Font</FONT><FONT COLOR="#000000">(</FONT><FONT COLOR="#ff0000">Font</FONT><FONT COLOR="#000000">.HELVETICA, </FONT><FONT COLOR="#ff0000">Font</FONT><FONT COLOR="#000000">.DEFAULTSIZE, </FONT><FONT COLOR="#ff0000">Font</FONT><FONT COLOR="#000000">.NORMAL);</FONT>
+			<FONT COLOR="#000000">fonts[</FONT><FONT COLOR="#800080">4</FONT><FONT COLOR="#000000">] = </FONT><FONT COLOR="#0000ff">new </FONT><FONT COLOR="#ff0000">Font</FONT><FONT COLOR="#000000">(</FONT><FONT COLOR="#ff0000">Font</FONT><FONT COLOR="#000000">.COURIER, </FONT><FONT COLOR="#ff0000">Font</FONT><FONT COLOR="#000000">.DEFAULTSIZE, </FONT><FONT COLOR="#ff0000">Font</FONT><FONT COLOR="#000000">.BOLD</FONT>
+					<FONT COLOR="#000000">| </FONT><FONT COLOR="#ff0000">Font</FONT><FONT COLOR="#000000">.ITALIC);</FONT>
+			<FONT COLOR="#000000">fonts[</FONT><FONT COLOR="#800080">5</FONT><FONT COLOR="#000000">] = </FONT><FONT COLOR="#0000ff">new </FONT><FONT COLOR="#ff0000">Font</FONT><FONT COLOR="#000000">(</FONT><FONT COLOR="#ff0000">Font</FONT><FONT COLOR="#000000">.HELVETICA, </FONT><FONT COLOR="#ff0000">Font</FONT><FONT COLOR="#000000">.DEFAULTSIZE, </FONT><FONT COLOR="#ff0000">Font</FONT><FONT COLOR="#000000">.ITALIC);</FONT>
+			<FONT COLOR="#000000">fonts[</FONT><FONT COLOR="#800080">6</FONT><FONT COLOR="#000000">] = </FONT><FONT COLOR="#0000ff">new </FONT><FONT COLOR="#ff0000">Font</FONT><FONT COLOR="#000000">(</FONT><FONT COLOR="#ff0000">Font</FONT><FONT COLOR="#000000">.HELVETICA, </FONT><FONT COLOR="#ff0000">Font</FONT><FONT COLOR="#000000">.DEFAULTSIZE, </FONT><FONT COLOR="#ff0000">Font</FONT><FONT COLOR="#000000">.BOLD);</FONT>
+			<FONT COLOR="#000000">fonts[</FONT><FONT COLOR="#800080">7</FONT><FONT COLOR="#000000">] = </FONT><FONT COLOR="#0000ff">new </FONT><FONT COLOR="#ff0000">Font</FONT><FONT COLOR="#000000">(</FONT><FONT COLOR="#ff0000">Font</FONT><FONT COLOR="#000000">.TIMES_ROMAN, </FONT><FONT COLOR="#ff0000">Font</FONT><FONT COLOR="#000000">.DEFAULTSIZE, </FONT><FONT COLOR="#ff0000">Font</FONT><FONT COLOR="#000000">.ITALIC);</FONT>
+			<FONT COLOR="#000000">fonts[</FONT><FONT COLOR="#800080">8</FONT><FONT COLOR="#000000">] = </FONT><FONT COLOR="#0000ff">new </FONT><FONT COLOR="#ff0000">Font</FONT><FONT COLOR="#000000">(</FONT><FONT COLOR="#ff0000">Font</FONT><FONT COLOR="#000000">.TIMES_ROMAN, </FONT><FONT COLOR="#ff0000">Font</FONT><FONT COLOR="#000000">.DEFAULTSIZE, </FONT><FONT COLOR="#ff0000">Font</FONT><FONT COLOR="#000000">.NORMAL);</FONT>
+			<FONT COLOR="#000000">fonts[</FONT><FONT COLOR="#800080">9</FONT><FONT COLOR="#000000">] = </FONT><FONT COLOR="#0000ff">new </FONT><FONT COLOR="#ff0000">Font</FONT><FONT COLOR="#000000">(</FONT><FONT COLOR="#ff0000">Font</FONT><FONT COLOR="#000000">.HELVETICA, </FONT><FONT COLOR="#ff0000">Font</FONT><FONT COLOR="#000000">.DEFAULTSIZE,</FONT>
+					<FONT COLOR="#ff0000">Font</FONT><FONT COLOR="#000000">.BOLDITALIC);</FONT>
+			<FONT COLOR="#000000">fonts[</FONT><FONT COLOR="#800080">10</FONT><FONT COLOR="#000000">] = </FONT><FONT COLOR="#0000ff">new </FONT><FONT COLOR="#ff0000">Font</FONT><FONT COLOR="#000000">(</FONT><FONT COLOR="#ff0000">Font</FONT><FONT COLOR="#000000">.TIMES_ROMAN, </FONT><FONT COLOR="#ff0000">Font</FONT><FONT COLOR="#000000">.DEFAULTSIZE, </FONT><FONT COLOR="#ff0000">Font</FONT><FONT COLOR="#000000">.BOLD);</FONT>
+			<FONT COLOR="#000000">fonts[</FONT><FONT COLOR="#800080">11</FONT><FONT COLOR="#000000">] = </FONT><FONT COLOR="#0000ff">new </FONT><FONT COLOR="#ff0000">Font</FONT><FONT COLOR="#000000">(</FONT><FONT COLOR="#ff0000">Font</FONT><FONT COLOR="#000000">.SYMBOL);</FONT>
+			<FONT COLOR="#000000">fonts[</FONT><FONT COLOR="#800080">12</FONT><FONT COLOR="#000000">] = </FONT><FONT COLOR="#0000ff">new </FONT><FONT COLOR="#ff0000">Font</FONT><FONT COLOR="#000000">(</FONT><FONT COLOR="#ff0000">Font</FONT><FONT COLOR="#000000">.TIMES_ROMAN, </FONT><FONT COLOR="#ff0000">Font</FONT><FONT COLOR="#000000">.DEFAULTSIZE,</FONT>
+					<FONT COLOR="#ff0000">Font</FONT><FONT COLOR="#000000">.BOLDITALIC);</FONT>
+			<FONT COLOR="#000000">fonts[</FONT><FONT COLOR="#800080">13</FONT><FONT COLOR="#000000">] = </FONT><FONT COLOR="#0000ff">new </FONT><FONT COLOR="#ff0000">Font</FONT><FONT COLOR="#000000">(</FONT><FONT COLOR="#ff0000">Font</FONT><FONT COLOR="#000000">.ZAPFDINGBATS);</FONT>
+			<FONT COLOR="#008000">//Here we are adding the content into documents</FONT>
+			<FONT COLOR="#0000ff">for </FONT><FONT COLOR="#000000">(</FONT><FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">i = </FONT><FONT COLOR="#800080">0</FONT><FONT COLOR="#000000">; i &lt; </FONT><FONT COLOR="#800080">14</FONT><FONT COLOR="#000000">; i++) {</FONT>
+				<FONT COLOR="#000000">document</FONT>
+						<FONT COLOR="#000000">.add(</FONT><FONT COLOR="#0000ff">new </FONT><FONT COLOR="#000000">Paragraph(</FONT>
+								<FONT COLOR="#ff00ff">&quot;R4R Example Of Generate<br>s a PDF with the 14 <br>Standard Type 1 Fonts&quot;</FONT><FONT COLOR="#000000">,</FONT>
+								<FONT COLOR="#000000">fonts[i]));</FONT>
+			<FONT COLOR="#000000">}</FONT>
+		<FONT COLOR="#000000">} </FONT><FONT COLOR="#0000ff">catch </FONT><FONT COLOR="#000000">(DocumentException de) {</FONT>
+			<FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.err.println(de.getMessage());</FONT>
+		<FONT COLOR="#000000">} </FONT><FONT COLOR="#0000ff">catch </FONT><FONT COLOR="#000000">(</FONT><FONT COLOR="#ff0000">IOException </FONT><FONT COLOR="#000000">ioe) {</FONT>
+			<FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.err.println(ioe.getMessage());</FONT>
+		<FONT COLOR="#000000">}</FONT>
+
+		<FONT COLOR="#008000">// Step5: Here  close the document</FONT>
+		<FONT COLOR="#000000">document.close();</FONT>
+	<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#000000">}</FONT>
+
+</FONT></PRE>
+</td></tr>
+</table>
+
+<p><font face="Verdana" size="2"><a href="/java/example/StandardType1Fonts.java.txt">Download Source File</a><a href="HelloWorld.java.txt"></a><a href="ScrollbarExample.java.txt"></a></font></p>
+
+      <!-- Footer Start-->	
+
+									</font>								
+
+									</td>
+
+										<td class="td2"  valign="top">
+
+											</font>
+
+											</font>
+
+											<table>
+											<?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/corejava/common-files/news1.shtml'); ?>	
+												<tr>
+													<td class="colorChange">
+
+													</td>
+												</tr>
+
+												<?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/corejava/common-files/news3.shtml'); ?>	
+
+												<tr>
+													<td class="colorChange">
+
+													</td>
+												</tr>
+
+												<?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/corejava/common-files/news3.shtml'); ?>	
+
+												<tr>
+													<td class="colorChange">
+
+													</td>
+												</tr>
+
+												<?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/corejava/common-files/news4.shtml'); ?>	
+
+		</table>
+
+										</td>
+										<?php @include($_SERVER['DOCUMENT_ROOT'] . '/common-files/tdgaps.shtml'); ?>
+									</tr>
+								 </table>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<?php @include($_SERVER['DOCUMENT_ROOT'] . '/common-files/gaps.shtml'); ?>
+							</td>
+						</tr>		
+						<tr>
+							<td>
+								<?php @include($_SERVER['DOCUMENT_ROOT'] . '/common-files/row.shtml'); ?>
+							</td>
+						</tr>
+
+						<tr>
+							<td>
+								<?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/corejava/common-files/mainlinks.shtml'); ?>
+
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<?php @include($_SERVER['DOCUMENT_ROOT'] . '/common-files/gaps.shtml'); ?>
+							</td>
+						</tr>
+
+								<tr>
+							<td>
+								<?php @include($_SERVER['DOCUMENT_ROOT'] . '/common-files/row.shtml'); ?>
+							</td>
+						</tr>
+
+						<tr >
+							<td>
+								<?php @include($_SERVER['DOCUMENT_ROOT'] . '/common-files/hotlinks.shtml'); ?>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<?php @include($_SERVER['DOCUMENT_ROOT'] . '/common-files/gaps.shtml'); ?>
+							</td>
+						</tr>
+
+						<tr>
+							<td>
+								<?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+		</table>
+
+	</BODY>
+</HTML>

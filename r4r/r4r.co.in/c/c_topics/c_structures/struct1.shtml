@@ -1,0 +1,209 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>Introductio of Structures In C Language</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="Learn Introductio of Structures In C Language,string,constants,variables,decisions making,c unions,c memory allocation, c operators, C pointers" >
+<meta name="keywords" CONTENT="c tutorial,c basics,programming language,examples,pointer,function,loop,else,if else,while,array,pre processor,post processor,structures,memory menagement,Introduction,string,constants,variables,decisions making,c unions,c memory allocation, c operators, C pointers,c error handling, c file handling">
+   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>C Programming language</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a><img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/c/">C </a>
+              <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/c/c_topics/c_array_basics">C Array Basics</a></div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/c/commonfiles/leftmenu.shtml'); ?></td>
+
+                       <td style="80%" valign="top">
+                        <div class="main_content"> 	
+
+                        		<!-- Header End-->	
+
+<div class="heading">WHY USE STRUCTURE</div> 
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="index.shtml">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="struct2.shtml">Next</a></td>
+  </tr>
+</table>
+
+<!-- End Header  -->
+
+<u><font color="#3399FF" face="Verdana" size="2">WHY USE STRUCTURE</font></u></b></p>
+<p ><font color="#000000" face="Verdana" size="2">We have seen earlier how ordinary variables can hold one 
+piece of information&nbsp; and how arrays can hold a number of pieces of information 
+of the&nbsp; same data type.&nbsp; These two&nbsp; data types can handle a great variety of 
+situations. But quite often we deal with entities that are collection of 
+dissimilar data types. For example, suppose&nbsp; you want to store data about a 
+book. You might want&nbsp; to store its&nbsp; name (a string), its price (a float) and 
+number of pages in it (an int). If data about say 3 such books is to be stored, 
+then we can follow two approaches: </font> </p>
+	<ol>
+		<li><font color="#000000" face="Verdana" size="2">&nbsp;Construct individual arrays, one for storing names, 
+another for storing prices and still another for storing number of &nbsp;&nbsp;pages.
+		</font></li>
+		<li><font color="#000000" face="Verdana" size="2">&nbsp;Use a structure variable. </font></li>
+	</ol>
+<p ><font color="#000000" face="Verdana" size="2">Let us examine these two approaches one by one. For the 
+sake of programming convenience assume that the names of books would be single 
+character long. Let us begin with a program that uses arrays. </font> </p>
+	<table border="1" width="67%">
+		<tr>
+			<td><font face="Verdana" size="2">
+<FONT COLOR="#000000">main( ) </FONT>
+<br>
+<FONT COLOR="#000000">{ </FONT>
+<br>
+<FONT COLOR="#000000">char name[</FONT><FONT COLOR="#800080">3</FONT><FONT COLOR="#000000">] ; </FONT>
+<br>
+<FONT COLOR="#000000">float price[</FONT><FONT COLOR="#800080">3</FONT><FONT COLOR="#000000">] ; </FONT>
+<br>
+<FONT COLOR="#000000">int pages[</FONT><FONT COLOR="#800080">3</FONT><FONT COLOR="#000000">], i ; </FONT>
+<br>
+<FONT COLOR="#000000"></FONT><br>
+<FONT COLOR="#000000">printf ( </FONT><FONT COLOR="#ff00ff">"\nEnter names, prices and no. of pages of 3 books\n" </FONT><FONT COLOR="#000000">) ; </FONT>
+<br>
+<FONT COLOR="#000000"></FONT><br>
+<FONT COLOR="#0000ff">for </FONT><FONT COLOR="#000000">( i = </FONT><FONT COLOR="#800080">0 </FONT><FONT COLOR="#000000">; i &lt;= </FONT><FONT COLOR="#800080">2 </FONT><FONT COLOR="#000000">; i++ ) </FONT>
+<br>
+<FONT COLOR="#000000">scanf ( </FONT><FONT COLOR="#ff00ff">"%c %f %d"</FONT><FONT COLOR="#000000">, &amp;name[i], &amp;price[i], &amp;pages[i] ); </FONT>
+<br>
+<FONT COLOR="#000000"></FONT><br>
+<FONT COLOR="#000000">printf ( </FONT><FONT COLOR="#ff00ff">"\nAnd this is what you entered\n" </FONT><FONT COLOR="#000000">) ; </FONT>
+<br>
+<FONT COLOR="#0000ff">for </FONT><FONT COLOR="#000000">( i = </FONT><FONT COLOR="#800080">0 </FONT><FONT COLOR="#000000">; i &lt;= </FONT><FONT COLOR="#800080">2 </FONT><FONT COLOR="#000000">; i++ ) </FONT>
+<br>
+<FONT COLOR="#000000">printf ( </FONT><FONT COLOR="#ff00ff">"%c %f %d\n"</FONT><FONT COLOR="#000000">, name[i], price[i], pages[i] ); </FONT>
+<br>
+<FONT COLOR="#000000">} </FONT>
+			</font></td>
+		</tr>
+	</table>
+	<p >
+<font face="Verdana" size="2">
+<font color="#000000"><b>Output:</b></font> <font color="#000000">And here is the sample run... </font> 
+</font> 
+</p>
+<p ><font color="#000000" face="Verdana" size="2">Enter names, prices and no. of pages of 3 books
+</font> </p>
+<p ><font color="#000000" face="Verdana" size="2">A&nbsp; 100.00&nbsp; 354 </font> </p>
+<p ><font color="#000000" face="Verdana" size="2">C&nbsp; 256.50&nbsp; 682 </font> </p>
+<p ><font color="#000000" face="Verdana" size="2">F&nbsp; 233.70&nbsp; 512 </font> </p>
+<p ><font color="#000000" face="Verdana" size="2">And this is what you entered </font> </p>
+<p ><font color="#000000" face="Verdana" size="2">A&nbsp; 100.000000&nbsp; 354 </font> </p>
+<p ><font color="#000000" face="Verdana" size="2">C&nbsp; 256.500000&nbsp; 682 </font> </p>
+<p ><font color="#000000" face="Verdana" size="2">F&nbsp; 233.700000&nbsp; 512 </font> </p>
+<p ><font color="#000000" face="Verdana" size="2">This approach no doubt allows you to store names, prices 
+and number of pages. But as you must have realized, it is an unwieldy approach 
+that obscures the fact that you are dealing with a group of characteristics 
+related to a single entity&#8212;the book.&nbsp; The program becomes more difficult to 
+handle as the number of items relating to the book go on increasing. For 
+example, we would be required to use a number of arrays, if we also decide to 
+store name of the publisher, date of purchase of book, etc. To solve this 
+problem, C provides a special data type&#8212;the structure. A structure contains a 
+number of data types grouped together. These data types may or may not be of the 
+same type. The following example illustrates the use of this data type. </font> </p>
+	<table border="1" width="64%">
+		<tr>
+			<td><font face="Verdana" size="2">
+<FONT COLOR="#000000">main( ) </FONT>
+<br>
+<FONT COLOR="#000000">{ </FONT>
+<br>
+<FONT COLOR="#0000ff">struct </FONT><FONT COLOR="#000000">book </FONT>
+<br>
+<FONT COLOR="#000000">{&nbsp;  </FONT>
+<br>
+<FONT COLOR="#0000ff">char&nbsp;  </FONT><FONT COLOR="#000000">name ; </FONT>
+<br>
+<FONT COLOR="#0000ff">float&nbsp;  </FONT><FONT COLOR="#000000">price ; </FONT>
+<br>
+<FONT COLOR="#0000ff">int&nbsp;  </FONT><FONT COLOR="#000000">pages ; </FONT>
+<br>
+<FONT COLOR="#000000">} ; </FONT>
+<br>
+<FONT COLOR="#0000ff">struct </FONT><FONT COLOR="#000000">book&nbsp; b1, b2, b3 ; </FONT>
+
+<br>
+<br>
+
+<FONT COLOR="#000000">printf ( </FONT><FONT COLOR="#ff00ff">"\nEnter names, prices &amp; no. of pages of 3 books\n" </FONT><FONT COLOR="#000000">) ; </FONT>
+<br>
+<FONT COLOR="#000000">scanf ( </FONT><FONT COLOR="#ff00ff">"%c %f %d"</FONT><FONT COLOR="#000000">, &amp;b1.name, &amp;b1.price, &amp;b1.pages ) ; </FONT>
+<br>
+<FONT COLOR="#000000">scanf ( </FONT><FONT COLOR="#ff00ff">"%c %f %d"</FONT><FONT COLOR="#000000">, &amp;b2.name, &amp;b2.price, &amp;b2.pages ) ; </FONT>
+<br>
+<FONT COLOR="#000000">scanf ( </FONT><FONT COLOR="#ff00ff">"%c %f %d"</FONT><FONT COLOR="#000000">, &amp;b3.name, &amp;b3.price, &amp;b3.pages ) ; </FONT>
+
+<br>
+<br>
+
+<FONT COLOR="#000000">printf ( </FONT><FONT COLOR="#ff00ff">"\nAnd this is what you entered" </FONT><FONT COLOR="#000000">) ; </FONT>
+<br>
+<FONT COLOR="#000000">printf ( </FONT><FONT COLOR="#ff00ff">"\n%c %f %d"</FONT><FONT COLOR="#000000">, b1.name, b1.price, b1.pages ) ; </FONT>
+<br>
+<FONT COLOR="#000000">printf ( </FONT><FONT COLOR="#ff00ff">"\n%c %f %d"</FONT><FONT COLOR="#000000">, b2.name, b2.price, b2.pages ) ; </FONT>
+<br>
+<FONT COLOR="#000000">printf ( </FONT><FONT COLOR="#ff00ff">"\n%c %f %d"</FONT><FONT COLOR="#000000">, b3.name, b3.price, b3.pages ) ; </FONT>
+<br>
+<FONT COLOR="#000000">}; </FONT>
+			</font></td>
+		</tr>
+	</table>
+	<p >
+<font color="#000000" face="Verdana" size="2"><b>Output:</b> And here is the output... </font>
+</p>
+<p ><font color="#000000" face="Verdana" size="2">Enter names, prices and no. of pages of 3 books
+</font> </p>
+<p ><font color="#000000" face="Verdana" size="2">A&nbsp; 100.00&nbsp; 354 </font> </p>
+<p ><font color="#000000" face="Verdana" size="2">C&nbsp; 256.50&nbsp; 682 </font> </p>
+<p ><font color="#000000" face="Verdana" size="2">F&nbsp; 233.70&nbsp; 512</font></p>
+<p ><font color="#000000" face="Verdana" size="2">And this is what you entered </font> </p>
+<p ><font color="#000000" face="Verdana" size="2">A&nbsp; 100.000000&nbsp; 354 </font> </p>
+<p ><font color="#000000" face="Verdana" size="2">C&nbsp; 256.500000&nbsp; 682 </font> </p>
+<p ><font color="#000000" face="Verdana" size="2">F&nbsp; 233.700000&nbsp; 512 </font> </p>
+<p ><font color="#000000" face="Verdana" size="2">This program demonstrates two fundamental aspects of 
+structures: </font> </p>
+	<ol>
+		<li><font color="#000000" face="Verdana" size="2">declaration of a structure. </font></li>
+		<li><font color="#000000" face="Verdana" size="2">accessing of structure elements. </font></li>
+	</ol>
+<p style="margin-left: 3.0pt">&nbsp;</p>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="index.shtml">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="struct2.shtml">Next</a></td>
+  </tr>
+</table>
+
+<!--Footer  --> 	
+
+		</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+

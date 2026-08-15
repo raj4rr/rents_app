@@ -1,0 +1,128 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>Data Contract Generics,Collections</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="Data Contract Generics,Collections" >
+<meta name="keywords" CONTENT="Data Contract Generics,Collections">
+
+<!--Header start-->
+
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>WCF</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a><img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+			<a href="/wcf">WCF with C# </a>
+              <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/wcf/01/tutorial/basic/">WCF Tutorials</a></div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/wcf/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	  
+
+<!-- Header End-->
+<div class="heading">Data Contract Generics</div>
+
+  <table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="Delegates%20and%20Data%20Contracts.shtml" title="Delegates and Data Contracts
+">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="Data%20Sets%20and%20Tables%20.shtml" title="Data Sets and Tables">Next</a></td>
+  </tr>
+</table>
+
+<p>Generics are specific to .NET, and using them would avoid the 
+service-oriented nature of WCF and use bounded generic types in your data 
+contracts, as long as you specify the type parameters in the service contract 
+and as long as the specified type parameters have valid data contracts.We 
+cannot define WCF contracts that rely on generic type parameters. </p>
+<h3>Using bounded generic types Example</h3>
+<div class="code">
+<pre>
+<font color="#000000">[DataContract]</font>
+<font color="#0000ff">class </font><font color="#000000">MyClass&lt;T&gt;</font>
+<font color="#000000">{</font>
+<font color="#000000">[DataMember]</font>
+<font color="#0000ff">public </font><font color="#000000">T m_MyMember;</font>
+<font color="#000000">}</font>
+<font color="#000000">[ServiceContract]</font>
+<font color="#0000ff">interface </font><font color="#000000">IMyContract</font>
+<font color="#000000">{</font>
+<font color="#000000">[OperationContract]</font>
+<font color="#0000ff">void </font><font color="#000000">MyMethod(MyClass&lt;</font><font color="#0000ff">int</font><font color="#000000">&gt; obj);</font>
+<font color="#000000">}</font>
+</pre>
+</div>
+
+<div class="heading">Collections</div>
+<p>A collection is any type that supports the
+
+<font class="point_out">IEnumerable</font> or 
+<font class="point_out">IEnumerable&lt;T&gt;</font> interfaces. All of the built-in collections in .NET, such as 
+the array, the list, and the stack support these interfaces.</p>
+<p>A data contract can include a collection as a data member, or a service 
+contract can define operations that interact with a collection directly. Because 
+.NET collections are .NET-specific, WCF cannot expose them in the service 
+metadata, yet because they are so useful, WCF offers dedicated marshaling rules 
+for collections.</p>
+<h3>Example:</h3>
+<div class="code">
+<pre>
+<font color="#000000">ServiceContract]</font>
+<font color="#0000ff">interface </font><font color="#000000">IContactManager</font>
+<font color="#000000">{</font>
+   <font color="#000000">[OperationContract]</font>
+   <font color="#000000">IEnumerable&lt;Contact&gt; GetContacts( );</font>
+   <font color="#000000">...</font>
+<font color="#000000">}</font>
+<font color="#0000ff">class </font><font color="#000000">ContactManager : IContactManager</font>
+<font color="#000000">{</font>
+   <font color="#808000">List</font><font color="#000000">&lt;Contact&gt; m_Contacts = </font><font color="#0000ff">new </font><font color="#808000">List</font><font color="#000000">&lt;Contact&gt;( );</font>
+   <font color="#0000ff">public </font><font color="#000000">IEnumerable&lt;Contact&gt; GetContacts( )</font>
+   <font color="#000000">{</font>
+      <font color="#0000ff">return </font><font color="#000000">m_Contacts;</font>
+   <font color="#000000">}</font>
+   <font color="#000000">...</font>
+<font color="#000000">}</font>
+</pre>
+</div>
+
+ <table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="Delegates%20and%20Data%20Contracts.shtml" title="Delegates and Data Contracts">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="Data%20Sets%20and%20Tables%20.shtml" title="Data Sets and Tables">Next</a></td>
+  </tr>
+</table>
+
+<!--Footer  -->
+</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/dotnet/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>

@@ -1,0 +1,110 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>How to Access IP Address of LAN Connected Computers</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="How to Access IP Address of LAN Connected Computers" >
+<meta name="keywords" CONTENT="How to Access IP Address of LAN Connected Computers">
+
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+     <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>C# Tutorial</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a><img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/c1/">C#</a>
+
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/c1/commonfiles/leftmenu.shtml'); ?></td>
+
+                       <td style="80%" valign="top">
+                        <div class="main_content"> 
+
+	<!-- Header End-->
+
+	<div class="heading">Access IP Address of LAN Connected Computers</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="Graphics.shtml" title="GDI(Graphics Design Interface)">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="ipaddress.shtml" title="IP Address of Websites in C# application">Next</a></td>
+  </tr>
+</table>
+
+<p>In C# with the help of Namespace <font class="point_out">System.Net.Sockets and System.Net</font> we can build an application through which we can find ID
+ address of the machine connected with LAN.</p>
+ <p>Program code is given below</i>
+ <ul><li><i>System.Net.IPHostEntry -</i> Provides a container class for internet host address information .</li>
+<li><i>Dns.Resolve("strhostname")-</i> Resolve a DNS hostname or IP Address to an System.Net.IPHostEntry instance.</li>
+<li><i>Console.ReadKey()- </i>Obtains the next character or function key pressed by the user. The pressed key is optimally 
+ displayed in the console window.</li></ul>
+
+ <div class="code">
+<pre>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Net</font><font color="#000000">;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Net</font><font color="#000000">.</font><font color="#008080">Sockets</font><font color="#000000">;</font>
+<font color="#0000ff">class </font><font color="#000000">GTest{</font>
+<font color="#0000ff">public static void </font><font color="#000000">Main()</font>
+<font color="#000000">{</font>
+<font color="#0000ff">string </font><font color="#000000">strHost;</font>
+<font color="#808000">Console</font><font color="#000000">.Write(</font><font color="#ff00ff">&quot;Input host : &quot;</font><font color="#000000">); </font>
+<font color="#000000">strHost = </font><font color="#808000">Console</font><font color="#000000">.ReadLine();</font>
+<font color="#808000">IPHostEntry </font><font color="#000000">IPHost = </font><font color="#808000">Dns</font><font color="#000000">.Resolve(strHost); </font>
+<font color="#808000">Console</font><font color="#000000">.WriteLine(IPHost.HostName); </font>
+<font color="#808000">IPAddress</font><font color="#000000">[] address = IPHost.AddressList; </font>
+<font color="#808000">Console</font><font color="#000000">.WriteLine(</font><font color="#ff00ff">&quot;List IP {0} :&quot;</font><font color="#000000">, IPHost.HostName);</font>
+<font color="#0000ff">for </font><font color="#000000">(</font><font color="#0000ff">int </font><font color="#000000">i = </font><font color="#800080">0</font><font color="#000000">; i &lt; address.Length; i++) </font>
+<font color="#008000">// output list of IP address</font>
+<font color="#808000">Console</font><font color="#000000">.WriteLine(address[i]);</font>
+<font color="#808000">Console</font><font color="#000000">.ReadKey();</font>
+<font color="#000000">}</font>
+<font color="#000000">}</font>
+</pre>
+</div>
+
+<div class="image">
+<img src="ipaddress.PNG">
+</div>
+<i>IP Address of Machine-02</i>
+<div class="image">
+<img src="ipaddress1.PNG">
+</div>
+<i>IP Address of Machine-01</i>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="Graphics.shtml" title="GDI(Graphics Design Interface)">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="ipaddress.shtml" title="IP Address of Websites in C# application">Next</a></td>
+  </tr>
+</table>
+
+ <!--Footer-->
+   </div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/dotnet/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+     <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>

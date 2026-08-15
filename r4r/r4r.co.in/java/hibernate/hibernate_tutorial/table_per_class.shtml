@@ -1,0 +1,116 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<HTML><HEAD><TITLE>Hibernate Table Per Class</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv="content-type" content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="Hibernate Table Per Class Tutorial Learn what is table Per Class In Hibernate How It work
+with R4R tutorial mapping, collection mapping, component mapping, HQL(Hibenate Query Language), HCQL, Named Query, Caching" >
+<meta name="keywords" CONTENT="Hibernate Table Per Class Hierarchy, Table Per Sub Class, Table Per Class Hierarchy, Hibernate, Tutorial, beginners, Fresher, Basics, How to work with collection in hibernate, Collection In Hibernate,
+ inheritance mapping, collection mapping, component mapping, HQL, HCQL, Named Query, Caching">
+
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<META http-equiv="Content-Language" content="en-us">
+<link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+<link href="/css/main.css" rel="stylesheet" type="text/css" />
+</HEAD>
+<BODY>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>Hibernate</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+            <img src="/images/left_menu_bullet.gif"/> <a href="/java/hibernate/">Hibernate</a>
+             </div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top">
+                            <?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/hibernate/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                       <div class="main_content">  	 
+
+      <div class="heading">Table Per Class</div>
+
+      <table id="indexing">
+
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="table_per_sub_class.shtml" title="Table Per Subclasses">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="has_a_mapping.shtml" title="Has-A Mapping">Next</a></td>
+  </tr> 
+</table>
+      <p>In the Joined Subclass (or Table Per Subclass) strategy, each class in the hierarchy is mapped to its own table. The tables for subclasses contain only the specific columns for that subclass, plus a foreign key referencing the primary key of the superclass's table.</p>
+      
+      <h3>Modern JPA Approach: JOINED Strategy</h3>
+      <p>Using JPA annotations, we use <code>@Inheritance(strategy = InheritanceType.JOINED)</code> on the base class. In the subclasses, we can use <code>@PrimaryKeyJoinColumn</code> if we want to customize the name of the joining foreign key column.</p>
+      
+      <div class="code">
+<pre><code>
+import javax.persistence.*;
+
+@Entity
+@Table(name = "PAYMENT")
+@Inheritance(strategy = InheritanceType.JOINED)
+public abstract class Payment {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "PAYMENT_ID")
+    private Long id;
+
+    @Column(name = "AMOUNT")
+    private double amount;
+
+    // Getters and setters...
+}
+
+@Entity
+@Table(name = "CREDIT_PAYMENT")
+@PrimaryKeyJoinColumn(name = "PAYMENT_ID")
+public class CreditCardPayment extends Payment {
+
+    @Column(name = "CCTYPE")
+    private String creditCardType;
+
+    // Getters and setters...
+}
+
+@Entity
+@Table(name = "CASH_PAYMENT")
+@PrimaryKeyJoinColumn(name = "PAYMENT_ID")
+public class CashPayment extends Payment {
+    // Specific fields for cash payment...
+}
+</code></pre>
+      </div>
+      <p>This strategy is very clean relationally (it satisfies Third Normal Form), but it can be less performant than Single Table inheritance because retrieving a subclass requires a SQL <code>JOIN</code> between the superclass table and the subclass table.</p>
+      <table id="indexing">
+
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="table_per_sub_class.shtml" title="Table Per Subclasses">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="has_a_mapping.shtml" title="Has-A Mapping">Next</a></td>
+  </tr> 
+</table>             
+
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+
+                <?php @include($_SERVER['DOCUMENT_ROOT'] . '/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>

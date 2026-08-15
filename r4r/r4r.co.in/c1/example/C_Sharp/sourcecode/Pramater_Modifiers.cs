@@ -1,0 +1,31 @@
+/*Pramater Modifiers:-
+params:-To pass any number of parameter
+*/
+using System;
+public class MyClass 
+{
+
+   public static void a(params int[] list) 
+   {
+      for ( int i = 0 ; i < list.Length ; i++ )
+         Console.WriteLine(list[i]);
+     
+   }
+
+   public static void b(params object[] list) 
+   {
+      for ( int i = 0 ; i < list.Length ; i++ )
+         Console.WriteLine(list[i]);
+      Console.WriteLine();
+   }
+ 
+
+   public static void Main() 
+   {
+     a(1, 2,888,99, 3,44,55,66);
+     b(1, 'a', "test"); 
+     int[] myarray = new int[3] {10,11,12};
+     a(myarray);
+    
+   }
+}

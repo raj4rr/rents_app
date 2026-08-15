@@ -1,0 +1,131 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>Way Of Structure Element Accessing and  Storing </TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="Learn Way Of Structure Element Accessing and  Storing in C Language with examples" >
+<meta name="keywords" CONTENT="c tutorial,c basics,programming language,examples,pointer,function,loop,else,if else,while,array,pre processor,post processor,structures,memory menagement,string,constants,variables,decisions making,c unions,c memory allocation, c operators, C pointers,c error handling, c file handling">
+   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>C Programming language</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a><img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/c/">C </a>
+              <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/c/c_topics/c_array_basics">C Array Basics</a></div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/c/commonfiles/leftmenu.shtml'); ?></td>
+
+                       <td style="80%" valign="top">
+                        <div class="main_content"> 	
+
+                        		<!-- Header End-->	
+
+<div class="heading">ACCESSING STRUCTURE ELEMENTS</div> 
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="struct2.shtml">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="struct4.shtml">Next</a></td>
+  </tr>
+</table>
+
+<p ><font face="Verdana" size="2"><b>&nbsp;</b></font></p>
+<p ><font color="#000000" face="Verdana" size="2">Having declared the structure type and the structure 
+variables, let us see how the elements of the structure can be accessed. In 
+arrays we can access individual elements of an array using a subscript. 
+Structures use a different scheme. They use a dot (.) operator. So to refer to&nbsp; 
+pages of the structure defined in our sample program we have to use, </font> </p>
+<p ><font color="#000000" face="Verdana" size="2">b1.pages </font> </p>
+<p ><font color="#000000" face="Verdana" size="2">Similarly, to refer to price we would use,
+</font> </p>
+<p ><font color="#000000" face="Verdana" size="2">b1.price </font> </p>
+<p ><font color="#000000" face="Verdana" size="2">Note that before the dot there must always be a structure 
+variable and after the dot there must always be a structure element. <b>&nbsp;</b></font></p>
+<p ><font face="Verdana"><b><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</font>
+<font color="#3399FF" size="2"><u>HOW STRUCTURE ELEMENTS ARE STORED</u></font></b></font></p>
+<p ><font color="#000000" face="Verdana" size="2">Whatever be the elements of a structure, they are always 
+stored in contiguous memory locations. The following program would illustrate 
+this: </font>
+ </p>
+	<table border="1" width="56%">
+		<tr>
+			<td><font face="Verdana" size="2">
+<FONT COLOR="#008000">/* Memory map of structure elements */ </FONT>
+<br>
+<FONT COLOR="#000000">main( ) </FONT>
+<br>
+<FONT COLOR="#000000">{ </FONT>
+<br>
+<FONT COLOR="#0000ff">struct </FONT><FONT COLOR="#000000">book </FONT>
+<br>
+<FONT COLOR="#000000">{&nbsp;  </FONT>
+<br>
+<FONT COLOR="#0000ff">char&nbsp;  </FONT><FONT COLOR="#000000">name ; </FONT>
+<br>
+<FONT COLOR="#0000ff">float&nbsp;  </FONT><FONT COLOR="#000000">price ; </FONT>
+<br>
+<FONT COLOR="#0000ff">int&nbsp;  </FONT><FONT COLOR="#000000">pages ; </FONT>
+<br>
+<FONT COLOR="#000000">} ; </FONT>
+<br>
+<FONT COLOR="#0000ff">struct </FONT><FONT COLOR="#000000">book&nbsp; b1 = { </FONT><FONT COLOR="#ff00ff">'B'</FONT><FONT COLOR="#000000">, </FONT><FONT COLOR="#800080">130</FONT><FONT COLOR="#000000">.</FONT><FONT COLOR="#800080">00</FONT><FONT COLOR="#000000">, </FONT><FONT COLOR="#800080">550 </FONT><FONT COLOR="#000000">} ; </FONT>
+
+<br>
+<br>
+
+<FONT COLOR="#000000">printf ( </FONT><FONT COLOR="#ff00ff">"\nAddress of name = %u"</FONT><FONT COLOR="#000000">, &amp;b1.name ) ;</FONT><br>
+<FONT COLOR="#000000">printf ( </FONT><FONT COLOR="#ff00ff">"\nAddress of price = %u"</FONT><FONT COLOR="#000000">, &amp;b1.price ) ; </FONT>
+<br>
+<FONT COLOR="#000000">printf ( </FONT><FONT COLOR="#ff00ff">"\nAddress of pages = %u"</FONT><FONT COLOR="#000000">, &amp;b1.pages ) ; </FONT>
+<br>
+			<font color="#000000">};</font></font></td>
+		</tr>
+	</table>
+	<p >
+<font face="Verdana" size="2">
+<br>
+	<font color="#000000"><b>Output: </b>Here is the output of the program...
+	</font>
+ </font>
+ </p>
+<p ><font color="#000000" face="Verdana" size="2">Address of name = 65518 </font> </p>
+<p ><font color="#000000" face="Verdana" size="2">Address of price = 65519 </font> </p>
+<p ><font face="Verdana" color="#000000" size="2">Address of pages = 65523 <br>
+<br>
+&nbsp;</font></p>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="struct2.shtml">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="struct4.shtml">Next</a></td>
+  </tr>
+</table>
+
+<!--Footer  --> 	
+
+		</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>

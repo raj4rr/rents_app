@@ -1,0 +1,22 @@
+/*
+C# data Type:-
+-----------------
+	1)Value Type
+		=>Allocate memory in Stack
+		=>Faster
+		Normal Data type-int/byte/short/long/char/float
+		Structure/Enum 
+		
+	2)Reference Type
+		=>Allocate memory in Heap
+		=>Slower
+	
+		OBJECT/Class / Interface / Array / Delegates	
+
+	Types Casting(VALUE TO VALUE):- int - byte
+			 BYTE - INT 
+	BOXING:- VALUE TYPE TO REFERENCE TYPE
+		INT-OBJECT
+	UNBOXING :- REFERENCE TYPE TO VALUE TYPE
+		OBJECT - INT
+=>Boxing is an implicit conversion of a value type to reference type.*/

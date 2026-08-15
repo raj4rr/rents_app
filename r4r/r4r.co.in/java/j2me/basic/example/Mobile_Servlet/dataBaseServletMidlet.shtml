@@ -1,0 +1,357 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD>
+<meta http-equiv="Content-Language" content="en-us">
+<TITLE>Create an application for access database through servlet</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name="description" CONTENT="AWT Examples,AWT Tutorials,AWT Tutorials for Begginers" >
+<meta name="keywords" CONTENT="AWT Examples,AWT Tutorials,AWT Tutorials for Begginers">
+
+<!-- header start-->	
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>Java Programing laungage</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+            <img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+            <a href="/java/">Java</a>
+              <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/java/j2me/">J2ME</a>
+
+                     <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/java/j2me/basic/example/Mobile_Servlet/">J2ME and Servlet Basic Example</a>
+              </div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/j2me/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	 
+	<!-- header End--> 
+
+<div class="heading">Create an application for access database through servlet</div>
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="goGetdoPostMidlet.shtml" title="access database through servlet">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="communicateMidlet.shtml" title="communicateMidlet">Next</a></td>
+  </tr> 
+</table>
+<h2>Introduction</h2>
+<p>In program, a Http request is made form Midlet to Java Servlet which run on Web Server ( Apache Tomcat ) through HTTP POST method to access doPost method of servlet in Midlet. In which a string is passing to servlet through Midlet class and store into database form servlet, and database response display in Midlet client class.</p>
+<h3>Midlet Program</h3>
+<div class="code">
+<pre>
+<font face="Arial">
+<font color="#008000">/*</font>
+<font color="#008000"> * Save as a dataBaseSevletMidlet.java</font>
+<font color="#008000"> */</font>
+<font color="#0000ff">package </font><font color="#000000">r4r.Mobile.Application;</font>
+
+<font color="#0000ff">import </font><font color="#000000">java.io.*;</font>
+<font color="#0000ff">import </font><font color="#000000">javax.microedition.io.*;</font>
+<font color="#0000ff">import </font><font color="#000000">javax.microedition.lcdui.*;</font>
+<font color="#0000ff">import </font><font color="#000000">javax.microedition.midlet.*;</font>
+
+<font color="#008000">/**</font>
+<font color="#008000"> * @author R4R</font>
+<font color="#008000"> */</font>
+<font color="#0000ff">public class </font><font color="#000000">dataBaseSevletMidlet </font><font color="#0000ff">extends </font><font color="#000000">MIDlet </font><font color="#0000ff">implements </font><font color="#000000">CommandListener {</font>
+
+    <font color="#0000ff">final </font><font color="#000000">Command SUBMIT = </font><font color="#0000ff">new </font><font color="#000000">Command(</font><font color="#ff00ff">&quot;Store&quot;</font><font color="#000000">, Command.OK, </font><font color="#800080">1</font><font color="#000000">);</font>
+    <font color="#0000ff">final </font><font color="#000000">Command EXIT = </font><font color="#0000ff">new </font><font color="#000000">Command(</font><font color="#ff00ff">&quot;Exit&quot;</font><font color="#000000">, Command.EXIT, </font><font color="#800080">2</font><font color="#000000">);</font>
+    <font color="#0000ff">private </font><font color="#000000">Form form;</font>
+    <font color="#0000ff">private </font><font color="#ff0000">TextField </font><font color="#000000">T_user, T_pass, T_balance;</font>
+
+    <font color="#0000ff">public </font><font color="#000000">dataBaseSevletMidlet() {</font>
+        <font color="#008000">// declaration field with initialization</font>
+        <font color="#000000">form = </font><font color="#0000ff">new </font><font color="#000000">Form(</font><font color="#ff00ff">&quot;DataBase Connection&quot;</font><font color="#000000">);</font>
+        <font color="#000000">T_user = </font><font color="#0000ff">new </font><font color="#ff0000">TextField</font><font color="#000000">(</font><font color="#ff00ff">&quot;Username&quot;</font><font color="#000000">, </font><font color="#ff00ff">&quot;&quot;</font><font color="#000000">, </font><font color="#800080">10</font><font color="#000000">, </font><font color="#ff0000">TextField</font><font color="#000000">.PLAIN);</font>
+        <font color="#000000">T_pass = </font><font color="#0000ff">new </font><font color="#ff0000">TextField</font><font color="#000000">(</font><font color="#ff00ff">&quot;Password&quot;</font><font color="#000000">, </font><font color="#ff00ff">&quot;&quot;</font><font color="#000000">, </font><font color="#800080">10</font><font color="#000000">, </font><font color="#ff0000">TextField</font><font color="#000000">.PLAIN);</font>
+        <font color="#000000">T_balance = </font><font color="#0000ff">new </font><font color="#ff0000">TextField</font><font color="#000000">(</font><font color="#ff00ff">&quot;Balance $&quot;</font><font color="#000000">, </font><font color="#ff00ff">&quot;&quot;</font><font color="#000000">, </font><font color="#800080">12</font><font color="#000000">, </font><font color="#ff0000">TextField</font><font color="#000000">.NUMERIC);</font>
+        <font color="#000000">form.append(T_user);</font>
+        <font color="#000000">form.append(T_pass);</font>
+        <font color="#000000">form.append(T_balance);</font>
+        <font color="#000000">form.addCommand(SUBMIT);</font>
+        <font color="#000000">form.addCommand(EXIT);</font>
+        <font color="#000000">form.setCommandListener(</font><font color="#0000ff">this</font><font color="#000000">);</font>
+    <font color="#000000">}</font>
+
+    <font color="#0000ff">public void </font><font color="#000000">startApp() {</font>
+        <font color="#000000">Display.getDisplay(</font><font color="#0000ff">this</font><font color="#000000">).setCurrent(form);</font>
+    <font color="#000000">}</font>
+
+    <font color="#0000ff">public void </font><font color="#000000">pauseApp() {</font>
+    <font color="#000000">}</font>
+
+    <font color="#0000ff">public void </font><font color="#000000">destroyApp(</font><font color="#0000ff">boolean </font><font color="#000000">unconditional) {</font>
+        <font color="#000000">notifyDestroyed();</font>
+    <font color="#000000">}</font>
+
+    <font color="#0000ff">public void </font><font color="#000000">commandAction(Command c, Displayable d) {</font>
+        <font color="#0000ff">if </font><font color="#000000">(c == EXIT) {</font>
+            <font color="#000000">destroyApp(</font><font color="#0000ff">true</font><font color="#000000">);</font>
+        <font color="#000000">} </font><font color="#0000ff">else if </font><font color="#000000">(c == SUBMIT) {</font>
+            <font color="#008000">// Store value form TextField to String </font>
+            <font color="#ff0000">String </font><font color="#000000">user = T_user.getString().trim();</font>
+            <font color="#ff0000">String </font><font color="#000000">pass = T_pass.getString().trim();</font>
+            <font color="#ff0000">String </font><font color="#000000">balance = T_balance.getString().trim();</font>
+            <font color="#008000">// User can't allow to leave any TextField blank</font>
+            <font color="#0000ff">if </font><font color="#000000">(!user.equals(</font><font color="#ff00ff">&quot;&quot;</font><font color="#000000">) &amp;&amp; !pass.equals(</font><font color="#ff00ff">&quot;&quot;</font><font color="#000000">) &amp;&amp; !balance.equals(</font><font color="#ff00ff">&quot;&quot;</font><font color="#000000">)) {</font>
+                <font color="#008000">// initialize new Class</font>
+                <font color="#000000">DataServletClient client = </font><font color="#0000ff">new </font><font color="#000000">DataServletClient(</font><font color="#0000ff">this</font><font color="#000000">, user, pass, balance);</font>
+                <font color="#000000">client.start();</font>
+            <font color="#000000">} </font><font color="#0000ff">else </font><font color="#000000">{</font>
+                <font color="#000000">Alert alert = </font><font color="#0000ff">new </font><font color="#000000">Alert(</font><font color="#ff00ff">&quot;Blank Field Error&quot;</font><font color="#000000">, </font>
+					<font color="#ff00ff">&quot;Please Don't leave any Block empty!&quot;</font><font color="#000000">, </font><font color="#0000ff">null</font><font color="#000000">, AlertType.ALARM);</font>
+                <font color="#000000">alert.setTimeout(</font><font color="#800080">1000</font><font color="#000000">);</font>
+                <font color="#000000">Display.getDisplay(</font><font color="#0000ff">this</font><font color="#000000">).setCurrent(alert, d);</font>
+            <font color="#000000">}</font>
+        <font color="#000000">}</font>
+    <font color="#000000">}</font>
+<font color="#000000">}</font>
+
+<font color="#008000">/*</font>
+<font color="#008000"> * --------------------------------------------------</font>
+<font color="#008000"> * Class DataServletClient handle Client side request </font>
+<font color="#008000"> * or Receive server response.</font>
+<font color="#008000"> * --------------------------------------------------</font>
+<font color="#008000"> */</font>
+<font color="#0000ff">class </font><font color="#000000">DataServletClient </font><font color="#0000ff">implements </font><font color="#ff0000">Runnable</font><font color="#000000">, CommandListener {</font>
+
+    <font color="#008000">//client can invoke servlet through SERVLET_URL </font>
+    <font color="#0000ff">final </font><font color="#ff0000">String </font><font color="#000000">SERVLET_URL = </font><font color="#ff00ff">&quot;http://localhost:8084/MobileServlet/dataBaseServlet&quot;</font><font color="#000000">;</font>
+    <font color="#0000ff">final </font><font color="#000000">Command EXIT = </font><font color="#0000ff">new </font><font color="#000000">Command(</font><font color="#ff00ff">&quot;Exit&quot;</font><font color="#000000">, Command.EXIT, </font><font color="#800080">1</font><font color="#000000">);</font>
+    <font color="#0000ff">private </font><font color="#000000">dataBaseSevletMidlet parent;</font>
+    <font color="#0000ff">private </font><font color="#000000">Display display;</font>
+    <font color="#0000ff">private </font><font color="#ff0000">String </font><font color="#000000">user, pass, balance;</font>
+    <font color="#0000ff">private </font><font color="#000000">TextBox tb = </font><font color="#0000ff">null</font><font color="#000000">;</font>
+    <font color="#0000ff">private </font><font color="#000000">HttpConnection hc = </font><font color="#0000ff">null</font><font color="#000000">;</font>
+    <font color="#0000ff">private </font><font color="#ff0000">InputStream </font><font color="#000000">is = </font><font color="#0000ff">null</font><font color="#000000">;</font>
+    <font color="#0000ff">private </font><font color="#ff0000">OutputStream </font><font color="#000000">os = </font><font color="#0000ff">null</font><font color="#000000">;</font>
+    <font color="#ff0000">StringBuffer </font><font color="#000000">sb = </font><font color="#0000ff">new </font><font color="#ff0000">StringBuffer</font><font color="#000000">();</font>
+
+    <font color="#000000">DataServletClient(dataBaseSevletMidlet aThis, </font><font color="#ff0000">String </font><font color="#000000">user, </font><font color="#ff0000">String </font><font color="#000000">pass, </font><font color="#ff0000">String </font><font color="#000000">balance) {</font>
+        <font color="#0000ff">this</font><font color="#000000">.parent = aThis;   </font><font color="#008000">// set field</font>
+        <font color="#0000ff">this</font><font color="#000000">.user = user;</font>
+        <font color="#0000ff">this</font><font color="#000000">.pass = pass;</font>
+        <font color="#0000ff">this</font><font color="#000000">.balance = balance;</font>
+
+        <font color="#008000">// declaration field with initialization</font>
+        <font color="#000000">display = Display.getDisplay(aThis);</font>
+        <font color="#000000">tb = </font><font color="#0000ff">new </font><font color="#000000">TextBox(</font><font color="#ff00ff">&quot;Client Site Response..&quot;</font><font color="#000000">, </font><font color="#0000ff">null</font><font color="#000000">, </font><font color="#800080">1024</font><font color="#000000">, </font><font color="#800080">0</font><font color="#000000">);</font>
+        <font color="#000000">tb.addCommand(EXIT);</font>
+        <font color="#000000">tb.setCommandListener(</font><font color="#0000ff">this</font><font color="#000000">);</font>
+        <font color="#000000">display.setCurrent(tb);</font>
+    <font color="#000000">}</font>
+
+    <font color="#0000ff">void </font><font color="#000000">start() {</font>
+        <font color="#008000">// invoke new thread and begin in execution</font>
+        <font color="#0000ff">new </font><font color="#ff0000">Thread</font><font color="#000000">(</font><font color="#0000ff">this</font><font color="#000000">).start();</font>
+    <font color="#000000">}</font>
+
+    <font color="#0000ff">public void </font><font color="#000000">run() {</font>
+        <font color="#0000ff">try </font><font color="#000000">{</font>
+            <font color="#008000">// Open HTTP connection</font>
+            <font color="#000000">hc = (HttpConnection) Connector.open(SERVLET_URL);</font>
+            <font color="#008000">// client access servlet POST method </font>
+            <font color="#000000">hc.setRequestMethod(HttpConnection.POST);</font>
+            <font color="#000000">hc.setRequestProperty(</font><font color="#ff00ff">&quot;User-Agent&quot;</font><font color="#000000">, </font><font color="#ff00ff">&quot;Profile/MIDP-2.0 Configuration/CLDC-1.0&quot;</font><font color="#000000">);</font>
+            <font color="#000000">hc.setRequestProperty(</font><font color="#ff00ff">&quot;CONTENT-TYPE&quot;</font><font color="#000000">, </font><font color="#ff00ff">&quot;application/x-www-form-encoded&quot;</font><font color="#000000">);</font>
+
+            <font color="#008000">//Open DataOutputStream and write data into Stream(in byte form)</font>
+            <font color="#ff0000">String </font><font color="#000000">data = user + </font><font color="#ff00ff">&quot;?&quot; </font><font color="#000000">+ pass + </font><font color="#ff00ff">&quot;?&quot; </font><font color="#000000">+ balance + </font><font color="#ff00ff">&quot;?&quot;</font><font color="#000000">;</font>
+            <font color="#000000">os = hc.openDataOutputStream();</font>
+            <font color="#000000">os.write((data).getBytes());</font>
+            <font color="#000000">os.flush();</font>
+
+            <font color="#008000">//Open dataInputStream for connection.</font>
+            <font color="#000000">is = hc.openDataInputStream();</font>
+            <font color="#0000ff">int </font><font color="#000000">ch;</font>
+            <font color="#008000">//Read the data form DataInputStream</font>
+            <font color="#0000ff">while </font><font color="#000000">((ch = is.read()) != -</font><font color="#800080">1</font><font color="#000000">) {</font>
+                <font color="#000000">sb.append((</font><font color="#0000ff">char</font><font color="#000000">) ch);          </font><font color="#008000">//Convert Byte into character</font>
+                <font color="#ff0000">System</font><font color="#000000">.out.println((</font><font color="#0000ff">char</font><font color="#000000">) ch); </font><font color="#008000">// Display data on console</font>
+            <font color="#000000">}</font>
+            <font color="#000000">tb.setString(sb.toString());       </font><font color="#008000">// data append to textBox</font>
+        <font color="#000000">} </font><font color="#0000ff">catch </font><font color="#000000">(</font><font color="#ff0000">IOException </font><font color="#000000">ex) {</font>
+            <font color="#000000">Alert a = </font><font color="#0000ff">new </font><font color="#000000">Alert(</font><font color="#ff00ff">&quot;Server Error!&quot;</font><font color="#000000">, </font><font color="#ff00ff">&quot;Cannot connect to server.</font>
+<font color="#000000">Ping the server to make sure it</font><font color="#ff00ff">'s in running state....&quot;,</font>
+				      <font color="#0000ff">null</font><font color="#000000">, AlertType.ERROR);</font>
+            <font color="#000000">a.setTimeout(Alert.FOREVER);</font>
+            <font color="#000000">display.setCurrent(a);</font>
+        <font color="#000000">} </font><font color="#0000ff">finally </font><font color="#000000">{</font>
+            <font color="#008000">//Close all the Stream and Connection</font>
+            <font color="#0000ff">try </font><font color="#000000">{</font>
+                <font color="#0000ff">if </font><font color="#000000">(os != </font><font color="#0000ff">null</font><font color="#000000">) {</font>
+                    <font color="#000000">os.close();</font>
+                <font color="#000000">}</font>
+                <font color="#0000ff">if </font><font color="#000000">(is != </font><font color="#0000ff">null</font><font color="#000000">) {</font>
+                    <font color="#000000">is.close();</font>
+                <font color="#000000">}</font>
+                <font color="#0000ff">if </font><font color="#000000">(hc != </font><font color="#0000ff">null</font><font color="#000000">) {</font>
+                    <font color="#000000">hc.close();</font>
+                <font color="#000000">}</font>
+            <font color="#000000">} </font><font color="#0000ff">catch </font><font color="#000000">(</font><font color="#ff0000">IOException </font><font color="#000000">e) {</font>
+            <font color="#000000">}</font>
+        <font color="#000000">}</font>
+    <font color="#000000">}</font>
+
+    <font color="#0000ff">public void </font><font color="#000000">commandAction(Command c, Displayable d) {</font>
+        <font color="#0000ff">if </font><font color="#000000">(c == EXIT || c == Alert.DISMISS_COMMAND) {</font>
+            <font color="#000000">parent.destroyApp(</font><font color="#0000ff">true</font><font color="#000000">);        </font><font color="#008000">//terminate application</font>
+        <font color="#000000">}</font>
+    <font color="#000000">}</font>
+<font color="#000000">}</font>
+</font>
+</pre>
+</div>
+<h3>Servlet Program</h3>
+<div class="code">
+<pre>
+<font face="Arial">
+<font color="#008000">/*</font>
+<font color="#008000"> * Save as a dataBaseServlet.java</font>
+<font color="#008000"> */</font>
+<font color="#0000ff">package </font><font color="#000000">r4r.MobileServlet;</font>
+
+<font color="#0000ff">import </font><font color="#000000">java.io.*;</font>
+<font color="#0000ff">import </font><font color="#000000">java.sql.*;</font>
+<font color="#0000ff">import </font><font color="#000000">java.util.logging.*;</font>
+<font color="#0000ff">import </font><font color="#000000">javax.servlet.ServletException;</font>
+<font color="#0000ff">import </font><font color="#000000">javax.servlet.http.*;</font>
+
+<font color="#008000">/**</font>
+<font color="#008000"> *</font>
+<font color="#008000"> * @author R4R</font>
+<font color="#008000"> */</font>
+<font color="#0000ff">public class </font><font color="#000000">dataBaseServlet </font><font color="#0000ff">extends </font><font color="#000000">HttpServlet {</font>
+    <font color="#000000">@</font><font color="#0000ff">Override</font>
+ <font color="#0000ff">protected void </font><font color="#000000">doGet(HttpServletRequest request, HttpServletResponse response)</font>
+            <font color="#0000ff">throws </font><font color="#000000">ServletException, </font><font color="#ff0000">IOException </font><font color="#000000">{</font>
+    <font color="#000000">}</font>
+
+    <font color="#000000">@</font><font color="#0000ff">Override</font>
+ <font color="#0000ff">protected void </font><font color="#000000">doPost(HttpServletRequest request, HttpServletResponse response)</font>
+            <font color="#0000ff">throws </font><font color="#000000">ServletException, </font><font color="#ff0000">IOException </font><font color="#000000">{</font>
+
+        <font color="#008000">// Set the response message's MIME type</font>
+        <font color="#000000">response.setContentType(</font><font color="#ff00ff">&quot;text/html&quot;</font><font color="#000000">);</font>
+        <font color="#ff0000">PrintWriter </font><font color="#000000">out = response.getWriter();</font>
+
+        <font color="#008000">// Reads line of text from a character-input stream</font>
+        <font color="#ff0000">BufferedReader </font><font color="#000000">br = request.getReader();</font>
+        <font color="#ff0000">String </font><font color="#000000">s = br.readLine();</font>
+
+        <font color="#008000">// Get a Specific String value from line of text.</font>
+        <font color="#ff0000">String </font><font color="#000000">user = s.substring(</font><font color="#800080">0</font><font color="#000000">, s.indexOf(</font><font color="#ff00ff">&quot;?&quot;</font><font color="#000000">));</font>
+
+        <font color="#0000ff">int </font><font color="#000000">start = s.indexOf(</font><font color="#ff00ff">&quot;?&quot;</font><font color="#000000">) + </font><font color="#800080">1</font><font color="#000000">;</font>
+        <font color="#0000ff">int </font><font color="#000000">end = s.indexOf(</font><font color="#ff00ff">'?'</font><font color="#000000">, start + </font><font color="#800080">1</font><font color="#000000">);</font>
+        <font color="#ff0000">String </font><font color="#000000">pass = s.substring(start, end);</font>
+
+        <font color="#000000">start = s.indexOf(</font><font color="#ff00ff">'?'</font><font color="#000000">, start + </font><font color="#800080">1</font><font color="#000000">);</font>
+        <font color="#000000">end = s.indexOf(</font><font color="#ff00ff">'?'</font><font color="#000000">, start + </font><font color="#800080">1</font><font color="#000000">);</font>
+        <font color="#ff0000">String </font><font color="#000000">balance = s.substring(start + </font><font color="#800080">1</font><font color="#000000">, end);</font>
+
+        <font color="#008000">// initilized a new class</font>
+        <font color="#000000">DataBaseClient client = </font><font color="#0000ff">new </font><font color="#000000">DataBaseClient();</font>
+      <font color="#000000">client.store(user, pass, balance);   </font><font color="#008000">// passing value form class constructor</font>
+
+        <font color="#008000">// send response to the client</font>
+        <font color="#000000">out.println(</font><font color="#ff00ff">&quot;Data sucessfully store into MYSQL DataBase&quot;</font><font color="#000000">);</font>
+        <font color="#000000">out.close();    </font><font color="#008000">// close text-output stream </font>
+    <font color="#000000">}</font>
+<font color="#000000">}</font>
+
+<font color="#008000">/*</font>
+<font color="#008000"> * ----------------------------------------------------------</font>
+<font color="#008000"> * Class DataBaseClient handle store data into MYSQL database</font>
+<font color="#008000"> * ----------------------------------------------------------</font>
+<font color="#008000"> */</font>
+<font color="#0000ff">class </font><font color="#000000">DataBaseClient {</font>
+
+    <font color="#008000">// private Field </font>
+    <font color="#0000ff">private </font><font color="#ff0000">Connection </font><font color="#000000">con = </font><font color="#0000ff">null</font><font color="#000000">;</font>
+    <font color="#0000ff">private </font><font color="#ff0000">String </font><font color="#000000">sql = </font><font color="#ff00ff">&quot;INSERT INTO R4R.MOBILE </font>
+	<font color="#000000">(USERNAME, PASSWORD, BALANCE) VALUES (</font><font color="#ff00ff">'?'</font><font color="#000000">, </font><font color="#ff00ff">'?'</font><font color="#000000">, </font><font color="#ff00ff">'?'</font><font color="#000000">);</font><font color="#ff00ff">&quot;;</font>
+
+    <font color="#0000ff">void </font><font color="#000000">store(</font><font color="#ff0000">String </font><font color="#000000">user, </font><font color="#ff0000">String </font><font color="#000000">pass, </font><font color="#ff0000">String </font><font color="#000000">balance) {</font>
+
+        <font color="#0000ff">try </font><font color="#000000">{</font>
+            <font color="#008000">// open class and load the connection Driver</font>
+           <font color="#ff0000">Class</font><font color="#000000">.forName(</font><font color="#ff00ff">&quot;com.mysql.jdbc.Driver&quot;</font><font color="#000000">);</font>
+            <font color="#008000">// Open MYSQL Database connection </font>
+         <font color="#000000">con = </font><font color="#ff0000">DriverManager</font><font color="#000000">.getConnection(</font><font color="#ff00ff">&quot;jdbc:mysql:///r4r&quot;</font><font color="#000000">, </font><font color="#ff00ff">&quot;root&quot;</font><font color="#000000">, </font><font color="#ff00ff">&quot;sachin&quot;</font><font color="#000000">);</font>
+        <font color="#0000ff">if </font><font color="#000000">(!con.isClosed()) {</font>
+          <font color="#008000">// insert data into database </font>
+           <font color="#ff0000">PreparedStatement </font><font color="#000000">ps = con.prepareStatement(sql);</font>
+            <font color="#000000">ps.setString(</font><font color="#800080">1</font><font color="#000000">, user);</font>
+            <font color="#000000">ps.setString(</font><font color="#800080">2</font><font color="#000000">, pass);</font>
+            <font color="#000000">ps.setString(</font><font color="#800080">3</font><font color="#000000">, balance);</font>
+            <font color="#000000">ps.execute();</font>
+                <font color="#ff0000">System</font><font color="#000000">.out.println(</font><font color="#ff00ff">&quot;Data Sucessfully Store into MYSQL DataBase&quot;</font><font color="#000000">);</font>
+            <font color="#000000">} </font><font color="#0000ff">else </font><font color="#000000">{</font>
+                <font color="#ff0000">System</font><font color="#000000">.out.println(</font><font color="#ff00ff">&quot;Can't open MYSQL DataBase, try Later&quot;</font><font color="#000000">);</font>
+            <font color="#000000">}</font>
+        <font color="#000000">} </font><font color="#0000ff">catch </font><font color="#000000">(</font><font color="#ff0000">Exception </font><font color="#000000">ex) {</font>
+            <font color="#ff0000">Logger</font><font color="#000000">.getLogger(DataBaseClient.</font><font color="#0000ff">class</font><font color="#000000">.getName())</font>
+			<font color="#000000">.log(</font><font color="#ff0000">Level</font><font color="#000000">.SEVERE, </font><font color="#ff00ff">&quot;An Exception occurred due processing request&quot;</font><font color="#000000">, ex);</font>
+        <font color="#000000">} </font><font color="#0000ff">finally </font><font color="#000000">{</font>
+            <font color="#008000">// close Database connection</font>
+            <font color="#0000ff">try </font><font color="#000000">{</font>
+                <font color="#0000ff">if </font><font color="#000000">(con != </font><font color="#0000ff">null</font><font color="#000000">) {</font>
+                   <font color="#000000">con.close();</font>
+                <font color="#000000">}</font>
+            <font color="#000000">} </font><font color="#0000ff">catch </font><font color="#000000">(</font><font color="#ff0000">SQLException </font><font color="#000000">ex) {</font>
+                <font color="#ff0000">Logger</font><font color="#000000">.getLogger(DataBaseClient.</font><font color="#0000ff">class</font><font color="#000000">.getName())</font>
+			<font color="#000000">.log(</font><font color="#ff0000">Level</font><font color="#000000">.SEVERE, </font><font color="#ff00ff">&quot;An Exception occurred due processing request&quot;</font><font color="#000000">, ex);</font>
+            <font color="#000000">}</font>
+        <font color="#000000">}</font>
+    <font color="#000000">}</font>
+<font color="#000000">}</font>
+
+</font>
+</pre>
+</div>
+
+<div class="output"><i>output</i></div>
+<div class="image">
+<img src="servlet pic/database.png">
+<img src="servlet pic/database1.png"></div>
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="goGetdoPostMidlet.shtml" title="access database through servlet">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="communicateMidlet.shtml" title="communicateMidlet">Next</a></td>
+  </tr> 
+</table>
+
+<!-- Footer Start-->	
+
+		</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->

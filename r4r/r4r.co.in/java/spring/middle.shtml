@@ -1,0 +1,97 @@
+<div class="main_content">
+<h3>Introduction to Modern Spring Framework & Spring Boot</h3>
+<p>Spring Framework is the world's most popular Java framework for building enterprise applications. While originally famous for its Inversion of Control (IoC) and Dependency Injection (DI) containers, the modern Spring ecosystem is dominated by <strong>Spring Boot</strong>.</p>
+
+<p>Spring Boot takes an opinionated view of the Spring platform, allowing you to create stand-alone, production-grade Spring-based applications with minimal configuration. It drastically reduces boilerplate code by providing "starters" and auto-configuration, allowing you to focus purely on your business logic.</p>
+
+<div class="content_link">
+	<p><a href="/java/spring/basic/tutorial/spring_boot_3">Spring Boot 3 Basic Tutorials</a></p>
+	<p><a href="basic/tutorial/spring_webflux">Spring WebFlux (Reactive) Tutorials</a></p>
+	<p><a href="basic/example/spring_data_jpa">Spring Data JPA Example</a></p>
+	<p><a href="Spring_Interview_Questions_And_Answers/">Spring FAQS</a></p>
+</div>
+
+<div class="heading">Why use Modern Spring Boot?</div>
+<p>Spring Boot is the industry standard because of three core reasons:</p>
+<ol>
+<li><i>Auto-Configuration:</i> Spring Boot automatically configures your application based on the dependencies you add (e.g., if Tomcat and Spring MVC are on the classpath, it automatically sets up a web application).</li>
+<li><i>Embedded Servers:</i> You no longer need to deploy WAR files to an external Tomcat or WildFly server. Spring Boot embeds Tomcat, Jetty, or Undertow directly, allowing you to run your app with a simple `java -jar` command.</li>
+<li><i>Production Ready:</i> It provides built-in endpoints for metrics, health checks, and externalized configuration via Spring Boot Actuator.</li>
+</ol>
+
+<div class="heading">Release Version History</div>
+<p>The framework has evolved drastically over the past two decades to stay ahead of enterprise Java trends:</p>
+<ul>
+<li><strong>Spring 1.0 - 3.0 (2004 - 2009):</strong> The era of XML-heavy configuration and solving J2EE complexity.</li>
+<li><strong>Spring 4.0 (2013):</strong> Introduced full support for Java 8 and annotation-based configurations.</li>
+<li><strong>Spring Boot 1.0 (2014):</strong> Revolutionized the ecosystem with auto-configuration and embedded servers.</li>
+<li><strong>Spring 5.0 (2017):</strong> Introduced Spring WebFlux for reactive, non-blocking application development.</li>
+<li><strong>Spring 6.0 & Spring Boot 3.0 (2022):</strong> The current modern era. Requires a baseline of Java 17 and Jakarta EE 9+. It introduces native AOT (Ahead-Of-Time) compilation with GraalVM for blazing-fast startup times and minimal memory footprints, perfect for Kubernetes and Serverless environments.</li>
+</ul>
+
+<div class="heading">The Modern Spring Portfolio</div>
+<p>Today, "Spring" refers to a massive ecosystem of projects built on top of the core framework:</p>
+<ol>
+<li><i>Spring Boot:</i> The starting point for all new Spring applications.</li>
+<li><i>Spring Web MVC:</i> The traditional, blocking web framework for building REST APIs and web pages.</li>
+<li><i>Spring WebFlux:</i> A fully reactive, non-blocking web framework built on Project Reactor.</li>
+<li><i>Spring Data:</i> Dramatically simplifies database access (JPA, MongoDB, Redis, Cassandra) by automatically generating repository implementations based on interface method names.</li>
+<li><i>Spring Security:</i> The powerful and highly customizable authentication and access-control framework.</li>
+<li><i>Spring Cloud:</i> Tools for building distributed systems and microservices (Gateway, Service Discovery, Config Server).</li>
+</ol>
+
+<div class="heading">Modern Features & Advantages</div>
+<ol>
+<li><i>Java 17+ & Jakarta EE:</i> Modern Spring leverages records, text blocks, and switch expressions for extremely clean code.</li>
+<li><i>GraalVM Native Images:</i> Spring Boot 3 allows you to compile your Java application into a standalone native executable, starting up in milliseconds instead of seconds.</li>
+<li><i>Zero XML Configuration:</i> Modern Spring applications are 100% configured using Java Annotations. XML configurations are considered legacy.</li>
+<li><i>Testcontainers Integration:</i> Native support for spinning up Docker containers during integration tests for seamless database and message broker testing.</li>
+</ol>
+
+<div class="heading">How to Configure a Modern Spring Bean</div>
+<p>In the past, developers wrote verbose XML files (`<bean id="..."></bean>`). Today, there are two primary ways to configure beans:</p>
+
+<ol>
+<li><i>Stereotype Annotations (Component Scanning):</i> The most common approach. You simply annotate your classes, and Spring Boot automatically discovers them.</li>
+<div class="code">
+<pre>
+<font color="#000000">@</font><font color="#0000ff">Service</font>
+<font color="#0000ff">public class </font><font color="#000000">UserService {</font>
+<font color="#0000ff">    private final </font><font color="#000000">UserRepository repository;</font>
+
+    <font color="#008000">// Constructor Injection (No @Autowired needed in modern Spring)</font>
+<font color="#0000ff">    public </font><font color="#000000">UserService(UserRepository repository) {</font>
+<font color="#0000ff">        this</font><font color="#000000">.repository = repository;</font>
+<font color="#000000">    }</font>
+<font color="#000000">}</font>
+</pre>
+</div>
+
+<li><i>Java Configuration Classes:</i> Useful for configuring third-party libraries where you cannot add `@Component` to their source code.</li>
+<div class="code">
+<pre>
+<font color="#000000">@</font><font color="#0000ff">Configuration</font>
+<font color="#0000ff">public class </font><font color="#000000">SecurityConfig {</font>
+<font color="#000000">    @</font><font color="#0000ff">Bean</font>
+<font color="#0000ff">    public </font><font color="#000000">PasswordEncoder passwordEncoder() {</font>
+<font color="#0000ff">        return new </font><font color="#000000">BCryptPasswordEncoder();</font>
+<font color="#000000">    }</font>
+<font color="#000000">}</font>
+</pre>
+</div>
+</ol>
+
+<div class="heading">The Entry Point: Spring Boot Application</div>
+<p>A modern Spring application requires no web.xml or application-context.xml. A single class bootstraps the entire server and application context:</p>
+<div class="code">
+<pre>
+<font color="#000000">@</font><font color="#0000ff">SpringBootApplication</font>
+<font color="#0000ff">public class </font><font color="#000000">Application {</font>
+<font color="#0000ff">    public static void </font><font color="#000000">main(String[] args) {</font>
+<font color="#000000">        SpringApplication.run(Application.</font><font color="#0000ff">class</font><font color="#000000">, args);</font>
+<font color="#000000">    }</font>
+<font color="#000000">}</font>
+</pre>
+</div>
+
+</div>

@@ -1,0 +1,101 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>getc and putc( ) function in c Language</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="In C Language ,the putc function writes a character and the getc function print the character,c tutorial,c basics,programming language,examples,pointer,function,loop,else">
+<meta name="keywords" CONTENT="c tutorial,c basics,programming language,examples,pointer,function,loop,else,if else,while,array,pre processor,post processor,structures,memory menagement,string,constants,variables,decisions making,c unions,c memory allocation, c operators, C pointers,c error handling, c file handling">
+
+		<link href="/css/main.css" rel="stylesheet" type="text/css" />
+        <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+
+	</HEAD>
+	<BODY>
+	<?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style="padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>C Programming language</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a><img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/c/">C</a><img src="/images/left_menu_bullet.gif" width="11" height="6"/><a href="/c/c_topics/c_file_handling/">C File Handling</a></div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/c/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 
+
+		<!-- Header End-->	
+<div class="heading">Character I/O : How to use putc( ) Function and getc( ) Function in C</div> 
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;">
+    	<a href="How_to_use_fgetc()_function_in_c9.shtml" title="Character I/O : How to use fgetc( ) Function in C">Previous</a>
+    </td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="how_to_use_putw()_in_c11.shtml" title="Integer I/O : How to use putw( ) Function in C">Next</a></td>
+  </tr>
+</table>	
+
+<p><i>getc( ) function and putc( ) function</i> :   The <font class="point_out">getc()</font> and <font class="point_out">putc()</font> are exactly similar to that of <font class="point_out">fgetc()</font> and <font class="point_out">fputc()</font>. The putc function writes the character contained in character variable c to the file associated with the pointer fp1.</p>
+
+<div class="code">
+		<font color="#0000FF">int</font><font> putc (</font><font color="#0000FF">int</font><font> ch, FILE *file)
+			</font><font color="#008000" >// define 
+			putc() method</font><font><br>
+			<br>
+			</font><font color="#0000FF">int</font><font> getc 
+			(FILE *file)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </font>
+			<font color="#008000" >// define getc() 
+			method</font>
+</div>
+	<p>The <font class="point_out">getc()</font> function takes the file pointer as its argument, reads in the next character from the file and returns that character as a integer or EOF when it reaches the end of the file. The integer returned can easily type cast into a character variable for your use.The getc function acts essentially identically to fgetc, but is a macro that expands in-line. </p>
+<div class="code">
+<font color="#008000">/** Program to Read/Write using getc( ) and putc( ) */
+</font><PRE><FONT><FONT COLOR="#ff0000">#include</FONT><FONT>&lt;stdio.h&gt;</FONT>
+<FONT COLOR="#0000ff">void </FONT><FONT>main()</FONT>
+<FONT>{</FONT>
+<FONT>file *fp1;</FONT>
+<FONT COLOR="#0000ff">char </FONT><FONT>c;</FONT>
+<FONT>fp1=fopen(</FONT><FONT COLOR="#ff00ff">&quot;myfile.txt&quot;</FONT><FONT>,</FONT><FONT COLOR="#ff00ff">&quot;w&quot;</FONT><FONT>)</FONT>
+<FONT COLOR="#0000ff">while</FONT><FONT>((c=getchar())!=EOF)</FONT></FONT></PRE>
+<PRE><font>{
+<FONT>putc(c,fp1);</FONT></font></PRE>
+<PRE><font>}
+<FONT>fclose(fp1);</FONT>
+<FONT>fp1=fopen(</FONT><FONT COLOR="#ff00ff">&quot;myfile.txt&quot;</FONT><FONT>,</FONT><FONT COLOR="#ff00ff">&quot;r&quot;</FONT><FONT>)</FONT>
+<FONT COLOR="#0000ff">while</FONT><FONT>((c=getc(fp1))!=EOF)</FONT></font></PRE>
+<PRE><font>{
+<FONT>printf(</FONT><FONT COLOR="#ff00ff">&quot;%c&quot;</FONT><FONT>,c)</FONT></font></PRE>
+<PRE><font>}
+<FONT>fclose(fp1);</FONT>
+<FONT>};</FONT></font></PRE>
+</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;">
+    	<a href="How_to_use_fgetc()_function_in_c9.shtml" title="Character I/O : How to use fgetc( ) Function in C">Previous</a>
+    </td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="how_to_use_putw()_in_c11.shtml" title="Integer I/O : How to use putw( ) Function in C">Next</a></td>
+  </tr>
+</table>
+<!--Footer  --> 
+</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>

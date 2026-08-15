@@ -1,0 +1,248 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD>
+<meta http-equiv="Content-Language" content="en-us">
+<TITLE>Spring and castor examples in spring</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name="description" CONTENT="Spring and castor examples in spring learn how to use spring and castor stepwise step with r4r 
+tutorial for beginners " >
+<meta name="keywords" CONTENT="Spring, tutorial, Examples, Spring and castor examples in spring,database access (JDBC), Transaction Management, Web MVC 
+framework, Web Flow, Exception handling, EJB integration and Sending email ">
+
+		<!-- header start-->	
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+     <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>Spring Tutorials</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+			<img src="/images/left_menu_bullet.gif"/> <a href="/spring/">Spring</a>
+
+       </div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/spring/commonfiles/leftmenucore.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	 
+
+<div class="heading">Spring and Castor Example</div>
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="spring_and_xstream_example.shtml" title="spring_and_xstream_example">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="introduction_of_oxm_in_spring.shtml" title="introduction_of_oxm_in_spring">Next</a></td>
+  </tr> 
+</table>
+<p>Using the  CastorMarshaller class, we can marshal the java objects into xml and vice-versa using castor. It required the mapping File.</p>
+<div class="heading">Technologies used to run this Application.</div>
+<ol>
+<li>
+Spring 3.0
+</li><li>
+Eclipse IDE
+</li><li>
+JDK 1.6
+</li>
+</ol>
+<p>Let us have working Eclipse IDE in place and follow the following steps to create a Spring application:</p>
+<p><i>Step1.</i> Now you create a simple Java Project using Eclipse IDE. Follow the option<font class="point_out"> File -> New -> Project </font>and finally select Java Project wizard from the wizard list. Now name your project as <font class="point_out">SpringwithCastor</font> using the wizard window as given below.</p>
+<div class="image">
+<img src="../images/spring_with_castor_example.png">
+</div>
+<div class="heading">Add spring jar files</div>
+<p><i>Step2.</i> Now add spring jar in your project, To do this, right click on your project name<font class="point_out"> SpringwithCastor</font> and then follow the following option available in context menu:<font class="point_out">  Build Path -> Configure Build Path</font> to display the Java Build Path window as given below. There are some jar files required to run this application, To load the jar files in eclipse IDE,<font class="point_out">  Right click on your project - Build Path - Add external archives - select all the required jar files - finish.</font></p>
+<ol>
+<li>
+com.springsource.org.apache.commons.fileupload-1.2.0.jar
+</li><li>
+com.springsource.org.apache.commons.httpclient-3.1.0.jar
+</li><li>
+com.springsource.org.apache.commons.logging-1.1.1.jar
+</li><li>
+com.springsource.org.apache.log4j-1.2.15.jar
+</li><li>
+com.springsource.org.codehaus.jackson.mapper-1.0.0.jar
+</li><li>
+jmxtools-1.2.1.jar
+</li><li>
+org.springframework.asm-3.1.0.
+</li><li>
+org.springframework.beans-3.1.0.
+</li><li>
+org.springframework.context.support-3.1.0.
+</li><li>
+org.springframework.context-3.1.0.
+</li><li>
+org.springframework.core-3.1.0.
+</li><li>
+spring-expression-3.1.0.RELEASE.jar
+</li><li>
+org.springframework.oxm-3.0.1.RELEASE-A.jar
+</li><li>
+org.springframework.web.portlet-3.0.1.RELEASE-A.jar
+</li><li>
+org.springframework.web.servlet-3.0.1.RELEASE-A.jar
+</li><li>
+org.springframework.web.struts-3.0.1.RELEASE-A.jar
+</li><li>
+org.springframework.web-3.0.1.RELEASE-A.jar
+</li><li>
+castor-1.3-core.jar
+</li><li>
+castor-1.3.jar
+</li>
+</ol>
+<div class="heading">Create Java class file</div>
+<p><i>Step3.</i> Now you create simply java file with any name. First we need to create a package with any name like<font class="point_out"> com.r4r.</font> To do this,<font class="point_out">  Right click on src in package </font>explorer section and follow the option :<font class="point_out">  New -> Package.</font> and then <font class="point_out"> Right click on package(com.r4r) - New - class - Write the class name e.g. Employee - finish.</font> Write the following code:</p>
+<div class="code">
+<pre>
+<font color="#0000ff">package </font><font color="#000000">com.r4r;</font>
+
+<font color="#0000ff">public class </font><font color="#000000">Employee {  </font>
+<font color="#0000ff">private int </font><font color="#000000">id;  </font>
+<font color="#0000ff">private </font><font color="#ff0000">String </font><font color="#000000">name;  </font>
+<font color="#0000ff">private int </font><font color="#000000">salary;  </font>
+
+<font color="#0000ff">public int </font><font color="#000000">getId() {  </font>
+    <font color="#0000ff">return </font><font color="#000000">id;  </font>
+<font color="#000000">}  </font>
+<font color="#0000ff">public void </font><font color="#000000">setId(</font><font color="#0000ff">int </font><font color="#000000">id) {  </font>
+    <font color="#0000ff">this</font><font color="#000000">.id = id;  </font>
+<font color="#000000">}  </font>
+
+<font color="#0000ff">public </font><font color="#ff0000">String </font><font color="#000000">getName() {  </font>
+    <font color="#0000ff">return </font><font color="#000000">name;  </font>
+<font color="#000000">}  </font>
+<font color="#0000ff">public void </font><font color="#000000">setName(</font><font color="#ff0000">String </font><font color="#000000">name) {  </font>
+    <font color="#0000ff">this</font><font color="#000000">.name = name;  </font>
+<font color="#000000">}  </font>
+
+<font color="#0000ff">public int </font><font color="#000000">getSalary() {  </font>
+    <font color="#0000ff">return </font><font color="#000000">salary;  </font>
+<font color="#000000">}  </font>
+<font color="#0000ff">public void </font><font color="#000000">setSalary(</font><font color="#0000ff">int </font><font color="#000000">salary) {  </font>
+    <font color="#0000ff">this</font><font color="#000000">.salary = salary;  </font>
+<font color="#000000">}  </font>
+<font color="#000000">}</font>
+</pre>
+</div>
+<p><i>Step4.</i> Now create the xml file click on <font class="point_out"> src- new -file -give the file name like applicationContext.xml </font>then finish.</p>
+<div class="code">
+<pre>
+<font color="#0000ff">&lt;?xml </font><font color="#ff0000">version</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;1.0&quot; </font><font color="#ff0000">encoding</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;UTF-8&quot;</font><font color="#800080">?</font><font color="#0000ff">&gt;</font><font color="#000000">  </font>
+<font color="#0000ff">&lt;</font><font color="#808000">beans </font><font color="#ff0000">xmlns</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;http://www.springframework.org/schema/beans&quot;  </font>
+    <font color="#800080">xmlns:xsi</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;  </font>
+    <font color="#800080">xsi:schemaLocation</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;http://www.springframework.org/schema/beans   </font>
+<font color="#ff00ff">http://www.springframework.org/schema/beans/spring-beans-3.0.xsd&quot;</font><font color="#0000ff">&gt;</font><font color="#000000">  </font>
+<font color="#0000ff">&lt;</font><font color="#808000">bean </font><font color="#800080">id</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;castorMarshallerBean&quot; </font>
+<font color="#800080">class</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;org.springframework.oxm.castor.CastorMarshaller&quot;</font><font color="#0000ff">&gt;</font><font color="#000000">  </font>
+
+<font color="#000000">     </font><font color="#0000ff">&lt;</font><font color="#808000">property </font><font color="#ff0000">name</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;targetClass&quot; </font><font color="#800080">value</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;com.r4r.Employee&quot;</font><font color="#0000ff">&gt;&lt;/</font><font color="#808000">property</font><font color="#0000ff">&gt;</font><font color="#000000">  </font>
+<font color="#000000">     </font><font color="#0000ff">&lt;</font><font color="#808000">property </font><font color="#ff0000">name</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;mappingLocation&quot; </font><font color="#800080">value</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;mapping.xml&quot;</font><font color="#0000ff">&gt;&lt;/</font><font color="#808000">property</font><font color="#0000ff">&gt;</font><font color="#000000"> </font>
+<font color="#000000">		</font>
+<font color="#000000">    </font><font color="#0000ff">&lt;/</font><font color="#808000">bean</font><font color="#0000ff">&gt;</font><font color="#000000">  </font>
+<font color="#0000ff">&lt;/</font><font color="#808000">beans</font><font color="#0000ff">&gt;</font><font color="#000000">   </font>
+</pre>
+</div>
+<p><i>Step5.</i> Now create another xml (Mapping File) file click on <font class="point_out"> src- new -file -give the file name like mapping.xml </font>then finish.</p>
+<div class="code">
+<pre>
+<font color="#0000ff">&lt;?xml </font><font color="#ff0000">version</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;1.0&quot;</font><font color="#800080">?</font><font color="#0000ff">&gt;</font><font color="#000000">  </font>
+<font color="#0000ff">&lt;!DOCTYPE </font><font color="#800080">mapping PUBLIC </font><font color="#000000">&quot;</font><font color="#800080">-</font><font color="#000000">//</font><font color="#800080">EXOLAB</font><font color="#000000">/</font><font color="#800080">Castor Mapping DTD Version 1</font><font color="#000000">.</font><font color="#800080">0</font><font color="#000000">//</font><font color="#800080">EN</font><font color="#000000">&quot;  </font>
+                         <font color="#000000">&quot;</font><font color="#800080">http:</font><font color="#000000">//</font><font color="#800080">castor</font><font color="#000000">.</font><font color="#800080">org</font><font color="#000000">/</font><font color="#800080">mapping</font><font color="#000000">.</font><font color="#800080">dtd</font><font color="#000000">&quot;</font><font color="#0000ff">&gt;</font><font color="#000000">  </font>
+<font color="#000000"> </font><font color="#0000ff">&lt;</font><font color="#808000">mapping</font><font color="#0000ff">&gt;</font><font color="#000000">  </font>
+<font color="#000000">    </font><font color="#0000ff">&lt;</font><font color="#808000">class </font><font color="#ff0000">name</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;com.r4r.Employee&quot; </font><font color="#800080">auto-complete</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;true&quot; </font><font color="#0000ff">&gt;</font><font color="#000000">  </font>
+<font color="#000000">        </font><font color="#0000ff">&lt;</font><font color="#808000">map-to </font><font color="#800080">xml</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;Employee&quot; </font><font color="#800080">ns-uri</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;/&quot; </font><font color="#800080">ns-prefix</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;em&quot;</font><font color="#0000ff">/&gt;</font><font color="#000000">  </font>
+<font color="#000000">        </font><font color="#0000ff">&lt;</font><font color="#808000">field </font><font color="#ff0000">name</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;id&quot; </font><font color="#ff0000">type</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;integer&quot;</font><font color="#0000ff">&gt;</font><font color="#000000">  </font>
+<font color="#000000">            </font><font color="#0000ff">&lt;</font><font color="#808000">bind-xml </font><font color="#ff0000">name</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;id&quot; </font><font color="#800080">node</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;attribute&quot;</font><font color="#0000ff">&gt;&lt;/</font><font color="#808000">bind-xml</font><font color="#0000ff">&gt;</font><font color="#000000">  </font>
+<font color="#000000">        </font><font color="#0000ff">&lt;/</font><font color="#808000">field</font><font color="#0000ff">&gt;</font><font color="#000000">  </font>
+<font color="#000000">        </font><font color="#0000ff">&lt;</font><font color="#808000">field </font><font color="#ff0000">name</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;name&quot;</font><font color="#0000ff">&gt;</font><font color="#000000">  </font>
+<font color="#000000">            </font><font color="#0000ff">&lt;</font><font color="#808000">bind-xml </font><font color="#ff0000">name</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;name&quot;</font><font color="#0000ff">&gt;&lt;/</font><font color="#808000">bind-xml</font><font color="#0000ff">&gt;</font><font color="#000000">  </font>
+<font color="#000000">        </font><font color="#0000ff">&lt;/</font><font color="#808000">field</font><font color="#0000ff">&gt;</font><font color="#000000">  </font>
+<font color="#000000">        </font><font color="#0000ff">&lt;</font><font color="#808000">field </font><font color="#ff0000">name</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;salary&quot;</font><font color="#0000ff">&gt;</font><font color="#000000">  </font>
+<font color="#000000">            </font><font color="#0000ff">&lt;</font><font color="#808000">bind-xml </font><font color="#ff0000">name</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;salary&quot; </font><font color="#ff0000">type</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;integer&quot;</font><font color="#0000ff">&gt;&lt;/</font><font color="#808000">bind-xml</font><font color="#0000ff">&gt;</font><font color="#000000">  </font>
+<font color="#000000">        </font><font color="#0000ff">&lt;/</font><font color="#808000">field</font><font color="#0000ff">&gt;</font><font color="#000000">  </font>
+<font color="#000000">          </font>
+<font color="#000000">    </font><font color="#0000ff">&lt;/</font><font color="#808000">class</font><font color="#0000ff">&gt;</font><font color="#000000">  </font>
+<font color="#000000">      </font>
+<font color="#000000"> </font><font color="#0000ff">&lt;/</font><font color="#808000">mapping</font><font color="#0000ff">&gt;</font><font color="#000000">  </font>
+</pre>
+</div>
+<p><i>Step6.</i> Now Create the java Main class (Test.java). </p>
+<div class="code">
+<pre>
+<font color="#0000ff">package </font><font color="#000000">com.r4r;</font>
+
+<font color="#0000ff">import </font><font color="#000000">java.io.</font><font color="#ff0000">FileWriter</font><font color="#000000">;  </font>
+<font color="#0000ff">import </font><font color="#000000">java.io.</font><font color="#ff0000">IOException</font><font color="#000000">;  </font>
+<font color="#0000ff">import </font><font color="#000000">javax.xml.transform.stream.</font><font color="#ff0000">StreamResult</font><font color="#000000">;  </font>
+<font color="#0000ff">import </font><font color="#000000">org.springframework.context.ApplicationContext;  </font>
+<font color="#0000ff">import </font><font color="#000000">org.springframework.context.support.ClassPathXmlApplicationContext;  </font>
+<font color="#0000ff">import </font><font color="#000000">org.springframework.oxm.Marshaller;  </font>
+
+<font color="#0000ff">public class </font><font color="#000000">Test{  </font>
+ <font color="#0000ff">public static void </font><font color="#000000">main(</font><font color="#ff0000">String</font><font color="#000000">[] args)</font><font color="#0000ff">throws </font><font color="#ff0000">IOException</font><font color="#000000">{  </font>
+  <font color="#000000">ApplicationContext context = </font>
+	  <font color="#0000ff">new </font><font color="#000000">ClassPathXmlApplicationContext(</font><font color="#ff00ff">&quot;applicationContext.xml&quot;</font><font color="#000000">);  </font>
+  <font color="#000000">Marshaller marshaller = (Marshaller)context.getBean(</font><font color="#ff00ff">&quot;castorMarshallerBean&quot;</font><font color="#000000">);  </font>
+
+  <font color="#000000">Employee employee=</font><font color="#0000ff">new </font><font color="#000000">Employee();  </font>
+  <font color="#000000">employee.setId(</font><font color="#800080">102</font><font color="#000000">);  </font>
+  <font color="#000000">employee.setName(</font><font color="#ff00ff">&quot;John Players&quot;</font><font color="#000000">);  </font>
+  <font color="#000000">employee.setSalary(</font><font color="#800080">6000</font><font color="#000000">);  </font>
+
+  <font color="#000000">marshaller.marshal(employee, </font><font color="#0000ff">new </font><font color="#ff0000">StreamResult</font><font color="#000000">(</font><font color="#0000ff">new </font><font color="#ff0000">FileWriter</font><font color="#000000">(</font><font color="#ff00ff">&quot;employee.xml&quot;</font><font color="#000000">)));  </font>
+  <font color="#ff0000">System</font><font color="#000000">.out.println(</font><font color="#ff00ff">&quot;XML file Created Sucessfully&quot;</font><font color="#000000">);  </font>
+ <font color="#000000">}  </font>
+<font color="#000000">}  </font>
+</pre>
+</div>
+<p>Now run the Application you see the following output:</p>
+<div class="output">
+<div class="image">
+<img src="../images/spring_with_castor_output.png">
+</div>
+</div>
+<p>And this is the XML File that is created by the above Program.</p>
+<div class="output">
+<div class="image">
+<img src="../images/spring_with_castor_xml.png">
+</div>
+</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="spring_and_xstream_example.shtml" title="spring_and_xstream_example">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="introduction_of_oxm_in_spring.shtml" title="introduction_of_oxm_in_spring">Next</a></td>
+  </tr> 
+</table>
+
+		</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->

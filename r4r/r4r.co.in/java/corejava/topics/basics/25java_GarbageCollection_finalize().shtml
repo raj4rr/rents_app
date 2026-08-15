@@ -1,0 +1,139 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>What is finalize() method regarding Garbage Collection ?</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="What is finalize() method regarding Garbage Collection ?" >
+<meta name="keywords" CONTENT="What is finalize() method regarding Garbage Collection ?">
+
+<!-- header start-->
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>Java Programing laungage</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+            <img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+            <a href="/java/">Java</a>
+              <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/java/corejava">Core Java</a>
+               <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/java/corejava/topics/basics/">Basics</a>
+
+              </div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/corejava/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	 
+<!-- header End-->	
+
+<div class="heading">What is finalize() method regarding Garbage Collection</div>
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="24java_GarbageCollection.shtml" title="Garbage Collection in Java">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="index.shtml" title="Home">Next</a></td>
+  </tr> 
+</table>
+
+<p>In java if an object has no object references pointing to it, can be deleted by the garbage collector to regain the memory. On the other hand, if an object has a finalize() method then it will be executed before regaining the memory in order to give the object a last chance to clean up itself i.e. to release all the resources that the object was using.</p>
+
+<p>The finalize() method is inherited from the Object class by any class you define. The syntax of the finalize() method declaration is shown below,</p>      
+<div class="code">
+<PRE>
+<FONT FACE="Arial">
+<FONT COLOR="#0000ff">protected void </FONT><FONT COLOR="#000000">finalize()</FONT>
+</FONT>
+</PRE>
+</div>
+<p>Inside this finalize() method you must specify the actions that are needed to be performed before an object is recycled. The finalize() is only called just prior to garbage collection to if any resource was left to be released .It is advised that not use finalize() method just to be on a safer side. The program must release the resources in program itself, since garbage collectors run is not guaranteed, so finalize() execution will also not be guaranteed. </p><p>The Java programming language specifies that the finalize() method will be called before the object memory is reclaimed, but it does not guarantee exactly when it will happen. Note that the finalize() method which a class inherited does not do anything,thus, if you want your object to clean up itself, you have to override the finalize() method.</p><p> Also remember that, the  finalize() method is never invoked more than once by a Java virtual machine for any given object. Generally, it is considered a good programming practice to invoke the finalize() of the superclass, i.e.,</p>
+ <div class="code">
+<PRE>
+<FONT FACE="Arial">
+<FONT COLOR="#0000ff">protected void </FONT><FONT COLOR="#000000">finalize()</FONT>
+<FONT COLOR="#000000">{</FONT>
+<FONT COLOR="#0000ff">super</FONT><FONT COLOR="#000000">.finalize();</FONT>
+<FONT COLOR="#008000">// some other logic</FONT>
+<FONT COLOR="#000000">}</FONT>
+</FONT>
+</PRE>
+</div>      
+<p>The following code snippet will guide you how to use finalize() method during the garbage collection,</p>
+
+<h3>Example</h3>
+<div class="code">
+<PRE>
+<FONT FACE="Arial">
+<FONT COLOR="#000000">Java Tutorialslass UsingFinalize </FONT>
+	<FONT COLOR="#000000">{</FONT>
+     <FONT COLOR="#0000ff">public static void </FONT><FONT COLOR="#000000">main(</FONT><FONT COLOR="#ff0000">String</FONT><FONT COLOR="#000000">[] args) </FONT>
+	 <FONT COLOR="#000000">{</FONT>
+<FONT COLOR="#ff0000">Runtime </FONT><FONT COLOR="#000000">rt = </FONT><FONT COLOR="#ff0000">Runtime</FONT><FONT COLOR="#000000">.getRuntime();</FONT>
+<FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.println(</FONT><FONT COLOR="#ff00ff">"Total available memory:"</FONT><FONT COLOR="#000000">+rt.totalMemory());</FONT>
+<FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.println(</FONT><FONT COLOR="#ff00ff">"Available Free Memory: " </FONT><FONT COLOR="#000000">+ rt.freeMemory());</FONT>
+<FONT COLOR="#0000ff">for</FONT><FONT COLOR="#000000">(</FONT><FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">j=</FONT><FONT COLOR="#800080">0</FONT><FONT COLOR="#000000">; j&lt;</FONT><FONT COLOR="#800080">1000</FONT><FONT COLOR="#000000">; j++ ) </FONT>
+		   <FONT COLOR="#000000">{</FONT>
+  <FONT COLOR="#000000">FinalizeMethod obj = </FONT><FONT COLOR="#0000ff">new </FONT><FONT COLOR="#000000">FinalizeMethod(j); </FONT>
+ <FONT COLOR="#000000">}</FONT>
+     <FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.println(</FONT><FONT COLOR="#ff00ff">"Free Memory before call to gc(): " </FONT><FONT COLOR="#000000">+ </FONT>
+     <FONT COLOR="#000000">rt.freeMemory());</FONT>
+     <FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.runFinalization();</FONT>
+     <FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.gc();</FONT>
+     <FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.println(</FONT><FONT COLOR="#ff00ff">" Free Memory after call to gc(): " </FONT><FONT COLOR="#000000">+ </FONT>
+     <FONT COLOR="#000000">rt.freeMemory()); </FONT>
+    <FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#000000">Java Tutorialslass FinalizeMethod </FONT>
+	<FONT COLOR="#000000">{</FONT>
+     <FONT COLOR="#ff0000">String </FONT><FONT COLOR="#000000">str;</FONT>
+     <FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">id;</FONT>
+     <FONT COLOR="#000000">FinalizeMethod(</FONT><FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">id) </FONT>
+	  <FONT COLOR="#000000">{</FONT>
+       <FONT COLOR="#0000ff">this</FONT><FONT COLOR="#000000">.str = </FONT><FONT COLOR="#0000ff">new </FONT><FONT COLOR="#ff0000">String</FONT><FONT COLOR="#000000">(</FONT><FONT COLOR="#ff00ff">"r4r tefsoft solutions"</FONT><FONT COLOR="#000000">); </FONT>
+       <FONT COLOR="#0000ff">this</FONT><FONT COLOR="#000000">.id = id;</FONT>
+      <FONT COLOR="#000000">}</FONT>
+      <FONT COLOR="#0000ff">protected void </FONT><FONT COLOR="#000000">finalize()</FONT>
+	   <FONT COLOR="#000000">{</FONT>
+   <FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.println(</FONT><FONT COLOR="#ff00ff">"FinalizeMethod object " </FONT><FONT COLOR="#000000">+ id + </FONT><FONT COLOR="#ff00ff">" has been finalized."</FONT><FONT COLOR="#000000">);</FONT>
+       <FONT COLOR="#000000">}</FONT>
+      <FONT COLOR="#000000">}</FONT>
+</FONT>
+</PRE>
+</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="24java_GarbageCollection.shtml" title="Garbage Collection in Java">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="index.shtml" title="Home">Next</a></td>
+  </tr> 
+</table>
+
+<!-- Footer Start-->	
+
+		</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->

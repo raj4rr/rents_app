@@ -1,0 +1,186 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+
+<HTML><HEAD><TITLE>C tutorial on String</TITLE>
+
+<META content=r4r.co.in name=owner>
+
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+
+<meta name="description" CONTENT="Learn about String Definition in C,Null-terminated String,Declaring String,Declaring a string in two ways,Looping Through a String,Passing a String to Function,Pointers,Array,Storage class,Loops,Functions,Data types,C constants,Union,Preprocessor,C interview questions and answers">
+
+<meta name="keywords" CONTENT="String Definition in C,Null-terminated String,Declaring String,Declaring a string in two ways,Looping Through a String,Passing a String to Function,Pointers,Array,Storage class,Loops,Functions,Data types,C constants,Union,Preprocessor,C interview questions and answers">
+
+<META content="Rajesh Kumar" name=author>
+
+<META http-equiv="expires" content="0"> 
+
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+     <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>C Programming language</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a><img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/c/">C </a>
+              <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/c/c_basics_tutorials/">Learn C in 9 days</a></div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/c/commonfiles/new-leftmenu.shtml'); ?></td>
+
+                       <td style="80%" valign="top">
+                        <div class="main_content">
+
+	 <!-- Header End--> 		
+
+ <div class="heading"><font style="background:#FF9966; padding:7px 0px 7px 7px;">Day <font style="background:#E95409; padding:7px;">8</font></font> Strings in C Programming language</div>    
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="return_pointers_from_functions_in_c.shtml" title="Pointer to Function in C Programming language: Return pointer from functions">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="string_function_in_c.shtml" title="String functions in C Programming language">Next</a></td>
+  </tr>
+</table>	
+<p>String in C is an array of char values which terminated by a special null character value '\0'. '\0' indicates the end of the string. So when you define a string you should be sure to have sufficient space for the null terminator. In ASCII table, the null terminator has value 0. Strings are always enclosed by double quotes. Whereas, character is enclosed by single quotes in C.</p>
+<h3># Some Points</h3>
+<ul>
+<li>String are one-dimensional Array</li>
+<li>string in/output: <font class="point_out">printf("%s",S), scanf("%s",S)</font></li>
+<li><font class="point_out">&lt;string.h&gt;</font> : Collection of functions for string manipulation</li>
+</ul>
+<div class="heading"># Declaring String</div>
+
+<p>Let us create a string consisting of the word "hellor4r". To hold the null character at the end of the array, the size of the character array containing the string is one more than the number of characters in the word "hellor4r."</p>
+<p>String can be initialized in different number of ways. When define string you should have extra space for '\0'(null character)</p>    
+<div class="code">
+<pre>
+<font color="#0000ff">char </font><font color="#000000">string[</font><font color="#800080">9</font><font color="#000000">] = {</font><font color="#ff00ff">'H'</font><font color="#000000">, </font><font color="#ff00ff">'e'</font><font color="#000000">, </font><font color="#ff00ff">'l'</font><font color="#000000">, </font><font color="#ff00ff">'l'</font><font color="#000000">, </font><font color="#ff00ff">'o'</font><font color="#000000">,</font><font color="#ff00ff">'r'</font><font color="#000000">,</font><font color="#ff00ff">'4'</font><font color="#000000">,</font><font color="#ff00ff">'r'</font><font color="#000000">, </font><font color="#ff00ff">'\0'</font><font color="#000000">};</font>
+
+<font color="#008000">/* OR */</font>
+<font color="#008000">/* character is enclosed by single quotes */</font>
+<font color="#0000ff">char </font><font color="#000000">string[] = {</font><font color="#ff00ff">'H'</font><font color="#000000">, </font><font color="#ff00ff">'e'</font><font color="#000000">, </font><font color="#ff00ff">'l'</font><font color="#000000">, </font><font color="#ff00ff">'l'</font><font color="#000000">, </font><font color="#ff00ff">'o'</font><font color="#000000">,</font><font color="#ff00ff">'r'</font><font color="#000000">,</font><font color="#ff00ff">'4'</font><font color="#000000">,</font><font color="#ff00ff">'r'</font><font color="#000000">, </font><font color="#ff00ff">'\0'</font><font color="#000000">};</font>
+
+<font color="#008000">/* OR */</font>
+<font color="#008000">/* strings are always enclosed by double quotes */</font>
+<font color="#0000ff">char </font><font color="#000000">string[] = </font><font color="#ff00ff">&quot;Hellor4r&quot;</font><font color="#000000">;</font>
+
+<font color="#008000">/* OR */</font>
+<font color="#0000ff">char </font><font color="#000000">string[</font><font color="#800080">9</font><font color="#000000">] = </font><font color="#ff00ff">&quot;Hellor4r&quot;</font><font color="#000000">;</font>
+</pre>
+</div>
+<h3>Following is the memory presentation of above defined string in C</h3>
+<div class="table_content">
+<table>
+	<tr>
+		<td class="heading">Index</td>
+		<td style="width:10%; text-align:center;" class="alternate_heading1">0</td>
+		<td style="width:10%; text-align:center;" class="alternate_heading1">1</td>
+		<td style="width:10%; text-align:center;" class="alternate_heading1">2</td>
+		<td style="width:10%; text-align:center;" class="alternate_heading1">3</td>
+		<td style="width:10%; text-align:center;" class="alternate_heading1">4</td>
+		<td style="width:10%; text-align:center;" class="alternate_heading1">5</td>
+		<td style="width:10%; text-align:center;" class="alternate_heading1">6</td>
+		<td style="width:10%; text-align:center;" class="alternate_heading1">7</td>
+		<td style="width:10%; text-align:center;" class="alternate_heading1">8</tr>
+	<tr>
+		<td class="heading">Variable</td>
+		<td style="width:10%; text-align:center;" class="alternate_heading1">H</td>
+		<td style="width:10%; text-align:center;" class="alternate_heading1">e</td>
+		<td style="width:10%; text-align:center;" class="alternate_heading1">l</td>
+		<td style="width:10%; text-align:center;" class="alternate_heading1">l</td>
+		<td style="width:10%; text-align:center;" class="alternate_heading1">o</td>
+		<td style="width:10%; text-align:center;" class="alternate_heading1">r</td>
+		<td style="width:10%; text-align:center;" class="alternate_heading1">4</td>
+		<td style="width:10%; text-align:center;" class="alternate_heading1">r</td>
+		<td style="width:10%; text-align:center;" class="alternate_heading1">'\0'</td>
+	</tr>
+	<tr>
+		<td class="heading">Address</td>
+		<td style="width:10%; text-align:center;" class="alternate_heading1">0x26461</td>
+		<td style="width:10%; text-align:center;" class="alternate_heading1">0x26462</td>
+		<td style="width:10%; text-align:center;" class="alternate_heading1">0x26463</td>
+		<td style="width:10%; text-align:center;" class="alternate_heading1">0x26464</td>
+		<td style="width:10%; text-align:center;" class="alternate_heading1">0x26465</td>
+		<td style="width:10%; text-align:center;" class="alternate_heading1">0x26466</td>
+		<td style="width:10%; text-align:center;" class="alternate_heading1">0x26467</td>
+		<td style="width:10%; text-align:center;" class="alternate_heading1">0x26468</td>
+		<td style="width:10%; text-align:center;" class="alternate_heading1">0x26469</td>
+	</tr>
+
+</table>
+</div>
+<p>C program to illustrate how to read string from terminal.</p>
+<div class="code">
+<pre>
+<font color="#ff0000">#include </font><font color="#000000">&lt;stdio.h&gt;</font>
+
+<font color="#0000ff">int </font><font color="#000000">main()</font>
+<font color="#000000">{</font>
+    <font color="#0000ff">char </font><font color="#000000">name[</font><font color="#800080">20</font><font color="#000000">];</font>
+    <font color="#000000">printf(</font><font color="#ff00ff">&quot;Enter name: &quot;</font><font color="#000000">);</font>
+    <font color="#000000">scanf(</font><font color="#ff00ff">&quot;%s&quot;</font><font color="#000000">,name);</font>
+    <font color="#000000">printf(</font><font color="#ff00ff">&quot;Your name is %s.&quot;</font><font color="#000000">,name);</font>
+    <font color="#0000ff">return </font><font color="#800080">0</font><font color="#000000">;</font>
+<font color="#000000">}</font>
+</pre>
+</div>
+<div class="output"><i>Output</i>
+<p>Enter name: XYZ PQR
+<br>Your name is XYZ.</p>
+</div>
+<p>Here, program will ignore PQR because, scanf() function takes only string before the white space. Now use <a class="point_out" href="/c/c_stdio_library/getchar_in_c.shtml" target="_blank">getchar()</a> function to to read line of text manually.</p>
+<div class="code">
+<pre>
+<font color="#ff0000">#include </font><font color="#000000">&lt;stdio.h&gt;</font>
+<font color="#0000ff">int </font><font color="#000000">main()</font>
+<font color="#000000">{</font>
+    <font color="#0000ff">char </font><font color="#000000">name[</font><font color="#800080">30</font><font color="#000000">],ch;</font>
+    <font color="#0000ff">int </font><font color="#000000">i=</font><font color="#800080">0</font><font color="#000000">;</font>
+    <font color="#000000">printf(</font><font color="#ff00ff">&quot;Enter name: &quot;</font><font color="#000000">);</font>
+    <font color="#0000ff">while</font><font color="#000000">(ch!=</font><font color="#ff00ff">'\n'</font><font color="#000000">)    </font><font color="#008000">// terminates if user hit enter</font>
+    <font color="#000000">{</font>
+        <font color="#000000">ch=getchar();</font>
+        <font color="#000000">name[i]=ch;</font>
+        <font color="#000000">i++;</font>
+    <font color="#000000">}</font>
+    <font color="#000000">name[i]=</font><font color="#ff00ff">'\0'</font><font color="#000000">;       </font><font color="#008000">// inserting null character at end</font>
+    <font color="#000000">printf(</font><font color="#ff00ff">&quot;Name: %s&quot;</font><font color="#000000">,name);</font>
+    <font color="#0000ff">return </font><font color="#800080">0</font><font color="#000000">;</font>
+<font color="#000000">}</font>
+</pre>
+</div>
+<div class="output"><i>Output</i>
+<p>Enter name: XYZ PQR
+<br>Your name is XYZ PQR.</p>
+</div> 
+<p>Note: There are predefined functions <a class="point_out" href="/c/c_stdio_library/gets_function_in_c.shtml" target="_blank">gets()</a> and <a class="point_out" href="/c/c_stdio_library/puts_function_in_c.shtml" target="_blank">puts</a> in C language to read and display string respectively.</p>  
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="return_pointers_from_functions_in_c.shtml" title="Pointer to Function in C Programming language: Return pointer from functions">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="string_function_in_c.shtml" title="String functions in C Programming language">Next</a></td>
+  </tr>
+</table>	
+
+</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/c/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>

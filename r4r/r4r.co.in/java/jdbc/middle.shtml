@@ -1,0 +1,247 @@
+<div class="main_content">
+<div class="heading">JAVA DATABASE CONNECTIVITY</div>
+<p>Java database connectivity is an API which defines how the client may access the database.
+It provide methods to querying the database, and updating the database. Using JDBC you can send SQL,
+PL/SQL statements to almost any relational database. JDBC is a Java API for executing SQL statements 
+and supports basic SQL functionality. It provides RDBMS access by allowing you to embed SQL inside Java code</p>
+<p>JDBC can helps you to write java applications that manage following three programming activities, they are</p>
+<ol>
+<li>Making connection to the database.</li>
+<li>Connect to a data source, like a database.</li>
+<li>Send queries and update statements to the database.</li></ol>
+
+<p>JDBC process and retrieve the results from the database in response to query.</p>
+<div class="image"><img src="jdbc.jpg"></div>
+
+<div class="content_link">
+	<p><a href="basic/tutorial/JDBC2.0">JDBC Tutorials</a></p>
+	<p><a href="basic/example/JDBC2.0">JDBC Basic Example</a></p>
+    <p><a href="JDBC_Interview_Questions_And_Answers/">JDBC FAQS</a></p>
+</div>
+
+<div class="heading">JDBC Architecture</div>
+<p>The JDBC API contains two major sets of interfaces: the one is the JDBC API for application writers, 
+and the other is the lower-level JDBC driver API for driver writers. JDBC technology drivers fit into one of 
+four categories. Applications and applets can access databases via the JDBC API using pure Java JDBC technology-based drivers.</p>
+<div class="heading">Database Connectivity Steps</div>
+<p>Before start connectivity first import the <font class="'point_out">import.java.sql.*; </font> package.</p>
+<h3>Loading the database driver:-</h3> 
+<p>The driver class is loaded by calling <font class="point_out">Class.forName()</font> with the Driver class 
+name as an argument. As it loaded, the Driver class creates an instance of it. The client can connect 
+to Database Server through JDBC Driver. The JDBC-ODBC Bridge driver is commonly used. Most of the time
+ Database servers support ODBC driver.</p>
+
+<div class="code">
+<pre>
+<font color="#0000ff">try </font><font color="#000000">{</font>
+<font color="#ff0000">Class</font><font color="#000000">.forName(sun.jdbc.odbc.JdbcOdbcDriver); </font><font color="#008000">//Or any other driver</font>
+<font color="#000000">}</font>
+<font color="#0000ff">catch</font><font color="#000000">(</font><font color="#ff0000">Exception </font><font color="#000000">x)</font>
+<font color="#000000">{</font>
+<font color="#ff0000">System</font><font color="#000000">.out.println( Unable to load the driver </font><font color="#0000ff">class</font><font color="#000000">!);</font>
+<font color="#000000">}</font>
+</pre>
+</div>
+
+<h3>Creating a JDBC connection:-</h3>
+<p><i>getConnection():</i> Method of JDBC Driver manager is used to establish a connection to a database.
+The DriverManager class is manage the Drivers those are instaled on the system. It uses a username, password, 
+and a jdbc url to establish a connection to the database and returns a connection object. Within the context
+ of a Connection, SQL, PL/SQL statements are executed and results are returned.</p>
+
+<div class="code">
+<pre>
+<font color="#0000ff">try</font><font color="#000000">{</font>
+<font color="#ff0000">Connection </font><font color="#000000">dbConnection=</font><font color="#ff0000">DriverManager</font><font color="#000000">.getConnection(url,loginName,Password);</font>
+<font color="#000000">}</font>
+<font color="#0000ff">catch</font><font color="#000000">( </font><font color="#ff0000">SQLException </font><font color="#000000">x ){</font>
+<font color="#ff0000">System</font><font color="#000000">.out.println( Could not  get the  connection! );</font>
+<font color="#000000">}</font>
+</pre>
+</div>
+
+<h3>Creating a JDBC statement object:-</h3>
+<p>Once the connection is established we can interact with the database. To execute SQL statements, 
+it is need to instantiate a Statement object from connection object by using the createStatement() method, 
+whose code is define below:</p>
+<div class="code">
+<pre>
+<font color="#ff0000">Statement </font><font color="#000000">statement = dbConnection.createStatement();</font>
+</pre>
+</div>
+
+<p>There are three types of statements which we used in jdbc ,they are define as follows:</p>
+<ol><li><i>Statement:</i> Execute simple sql queries without parameters.<font class="point_out"> 
+Statement createStatement()</font> Creates a SQL Statement object.</li>
+
+<li><i>Prepared Statement:</i> Execute precompiled sql queries with or without parameters.
+<font class="point_out">PreparedStatement prepareStatement(String sql)</font>
+returns a new PreparedStatement object. PreparedStatement objects are precompiled SQL statements.</li>
+
+<li><i>Callable Statement:</i> Execute a call to a database stored procedure.
+<font class="point_out">CallableStatement prepareCall(String sql)</font> returns a new CallableStatement object. 
+CallableStatement objects are SQL stored procedure call statements.</li></ol>
+<h3>Executing a SQL statement with the Statement object, and returning a jdbc resultSet:-</h3>
+<p>Statement interface defines methods that are used to interact with database via the execution of SQL statements.
+The Statement class has three methods for executing statements:<font class="point_out"> executeQuery(), executeUpdate(), 
+and execute().</font></p>
+<p> For a SELECT statement, the method is use to executeQuery. ResultSet provides access to a table of data 
+generated by executing a Statement. The table rows are retrieved in sequence. A ResultSet maintains a 
+cursor pointing to its current row of data. The <font class="point_out">next()</font> method is used to
+ successively step through the rows of the tabular results.</p>
+<p>ResultSetMetaData Interface holds information on the types and properties of the columns in a ResultSet.
+It is constructed from the Connection object.</p>
+<div class="heading">Types of JDBC drivers</div>
+<p>JDBC drivers are available for most database platforms, from a number of vendors and in a number of 
+different flavors. There are four categories of drivers.</p>
+<ol><li><i> JDBC Type1 Driver:</i> They are also known as ODBC bridge drivers which uses a bridge 
+technology for connecting a Java client to an ODBC database system. 
+The JDBC-ODBC Bridge from Sun and InterSolv is the only existing example of a Type 1 driver.</li>
+
+<li><i>JDBC Type2 Native:</i> They mainly use native API for data access and they provide Java 
+wrapper classes to invoked using JDBC drivers</li>
+
+<li><i>JDBC Type 3 Driver:</i> They are written totally in Java and use vendor independent Net-protocol 
+to access a vendor independent remote listener.</li> 
+
+<li><i>JDBC Type 4 driver:</i> The most efficient driver in all and 100% written in java.</li></ol>
+
+<div class="heading">JDBC url's</div>
+<p>URL can use to specify  driver to use, machine on which DB resides, data base, user name and password.</p>
+<h3>URL format</h3>
+<p><i>jdbc:subprotocol:subname</i></p>
+<p><i>Subprotocol:</i> A name to deterrmine which driver is to use eg odbc, ff-microsoft</p>
+<p><i>Subname:</i> Information usage by the driver about which host/database to connect to.</p>
+
+<h3>Example</h3>
+<p><i>jdbc:odbc:SIG-ODBC</i></p>
+<p>Use the ODBC-JDBC Bridge to use to the ODBC connection called "SIG-ODBC".</p>
+<p>An ODBC connection "SIG-ODBC" must be set-up on the client before this would work.</p>
+
+<div class="heading">Advantages of JDBC</div>
+<p><i>UseExisting enterprise Data:</i> With JDBC technology, businesses are not locked in any proprietary 
+architecture, and can continue to use their installed databases and access information easily ,
+even if it is stored on different database management systems.</p>
+
+<p><i>Simplify The Enterprise development:</i> By the combination of the Java API and the JDBC API development 
+of application be easy and economical. JDBC helps the developer by hiding complexity of data.
+ JDBC API is simple to deploy program ,to learn and use.</p>
+
+<p><i>No configuration for network computers:</i> There is no configuration of JDBC required at the client side. 
+All the information required to make a connection is completely defined by the JDBC URL or by a DataSource object 
+registered with a Java Naming and Directory Interface (JNDI) naming service because JDBC driver is written in the 
+Java programming language, So no or zero configuration for clients supports the network computing and centralizes 
+software maintenance.</p>
+
+<div class="heading">Key Features of JDBC</div>
+<p><i>Full access to metadata:</i> The JDBC API provides metadata access that enables the development 
+of sensible applications those need to understand the facilities and capabilities of a specific database connection.</p> 
+<p><i>No installation is required:</i> A pure JDBC technology-based driver does not require special installation. 
+It is automatically downloaded as part of the applet that makes the JDBC calls.</p>
+<p><i>Database Connection Identified by URL:</i> JDBC technology exploits the advantages of Internet-standard
+ URLs to identify database connections. The JDBC API includes an even better way to identify and connect to a data source,
+  using a DataSource object, that makes code even more portable and easier to maintain.</p>
+
+<h3>An example to understand JDBC</h3>
+<div class="code">
+<pre>
+<font color="#0000ff">import </font><font color="#000000">java.sql.* ;</font>
+
+<font color="#0000ff">class </font><font color="#000000">JDBCExample {</font>
+<font color="#0000ff">public static void </font><font color="#000000">main( </font><font color="#ff0000">String </font><font color="#000000">args[] ) {</font>
+<font color="#0000ff">try </font><font color="#000000">{</font>
+<font color="#008000">// Load the database driver</font>
+<font color="#ff0000">Class</font><font color="#000000">.forName( </font><font color="#ff00ff">&quot;sun.jdbc.odbc.JdbcOdbcDriver&quot; </font><font color="#000000">) ;</font>
+
+<font color="#008000">// Get a connection to the database</font>
+<font color="#ff0000">Connection </font><font color="#000000">conn = </font><font color="#ff0000">DriverManager</font><font color="#000000">.getConnection( </font><font color="#ff00ff">&quot;jdbc:odbc:Database&quot; </font><font color="#000000">) ;</font>
+
+<font color="#008000">// Print all warnings</font>
+<font color="#0000ff">for</font><font color="#000000">( </font><font color="#ff0000">SQLWarning </font><font color="#000000">warn = conn.getWarnings(); warn != </font><font color="#0000ff">null</font><font color="#000000">;</font>
+<font color="#000000">warn = warn.getNextWarning() )</font>
+<font color="#000000">{</font>
+ <font color="#ff0000">System</font><font color="#000000">.out.println( </font><font color="#ff00ff">&quot;SQL Warning:&quot; </font><font color="#000000">) ;</font>
+ <font color="#ff0000">System</font><font color="#000000">.out.println( </font><font color="#ff00ff">&quot;State: &quot; </font><font color="#000000">+ warn.getSQLState()) ;</font>
+ <font color="#ff0000">System</font><font color="#000000">.out.println( </font><font color="#ff00ff">&quot;Message: &quot; </font><font color="#000000">+ warn.getMessage()) ;</font>
+ <font color="#ff0000">System</font><font color="#000000">.out.println( </font><font color="#ff00ff">&quot;Error: &quot; </font><font color="#000000">+ warn.getErrorCode() ) ;</font>
+<font color="#000000">}</font>
+
+<font color="#008000">// Get a statement from the connection</font>
+<font color="#ff0000">Statement </font><font color="#000000">statm = conn.createStatement() ;</font>
+
+<font color="#008000">// Execute the query</font>
+<font color="#ff0000">ResultSet </font><font color="#000000">rs = statm.executeQuery( </font><font color="#ff00ff">&quot;SELECT * FROM Emp&quot; </font><font color="#000000">) ;</font>
+
+<font color="#008000">// Loop through the result set</font>
+<font color="#0000ff">while</font><font color="#000000">( rs.next() )</font>
+<font color="#ff0000">System</font><font color="#000000">.out.println( rs.getString(</font><font color="#800080">1</font><font color="#000000">) ) ;</font>
+
+<font color="#008000">// Close the result set, statement and the connection</font>
+<font color="#000000">rs.close() ;</font>
+<font color="#000000">statm.close() ;</font>
+<font color="#000000">conn.close() ;</font>
+<font color="#000000">}</font>
+<font color="#0000ff">catch</font><font color="#000000">( </font><font color="#ff0000">SQLException </font><font color="#000000">se )</font>
+<font color="#000000">{</font>
+<font color="#ff0000">System</font><font color="#000000">.out.println( </font><font color="#ff00ff">&quot;SQL Exception:&quot; </font><font color="#000000">) ;</font>
+
+<font color="#008000">// Loop through the SQL Exceptions</font>
+<font color="#0000ff">while</font><font color="#000000">( see != </font><font color="#0000ff">null </font><font color="#000000">)</font>
+<font color="#000000">{</font>
+ <font color="#ff0000">System</font><font color="#000000">.out.println( </font><font color="#ff00ff">&quot;State: &quot; </font><font color="#000000">+ see.getSQLState()) ;</font>
+ <font color="#ff0000">System</font><font color="#000000">.out.println( </font><font color="#ff00ff">&quot;Message: &quot; </font><font color="#000000">+ see.getMessage()) ;</font>
+ <font color="#ff0000">System</font><font color="#000000">.out.println( </font><font color="#ff00ff">&quot;Error: &quot; </font><font color="#000000">+ see.getErrorCode() ) ;</font>
+
+ <font color="#000000">see = see.getNextException() ;</font>
+<font color="#000000">}</font>
+<font color="#000000">}</font>
+<font color="#0000ff">catch</font><font color="#000000">( </font><font color="#ff0000">Exception </font><font color="#000000">e )</font>
+<font color="#000000">{</font>
+<font color="#ff0000">System</font><font color="#000000">.out.println( e ) ;</font>
+<font color="#000000">}</font>
+<font color="#000000">}</font>
+<font color="#000000">}</font>
+</pre>
+</div>
+
+<div class="heading">JDBC Create Table</div>
+<p>Using JDBC it is possible to relate one database table to another by creating a column in the table 
+to derive its value from the value of a column in another table. If the tables had no columns in common, 
+then there would be no way to relate them to one another. you can link tables together you can easily 
+extract data from multiple tables with a single query, if your query mechanism supports this type of query.</p>
+<p>In order to integrate your tables into a single database, you will need to ensure that each table has a
+ column that contains a value unique to that table. Such a column is called a key. following is the jdbc 
+ program showing the use of executeUpdate() to create a table jdbc programming. </p>
+ <p>Here I am creating two tables as per my requirement Student and coursecourse_Id is the primary key 
+ which relate two tables in below example Course_Id is the primary key which relate two tables 
+ student and course.</p>
+<div class="code">
+<pre>
+<font color="#000000">CREATE TABLE STUDENT(</font>
+<font color="#000000">Course_id INTEGER</font>
+<font color="#000000">Student_name VARCHAR(30)</font>
+<font color="#000000">);</font>
+<font color="#000000">CREATE TABLE COURSE(</font>
+<font color="#000000">Course_id INTEGER</font>
+<font color="#000000">Course_name VARCHAR(30)</font>
+<font color="#000000">Course_duration VARCHAR(20)</font>
+<font color="#000000">);</font>
+</pre>
+</div>
+<h3>Inserting Data in SQL Tables</h3>
+
+<p>we will insert data into the Student and Course tables which we already created.</p>
+<p>we use <font class="pioint_out">executeUpdate()</font> to create a table and insert row into using 
+java jdbc insert data statement.</p>
+
+<h3>Update Table</h3>
+<p>JDBC update statement is used to update the data of the database.</p>
+<p>use jdbc <font class="point_out">executeupdate()</font>(uses jdbc update query) to update a table. 
+For instance in a statement like</p>
+<div class="code">
+<pre>
+<font color="#0000ff">int </font><font color="#000000">n = stmt.executeUpdate();</font>
+</pre>
+</div>
+
+</div>

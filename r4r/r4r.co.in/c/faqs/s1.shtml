@@ -1,0 +1,239 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+
+<HTML><HEAD><TITLE>C Interview Questions And Answers</TITLE>
+<META content=r4r.co.in name=owner>
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="Learn simple C Interview Questions And Answers,c tutorial,c basics,c interview questions,c interview questions and answers,interview questions and answers with examples, programming language,examples,pointer,function,loop,else,if else,while,array,pre processor,post processor,structures,memory menagement,string,constants,variables,decisions making,c unions,c memory allocation, c operators,subejctive question" >
+<meta name="keywords" CONTENT="C Interview Questions And Answers,c tutorial,c basics,c interview questions,c interview questions and answers,interview questions and answers with examples, programming language,examples,pointer,function,loop,else,if else,while,array,pre processor,post processor,structures,memory menagement,string,constants,variables,decisions making,c unions,c memory allocation, c operators,subejctive question,obejective question,literals,directives,stacks,queu,calloc,malloc">
+<link href="/css/main.css" rel="stylesheet" type="text/css" />
+        <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>C Interview Questions And Answers</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a><img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/c/">C </a>
+              <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/c/faqs/">C FAQS</a></div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/c/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 
+
+		<!-- Header End-->	
+
+<div class="heading">C FAQS</div> 
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;">
+    	<a href="c1.shtml" title="C Interview Questions And Answers">Previous</a>
+    </td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml" title="C FAQS">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="s2.shtml" title="C Interview Questions And Answers">Next</a></td>
+  </tr>
+</table>	
+  <p align="center" class="style5"><font color="#0000FF" face="Verdana"><b>C Interview Questions And Answers</b></font><font face="Verdana" size="2"><br>
+  </font>
+ </p>
+  <p><font face="Verdana" size="2"><span class="style3"><b>Q:What is C language?<br>
+  Ans:</b> The C programming language is a standardized programming language 
+  developed in the early 1970s by Ken Thompson and Dennis Ritchie for use on the 
+  UNIX operating system. It has since spread to many other operating systems, 
+  and is one of the most widely used programming languages.&nbsp; <br>
+  <br>
+  <b>Q:What is the output of printf(&quot;%d&quot;)? <br>
+  ANS:</b><br>
+  1. When we write printf(&quot;%d&quot;,x); this means compiler will print the value of 
+  x. But as here, there is nothing after �%d� so compiler will show in 
+  output window garbage value. <br>
+  <br>
+  2. When we use %d the compiler internally uses it to access the argument in 
+  the stack (argument stack). Ideally compiler determines the offset of the data 
+  variable depending on the format specification string. Now when we write 
+  printf(&quot;%d&quot;,a) then compiler first accesses the top most element in the 
+  argument stack of the printf which is %d and depending on the format string it 
+  calculated to offset to the actual data variable in the memory which is to be 
+  printed. Now when only %d will be present in the printf then compiler will 
+  calculate the correct offset (which will be the offset to access the integer 
+  variable) but as the actual data object is to be printed is not present at 
+  that memory location so it will print what ever will be the contents of that 
+  memory location. <br>
+  <br>
+  3. Some compilers check the format string and will generate an error without 
+  the proper number and type of arguments for things like printf(...) and scanf(...).
+  <br>
+  <br>
+  <b>Q: What is the difference between &quot;calloc(...)&quot; and &quot;malloc(...)&quot;?
+
+  <br>
+  ANS:</b><br>
+  <b>1. calloc(...)</b> allocates a block of memory for an array of elements of 
+  a certain size. By default the block is initialized to 0. The total number of 
+  memory allocated will be (number_of_elements * size). <br>
+  <br>
+  <b>malloc(...)</b> takes in only a single argument which is the memory 
+  required in bytes. malloc(...) allocated bytes of memory and not blocks of 
+  memory like <b>calloc(...).</b> <br>
+  <br>
+  <b>2. malloc(...)</b> allocates memory blocks and returns a void pointer to 
+  the allocated space, or NULL if there is insufficient memory available. <br>
+  <br>
+  <b>calloc(...)</b> allocates an array in memory with elements initialized to 0 
+  and returns a pointer to the allocated space. <b>calloc(...)</b> calls <b>
+  malloc(...)</b> in order to use the C++ _set_new_mode function to set the new 
+  handler mode. <br>
+  <br>
+  <b>Q: What is the difference between &quot;printf(...)&quot; and &quot;sprintf(...)&quot;? <br>
+  ANS:sprintf(...)</b> writes data to the character array whereas <b>
+  printf(...)</b> writes data to the standard output device. </span></font></p>
+  <p><span class="style3"><font face="Verdana" size="2"><b>Q: Compilation How to reduce a final size of 
+  executable? <br>
+  </b><br>
+  <b>ANS: </b>Size of the final executable can be reduced using dynamic linking 
+  for libraries. <br>
+  <br>
+  <b>Q:Can you tell me how to check whether a linked list is circular? <br>
+  ANS:</b>Create two pointers, and set both to the start of the list. Update 
+  each as follows:<br>
+  <br>
+  while (pointer1) {<br>
+  pointer1 = pointer1-&gt;next;<br>
+  pointer2 = pointer2-&gt;next; <br>
+  if (pointer2) pointer2=pointer2-&gt;next;<br>
+  if (pointer1 == pointer2) {<br>
+  print (&quot;circular&quot;);<br>
+  }<br>
+  }<br>
+  <br>
+  If a list is circular, at some point pointer2 will wrap around and be either 
+  at the item just before pointer1, or the item before that. Either way, its 
+  either 1 or 2 jumps until they meet. <br>
+
+  <br>
+  <b>Q:&quot;union&quot; Data Type What is the output of the following program? Why? <br>
+  </b><br>
+  #include <br>
+  main() {<br>
+  typedef union {<br>
+  int a;<br>
+  char b[10];<br>
+  float c;<br>
+  }<br>
+  Union;<br>
+  <br>
+  Union x,y = {100};<br>
+  x.a = 50;<br>
+  strcpy(x.b,&quot;hello&quot;);<br>
+  x.c = 21.50;<br>
+  printf(&quot;Union x : %d %s %f n&quot;,x.a,x.b,x.c);<br>
+  printf(&quot;Union y : %d %s %f n&quot;,y.a,y.b,y.c);<br>
+  }<br>
+  <br>
+  <b>Q: Write out a function that prints out all the permutations of a string. 
+  For example, abc would give you abc, acb, bac, bca, cab, cba. <br>
+  </b><br>
+  void PrintPermu (char *sBegin, char* sRest) {<br>
+  int iLoop;<br>
+  char cTmp;<br>
+  char cFLetter[1];<br>
+  char *sNewBegin;<br>
+  char *sCur;<br>
+  int iLen;<br>
+  static int iCount;<br>
+  <br>
+  iLen = strlen(sRest);<br>
+  if (iLen == 2) {<br>
+  iCount++;<br>
+  printf(&quot;%d: %s%s\n&quot;,iCount,sBegin,sRest);<br>
+  iCount++;<br>
+  printf(&quot;%d: %s%c%c\n&quot;,iCount,sBegin,sRest[1],sRest[0]);<br>
+  return;<br>
+  } else if (iLen == 1) {<br>
+  iCount++;<br>
+  printf(&quot;%d: %s%s\n&quot;, iCount, sBegin, sRest);<br>
+  return;<br>
+  } else {<br>
+  // swap the first character of sRest with each of <br>
+  // the remaining chars recursively call debug print<br>
+  sCur = (char*)malloc(iLen);<br>
+  sNewBegin = (char*)malloc(iLen);<br>
+  for (iLoop = 0; iLoop &lt; iLen; iLoop ++) {<br>
+  strcpy(sCur, sRest);<br>
+  strcpy(sNewBegin, sBegin);<br>
+  cTmp = sCur[iLoop];<br>
+  sCur[iLoop] = sCur[0];<br>
+  sCur[0] = cTmp;<br>
+  sprintf(cFLetter, &quot;%c&quot;, sCur[0]);<br>
+  strcat(sNewBegin, cFLetter);<br>
+  debugprint(sNewBegin, sCur+1);<br>
+  }<br>
+  }<br>
+  }<br>
+  <br>
+  void main() {<br>
+  char s[255];<br>
+  char sIn[255];<br>
+  printf(&quot;\nEnter a string:&quot;);<br>
+  scanf(&quot;%s%*c&quot;,sIn);<br>
+  memset(s,0,255);<br>
+  PrintPermu(s, sIn);<br>
+  }<br>
+  <br>
+  <b>Q:What will print out?<br>
+  </b>main()<br>
+  {<br>
+  char *p1=name;<br>
+  char *p2;<br>
+  p2=(char*)malloc(20);<br>
+  memset (p2, 0, 20);<br>
+  while(*p2++ = *p1++);<br>
+  printf(%s\n,p2);<br>
+  } <br>
+  The pointer p2 value is also increasing with p1 .<br>
+  *p2++ = *p1++ means copy value of *p1 to *p2 , then increment both addresses 
+  (p1,p2) by one , so that they can point to next address . So when the loop 
+  exits (ie when address p1 reaches next character to name ie null) p2 address 
+  also points to next location to name . When we try to print string with p2 
+  as starting address , it will try to print string from location after name  
+  hence it is null string . <br>
+  <br>
+  e.g. :<br>
+  initially p1 = 2000 (address) , p2 = 3000<br>
+  *p1 has value n ..after 4 increments , loop exits  at that time p1 value 
+  will be 2004 , p2 =3004  the actual result is stored in 3000 - n , 3001 - a , 
+  3002 - m , 3003 -e  we r trying to print from 3004 . where no data is 
+  present  that's why its printing null . <br>
+  <br>
+  <b>Answer:</b> empty string. </font> <br>
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;">
+    	<a href="c1.shtml" title="C Interview Questions And Answers">Previous</a>
+    </td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml" title="C FAQS">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="s2.shtml" title="C Interview Questions And Answers">Next</a></td>
+  </tr>
+</table>	
+<!--Footer  --> 
+</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>

@@ -1,0 +1,165 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>Using Transactions,Assigning Transactions to a Command,Committing and Rolling Back Transactions,Step To Create Transactions,</TITLE>
+
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="Using Transactions,Assigning Transactions to a Command,Committing and Rolling Back Transactions,Step To Create Transactions" >
+<meta name="keywords" CONTENT="Using Transactions,Assigning Transactions to a Command,Committing and Rolling Back Transactions,Step To Create Transactions,">
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<!-- header start-->	
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>ADO.NET</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+            <img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+            <a href="/ado.net">ADO.Net</a>
+              <img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+
+			  <a href="/ado.net/01/tutorial/ado.net/">ADO.NET Tutorials</a>
+
+              </div>
+
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/ado.net/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	 
+<!-- header End-->	
+
+<div class="heading">Using Transactions</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="Transaction%20Processing%20in%20ADO.NET.shtml" title="Transaction Processing in ADO.NET">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="Data_binding.shtml" title="Data Binding to Controls">Next</a></td>
+  </tr> 
+</table>
+
+<p>There are three steps to using transactions after they are created.It is  assigned to the commands that will participate in them, then the commands are executed, and finally the transaction is closed by either committing it or rolling it back.</p>
+<h3>Assigning Transactions to a Command</h3>
+<p>Once a transaction has been begun on a connection, all commands executed against that connection must participate in that transaction and if  this doesnt happen
+automaticallyyou must set the Transaction property of the command to reference the transaction.</p>
+<h2>Committing and Rolling Back Transactions</h2>
+<p>The final step in transaction, processing is to commit or roll back the changes that were made by the commands participating in the transaction. If the transaction is committed,
+all of the changes will be accepted in the data source. If it is rolled back, all of the changes will be discarded, and the data source will be returned to the state it was in
+before the transaction began. Transactions are committed using the transactions Commit method and rolled back using the transactions Rollback method.</p>
+
+<div class="heading">Example: Step To Create Transactions</div>
+<ol>
+<li>Open the Transactions project from the Visual Studio Start Page or byusing the File menu.</li>
+
+<li>Double-click Transactions.cs to display the form in the form designer.</li>
+
+<li>Double-click Create. Visual Studio opens the code editor window and adds the Click event handler.</li>
+
+<li>Add the following code to the procedure.</li>
+
+<li>
+<div class="code">
+<pre>
+<font color="#0000ff">string </font><font color="#000000">s</font>
+</pre>
+</div>
+</li>
+
+<li>
+<div class="code">
+<pre>
+<font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Data</font><font color="#000000">.OleDb.OleDbTransaction TrnNew;</font>
+</pre>
+</div>
+</li>
+
+<li>
+<div class="code">
+<pre>
+<font color="#0000ff">this</font><font color="#000000">.cnAccessNwind.Open();</font>
+</pre>
+</div>
+</li>
+
+<li>
+<div class="code">
+<pre>
+<font color="#000000">TrnNew = </font><font color="#0000ff">this</font><font color="#000000">.cnAccessNwind.BeginTransaction();</font>
+</pre>
+</div>
+</li>
+
+<li>
+<div class="code">
+<pre>
+<font color="#000000">s = </font><font color="#ff00ff">&quot;Isolation Level: &quot;</font><font color="#000000">;</font>
+</pre>
+</div>
+</li>
+
+<li>
+<div class="code">
+<pre>
+<font color="#000000">s += TrnNew.IsolationLevel.ToString();</font>
+</pre>
+</div>
+</li>
+
+<li>
+<div class="code">
+<pre>
+<font color="#808000">MessageBox</font><font color="#000000">.Show(s);</font>
+</pre>
+</div>
+</li>
+
+<li>
+<div class="code">
+<pre>
+<font color="#0000ff">this</font><font color="#000000">.cnAccessNwind.Close();</font>
+</pre>
+</div>
+</li>
+
+<li>The code creates a new Transaction using the default method, and then displays its IsolationLevel in a message box.</li>
+
+<li>Press F5 to run the application.</li>
+</ol>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="Transaction%20Processing%20in%20ADO.NET.shtml" title="Transaction Processing in ADO.NET">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="Data_binding.shtml" title="Data Binding to Controls">Next</a></td>
+  </tr> 
+</table>
+
+<!-- Footer Start-->		
+		</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/dotnet/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->></BODY></HTML>

@@ -1,0 +1,160 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>EJB Interview Questions and Answers</TITLE>
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<META content=r4r.co.in name=owner>
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="Advance Java ebooks,Advance Java example, Advance Java interview questions ,Advance Java interview answers,Advance Java interview questions and answers" >
+<meta name="keywords" CONTENT="Advance Java ebooks,Advance Java example, Advance Java interview questions ,Advance Java interview answers,Advance Java interview questions and answers">
+
+<!--Header start-->
+
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>FAQ</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a><img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+			<a href="/java/">Java </a>
+              <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/java/faq">Faqs</a>
+
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/corejava/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	  
+
+<!-- header End-->
+
+<div class="heading">EJB Interview Questions and Answers (Subjective)</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="Event_Handling.shtml" title="Java Event Handling Interview Questions With Answers
+">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="index_servlets.shtml" title="Java Servlets Interview Questions and Answers(Subjective)">Next</a></td>
+  </tr>
+</table>
+
+<div class="heading">Q.1	What is the need of Remote and Home interface. Why cant it be in one? </div>
+<p><i>Answer: </i>The main reason is because there is a clear division of roles and responsabilities between the two interfaces. The home interface is your way to communicate with the container, that is who is responsable of creating, locating even removing one or more beans. The remote interface is your link to the bean, that will allow you to remotely access to all its methods and members. As you can see there are two distinct elements (the container and the beans) and you need two different interfaces for accessing to both of them.</p>
+
+<h3>Q.2	Can I develop an Entity Bean without implementing the create() method in the home interface? </h3>
+<p><i>Answer: </i>As per the specifications, there can be &quot;ZERO'&quot;or &quot;MORE&quot; <font class="point_out">create() </font>methods defined in an Entity Bean. In cases where create() method is not provided, the only way to access the bean is by knowing its primary key, and by acquiring a handle to it by using its corresponding finder method. In those cases, you can create an instance of a bean based on the data present in the table. All one needs to know is the primary key of that table. i.e. a set a columns that uniquely identify a single row in that table. Once this is known, one can use the <font class="point_out"> &quot;getPrimaryKey()&quot; </font>to get a remote reference to that bean, which can further be used to invoke business methods.</p>
+
+<h3>Q.3	What is the difference between Context, InitialContext and Session Context? How they are used?</h3>
+<h3>Answer: </h3>
+<p><i>javax.naming.Context </i>is an interface that provides methods for binding a name to an object. It's much like the RMI <font class="point_out">Naming.bind() </font>method.
+
+<p><i>javax.naming.InitialContext </i>is a <font class="point_out">Context </font>and provides implementation for methods available in the Context interface. </p> 
+
+<h3>Q.4	Where as SessionContext is an EJBContext object that is provided by the EJB container to a SessionBean in order for the SessionBean to access the information and/or services or the container?</h3>
+
+<p><i>Answer: </i>There is <font class="point_out">EntityContext </font> too which is also and <font class="point_out">EJBContext </font>object that'll be provided to an <font class="point_out">EntityBean </font>for the purpose of the <font class="point_out">EntityBean </font>accessing the container details. In general, the <font class="point_out">EJBContext (SessionContext and EntityContext), AppletContext </font>and <font class="point_out">ServletContext</font> help the corresponding Java objects in knowing about its 'context' [environment in which they run], and to access particular information and/or service. Whereas, the <font class="point_out">javax.naming.Context </font>is for the purpose of 'NAMING' [by the way of referring to] an object. </p>
+
+<div class="heading">Q.5	Why an onMessage call in Message-driven bean is always a seperate transaction?</div>
+<p><i>Answer: </i>EJB 2.0 specification: &quot;An onMessage call is always a separate transaction, because there is never a transaction in progress when the method is called.&quot; </p>
+
+<h3>Q.6  When a message arrives, it is passed to the Message Driven Bean through the onMessage() method, that is where the business logic goes.</h3>
+<p><i>Answer: </i>Since there is no guarantee when the method is called and when the message will be processed, is the container that is responsible of managing the environment, including transactions.</p>
+
+<h3>Q.7  Why are ejbActivate() and ejbPassivate() included for stateless session bean even though they are never required as it is a nonconversational bean? </h3>
+
+<p><i>Answer: </i>To have a consistent interface, so that there is no different interface that you need to implement for Stateful Session Bean and Stateless Session Bean.
+Both Stateless and Stateful Session Bean implement <font class="point_out">javax.ejb.SessionBean </font> and this would not be possible if stateless session bean is to remove <font class="point_out">ejbActivate </font>and <font class="point_out">ejbPassivate </font>from the interface.</p>
+
+<div class="heading">Q.8	Static variables in EJB should not be relied upon as they may break in clusters.Why? </div>
+<p><i>Answer: </i>Static variables are only ok if they are final. If they are not final, they will break the cluster. What that means is that if you cluster your application server (spread it across several machines) each part of the cluster will run in its own JVM. </p>
+<p>Say a method on the EJB is invoked on cluster 1 (we will have two clusters - 1 and 2) that causes value of the static variable to be increased to 101. On the subsequent call to the same EJB from the same client, a cluster 2 may be invoked to handle the request. A value of the static variable in cluster 2 is still 100 because it was not increased yet and therefore your application ceases to be consistent. Therefore, static non-final variables are strongly discouraged in EJBs. </p>
+
+<h3>Q.9	 If I throw a custom ApplicationException from a business method in Entity bean which is participating in a transaction, would the transaction be rolled back by container? </h3>
+
+<p><i>Answer: </i>EJB Transaction is automatically rolled back only when a SystemException (or a subtype of it) is thrown.</p>
+<p>Your ApplicationExceptions can extend from <font class="point_out">javax.ejb.EJBException,</font> which is a sub class of <font class="point_out">RuntimeException</font>. When a EJBException is encountered the container rolls back the transaction. EJB Specification does not mention anything about Application exceptions being sub-classes of EJBException.
+</p>
+
+<p>You can tell container to rollback the transaction, by using setRollBackOnly on SessionContext/EJBContext object as per type of bean you are using. </p>
+
+<div class="heading">Q.10	Does Stateful Session bean support instance pooling? </div>
+<p><i>Answer: </i>Stateful Session Bean conceptually doesn't have instance pooling. </p>
+
+<div class="heading">Q.11	Can I map more than one table in a CMP? </div>
+<p><i>Answer: </i>No, you cannot map more than one table to a single CMP Entity Bean. CMP has been, in fact, designed to map a single table. </p>
+
+<div class="heading">Q.12	Can I invoke Runtime.gc() in an EJB? </div>
+<p><i>Answer: </i>You shouldn't. What will happen depends on the implementation, but the call will most likely be ignored.</p>
+
+<div class="heading">Q.13	Can a Session Bean be defined without ejbCreate() method? </div>
+<p><i>Answer: </i>The <font class="point_out">ejbCreate() </font>methods is part of the bean's lifecycle, so, the compiler will not return an error because there is no <font class="point_out">ejbCreate()</font> method. </p>
+
+<p>However, the J2EE spec is explicit:the home interface of a Stateless Session Bean must have a single <font class="point_out">create() </font>method with no arguments,
+while the session bean class must contain exactly one <font class="point_out">ejbCreate() </font>method, also without arguments. Stateful Session Beans can have arguments (more than one create method).</p>
+
+<h3>Q.14	How to implement an entity bean which the PrimaryKey is an autonumeric field? </h3>
+<p><i>Answer: </i>The EJB 2 Spec (10.8.3 - Special case: Unknown primary key class) says that in cases where the PrimaryKeys are generated automatically by the underlying database, the bean provider must declare the findByPrimaryKey method to return java.lang.Object and specify the Primary Key Class as java.lang.Object in the Deployment Descriptor. When defining the Primary Key for the Enterprise Bean, the Deployer using the Container Provider's tools will typically add additional container-managed fields to the concrete subclass of the entity bean class.In this case, the Container must generate the Primary Key value when the entity bean instance is created (and before ejbPostCreate is invoked on the instance.) </p>
+
+<div class="heading">Q.15	What is clustering? </div>
+<p><i>Answer: </i>Clustering is grouping machines together to transparantly provide enterprise services. Clustering is an essential piece to solving the needs for today's large websites. The client does not know the difference between approaching one server or approaching a cluster of servers.</p>
+
+<h3>Q.16	Is it possible to share an <font class="point_out">HttpSession </font>between a JSP and EJB? What happens when I change a value in the HttpSession from inside an EJB? </h3>
+<p><i>Answer: </i>You can pass the HttpSession as parameter to an EJB method, only if all objects in session are serializable. This has to be consider as "passed-by-value", that means that it's read-only in the EJB. If anything is altered from inside the EJB, it won't be reflected back to the HttpSession of the Servlet Container. 
+
+<h3>Q.17	If my session bean with single method insert record into 2 entity beans, how can know that the process is done in same transaction (the attributes for these beans are Required)? </h3>
+
+<p><i>Answer: </i>If your session bean is using bean-managed transactions, you can ensure that the calls are handled in the same transaction by : </p>
+<div class="code">
+<pre>
+<font color="#000000">javax.transaction.UserTransaction tran= </font><font color="#0000ff">null</font><font color="#000000">;</font>
+<font color="#0000ff">try</font><font color="#000000">{</font>
+<font color="#000000">tran=ctx.getUserTransaction();</font>
+<font color="#000000">tran.begin();</font>
+<font color="#000000">myBeanHome1.create(....);</font>
+<font color="#000000">myBeanHome2.create(...);</font>
+<font color="#000000">tran.commit();</font>
+<font color="#000000">}</font>
+<font color="#0000ff">catch</font><font color="#000000">(...){}</font>
+</pre>
+</div>
+
+<p>You may want to check if you're already running in a transaction by calling tran.getStatus(). </p>
+
+<div class="heading">Q.18	When should I adopt BMP and when I should use CMP? </div>
+<p><i>Answer: </i>You can use CMP and BMP beans in the same application... obviously, a bean can be BMP or CMP, not both at the same time (they are mutually exclusive).
+There is a common approach that is normally used and considered a good one. You should start developing CMP beans, unless you require some kind of special bean, like multi-tables, that cannot be completely realized with a single bean. Then, when you realize that you need something more or that you would prefer handling the persistence (performanbce issue are the most common reason), you can change the bean from a CMP to a BMP. </p>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="Event_Handling.shtml" title="Java Event Handling Interview Questions With Answers
+">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="index_servlets.shtml" title="Java Servlets Interview Questions and Answers(Subjective)">Next</a></td>
+  </tr>
+</table>
+
+<!-- Footer Start-->
+
+</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>

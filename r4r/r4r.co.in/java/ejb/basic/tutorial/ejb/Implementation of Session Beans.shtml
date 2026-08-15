@@ -1,0 +1,139 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+
+<HTML><HEAD>
+
+<meta http-equiv="Content-Language" content="en-us">
+
+<TITLE>Implementation of session beans</TITLE>
+
+<META content="Rajesh Kumar" name="author">
+
+<META http-equiv="expires" content="0">
+
+<META content="r4r.co.in" name="owner">
+
+<META http-equiv=Content-Type content="text/html; charset=windows-1252">
+
+<meta name="description" CONTENT="Implementation of Session Beans" >
+
+<meta name="keywords" CONTENT="Implementation of Session Beans">
+
+<!--Header start-->
+
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>EJB</h1>
+            <div class="link_menu"><A href="/">R4R</A>
+
+<img border="0" src="/images/left_menu_bullet.gif" width="11" height="6"> <A href="/java">Java</A><img border="0" src="/images/left_menu_bullet.gif" width="11" height="6"><A href="/java/ejb/">EJB</A></font> </div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/ejb/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	  
+
+<!-- header End-->
+
+<div class="heading">Implementation of Session Beans:</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="Creating%20a%20ession%20beans.shtml" title=" Creating A Session beans
+">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="Implemnting%20the%20session%20bean.shtml" title="Implementing of Session Beans">Next</a></td>
+  </tr>
+</table>
+<p>A Session beans (Stateless or State full) is implemented by a beans class and remote or local interfaces.</p> 
+
+<p>
+Client of a Session beans can execute within the same runtime environment or in 
+a different runtime environment clients executing in same runtime environment 
+use local interfaces to interact with Session bean and clients executing in a 
+different runtime environment and to interact to a Session beans through it's 
+remote interface.</p>
+
+<p>
+Remote and Local interfaces contains methods which can be invoked on a Session 
+bean. To define Remote &amp; Local interfaces to Session bean <font class="point_out">@ Remote</font> and
+<font class="point_out">@ Local</font> annotation provide by EJB are used.</p>
+
+<h3>Example:</h3>
+
+<div class="code">
+<pre>
+<font color="#0000ff">import </font><font color="#000000">javax.ejb.*;</font>
+<font color="#000000">@ </font><font color="#ff0000">Remote</font>
+<font color="#0000ff">public interface </font><font color="#000000">Adder</font>
+<font color="#000000">{</font>
+	<font color="#0000ff">public int </font><font color="#000000">add(</font><font color="#0000ff">int </font><font color="#000000">x, </font><font color="#0000ff">int </font><font color="#000000">y);</font>
+<font color="#000000">}</font>
+</pre>
+</div>
+
+<p>The Implementing for Session 
+
+bean time in the using for Console Application, windows Application, web browser 
+
+and web browser in the established in web application and then containing in the 
+
+Remote interface and directly to target EJB Container and attach to Session 
+
+bean. The Session bean interacting local client and local interface.</p>
+<p>
+Bean Class for a Session beans implements Remote and local interface and 
+
+annotation by <font class="point_out">@stateless</font> and<font class="point_out"> @ stateful</font> annotation.</p>
+
+<h3>Example:</h3>
+<div class="code">
+<pre>
+<font color="#0000ff">import </font><font color="#000000">javax.ejb.*;</font>
+<font color="#000000">@ Stateless</font>
+<font color="#0000ff">public class </font><font color="#000000">AdderBean </font><font color="#0000ff">implements </font><font color="#000000">Adder</font>
+<font color="#000000">{</font>
+	<font color="#0000ff">public int </font><font color="#000000">add(</font><font color="#0000ff">int </font><font color="#000000">x, </font><font color="#0000ff">int </font><font color="#000000">y);</font>
+	<font color="#000000">{</font>
+	<font color="#0000ff">return </font><font color="#000000">x+y;</font>
+<font color="#000000">}</font>
+<font color="#000000">}</font>
+</pre>
+</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="Creating%20a%20ession%20beans.shtml" title=" Creating A Session beans
+">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="Implemnting%20the%20session%20bean.shtml" title="Implementing of Session Beans">Next</a></td>
+  </tr>
+</table>
+
+<!-- Footer Start-->
+</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>

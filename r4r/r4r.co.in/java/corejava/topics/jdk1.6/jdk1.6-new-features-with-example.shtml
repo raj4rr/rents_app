@@ -1,0 +1,245 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>jdk1.6 new features with example</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="jdk1.6 new features with example">
+<meta name="keywords" CONTENT="jdk1.6 new features with example">
+
+<!-- header start-->	
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>Java Programing laungage</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+            <img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+            <a href="/java/">Java</a>
+              <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/java/corejava/">Core Java</a>
+                                   <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/java/corejava/topics/jdk1.6/">JDK1.6</a>
+              </div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/corejava/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	
+<!-- header End-->
+
+<div class="heading">JDK1.6 Features with Examle:</div>
+ <p>The Java SE 6.0 mainly aims at providing compatibility, stability, security, and quality. There are several interesting enhancements in this release, especially in the areas of monitoring and management (JMX), web services, scripting language support, database connectivity, support for annotations, and security. There are also several new features in the JDBC API.</p>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="jdk1.6-interview-questions-answers.shtml" title="jdk1.6 interview questions answers">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+   <td style="width:33%; text-align:right;"><a href="index.shtml" title="Home">Next</a></td>
+  </tr> 
+</table>
+
+<div class="heading">Following are few JDK1.6 Features & Enhancements:</div>
+<ol>
+<li>
+ <p><i>Collections Framework Enhancements:</i>
+Java SE 6 API provides bi-directional collection access. New collection interfaces includes Deque, NavigableSet, NavigableMap.</p>
+<h3>New Collection classes include ArrayDeque.</h3>
+<ul>
+<li>
+ <i>ArrayDeque :</i> Efficient resizable-array implementation of the Deque interface. It implements a double-ended queue, which allows efficient insertion and deletion at both ends. This an excellent choice for stacks and queues.
+ <h3>Example</h3>
+ <div class="code">
+<PRE>
+<FONT COLOR="#000000">ArrayDeque&lt;</FONT><FONT COLOR="#ff0000">String</FONT><FONT COLOR="#000000">&gt; a = </FONT><FONT COLOR="#0000ff">new </FONT><FONT COLOR="#000000">ArrayDeque&lt;</FONT><FONT COLOR="#ff0000">String</FONT><FONT COLOR="#000000">&gt;();</FONT>
+<FONT COLOR="#0000ff">for </FONT><FONT COLOR="#000000">(</FONT><FONT COLOR="#ff0000">Iterator</FONT><FONT COLOR="#000000">&lt;</FONT><FONT COLOR="#ff0000">String</FONT><FONT COLOR="#000000">&gt; iter = a.iterator(); iter.hasNext(); ) {</FONT>
+<FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.println(iter.next());</FONT>
+<FONT COLOR="#000000">}</FONT>
+</PRE>
+ </div>
+ </li>
+ <li>
+ <i>LinkedList :</i> implements the Deque, interface. These operations allow linked lists to be used as a stack, queue, or double-ended queue.
+ </li>
+<li>
+ <i>TreeSet :</i> implements the NavigableSet interface.
+</li>
+<li>
+<i>TreeMap :</i> implements the NavigableMap interface.
+</li>
+</ul>
+</li>
+<li>
+<p><i>java.io Enhancements:</i>
+New class &quot;Console&quot; is added and it contains methods to access a character-based console device. The readPassword() methods disable echoing thus they are suitable for retrieval of sensitive data such as passwords. The method System.console () returns the unique console associated with the Java Virtual Machine. </p>
+</li>
+<li>
+<p><i>Internationalization Enhancements:</i>
+To enable plug-in of locale sensitive data (e.g., date format strings) and services (e.g., date formatters), some Service Provider Interfaces (SPIs) for locale-sensitive classes in the java.text and java.util packages have been added.These SPIs make it much easier for developers to provide support of more locales in addition to the currently available locales in Java SE
+- Unicode Normalizer API, Internationalized Domain Names Support, Japanese Imperial Calendar Support, ResourceBundle Enhancements.</p>
+</li>
+<li>
+<p><i>JMX API Enhancements:</i>
+The Java Management Extensions (JMX) technology became a part of the Java platform in the Java 2 Platform, Standard Edition (J2SE) 5.0. The most significant enhancements that have been made to the JMX API in the Java Platform, Standard Edition (Java SE) 6 are listed below.</p>
+<ul>
+<li>
+The JMX API now fully supports Generics.
+</li>
+<li>
+ MXBeans have been added. MXBeans are MBeans that provide a convenient way to bundle related values together without requiring clients to be specially configured to handle the bundles. A defined set of MXBeans already existed in the J2SE 5.0 platform, but Java SE 6 introduces an API to allow you to program your own custom MXBeans.
+ </li>
+ <li>
+ MBean Descriptors have been added
+ </li>
+ <li>
+A new class, javax.management.JMX, has been added to house constants and static methods.
+</li>
+</ul>
+</li>
+<li>
+<p><i>Scripting for the Java Platform:</i>
+Java SE 6 includes JSR 223: Scripting for the Java Platform API. This is a framework by which Java Applications can host script engines. Suns implementation of Java SE 6 includes an example script engine based on Mozilla Rhino: JavaScript for Java. The scripting framework supports third-party script engines through jar service discovery mechanism. It is possible to drop any JSR-223 compliant script engine in the CLASSPATH and access the same from your Java applications (much like JDBC drivers, JNDI implementations are accessed).</p>
+<h3>Example</h3>
+<div class="code">
+<PRE>
+<FONT COLOR="#0000ff">import </FONT><FONT COLOR="#000000">javax.script.*;</FONT>
+<FONT COLOR="#0000ff">public class </FONT><FONT COLOR="#000000">EvalScript {</FONT>
+<FONT COLOR="#0000ff">public static void </FONT><FONT COLOR="#000000">main(</FONT><FONT COLOR="#ff0000">String</FONT><FONT COLOR="#000000">[] args) </FONT><FONT COLOR="#0000ff">throws </FONT><FONT COLOR="#ff0000">Exception </FONT><FONT COLOR="#000000">{</FONT>
+<FONT COLOR="#008000">// create a script engine manager</FONT>
+<FONT COLOR="#000000">ScriptEngineManager factory = </FONT><FONT COLOR="#0000ff">new </FONT><FONT COLOR="#000000">ScriptEngineManager();</FONT>
+<FONT COLOR="#008000">// create a JavaScript engine</FONT>
+<FONT COLOR="#000000">ScriptEngine engine = factory.getEngineByName(JavaScript);</FONT>
+<FONT COLOR="#008000">// evaluate JavaScript code from String</FONT>
+<FONT COLOR="#000000">engine.eval(print(Hello, World));</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#000000">}</FONT>
+</PRE>
+</div>
+</li>
+
+<li>
+ <h3>Increased Developer Productivity:</h3>
+ <ul>
+ <li>
+JDBC 4.0 support (JSR 221): Improved database connectivity such as JDBC 4.0 and automatic java.sql.Driver discovery.
+</li>
+<li>
+Improvements to the Java Platform Debug Architecture (JPDA) & JVM Tool Interface.
+</li>
+<li>
+Hotspot JVM for Solaris provides hooks for the Solaris DTrace system debugging utility.
+</li>
+<li>
+JavaScript integrated and included with the platform.
+</li>
+<li>
+Scripting languages framework extends support for Ruby, Python, and other languages.
+</li>
+<li>
+Complete light-weight platform for web services, right out of the box.
+</li>
+</ul>
+</li>
+<li>
+ <h3>GUI:</h3>
+ <ul>
+ <li>
+JFC and Swing integration with desktop by using Windows API.
+</li>
+<li>
+Java 2D integration with desktop such as using desktop anti-aliasing font settings.
+</li>
+<li>
+Splash screen direct support and can be shown before JVM started.
+</li>
+<li>
+System tray support with ability to add icons, tool tips, and pop-up menus to the Windows or any other system tray (such as Gnome).
+</li>
+<li>
+ Unify Browser and Desktop Experience.
+ </li>
+ </ul>
+ </li>
+<li>
+ <h3>Security Features and Enhancements:</h3>
+ <ul>
+ <li>
+Native platform Security (GSS/Kerberos) integration.
+</li>
+<li>
+Java Authentication and Authorization Service (JAAS) login module that employs LDAP authentication.
+</li>
+<li>
+New Smart Card I/O API.
+</li>
+<li>
+ New Security Request Framework enables requesting of certificates over a number of protocols.
+ </li>
+<li>
+JDK 5.0 main features include Generics, Autoboxing, Annotations, static imports and Enums. JDK 1.6 features include all JDK 5.0 features.
+</li>
+</ul>
+</li>
+<li>
+<p><i>JavaTM API for XML Processing (JAXP):</i>
+The Java API for XML Processing (JAXP) enables applications to parse, transform, validate and query XML documents using an API that is independent of a particular XML processor implementation. JAXP provides a pluggability layer to enable vendors to provide their own implementations without introducing dependencies in application code. Using this software, application and tool developers can build fully-functional XML-enabled Java applications for e-commerce, application integration, and web publishing.</p>
+<p>The Java Platform, Standard Edition version 6.0 includes JAXP 1.4. JAXP 1.4 is a maintenance release of JAXP 1.3 with support for the Streaming API for XML (StAX).</p>
+</li>
+<li>
+<p><i>JDBC 4.0 Enhancements :</i>
+Java SE 6 includes several enhancements to the Java Database Connectivity (JDBC) API. These enhancements will be released as JDBC version 4.0. The main objectives of the new JDBC features are to provide a simpler design and better developer experience</p>
+<p>The major features added in JDBC 4.0 include:</p>
+<ul>
+<li>
+Auto-loading of JDBC driver class
+</li>
+<li>
+Connection management enhancements
+</li>
+<li>
+Support for RowId SQL type
+</li>
+<li>
+DataSet implementation of SQL using Annotations
+</li>
+<li>
+SQL exception handling enhancements.
+</li>
+</ul>
+</li>
+</ol>
+
+ <table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="jdk1.6-interview-questions-answers.shtml" title="jdk1.6 interview questions answers">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+   <td style="width:33%; text-align:right;"><a href="index.shtml" title="Home">Next</a></td>
+  </tr> 
+</table>
+
+          <!-- Footer Start-->	
+
+		</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->

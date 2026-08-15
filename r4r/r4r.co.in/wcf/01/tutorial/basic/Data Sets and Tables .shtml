@@ -1,0 +1,186 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>Data Sets and Tables,Example of Type-safe data set and data table,DataTableHelper</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="Data Sets and Tables,Example of Type-safe data set and data table,DataTableHelper" >
+<meta name="keywords" CONTENT="Data Sets and Tables,Example of Type-safe data set and data table,DataTableHelper">
+
+<!--Header start-->
+
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>WCF</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a><img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+			<a href="/wcf">WCF with C# </a>
+              <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/wcf/01/tutorial/basic/">WCF Tutorials</a></div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/wcf/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	  
+
+<!-- Header End-->
+<div class="heading">Data Sets and Tables </div>
+
+  <table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="Data%20Contract%20Generics.shtml" title="Data Contract Generics
+">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="DataTableHelper.ToArray(%20).shtml" title="DataTableHelper.ToArray( )">Next</a></td>
+  </tr>
+</table>
+<p>The raw DataSet and DataTable types are serializable, marked with the Serializable attribute:</p>
+
+<div class="code">
+<pre>
+<font color="#000000">[Serializable]</font>
+<font color="#0000ff">public class </font><font color="#808000">DataSet </font><font color="#000000">: ...</font>
+<font color="#000000">{...}</font>
+
+<font color="#000000">[Serializable]</font>
+<font color="#0000ff">public class </font><font color="#808000">DataTable </font><font color="#000000">: ...</font>
+<font color="#000000">{...}</font>
+</pre>
+</div>
+
+<p>We can define valid service contracts that accept or return data tables or data sets:</p>
+
+<div class="code">
+<pre>
+<font color="#000000">[DataContract]</font>
+<font color="#0000ff">struct </font><font color="#000000">Contact</font>
+<font color="#000000">{...}</font>
+
+<font color="#000000">[ServiceContract]</font>
+<font color="#0000ff">interface </font><font color="#000000">IContactManager</font>
+<font color="#000000">{</font>
+<font color="#000000">[OperationContract]</font>
+<font color="#0000ff">void </font><font color="#000000">AddContact(Contact contact);</font>
+
+<font color="#000000">[OperationContract]</font>
+<font color="#0000ff">void </font><font color="#000000">AddContacts(</font><font color="#808000">DataTable </font><font color="#000000">contacts);</font>
+
+<font color="#000000">[OperationContract]</font>
+<font color="#808000">DataTable </font><font color="#000000">GetContacts( );</font>
+<font color="#000000">}</font>
+</pre>
+</div>
+
+<h3>Example:</h3>
+<div class="code">
+<pre>
+<font color="#000000">[Serializable]</font>
+<font color="#0000ff">public </font><font color="#000000">partial </font><font color="#0000ff">class </font><font color="#000000">MyDataSet : </font><font color="#808000">DataSet</font>
+<font color="#000000">{</font>
+<font color="#0000ff">public </font><font color="#000000">ContactsDataTable Contacts</font>
+<font color="#000000">{get;}</font>
+<font color="#000000">[Serializable]</font>
+<font color="#0000ff">public </font><font color="#000000">partial </font><font color="#0000ff">class </font><font color="#000000">ContactsDataTable : </font><font color="#808000">DataTable</font><font color="#000000">,IEnumerable</font>
+<font color="#000000">{</font>
+<font color="#0000ff">public void </font><font color="#000000">AddContactsRow(ContactsRow row);</font>
+<font color="#0000ff">public </font><font color="#000000">ContactsRow AddContactsRow(</font><font color="#0000ff">string </font><font color="#000000">FirstName,</font><font color="#0000ff">string </font><font color="#000000">LastName);</font>
+<font color="#008000">//More members</font>
+<font color="#000000">}</font>
+<font color="#0000ff">public </font><font color="#000000">partial </font><font color="#0000ff">class </font><font color="#000000">ContactsRow : </font><font color="#808000">DataRow</font>
+<font color="#000000">{</font>
+<font color="#0000ff">public string </font><font color="#000000">FName</font>
+<font color="#000000">{get;set;}</font>
+<font color="#0000ff">public string </font><font color="#000000">LName</font>
+<font color="#000000">{get;set;}</font>
+<font color="#008000">//More members</font>
+<font color="#000000">}</font>
+<font color="#008000">//More members</font>
+<font color="#000000">}</font>
+<font color="#0000ff">public </font><font color="#000000">partial </font><font color="#0000ff">class </font><font color="#000000">ContactsTableAdapter : </font><font color="#808000">Component</font>
+<font color="#000000">{</font>
+<font color="#0000ff">public </font><font color="#000000">file MyDataSet.ContactsDataTable GetData( );</font>
+<font color="#008000">//More members</font>
+<font color="#000000">}</font>
+</pre>
+</div>
+
+<div class="heading">DataTableHelper</div>
+<p>It requires is a converter from a data row in the table to the 
+data contract. <font class="point_out">DataTableHelper </font> also adds some compile-time and runtime 
+type-safety verification</p>
+<p><i>Exapmle: </i><font class="point_out">Using DataTableHelper</font></p>
+
+<div class="code">
+<pre>
+<font color="#000000">[DataContract]</font>
+<font color="#0000ff">struct </font><font color="#000000">Contact</font>
+<font color="#000000">{</font>
+<font color="#000000">[DataMember]</font>
+<font color="#0000ff">public string </font><font color="#000000">FName;</font>
+<font color="#000000">[DataMember]</font>
+<font color="#0000ff">public string </font><font color="#000000">LNamee;</font>
+<font color="#000000">}</font>
+<font color="#000000">[ServiceContract]</font>
+<font color="#0000ff">interface </font><font color="#000000">IContactManager</font>
+<font color="#000000">{</font>
+<font color="#000000">[OperationContract]</font>
+<font color="#000000">Contact[] GetContacts( );</font>
+<font color="#000000">...</font>
+<font color="#000000">}</font>
+<font color="#0000ff">class </font><font color="#000000">ContactManager : IContactManager</font>
+<font color="#000000">{</font>
+<font color="#0000ff">public </font><font color="#000000">Contact[] GetContacts( )</font>
+<font color="#000000">{</font>
+<font color="#000000">ContactsTableAdapter adapter = </font><font color="#0000ff">new </font><font color="#000000">ContactsTableAdapter( );</font>
+<font color="#000000">MyDataSet.ContactsDataTable contactsTable = adapter.GetData( );</font>
+<font color="#000000">Converter&lt;MyDataSet.ContactsRow,Contact&gt; converter;</font>
+<font color="#000000">Converter = </font><font color="#0000ff">delegate</font><font color="#000000">(MyDataSet.ContactsRow row)</font>
+<font color="#000000">{</font>
+<font color="#000000">Contact contact = </font><font color="#0000ff">new </font><font color="#000000">Contact( );</font>
+<font color="#000000">contact.FName = row.FName;</font>
+<font color="#000000">contact.LNamee  = row.LNamee;</font>
+<font color="#0000ff">return </font><font color="#000000">contact;</font>
+<font color="#000000">};</font>
+<font color="#0000ff">return </font><font color="#000000">DataTableHelper.ToArray(contactsTable,converter);</font>
+<font color="#000000">}</font>
+<font color="#008000">//Rest of the implementation</font>
+<font color="#000000">}</font>
+</pre>
+</div>
+
+ <table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="Data%20Contract%20Generics.shtml" title="Data Contract Generics
+">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="DataTableHelper.ToArray(%20).shtml" title="DataTableHelper.ToArray( )">Next</a></td>
+  </tr>
+</table>
+
+ <!--Footer  -->
+</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/dotnet/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>

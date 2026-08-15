@@ -1,0 +1,185 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE> How Thread is Death in Java Program?||Notify,NotifyAll and Wait in Java Programminga.</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="How Thread is Death in Java Program?,Notify,NotifyAll and Wait in Java Programminga" >
+<meta name="keywords" CONTENT="How Thread is Death in Java Program?,Notify,NotifyAll and Wait in Java Programminga">
+
+<!-- header start-->
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+	<BODY>
+		<?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+        <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>Java Multithreading FAQ Tutorials</h1>
+            <div class="link_menu"><br><div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+            <img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+            <a href="/java/">Java</a>
+			<img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/java/corejava/">Core Java</a>
+  <img src="/images/left_menu_bullet.gif" width="11" height="6"> <a href="/java/corejava/faqs/">FAQS</a>
+  </div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/corejava/collections/commonfiles/leftmenu.shtml'); ?></td>                                           
+                        <td style="80%" valign="top">
+
+                        <div class="main_content"> 	 
+
+	<!-- header End-->
+
+<div class="heading">How Thread is Death in Java Program</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="java_multithreading05.shtml" title="Lock in Java Program">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="java_multithreading07.shtml" title="Thread Priority and Scheduling in Java Program">Next</a></td>
+  </tr> 
+</table>
+
+<p>Every running thread should be dead in two way:</p>
+	<ol>
+    <li>
+  if run() is completely execution then thread is dies naturally.
+  </li>
+  <li>
+by calling method like stop() and dead(), these method is used to dies the thread manually.
+</li>
+</ol>
+
+<div class="code">
+<PRE>
+<FONT COLOR="#008000">//following example for dead method</FONT>
+<FONT COLOR="#0000ff">package </FONT><FONT COLOR="#000000">r4r.co.in;</FONT>
+<FONT COLOR="#0000ff">class </FONT><FONT COLOR="#000000">MYThread </FONT><FONT COLOR="#0000ff">implements </FONT><FONT COLOR="#ff0000">Runnable </FONT><FONT COLOR="#000000">{</FONT>
+<FONT COLOR="#ff0000">String </FONT><FONT COLOR="#000000">name;    </FONT><FONT COLOR="#008000">// name of thread</FONT>
+<FONT COLOR="#ff0000">Thread </FONT><FONT COLOR="#000000">t;</FONT>
+<FONT COLOR="#000000">MYThread(</FONT><FONT COLOR="#ff0000">String </FONT><FONT COLOR="#000000">threadname) {</FONT>
+<FONT COLOR="#000000">name = threadname;</FONT>
+<FONT COLOR="#000000">t = </FONT><FONT COLOR="#0000ff">new </FONT><FONT COLOR="#ff0000">Thread</FONT><FONT COLOR="#000000">(</FONT><FONT COLOR="#0000ff">this</FONT><FONT COLOR="#000000">, name);</FONT>
+<FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.println(</FONT><FONT COLOR="#ff00ff">"My thread: " </FONT><FONT COLOR="#000000">+ t);</FONT>
+<FONT COLOR="#000000">t.start();   </FONT><FONT COLOR="#008000">// Thread Start for execution</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#0000ff">public void </FONT><FONT COLOR="#000000">run() {  </FONT><FONT COLOR="#008000">// Initialization of  thread.</FONT>
+<FONT COLOR="#0000ff">try </FONT><FONT COLOR="#000000">{</FONT>
+<FONT COLOR="#0000ff">for </FONT><FONT COLOR="#000000">(</FONT><FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">i = </FONT><FONT COLOR="#800080">0</FONT><FONT COLOR="#000000">; i &lt; </FONT><FONT COLOR="#800080">5</FONT><FONT COLOR="#000000">; i++) {</FONT>
+<FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.println(name + </FONT><FONT COLOR="#ff00ff">": " </FONT><FONT COLOR="#000000">+ i);</FONT>
+<FONT COLOR="#000000">t.stop();   </FONT><FONT COLOR="#008000">//kill the thread as initilized</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#000000">} </FONT><FONT COLOR="#0000ff">catch </FONT><FONT COLOR="#000000">(</FONT><FONT COLOR="#ff0000">Exception </FONT><FONT COLOR="#000000">e) {</FONT>
+<FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.println(name + e);</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#0000ff">class </FONT><FONT COLOR="#000000">ThreadDemo {</FONT>
+<FONT COLOR="#0000ff">public static void </FONT><FONT COLOR="#000000">main(</FONT><FONT COLOR="#ff0000">String </FONT><FONT COLOR="#000000">args[]) {</FONT>
+<FONT COLOR="#0000ff">new </FONT><FONT COLOR="#000000">MYThread(</FONT><FONT COLOR="#ff00ff">"One"</FONT><FONT COLOR="#000000">);</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#000000">}</FONT>
+</PRE>
+</div>
+
+<div class="heading">Notify, NotifyAll and Wait in Java Programming</div>
+<h3>Example</h3>
+<div class="code">
+<PRE>
+<FONT COLOR="#008000">// A implementation of a wait and notify in producer and consumer.</FONT>
+<FONT COLOR="#0000ff">package </FONT><FONT COLOR="#000000">r4r.co.in;</FONT>
+<FONT COLOR="#0000ff">class </FONT><FONT COLOR="#000000">Q { </FONT>
+<FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">n;</FONT>
+<FONT COLOR="#0000ff">boolean </FONT><FONT COLOR="#000000">valueSet = </FONT><FONT COLOR="#0000ff">false</FONT><FONT COLOR="#000000">;</FONT>
+<FONT COLOR="#0000ff">synchronized int </FONT><FONT COLOR="#000000">get() {</FONT>
+<FONT COLOR="#0000ff">if </FONT><FONT COLOR="#000000">(!valueSet) {</FONT>
+<FONT COLOR="#0000ff">try </FONT><FONT COLOR="#000000">{</FONT>
+<FONT COLOR="#000000">wait();</FONT>
+<FONT COLOR="#000000">} </FONT><FONT COLOR="#0000ff">catch </FONT><FONT COLOR="#000000">(</FONT><FONT COLOR="#ff0000">InterruptedException </FONT><FONT COLOR="#000000">e) {</FONT>
+<FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.println(</FONT><FONT COLOR="#ff00ff">"Exception" </FONT><FONT COLOR="#000000">+ e);</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.println(</FONT><FONT COLOR="#ff00ff">"Consumer: " </FONT><FONT COLOR="#000000">+ n);</FONT>
+<FONT COLOR="#000000">valueSet = </FONT><FONT COLOR="#0000ff">false</FONT><FONT COLOR="#000000">;</FONT>
+<FONT COLOR="#000000">notify();</FONT>
+<FONT COLOR="#0000ff">return </FONT><FONT COLOR="#000000">n;</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#0000ff">synchronized void </FONT><FONT COLOR="#000000">put(</FONT><FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">n) {</FONT>
+<FONT COLOR="#0000ff">if </FONT><FONT COLOR="#000000">(valueSet) {</FONT>
+<FONT COLOR="#0000ff">try </FONT><FONT COLOR="#000000">{</FONT>
+<FONT COLOR="#000000">wait();</FONT>
+<FONT COLOR="#000000">} </FONT><FONT COLOR="#0000ff">catch </FONT><FONT COLOR="#000000">(</FONT><FONT COLOR="#ff0000">InterruptedException </FONT><FONT COLOR="#000000">e) {</FONT>
+<FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.println(</FONT><FONT COLOR="#ff00ff">"Exception" </FONT><FONT COLOR="#000000">+ e);</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#0000ff">this</FONT><FONT COLOR="#000000">.n = n;</FONT>
+<FONT COLOR="#000000">valueSet = </FONT><FONT COLOR="#0000ff">true</FONT><FONT COLOR="#000000">;</FONT>
+<FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.println(</FONT><FONT COLOR="#ff00ff">"Producer: " </FONT><FONT COLOR="#000000">+ n);</FONT>
+<FONT COLOR="#000000">notify();</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#0000ff">class </FONT><FONT COLOR="#000000">Producer </FONT><FONT COLOR="#0000ff">implements </FONT><FONT COLOR="#ff0000">Runnable </FONT><FONT COLOR="#000000">{</FONT>
+<FONT COLOR="#000000">Q q;</FONT>
+<FONT COLOR="#000000">Producer(Q q) {</FONT>
+<FONT COLOR="#0000ff">this</FONT><FONT COLOR="#000000">.q = q;</FONT>
+<FONT COLOR="#0000ff">new </FONT><FONT COLOR="#ff0000">Thread</FONT><FONT COLOR="#000000">(</FONT><FONT COLOR="#0000ff">this</FONT><FONT COLOR="#000000">, </FONT><FONT COLOR="#ff00ff">"Producer"</FONT><FONT COLOR="#000000">).start();</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#0000ff">public void </FONT><FONT COLOR="#000000">run() {</FONT>
+<FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">i = </FONT><FONT COLOR="#800080">1</FONT><FONT COLOR="#000000">;</FONT>
+<FONT COLOR="#0000ff">while </FONT><FONT COLOR="#000000">(i &lt; </FONT><FONT COLOR="#800080">20</FONT><FONT COLOR="#000000">) {</FONT>
+<FONT COLOR="#000000">q.put(i++);</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#0000ff">class </FONT><FONT COLOR="#000000">Consumer </FONT><FONT COLOR="#0000ff">implements </FONT><FONT COLOR="#ff0000">Runnable </FONT><FONT COLOR="#000000">{</FONT>
+<FONT COLOR="#000000">Q q;</FONT>
+<FONT COLOR="#000000">Consumer(Q q) {</FONT>
+<FONT COLOR="#0000ff">this</FONT><FONT COLOR="#000000">.q = q;</FONT>
+<FONT COLOR="#0000ff">new </FONT><FONT COLOR="#ff0000">Thread</FONT><FONT COLOR="#000000">(</FONT><FONT COLOR="#0000ff">this</FONT><FONT COLOR="#000000">, </FONT><FONT COLOR="#ff00ff">"Consumer"</FONT><FONT COLOR="#000000">).start();</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#0000ff">public void </FONT><FONT COLOR="#000000">run() {</FONT>
+<FONT COLOR="#0000ff">while </FONT><FONT COLOR="#000000">(</FONT><FONT COLOR="#0000ff">true</FONT><FONT COLOR="#000000">) {</FONT>
+<FONT COLOR="#000000">q.get();</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#0000ff">class </FONT><FONT COLOR="#000000">PCFixed {</FONT>
+<FONT COLOR="#0000ff">public static void </FONT><FONT COLOR="#000000">main(</FONT><FONT COLOR="#ff0000">String </FONT><FONT COLOR="#000000">args[]) {</FONT>
+<FONT COLOR="#000000">Q q = </FONT><FONT COLOR="#0000ff">new </FONT><FONT COLOR="#000000">Q();</FONT>
+<FONT COLOR="#0000ff">new </FONT><FONT COLOR="#000000">Producer(q);</FONT>
+<FONT COLOR="#0000ff">new </FONT><FONT COLOR="#000000">Consumer(q);</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#000000">}</FONT>
+</PRE>
+</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="java_multithreading05.shtml" title="Lock in Java Program">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="java_multithreading07.shtml" title="Thread Priority and Scheduling in Java Program">Next</a></td>
+  </tr> 
+</table>
+
+    <!-- Footer Start-->
+    </div>
+		           </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!--footer end-->

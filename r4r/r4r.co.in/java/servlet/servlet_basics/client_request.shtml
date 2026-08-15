@@ -1,0 +1,128 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD>
+<meta http-equiv="Content-Language" content="en-us">
+<TITLE>Introduction to Servlet Response</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name="description" CONTENT="Introduction to Servlet Response">
+<meta name="keywords" CONTENT="Introduction to Servlet Response">
+
+<!-- header start-->	
+
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+
+<?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+     <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>Servlet Tutorials</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+			<img src="/images/left_menu_bullet.gif"  width="11" height="6"/> <a href="/java/">Java</a>
+			<img src="/images/left_menu_bullet.gif"  width="11" height="6"/> <a href="/java/servlet/">Servlet</a>
+
+			      </div>
+
+            	<table>
+                    <tr>
+
+                         <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/servlet/servlet_basics/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 
+
+<div class="heading">Introduction to Servlet Response</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="interface.shtml" title="Servlet Interface ">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="dispatcher.shtml" title="Introduction to Request Dispatcher ">Next</a></td>
+  </tr> 
+</table>
+<!-- header End-->	
+
+<p>In Servlet API makes two important interfaces ServletResponse and HttpServletResponse to assist in sending response to client.
+</p>
+<p>
+There are most important Methods of ServletResponse
+</p>
+
+<div class="table_content">
+ <table>
+ <tr><td class="heading" style="width:50%;"> Method</td><td class="heading" style="width:50%;">Description </td></tr>
+<tr><td class="alternate_heading1">PrintWriter getWriter()</td><td class="alternate_heading1">	returns a PrintWriter object that can send character text to the client.</td></tr>
+
+<tr><td class="alternate_heading1">void setBufferSize(int size) </td><td class="alternate_heading1">	Sets the preferred buffer size for the body of the response</td></tr>
+<tr><td class="alternate_heading1">void setContentLength(int len) </td><td class="alternate_heading1">	Sets the length of the content body in the response In HTTP servlets, this method sets the HTTP Content-Length header</td></tr>
+<tr><td class="alternate_heading1">void setContentType(String type) </td><td class="alternate_heading1">	sets the content type of the response being sent to the client before sending the respond.</td></tr>
+<tr><td class="alternate_heading1">void setBufferSize(int size)</td><td class="alternate_heading1">		sets the preferred buffer size for the body of the response.</td></tr>
+<tr><td class="alternate_heading1">boolean isCommitted() </td><td class="alternate_heading1">	returns a boolean indicating if the response has been committed</td></tr>
+<tr><td class="alternate_heading1">void setLocale(Locale loc)  </td><td class="alternate_heading1">	sets the locale of the response, if the response has not been committed yet.</td></tr>
+</table>
+</div>
+
+<p>
+HttpServletResponse Interface
+</p>
+
+<p>
+HttpServletResponse interface adds the methods that relates to the HTTP response. 
+</p>
+
+<p>Some Important Methods of HttpServletResponse</p>
+
+<div class="table_content">
+ <table>
+ <tr><td class="heading" style="width:50%;"> Method</td><td class="heading" style="width:50%;">Description </td></tr>
+<tr><td class="alternate_heading1">void addCookie(Cookie cookie)</td><td class="alternate_heading1">	adds the specified cookie to the response.</td></tr>
+
+<tr><td class="alternate_heading1">void sendRedirect(String location)</td><td class="alternate_heading1">	Sends a temporary redirect response to the client using the specified redirect location URL and clears the buffer</td></tr>
+
+<tr><td class="alternate_heading1">int getStatus()</td><td class="alternate_heading1">	gets the current status code of this response</td></tr>
+
+<tr><td class="alternate_heading1">String getHeader(String name)</td><td class="alternate_heading1">	gets the value of the response header with the given name.</td></tr>
+
+<tr><td class="alternate_heading1">void setHeader(String name, String value)	</td><td class="alternate_heading1">		sets a response header with the given name and value</td></tr>
+
+<tr><td class="alternate_heading1">void setStatus(int sc)</td><td class="alternate_heading1">	sets the status code for this response</td></tr>
+
+<tr><td class="alternate_heading1">void sendError(int sc, String msg)</td><td class="alternate_heading1">	sends an error response to the client using the specified status and clears the buffer</td></tr>
+
+</table>
+</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="interface.shtml" title="Servlet Interface ">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="dispatcher.shtml" title="Introduction to Request Dispatcher ">Next</a></td>
+  </tr> 
+</table>
+<!-- Footer Start-->		
+
+		</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+   </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->

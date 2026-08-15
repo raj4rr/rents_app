@@ -1,0 +1,331 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD>
+<meta http-equiv="Content-Language" content="en-us">
+<TITLE>Spring and struts integration Examples</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name="description" CONTENT="Spring and struts integration Examples- tutorial learn with r4r " >
+<meta name="keywords" CONTENT="Spring and struts integration Examples, spring, tutorial, beginners, freshers,
+database access (JDBC), Transaction Management, Web MVC framework, Web Flow, Exception handling, EJB integration and Sending email">
+
+		<!-- header start-->	
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+     <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>Spring Tutorials</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+			<img src="/images/left_menu_bullet.gif"/> <a href="/spring/">Spring</a>
+
+       </div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/spring/commonfiles/leftmenucore.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	 
+
+<div class="heading">Spring With Struts 2 Integration Example</div>
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="ejb_integration.shtml" title="ejb_integration">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="index.shtml" title="Home">Next</a></td>
+  </tr> 
+</table>
+<p>In this Topic We provide the integration between Struts 2 and Spring 3. Spring provides some features which are not available in struts 2. Most powerful among them is dependency injection. Spring framework provides an easy way to manage the dependency. It can be easily integrated with struts 2 framework.</p>
+<p>The<font class="point_out"> ContextLoaderListener</font> class is used to communicate spring application with struts 2. It must be specified in the<font class="point_out"> web.xml</font> file. Here You need to follow following some steps to Integrate Spring with Struts 2 Application:</p>
+<ol>
+<li>
+Create struts2 application and add spring jar files.
+</li><li>
+Create<font class="point_out"> web.xml</font> file, define<font class="point_out"> ContextLoaderListener</font> class.
+</li><li>
+Create<font class="point_out"> struts.xml </font>file, define bean name for the action class.
+</li><li>
+In<font class="point_out"> applicationContext.xml</font> file, create the bean. Its class name should be action class name e.g.<font class="point_out"> com.r4r.Login</font> and id should match with the action class of struts.xml file (e.g. login).
+</li><li>
+In the action class, define extra property .
+</li></ol>
+<div class="heading">Login Example of Spring with Struts 2 Integration</div>
+<p>In this example we provide the some steps to create the Application of Spring with Struts 2 as follows:</p>
+<p><i>Step 1: Project Structure</i></p>
+<p>Create a Dynamic Web Project<font class="point_out"> SpringStrutsIntegration</font> in the Eclipse IDE.</p>
+<div class="image">
+<img src="../images/spring_struts_project.png">
+</div>
+<p><i>Step 2:</i> There are following jars file need to be added in<font class="point_out"> WEB-INF/lib</font> folder.</p>
+<ol>
+<li>
+commons-fileupload-1.2.1
+</li><li>
+commons-io-1.3.2
+</li><li>
+commons-logging-1.1
+</li><li>
+freemarker-2.3.13
+</li><li>
+junit-3.8.1
+</li><li>
+ognl-2.6.11
+</li><li>
+struts2-convention-plugin-2.1.6
+</li><li>
+struts2-core-2.1.6
+</li><li>
+xwork-2.1.2
+</li><li>
+struts2-spring-plugin-2.1.6
+</li><li>
+antlr-runtime-3.0
+</li><li>
+org.springframework.asm-3.0.0.M3
+</li><li>
+org.springframework.beans-3.0.0.M3
+</li><li>
+org.springframework.context-3.0.0.M3
+</li><li>
+org.springframework.core-3.0.0.M3
+</li><li>
+org.springframework.expression-3.0.0.M3
+</li><li>
+org.springframework.web-3.0.0.M3
+</li><li>
+org.springframework.web.servlet-3.0.0.M3
+</li>
+</ol>
+<p><i>Step 3: Struts 2 + Spring 3 Plugin</i>
+<p>To integrate Struts 2 and Spring, get and include the "struts2-spring-plugin-xxx.jar" library into your project classpath. As already added above <font class="point_out">struts2-spring-plugin-2.3.15.jar.</font></p>
+<p><i>Step 4:</i> Create web.xml file in WEB-INF folder.</p>
+<p>This file defines controller class for struts 2 and<font class="point_out"> ContextLoaderListener listener</font> class to make connection between struts2 and spring application.</p>
+
+<div class="code">
+<pre>
+<font color="#0000ff">&lt;?xml </font><font color="#ff0000">version</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;1.0&quot; </font><font color="#ff0000">encoding</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;UTF-8&quot;</font><font color="#800080">?</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">web-app </font><font color="#ff0000">version</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;2.5&quot;</font>
+<font color="#ff0000">xmlns</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;http://java.sun.com/xml/ns/javaee&quot;</font>
+<font color="#800080">xmlns:xsi</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</font>
+<font color="#800080">xsi:schemaLocation</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;http://java.sun.com/xml/ns/javaee</font>
+<font color="#ff00ff">http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd&quot;</font><font color="#0000ff">&gt;</font>
+
+<font color="#0000ff">&lt;</font><font color="#808000">display-name</font><font color="#0000ff">&gt;</font><font color="#000000">SpringStrutsIntegration</font><font color="#0000ff">&lt;/</font><font color="#808000">display-name</font><font color="#0000ff">&gt;</font>
+
+<font color="#0000ff">&lt;</font><font color="#808000">welcome-file-list</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">welcome-file</font><font color="#0000ff">&gt;</font><font color="#000000">index.jsp</font><font color="#0000ff">&lt;/</font><font color="#808000">welcome-file</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">welcome-file-list</font><font color="#0000ff">&gt;</font>
+
+<font color="#0000ff">&lt;</font><font color="#808000">filter</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">filter-name</font><font color="#0000ff">&gt;</font><font color="#000000">struts2</font><font color="#0000ff">&lt;/</font><font color="#808000">filter-name</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">filter-class</font><font color="#0000ff">&gt;</font>
+<font color="#000000">org.apache.struts2.dispatcher.ng.filter.StrutsPrepareAndExecuteFilter</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">filter-class</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">filter</font><font color="#0000ff">&gt;</font>
+
+<font color="#0000ff">&lt;</font><font color="#808000">listener</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">listener-class</font><font color="#0000ff">&gt;</font><font color="#000000">org.springframework.web.context.ContextLoaderListener</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">listener-class</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">listener</font><font color="#0000ff">&gt;</font>
+
+<font color="#0000ff">&lt;</font><font color="#808000">filter-mapping</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">filter-name</font><font color="#0000ff">&gt;</font><font color="#000000">struts2</font><font color="#0000ff">&lt;/</font><font color="#808000">filter-name</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">url-pattern</font><font color="#0000ff">&gt;</font><font color="#000000">/*</font><font color="#0000ff">&lt;/</font><font color="#808000">url-pattern</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">filter-mapping</font><font color="#0000ff">&gt;</font>
+
+<font color="#0000ff">&lt;/</font><font color="#808000">web-app</font><font color="#0000ff">&gt;</font>
+</pre>
+</div>
+<p><i>Step 5:</i> Create<font class="point_out"> Login.java</font> Class in package<font class="point_out"> com.r4r</font>.</p>
+<p>This file defines four properties<font class="point_out"> name, password, successlogin and errorlogin</font>, with execute method where success is returned if password is admin.</p>
+<div class="code">
+<pre>
+<font color="#0000ff">package </font><font color="#000000">com.r4r;</font>
+<font color="#0000ff">public class </font><font color="#000000">Login {</font>
+	<font color="#0000ff">private </font><font color="#ff0000">String </font><font color="#000000">name,password,successlogin,errorlogin;</font>
+	<font color="#0000ff">public </font><font color="#ff0000">String </font><font color="#000000">execute(){</font>
+	<font color="#0000ff">if</font><font color="#000000">(password.equals(</font><font color="#ff00ff">&quot;admin&quot;</font><font color="#000000">))</font>
+	<font color="#000000">{</font>
+	<font color="#0000ff">return </font><font color="#ff00ff">&quot;success&quot;</font><font color="#000000">;</font>
+	<font color="#000000">}</font>
+	<font color="#0000ff">else</font><font color="#000000">{</font>
+	<font color="#0000ff">return </font><font color="#ff00ff">&quot;error&quot;</font><font color="#000000">;</font>
+	<font color="#000000">}</font>
+	<font color="#000000">}</font>
+	<font color="#0000ff">public </font><font color="#ff0000">String </font><font color="#000000">getName() {</font>
+	<font color="#0000ff">return </font><font color="#000000">name;</font>
+	<font color="#000000">}</font>
+	<font color="#0000ff">public void </font><font color="#000000">setName(</font><font color="#ff0000">String </font><font color="#000000">name) {</font>
+	<font color="#0000ff">this</font><font color="#000000">.name = name;</font>
+    <font color="#000000">}</font>
+	<font color="#0000ff">public </font><font color="#ff0000">String </font><font color="#000000">getPassword() {</font>
+	<font color="#0000ff">return </font><font color="#000000">password;</font>
+	<font color="#000000">}</font>
+	<font color="#0000ff">public void </font><font color="#000000">setPassword(</font><font color="#ff0000">String </font><font color="#000000">password) {</font>
+	<font color="#0000ff">this</font><font color="#000000">.password = password;</font>
+	<font color="#000000">}</font>
+	<font color="#0000ff">public </font><font color="#ff0000">String </font><font color="#000000">getSuccesslogin() {</font>
+	<font color="#0000ff">return </font><font color="#000000">successlogin;</font>
+	<font color="#000000">}</font>
+	<font color="#0000ff">public void </font><font color="#000000">setSuccesslogin(</font><font color="#ff0000">String </font><font color="#000000">successlogin) {</font>
+	<font color="#0000ff">this</font><font color="#000000">.successlogin = successlogin;</font>
+	<font color="#000000">}</font>
+	<font color="#0000ff">public </font><font color="#ff0000">String </font><font color="#000000">getErrorlogin() {</font>
+	<font color="#0000ff">return </font><font color="#000000">errorlogin;</font>
+	<font color="#000000">}</font>
+	<font color="#0000ff">public void </font><font color="#000000">setErrorlogin(</font><font color="#ff0000">String </font><font color="#000000">errorlogin) {</font>
+	<font color="#0000ff">this</font><font color="#000000">.errorlogin = errorlogin;</font>
+	<font color="#000000">}</font>
+	<font color="#000000">}</font>
+</pre>
+</div>
+<p><i>Step 6:</i> Create<font class="point_out"> struts.xml</font> file in Src folder.</p>
+<p>This file defines the package with action and result. Here, the action class name is login which will be searched in the<font class="point_out"> applicationContext.xml </font>file.</p>
+<div class="code">
+<pre>
+<font color="#0000ff">&lt;?xml </font><font color="#ff0000">version</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;1.0&quot; </font><font color="#ff0000">encoding</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;UTF-8&quot; </font><font color="#800080">?</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;!DOCTYPE </font><font color="#800080">struts PUBLIC </font><font color="#000000">&quot;</font><font color="#800080">-</font><font color="#000000">//</font><font color="#800080">Apache Software Foundation</font>
+<font color="#000000">//</font><font color="#800080">DTD Struts Configuration 2</font><font color="#000000">.</font><font color="#800080">1</font><font color="#000000">//</font><font color="#800080">EN</font><font color="#000000">&quot;</font>
+<font color="#000000">&quot;</font><font color="#800080">http:</font><font color="#000000">//</font><font color="#800080">struts</font><font color="#000000">.</font><font color="#800080">apache</font><font color="#000000">.</font><font color="#800080">org</font><font color="#000000">/</font><font color="#800080">dtds</font><font color="#000000">/</font><font color="#800080">struts-2</font><font color="#000000">.</font><font color="#800080">1</font><font color="#000000">.</font><font color="#800080">dtd</font><font color="#000000">&quot;</font><font color="#0000ff">&gt;</font>
+
+<font color="#0000ff">&lt;</font><font color="#808000">struts</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">package </font><font color="#ff0000">name</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;struts&quot; </font><font color="#800080">extends</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;struts-default&quot;</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">action </font><font color="#ff0000">name</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;login&quot; </font><font color="#800080">class</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;login&quot;</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">result </font><font color="#ff0000">name</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;success&quot;</font><font color="#0000ff">&gt;</font><font color="#000000">login.jsp</font><font color="#0000ff">&lt;/</font><font color="#808000">result</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">result </font><font color="#ff0000">name</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;error&quot;</font><font color="#0000ff">&gt;</font><font color="#000000">error.jsp</font><font color="#0000ff">&lt;/</font><font color="#808000">result</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">action</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">package</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">struts</font><font color="#0000ff">&gt;</font>
+</pre>
+</div>
+<p><i>Step 7:</i> Create<font class="point_out"> applicationContext.xml</font> file in<font class="point_out"> WEB-INF </font>folder.</p>
+<p>This file defines a bean with id login. This beans corresponds to the<font class="point_out"> com.r4r.Login </font>class. It will be considered as the action class here.</p>
+<div class="code">
+<pre>
+<font color="#0000ff">&lt;?xml </font><font color="#ff0000">version</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;1.0&quot; </font><font color="#ff0000">encoding</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;UTF-8&quot;</font><font color="#800080">?</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">beans</font>
+<font color="#ff0000">xmlns</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;http://www.springframework.org/schema/beans&quot;</font>
+<font color="#800080">xmlns:xsi</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</font>
+<font color="#800080">xmlns:p</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;http://www.springframework.org/schema/p&quot;</font>
+<font color="#800080">xsi:schemaLocation</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;http://www.springframework.org/schema/beans</font>
+<font color="#ff00ff">http://www.springframework.org/schema/beans/spring-beans-3.0.xsd&quot;</font><font color="#0000ff">&gt;</font>
+
+<font color="#0000ff">&lt;</font><font color="#808000">bean </font><font color="#800080">id</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;login&quot; </font><font color="#800080">class</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;com.r4r.Login&quot;</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">property </font><font color="#ff0000">name</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;successlogin&quot;</font>
+<font color="#800080">value</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;You are successfully logged in!&quot;</font><font color="#0000ff">&gt;&lt;/</font><font color="#808000">property</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">property </font><font color="#ff0000">name</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;errorlogin&quot; </font>
+<font color="#800080">value</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;Sorry, username or password Incorrect!&quot;</font><font color="#0000ff">&gt;&lt;/</font><font color="#808000">property</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">bean</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">beans</font><font color="#0000ff">&gt;</font>
+</pre>
+</div>
+<p><i>Step 8:</i> Create<font class="point_out"> index.jsp</font> file in<font class="point_out"> WebContent folder</font>.</p>
+<p>This file gets the<font class="point_out"> name and password </font>from the user.</p>
+<div class="code">
+<pre>
+<font color="#800000">&lt;%@ page language=</font><font color="#ff00ff">&quot;java&quot; </font>
+<font color="#800000">contentType=</font><font color="#ff00ff">&quot;text/html; charset=ISO-8859-1&quot; </font><font color="#800000">pageEncoding=</font><font color="#ff00ff">&quot;ISO-8859-1&quot;</font><font color="#800000">%&gt;</font>
+<font color="#800000">&lt;%@ taglib uri=</font><font color="#ff00ff">&quot;/struts-tags&quot; </font><font color="#800000">prefix=</font><font color="#ff00ff">&quot;s&quot; </font><font color="#800000">%&gt;</font>
+<font color="#0000ff">&lt;!DOCTYPE </font><font color="#800080">html PUBLIC </font><font color="#000000">&quot;</font><font color="#800080">-</font><font color="#000000">//</font><font color="#800080">W3C</font><font color="#000000">//</font><font color="#800080">DTD HTML 4</font><font color="#000000">.</font><font color="#800080">01 Transitional</font>
+<font color="#000000">//</font><font color="#800080">EN</font><font color="#000000">&quot; &quot;</font><font color="#800080">http:</font><font color="#000000">//</font><font color="#800080">www</font><font color="#000000">.</font><font color="#800080">w3</font><font color="#000000">.</font><font color="#800080">org</font><font color="#000000">/</font><font color="#800080">TR</font><font color="#000000">/</font><font color="#800080">html4</font><font color="#000000">/</font><font color="#800080">loose</font><font color="#000000">.</font><font color="#800080">dtd</font><font color="#000000">&quot;</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;html&gt;</font>
+<font color="#0000ff">&lt;head&gt;</font>
+<font color="#0000ff">&lt;meta </font><font color="#ff0000">http-equiv</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;Content-Type&quot; </font><font color="#ff0000">content</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;text/html; charset=ISO-8859-1&quot;</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;title&gt;</font><font color="#000000">Login Page</font><font color="#0000ff">&lt;/title&gt;</font>
+<font color="#0000ff">&lt;/head&gt;</font>
+<font color="#0000ff">&lt;body&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">s:form </font><font color="#ff0000">action</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;login&quot;</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">s:textfield </font><font color="#ff0000">name</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;name&quot; </font><font color="#ff0000">label</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;Username&quot;</font><font color="#0000ff">&gt;&lt;/</font><font color="#808000">s:textfield</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">s:password </font><font color="#ff0000">name</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;password&quot; </font><font color="#ff0000">label</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;Password&quot;</font><font color="#0000ff">&gt;&lt;/</font><font color="#808000">s:password</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">s:submit </font><font color="#ff0000">value</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;login&quot;</font><font color="#0000ff">&gt;&lt;/</font><font color="#808000">s:submit</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">s:form</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;/body&gt;</font>
+<font color="#0000ff">&lt;/html&gt;</font>
+</pre>
+</div>
+<p><i>Step 9:</i> Create<font class="point_out"> login.jsp</font> file in<font class="point_out"> WebContent folder</font>.</p>
+<p>That prints values of userName and login properties.</p>
+<div class="code">
+<pre>
+<font color="#800000">&lt;%@ page language=</font><font color="#ff00ff">&quot;java&quot; </font>
+<font color="#800000">contentType=</font><font color="#ff00ff">&quot;text/html; charset=ISO-8859-1&quot; </font><font color="#800000">pageEncoding=</font><font color="#ff00ff">&quot;ISO-8859-1&quot;</font><font color="#800000">%&gt;</font>
+<font color="#800000">&lt;%@ taglib uri=</font><font color="#ff00ff">&quot;/struts-tags&quot; </font><font color="#800000">prefix=</font><font color="#ff00ff">&quot;s&quot;</font><font color="#800000">%&gt;</font>
+<font color="#0000ff">&lt;!DOCTYPE </font><font color="#800080">html PUBLIC </font><font color="#000000">&quot;</font><font color="#800080">-</font><font color="#000000">//</font><font color="#800080">W3C</font><font color="#000000">//</font><font color="#800080">DTD HTML 4</font><font color="#000000">.</font><font color="#800080">01 Transitional</font>
+<font color="#000000">//</font><font color="#800080">EN</font><font color="#000000">&quot; &quot;</font><font color="#800080">http:</font><font color="#000000">//</font><font color="#800080">www</font><font color="#000000">.</font><font color="#800080">w3</font><font color="#000000">.</font><font color="#800080">org</font><font color="#000000">/</font><font color="#800080">TR</font><font color="#000000">/</font><font color="#800080">html4</font><font color="#000000">/</font><font color="#800080">loose</font><font color="#000000">.</font><font color="#800080">dtd</font><font color="#000000">&quot;</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;html&gt;</font>
+<font color="#0000ff">&lt;head&gt;</font>
+<font color="#0000ff">&lt;meta </font><font color="#ff0000">http-equiv</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;Content-Type&quot; </font><font color="#ff0000">content</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;text/html; charset=ISO-8859-1&quot;</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;title&gt;</font><font color="#000000">Login Successs </font><font color="#0000ff">&lt;/title&gt;</font>
+<font color="#0000ff">&lt;/head&gt;</font>
+<font color="#0000ff">&lt;body&gt;</font>
+<font color="#000000">${successlogin} Welcome </font><font color="#0000ff">&lt;</font><font color="#808000">s:property </font><font color="#ff0000">value</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;name&quot;</font><font color="#0000ff">/&gt;</font>
+<font color="#0000ff">&lt;/body&gt;</font>
+<font color="#0000ff">&lt;/html&gt;</font>
+</pre>
+</div>
+<p><i>Step 10:</i> Create<font class="point_out"> error.jsp</font> file in<font class="point_out"> WebContent folder</font>.</p>
+<p>This file define the error on a page.</p>
+<div class="code">
+<pre>
+<font color="#800000">&lt;%@ page language=</font><font color="#ff00ff">&quot;java&quot; </font><font color="#800000">contentType=</font><font color="#ff00ff">&quot;text/html; charset=ISO-8859-1&quot;</font>
+<font color="#800000">pageEncoding=</font><font color="#ff00ff">&quot;ISO-8859-1&quot;</font><font color="#800000">%&gt;</font>
+<font color="#0000ff">&lt;!DOCTYPE </font><font color="#800080">html PUBLIC </font><font color="#000000">&quot;</font><font color="#800080">-</font><font color="#000000">//</font><font color="#800080">W3C</font><font color="#000000">//</font><font color="#800080">DTD HTML 4</font><font color="#000000">.</font><font color="#800080">01 Transitional</font>
+<font color="#000000">//</font><font color="#800080">EN</font><font color="#000000">&quot; &quot;</font><font color="#800080">http:</font><font color="#000000">//</font><font color="#800080">www</font><font color="#000000">.</font><font color="#800080">w3</font><font color="#000000">.</font><font color="#800080">org</font><font color="#000000">/</font><font color="#800080">TR</font><font color="#000000">/</font><font color="#800080">html4</font><font color="#000000">/</font><font color="#800080">loose</font><font color="#000000">.</font><font color="#800080">dtd</font><font color="#000000">&quot;</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;html&gt;</font>
+<font color="#0000ff">&lt;head&gt;</font>
+<font color="#0000ff">&lt;meta </font><font color="#ff0000">http-equiv</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;Content-Type&quot; </font><font color="#ff0000">content</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;text/html; charset=ISO-8859-1&quot;</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;title&gt;</font><font color="#000000">Error Page</font><font color="#0000ff">&lt;/title&gt;</font>
+<font color="#0000ff">&lt;/head&gt;</font>
+<font color="#0000ff">&lt;body&gt;</font>
+<font color="#000000">${errorlogin}</font>
+<font color="#0000ff">&lt;jsp:include </font><font color="#ff0000">page</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;index.jsp&quot;</font><font color="#0000ff">&gt;&lt;/jsp:include&gt;</font>
+<font color="#0000ff">&lt;/body&gt;</font>
+<font color="#0000ff">&lt;/html&gt;</font>
+</pre>
+</div>
+<p><i>Step 11:</i> Now Build and Compile the Project .</p>
+<p><i>Step 12:</i> Now run the project. The following Output shows:</p>
+<div class="output">
+<div class="image">
+<img src="../images/spring_output_login.png">
+</div>
+</div>
+<p>Now the next Output image shows:</p>
+<div class="output">
+<div class="image">
+<img src="../images/spring_output_login_success.png">
+</div>
+</div>
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="ejb_integration.shtml" title="ejb_integration">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="index.shtml" title="Home">Next</a></td>
+  </tr> 
+</table>
+
+		</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->

@@ -1,0 +1,153 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>WCF Architecture,Contracts,Service contract,Data contract,Message Contract,Policies and Binding,Service Runtime,Messaging,Activation and Hosting,</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="WCF Architecture,Contracts,Service contract,Data contract,Message Contract,Policies and Binding,Service Runtime,Messaging,Activation and Hosting," >
+<meta name="keywords" CONTENT="WCF Architecture,Contracts,Service contract,Data contract,Message Contract,Policies and Binding,Service Runtime,Messaging,Activation and Hosting,">
+<!--Header start-->
+
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>WCF</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a><img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+			<a href="/wcf">WCF with C# </a>
+              <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/wcf/01/tutorial/basic/">WCF Tutorials</a></div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/wcf/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	  
+
+<!-- Header End-->
+<div class="heading">WCF Architecture</div>
+
+  <table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="Features%20of%20WCF.shtml" title=" Features of WCF 
+">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="Difference%20between%20WCF%20and%20Web%20service.shtml" title="Difference between WCF and Web service">Next</a></td>
+  </tr>
+</table>
+
+<div class="image">
+
+<img src="image/wcfarchitectitre/1.gif">
+</div>
+<h3>There are five layers: </h3>
+<ol>
+<li>Application</li>
+<li>Contracts</li>
+<li>Service Runtime</li>
+<li>Messaging</li>
+<li>Activation and hosting</li>
+</ol>
+
+<div class="heading">Contracts</div>
+
+<p>Contracts layer are second layer of the wcf architecture. Developer will 
+directly use this contract to develop the service. We are also going to do the 
+same now.</p>
+<ol>
+<li><h3>Service contract :</h3><p>It explains about the operation that service can provide.</p></li>
+
+<li><h3>Data contract: </h3>
+  <p>It explains the custom data type which is exposed to the client and 
+  defines the data types, are passed to and from service. Data types like int, 
+  string are identified by the client because it is already mention in XML 
+  schema definition language document, but custom created class or datatype 
+  cannot be identified by the client e.g. Employee data type. By using 
+  DataContract we can make client aware that we are using Employee data type for 
+  returning or passing parameter to the method.</p></li>
+<li><h3> Message Contract:</h3>
+  <p>Default SOAP message format is provided by the WCF runtime for 
+  communication between Client and service. If it is not meeting your 
+  requirements then we can create our own message format. This can be achieved 
+  by using Message Contract attribute.</p></li>
+<li><h3>Policies and Binding:</h3>
+  <p>Itspecify conditions required to communicate with a service e.g 
+  security requirement to communicate with service, protocol and encoding used 
+  for binding.</p>
+ </li>
+ </ol>
+<div class="heading">Service Runtime</div>
+  <p>It contains the behaviors that occur during runtime of service.</p>
+  <ul>
+    <li><i>Error Behavior: </i> Specifies what occurs, when internal error occurs on 
+    the service.</li>
+    <li><i>Dispatch Behavior: </i> Controls how a message is processed by the WCF 
+    Infrastructure.</li>
+    <li><i>Throttling Behavior: </i> Controls how many messages are processed.</li>
+    <li><i>Metadata Behavior: </i> Tells how and whether metadata is available to 
+    outside world.</li>
+    <li><i>Instance Behavior: </i>Specifies how many instance of the service has to be 
+    created while running.</li>
+    <li><i>Transaction Behavior: </i> Enables the rollback of transacted operations if 
+    a failure occurs.</li>
+  </ul>
+
+<div class="heading" >Messaging</div>
+  <p>It is composed of channels and&nbsp; channel is a component that 
+  processes a message in some way, for example, by authenticating a message. 
+  Channels are the core abstraction for sending message to and receiving message 
+  from an Endpoin and&nbsp; set of channels is also known as a channel stack.t. 
+  Broadly we can categories channels as </p>
+  <ul>
+    <li><i>Transport Channels: </i>
+    Handles sending and receiving message from network. Protocols like HTTP, 
+    TCP, name pipes and MSMQ.</li>
+    <li><i>Protocol Channels: </i>
+    Implements SOAP based protocol by processing and possibly modifying 
+    message. E.g. WS-Security and WS-Reliability.</li>
+  </ul>
+<div class="heading">Activation and Hosting</div>
+  <p>Services can be hosted or executed, so that it will be available to 
+  everyone accessing from the client. WCF serv ice can be hosted by following 
+  mechanism</p>
+  <ul>
+    <p><li><i>IIS: </i> Internet information Service provides number of advantages if a Service uses Http as protocol. It does not require Host code to activate the service, it automatically activates service code.</li></p>
+    <p><li><i>Windows Activation Service(WAS): </i> It is the new process activation mechanism that ships with IIS 7.0. In  addition to HTTP based communication, WCF can also use WAS to provide  message-based activation over other protocols, such as TCP and named pipes.</li></p>
+	<p><li><i>Self-Hosting: </i> WCF service can be self hosted as console application, Win Forms or WPF application with graphical UI.</li></p>
+    <p><li><i>Windows Service: </i> WCF can also be hosted as a Windows Service, so that it is under control of the Service Control Manager (SCM)</li></p>
+  </ul>
+
+ <table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="Features%20of%20WCF.shtml" title=" Features of WCF 
+">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="Difference%20between%20WCF%20and%20Web%20service.shtml" title="Difference between WCF and Web service">Next</a></td>
+  </tr>
+</table
+
+><!--Footer  -->
+</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/dotnet/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>

@@ -1,0 +1,29 @@
+//Method Overloading:- same name,different signature,same class
+class a
+{
+	private int k; 
+	//Public method
+	public void display()
+	{
+		k=1000;
+		System.Console.WriteLine("The value of k is -->"+k);
+	}
+	//Method with parameter
+	public void display(int p)
+	{
+		k=p;
+		System.Console.WriteLine("The value of k is -->"+k);
+	}
+}
+class b 
+{
+	public static void Main()
+	{
+		a x=new a(); 
+		x.display(); //for upper 
+		x.display(3413); //for Lower 
+		
+	}
+}
+
+

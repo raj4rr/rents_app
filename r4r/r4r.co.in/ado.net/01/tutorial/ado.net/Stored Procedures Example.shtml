@@ -1,0 +1,286 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>Stored Procedures Example</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="Stored Procedures Example" >
+<meta name="keywords" CONTENT="Stored Procedures Example">
+
+<!-- header start-->	
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>ADO.NET</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+            <img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+            <a href="/ado.net">ADO.Net</a>
+              <img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+
+			  <a href="/ado.net/01/tutorial/ado.net/">ADO.NET Tutorials</a>
+
+              </div>
+
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/ado.net/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	 
+<!-- header End-->	
+<div class="heading">Stored Procedures Example</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="Stored%20Procedures%20Comparison%20with%20functions.shtml" title="Stored Procedures Comparison with functions">Previous</a>
+	</td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="Using%20ADO.NET%20in%20Web%20Forms.shtml" title="Using ADO.NET in Web Forms">Next</a></td>
+  </tr> 
+</table>
+
+<ol>
+<li>Show data using stored procedure
+<h2>code for select procedure</h2>
+<p>
+<div class="code">
+<pre>
+<font color="#000000">create procedure studentselectalproc1</font>
+<font color="#0000ff">as</font>
+<font color="#000000">select * from student</font>
+</pre>
+</div>
+</p>
+
+<div class="code">
+<pre>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Collections</font><font color="#000000">.</font><font color="#008080">Generic</font><font color="#000000">;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">ComponentModel</font><font color="#000000">;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Data</font><font color="#000000">;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Drawing</font><font color="#000000">;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.Linq;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Text</font><font color="#000000">;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Windows</font><font color="#000000">.</font><font color="#008080">Forms</font><font color="#000000">;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Data</font><font color="#000000">.SqlClient;</font>
+<font color="#0000ff">namespace </font><font color="#000000">WindowsFormsApplication19</font>
+<font color="#000000">{</font>
+<font color="#0000ff">public </font><font color="#000000">partial </font><font color="#0000ff">class </font><font color="#000000">Form1 : </font><font color="#808000">Form</font>
+<font color="#000000">{</font>
+<font color="#0000ff">public </font><font color="#000000">Form1()</font>
+<font color="#000000">{</font>
+<font color="#000000">InitializeComponent();</font>
+<font color="#000000">}</font>
+<font color="#0000ff">private void </font><font color="#000000">button1_Click(</font><font color="#0000ff">object </font><font color="#000000">sender, </font><font color="#808000">EventArgs </font><font color="#000000">e)</font>
+<font color="#000000">{</font>
+<font color="#000000">SqlConnection con = </font><font color="#0000ff">new </font><font color="#000000">SqlConnection</font>
+	<font color="#000000">(</font><font color="#ff00ff">&quot;Data Source=R4R-03\\SQLEXPRESS;Initial </font>
+<font color="#000000">Catalog=ashish ;Integrated </font><font color="#008080">Security</font><font color="#000000">=True</font><font color="#ff00ff">&quot;);</font>
+<font color="#000000">con.Open();</font>
+<font color="#000000">SqlCommand cmd=</font><font color="#0000ff">new </font><font color="#000000">SqlCommand(</font><font color="#ff00ff">&quot;studentselectalproc1&quot;</font><font color="#000000">,con);</font>
+<font color="#000000">SqlDataAdapter ad = </font><font color="#0000ff">new </font><font color="#000000">SqlDataAdapter(cmd);</font>
+<font color="#808000">DataSet </font><font color="#000000">ds = </font><font color="#0000ff">new </font><font color="#808000">DataSet</font><font color="#000000">();</font>
+<font color="#000000">ad.Fill(ds);</font>
+<font color="#000000">cmd.CommandType = CommandType.StoredProcedure;</font>
+<font color="#000000">dataGridView1.DataSource = ds.Tables[</font><font color="#800080">0</font><font color="#000000">];</font>
+<font color="#000000">}  </font>
+<font color="#000000">}</font>
+<font color="#000000">}</font>
+<font color="#000000">}</font>
+</pre>
+</div>
+</li>
+
+<li>Insert  data using stored procedure
+<h2>code for Insert procedure</h2>
+<p>
+<div class="code">
+<pre>
+<font color="#000000">create procedure  studentinsertproc</font>
+<font color="#000000">@stdid text, @subid text, @subname text, @mark </font><font color="#0000ff">int</font>
+<font color="#0000ff">as   </font><font color="#000000">insert into student</font>
+<font color="#000000">(stdid,   subid,  subname ,mark) values </font>
+      <font color="#000000">( @stdid, @subid, @subname, @mark )</font>
+</pre>
+</div>
+</p>
+
+<div class="code">
+<pre>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Collections</font><font color="#000000">.</font><font color="#008080">Generic</font><font color="#000000">;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">ComponentModel</font><font color="#000000">;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Data</font><font color="#000000">;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Drawing</font><font color="#000000">;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.Linq;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Text</font><font color="#000000">;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Windows</font><font color="#000000">.</font><font color="#008080">Forms</font><font color="#000000">;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Data</font><font color="#000000">.SqlClient;</font>
+<font color="#0000ff">namespace </font><font color="#000000">WindowsFormsApplication19</font>
+<font color="#000000">{</font>
+<font color="#0000ff">public </font><font color="#000000">partial </font><font color="#0000ff">class </font><font color="#000000">Form1 : </font><font color="#808000">Form</font>
+<font color="#000000">{</font>
+<font color="#0000ff">public </font><font color="#000000">Form1()</font>
+<font color="#000000">{</font>
+<font color="#000000">InitializeComponent();</font>
+<font color="#000000">}</font>
+<font color="#0000ff">private void </font><font color="#000000">button1_Click(</font><font color="#0000ff">object </font><font color="#000000">sender, </font><font color="#808000">EventArgs </font><font color="#000000">e)</font>
+<font color="#000000">{</font>
+<font color="#000000">SqlConnection con = </font><font color="#0000ff">new </font><font color="#000000">SqlConnection</font>
+<font color="#000000">(</font><font color="#ff00ff">&quot;Data Source=R4R-03\\SQLEXPRESS;Initial </font>
+<font color="#000000">Catalog=student ;Integrated </font><font color="#008080">Security</font><font color="#000000">=True</font><font color="#ff00ff">&quot;);</font>
+<font color="#000000">con.Open();</font>
+<font color="#000000">SqlCommand cmd=</font><font color="#0000ff">new </font><font color="#000000">SqlCommand(</font><font color="#ff00ff">&quot;studentinsertproc&quot;</font><font color="#000000">,con);</font>
+<font color="#000000">SqlParameter spm = </font><font color="#0000ff">new </font><font color="#000000">SqlParameter();</font>
+<font color="#000000">cmd.Parameters.AddWithValue(</font><font color="#ff00ff">&quot;@stdid&quot;</font><font color="#000000">, textBox1.</font><font color="#008080">Text</font><font color="#000000">);</font>
+<font color="#000000">cmd.Parameters.AddWithValue(</font><font color="#ff00ff">&quot;@subid&quot;</font><font color="#000000">, textBox2.</font><font color="#008080">Text</font><font color="#000000">);</font>
+<font color="#000000">cmd.Parameters.AddWithValue(</font><font color="#ff00ff">&quot;@subname&quot;</font><font color="#000000">, textBox3.</font><font color="#008080">Text</font><font color="#000000">);</font>
+<font color="#000000">cmd.Parameters.AddWithValue(</font><font color="#ff00ff">&quot;@mark&quot;</font><font color="#000000">, </font><font color="#808000">Convert</font><font color="#000000">.ToInt32( textBox4.</font><font color="#008080">Text</font><font color="#000000">));</font>
+<font color="#000000">cmd.CommandType = CommandType.StoredProcedure;</font>
+<font color="#000000">cmd.ExecuteNonQuery();</font>
+<font color="#000000">}  </font>
+<font color="#000000">}</font>
+<font color="#000000">}</font>
+</pre>
+</div>
+</li>
+
+<li>Update  data using stored procedure
+<h2>code for Update  procedure</h2>
+<p>
+<div class="code">
+<pre>
+<font color="#000000">create proc updatestdrecordproc</font>
+<font color="#000000">@stdid nchar(</font><font color="#800080">10</font><font color="#000000">),@stdname nchar(</font><font color="#800080">10</font><font color="#000000">), @mark </font><font color="#0000ff">int</font>
+<font color="#0000ff">as</font>
+<font color="#000000">update student set stdname=@stdname,mark=@mark where stdid=@stdid</font>
+</pre>
+</div>
+</p>
+</p>
+<div class="code">
+<pre>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Collections</font><font color="#000000">.</font><font color="#008080">Generic</font><font color="#000000">;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">ComponentModel</font><font color="#000000">;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Data</font><font color="#000000">;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Drawing</font><font color="#000000">;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.Linq;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Text</font><font color="#000000">;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Windows</font><font color="#000000">.</font><font color="#008080">Forms</font><font color="#000000">;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Data</font><font color="#000000">.SqlClient;</font>
+<font color="#0000ff">namespace </font><font color="#000000">WindowsFormsApplication19</font>
+<font color="#000000">{</font>
+<font color="#0000ff">public </font><font color="#000000">partial </font><font color="#0000ff">class </font><font color="#000000">Form1 : </font><font color="#808000">Form</font>
+<font color="#000000">{</font>
+<font color="#0000ff">public </font><font color="#000000">Form1()</font>
+<font color="#000000">{</font>
+<font color="#000000">InitializeComponent();</font>
+<font color="#000000">}</font>
+<font color="#0000ff">private void </font><font color="#000000">button1_Click(</font><font color="#0000ff">object </font><font color="#000000">sender, </font><font color="#808000">EventArgs </font><font color="#000000">e)</font>
+<font color="#000000">{</font>
+<font color="#000000">SqlConnection con = </font><font color="#0000ff">new </font><font color="#000000">SqlConnection</font>
+<font color="#000000">(</font><font color="#ff00ff">&quot;Data Source=R4R-03\\SQLEXPRESS;Initial </font>
+<font color="#000000">Catalog=studentrecord;Integrated </font><font color="#008080">Security</font><font color="#000000">=True</font><font color="#ff00ff">&quot;);</font>
+<font color="#000000">con.Open();</font>
+<font color="#000000">SqlCommand cmd=</font><font color="#0000ff">new </font><font color="#000000">SqlCommand(</font><font color="#ff00ff">&quot;updatestdrecordproc&quot;</font><font color="#000000">,con);</font>
+<font color="#000000">SqlParameter spm = </font><font color="#0000ff">new </font><font color="#000000">SqlParameter();</font>
+<font color="#000000">cmd.Parameters.AddWithValue(</font><font color="#ff00ff">&quot;@stdid&quot;</font><font color="#000000">, textBox1.</font><font color="#008080">Text</font><font color="#000000">);</font>
+<font color="#000000">cmd.Parameters.AddWithValue(</font><font color="#ff00ff">&quot;@stdname&quot;</font><font color="#000000">, textBox2.</font><font color="#008080">Text</font><font color="#000000">);</font>
+<font color="#000000">cmd.Parameters.AddWithValue</font>
+<font color="#000000">(</font><font color="#ff00ff">&quot;@mark&quot;</font><font color="#000000">, </font><font color="#808000">Convert</font><font color="#000000">.ToInt32( textBox3.</font><font color="#008080">Text</font><font color="#000000">)); </font>
+<font color="#000000">cmd.CommandType = CommandType.StoredProcedure;</font>
+<font color="#000000">cmd.ExecuteNonQuery();</font>
+<font color="#000000">}   </font>
+<font color="#000000">}</font>
+<font color="#000000">}</font>
+</pre>
+</div>
+</li>
+
+<li>Delete data using stored procedure
+<h2>code for Update  procedure</h2>
+<p>
+<div class="code">
+<pre>
+<font color="#000000">create proc delstdrecordproc</font>
+<font color="#000000">@stdid nchar(</font><font color="#800080">10</font><font color="#000000">)</font>
+<font color="#0000ff">as</font>
+<font color="#000000">delete from student where stdid=@stdid</font>
+</pre>
+</div>
+
+<div class="code">
+<pre>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Collections</font><font color="#000000">.</font><font color="#008080">Generic</font><font color="#000000">;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">ComponentModel</font><font color="#000000">;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Data</font><font color="#000000">;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Drawing</font><font color="#000000">;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.Linq;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Text</font><font color="#000000">;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Windows</font><font color="#000000">.</font><font color="#008080">Forms</font><font color="#000000">;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Data</font><font color="#000000">.SqlClient;</font>
+<font color="#0000ff">namespace </font><font color="#000000">WindowsFormsApplication19</font>
+<font color="#000000">{</font>
+<font color="#0000ff">public </font><font color="#000000">partial </font><font color="#0000ff">class </font><font color="#000000">Form1 : </font><font color="#808000">Form</font>
+<font color="#000000">{</font>
+<font color="#0000ff">public </font><font color="#000000">Form1()</font>
+<font color="#000000">{</font>
+<font color="#000000">InitializeComponent();</font>
+<font color="#000000">}</font>
+<font color="#0000ff">private void </font><font color="#000000">button1_Click(</font><font color="#0000ff">object </font><font color="#000000">sender, </font><font color="#808000">EventArgs </font><font color="#000000">e)</font>
+<font color="#000000">{</font>
+<font color="#000000">SqlConnection con = </font><font color="#0000ff">new </font><font color="#000000">SqlConnection</font>
+<font color="#000000">(</font><font color="#ff00ff">&quot;Data Source=R4R-03\\SQLEXPRESS;Initial </font>
+<font color="#000000">Catalog=studentrecord;Integrated </font><font color="#008080">Security</font><font color="#000000">=True</font><font color="#ff00ff">&quot;);</font>
+<font color="#000000">con.Open();</font>
+<font color="#000000">SqlCommand cmd=</font><font color="#0000ff">new </font><font color="#000000">SqlCommand(</font><font color="#ff00ff">&quot;delstdrecordproc&quot;</font><font color="#000000">,con);</font>
+<font color="#000000">SqlParameter spm = </font><font color="#0000ff">new </font><font color="#000000">SqlParameter();</font>
+<font color="#000000">cmd.Parameters.AddWithValue(</font><font color="#ff00ff">&quot;@stdid&quot;</font><font color="#000000">, textBox1.</font><font color="#008080">Text</font><font color="#000000">);</font>
+<font color="#000000">cmd.CommandType = CommandType.StoredProcedure;</font>
+<font color="#000000">cmd.ExecuteNonQuery();  </font>
+<font color="#000000">}  </font>
+<font color="#000000">}</font>
+<font color="#000000">}</font>
+</pre>
+</div>
+</li>
+</ol>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="Stored%20Procedures%20Comparison%20with%20functions.shtml" title="Stored Procedures Comparison with functions">Previous</a>
+	</td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="Using%20ADO.NET%20in%20Web%20Forms.shtml" title="Using ADO.NET in Web Forms">Next</a></td>
+  </tr> 
+</table>
+
+ <!-- Footer Start-->		
+		</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/dotnet/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->

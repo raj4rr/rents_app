@@ -1,0 +1,140 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>C# Crystal Reports step by step</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="C# Crystal Reports step by step" >
+<meta name="keywords" CONTENT="C# Crystal Reports step by step">
+
+<!-- Header Start-->
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+     <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>C# Tutorial</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a><img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/c1/">C#</a>
+
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/c1/commonfiles/leftmenu.shtml'); ?></td>
+
+                       <td style="80%" valign="top">
+                        <div class="main_content"> 
+	<!-- Header End-->
+
+  <div class="heading">C# Crystal Reports step by step</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="Validation%20for%20Only%20Digit%20Allowed%20Using%20C-sharp.shtml" title="Validation for Only Digit Allowed Using C#">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="game.shtml" title="Game in asp">Next</a></td>
+  </tr>
+</table>
+
+<p>All C# Crystal Reports Tutorial in this website is based on the following database - invent.mdb </p>
+<p>Here we are going to create a new Crystal Reports in C# from Customer table in the above mentioned database invent.mdb. The customer Table has three fields (cname,city,state) and we are showing the whole data from customer tabel to the C# - Crystal Reports project.</p>
+<p>Open Visual Studio .NET and select a new C# Windows project.</p>
+<div class="image"><img border="0" src="crystal1.gif" ></div>
+<p>Now you will get the default <h3>Form1.cs</h3> </p>
+<p>From the main menu in Visual Studio C# project select PROJECT-->Add New Item . Then Add New Item dialogue will appear and select Crystal Reports from the dialogue box.</p>
+<div class="image"><img src="crystalreport2.gif" ></div>
+<p>Select Report type from Crystal Reports gallery.</p>
+<div class="image"><img src="crystal3.gif"></div>
+<p>Now Accept the default settings and click OK.
+<p>Next step is to select the appropriate connection to your database (here invent.mdb). Here we are going to select OLEDB Connection Accsee Database to connect Crystal Reports in C#.
+</p>
+<p>Select OLE DB (ADO) from Create New Connection </p>
+<div class="image"><img src="crystal4.gif"></div>
+<p>Select Microsoft jet.4.0 oledbprovider</p>
+<div class="image"><img  src="crystal5.gif"></div>
+<h3>Select your  Database Name</h3>
+<div class="image"><img src="crystal6.gif"></div>
+<h3>Click next</h3>
+<div class="image"><img src="crystal7.gif"></div>
+<h3>Click Finish</h3>
+<div class="image"><img src="cryst8.gif"></div>
+<p>the next window you will get your Server name under OLEDB Connection, from there selected database name (invent.mdb) and click the tables , then you can see all your tables from your database.</p>
+<p>From the tables list double click the Product table then you can see the Product table will come in the right side list.</p>
+<div class="image"><img src="crystal9.gif" ></div>
+
+<h3>Click Next Button</h3>
+<p>Select  fields from customer table to the right side list</p>
+<div class="image"><img src="crystal10.gif"></div>
+<p>Click Finish Button. Then you can see the Crystal Reports designer window in your C# project. In the Crystal Reports designer window you can see the selected fields from Product table. You can arrange the field Objects and design of the screen according your requirements. After that your screen is look like the following picture.</p>
+<div class="image"><img src="crystal11.gif"></div>
+<p>Now the designing part is over and the next step is to call the Crystal Reports in your C# application and view it through Crystal Reports Viewer control in C#.</p>
+<p>Select the default form (Form1.cs) you created in C# and drag a button and a CrystalReportViewer control to your form .</p>
+<div class="image"><img src="crystal12.gif"></div>
+<p>After you drag the CrystalReportViewer to your form , it will look like the following picture.</p>
+<div class="image"><img src="crystal13.gif"></div>
+<p>After that Write Code in <h3>.CS File<h3> on Button Click</p>
+<div class="code"><pre>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Collections</font><font color="#000000">.</font><font color="#008080">Generic</font><font color="#000000">;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">ComponentModel</font><font color="#000000">;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Data</font><font color="#000000">;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Drawing</font><font color="#000000">;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.Linq;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Text</font><font color="#000000">;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Windows</font><font color="#000000">.</font><font color="#008080">Forms</font><font color="#000000">;</font>
+<font color="#0000ff">using </font><font color="#000000">CrystalDecisions.CrystalReports.Engine;</font>
+<font color="#0000ff">namespace </font><font color="#000000">WindowsFormsApplication1</font>
+<font color="#000000">{</font>
+<font color="#0000ff">public </font><font color="#000000">partial </font><font color="#0000ff">class </font><font color="#000000">crystalform : </font><font color="#808000">Form</font>
+ <font color="#000000">{</font>
+  <font color="#0000ff">public </font><font color="#000000">crystalform()</font>
+  <font color="#000000">{</font>
+  <font color="#000000">InitializeComponent();</font>
+  <font color="#000000">}</font>
+  <font color="#0000ff">private void </font><font color="#000000">button1_Click(</font><font color="#0000ff">object </font><font color="#000000">sender, </font><font color="#808000">EventArgs </font><font color="#000000">e)</font>
+  <font color="#000000">{</font>
+ <font color="#000000">ReportDocument cryRpt = </font><font color="#0000ff">new </font><font color="#000000">ReportDocument();</font>
+<font color="#000000">cryRpt.Load(</font><font color="#ff00ff">&quot;E:\\Aditya\\WindowsFormsApplication1</font>
+<font color="#000000">\\WindowsFormsApplication1\\CrystalReport1.rpt</font><font color="#ff00ff">&quot;);</font>
+<font color="#000000">crystalReportViewer1.ReportSource = cryRpt;</font>
+<font color="#000000">crystalReportViewer1.Refresh();</font>
+ <font color="#000000">}</font>
+ <font color="#000000">}</font>
+<font color="#000000">}</font>
+</pre>
+</div>
+
+<p><h3>Output</h3></p>
+<div class="output">
+<div class="image"><img src="crystal14.gif"></div>
+</div>
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="Validation%20for%20Only%20Digit%20Allowed%20Using%20C-sharp.shtml" title="Validation for Only Digit Allowed Using C#">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="game.shtml" title="Game in asp">Next</a></td>
+  </tr>
+</table>
+
+ <!--Footer-->
+   </div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/dotnet/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+     <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>

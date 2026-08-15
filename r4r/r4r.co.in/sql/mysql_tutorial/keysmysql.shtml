@@ -1,0 +1,132 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http:///www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML>
+	<HEAD>
+
+	<meta http-equiv="Content-Language" content="en-us">
+	<TITLE>Keys in MySQL</TITLE>
+		<META content="Rajesh Kumar" name="author">
+		<META http-equiv="expires" content="0">
+		<META content="r4r.co.in" name="owner">
+		<META http-equiv=Content-Type content="text/html; charset=windows-1252">
+		<meta name="description" CONTENT="Keys in MySQL-Learn mysql with r4r tutorial provides you sql tutorial from basic level concept to higher 
+		level concept sql interview questions and sql examples">
+		<meta name="keywords" CONTENT="Keys in MySQL, Aliases In MySQL,Joins In MySQL,Inner Join In MySQL,Left Join In MySQL
+Right Join In MySQL,Full Join In MySQL,Union In MySQL">
+
+	<!-- header start-->	
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>MySQL </h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+			<img src="/images/left_menu_bullet.gif" width="11" height="6"><a href="/sql/mysql_tutorial/">MySQL</a>
+
+              </div>
+
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/sql/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	 
+
+<div class="heading">keys in MySQL</div>
+
+<table id="indexing">
+	<tr>
+	<td style="width:33%; text-align:left;"><a href="functionmysql.shtml" title="Function in MySQL">Previous</a></td>
+	<td style="width:34%; text-align:center"><a href="index.shtml" title="Home">Home</a></td>
+	<td style="width:33%; text-align:right"><a href="coderulemysql.shtml" title="Codd 12 Rule in MySQL">Next</a></td>
+	</tr>
+</table>
+<p>There are few keys define in the MySQL, they are:
+<ol><li>Primary key</li>
+<li>Foreign key</li>
+<li>Compound key</li>
+</ol>
+<h3>Primary key</h3>
+<p>It is a uniquely identified key in each records in the defined database. It does not contain "Null" values.
+ Almost all table contains the primary key. The creation of primary key should be define while we are creating table into the database,
+  else we need to alter the table as per our definition requirements.</p>
+ <h3>Syntax</h3>
+ <div class="code">
+ <pre>
+columnname datatype(size) NOT NULL PRIMARY KEY
+</pre>
+</div> 
+ <h3>example</h3>
+ <div class="code">
+ <pre>
+ create table studper(pid int(3) not null primary key auto_increment,
+ sid int references studinfo(sid),
+ fathername varchar(20), 
+ mothername varchar(20));
+ </pre>
+ </div>
+ <p>In the above code we have define the 'pid' as a Primary key which is 'not null' and can be 'auto_increment' its value.</p>
+ <h3>Foreign key</h3>
+<p>As the name define foreign, its foreign to the other table, means if a primary key is present or declare in the different table and
+ it can be used in different table as a column so its declare as a foreign key in the used table.</p>
+
+ <h3>Syntax</h3>
+ <div class="code">
+ <pre>
+columnname datatype references tablename(columnname or Primaykeyname)
+</pre>
+</div> 
+<p>In the above code we have define "sid" as a foreign key in the current table(studper) and
+ tablename is studinfo is the references table in which reference column name is sid.</p>
+ <h3>Compound key</h3>
+ <p>It is a key that consists of multiple columns,
+  because one column is not sufficiently unique in the define table. It also called composite key.</p>
+
+  <div class="heading">Levels Of Abstraction </div>
+  <p>It is the process of representing the essential features. there are three forms of schemas or level define they are:</p>
+    <ol><li>Physical</li>
+	<li>Conceptual</li>
+	<li>External</li>
+	</ol>
+<h3>Physical level</h3>
+<p>In this level of schema it describes details of how data is stored: files, indices, etc. on the other access disk system.
+It also describes the record layout of files and type of files structure we are using like hash, 
+b-tree,etc. It describe the low level of abstraction structure in detail.</p>
+<h3>Conceptual level</h3>
+<p>In this level of schema, it describes what type data are
+stored in the database, and what relationships exist among those data. It is also refered as the logical level.</p>
+<h3>External level</h3>
+<p>In this level of schema it presents data as a set of relations.
+ It specifies a view of the data in terms of the conceptual level. it also referred as the view level.</p> 
+<table id="indexing">
+	<tr>
+	<td style="width:33%; text-align:left;"><a href="functionmysql.shtml" title="Function in MySQL">Previous</a></td>
+	<td style="width:34%; text-align:center"><a href="index.shtml" title="Home">Home</a></td>
+	<td style="width:33%; text-align:right"><a href="coderulemysql.shtml" title="Codd 12 Rule in MySQL">Next</a></td>
+	</tr>
+</table>
+
+		</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->

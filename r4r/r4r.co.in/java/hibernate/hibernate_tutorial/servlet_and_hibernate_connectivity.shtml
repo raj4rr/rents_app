@@ -1,0 +1,294 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<HTML><HEAD><TITLE>how to connect servlet to Hibernate</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv="content-type" content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="how to connect servlet to Hibernate tutorial learn easily and shortly with hibernate tutorial,hibernate
+Examples,hibernate interview questions Step by step covers all topics of hibernate architecture" >
+<meta name="keywords" CONTENT="Hibernate tutorial, how to connect servlet to Hibernate, object relation mapping(ORM), 
+hibernate query language(HQl), Presistent classes, Objects, Collections, interceptors, Hibernate
+ Interview Question, basics of hibernate native sql">
+
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<META http-equiv="Content-Language" content="en-us">
+<link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+<link href="/css/main.css" rel="stylesheet" type="text/css" />
+</HEAD>
+<BODY>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>Hibernate</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+            <img src="/images/left_menu_bullet.gif"/> <a href="/java/hibernate/">Hibernate</a>
+             </div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top">
+                            <?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/hibernate/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                       <div class="main_content">  	 
+
+      <div class="heading">Servlet Hibernate Connectivity Example</div>
+
+      <table id="indexing">
+
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="struts_hibernate_connectivity.shtml" class" title="Struts Hibernate Connectivity">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="registration_form_using_struts_and_hibernate.shtml" title="Registration Form Using Struts Hibernate">Next</a></td>
+  </tr> 
+</table>
+      <p>
+          For creating the web application we are using NetBeans and MySQL server and 
+          appache tomcat for building the application. As we have discussed in our last 
+          application. In the last application we insert data into one table of the database 
+          but here in this application we will insert data into more than one application. 
+          So to create this application we need to go through some basic step to create 
+          application as we done in last application. This application will same as the 
+          last application.
+      </p>
+      <p>
+          Step 1. Create a database in MySQL database.
+      </P>
+      <p>
+          (a). create Database hibernate_pro; (Store all table into this database)
+      </p>
+      <p>
+          (b). use hibernate_pro; (here use means is activate means all database 
+          activity store in this database like as table)
+      </p>    
+      <div class="code">
+       <HTML>
+<BODY>
+<PRE>
+<FONT FACE="Courier New">
+<FONT COLOR="#000000">create table InsertData</FONT>
+<FONT COLOR="#000000">(</FONT>
+<FONT COLOR="#000000">id </FONT><FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">auto_increment not </FONT><FONT COLOR="#0000ff">null </FONT><FONT COLOR="#000000">primary key,</FONT>
+<FONT COLOR="#000000">first_name varchar(</FONT><FONT COLOR="#800080">50</FONT><FONT COLOR="#000000">),</FONT>
+<FONT COLOR="#000000">last_name varchar(</FONT><FONT COLOR="#800080">50</FONT><FONT COLOR="#000000">),</FONT>
+<FONT COLOR="#000000">age varchar(</FONT><FONT COLOR="#800080">50</FONT><FONT COLOR="#000000">)</FONT>
+<FONT COLOR="#000000">)   </FONT>
+</FONT>
+</PRE>
+</BODY>
+</HTML>
+      </div>
+
+      <p>select * from InsertData;</p>
+      <p>Step 2. Prepration of application on NetBeans</p>
+      <p>1. Take a new Project name is 'HibernateApplicationUsingServlet'</p>
+      <p>
+          First of all we will select to File Menu Wizard -> then click on NewProject -> 
+          Click on JavaWeb -> then Web Application -> click on Next -> Write the name of 
+          the Project -> select the server on which want to deploy the project -> click 
+          on Hibernate -> click on database connection -> hibernate_pro -> finish.
+          Then given outlook will be the project on NetBeans
+      </p>
+      <h3>hibernate.cfg.xml</h3>
+      <div class="code">
+
+<HTML>
+<BODY>
+<PRE>
+<FONT FACE="Courier New">
+<FONT COLOR="#000000">&lt;?xml version=</FONT><FONT COLOR="#ff00ff">"1.0" </FONT><FONT COLOR="#000000">encoding=</FONT><FONT COLOR="#ff00ff">"UTF-8"</FONT><FONT COLOR="#000000">?&gt;</FONT>
+<FONT COLOR="#000000">&lt;!DOCTYPE hibernate-configuration PUBLIC </FONT><FONT COLOR="#ff00ff">"-//Hibernate/Hibernate Configuration DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd"</FONT><FONT COLOR="#000000">&gt;</FONT>
+<FONT COLOR="#000000">&lt;hibernate-configuration&gt;</FONT>
+  <FONT COLOR="#000000">&lt;session-factory&gt;</FONT>
+    <FONT COLOR="#000000">&lt;property name=</FONT><FONT COLOR="#ff00ff">"hibernate.dialect"</FONT><FONT COLOR="#000000">&gt;org.hibernate.dialect.MySQLDialect&lt;/property&gt;</FONT>
+    <FONT COLOR="#000000">&lt;property name=</FONT><FONT COLOR="#ff00ff">"hibernate.connection.driver_class"</FONT><FONT COLOR="#000000">&gt;com.mysql.jdbc.</FONT><FONT COLOR="#ff0000">Driver</FONT><FONT COLOR="#000000">&lt;/property&gt;</FONT>
+    <FONT COLOR="#000000">&lt;property name=</FONT><FONT COLOR="#ff00ff">"hibernate.connection.url"</FONT><FONT COLOR="#000000">&gt;jdbc:mysql:</FONT><FONT COLOR="#008000">//localhost:3306/hibernate_pro&lt;/property&gt;</FONT>
+    <FONT COLOR="#000000">&lt;property name=</FONT><FONT COLOR="#ff00ff">"hibernate.connection.username"</FONT><FONT COLOR="#000000">&gt;root&lt;/property&gt;</FONT>
+    <FONT COLOR="#000000">&lt;property name=</FONT><FONT COLOR="#ff00ff">"hibernate.connection.password"</FONT><FONT COLOR="#000000">&gt;root&lt;/property&gt;</FONT>
+  <FONT COLOR="#000000">&lt;/session-factory&gt;</FONT>
+<FONT COLOR="#000000">&lt;/hibernate-configuration&gt;</FONT>
+</FONT>
+</PRE>
+</BODY>
+</HTML>
+      </div>
+      <p>
+          Step 3. Take a JSP page for the user view point. For this we need to go in 
+          File Menu Wizard -> click on New File Wizard -> click on web and then click 
+          on also jsp -> next -> jsp page name give here which you want -> click on finish.
+      </p>
+      <h3>index.jsp</h3>
+      <div class="code">
+          <HTML>
+<BODY>
+<PRE>
+<FONT FACE="Courier New">
+<FONT COLOR="#000000">&lt;%@page contentType=</FONT><FONT COLOR="#ff00ff">"text/html" </FONT><FONT COLOR="#000000">pageEncoding=</FONT><FONT COLOR="#ff00ff">"UTF-8"</FONT><FONT COLOR="#000000">%&gt;</FONT>
+<FONT COLOR="#000000">&lt;!DOCTYPE html&gt;</FONT>
+<FONT COLOR="#000000">&lt;html&gt;</FONT>
+    <FONT COLOR="#000000">&lt;head&gt;</FONT>
+        <FONT COLOR="#000000">&lt;meta http-equiv=</FONT><FONT COLOR="#ff00ff">"Content-Type" </FONT><FONT COLOR="#000000">content=</FONT><FONT COLOR="#ff00ff">"text/html; charset=UTF-8"</FONT><FONT COLOR="#000000">&gt;</FONT>
+        <FONT COLOR="#000000">&lt;title&gt;HibernateApplicationUsingServlet&lt;/title&gt;</FONT>
+    <FONT COLOR="#000000">&lt;/head&gt;</FONT>
+    <FONT COLOR="#000000">&lt;body&gt;</FONT>
+        <FONT COLOR="#000000">&lt;pre&gt;</FONT>
+        <FONT COLOR="#000000">&lt;form action=</FONT><FONT COLOR="#ff00ff">"MyServlet" </FONT><FONT COLOR="#000000">method=</FONT><FONT COLOR="#ff00ff">"post"</FONT><FONT COLOR="#000000">&gt;</FONT>
+        <FONT COLOR="#000000">First </FONT><FONT COLOR="#ff0000">Name      </FONT><FONT COLOR="#000000">&lt;input type=</FONT><FONT COLOR="#ff00ff">"text" </FONT><FONT COLOR="#000000">name=</FONT><FONT COLOR="#ff00ff">"fist_name"</FONT><FONT COLOR="#000000">/&gt;</FONT>
+        <FONT COLOR="#000000">Last </FONT><FONT COLOR="#ff0000">Name       </FONT><FONT COLOR="#000000">&lt;input type=</FONT><FONT COLOR="#ff00ff">"text" </FONT><FONT COLOR="#000000">name=</FONT><FONT COLOR="#ff00ff">"last_name"</FONT><FONT COLOR="#000000">/&gt;</FONT>
+        <FONT COLOR="#000000">Age             &lt;select name=</FONT><FONT COLOR="#ff00ff">"age"</FONT><FONT COLOR="#000000">&gt;</FONT>
+                        <FONT COLOR="#000000">&lt;option&gt;--Select Age--&lt;/option&gt;</FONT>
+                        <FONT COLOR="#000000">&lt;option&gt;</FONT><FONT COLOR="#800080">0 </FONT><FONT COLOR="#000000">to </FONT><FONT COLOR="#800080">10</FONT><FONT COLOR="#000000">&lt;/option&gt;</FONT>
+                        <FONT COLOR="#000000">&lt;option&gt;</FONT><FONT COLOR="#800080">10 </FONT><FONT COLOR="#000000">to </FONT><FONT COLOR="#800080">20</FONT><FONT COLOR="#000000">&lt;/option&gt;</FONT>
+                        <FONT COLOR="#000000">&lt;option&gt;</FONT><FONT COLOR="#800080">20 </FONT><FONT COLOR="#000000">to </FONT><FONT COLOR="#800080">30</FONT><FONT COLOR="#000000">&lt;/option&gt;</FONT>
+                        <FONT COLOR="#000000">&lt;option&gt;</FONT><FONT COLOR="#800080">30 </FONT><FONT COLOR="#000000">to above&lt;/option&gt;</FONT>
+                        <FONT COLOR="#000000">&lt;/select&gt;</FONT>
+        <FONT COLOR="#000000">&lt;input type=</FONT><FONT COLOR="#ff00ff">"submit" </FONT><FONT COLOR="#000000">value=</FONT><FONT COLOR="#ff00ff">"Submit"</FONT><FONT COLOR="#000000">/&gt;</FONT>
+      <FONT COLOR="#000000">&lt;/form&gt;</FONT>
+        <FONT COLOR="#000000">&lt;/pre&gt;</FONT>
+    <FONT COLOR="#000000">&lt;/body&gt;   </FONT>
+<FONT COLOR="#000000">&lt;/html&gt;</FONT>
+</FONT>
+</PRE>
+</BODY>
+</HTML>
+      </div>
+<p>
+    Step 4. Create a reveng file for the connectivity for java class to database and for 
+    creating the pojo class. for this go in file menu wizard -> new file -> search hibernate -> 
+    then click on opposite side given hibernate reverse engineering file-> next -> 
+    click on table which we create in the database -> add > finish .
+</p>
+<h3>hibernate.revenge.xml</h3>
+<div class="code">
+   <HTML>
+<BODY>
+<PRE>
+<FONT FACE="Courier New">
+ <FONT COLOR="#000000">&lt;?xml version=</FONT><FONT COLOR="#ff00ff">"1.0" </FONT><FONT COLOR="#000000">encoding=</FONT><FONT COLOR="#ff00ff">"UTF-8"</FONT><FONT COLOR="#000000">?&gt;</FONT>
+<FONT COLOR="#000000">&lt;!DOCTYPE hibernate-reverse-engineering PUBLIC </FONT><FONT COLOR="#ff00ff">"-//Hibernate/Hibernate Reverse Engineering DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-reverse-engineering-3.0.dtd"</FONT><FONT COLOR="#000000">&gt;</FONT>
+<FONT COLOR="#000000">&lt;hibernate-reverse-engineering&gt;</FONT>
+  <FONT COLOR="#000000">&lt;schema-selection match-catalog=</FONT><FONT COLOR="#ff00ff">"hibernate_pro"</FONT><FONT COLOR="#000000">/&gt;</FONT>
+  <FONT COLOR="#000000">&lt;table-filter match-name=</FONT><FONT COLOR="#ff00ff">"InsertData"</FONT><FONT COLOR="#000000">/&gt;</FONT>
+<FONT COLOR="#000000">&lt;/hibernate-reverse-engineering&gt;</FONT>
+</FONT>
+</PRE>
+</BODY>
+</HTML>
+</div>
+<p>
+    Step 5.  Now we need to create POJO class for sending the data into the data base. Remember -> 
+    Before creating the POJO class we need to create the package to store the POJO class into the 
+    package. Go in the File Menu wizard -> search hibernate -> then click on opposite side given 
+    hibernate POJO class file-> next -> both file should be in for the pojo class (hibernate.cfg  
+    & hibernate.revenge file ) -> slect the package > finish .
+</p>
+<p>
+    Step 6: Now we need to create a action page of servlet. for creating the servlet page we need 
+    to go in File Menu wizard-> new file-> web & opposite side search to servlet click on it -> 
+    mark on add information as given in the image below and then click on finish.
+</p>
+<h3>Action code of MyServlet</H3>
+<div class="code">
+    <HTML>
+<BODY>
+<PRE>
+<FONT FACE="Courier New">
+<FONT COLOR="#0000ff">public class </FONT><FONT COLOR="#000000">MyServlet </FONT><FONT COLOR="#0000ff">extends </FONT><FONT COLOR="#000000">HttpServlet </FONT>
+<FONT COLOR="#000000">{</FONT>
+
+    <FONT COLOR="#0000ff">protected void </FONT><FONT COLOR="#000000">processRequest(HttpServletRequest request, HttpServletResponse response)</FONT>
+            <FONT COLOR="#0000ff">throws </FONT><FONT COLOR="#000000">ServletException, </FONT><FONT COLOR="#ff0000">IOException </FONT><FONT COLOR="#000000">{</FONT>
+        <FONT COLOR="#000000">response.setContentType(</FONT><FONT COLOR="#ff00ff">"text/html;charset=UTF-8"</FONT><FONT COLOR="#000000">);</FONT>
+        <FONT COLOR="#ff0000">String </FONT><FONT COLOR="#000000">fist_name, last_name, age;</FONT>
+        <FONT COLOR="#000000">fist_name = request.getParameter(</FONT><FONT COLOR="#ff00ff">"fist_name"</FONT><FONT COLOR="#000000">);</FONT>
+        <FONT COLOR="#000000">last_name = request.getParameter(</FONT><FONT COLOR="#ff00ff">"last_name"</FONT><FONT COLOR="#000000">);</FONT>
+        <FONT COLOR="#000000">age = request.getParameter(</FONT><FONT COLOR="#ff00ff">"age"</FONT><FONT COLOR="#000000">);</FONT>
+        <FONT COLOR="#000000">SessionFactory sf = </FONT><FONT COLOR="#0000ff">new </FONT><FONT COLOR="#ff0000">Configuration</FONT><FONT COLOR="#000000">().configure().buildSessionFactory();</FONT>
+            <FONT COLOR="#000000">Session s = sf.openSession();</FONT>
+            <FONT COLOR="#000000">Transaction tr = s.beginTransaction();</FONT>
+        <FONT COLOR="#000000">InsertData id = </FONT><FONT COLOR="#0000ff">new </FONT><FONT COLOR="#000000">InsertData(fist_name, last_name, age, </FONT><FONT COLOR="#0000ff">new </FONT><FONT COLOR="#ff0000">Date</FONT><FONT COLOR="#000000">());</FONT>
+	 <FONT COLOR="#000000">s.save(id);</FONT>
+        <FONT COLOR="#000000">tr.commit();</FONT>
+        <FONT COLOR="#000000">s.close();</FONT>
+        <FONT COLOR="#0000ff">try </FONT><FONT COLOR="#000000">(</FONT><FONT COLOR="#ff0000">PrintWriter </FONT><FONT COLOR="#000000">out = response.getWriter()) {</FONT>
+            <FONT COLOR="#008000">/* TODO output your page here. You may use following sample code. */</FONT>
+            <FONT COLOR="#000000">out.println(</FONT><FONT COLOR="#ff00ff">"&lt;!DOCTYPE html&gt;"</FONT><FONT COLOR="#000000">);</FONT>
+            <FONT COLOR="#000000">out.println(</FONT><FONT COLOR="#ff00ff">"&lt;html&gt;"</FONT><FONT COLOR="#000000">);</FONT>
+            <FONT COLOR="#000000">out.println(</FONT><FONT COLOR="#ff00ff">"&lt;head&gt;"</FONT><FONT COLOR="#000000">);</FONT>
+            <FONT COLOR="#000000">out.println(</FONT><FONT COLOR="#ff00ff">"&lt;title&gt;Servlet MyServlet&lt;/title&gt;"</FONT><FONT COLOR="#000000">);            </FONT>
+            <FONT COLOR="#000000">out.println(</FONT><FONT COLOR="#ff00ff">"&lt;/head&gt;"</FONT><FONT COLOR="#000000">);</FONT>
+            <FONT COLOR="#000000">out.println(</FONT><FONT COLOR="#ff00ff">"&lt;body&gt;"</FONT><FONT COLOR="#000000">);</FONT>
+            <FONT COLOR="#000000">out.println(</FONT><FONT COLOR="#ff00ff">"&lt;h1&gt;Welcome " </FONT><FONT COLOR="#000000">+ fist_name + </FONT><FONT COLOR="#ff00ff">"&lt;/h1&gt;"</FONT><FONT COLOR="#000000">);</FONT>
+            <FONT COLOR="#000000">out.println(</FONT><FONT COLOR="#ff00ff">"&lt;/body&gt;"</FONT><FONT COLOR="#000000">);</FONT>
+            <FONT COLOR="#000000">out.println(</FONT><FONT COLOR="#ff00ff">"&lt;/html&gt;"</FONT><FONT COLOR="#000000">);</FONT>
+        <FONT COLOR="#000000">}</FONT>
+    <FONT COLOR="#000000">}</FONT>
+</FONT>
+</PRE>
+</BODY>
+</HTML>
+
+</div>
+<h3>Pints always need to remember (servlet file should be in the web.xml file as given below:)</h3>
+<div class="code">
+    <HTML>
+<BODY>
+<PRE>
+<FONT FACE="Courier New">
+<FONT COLOR="#000000">&lt;?xml version=</FONT><FONT COLOR="#ff00ff">"1.0" </FONT><FONT COLOR="#000000">encoding=</FONT><FONT COLOR="#ff00ff">"UTF-8"</FONT><FONT COLOR="#000000">?&gt;</FONT>
+<FONT COLOR="#000000">&lt;web-app version=</FONT><FONT COLOR="#ff00ff">"3.1" </FONT><FONT COLOR="#000000">xmlns=</FONT><FONT COLOR="#ff00ff">"http://xmlns.jcp.org/xml/ns/javaee" </FONT><FONT COLOR="#000000">xmlns:xsi=</FONT><FONT COLOR="#ff00ff">"http://www.w3.org/2001/XMLSchema-instance" </FONT><FONT COLOR="#000000">xsi:schemaLocation=</FONT><FONT COLOR="#ff00ff">"http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"</FONT><FONT COLOR="#000000">&gt;</FONT>
+    <FONT COLOR="#000000">&lt;servlet&gt;</FONT>
+        <FONT COLOR="#000000">&lt;servlet-name&gt;MyServlet&lt;/servlet-name&gt;</FONT>
+        <FONT COLOR="#000000">&lt;servlet-</FONT><FONT COLOR="#0000ff">class</FONT><FONT COLOR="#000000">&gt;r4r.MyServlet&lt;/servlet-</FONT><FONT COLOR="#0000ff">class</FONT><FONT COLOR="#000000">&gt;</FONT>
+    <FONT COLOR="#000000">&lt;/servlet&gt;</FONT>
+    <FONT COLOR="#000000">&lt;servlet-mapping&gt;</FONT>
+        <FONT COLOR="#000000">&lt;servlet-name&gt;MyServlet&lt;/servlet-name&gt;</FONT>
+        <FONT COLOR="#000000">&lt;url-pattern&gt;/MyServlet&lt;/url-pattern&gt;</FONT>
+    <FONT COLOR="#000000">&lt;/servlet-mapping&gt;</FONT>
+    <FONT COLOR="#000000">&lt;session-config&gt;</FONT>
+        <FONT COLOR="#000000">&lt;session-timeout&gt;</FONT>
+            <FONT COLOR="#800080">30</FONT>
+        <FONT COLOR="#000000">&lt;/session-timeout&gt;</FONT>
+    <FONT COLOR="#000000">&lt;/session-config&gt;</FONT>
+    <FONT COLOR="#000000">&lt;welcome-file-list&gt;</FONT>
+        <FONT COLOR="#000000">&lt;welcome-file&gt;index.html&lt;/welcome-file&gt;</FONT>
+    <FONT COLOR="#000000">&lt;/welcome-file-list&gt;</FONT>
+<FONT COLOR="#000000">&lt;/web-app&gt;</FONT>
+</FONT>
+</PRE>
+</BODY>
+</HTML>
+</div>
+<p>
+    Step 8.  After all doing the Now we need to build and run the project for this we need to 
+    go in the menu wizard -> click on run menu -> click on clean and build the project -> then 
+    click on the run when successfully build the project.
+</p>
+      <table id="indexing">
+
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="struts_hibernate_connectivity.shtml" class" title="Struts Hibernate Connectivity">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="registration_form_using_struts_and_hibernate.shtml" title="Registration Form Using Struts Hibernate">Next</a></td>
+  </tr> 
+</table>
+
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+
+                <?php @include($_SERVER['DOCUMENT_ROOT'] . '/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>

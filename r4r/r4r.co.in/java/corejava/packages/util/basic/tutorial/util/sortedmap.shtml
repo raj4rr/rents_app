@@ -1,0 +1,125 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD>
+<meta http-equiv="Content-Language" content="en-us">
+<TITLE>sorted map implementation,how to sort element</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name="description" CONTENT="sorted map implementation,how to sort element" >
+<meta name="keywords" CONTENT="sorted map implementation,how to sort element">
+
+<!-- header start-->	
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>Java Programing laungage</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+            <img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+            <a href="/java/">Java</a>
+              <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/java/corejava">Core Java</a>
+               <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/java/corejava/packages">Package</a>
+                     <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/java/corejava/packages/lang">Java Util Package</a>
+              </div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/corejava/packages/util/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	 
+
+<div class="heading">SortedMap Implementation</div>
+<p>In this page of the tutorials we are going to implement to the sortedMap interface in our Java application. A SortedMap is sort the entry data in the ascending order, sorted according to the key's natural order, or according to a Comparator provided at SortedMap creation time. </p>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="putmethod.shtml" title="put method">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="access_usertype_preferences.shtml" title="access usertype preferences">Next</a></td>
+  </tr> 
+</table>
+
+<!-- header End-->
+
+<ol>
+<li>
+<h3>Range-view</h3>
+</li>	   
+<p>It is Perform arbitrary range operations on the sorted map.</p>
+<li>
+<h3>Endpoints</h3>
+</li>
+<p>It is used to Return the first or last key in the sorted map.</p>
+
+<li>
+<h3>Comparator access</h3>
+</li> 
+<p>It is used to Return the Comparator used to sort the map (if any).</p>
+</ol>
+
+<h3>Example</h3>
+<div class="code">
+<PRE>
+<FONT FACE="Arial">
+<FONT COLOR="#0000ff">package </FONT><FONT COLOR="#000000">r4r;</FONT>
+<FONT COLOR="#0000ff">import </FONT><FONT COLOR="#000000">java.util.*;</FONT>
+<FONT COLOR="#0000ff">public class </FONT><FONT COLOR="#000000">sortedmaptest {</FONT>
+<FONT COLOR="#0000ff">public static void </FONT><FONT COLOR="#000000">main(</FONT><FONT COLOR="#ff0000">String</FONT><FONT COLOR="#000000">[] args) {</FONT>
+<FONT COLOR="#ff0000">SortedMap </FONT><FONT COLOR="#000000">map = </FONT><FONT COLOR="#0000ff">new </FONT><FONT COLOR="#ff0000">TreeMap</FONT><FONT COLOR="#000000">();</FONT>
+<FONT COLOR="#000000">map.put(</FONT><FONT COLOR="#ff00ff">"1"</FONT><FONT COLOR="#000000">, </FONT><FONT COLOR="#ff00ff">"one"</FONT><FONT COLOR="#000000">);</FONT>
+<FONT COLOR="#000000">map.put(</FONT><FONT COLOR="#ff00ff">"2"</FONT><FONT COLOR="#000000">, </FONT><FONT COLOR="#ff00ff">"twO"</FONT><FONT COLOR="#000000">);</FONT>
+<FONT COLOR="#000000">map.put(</FONT><FONT COLOR="#ff00ff">"3"</FONT><FONT COLOR="#000000">, </FONT><FONT COLOR="#ff00ff">"tree"</FONT><FONT COLOR="#000000">);</FONT>
+
+<FONT COLOR="#000000">map.put(</FONT><FONT COLOR="#ff00ff">"4"</FONT><FONT COLOR="#000000">, </FONT><FONT COLOR="#ff00ff">"Four"</FONT><FONT COLOR="#000000">);</FONT>
+<FONT COLOR="#000000">map.put(</FONT><FONT COLOR="#ff00ff">"5"</FONT><FONT COLOR="#000000">, </FONT><FONT COLOR="#ff00ff">"five"</FONT><FONT COLOR="#000000">);</FONT>
+<FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.println(</FONT><FONT COLOR="#ff00ff">"The lowest key value: " </FONT><FONT COLOR="#000000">+ map.firstKey());</FONT>
+<FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.println(</FONT><FONT COLOR="#ff00ff">"The highest key value: " </FONT><FONT COLOR="#000000">+ map.lastKey());</FONT>
+<FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.println(</FONT><FONT COLOR="#ff00ff">"All key value:\n" </FONT><FONT COLOR="#000000">+ map);</FONT>
+<FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.println(</FONT><FONT COLOR="#ff00ff">"The head map:\n" </FONT><FONT COLOR="#000000">+ map.headMap(</FONT><FONT COLOR="#ff00ff">"2"</FONT><FONT COLOR="#000000">));</FONT>
+<FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.println(</FONT><FONT COLOR="#ff00ff">"The tail map:\n" </FONT><FONT COLOR="#000000">+ map.tailMap(</FONT><FONT COLOR="#ff00ff">"4"</FONT><FONT COLOR="#000000">));</FONT>
+<FONT COLOR="#ff0000">Iterator </FONT><FONT COLOR="#000000">itr = map.keySet().iterator();</FONT>
+<FONT COLOR="#0000ff">while </FONT><FONT COLOR="#000000">(itr.hasNext()) {</FONT>
+<FONT COLOR="#ff0000">Object </FONT><FONT COLOR="#000000">key = itr.next();</FONT>
+<FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.println(</FONT><FONT COLOR="#ff00ff">"key : " </FONT><FONT COLOR="#000000">+ key + </FONT><FONT COLOR="#ff00ff">" value :" </FONT><FONT COLOR="#000000">+ map.get(key));</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#000000">}</FONT>
+</FONT>
+</PRE>
+</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="putmethod.shtml" title="put method">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="access_usertype_preferences.shtml" title="access usertype preferences">Next</a></td>
+  </tr> 
+</table>
+
+<!-- Footer Start-->
+		</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->

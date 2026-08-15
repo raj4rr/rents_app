@@ -1,0 +1,197 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD>
+<meta http-equiv="Content-Language" content="en-us">
+<TITLE>ServletConfig Interface</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name="description" CONTENT="ServletConfig Interface">
+<meta name="keywords" CONTENT="ServletConfig Interface">
+
+<!-- header start-->	
+
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+
+<?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+     <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>Servlet Tutorials</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+			<img src="/images/left_menu_bullet.gif"  width="11" height="6"/> <a href="/java/">Java</a>
+			<img src="/images/left_menu_bullet.gif"  width="11" height="6"/> <a href="/java/servlet/">Servlet</a>
+
+			      </div>
+
+            	<table>
+                    <tr>
+
+                         <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/servlet/servlet_basics/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 
+
+<div class="heading">ServletConfig Interface</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="session.shtml" title="HttpSession interface">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="request.shtml" title="ServletRequest Interface">Next</a></td>
+  </tr> 
+</table>
+<!-- header End-->	
+
+<p>Here we can be an object of ServletConfig is created by the web container,which is used to get configuration information from web.xml file.
+</p>
+
+<p>
+ServletConfig the configuration information is modified from the web.xml file,change the servlet can be performed. So it is easier to manage the web application if any specific content is modified from time to time.
+</p>
+<h3>
+Advantage
+</h3>
+<p>
+The core advantage of ServletConfig is that you don't need to edit the servlet file if information is modified from the web.xml file.
+</p>
+<h3>
+ ServletConfig interface Methods as follows :
+</h3>
+
+<ol>
+   <li> public String getInitParameter(String name):It is returns the parameter value for the specified parameter name.</li>
+    <li>public Enumeration getInitParameterNames():It is returns an enumeration of all the initialization parameter names.</li>
+    <li>public String getServletName():It is returns the name of the servlet.</li>
+    <li>public ServletContext getServletContext():It is returns an object of ServletContext.</li>
+</ol>
+
+<h3>
+How to get the object of ServletConfig
+</h3>
+   <p> getServletConfig() method of Servlet interface returns the object of ServletConfig.
+</p>
+
+<i>Syntax used</i>
+
+<div class="code">
+<pre>
+<font face="Courier New"><font color="#0000ff">public </font><font color="#000000">ServletConfig getServletConfig();</font>
+</font></pre>
+</div>
+
+<i>Example of getServletConfig() method
+</i>
+
+<div class="code">
+<pre>
+<font face="Courier New"><font color="#000000">ServletConfig config=getServletConfig();</font>
+<font color="#008000">//Now we can call the methods of ServletConfig interface</font>
+</font></pre>
+</div>
+
+<i>Syntax of  initialization parameter for a servlet
+</i>
+<p>The init-param sub-element of servlet is used to specify the initialization parameter for a servlet.</p>
+
+<div class="code">
+<pre>
+<font face="Courier New"><font color="#0000ff">&lt;</font><font color="#808000">web-app</font><font color="#0000ff">&gt;</font>
+<font color="#000000">  </font><font color="#0000ff">&lt;</font><font color="#808000">servlet</font><font color="#0000ff">&gt;</font>
+<font color="#000000">    ......</font>
+<font color="#000000">    </font><font color="#0000ff">&lt;</font><font color="#808000">init-param</font><font color="#0000ff">&gt;</font>
+<font color="#000000">      </font><font color="#0000ff">&lt;</font><font color="#808000">param-name</font><font color="#0000ff">&gt;</font><font color="#000000">parametername</font><font color="#0000ff">&lt;/</font><font color="#808000">param-name</font><font color="#0000ff">&gt;</font>
+<font color="#000000">      </font><font color="#0000ff">&lt;</font><font color="#808000">param-value</font><font color="#0000ff">&gt;</font><font color="#000000">parametervalue</font><font color="#0000ff">&lt;/</font><font color="#808000">param-value</font><font color="#0000ff">&gt;</font>
+<font color="#000000">    </font><font color="#0000ff">&lt;/</font><font color="#808000">init-param</font><font color="#0000ff">&gt;</font>
+<font color="#000000">    ......</font>
+<font color="#000000">  </font><font color="#0000ff">&lt;/</font><font color="#808000">servlet</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">web-app</font><font color="#0000ff">&gt;</font>
+</font></pre>
+</div>
+
+<i>Example of ServletConfig to get initialization parameter
+</i>
+
+<p>
+Getting the one initialization parameter from the web.xml file and printing this information in the servlet.
+</p>
+
+<i>DemoServlet.java</i>
+
+<div class="code">
+<pre>
+<font face="Courier New"><font color="#0000ff">import </font><font color="#000000">java.io.*;</font>
+<font color="#0000ff">import </font><font color="#000000">javax.servlet.*;</font>
+<font color="#0000ff">import </font><font color="#000000">javax.servlet.http.*;</font>
+<font color="#0000ff">public class </font><font color="#000000">DemoServlet </font><font color="#0000ff">extends </font><font color="#000000">HttpServlet {</font>
+<font color="#0000ff">public void </font><font color="#000000">doGet(HttpServletRequest request, HttpServletResponse response)</font>
+	<font color="#0000ff">throws </font><font color="#000000">ServletException, </font><font color="#ff0000">IOException </font><font color="#000000">{</font>
+	<font color="#000000">response.setContentType(</font><font color="#ff00ff">&quot;text/html&quot;</font><font color="#000000">);</font>
+	<font color="#ff0000">PrintWriter </font><font color="#000000">out = response.getWriter();</font>
+	<font color="#000000">ServletConfig config=getServletConfig();</font>
+	<font color="#ff0000">String </font><font color="#000000">driver=config.getInitParameter(</font><font color="#ff00ff">&quot;driver&quot;</font><font color="#000000">);</font>
+	<font color="#000000">out.print(</font><font color="#ff00ff">&quot;Driver is: &quot;</font><font color="#000000">+driver);	</font>
+	<font color="#000000">out.close();</font>
+	<font color="#000000">}</font>
+<font color="#000000">}</font>
+</font></pre>
+</div>
+
+<i>web.xml
+</i>
+
+<div class="code">
+<pre>
+<font face="Courier New"><font color="#0000ff">&lt;</font><font color="#808000">web-app</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">servlet</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">servlet-name</font><font color="#0000ff">&gt;</font><font color="#000000">DemoServlet</font><font color="#0000ff">&lt;/</font><font color="#808000">servlet-name</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">servlet-class</font><font color="#0000ff">&gt;</font><font color="#000000">DemoServlet</font><font color="#0000ff">&lt;/</font><font color="#808000">servlet-class</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">init-param</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">param-name</font><font color="#0000ff">&gt;</font><font color="#000000">driver</font><font color="#0000ff">&lt;/</font><font color="#808000">param-name</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">param-value</font><font color="#0000ff">&gt;</font><font color="#000000">sun.jdbc.odbc.JdbcOdbcDriver</font><font color="#0000ff">&lt;/</font><font color="#808000">param-value</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">init-param</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">servlet</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">servlet-mapping</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">servlet-name</font><font color="#0000ff">&gt;</font><font color="#000000">DemoServlet</font><font color="#0000ff">&lt;/</font><font color="#808000">servlet-name</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">url-pattern</font><font color="#0000ff">&gt;</font><font color="#000000">/servlet1</font><font color="#0000ff">&lt;/</font><font color="#808000">url-pattern</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">servlet-mapping</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">web-app</font><font color="#0000ff">&gt;</font>
+</font></pre>
+</div>
+<i>
+</i>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="session.shtml" title="HttpSession interface">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="request.shtml" title="ServletRequest Interface">Next</a></td>
+  </tr> 
+</table>
+
+<!-- Footer Start-->		
+
+		</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+   </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->

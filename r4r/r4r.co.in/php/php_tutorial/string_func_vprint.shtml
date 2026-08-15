@@ -1,0 +1,166 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>vprint() Functions in PHP|Php Tutorials</TITLE>
+<META content=r4r.co.in name=owner>
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="vprint() Functions in PHP-learn with r4r php tutorial covers all  topics of php from basics concept to higher level php
+best examples interview questions in easy and short way" >
+<meta name="keywords" CONTENT="vprint() Functions in PHP,php array function, PHP, Programming, Language, Built-in Function,HTML,CSS,XML,JavaScript,DOM,jQuery Library, Web Design,Object 
+Oriented PHP, PHP Variables, Scalars,Arrays,Object Oriented In PHP,Exception In PHP,Filters In PHP">
+<META content="Rajesh Kumar" name=author>
+<!-- header start-->	
+
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>PHP Programing language</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+            <img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+            <a href="/php/">PHP</a>
+              </div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/php/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	 
+
+	   	   <div class="heading">vprint() Functions in PHP</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="string_function.shtml" title="String Functions">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="php_get&post.shtml" title="PHP Get&amp;Post">Next</a></td>
+  </tr>
+</table>
+
+<h3>vprintf()</h3>
+<p>The vprintf() function outputs a formatted string.</p>
+<i>Syntax:</i>
+<div class="code">
+<pre>
+<font color="#000000">vprintf(format,argarray)</font>
+</pre>
+</div>
+<p>In above syntax, &quot;argarray&quot; an array with arguments to be inserted at the % signs in the format string and &quot;format&quot; specifies the string and how to format the variables in it are as follows:</p>
+<ul>
+<li>%% - Returns a percent sign</li>
+<li>%b - Binary number</li>
+<li>%c - The character according to the ASCII value</li>
+<li>%d - Signed decimal number (negative, zero or positive)</li>
+<li>%e - Scientific notation using a lowercase (e.g. 1.2e+2)</li>
+<li>%E - Scientific notation using a uppercase (e.g. 1.2E+2)</li>
+<li>%u - Unsigned decimal number (equal to or greather than zero)</li>
+<li>%f - Floating-point number (local settings aware)</li>
+<li>%F - Floating-point number (not local settings aware)</li>
+<li>%g - shorter of %e and %f</li>
+<li>%G - shorter of %E and %f</li>
+<li>%o - Octal number</li>
+<li>%s - String</li>
+<li>%x - Hexadecimal number (lowercase letters)</li>
+<li>%X - Hexadecimal number (uppercase letters)</li>
+</ul>
+<h3>Example:</h3>
+<div class="code">
+<pre>
+<font color="#800000">&lt;?php</font>
+<font color="#0000ff">$</font><font color="#008080">number </font><font color="#800000">= </font><font color="#800080">20</font><font color="#800000">;</font>
+<font color="#0000ff">$</font><font color="#008080">str </font><font color="#800000">= </font><font color="#ff00ff">&quot;pocket&quot;</font><font color="#800000">;</font>
+<font color="#ff0000">vprintf</font><font color="#800000">(</font><font color="#ff00ff">&quot;There are %u chocolates in my %s&quot;</font><font color="#800000">,</font><font color="#0000ff">array</font><font color="#800000">(</font><font color="#0000ff">$</font><font color="#008080">number</font><font color="#800000">,</font><font color="#0000ff">$</font><font color="#008080">str</font><font color="#800000">));</font>
+<font color="#800000">?&gt;</font>
+</pre>
+</div>
+
+<p><i>Output:</i>
+<div class="output">
+There are 20 chocolates in my pocket
+</div>
+</p>	
+
+<h3>vfprintf()</h3>
+<p>The vfprintf() function writes a formatted string to a specified output stream.</p>
+<i>Syntax:</i>
+<div class="code">
+<pre>
+<font color="#000000">vfprintf(stream,format,argarray)</font>
+</pre>
+</div>
+<p>In above syntax, &quot;stream&quot; specifies where to write/output the string, &quot;argarray&quot; an array with arguments to be inserted at the % signs in the format string and &quot;format&quot; specifies the string and how to format the variables in it. For format refer vprintf()</p>
+
+<h3>Example:</h3>
+<div class="code">
+<pre>
+<font color="#800000">&lt;?php</font>
+<font color="#0000ff">$</font><font color="#008080">number </font><font color="#800000">= </font><font color="#800080">20</font><font color="#800000">;</font>
+<font color="#0000ff">$</font><font color="#008080">str </font><font color="#800000">= </font><font color="#ff00ff">&quot;pocket&quot;</font><font color="#800000">;</font>
+<font color="#0000ff">$</font><font color="#008080">file </font><font color="#800000">= </font><font color="#ff0000">fopen</font><font color="#800000">(</font><font color="#ff00ff">&quot;test.txt&quot;</font><font color="#800000">,</font><font color="#ff00ff">&quot;w&quot;</font><font color="#800000">);</font>
+<font color="#0000ff">echo </font><font color="#ff0000">vfprintf</font><font color="#800000">(</font><font color="#0000ff">$</font><font color="#008080">file</font><font color="#800000">,</font><font color="#ff00ff">&quot;There are %u chocolates in my %s&quot;</font><font color="#800000">,</font><font color="#0000ff">array</font><font color="#800000">(</font><font color="#0000ff">$</font><font color="#008080">number</font><font color="#800000">,</font><font color="#0000ff">$</font><font color="#008080">str</font><font color="#800000">));</font>
+<font color="#800000">?&gt;</font>
+</pre>
+</div>
+<p><i>Output:</i>
+<div class="output">
+36
+</div>
+</p>	
+
+<h3>vsprintf()</h3>
+<p>The vsprintf() function writes a formatted string to a variable.</p>
+<i>Syntax:</i>
+<div class="code">
+<pre>
+<font color="#000000">vprintf(format,argarray)</font>
+</pre>
+</div>
+<p>In above syntax, &quot;argarray&quot; an array with arguments to be inserted at the % signs in the format string and &quot;format&quot; specifies the string and how to format the variables in it. For format refer vprintf()</p>
+<h3>Example:</h3>
+<div class="code">
+<pre>
+<font color="#800000">&lt;?php</font>
+<font color="#0000ff">$</font><font color="#008080">number </font><font color="#800000">= </font><font color="#800080">20</font><font color="#800000">;</font>
+<font color="#0000ff">$</font><font color="#008080">str </font><font color="#800000">= </font><font color="#ff00ff">&quot;pocket&quot;</font><font color="#800000">;</font>
+<font color="#0000ff">$</font><font color="#008080">txt </font><font color="#800000">= </font><font color="#ff0000">vsprintf</font><font color="#800000">(</font><font color="#ff00ff">&quot;There are %u chocolates in my %s&quot;</font><font color="#800000">,</font><font color="#0000ff">array</font><font color="#800000">(</font><font color="#0000ff">$</font><font color="#008080">number</font><font color="#800000">,</font><font color="#0000ff">$</font><font color="#008080">str</font><font color="#800000">));</font>
+<font color="#0000ff">echo $</font><font color="#008080">txt</font><font color="#800000">;</font>
+<font color="#800000">?&gt;</font>
+</pre>
+</div>
+<p><i>Output:</i>
+<div class="output">
+There are 20 chocolates in my pocket
+</div>
+</p>	
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="string_function.shtml" title="String Functions">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="php_get&post.shtml" title="PHP Get&amp;Post">Next</a></td>
+  </tr>
+</table>
+
+</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/webtechnology/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->

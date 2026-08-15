@@ -1,0 +1,156 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" 
+
+"http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>Passing Data Between Forms Without Events and Delegates</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="Passing Data Between Forms Without Events and Delegates" >
+<meta name="keywords" CONTENT="Passing Data Between Forms Without Events and Delegates">
+
+<!-- Header Start-->
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+     <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>C# Tutorial</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a><img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/c1/">C#</a>
+
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/c1/commonfiles/leftmenu.shtml'); ?></td>
+
+                       <td style="80%" valign="top">
+                        <div class="main_content"> 
+
+	<!-- Header End-->
+
+  <div class="heading">Passing Data Between Forms Without Events and Delegates</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="How%20to%20pass%20Textbox%20value%20between%20the%20forms%20using%20the%20static%20concept.shtml" title="How to pass Textbox value between the forms using the static concept">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="Transparent%20GUI%20in%20Windows%20Forms.shtml" title="Transparent GUI in Windows Forms">Next</a></td>
+  </tr>
+</table>
+
+<h3>Form1.cs</h3>
+<div class="code"><pre>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Collections</font><font color="#000000">.</font><font color="#008080">Generic</font><font color="#000000">;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">ComponentModel</font><font color="#000000">;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Data</font><font color="#000000">;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Drawing</font><font color="#000000">;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Text</font><font color="#000000">;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Windows</font><font color="#000000">.</font><font color="#008080">Forms</font><font color="#000000">;</font>
+<font color="#0000ff">namespace </font><font color="#000000">LimitedDataXfer</font>
+<font color="#000000">{</font>
+<font color="#0000ff">public </font><font color="#000000">partial </font><font color="#0000ff">class </font><font color="#000000">Form1 : </font><font color="#808000">Form</font>
+<font color="#000000">{</font>
+<font color="#0000ff">public </font><font color="#000000">Form1()</font>
+<font color="#000000">{</font>
+<font color="#000000">InitializeComponent();</font>
+<font color="#000000">}</font>
+<font color="#0000ff">private void </font><font color="#000000">btnOpenForm_Click(</font><font color="#0000ff">object </font><font color="#000000">sender, </font><font color="#808000">EventArgs </font><font color="#000000">e)</font>
+<font color="#000000">{</font>
+<font color="#000000">Form2 f = </font><font color="#0000ff">new </font><font color="#000000">Form2(</font><font color="#0000ff">this</font><font color="#000000">);</font>
+<font color="#000000">f.Show();</font>
+<font color="#000000">}</font>
+<font color="#0000ff">private void </font><font color="#000000">Form1_Load(</font><font color="#0000ff">object </font><font color="#000000">sender, </font><font color="#808000">EventArgs </font><font color="#000000">e)</font>
+<font color="#000000">{</font>
+
+<font color="#000000">}</font>
+<font color="#000000">}</font>
+<font color="#000000">}</font>
+</pre>
+</div>
+<h3>Form 2.cs:</h3>
+<div class="code"><pre>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Collections</font><font color="#000000">.</font><font color="#008080">Generic</font><font color="#000000">;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">ComponentModel</font><font color="#000000">;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Data</font><font color="#000000">;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Drawing</font><font color="#000000">;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Text</font><font color="#000000">;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Windows</font><font color="#000000">.</font><font color="#008080">Forms</font><font color="#000000">;</font>
+<font color="#0000ff">namespace </font><font color="#000000">LimitedDataXfer</font>
+<font color="#000000">{</font>
+<font color="#0000ff">public </font><font color="#000000">partial </font><font color="#0000ff">class </font><font color="#000000">Form2 : </font><font color="#808000">Form</font>
+<font color="#000000">{</font>
+<font color="#000000">Form1 f;</font>
+<font color="#0000ff">public </font><font color="#000000">Form2()</font>
+<font color="#000000">{</font>
+<font color="#000000">InitializeComponent();</font>
+<font color="#000000">}</font>
+<font color="#0000ff">public </font><font color="#000000">Form2(Form1 fr1)</font>
+<font color="#000000">{</font>
+<font color="#000000">InitializeComponent();</font>
+<font color="#000000">f = </font><font color="#0000ff">new </font><font color="#000000">Form1();</font>
+<font color="#000000">f = fr1;</font>
+<font color="#000000">}</font>
+<font color="#0000ff">private void </font><font color="#000000">Form2_Load(</font><font color="#0000ff">object </font><font color="#000000">sender, </font><font color="#808000">EventArgs </font><font color="#000000">e)</font>
+<font color="#000000">{ </font>
+<font color="#000000">}</font>
+<font color="#0000ff">private void </font><font color="#000000">textBox1_TextChanged(</font><font color="#0000ff">object </font><font color="#000000">sender, </font><font color="#808000">EventArgs </font><font color="#000000">e)</font>
+<font color="#000000">{</font>
+<font color="#000000">f.lblName.</font><font color="#008080">Text </font><font color="#000000">= textBox1.</font><font color="#008080">Text</font><font color="#000000">;</font>
+<font color="#000000">}</font>
+<font color="#0000ff">private void </font><font color="#000000">textBox2_TextChanged(</font><font color="#0000ff">object </font><font color="#000000">sender, </font><font color="#808000">EventArgs </font><font color="#000000">e)</font>
+<font color="#000000">{</font>
+<font color="#000000">f.lblStreet.</font><font color="#008080">Text </font><font color="#000000">= textBox2.</font><font color="#008080">Text</font><font color="#000000">;</font>
+<font color="#000000">}</font>
+<font color="#0000ff">private void </font><font color="#000000">textBox3_TextChanged(</font><font color="#0000ff">object </font><font color="#000000">sender, </font><font color="#808000">EventArgs </font><font color="#000000">e)</font>
+<font color="#000000">{</font>
+<font color="#000000">f.lblCity.</font><font color="#008080">Text </font><font color="#000000">= textBox3.</font><font color="#008080">Text</font><font color="#000000">;</font>
+<font color="#000000">}</font>
+<font color="#0000ff">private void </font><font color="#000000">textBox4_TextChanged(</font><font color="#0000ff">object </font><font color="#000000">sender, </font><font color="#808000">EventArgs </font><font color="#000000">e)</font>
+<font color="#000000">{</font>
+<font color="#000000">f.lblState.</font><font color="#008080">Text </font><font color="#000000">= textBox4.</font><font color="#008080">Text</font><font color="#000000">;</font>
+<font color="#000000">}</font>
+<font color="#0000ff">private void </font><font color="#000000">textBox5_TextChanged(</font><font color="#0000ff">object </font><font color="#000000">sender, </font><font color="#808000">EventArgs </font><font color="#000000">e)</font>
+<font color="#000000">{</font>
+<font color="#000000">f.lblZip.</font><font color="#008080">Text </font><font color="#000000">= textBox5.</font><font color="#008080">Text</font><font color="#000000">;</font>
+<font color="#000000">}</font>
+<font color="#000000">}</font>
+<font color="#000000">}</font>
+</pre>
+</div>
+
+<p><h3>output</h3></p>
+<div class="output">
+<div class="image"><img src="passing%20data.gif"></div></div>
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="How%20to%20pass%20Textbox%20value%20between%20the%20forms%20using%20the%20static%20concept.shtml" title="How to pass Textbox value between the forms using the static concept">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="Transparent%20GUI%20in%20Windows%20Forms.shtml" title="Transparent GUI in Windows Forms">Next</a></td>
+  </tr>
+</table>
+
+ <!--Footer-->
+   </div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/dotnet/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+     <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>

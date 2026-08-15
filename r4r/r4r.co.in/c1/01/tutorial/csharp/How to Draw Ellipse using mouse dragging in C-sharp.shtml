@@ -1,0 +1,133 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>How to Draw Ellipse using mouse dragging in C#</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="How to Draw Ellipse using mouse dragging in C#" >
+<meta name="keywords" CONTENT="How to Draw Ellipse using mouse dragging in C#">
+
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+     <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>C# Tutorial</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a><img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/c1/">C#</a>
+
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/c1/commonfiles/leftmenu.shtml'); ?></td>
+
+                       <td style="80%" valign="top">
+                        <div class="main_content"> 
+
+	<!-- Header End-->
+
+	<div class="heading">How to Draw Ellipse using mouse dragging in C#</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="Export%20gridview%20to%20pdf%20in%20asp.net%20using%20c-Sharp.shrtml.shtml" 
+    title="Export gridview to pdf in c#">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="Diffrence%20between%20array%20and%20arraylist.shtml" 
+    title="Difference between Array and ArrayList">Next</a></td>
+  </tr>
+</table>
+<h3>.cs Code</h3>
+<div class="code">
+<pre>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Collections</font><font color="#000000">.</font><font color="#008080">Generic</font><font color="#000000">;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">ComponentModel</font><font color="#000000">;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Data</font><font color="#000000">;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Drawing</font><font color="#000000">;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.Linq;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Text</font><font color="#000000">;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Windows</font><font color="#000000">.</font><font color="#008080">Forms</font><font color="#000000">;</font>
+
+<font color="#0000ff">namespace </font><font color="#000000">WindowsFormsApplication10 {</font>
+<font color="#0000ff">public </font><font color="#000000">partial </font><font color="#0000ff">class </font><font color="#000000">Form1 : </font><font color="#808000">Form </font><font color="#000000">{</font>
+<font color="#000000">Point start;</font>
+<font color="#000000">Point end;</font>
+<font color="#808000">Graphics </font><font color="#000000">g;</font>
+<font color="#0000ff">bool </font><font color="#000000">isDown = </font><font color="#0000ff">false</font><font color="#000000">;</font>
+
+<font color="#0000ff">public </font><font color="#000000">Form1()</font>
+<font color="#000000">{</font>
+<font color="#000000">InitializeComponent();</font>
+<font color="#000000">}</font>
+
+<font color="#0000ff">private void </font><font color="#000000">Form1_MouseDown(</font><font color="#0000ff">object </font><font color="#000000">sender, </font><font color="#808000">MouseEventArgs </font><font color="#000000">e)</font>
+<font color="#000000">{</font>
+<font color="#000000">start = </font><font color="#0000ff">new </font><font color="#000000">Point(e.X, e.Y);</font>
+<font color="#000000">isDown = </font><font color="#0000ff">true</font><font color="#000000">;</font>
+<font color="#000000">}</font>
+
+<font color="#0000ff">private void </font><font color="#000000">Form1_MouseMove(</font><font color="#0000ff">object </font><font color="#000000">sender, </font><font color="#808000">MouseEventArgs </font><font color="#000000">e)</font>
+<font color="#000000">{</font>
+<font color="#0000ff">if </font><font color="#000000">(isDown )</font>
+<font color="#000000">{</font>
+<font color="#000000">g.DrawEllipse(</font><font color="#0000ff">new </font><font color="#808000">Pen</font><font color="#000000">(Form1.DefaultBackColor, </font><font color="#800080">2</font><font color="#000000">), </font>
+
+<font color="#000000">start.X, start.Y, end.X - start.X , end.Y-start.Y);</font>
+<font color="#000000">end = </font><font color="#0000ff">new </font><font color="#000000">Point(e.X, e.Y);</font>
+
+<font color="#000000">g.DrawEllipse(</font><font color="#0000ff">new </font><font color="#808000">Pen</font><font color="#000000">(Color.Black, </font><font color="#800080">2</font><font color="#000000">), start.X, start.Y, </font>
+<font color="#000000">end.X - start.X, end.Y - start.Y);</font>
+<font color="#000000">}</font>
+<font color="#000000">}</font>
+
+<font color="#0000ff">private void </font><font color="#000000">Form1_MouseUp(</font><font color="#0000ff">object </font><font color="#000000">sender, </font><font color="#808000">MouseEventArgs </font><font color="#000000">e) {</font>
+<font color="#000000">isDown = </font><font color="#0000ff">false</font><font color="#000000">;</font>
+<font color="#000000">}</font>
+
+<font color="#0000ff">private void </font><font color="#000000">Form1_Load(</font><font color="#0000ff">object </font><font color="#000000">sender, </font><font color="#808000">EventArgs </font><font color="#000000">e)</font>
+<font color="#000000">{</font>
+<font color="#000000">g = CreateGraphics();</font>
+<font color="#000000">}   </font>
+<font color="#000000">}</font>
+<font color="#000000">}</font>
+</pre>
+</div>
+
+<p><h3>Output</h3></p>
+<div class="output">
+<div class="image">
+<img src="mousedrag.gif">
+</div></div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="Export%20gridview%20to%20pdf%20in%20asp.net%20using%20c-Sharp.shrtml.shtml" 
+    title="Export gridview to pdf in c#">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="Diffrence%20between%20array%20and%20arraylist.shtml" 
+    title="Difference between Array and ArrayList">Next</a></td>
+  </tr>
+</table>
+ <!--Footer-->
+   </div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/dotnet/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+     <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>

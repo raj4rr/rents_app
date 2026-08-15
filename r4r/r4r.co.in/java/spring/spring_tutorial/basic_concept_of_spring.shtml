@@ -1,0 +1,100 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD>
+<meta http-equiv="Content-Language" content="en-us">
+<TITLE>Spring Basic Concepts</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name="description" CONTENT="Spring tutorial learn spring basics concept of spring covers all topics 
+stepwise step live examples and interview questions" >
+<meta name="keywords" CONTENT="Spring, basics, tutorial,spring tutorial step by step,spring framework tutorial for beginners,spring basic tutorial pdf,spring basic tutorial with example,simple java spring tutorial
+spring tutorial with examples java">
+
+		<!-- header start-->	
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+     <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>Spring Tutorials</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+			<img src="/images/left_menu_bullet.gif"/> <a href="/java/spring/">Spring</a>
+
+       </div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/spring/commonfiles/leftmenucore.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content">
+<div class="heading">Basic Core Concepts of Spring Framework</div>
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="features.shtml" title="features of spring">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="architecture_of_spring.shtml" title="architecture_of_spring">Next</a></td>
+  </tr> 
+</table>
+
+<p>Spring Framework is built upon two fundamentally important core concepts:</p>
+<ol>
+<li>
+<h3>IOC (Inversion of Control) / Dependency Injection</h3>
+<p>The basic concept of the Inversion of Control pattern (also known as Dependency Injection) is that you do not manually instantiate your objects using the `new` keyword. Instead, you describe how they should be created and what dependencies they require using Java annotations (e.g., `@Component`, `@Service`, `@Autowired`). The Spring IoC container is then responsible for instantiating the objects and injecting the required dependencies at runtime.</p>
+<p>Applying IoC means objects are given their dependencies by an external entity (the Spring context). This leads to loose coupling and makes your application extremely easy to unit test. In modern Spring applications, there are two primary ways dependencies are injected:</p>
+<div class="table_content">
+<table>
+<tr>
+<td class="heading" style="width:30%;">DI Type</td><td class="heading" style="width:70%;">Description</td>
+</tr>
+<tr>
+<td class="alternate_heading1">Constructor Injection</td><td class="alternate_heading1"><strong>(Recommended by Spring)</strong> Dependencies are provided as arguments to the class constructor. This ensures the object cannot be instantiated in an invalid state and makes dependencies immutable (`final`). In modern Spring, `@Autowired` is completely optional on constructors if there is only one constructor.</td>
+</tr>
+<tr>
+<td class="alternate_heading2">Setter/Field Injection</td><td class="alternate_heading2">Dependencies are injected into fields via `@Autowired` or through setter methods. While historically popular, this approach is now generally discouraged in favor of Constructor Injection because it hides dependencies and makes testing more difficult.</td>
+</tr>
+</table>
+</div>
+</li>
+
+<li>
+<h3>Aspect Oriented Programming (AOP)</h3>
+<p>AOP in Spring allows you to modularize cross-cutting concerns. While the key unit of modularity in Object-Oriented Programming (OOP) is the class, in AOP the unit of modularity is the <strong>aspect</strong>. Common examples of cross-cutting concerns include logging, transaction management, and security checks.</p>
+<p>Instead of polluting your business logic with repetitive database transaction calls or security validations, you can write an Aspect that automatically intercepts specific method calls and applies the behavior. The Spring Framework uses AOP internally extensively, most notably for the `@Transactional` annotation and Spring Security's `@PreAuthorize` annotations.</p>
+<p>Modern Spring relies exclusively on the `@AspectJ` annotation style for configuring AOP, leaving behind the verbose XML schema-based approach of the past.</p>
+</li>
+</ol>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="features.shtml" title="features of spring">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="architecture_of_spring.shtml" title="architecture_of_spring">Next</a></td>
+  </tr> 
+</table>
+
+		</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->

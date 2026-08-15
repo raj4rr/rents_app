@@ -1,0 +1,138 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD>
+<meta http-equiv="Content-Language" content="en-us">
+<TITLE>Where is MySQL,To being Selective With Your MySQL Selection,How can use keyword WHERE in MySQL</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name="description" CONTENT="Where is MySQL,To being Selective With Your MySQL Selection,How can use keyword WHERE in MySQL" >
+<meta name="keywords" CONTENT="Where is MySQL,To being Selective With Your MySQL Selection,How can use keyword WHERE in MySQL">
+<!-- header start-->	
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>PHP Programing language</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+            <img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+            <a href="/php/">PHP</a>
+
+              </div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/php/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	  
+
+	   	   <div class="heading">PHP MySQL WHERE</div>
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="php_mysql_select.shtml" title="PHP MySQL Select">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="php_mysql_orderby.shtml" title="PHP MySQL ORDER BY">Next</a></td></tr>
+</table>
+
+<!-- header End-->		   
+
+<p>When we did a SELECT query to get all the data from our &quot;tablefirst&quot; table. If we wanted to select only certain entries of our table, then we would use the 
+keyword WHERE.</p>
+<p>WHERE is a keyword, so lets you specifing requirements that entries must meet in order to be returned in the MySQL result. These entries that do not pass the test will be left out.</p> 
+
+<p>To being Selective With Your MySQL Selection. Finally ,there are three entries in our &quot;table first&quot; table Aniket, Abhilash, and Ashwini. To select Abhilash only we could either specify Abhilash age (21) or we could use her name(). In the future there may be other people who are 21, so we will use her name as our requirement.</p>
+<p>The WHERE keyword is used in conjuction with a mathematical statement.In this program we will want to select all rows that have the string &quot;Amit Abhilash&quot; in the &quot;names&quot; column (mathematically: {name column} = &quot;Amit Abhilash&quot;). Here's how to do it.</p>
+
+<div class="code">
+<pre>
+<font color="#800000">&lt;?php</font>
+<font color="#008000">// Make a MySQL Connection</font>
+<font color="#800000">mysql_connect(</font><font color="#ff00ff">&quot;localhost&quot;</font><font color="#800000">, </font><font color="#ff00ff">&quot;admin&quot;</font><font color="#800000">, </font><font color="#ff00ff">&quot;1admin&quot;</font><font color="#800000">) </font><font color="#0000ff">or die</font><font color="#800000">(mysql_error());</font>
+<font color="#800000">mysql_select_db(</font><font color="#ff00ff">&quot;test&quot;</font><font color="#800000">) </font><font color="#0000ff">or die</font><font color="#800000">(mysql_error());</font>
+
+<font color="#008000">// Get a specific result from the &quot;example&quot; table</font>
+<font color="#0000ff">$</font><font color="#008080">result </font><font color="#800000">= mysql_query(</font><font color="#ff00ff">&quot;SELECT * FROM example</font>
+<font color="#ff00ff">WHERE name='Amit Abhilash'&quot;</font><font color="#800000">) </font><font color="#0000ff">or die</font><font color="#800000">(mysql_error());  </font>
+
+<font color="#008000">// get the first (and hopefully only) entry from the result</font>
+<font color="#0000ff">$</font><font color="#008080">row </font><font color="#800000">= mysql_fetch_array( </font><font color="#0000ff">$</font><font color="#008080">result </font><font color="#800000">);</font>
+
+<font color="#008000">// Print out the contents of each row into a table </font>
+<font color="#0000ff">echo $</font><font color="#008080">row</font><font color="#800000">[</font><font color="#ff00ff">'name'</font><font color="#800000">].</font><font color="#ff00ff">&quot; - &quot;</font><font color="#800000">.</font><font color="#0000ff">$</font><font color="#008080">row</font><font color="#800000">[</font><font color="#ff00ff">'age'</font><font color="#800000">];</font>
+<font color="#800000">?&gt;</font>
+</pre>
+</div>
+
+<p><i>Output:</i></p>
+<div class="output">
+Amit Abhilash - 21
+</div>
+
+<h3>MySQL Wildcard Using a sigh '%</h3>
+<p>If you wanted to select every person in the table who was in their 20's, how could you go about doing it? With the tools you have now, you could make 10 different queries, one for each age 20, 21, 22...but that seems like more work than we need to do.</p>
+<p>In MySQL using a &quot;wildcard&quot; character '%' that can be using to search for partial matches in your database. The '%' tells MySQL to ignore the text that would normally appear in place of the wildcard. For example '2%' would match the following: </p>
+<font class="point_out">20, 25, 2000000, 2avkldj3jklsaf, and 2!</font>
+<p>On the other hand, '2%' would not match the following: <font class="point_out">122, a20, and 32.</font></p>
+<h3>In MySQL Query WHERE With Wildcard</h3>
+<p>To solve our problem from before, selecting everyone who is their 20's from or MySQL table, we can utilize wildcards to pick out all strings starting with a 2.</p>
+<div class="code">
+<pre>
+<font color="#000000">PHP &amp; MySQL Code:</font>
+<font color="#800000">&lt;?php</font>
+<font color="#008000">// Connect to MySQL</font>
+<font color="#008000">// Insert a row of information into the table &quot;Amit Abhilash&quot;</font>
+<font color="#0000ff">$</font><font color="#008080">result </font><font color="#800000">= mysql_query(</font><font color="#ff00ff">&quot;SELECT * FROM example WHERE age LIKE '2%' &quot;</font><font color="#800000">) </font>
+<font color="#0000ff">or die</font><font color="#800000">(mysql_error());  </font>
+
+<font color="#008000">// keeps getting the next row until there are no more to get</font>
+<font color="#0000ff">while</font><font color="#800000">(</font><font color="#0000ff">$</font><font color="#008080">row </font><font color="#800000">= mysql_fetch_array( </font><font color="#0000ff">$</font><font color="#008080">result </font><font color="#800000">)) {</font>
+
+<font color="#008000">// Print out the contents of each row</font>
+<font color="#0000ff">echo $</font><font color="#008080">row</font><font color="#800000">[</font><font color="#ff00ff">'name'</font><font color="#800000">].</font><font color="#ff00ff">&quot; - &quot;</font><font color="#800000">.</font><font color="#0000ff">$</font><font color="#008080">row</font><font color="#800000">[</font><font color="#ff00ff">'age'</font><font color="#800000">]. </font><font color="#ff00ff">&quot;&lt;br /&gt;&quot;</font><font color="#800000">;</font>
+<font color="#800000">} </font>
+<font color="#800000">?&gt;</font>
+</pre>
+</div>
+
+<p><i>Output:</i></p>
+<div class="output">
+Amit Abhilash - 21</div>
+
+<p>You can use this wildcard at the beginning, middle, and end of the string. Experiment with it so you can see for yourself how powerful this little trick can be.</p>
+
+<p><font class="point_out">Note: </font>The wildcard was used for example purposes only. If you really wanted to explicitly select people who are in their 20's you would use greater than 19 and less than 30 to define the 20's range. Using a wildcard in this example would select unwanted cases, like a 2 year old and your 200 year old great-great-great-grandparents.</p>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="php_mysql_select.shtml" title="PHP MySQL Select">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="php_mysql_orderby.shtml" title="PHP MySQL ORDER BY">Next</a></td></tr>
+</table>
+
+	<!-- Footer Start-->  	
+
+</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/php/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->

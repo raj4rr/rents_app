@@ -1,0 +1,143 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<HTML><HEAD><TITLE>Hibernate table Per Sub class</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv="content-type" content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="Hibernate table Per Sub class tutorial Learn What is Table per class in Hibernate Type Hibernate Class
+with R4R Hibernate Tutorial mapping, collection mapping, component mapping, HQL(Hibenate Query Language), HCQL, Named Query, Caching" >
+<meta name="keywords" CONTENT="Hibernate table Per Sub class, Hibernate, Tutorial, beginners, Fresher, Basics, How to work with collection in hibernate, Collection In Hibernate,
+ inheritance mapping, collection mapping, component mapping, HQL, HCQL, Named Query, Caching">
+
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<META http-equiv="Content-Language" content="en-us">
+<link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+<link href="/css/main.css" rel="stylesheet" type="text/css" />
+</HEAD>
+<BODY>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>Hibernate</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+            <img src="/images/left_menu_bullet.gif"/> <a href="/java/hibernate/">Hibernate</a>
+             </div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top">
+                            <?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/hibernate/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                       <div class="main_content">  	 
+
+        <div class="heading">The three strategies</div>
+
+      <table id="indexing">
+
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="table_per_class_hierarchy.shtml" title="Table Per Class Hierarchy">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="table_per_class.shtml" title="Table Per Class">Next</a></td>
+  </tr> 
+</table>
+        <h3>Hibernate supports the three basic inheritance mapping strategies:</h3>
+        <ol>
+            <li>table per class hierarchy</li>
+            <li>table per subclass</li>
+            <li>table per concrete class</li>
+        </ol>
+        <p>Hibernate and JPA support three main inheritance mapping strategies. Each has its own tradeoffs regarding database normalization, query performance, and integrity.</p>
+        <ol>
+            <li><strong>SINGLE_TABLE</strong> (Table per class hierarchy)</li>
+            <li><strong>JOINED</strong> (Table per subclass)</li>
+            <li><strong>TABLE_PER_CLASS</strong> (Table per concrete class)</li>
+        </ol>
+
+        <div class="heading">1. SINGLE_TABLE Strategy</div>
+        <P>
+            In this strategy, the entire class hierarchy is mapped to a single database table. A "discriminator column" is used to distinguish which specific subclass a row belongs to.
+        </P>
+        <ul>
+            <li><strong>Pros:</strong> Very fast queries (no joins required).</li>
+            <li><strong>Cons:</strong> Subclass-specific columns cannot have <code>NOT NULL</code> constraints.</li>
+        </ul>
+        <div class="code">
+<pre><code>
+@Entity
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "PAYMENT_TYPE")
+public abstract class Payment { ... }
+
+@Entity
+@DiscriminatorValue("CREDIT")
+public class CreditCardPayment extends Payment { ... }
+</code></pre>
+        </div> 
+
+        <div class="heading">2. JOINED Strategy</div>                             
+        <p>
+            In this strategy, each class in the hierarchy gets its own table. The subclass tables only hold the columns specific to that subclass, plus a primary key that also acts as a foreign key to the superclass table.
+        </p>
+        <ul>
+            <li><strong>Pros:</strong> Clean relational model (3NF). Subclass columns can be <code>NOT NULL</code>.</li>
+            <li><strong>Cons:</strong> Queries require <code>JOIN</code> operations, which can be slower for deep hierarchies.</li>
+        </ul>
+        <div class="code">
+<pre><code>
+@Entity
+@Inheritance(strategy = InheritanceType.JOINED)
+public abstract class Payment { ... }
+
+@Entity
+@PrimaryKeyJoinColumn(name="PAYMENT_ID")
+public class CreditCardPayment extends Payment { ... }
+</code></pre>
+        </div>
+
+        <div class="heading">3. TABLE_PER_CLASS Strategy</div>   
+        <p>
+            In this strategy, each concrete subclass gets its own table. Each table contains columns for all properties of the subclass, including inherited properties.
+        </p>
+        <ul>
+            <li><strong>Pros:</strong> No joins required for subclass-specific queries.</li>
+            <li><strong>Cons:</strong> Polymorphic queries (e.g., querying for the base class) require expensive SQL <code>UNION</code> operations across multiple tables.</li>
+        </ul>
+        <div class="code">
+<pre><code>
+@Entity
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+public abstract class Payment { ... }
+
+@Entity
+public class CreditCardPayment extends Payment { ... }
+</code></pre>
+        </div>
+        <table id="indexing">
+
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="table_per_class_hierarchy.shtml" title="Table Per Class Hierarchy">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="table_per_class.shtml" title="Table Per Class">Next</a></td>
+  </tr> 
+</table>
+
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+
+                <?php @include($_SERVER['DOCUMENT_ROOT'] . '/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>

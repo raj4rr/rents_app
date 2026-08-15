@@ -1,0 +1,179 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>The SQLCONNECTION OBJECT;Using a SqlConnection;The Open() Method;The Close() Method;Example Using  SQLCONNECTION Object</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="The SQLCONNECTION OBJECT;Using a SqlConnection;The Open() Method;The Close() Method;Example Using  SQLCONNECTION Object" >
+<meta name="keywords" CONTENT="The SQLCONNECTION OBJECT;Using a SqlConnection;The Open() Method;The Close() Method;Example Using  SQLCONNECTION Object">
+
+<!-- header start-->	
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>ADO.NET</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+            <img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+            <a href="/ado.net">ADO.Net</a>
+              <img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+
+			  <a href="/ado.net/01/tutorial/ado.net/">ADO.NET Tutorials</a>
+
+              </div>
+
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/ado.net/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	 
+<!-- header End-->	
+
+<div class="heading">The SQLCONNECTION OBJECT</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="Command_Constructors.shtml" title="Command Constructors">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="Handling_Connection_%20Events.shtml" title="Handling Connection Events">Next</a></td>
+  </tr> 
+</table>
+
+<p>A SqlConnection is an object,as any other C# object.  we  just declare and instado.netiate the SqlConnection all at the same time, as shown below:</p>
+
+<div class="code">
+<pre>
+<font color="#000000">SqlConnection con = </font><font color="#0000ff">new </font><font color="#000000">SqlConnection(</font>
+                 <font color="#ff00ff">&quot;Data Source=(local);</font>
+                  <font color="#000000">Initial Catalog=Emp;</font>
+            <font color="#000000">Integrated </font><font color="#008080">Security</font><font color="#000000">=sspi</font><font color="#ff00ff">&quot;);</font>
+</pre>
+
+</div>
+
+<p>The SqlConnection object instado.netiated above  by using  a constructor with a single argument of type string and this argument is called a connection string. </p>
+<p>There are four Connection String Parameter Name:-</p>
+<ol>
+<li><i>Data Source</i>: Data Source Identifies the server and it  Could be local machine, machine domain name, or IP Address.</li>
+<li><i>Initial Catalog</i>: Database name</li>
+<li><i>Integrated Security</i>: Integrated Security set to SSPI to make connection with user's Windows login.</li>
+<li><i>User ID</i>:  Name of user configured in SQL Server.</li>
+<li><i>Password</i>: Password matching SQL Server User ID.</li>
+</ol>
+
+<div class="heading">The following shows a connection string, using the User ID and Password parameters:</div>
+<div class="code">
+<pre>
+<font color="#000000">SqlConnection conn = </font><font color="#0000ff">new </font><font color="#000000">SqlConnection(</font>
+             <font color="#ff00ff">"Data Source=DatabaseServer;</font>
+	     <font color="#000000">Initial Catalog=Northwind;</font>
+	            <font color="#000000">User ID=YourUserID;</font>
+	       <font color="#000000">Password=YourPassword</font><font color="#ff00ff">");</font>
+</pre>
+
+</div>
+
+<h3>Using a SqlConnection</h3>
+<p>The aim of creating a SqlConnection object is so we can enable other ADO.NET code to work with a database and  SqlCommand and a SqlDataAdapter take it a connection object as a parameter.  The sequence of operations occurring in the lifetime of a SqlConnection are given below:</p>
+<ol>
+<li>Instado.netiate the SqlConnection.</li>
+<li>Open the connection.</li>
+<li>Pass the connection to other ADO.NET objects.</li>
+<li>Perform database operations with the other ADO.NET objects.</li>
+<li>Close the connection.</li></ol>
+
+<h3>The Open() Method:</h3>
+<p>The Open() method of the Connection object establishes a connection  to the data source.,because database connections are a very expensive resource memory-wise, so we should only call the Open() method just before we're ready to retrieve the data. This ensures that the connection is not open any longer than it needs to be.</p>
+
+<h3>The Close() Method</h3>
+<p>After we are done retrieving data,we should call the Close() method of the Connection object. This closes the connection to the database.</p>
+
+<div class="heading">Example Using  SQLCONNECTION Object</div>
+<div class="code">
+<pre>
+<font face="Courier New">
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Data</font><font color="#000000">;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Data</font><font color="#000000">.SqlClient;</font>
+<font color="#0000ff">class </font><font color="#000000">sqlConnectivityexample</font>
+<font color="#000000">{</font>
+<font color="#0000ff">static void </font><font color="#000000">Main()</font>
+<font color="#000000">{</font>
+<font color="#000000">SqlConnection conn = </font><font color="#0000ff">new </font><font color="#000000">SqlConnection(</font>
+<font color="#ff00ff">&quot;Data Source=(local);Initial Catalog=</font>
+ <font color="#000000">Emp;Integrated </font><font color="#008080">Security</font><font color="#000000">=SSPI</font><font color="#ff00ff">&quot;);</font>
+<font color="#000000">SqlDataReader rdr = </font><font color="#0000ff">null</font><font color="#000000">;</font>
+<font color="#0000ff">try</font>
+<font color="#000000">{</font>
+<font color="#008000">// 2. Open the connection</font>
+<font color="#000000">conn.Open();</font>
+<font color="#008000">// 3. Pass the connection to a command object</font>
+<font color="#000000">SqlCommand cmd = </font><font color="#0000ff">new </font><font color="#000000">SqlCommand</font>
+<font color="#000000">(</font><font color="#ff00ff">&quot;select * from emp&quot;</font><font color="#000000">, conn);</font>
+<font color="#008000">//</font>
+<font color="#008000">// 4. Use the connection</font>
+<font color="#008000">//</font>
+<font color="#008000">// get query results</font>
+<font color="#000000">rdr = cmd.ExecuteReader();</font>
+<font color="#008000">// print the CustomerID of each record</font>
+<font color="#0000ff">while </font><font color="#000000">(rdr.Read())</font>
+<font color="#000000">{</font>
+<font color="#808000">Console</font><font color="#000000">.WriteLine(rdr[</font><font color="#800080">0</font><font color="#000000">]);</font>
+<font color="#000000">}</font>
+<font color="#000000">}</font>
+<font color="#0000ff">finally</font>
+<font color="#000000">{</font>
+<font color="#008000">// close the reader</font>
+<font color="#0000ff">if </font><font color="#000000">(rdr != </font><font color="#0000ff">null</font><font color="#000000">)</font>
+<font color="#000000">{</font>
+<font color="#000000">rdr.Close();</font>
+<font color="#000000">}</font>
+<font color="#008000">// 5. Close the connection</font>
+<font color="#0000ff">if </font><font color="#000000">(conn != </font><font color="#0000ff">null</font><font color="#000000">)</font>
+<font color="#000000">{</font>
+<font color="#000000">conn.Close();</font>
+<font color="#000000">}</font>
+<font color="#000000">}</font>
+<font color="#000000">}</font>
+<font color="#000000">}</font>
+</font>
+</pre>
+
+</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="Command_Constructors.shtml" title="Command Constructors">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="Handling_Connection_%20Events.shtml" title="Handling Connection Events">Next</a></td>
+  </tr> 
+</table>
+
+<!-- Footer Start-->		
+		</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/dotnet/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->

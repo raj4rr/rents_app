@@ -1,0 +1,248 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>Creating Windows Application,Designing The Interface,Adding The Code,Controls,Properties,Events</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="Creating Windows Application,Designing The Interface,Adding The Code,Controls,Properties,Events" >
+<meta name="keywords" CONTENT="Creating Windows Application,Designing The Interface,Adding The Code,Controls,Properties,Events">
+
+<!-- header start-->	
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>VB.NET Technology</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+            <img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+            <a href="/vb.net/">VB.net</a>
+              <img src="/images/left_menu_bullet.gif" width="11" height="6"/>
+               <a href="/vb.net/01/tutorial/vbnet/">VB.NET Tutorial</a>
+
+              </div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/vb.net/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	 
+
+<div class="heading">Creating Windows Application</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="visualstudio.shtml" title="Microsoft Visual Studio">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="button.shtml" title="The Button Control">Next</a></td>
+  </tr> 
+</table>
+<!-- header End-->	
+
+<p>For creating a new project you need to first load Visual Studio .NET and select Windows Application as in Figure below . Type the name of the project below along with selecting the desired location to store your files.</p>
+
+<div class="image">
+<img src="images/windowapp.JPG">
+</div>
+
+<h3>Designing The Interface </h3>
+<p> We are going to design  a simple application for adding values in List Box from from textbox input by the user, for this  will need to add the following items onto your form.</p>
+<ul>
+
+<li>GroupBox</li>
+<li>Label</li>
+<li>ComboBox</li>
+<li>Textbox</li>
+<li>Button</li>
+<li>ListBox</li>   
+
+</ul>
+<div class="image">
+<img src="images/appl.JPG">
+</div>
+
+<p><b>Adding The Code : </b>When this form loads we need to populate the ComboBox with the appropriate values. Add the following code by clicking on the form on the outside of the groupBox. You should see something like this:</p>
+<p>
+write this code on Form Load Event </p>
+
+<div class="code">
+<pre>
+<font face="Arial"><font color="#0000ff">Private Sub </font><font color="#000000">Form1_Load(sender As Object, e As EventArgs)</font>
+	<font color="#000000">comboBox1.Items.Add(</font><font color="#ff00ff">&quot;Dr.&quot;</font><font color="#000000">)</font>
+	<font color="#000000">comboBox1.Items.Add(</font><font color="#ff00ff">&quot;Er.&quot;</font><font color="#000000">)</font>
+	<font color="#000000">comboBox1.Items.Add(</font><font color="#ff00ff">&quot;Mr.&quot;</font><font color="#000000">)</font>
+	<font color="#000000">comboBox1.Items.Add(</font><font color="#ff00ff">&quot;Mrs.&quot;</font><font color="#000000">)</font>
+	<font color="#000000">comboBox1.Items.Add(</font><font color="#ff00ff">&quot;Ms.&quot;</font><font color="#000000">)</font>
+	<font color="#000000">comboBox1.Focus()</font>
+<font color="#0000ff">End Sub</font></font>
+</pre>
+</div>
+<p>Double-click on the OK button and add the following code:</p>
+
+<div class="code">
+<pre>
+<font face="Arial"><font color="#0000ff">Private Sub </font><font color="#000000">button1_Click(sender As Object, e As EventArgs)</font>
+	<font color="#000000">listBox1.Items.Add((comboBox1.Text + </font><font color="#ff00ff">&quot; &quot; </font><font color="#000000">+ textBox1.Text &amp; </font><font color="#ff00ff">&quot; &quot;</font><font color="#000000">) + textBox2.Text)</font>
+	<font color="#000000">textBox1.Text = </font><font color="#ff00ff">&quot;&quot;</font>
+	<font color="#000000">textBox2.Text = </font><font color="#ff00ff">&quot;&quot;</font>
+	<font color="#000000">comboBox1.Text = </font><font color="#ff00ff">&quot;&quot;</font>
+	<font color="#000000">comboBox1.Focus()</font>
+<font color="#0000ff">End Sub</font></font>
+</pre>
+</div>
+<p>When we want to allow the user to clear all fields entered into the listBox, we will need to go back like we did above to the visual designer and double-click on the Clear List button, this should again switch to a code view and allow you to add the following code-</p>
+
+<div class="code">
+<pre>
+<font face="Arial"><font color="#0000ff">Private Sub </font><font color="#000000">button2_Click(sender As Object, e As EventArgs)</font>
+	<font color="#000000">listBox1.Items.Clear()</font>
+	<font color="#000000">comboBox1.Focus()</font>
+<font color="#0000ff">End Sub</font>
+</font>
+</pre>
+
+</div>
+<p>And finally we want to allow the user to be able to close the application when they want. To show you another way to allow the user to close the program aside from that catchy X in the upper right-hand corner, I have provided a button entitled Close.</p>
+
+<div class="code">
+<pre>
+<font face="Arial"><font color="#0000ff">Private Sub </font><font color="#000000">button3_Click(sender As Object, e As EventArgs)</font>
+	<font color="#000000">Me.Dispose()</font>
+<font color="#0000ff">End Sub</font></font>
+</pre>
+</div>
+
+<h3>Controls</h3>
+
+<p><i>System.Windows.Forms.Control</i> class This class defines the basic functionality of the controls, which is why many properties and events in the controls. Some controls, named custom or user controls, derive from another class: <i>System.Windows.Forms.UserControl.</i> This class is itself derived from the Control class and provides the functionality we need to create controls ourselves.</p>
+
+<h3>Properties</h3>
+
+<p>All controls have a number of properties that are used to manipulate the behavior of the control. The base class of most controls, Control, has a number of properties that other controls either inherit directly or override to provide some kind of custom behavior.</p>
+
+<div class="table_content">
+ <table>
+ <tr><td class="heading" style="width:20%;">Name</td><td class="heading" style="width:30%;">Availability</td><td class="heading" style="width:50%;">Description </td></tr>
+
+<tr><td class="alternate_heading1">Anchor</td><td class="alternate_heading1">Read/Write</td><td class="alternate_heading1">It tells how control behaves when its container is resized.  </td></tr>
+
+<tr><td class="alternate_heading1">BackColor</td><td class="alternate_heading1">Read/Write</td><td class="alternate_heading1">about background color of a control. </td></tr>
+
+<tr><td class="alternate_heading1">Bottom</td><td class="alternate_heading1">Read/Write</td><td class="alternate_heading1">You can specify the distance from the top of the window to the bottom of the control. This is not the same as specifying the height of the control. </td></tr>
+
+<tr><td class="alternate_heading1">Dock</td><td class="alternate_heading1">Read/Write</td><td class="alternate_heading1">by this property you can make a control dock to the edges of a window.  </td></tr>
+
+<tr><td class="alternate_heading1">Enabled</td><td class="alternate_heading1">Read/Write</td><td class="alternate_heading1">Enabled to true usually means that the control can receive input from the user. Setting Enabled to false usually means that it cannot. </td></tr>
+
+<tr><td class="alternate_heading1">ForeColor</td><td class="alternate_heading1">Read/Write</td><td class="alternate_heading1"> 	foreground color of the control. </td></tr>
+
+<tr><td class="alternate_heading1">Height</td><td class="alternate_heading1">Read/Write</td><td class="alternate_heading1">distance from the top to the bottom of the control. </td></tr>
+
+<tr><td class="alternate_heading1">Left</td><td class="alternate_heading1">Read/Write</td><td class="alternate_heading1">left edge of the control relative to the left edge of the window. </td></tr>
+
+<tr><td class="alternate_heading1">Name</td><td class="alternate_heading1">Read/Write</td><td class="alternate_heading1"> 	name of the control. This name can be used to reference the control in code. </td></tr>
+
+<tr><td class="alternate_heading1">Parent</td><td class="alternate_heading1">Read/Write</td><td class="alternate_heading1">parent of the control. </td></tr>
+
+<tr><td class="alternate_heading1">Right</td><td class="alternate_heading1">Read/Write</td><td class="alternate_heading1"> 	right edge of the control relative to the left edge of the window.</td></tr>
+
+<tr><td class="alternate_heading1">TabIndex</td><td class="alternate_heading1">Read/Write</td><td class="alternate_heading1"> 	number the control has in the tab order of its container. </td></tr>
+
+<tr><td class="alternate_heading1">TabStop</td><td class="alternate_heading1">Read/Write</td><td class="alternate_heading1"> 	Specifies whether the control can be accessed by the Tab key. </td></tr>
+
+<tr><td class="alternate_heading1">Tag</td><td class="alternate_heading1">Read/Write</td><td class="alternate_heading1">This value is usually not used by the control itself, and is there for you to store information about the control on the control itself. When this property is assigned a value through the Windows Form designer, you can only assign a string to it.</td></tr>
+
+<tr><td class="alternate_heading1">Top</td><td class="alternate_heading1">Read/Write</td><td class="alternate_heading1">The top edge of the control relative to the top of the window. </td></tr>
+
+<tr><td class="alternate_heading1">Visible</td><td class="alternate_heading1">Read/Write</td><td class="alternate_heading1"> 	Specifies whether or not the control is visible
+at runtime. </td></tr>
+
+<tr><td class="alternate_heading1">Width</td><td class="alternate_heading1">Read/Write</td><td class="alternate_heading1">width of the control.  </td></tr>
+
+  </table>
+
+ </div>
+
+<h3>
+Events
+</h3>
+<p>
+When a user clicks a button or presses a button, you as the programmer of the application, want to be told that this has happened. To do so, controls use events. The Control class defines a number of events that are common to the controls we'll use in this chapter.
+</p>
+
+<div class="table_content">
+ <table>
+ <tr><td class="heading" style="width:30%;">Name</td><td class="heading" style="width:70%;">Description</td></tr>
+<tr><td class="alternate_heading1">MouseMove</td><td class="alternate_heading1">Occurs continually as the mouse travels over the control.</td></tr>
+
+<tr><td class="alternate_heading1">MouseUp</td><td class="alternate_heading1">Occurs when the mouse pointer is over a control and a mouse button
+is released.</td></tr>
+
+<tr><td class="alternate_heading1">Click</td><td class="alternate_heading1">Occurs when a control is clicked. In some cases, this event will also occur when a user presses Enter..</td></tr>
+
+<tr><td class="alternate_heading1">DoubleClick</td><td class="alternate_heading1">Occurs when a control is double-clicked. Handling the Click event on some controls, such as the Button control will mean that the DoubleClick event can never be called.</td></tr>
+
+<tr><td class="alternate_heading1">DragDrop</td><td class="alternate_heading1">Occurs when a drag-and-drop operation is completed, in other words, when an object has been dragged over the control, and the user releases the mouse button.</td></tr>
+
+<tr><td class="alternate_heading1">DragEnter</td><td class="alternate_heading1"> 	Occurs when an object being dragged enters the bounds of the control.</td></tr>
+
+<tr><td class="alternate_heading1">DragLeave</td><td class="alternate_heading1"> 	Occurs when an object being dragged leaves the bounds of the control.</td></tr>
+
+<tr><td class="alternate_heading1">DragOver</td><td class="alternate_heading1">Occurs when an object has been dragged over the control.</td></tr>
+
+<tr><td class="alternate_heading1">KeyDown</td><td class="alternate_heading1">Occurs when a key becomes pressed while the control has focus. This event always occurs before KeyPress and KeyUp.</td></tr>
+
+<tr><td class="alternate_heading1">KeyPress</td><td class="alternate_heading1"> 	Occurs when a key becomes pressed, while a control has focus. This event always occurs after KeyDown and before KeyUp. The difference between KeyDown and KeyPress is that KeyDown passes the keyboard code of the key that has been pressed, while KeyPress passes the corresponding char value for the key.</td></tr>
+
+<tr><td class="alternate_heading1">KeyUp</td><td class="alternate_heading1">Occurs when a key is released while a control has focus. This event always occurs after KeyDown and KeyPress.</td></tr>
+
+<tr><td class="alternate_heading1">GotFocus</td><td class="alternate_heading1"> 	Occurs when a control receives focus. Do not use this event to perform validation of controls. Use Validating and Validated instead.</td></tr>
+
+<tr><td class="alternate_heading1">LostFocus</td><td class="alternate_heading1"> 	Occurs when a control looses focus. Do not use this event to perform validation of controls. Use Validating and Validated instead.</td></tr>
+
+<tr><td class="alternate_heading1">MouseDown</td><td class="alternate_heading1">Occurs when the mouse pointer is over a control and a mouse button is pressed. This is not the same as a Click event because MouseDown occurs as soon as the button is pressed and before it is released.</td></tr>
+
+<tr><td class="alternate_heading1">Paint</td><td class="alternate_heading1"> 	Occurs when the control is drawn.</td></tr>
+
+<tr><td class="alternate_heading1">Validated</td><td class="alternate_heading1">This event is fired when a control with the CausesValidation property set to true is about to receive focus. It fires after the Validating event finishes and indicates that validation is complete.</td></tr>
+
+<tr><td class="alternate_heading1">Validating</td><td class="alternate_heading1">Fires when a control with the CausesValidation property set to true is about to receive focus. Note that the control which is to be validated is the control which is losing focus, not the one that is receiving it.
+previous</td></tr>
+
+  </table>
+
+ </div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="visualstudio.shtml" title="Microsoft Visual Studio">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="button.shtml" title="The Button Control">Next</a></td>
+  </tr> 
+</table>
+<!-- Footer Start-->		
+
+		</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/dotnet/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->

@@ -1,0 +1,204 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>Inheritance,Types of Inheritance,Polymorphism</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="Inheritance,Types of Inheritance,Polymorphism" >
+<meta name="keywords" CONTENT="Inheritance,Types of Inheritance,Polymorphism">
+
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+     <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>C# Tutorial</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a><img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/c1/">C#</a>
+
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/c1/commonfiles/leftmenu.shtml'); ?></td>
+
+                       <td style="80%" valign="top">
+                        <div class="main_content"> 
+
+	<!-- Header End-->
+
+  <div class="heading">Inheritance and Polymorphism</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="Arrays,indexer and collection.shtml" title="Arrays, Indexer and Collections">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="Properties.shtml" title="Properties">Next</a></td>
+  </tr>
+</table>
+<h3>Inheritance</h3>
+<p>In C#, the specialization relationship is generally implemented by using inheritance. Inheritance is also provides the 
+reusability,  or we can say that extracts some features from one class to another class.</p>
+
+<div class="code">
+<pre>
+<font color="#0000ff">class </font><font color="#000000">Bird {</font>
+<font color="#0000ff">public </font><font color="#000000">Bird() {</font>
+<font color="#808000">Console</font><font color="#000000">.WriteLine(</font><font color="#ff00ff">&quot;Bird constructor&quot;</font><font color="#000000">);</font>
+<font color="#000000">}</font>
+<font color="#0000ff">public void </font><font color="#000000">Greet() {</font>
+<font color="#808000">Console</font><font color="#000000">.WriteLine(</font><font color="#ff00ff">&quot;Bird says Hello&quot;</font><font color="#000000">);</font>
+<font color="#000000">}</font>
+<font color="#0000ff">public void </font><font color="#000000">Talk() {</font>
+<font color="#808000">Console</font><font color="#000000">.WriteLine(</font><font color="#ff00ff">&quot;Bird talk&quot;</font><font color="#000000">);</font>
+<font color="#000000">}</font>
+<font color="#0000ff">public virtual void </font><font color="#000000">Sing() {</font>
+<font color="#808000">Console</font><font color="#000000">.WriteLine(</font><font color="#ff00ff">&quot;Bird song&quot;</font><font color="#000000">);</font>
+<font color="#000000">}</font>
+<font color="#000000">}</font>
+
+<font color="#0000ff">class </font><font color="#000000">Peacock : Bird {</font>
+<font color="#0000ff">public </font><font color="#000000">Peacock() {</font>
+<font color="#808000">Console</font><font color="#000000">.WriteLine(</font><font color="#ff00ff">&quot;Peacock constructor&quot;</font><font color="#000000">);</font>
+<font color="#000000">}</font>
+<font color="#0000ff">public new void </font><font color="#000000">Talk() {</font>
+<font color="#808000">Console</font><font color="#000000">.WriteLine(</font><font color="#ff00ff">&quot;Peacock talk&quot;</font><font color="#000000">);</font>
+<font color="#000000">}</font>
+<font color="#0000ff">public override void </font><font color="#000000">Sing() {</font>
+<font color="#808000">Console</font><font color="#000000">.WriteLine(</font><font color="#ff00ff">&quot;Peacock song&quot;</font><font color="#000000">);</font>
+<font color="#000000">}</font>
+<font color="#000000">}</font>
+
+<font color="#000000">Bird a1 = </font><font color="#0000ff">new </font><font color="#000000">Bird();</font>
+<font color="#000000">a1.Talk();</font>
+<font color="#000000">a1.Sing();</font>
+<font color="#000000">a1.Greet();</font>
+
+<font color="#000000">Bird a2 = </font><font color="#0000ff">new </font><font color="#000000">Peacock();</font>
+<font color="#000000">a2.Talk();</font>
+<font color="#000000">a2.Sing();</font>
+<font color="#000000">a2.Greet();</font>
+</pre>
+</div>
+
+<div class="heading">Types of Inheritance</div>
+<p>In Object Oriented Programming concept there are 3 types of inheritances.</p>
+<ol><li>Single Inheritance</li>
+<li> Multiple Inheritance </li>
+<li> Multilevel Inheritance</li></ol>
+
+<h3>Single Inheritance</h3>
+<div class="code">
+<pre>
+<font color="#0000ff">public class </font><font color="#000000">A</font>
+<font color="#000000">{</font>
+<font color="#000000">}</font>
+<font color="#0000ff">public class </font><font color="#000000">B:A</font>
+<font color="#000000">{</font>
+<font color="#000000">}</font>
+</pre>
+</div>
+
+<h3>Multiple Inheritance</h3>
+<div class="code">
+<pre>
+<font face="Courier New">
+<font color="#0000ff">public class </font><font color="#000000">A</font>
+<font color="#000000">{</font>
+<font color="#000000">}</font>
+<font color="#0000ff">public class </font><font color="#000000">B</font>
+<font color="#000000">{</font>
+<font color="#000000">}</font>
+<font color="#0000ff">public class </font><font color="#000000">C:A,B </font>
+<font color="#000000">{</font>
+<font color="#000000">}</font>
+</pre>
+</div>
+
+<h3>Multilevel Inheritance</h3>
+<div class="code">
+<pre>
+<font color="#0000ff">public class </font><font color="#000000">A</font>
+<font color="#000000">{</font>
+<font color="#000000">}</font>
+<font color="#0000ff">public class </font><font color="#000000">B:A</font>
+<font color="#000000">{</font>
+<font color="#000000">}</font>
+<font color="#0000ff">public class </font><font color="#000000">C:B </font>
+<font color="#000000">{</font>
+<font color="#000000">}</font>
+</pre>
+</div>
+
+<p>In the above three types C# don't proved Multiple Inheritance. As there is conflict of multiple override 
+methods in base classes (say A, B in above example) As in Place C# give another feature called Interfaces 
+using interfaces you can achieve multiple Inheritance feature.</p>
+ <div class="heading">Polymorphism Polymorphism</div>
+ <p>Poly means many and morph means form. Thus, polymorphism refers to being able to use many forms of a type without regard 
+ to the details.</p>
+ <h3>Creating Polymorphic Types</h3>
+ <ul><li> Create a base class with virtual methods.</li>
+<li>Create derived classes that override the behavior of the base class virtual methods.</li></ul>
+
+<p>To create a method in a base class that supports polymorphism, mark the method as virtual</p>
+
+<h3>Examples</h3>
+<div class="code">
+<pre>
+<font color="#0000ff">public class </font><font color="#000000">BaseClass</font>
+<font color="#000000">{</font>
+<font color="#0000ff">public virtual void </font><font color="#000000">DoWork() </font>
+<font color="#000000">{ </font>
+<font color="#000000">}</font>
+<font color="#0000ff">public virtual int </font><font color="#000000">WorkProperty {</font>
+<font color="#000000">get {</font>
+<font color="#0000ff">return </font><font color="#800080">0</font><font color="#000000">;</font>
+<font color="#000000">}</font>
+<font color="#000000">}</font>
+<font color="#000000">}</font>
+
+<font color="#0000ff">public class </font><font color="#000000">DerivedClass : BaseClass</font>
+<font color="#000000">{</font>
+<font color="#0000ff">public override void </font><font color="#000000">DoWork() </font>
+<font color="#000000">{</font>
+
+<font color="#000000">}</font>
+<font color="#0000ff">public override int </font><font color="#000000">WorkProperty() {</font>
+<font color="#000000">get {</font>
+<font color="#0000ff">return </font><font color="#800080">0</font><font color="#000000">; </font>
+<font color="#000000">}</font>
+<font color="#000000">}</font>
+<font color="#000000">}</font>
+</pre>
+</div>
+
+ <table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="Arrays,indexer and collection.shtml" title="Arrays, Indexer and Collections">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="Properties.shtml" title="Properties">Next</a></td>
+  </tr>
+</table>
+
+  <!--Footer-->
+   </div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/dotnet/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+     <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>

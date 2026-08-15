@@ -1,0 +1,281 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>Set Background Color of PDF Using Java</TITLE>
+<META content=r4r.co.in name=owner>
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="Set Background Color of PDF Using Java" >
+<meta name="keywords" CONTENT="Set Background Color of PDF Using Java">
+<META content="Rajesh Kumar" name=author>
+<META http-equiv=expires content=0>
+<script type="text/javascript" src="/js/main.js"></script>
+		<link rel="stylesheet" type="text/css" href="/css/style.css" />
+	    <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+
+	</HEAD>
+	<BODY style="text-align: justify">
+		<table class="wrap" align="center"  cellpadding="0" cellspacing="0">
+			<tr>
+				<td class="m" align="left" valign="top">
+					<?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+				</td>
+						</tr>
+						<tr class="headerTR1">
+							<td>
+							<?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+							</td>
+						</tr>
+						<tr>
+							<td class="headerTR2">
+								<?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+							</td>
+						</tr>
+
+						<tr>
+							<td class="headerTR3">
+								<?php @include($_SERVER['DOCUMENT_ROOT'] . '/common-files/menu.shtml'); ?>
+							</td>
+							</td>
+
+						</tr>
+						<tr>
+							<td>
+								<?php @include($_SERVER['DOCUMENT_ROOT'] . '/common-files/gaps.shtml'); ?>
+							</td>
+						</tr>
+
+						<tr>
+
+			               <td class="content">
+								<table>
+									<tr>
+
+								  <?php @include($_SERVER['DOCUMENT_ROOT'] . '/common-files/tdgaps.shtml'); ?>
+								<td class="td1"   valign="top" >
+
+							     <DIV style="margin-left:15px;">
+			<table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse"  width="100%">
+  <tr>
+    <td width="100%">
+    <p align="justify">
+    <font face="Verdana" size="2">
+    <A href="/">R4R</A>
+<img border="0" src="/images/left_menu_bullet.gif" width="11" height="6"><a href="/sourcecode">Java SourceCode</a>
+<img border="0" src="/images/left_menu_bullet.gif" width="11" height="6"><a href=" ">Costuming 
+    Page Size PDF Using Java </a></font></td>
+  </tr>
+</table>
+
+	<!-- Header End-->  
+
+<P align="justify" class="style8" title="Java Examples">
+<font face="Verdana" color="#0066FF">
+<strong>Costuming Page Size PDF Using Java </strong></font></P>
+
+<P align="justify" class="style7" title="Java Examples">
+<font face="Verdana" size="2">In this example we 
+are going to set background color of a PDF using java.In this example we are using <em><strong>setBackgroundColor(Color object)</strong></em> to set the background color.</font></P>
+
+<P align="justify" class="style7" title="Java Examples">
+<font face="Verdana" size="2">There are basic five steps to create PDF: </font></P>
+<P align="justify" class="style7" title="Java Examples">
+<font face="Verdana" size="2">We are creating and object of rectangle.We are passing this rectangle into Document to customs the page size.<br>
+    <strong>Rectangle pageSize = new Rectangle(216, 720);</strong></font></P>
+<P align="justify" class="style7" title="Java Examples">
+<font face="Verdana" size="2"><strong><font color="#0066FF">Step1:</font> </strong>Creation of a document-object</font></P>
+<P align="justify" class="style7" title="Java Examples">
+<font face="Verdana" size="2"><strong>Document</strong> document = new <strong>Document(pageSize)</strong>;</font></P>
+<P align="justify" class="style7" title="Java Examples">
+<font face="Verdana" size="2"><font color="#0066FF"><strong>Step2: </strong>
+</font>Create a writer that listens to the document and directs a  PDF-stream to a file.</font></P>
+<P align="justify" class="style7" title="Java Examples">
+<font face="Verdana" size="2">PdfWriter.getInstance(document, new FileOutputStream(&quot;CustomPageSize.pdf&quot;));</font></P>
+<p class="style7" align="justify">  <font face="Verdana" size="2">
+<font color="#0066FF">  <strong>Step3:</strong> </font>Open the document</font></p>
+<p class="style7" align="justify">  <font face="Verdana" size="2"><strong>document.open();</strong></font></p>
+<p class="style7" align="justify">  <font face="Verdana" size="2">
+<font color="#0066FF"><strong>Step4:</strong></font> Add a paragraph to the document.We are adding  the standard size of the page in diffrent unit.These values will added at PDF file.<br>
+document.<strong>add</strong>(new <strong>Paragraph</strong>(&quot;The size of this page is 216x720 points.&quot;));<br>
+document.<strong>add</strong>(new <strong>Paragraph</strong>(&quot;216pt / 72 points per inch = 3 inch&quot;));<br>
+document.<strong>add</strong>(new <strong>Paragraph</strong>(&quot;720pt / 72 points per inch = 10 inch&quot;));<br>
+document.<strong>add</strong>(new <strong>Paragraph</strong>(&quot;The size of this page is 3x10 inch.&quot;));<br>
+document.<strong>add</strong>(new <strong>Paragraph</strong>(&quot;3 inch x 2.54 = 7.62 cm&quot;));<br>
+document.<strong>add</strong>(new <strong>Paragraph</strong>(&quot;10 inch x 2.54 = 25.4 cm&quot;));<br>
+document.<strong>add</strong>(new <strong>Paragraph</strong>(&quot;The size of this page is 7.62x25.4 cm.&quot;));</font></p>
+<p class="style7" align="justify">  <font face="Verdana" size="2"> <strong>
+<font color="#0066FF">Step 5:</font> </strong>Close the document</font></p>
+<p class="style7" align="justify">  <font face="Verdana" size="2">document.close();:</font></p>
+<p class="style7" align="justify">  <b>
+<font color="#0066FF" face="Verdana" size="2">
+SOURCE CODE</font></b></p>
+
+<table border="1" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="87%">
+  <tr>
+    <td width="100%">
+<div align="justify">
+<PRE><FONT FACE="Verdana">
+<FONT COLOR="#0000ff">package </FONT><FONT COLOR="#000000">com.itext.pdf.example.r4r;</FONT>
+
+<FONT COLOR="#0000ff">import </FONT><FONT COLOR="#000000">java.io.</FONT><FONT COLOR="#ff0000">FileOutputStream</FONT><FONT COLOR="#000000">;</FONT>
+<FONT COLOR="#0000ff">import </FONT><FONT COLOR="#000000">java.io.</FONT><FONT COLOR="#ff0000">IOException</FONT><FONT COLOR="#000000">;</FONT>
+<FONT COLOR="#0000ff">import </FONT><FONT COLOR="#000000">com.lowagie.text.</FONT><FONT COLOR="#ff0000">Document</FONT><FONT COLOR="#000000">;</FONT>
+<FONT COLOR="#0000ff">import </FONT><FONT COLOR="#000000">com.lowagie.text.DocumentException;</FONT>
+<FONT COLOR="#0000ff">import </FONT><FONT COLOR="#000000">com.lowagie.text.Paragraph;</FONT>
+<FONT COLOR="#0000ff">import </FONT><FONT COLOR="#000000">com.lowagie.text.</FONT><FONT COLOR="#ff0000">Rectangle</FONT><FONT COLOR="#000000">;</FONT>
+<FONT COLOR="#0000ff">import </FONT><FONT COLOR="#000000">com.lowagie.text.pdf.PdfWriter;</FONT>
+
+<FONT COLOR="#008000">/**</FONT>
+<FONT COLOR="#008000"> *In this example we are going to customize the page size.</FONT>
+<FONT COLOR="#008000"> */</FONT>
+<FONT COLOR="#0000ff">public class </FONT><FONT COLOR="#000000">CustomPageSize {</FONT>
+    <FONT COLOR="#008000">/**</FONT>
+<FONT COLOR="#008000">     * Creates a PDF document with a certain pagesize</FONT>
+<FONT COLOR="#008000">     */</FONT>
+    <FONT COLOR="#0000ff">public static void </FONT><FONT COLOR="#000000">main(</FONT><FONT COLOR="#ff0000">String</FONT><FONT COLOR="#000000">[] args) {</FONT>
+
+        <FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.println(</FONT><FONT COLOR="#ff00ff">&quot;Customization of  PDF PageSize &quot;</FONT><FONT COLOR="#000000">);</FONT>
+
+        <FONT COLOR="#008000">//Creating an object of rectangle to cutomize the PDF page size.</FONT>
+        <FONT COLOR="#ff0000">Rectangle </FONT><FONT COLOR="#000000">pageSize = </FONT><FONT COLOR="#0000ff">new </FONT><FONT COLOR="#ff0000">Rectangle</FONT><FONT COLOR="#000000">(</FONT><FONT COLOR="#800080">216</FONT><FONT COLOR="#000000">, </FONT><FONT COLOR="#800080">720</FONT><FONT COLOR="#000000">);</FONT>
+<FONT COLOR="#008000">//      Step 1: Here we are creating of a Document object</FONT>
+        <FONT COLOR="#ff0000">Document </FONT><FONT COLOR="#000000">document = </FONT><FONT COLOR="#0000ff">new </FONT><FONT COLOR="#ff0000">Document</FONT><FONT COLOR="#000000">(pageSize);</FONT>
+
+        <FONT COLOR="#0000ff">try </FONT><FONT COLOR="#000000">{</FONT>
+
+            <FONT COLOR="#008000">// Step2:</FONT>
+            <FONT COLOR="#008000">// Here we are creating a writer that listens to the document</FONT>
+            <FONT COLOR="#008000">// and directs a PDF-stream to a file</FONT>
+
+            <FONT COLOR="#000000">PdfWriter.getInstance(document, </FONT><FONT COLOR="#0000ff">new </FONT><FONT COLOR="#ff0000">FileOutputStream<br></FONT><FONT COLOR="#000000">(</FONT><FONT COLOR="#ff00ff">&quot;CustomPageSize.pdf&quot;</FONT><FONT COLOR="#000000">));</FONT>
+
+            <FONT COLOR="#008000">// Step3:Here we are opening the document</FONT>
+            <FONT COLOR="#000000">document.open();</FONT>
+
+            <FONT COLOR="#008000">//Step4:Here we are add some paragraphs to the document</FONT>
+            <FONT COLOR="#008000">//These paragraphs are the standard size of the page <br>in different unit.</FONT>
+            <FONT COLOR="#000000">document.add(</FONT><FONT COLOR="#0000ff">new </FONT><FONT COLOR="#000000">Paragraph(</FONT><FONT COLOR="#ff00ff">&quot;The size of this page is <br>216x720 points.&quot;</FONT><FONT COLOR="#000000">));</FONT>
+            <FONT COLOR="#000000">document.add(</FONT><FONT COLOR="#0000ff">new </FONT><FONT COLOR="#000000">Paragraph(</FONT><FONT COLOR="#ff00ff">&quot;216pt / 72 points per <br>inch = 3 inch&quot;</FONT><FONT COLOR="#000000">));</FONT>
+            <FONT COLOR="#000000">document.add(</FONT><FONT COLOR="#0000ff">new </FONT><FONT COLOR="#000000">Paragraph(</FONT><FONT COLOR="#ff00ff">&quot;720pt / 72 points per <br>inch = 10 inch&quot;</FONT><FONT COLOR="#000000">));</FONT>
+            <FONT COLOR="#000000">document.add(</FONT><FONT COLOR="#0000ff">new </FONT><FONT COLOR="#000000">Paragraph(</FONT><FONT COLOR="#ff00ff">&quot;The size of this page <br>is 3x10 inch.&quot;</FONT><FONT COLOR="#000000">));</FONT>
+            <FONT COLOR="#000000">document.add(</FONT><FONT COLOR="#0000ff">new </FONT><FONT COLOR="#000000">Paragraph(</FONT><FONT COLOR="#ff00ff">&quot;3 inch x 2.54 = 7.62 cm&quot;</FONT><FONT COLOR="#000000">));</FONT>
+            <FONT COLOR="#000000">document.add(</FONT><FONT COLOR="#0000ff">new </FONT><FONT COLOR="#000000">Paragraph(</FONT><FONT COLOR="#ff00ff">&quot;10 inch x 2.54 = 25.4 cm&quot;</FONT><FONT COLOR="#000000">));</FONT>
+            <FONT COLOR="#000000">document.add(</FONT><FONT COLOR="#0000ff">new </FONT><FONT COLOR="#000000">Paragraph(</FONT><FONT COLOR="#ff00ff">&quot;The size of this page is <br>7.62x25.4 cm.&quot;</FONT><FONT COLOR="#000000">));</FONT>
+
+        <FONT COLOR="#000000">}</FONT>
+        <FONT COLOR="#0000ff">catch</FONT><FONT COLOR="#000000">(DocumentException de) {</FONT>
+            <FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.err.println(de.getMessage());</FONT>
+        <FONT COLOR="#000000">}</FONT>
+        <FONT COLOR="#0000ff">catch</FONT><FONT COLOR="#000000">(</FONT><FONT COLOR="#ff0000">IOException </FONT><FONT COLOR="#000000">ioe) {</FONT>
+            <FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.err.println(ioe.getMessage());</FONT>
+        <FONT COLOR="#000000">}</FONT>
+
+        <FONT COLOR="#008000">// Step5:Here we are closing the document</FONT>
+        <FONT COLOR="#000000">document.close();</FONT>
+    <FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#000000">}</FONT>
+
+</FONT></PRE>
+
+</div>
+
+</td></tr>
+</table>
+
+<p align="justify"><font face="Verdana" size="2"><a href="/java/example/CustomPageSize.java.txt">Download Source File</a><a href="HelloWorld.java.txt"></a><a href="ScrollbarExample.java.txt"></a><br>
+
+  <!-- Footer Start-->	
+
+									</font>								
+
+									</td>
+
+										<td class="td2"  valign="top">
+
+											</font>
+
+											</font></p>
+
+											<table>
+											<?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/corejava/common-files/news1.shtml'); ?>	
+												<tr>
+													<td class="colorChange">
+
+													</td>
+												</tr>
+
+												<?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/corejava/common-files/news3.shtml'); ?>	
+
+												<tr>
+													<td class="colorChange">
+
+													</td>
+												</tr>
+
+												<?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/corejava/common-files/news3.shtml'); ?>	
+
+												<tr>
+													<td class="colorChange">
+
+													</td>
+												</tr>
+
+												<?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/corejava/common-files/news4.shtml'); ?>	
+
+		</table>
+
+										</td>
+										<?php @include($_SERVER['DOCUMENT_ROOT'] . '/common-files/tdgaps.shtml'); ?>
+									</tr>
+								 </table>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<?php @include($_SERVER['DOCUMENT_ROOT'] . '/common-files/gaps.shtml'); ?>
+							</td>
+						</tr>		
+						<tr>
+							<td>
+								<?php @include($_SERVER['DOCUMENT_ROOT'] . '/common-files/row.shtml'); ?>
+							</td>
+						</tr>
+
+						<tr>
+							<td>
+								<?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/corejava/common-files/mainlinks.shtml'); ?>
+
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<?php @include($_SERVER['DOCUMENT_ROOT'] . '/common-files/gaps.shtml'); ?>
+							</td>
+						</tr>
+
+								<tr>
+							<td>
+								<?php @include($_SERVER['DOCUMENT_ROOT'] . '/common-files/row.shtml'); ?>
+							</td>
+						</tr>
+
+						<tr >
+							<td>
+								<?php @include($_SERVER['DOCUMENT_ROOT'] . '/common-files/hotlinks.shtml'); ?>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<?php @include($_SERVER['DOCUMENT_ROOT'] . '/common-files/gaps.shtml'); ?>
+							</td>
+						</tr>
+
+						<tr>
+							<td>
+								<?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+		</table>
+
+	</BODY>
+</HTML>

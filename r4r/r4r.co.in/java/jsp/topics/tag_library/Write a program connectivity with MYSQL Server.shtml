@@ -1,0 +1,206 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>Write a program connectivity with MYSQL Server.</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="Write a program connectivity with MYSQL Server." >
+<meta name="keywords" CONTENT="Write a program connectivity with MYSQL Server.">
+
+<!-- header start-->	
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>Java Server Page</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+            <img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+            <a href="/java/">Java</a>
+              <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/java/jsp">JSP</a>
+                                   <img src="/images/left_menu_bullet.gif" width="11" height="6"/>
+								    <a href="/java/jsp/topics/tag_library/">JSP Tag Library</a>
+              </div>
+
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/jsp/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	 
+<!-- header End-->
+<div class="heading">Write a program connectivity with MYSQL Server</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="Write%20a%20program%20that%20display%20Series%20of%20Odd%20and%20Prime%20Number.shtml" title="Write a program that display Series of Odd and Prime Number">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="Write%20a%20program%20that%20display%20the%20value%20store%20into%20SQL%20server%20database.shtml" title="Write a program that display the value store into SQL server database">Next</a></td>
+  </tr> 
+</table>
+<font class="point_out">Save as a Conn_library.tld</font>
+<div class="code">
+<pre>
+
+<font color="#0000ff">&lt;?xml </font><font color="#ff0000">version</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;1.0&quot; </font><font color="#ff0000">encoding</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;UTF-8&quot;</font><font color="#800080">?</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">taglib </font><font color="#ff0000">version</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;2.1&quot; </font><font color="#ff0000">xmlns</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;http://java.sun.com/xml/ns/javaee&quot;</font>
+ <font color="#800080">xmlns:xsi</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</font>
+<font color="#800080">xsi:schemaLocation</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;http://java.sun.com/xml/ns/javaee </font>
+<font color="#ff00ff">http://java.sun.com/xml/ns/javaee/web-jsptaglibrary_2_1.xsd&quot;</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">tlib-version</font><font color="#0000ff">&gt;</font><font color="#000000">1.0</font><font color="#0000ff">&lt;/</font><font color="#808000">tlib-version</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">short-name</font><font color="#0000ff">&gt;</font><font color="#000000">conn_library</font><font color="#0000ff">&lt;/</font><font color="#808000">short-name</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">uri</font><font color="#0000ff">&gt;</font><font color="#000000">/WEB-INF/tlds/Conn_library</font><font color="#0000ff">&lt;/</font><font color="#808000">uri</font><font color="#0000ff">&gt;</font>
+<font color="#000000">	</font><font color="#0000ff">&lt;</font><font color="#808000">tag</font><font color="#0000ff">&gt;</font>
+<font color="#000000">		</font><font color="#0000ff">&lt;</font><font color="#808000">name</font><font color="#0000ff">&gt;</font><font color="#000000">QueryTag</font><font color="#0000ff">&lt;/</font><font color="#808000">name</font><font color="#0000ff">&gt;</font>
+<font color="#000000">        </font><font color="#0000ff">&lt;</font><font color="#808000">tag-class</font><font color="#0000ff">&gt;</font><font color="#000000">r4r.co.in.QueryTag</font><font color="#0000ff">&lt;/</font><font color="#808000">tag-class</font><font color="#0000ff">&gt;</font>
+<font color="#000000">        </font><font color="#0000ff">&lt;</font><font color="#808000">body-content</font><font color="#0000ff">&gt;</font><font color="#000000">scriptless</font><font color="#0000ff">&lt;/</font><font color="#808000">body-content</font><font color="#0000ff">&gt;</font>
+
+<font color="#000000">                      </font><font color="#0000ff">&lt;</font><font color="#808000">attribute</font><font color="#0000ff">&gt;</font>
+<font color="#000000">                                  </font><font color="#0000ff">&lt;</font><font color="#808000">name</font><font color="#0000ff">&gt;</font><font color="#000000">databaseURI</font><font color="#0000ff">&lt;/</font><font color="#808000">name</font><font color="#0000ff">&gt;</font>
+<font color="#000000">                                  </font><font color="#0000ff">&lt;</font><font color="#808000">required</font><font color="#0000ff">&gt;</font><font color="#000000">true</font><font color="#0000ff">&lt;/</font><font color="#808000">required</font><font color="#0000ff">&gt;</font>
+<font color="#000000">                                  </font><font color="#0000ff">&lt;</font><font color="#808000">rtexprvalue</font><font color="#0000ff">&gt;</font><font color="#000000">false</font><font color="#0000ff">&lt;/</font><font color="#808000">rtexprvalue</font><font color="#0000ff">&gt;</font>
+<font color="#000000">                      </font><font color="#0000ff">&lt;/</font><font color="#808000">attribute</font><font color="#0000ff">&gt;</font>
+<font color="#000000">                      </font><font color="#0000ff">&lt;</font><font color="#808000">attribute</font><font color="#0000ff">&gt;</font>
+<font color="#000000">                                  </font><font color="#0000ff">&lt;</font><font color="#808000">name</font><font color="#0000ff">&gt;</font><font color="#000000">name</font><font color="#0000ff">&lt;/</font><font color="#808000">name</font><font color="#0000ff">&gt;</font>
+<font color="#000000">                                  </font><font color="#0000ff">&lt;</font><font color="#808000">required</font><font color="#0000ff">&gt;</font><font color="#000000">true</font><font color="#0000ff">&lt;/</font><font color="#808000">required</font><font color="#0000ff">&gt;</font>
+<font color="#000000">                                  </font><font color="#0000ff">&lt;</font><font color="#808000">rtexprvalue</font><font color="#0000ff">&gt;</font><font color="#000000">false</font><font color="#0000ff">&lt;/</font><font color="#808000">rtexprvalue</font><font color="#0000ff">&gt;</font>
+<font color="#000000">                      </font><font color="#0000ff">&lt;/</font><font color="#808000">attribute</font><font color="#0000ff">&gt;</font>
+<font color="#000000">                      </font><font color="#0000ff">&lt;</font><font color="#808000">attribute</font><font color="#0000ff">&gt;</font>
+<font color="#000000">                                  </font><font color="#0000ff">&lt;</font><font color="#808000">name</font><font color="#0000ff">&gt;</font><font color="#000000">password</font><font color="#0000ff">&lt;/</font><font color="#808000">name</font><font color="#0000ff">&gt;</font>
+<font color="#000000">                                  </font><font color="#0000ff">&lt;</font><font color="#808000">required</font><font color="#0000ff">&gt;</font><font color="#000000">true</font><font color="#0000ff">&lt;/</font><font color="#808000">required</font><font color="#0000ff">&gt;</font>
+<font color="#000000">                                  </font><font color="#0000ff">&lt;</font><font color="#808000">rtexprvalue</font><font color="#0000ff">&gt;</font><font color="#000000">false</font><font color="#0000ff">&lt;/</font><font color="#808000">rtexprvalue</font><font color="#0000ff">&gt;</font>
+<font color="#000000">                      </font><font color="#0000ff">&lt;/</font><font color="#808000">attribute</font><font color="#0000ff">&gt;</font>
+<font color="#000000">                      </font><font color="#0000ff">&lt;</font><font color="#808000">attribute</font><font color="#0000ff">&gt;</font>
+<font color="#000000">                                  </font><font color="#0000ff">&lt;</font><font color="#808000">name</font><font color="#0000ff">&gt;</font><font color="#000000">className</font><font color="#0000ff">&lt;/</font><font color="#808000">name</font><font color="#0000ff">&gt;</font>
+<font color="#000000">                                  </font><font color="#0000ff">&lt;</font><font color="#808000">required</font><font color="#0000ff">&gt;</font><font color="#000000">true</font><font color="#0000ff">&lt;/</font><font color="#808000">required</font><font color="#0000ff">&gt;</font>
+<font color="#000000">                                  </font><font color="#0000ff">&lt;</font><font color="#808000">rtexprvalue</font><font color="#0000ff">&gt;</font><font color="#000000">false</font><font color="#0000ff">&lt;/</font><font color="#808000">rtexprvalue</font><font color="#0000ff">&gt;</font>
+<font color="#000000">                      </font><font color="#0000ff">&lt;/</font><font color="#808000">attribute</font><font color="#0000ff">&gt;</font>
+<font color="#000000">          </font><font color="#0000ff">&lt;/</font><font color="#808000">tag</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">taglib</font><font color="#0000ff">&gt;</font>
+</pre>
+
+</div>
+
+<font class="point_out">Save as a QueryTag.java</font>
+
+<div class="code"><pre>
+<font class="comment">Program used for TagHandler</font> 
+
+<font color="#0000ff">package </font><font color="#000000">r4r.co.in;</font>
+<font color="#0000ff">import </font><font color="#000000">com.mysql.jdbc.</font><font color="#ff0000">Connection</font><font color="#000000">;</font>
+<font color="#0000ff">import </font><font color="#000000">java.sql.</font><font color="#ff0000">DriverManager</font><font color="#000000">;</font>
+<font color="#0000ff">import </font><font color="#000000">javax.servlet.jsp.JspWriter;</font>
+<font color="#0000ff">import </font><font color="#000000">javax.servlet.jsp.JspException;</font>
+<font color="#0000ff">import </font><font color="#000000">javax.servlet.jsp.tagext.TagSupport;</font>
+<font color="#0000ff">public class </font><font color="#000000">QueryTag </font><font color="#0000ff">extends </font><font color="#000000">TagSupport {</font>
+   <font color="#0000ff">private </font><font color="#ff0000">Connection </font><font color="#000000">con = </font><font color="#0000ff">null</font><font color="#000000">;</font>
+   <font color="#0000ff">private </font><font color="#ff0000">String </font><font color="#000000">name;</font>
+    <font color="#0000ff">private </font><font color="#ff0000">String </font><font color="#000000">databaseURI;</font>
+    <font color="#0000ff">private </font><font color="#ff0000">String </font><font color="#000000">password;</font>
+    <font color="#0000ff">private </font><font color="#ff0000">String </font><font color="#000000">className;</font>
+   <font color="#0000ff">public void </font><font color="#000000">setName(</font><font color="#ff0000">String </font><font color="#000000">name) {     </font>
+        <font color="#0000ff">this</font><font color="#000000">.name = name; </font>
+    <font color="#000000">}</font>
+    <font color="#0000ff">public void </font><font color="#000000">setPassword(</font><font color="#ff0000">String </font><font color="#000000">password) {    </font>
+        <font color="#0000ff">this</font><font color="#000000">.password = password;</font>
+    <font color="#000000">}</font>
+    <font color="#0000ff">public void </font><font color="#000000">setDatabaseURI(</font><font color="#ff0000">String </font><font color="#000000">databaseURI) {     </font>
+        <font color="#0000ff">this</font><font color="#000000">.databaseURI = databaseURI;</font>
+    <font color="#000000">}</font>
+    <font color="#0000ff">public void </font><font color="#000000">setClassName(</font><font color="#ff0000">String </font><font color="#000000">className) {</font>
+       <font color="#0000ff">this</font><font color="#000000">.className = className;</font>
+   <font color="#000000">}</font>
+	<font color="#008000">//Override</font>
+    <font color="#0000ff">public int </font><font color="#000000">doStartTag() </font><font color="#0000ff">throws </font><font color="#000000">JspException {</font> 
+        <font color="#000000">JspWriter out = pageContext.getOut();</font>
+        <font color="#0000ff">try </font><font color="#000000">{</font>
+         <font color="#ff0000">Class</font><font color="#000000">.forName(className).newInstance();</font>
+
+           <font color="#008000">//(url+databaseName,userName,password)</font>
+           <font color="#000000">con = (</font><font color="#ff0000">Connection</font><font color="#000000">) </font><font color="#ff0000">DriverManager</font><font color="#000000">.getConnection(databaseURI,</font>
+                   <font color="#000000">name, password);</font>
+               <font color="#0000ff">if </font><font color="#000000">(!con.isClosed()) {</font>
+                  <font color="#000000">out.println(</font><font color="#ff00ff">&quot;Successfully connected to SQL Server &amp; &quot;</font>
+                       <font color="#000000">+ </font><font color="#ff00ff">&quot; MySQL server using TCP/IP...&quot;</font><font color="#000000">);</font>   
+               <font color="#000000">out.println(</font><font color="#ff00ff">&quot;&lt;BR&gt;Following information from server:&quot;</font><font color="#000000">);</font>
+               <font color="#000000">out.println(</font><font color="#ff00ff">&quot;&lt;BR&gt;ServerClassName: &quot; </font><font color="#000000">+ className);</font>
+               <font color="#000000">out.println(</font><font color="#ff00ff">&quot;&lt;BR&gt;ServerDataBase: &quot; </font><font color="#000000">+ databaseURI);</font>
+               <font color="#000000">out.println(</font><font color="#ff00ff">&quot;&lt;BR&gt;ServerHostName: &quot; </font><font color="#000000">+ name);</font>
+               <font color="#000000">out.println(</font><font color="#ff00ff">&quot;&lt;BR&gt;ServerPassword: &quot; </font><font color="#000000">+ password);</font>
+               <font color="#000000">out.println(</font><font color="#ff00ff">&quot;&lt;BR&gt;ServerID: &quot; </font><font color="#000000">+ id);</font>
+           <font color="#000000">} </font><font color="#0000ff">else </font><font color="#000000">{</font>
+               <font color="#000000">out.println(</font><font color="#ff00ff">&quot;Sorry, not connect to SQL server&quot;</font><font color="#000000">);</font>
+           <font color="#000000">}</font>
+        <font color="#000000">} </font><font color="#0000ff">catch </font><font color="#000000">(</font><font color="#ff0000">Exception </font><font color="#000000">ex) {</font>
+           <font color="#0000ff">throw new </font><font color="#000000">JspException(ex.getMessage());</font>
+       <font color="#000000">}</font>
+           <font color="#0000ff">return </font><font color="#000000">SKIP_BODY;</font>
+   <font color="#000000">}</font>
+<font color="#000000">}</font>
+</pre></div> 
+<font class="point_out">Save as a connection.jsp</font>
+
+<div class="code"><pre> 
+<font color="#000000">&lt;%@</font><font color="#0000ff">page </font><font color="#000000">contentType=</font><font color="#ff00ff">&quot;text/html&quot; </font><font color="#000000">pageEncoding=</font><font color="#ff00ff">&quot;UTF-8&quot;</font><font color="#000000">%&gt;</font>
+<font color="#000000">&lt;!DOCTYPE </font><font color="#ff0000">HTML </font><font color="#000000">PUBLIC </font><font color="#ff00ff">&quot;-//W3C//DTD HTML 4.01 Transitional//EN&quot;</font>
+    <font color="#ff00ff">&quot;http://www.w3.org/TR/html4/loose.dtd&quot;</font><font color="#000000">&gt;</font>
+<font color="#000000">&lt;%@</font><font color="#0000ff">taglib </font><font color="#000000">uri=</font><font color="#ff00ff">&quot;/WEB-INF/tlds/Conn_library.tld&quot;  </font><font color="#000000">prefix=</font><font color="#ff00ff">&quot;conn_library&quot;</font><font color="#000000">%&gt;</font>
+<font color="#000000">&lt;html&gt;</font>
+    <font color="#000000">&lt;head&gt;</font>
+        <font color="#000000">&lt;meta http-equiv=</font><font color="#ff00ff">&quot;Content-Type&quot; </font><font color="#000000">content=</font><font color="#ff00ff">&quot;text/html; charset=UTF-8&quot;</font><font color="#000000">&gt;</font>
+        <font color="#000000">&lt;title&gt;r4r.co.in&lt;/title&gt;</font>
+    <font color="#000000">&lt;/head&gt;</font>
+    <font color="#000000">&lt;body&gt;</font>
+        <font color="#000000">&lt;H1 style=</font><font color="#ff00ff">&quot;font-style: oblique; color: activeborder&quot;</font><font color="#000000">&gt;
+		R4R Tech Soft!SQL Connectivity &lt;/H1&gt;</font>
+        <font color="#000000">&lt;conn_library:QueryTag className=</font><font color="#ff00ff">&quot;com.mysql.jdbc.Driver&quot; </font><font color="#000000">
+		databaseURI=</font><font color="#ff00ff">&quot;jdbc:mysql:///r4r&quot;</font>
+                              <font color="#000000">name=</font><font color="#ff00ff">&quot;root&quot; </font><font color="#000000">password=</font><font color="#ff00ff">&quot;sachin&quot;  </font><font color="#000000">/&gt;</font>
+    <font color="#000000">&lt;/body&gt;</font>
+<font color="#000000">&lt;/html&gt;</font>
+<font color="#000000">&lt;%-- Used </font><font color="#0000ff">this </font><font color="#000000">information--</font>
+    <font color="#000000">className= com.mysql.jdbc.</font><font color="#ff0000">Driver</font>
+    <font color="#000000">databaseURI= jdbc:mysql:</font><font color="#008000">///r4r</font>
+     <font color="#000000">password= sachin</font>
+    <font color="#000000">name= root</font>
+<font color="#000000">--%&gt;</font>
+</pre>
+</div>
+<div class="output"><i>Output: </i>
+<div class="image"><img src="images/conn.png">
+</div></div>
+
+<!-- Footer Start-->	
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="Write%20a%20program%20that%20display%20Add%20and%20Subtract%20of%20%20two%20number.shtml" title="Write a program that display the Add and Subtract of two number">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="Write%20a%20program%20connectivity%20with%20MYSQL%20Server.shtml" title="Write a program connectivity with MYSQL Server">Next</a></td>
+  </tr> 
+</table>
+
+	</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->

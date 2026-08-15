@@ -1,0 +1,326 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>Synchronization in Java,Using  Synchronized Methods,Using Synchronization Statement</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="Synchronization in Java,Using  Synchronized Methods,Using Synchronization Statement">
+<meta name="keywords" CONTENT="Synchronization in Java,Using  Synchronized Methods,Using Synchronization Statement">
+
+<!-- header start-->	
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>Java Programing laungage</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+            <img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+            <a href="/java/">Java</a>
+              <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/java/corejava/">Core Java</a>
+
+                     <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/java/corejava/topics/thread/">Thread</a>
+              </div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/corejava/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	 
+<!-- header End-->
+
+<div class="heading">Synchronization in Java</div>
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="Thread_Priorities.shtml" title="Thread Priorities">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="interthread_communication.shtml" title="Inner thread Communication">Next</a></td>
+  </tr> 
+</table>
+ <p>If two or more threads are sharing common resource for example a file. One thread is  reading from the file while another thread writes to the file. Both Threads try to access that shared resource. This arises <b>Race Condition </b>.</p>
+
+<p>The thread win the race, will access to file first. This may cause  read or write  wrong values and may malfunction or corrupt he program. So one thread should reach one time to perform action..</p>
+<p><i>Synchronization</i> is way to achieve this  condition. Key of synchronization is concept of monitor which called semaphore also. This semaphore puts lock on thread so that one thread can get access at a time to the shared resources.</p>
+<h2>Synchronization achieved in Java by two ways:</h2>
+<ol>
+<li>Using  synchronized methods</li>
+<li>Using Synchronized statements</li>
+</ol>
+<div class="heading">Using  Synchronized Methods</div>
+<p>In Java all objects have their monitor. To enter the monitor we put synchronized keyword on method. of the class that accessed by multiple Threads. In following example we will see what occur if don't use synchrinization </p>
+<h3>Example</h3>
+<div class="code">
+<PRE>
+<FONT COLOR="#008000">/*</FONT>
+<FONT COLOR="#008000"> *  implementation of Synchronization</FONT>
+<FONT COLOR="#008000"> */</FONT>
+<FONT COLOR="#0000ff">package </FONT><FONT COLOR="#000000">threadexample;</FONT>
+
+<FONT COLOR="#0000ff">class </FONT><FONT COLOR="#000000">Shared</FONT>
+ <FONT COLOR="#000000">{</FONT>
+     <FONT COLOR="#0000ff">void </FONT><FONT COLOR="#000000">call(</FONT><FONT COLOR="#ff0000">String </FONT><FONT COLOR="#000000">str)</FONT>
+		 <FONT COLOR="#008000">//method that can baccessd by multiple threads</FONT>
+     <FONT COLOR="#000000">{</FONT>
+         <FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.println(</FONT><FONT COLOR="#ff00ff">"["</FONT><FONT COLOR="#000000">+str);</FONT>
+         <FONT COLOR="#0000ff">try</FONT>
+         <FONT COLOR="#000000">{</FONT>
+             <FONT COLOR="#ff0000">Thread</FONT><FONT COLOR="#000000">.sleep(</FONT><FONT COLOR="#800080">500</FONT><FONT COLOR="#000000">);</FONT>
+
+         <FONT COLOR="#000000">}</FONT><FONT COLOR="#0000ff">catch</FONT><FONT COLOR="#000000">(</FONT><FONT COLOR="#ff0000">InterruptedException </FONT><FONT COLOR="#000000">e)</FONT>
+         <FONT COLOR="#000000">{</FONT>
+             <FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.println(</FONT><FONT COLOR="#ff00ff">"Interrupted"</FONT><FONT COLOR="#000000">);</FONT>
+         <FONT COLOR="#000000">}</FONT>
+     <FONT COLOR="#000000">}</FONT>
+ <FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#0000ff">class </FONT><FONT COLOR="#000000">Caller </FONT><FONT COLOR="#0000ff">implements </FONT><FONT COLOR="#ff0000">Runnable</FONT>
+<FONT COLOR="#000000">{</FONT>
+    <FONT COLOR="#ff0000">String </FONT><FONT COLOR="#000000">msg;</FONT>
+    <FONT COLOR="#000000">Shared obj;</FONT>
+    <FONT COLOR="#ff0000">Thread </FONT><FONT COLOR="#000000">t;</FONT>
+    <FONT COLOR="#0000ff">public </FONT><FONT COLOR="#000000">Caller(Shared obj1,</FONT><FONT COLOR="#ff0000">String </FONT><FONT COLOR="#000000">s )</FONT>
+    <FONT COLOR="#000000">{</FONT>
+        <FONT COLOR="#000000">t=</FONT><FONT COLOR="#0000ff">new </FONT><FONT COLOR="#ff0000">Thread</FONT><FONT COLOR="#000000">(</FONT><FONT COLOR="#0000ff">this</FONT><FONT COLOR="#000000">);</FONT>
+        <FONT COLOR="#000000">obj=obj1;</FONT>
+        <FONT COLOR="#000000">msg=s;</FONT>
+        <FONT COLOR="#000000">t.start();</FONT>
+
+    <FONT COLOR="#000000">}</FONT>
+    <FONT COLOR="#0000ff">public void </FONT><FONT COLOR="#000000">run()</FONT>
+    <FONT COLOR="#000000">{</FONT>
+    <FONT COLOR="#000000">obj.call(msg);</FONT>
+    <FONT COLOR="#000000">}</FONT>
+    <FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#0000ff">public class </FONT><FONT COLOR="#000000">implementsynchronization {</FONT>
+    <FONT COLOR="#0000ff">public static void </FONT><FONT COLOR="#000000">main(</FONT><FONT COLOR="#ff0000">String</FONT><FONT COLOR="#000000">[] args)</FONT>
+    <FONT COLOR="#000000">{</FONT>
+        <FONT COLOR="#000000">Shared shr=</FONT><FONT COLOR="#0000ff">new </FONT><FONT COLOR="#000000">Shared();</FONT>
+    <FONT COLOR="#000000">Caller thrd1=</FONT><FONT COLOR="#0000ff">new </FONT><FONT COLOR="#000000">Caller(shr,</FONT><FONT COLOR="#ff00ff">"Hello"</FONT><FONT COLOR="#000000">);</FONT>
+    <FONT COLOR="#000000">Caller thrd2=</FONT><FONT COLOR="#0000ff">new </FONT><FONT COLOR="#000000">Caller(shr,</FONT><FONT COLOR="#ff00ff">"My"</FONT><FONT COLOR="#000000">);</FONT>
+    <FONT COLOR="#000000">Caller thrd3=</FONT><FONT COLOR="#0000ff">new </FONT><FONT COLOR="#000000">Caller(shr,</FONT><FONT COLOR="#ff00ff">"Friends"</FONT><FONT COLOR="#000000">);</FONT>
+    <FONT COLOR="#0000ff">try</FONT>
+    <FONT COLOR="#000000">{</FONT>
+       <FONT COLOR="#000000">thrd1.t.join();</FONT>
+       <FONT COLOR="#000000">thrd2.t.join();</FONT>
+       <FONT COLOR="#000000">thrd3.t.join();</FONT>
+     <FONT COLOR="#000000">}</FONT>
+   <FONT COLOR="#0000ff">catch</FONT><FONT COLOR="#000000">(</FONT><FONT COLOR="#ff0000">InterruptedException </FONT><FONT COLOR="#000000">e)</FONT>
+   <FONT COLOR="#000000">{</FONT>
+     <FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.println(</FONT><FONT COLOR="#ff00ff">"Interrupted"</FONT><FONT COLOR="#000000">);</FONT>
+   <FONT COLOR="#000000">}</FONT>
+    <FONT COLOR="#000000">}</FONT>
+
+<FONT COLOR="#000000">}</FONT>
+</PRE>
+</div>
+<p><i>Output:</i></p>
+<div class="output">
+<PRE>
+<FONT COLOR="#000000">run:</FONT>
+<FONT COLOR="#000000">[Hello[Friends[My]</FONT>
+<FONT COLOR="#000000">]</FONT>
+<FONT COLOR="#000000">]</FONT>
+</PRE>
+</div>
+<p>As we can see call method from Shared class accessed by multiple threads. Our out doesn't came  as expected. Now put synchronized keyword with call method like:</p>
+<h3>synchronized void call(String str)</h3>
+<p>After using synchronized word above programm and it's out put looks like:</p>
+<h3>Example</h3>
+<div class="code">
+<PRE>
+<FONT COLOR="#008000">/*</FONT>
+<FONT COLOR="#008000"> *  implementation of Synchronization</FONT>
+<FONT COLOR="#008000"> */</FONT>
+
+<FONT COLOR="#0000ff">package </FONT><FONT COLOR="#000000">threadexample;</FONT>
+
+<FONT COLOR="#0000ff">class </FONT><FONT COLOR="#000000">Shared</FONT>
+ <FONT COLOR="#000000">{</FONT>
+    <FONT COLOR="#0000ff">synchronized void </FONT><FONT COLOR="#000000">call(</FONT><FONT COLOR="#ff0000">String </FONT><FONT COLOR="#000000">str)</FONT>
+		<FONT COLOR="#008000">//method that can baccessd by multiple threads</FONT>
+     <FONT COLOR="#000000">{</FONT>
+         <FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.println(</FONT><FONT COLOR="#ff00ff">"["</FONT><FONT COLOR="#000000">+str);</FONT>
+         <FONT COLOR="#0000ff">try</FONT>
+         <FONT COLOR="#000000">{</FONT>
+             <FONT COLOR="#ff0000">Thread</FONT><FONT COLOR="#000000">.sleep(</FONT><FONT COLOR="#800080">500</FONT><FONT COLOR="#000000">);</FONT>
+
+         <FONT COLOR="#000000">}</FONT><FONT COLOR="#0000ff">catch</FONT><FONT COLOR="#000000">(</FONT><FONT COLOR="#ff0000">InterruptedException </FONT><FONT COLOR="#000000">e)</FONT>
+         <FONT COLOR="#000000">{</FONT>
+             <FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.println(</FONT><FONT COLOR="#ff00ff">"Interrupted"</FONT><FONT COLOR="#000000">);</FONT>
+         <FONT COLOR="#000000">}</FONT>
+     <FONT COLOR="#000000">}</FONT>
+ <FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#0000ff">class </FONT><FONT COLOR="#000000">Caller </FONT><FONT COLOR="#0000ff">implements </FONT><FONT COLOR="#ff0000">Runnable</FONT>
+<FONT COLOR="#000000">{</FONT>
+    <FONT COLOR="#ff0000">String </FONT><FONT COLOR="#000000">msg;</FONT>
+    <FONT COLOR="#000000">Shared obj;</FONT>
+    <FONT COLOR="#ff0000">Thread </FONT><FONT COLOR="#000000">t;</FONT>
+    <FONT COLOR="#0000ff">public </FONT><FONT COLOR="#000000">Caller(Shared obj1,</FONT><FONT COLOR="#ff0000">String </FONT><FONT COLOR="#000000">s )</FONT>
+    <FONT COLOR="#000000">{</FONT>
+        <FONT COLOR="#000000">t=</FONT><FONT COLOR="#0000ff">new </FONT><FONT COLOR="#ff0000">Thread</FONT><FONT COLOR="#000000">(</FONT><FONT COLOR="#0000ff">this</FONT><FONT COLOR="#000000">);</FONT>
+        <FONT COLOR="#000000">obj=obj1;</FONT>
+        <FONT COLOR="#000000">msg=s;</FONT>
+        <FONT COLOR="#000000">t.start();</FONT>
+
+    <FONT COLOR="#000000">}</FONT>
+    <FONT COLOR="#0000ff">public void </FONT><FONT COLOR="#000000">run()</FONT>
+    <FONT COLOR="#000000">{</FONT>
+    <FONT COLOR="#000000">obj.call(msg);</FONT>
+    <FONT COLOR="#000000">}</FONT>
+    <FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#0000ff">public class </FONT><FONT COLOR="#000000">implementsynchronization {</FONT>
+    <FONT COLOR="#0000ff">public static void </FONT><FONT COLOR="#000000">main(</FONT><FONT COLOR="#ff0000">String</FONT><FONT COLOR="#000000">[] args)</FONT>
+    <FONT COLOR="#000000">{</FONT>
+        <FONT COLOR="#000000">Shared shr=</FONT><FONT COLOR="#0000ff">new </FONT><FONT COLOR="#000000">Shared();</FONT>
+    <FONT COLOR="#000000">Caller thrd1=</FONT><FONT COLOR="#0000ff">new </FONT><FONT COLOR="#000000">Caller(shr,</FONT><FONT COLOR="#ff00ff">"Hello"</FONT><FONT COLOR="#000000">);</FONT>
+    <FONT COLOR="#000000">Caller thrd2=</FONT><FONT COLOR="#0000ff">new </FONT><FONT COLOR="#000000">Caller(shr,</FONT><FONT COLOR="#ff00ff">"My"</FONT><FONT COLOR="#000000">);</FONT>
+    <FONT COLOR="#000000">Caller thrd3=</FONT><FONT COLOR="#0000ff">new </FONT><FONT COLOR="#000000">Caller(shr,</FONT><FONT COLOR="#ff00ff">"Friends"</FONT><FONT COLOR="#000000">);</FONT>
+    <FONT COLOR="#0000ff">try</FONT>
+    <FONT COLOR="#000000">{</FONT>
+       <FONT COLOR="#000000">thrd1.t.join();</FONT>
+       <FONT COLOR="#000000">thrd2.t.join();</FONT>
+       <FONT COLOR="#000000">thrd3.t.join();</FONT>
+     <FONT COLOR="#000000">}</FONT>
+   <FONT COLOR="#0000ff">catch</FONT><FONT COLOR="#000000">(</FONT><FONT COLOR="#ff0000">InterruptedException </FONT><FONT COLOR="#000000">e)</FONT>
+   <FONT COLOR="#000000">{</FONT>
+     <FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.println(</FONT><FONT COLOR="#ff00ff">"Interrupted"</FONT><FONT COLOR="#000000">);</FONT>
+   <FONT COLOR="#000000">}</FONT>
+    <FONT COLOR="#000000">}</FONT>
+
+<FONT COLOR="#000000">}</FONT>
+</PRE>
+</div>
+<p><i>Output:</i></p>
+<div class="output">
+<PRE>
+<FONT COLOR="#000000">[Hello]</FONT>
+<FONT COLOR="#000000">[My]</FONT>
+<FONT COLOR="#000000">[Friends]</FONT>
+</PRE>
+</div>
+
+<div class="heading">Using Synchronization Statement</div>
+<p>Synchronized method can't be used in all case such as we wants to achieve synchronization on the objects which are not designed for the multithreaded access. We can achieve synchronization by help of synchronized statement. Synchronized statement can be used as follows.</p>
+<div class="code">
+<PRE>
+<FONT COLOR="#0000ff">synchronized</FONT><FONT COLOR="#000000">(object)</FONT>
+<FONT COLOR="#000000">{</FONT>
+<FONT COLOR="#008000">//statement to be synchronized</FONT>
+<FONT COLOR="#000000">}</FONT>
+</PRE>
+</div>
+<h3>Example we shown for synchronized method can be modified as:</h3>
+<div class="code">
+<PRE>
+<FONT COLOR="#008000">/*</FONT>
+<FONT COLOR="#008000"> /*</FONT>
+<FONT COLOR="#008000"> *  SUing synchronize statement</FONT>
+<FONT COLOR="#008000"> */</FONT>
+
+<FONT COLOR="#0000ff">package </FONT><FONT COLOR="#000000">threadexample;</FONT>
+
+<FONT COLOR="#008000">/**</FONT>
+<FONT COLOR="#008000"> *</FONT>
+<FONT COLOR="#008000"> * @author R4R</FONT>
+<FONT COLOR="#008000"> */</FONT>
+<FONT COLOR="#0000ff">class </FONT><FONT COLOR="#000000">Shared</FONT>
+ <FONT COLOR="#000000">{</FONT>
+     <FONT COLOR="#0000ff">void </FONT><FONT COLOR="#000000">call(</FONT><FONT COLOR="#ff0000">String </FONT><FONT COLOR="#000000">str)</FONT>
+		 <FONT COLOR="#008000">//method that can baccessd by multiple threads</FONT>
+     <FONT COLOR="#000000">{</FONT>
+         <FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.print(</FONT><FONT COLOR="#ff00ff">"["</FONT><FONT COLOR="#000000">+str);</FONT>
+         <FONT COLOR="#0000ff">try</FONT>
+         <FONT COLOR="#000000">{</FONT>
+             <FONT COLOR="#ff0000">Thread</FONT><FONT COLOR="#000000">.sleep(</FONT><FONT COLOR="#800080">1000</FONT><FONT COLOR="#000000">);</FONT>
+
+         <FONT COLOR="#000000">}</FONT><FONT COLOR="#0000ff">catch</FONT><FONT COLOR="#000000">(</FONT><FONT COLOR="#ff0000">InterruptedException </FONT><FONT COLOR="#000000">e)</FONT>
+         <FONT COLOR="#000000">{</FONT>
+             <FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.println(</FONT><FONT COLOR="#ff00ff">"Interrupted"</FONT><FONT COLOR="#000000">);</FONT>
+         <FONT COLOR="#000000">}</FONT>
+         <FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.println(</FONT><FONT COLOR="#ff00ff">"]"</FONT><FONT COLOR="#000000">);</FONT>
+     <FONT COLOR="#000000">}</FONT>
+ <FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#0000ff">class </FONT><FONT COLOR="#000000">Caller </FONT><FONT COLOR="#0000ff">implements </FONT><FONT COLOR="#ff0000">Runnable</FONT>
+<FONT COLOR="#000000">{</FONT>
+    <FONT COLOR="#ff0000">String </FONT><FONT COLOR="#000000">msg;</FONT>
+    <FONT COLOR="#000000">Shared obj;</FONT>
+    <FONT COLOR="#ff0000">Thread </FONT><FONT COLOR="#000000">t;</FONT>
+    <FONT COLOR="#0000ff">public </FONT><FONT COLOR="#000000">Caller(Shared obj1,</FONT><FONT COLOR="#ff0000">String </FONT><FONT COLOR="#000000">s )</FONT>
+    <FONT COLOR="#000000">{</FONT>
+        <FONT COLOR="#000000">t=</FONT><FONT COLOR="#0000ff">new </FONT><FONT COLOR="#ff0000">Thread</FONT><FONT COLOR="#000000">(</FONT><FONT COLOR="#0000ff">this</FONT><FONT COLOR="#000000">);</FONT>
+        <FONT COLOR="#000000">obj=obj1;</FONT>
+        <FONT COLOR="#000000">msg=s;</FONT>
+        <FONT COLOR="#000000">t.start();</FONT>
+
+    <FONT COLOR="#000000">}</FONT>
+    <FONT COLOR="#0000ff">public void </FONT><FONT COLOR="#000000">run()</FONT>
+    <FONT COLOR="#000000">{</FONT>
+        <FONT COLOR="#0000ff">synchronized</FONT><FONT COLOR="#000000">(obj){</FONT>
+    <FONT COLOR="#000000">obj.call(msg);</FONT>
+        <FONT COLOR="#000000">}</FONT>
+    <FONT COLOR="#000000">}</FONT>
+    <FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#0000ff">public class </FONT><FONT COLOR="#000000">implementsyncstmt {</FONT>
+     <FONT COLOR="#0000ff">public static void </FONT><FONT COLOR="#000000">main(</FONT><FONT COLOR="#ff0000">String</FONT><FONT COLOR="#000000">[] args)</FONT>
+    <FONT COLOR="#000000">{</FONT>
+        <FONT COLOR="#000000">Shared shr=</FONT><FONT COLOR="#0000ff">new </FONT><FONT COLOR="#000000">Shared();</FONT>
+       <FONT COLOR="#000000">Caller thrd1=</FONT><FONT COLOR="#0000ff">new </FONT><FONT COLOR="#000000">Caller(shr,</FONT><FONT COLOR="#ff00ff">"Hello"</FONT><FONT COLOR="#000000">);</FONT>
+       <FONT COLOR="#000000">Caller thrd2=</FONT><FONT COLOR="#0000ff">new </FONT><FONT COLOR="#000000">Caller(shr,</FONT><FONT COLOR="#ff00ff">"My"</FONT><FONT COLOR="#000000">);</FONT>
+        <FONT COLOR="#000000">Caller thrd3=</FONT><FONT COLOR="#0000ff">new </FONT><FONT COLOR="#000000">Caller(shr,</FONT><FONT COLOR="#ff00ff">"Friends"</FONT><FONT COLOR="#000000">);</FONT>
+    <FONT COLOR="#0000ff">try</FONT>
+    <FONT COLOR="#000000">{</FONT>
+       <FONT COLOR="#000000">thrd1.t.join();</FONT>
+       <FONT COLOR="#000000">thrd2.t.join();</FONT>
+       <FONT COLOR="#000000">thrd3.t.join();</FONT>
+     <FONT COLOR="#000000">}</FONT>
+   <FONT COLOR="#0000ff">catch</FONT><FONT COLOR="#000000">(</FONT><FONT COLOR="#ff0000">InterruptedException </FONT><FONT COLOR="#000000">e)</FONT>
+   <FONT COLOR="#000000">{</FONT>
+     <FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.println(</FONT><FONT COLOR="#ff00ff">"Interrupted"</FONT><FONT COLOR="#000000">);</FONT>
+   <FONT COLOR="#000000">}</FONT>
+
+     <FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#000000">}</FONT>
+</PRE>
+</div>
+<p><i>Output:</i></p>
+<div class="output">
+<PRE>
+<FONT COLOR="#000000">[Hello]</FONT>
+<FONT COLOR="#000000">[My]</FONT>
+<FONT COLOR="#000000">[Friends]</FONT>
+</PRE>
+</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="Thread_Priorities.shtml" title="Thread Priorities">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="interthread_communication.shtml" title="Inner thread Communication">Next</a></td>
+  </tr> 
+</table>
+
+<!-- Footer Start-->	
+
+		</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->

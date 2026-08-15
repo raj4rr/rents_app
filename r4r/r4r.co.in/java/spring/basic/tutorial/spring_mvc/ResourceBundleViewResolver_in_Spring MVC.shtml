@@ -1,0 +1,192 @@
+	<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+
+<HEAD>
+<TITLE>ResourceBundleViewResolver in Spring MVC</TITLE>
+
+<META content="r4r.co.in" name="owner">
+<META http-equiv="content-type" content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="ResourceBundleViewResolver in Spring MVC,spring,spring mvc,spring2.5,spring2.5 mvc" >
+<meta name="keywords" CONTENT="ResourceBundleViewResolver in Spring MVC,spring,spring mvc,spring2.5,spring2.5 mvc">
+
+<!-- header start-->	
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>Spring Framework</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+           <img src="/images/left_menu_bullet.gif" width="11" height="6"/>  <a href="/java/">Java</a>       <img src="/images/left_menu_bullet.gif" width="11" height="6"/><a href="/java/spring/">Spring</a>
+
+              </div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/spring/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	 
+
+<!-- header End--> 
+
+<div class="heading">ResourceBundleViewResolver in Spring MVC</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="xmlviewresolver_in_springmvc.shtml" title="xmlviewresolver_in_springmvc">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="Handler_Mapping_in_springMVC.shtml" title="Handler_Mapping_in_springMVC">Next</a></td>
+  </tr> 
+</table>
+
+	<div class="image">
+	 <img src="ResourceBundleViewResolver.GIF">
+     </div>
+<p>This view resolver provide the facility to read all information which are typically defined in a properties file located in the class path.The default bundle basename is "views". </p>
+
+<p><i>Syntax:</i></p>
+<div class="code">
+<PRE>
+<FONT COLOR="#0000ff">public class </FONT><FONT COLOR="#000000">ResourceBundleViewResolver</FONT>
+<FONT COLOR="#0000ff">extends </FONT><FONT COLOR="#000000">AbstractCachingViewResolver</FONT>
+<FONT COLOR="#0000ff">implements </FONT><FONT COLOR="#000000">Ordered, DisposableBean</FONT>
+</PRE>
+</div>
+
+<p>This view resolver provide the following method:</p>	
+
+<p><i>setOrder:</i></p>
+<div class="code">
+<PRE>
+<FONT COLOR="#0000ff">public void </FONT><FONT COLOR="#000000">setOrder(</FONT><FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">order)</FONT>
+</PRE>
+</div>
+
+<p><i>getOrder:</i></p>
+<div class="code">
+<PRE>
+<FONT COLOR="#0000ff">public int </FONT><FONT COLOR="#000000">getOrder()</FONT>
+</PRE>
+</div>
+
+<p><i>setBasename:</i></p>
+<div class="code">
+<PRE>
+<FONT COLOR="#0000ff">public void </FONT><FONT COLOR="#000000">setBasename(</FONT><FONT COLOR="#ff0000">String </FONT><FONT COLOR="#000000">basename)</FONT>
+</PRE>
+</div>
+
+<p><i>setBasenames:</i></p>
+<div class="code">
+<PRE>
+<FONT COLOR="#0000ff">public void </FONT><FONT COLOR="#000000">setBasenames(</FONT><FONT COLOR="#ff0000">String</FONT><FONT COLOR="#000000">[] basenames)</FONT>
+</PRE>
+</div>
+
+<p><i>setBundleClassLoader:</i></p>
+<div class="code">
+<PRE>
+<FONT COLOR="#0000ff">public void </FONT><FONT COLOR="#000000">setBundleClassLoader</FONT>
+<FONT COLOR="#000000">(</FONT><FONT COLOR="#ff0000">ClassLoader </FONT><FONT COLOR="#000000">classLoader)</FONT>
+</PRE>
+</div>
+
+<p><i>getBundleClassLoader:</i></p>
+<div class="code">
+<PRE>
+<FONT COLOR="#0000ff">protected </FONT><FONT COLOR="#ff0000">ClassLoader </FONT><FONT COLOR="#000000">getBundleClassLoader()</FONT>
+</PRE>
+</div>
+
+<p><i>setDefaultParentView:</i></p>
+<div class="code">
+<PRE>
+<FONT COLOR="#0000ff">public void </FONT><FONT COLOR="#000000">setDefaultParentView</FONT>
+<FONT COLOR="#000000">(</FONT><FONT COLOR="#ff0000">String </FONT><FONT COLOR="#000000">defaultParentView)</FONT>
+</PRE>
+</div>
+
+<p><i>setLocalesToInitialize:</i></p>
+<div class="code">
+<PRE>
+<FONT COLOR="#0000ff">public void </FONT><FONT COLOR="#000000">setLocalesToInitialize</FONT>
+<FONT COLOR="#000000">(</FONT><FONT COLOR="#ff0000">Locale</FONT><FONT COLOR="#000000">[] localesToInitialize)</FONT>
+</PRE>
+</div>
+
+<p><i>initApplicationContext:</i></p>
+<div class="code">
+<PRE>
+<FONT COLOR="#0000ff">protected void </FONT><FONT COLOR="#000000">initApplicationContext()</FONT>
+<FONT COLOR="#0000ff">throws </FONT><FONT COLOR="#000000">BeansException)</FONT>
+</PRE>
+</div>
+
+<p><i>loadView:</i></p>
+<div class="code">
+<PRE>
+<FONT COLOR="#0000ff">protected </FONT><FONT COLOR="#ff0000">View </FONT><FONT COLOR="#000000">loadView(</FONT><FONT COLOR="#ff0000">String </FONT><FONT COLOR="#000000">viewName,</FONT>
+<FONT COLOR="#ff0000">Locale </FONT><FONT COLOR="#000000">locale)</FONT><FONT COLOR="#0000ff">throws </FONT><FONT COLOR="#ff0000">Exception</FONT>
+</PRE>
+</div>
+
+<p><i>initFactory:</i></p>
+<div class="code">
+<PRE>
+<FONT COLOR="#0000ff">protected </FONT><FONT COLOR="#000000">BeanFactory initFactory(</FONT><FONT COLOR="#ff0000">Locale </FONT><FONT COLOR="#000000">locale)</FONT>
+<FONT COLOR="#0000ff">throws </FONT><FONT COLOR="#000000">BeansException</FONT>
+</PRE>
+</div>
+
+<p><i>getBundle:</i></p>
+<div class="code">
+<PRE>
+<FONT COLOR="#0000ff">protected </FONT><FONT COLOR="#ff0000">ResourceBundle </FONT><FONT COLOR="#000000">getBundle(</FONT><FONT COLOR="#ff0000">String </FONT><FONT COLOR="#000000">basename,</FONT>
+<FONT COLOR="#ff0000">Locale </FONT><FONT COLOR="#000000">locale)</FONT><FONT COLOR="#0000ff">throws </FONT><FONT COLOR="#ff0000">MissingResourceException</FONT>
+</PRE>
+</div>
+
+<p><i>destroy:</i></p>
+<div class="code">
+<PRE>
+<FONT COLOR="#0000ff">public void </FONT><FONT COLOR="#000000">destroy()</FONT><FONT COLOR="#0000ff">throws </FONT><FONT COLOR="#000000">BeansException</FONT>
+</PRE>
+</div>
+
+<p><h3><a href="/java/spring/basic/example/springMVC_ex/Example_of_ResourceBundleViewResolver.shtml">
+    Example of ResourceBundleViewResolver in Spring MVC</a></h3></p>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="xmlviewresolver_in_springmvc.shtml" title="xmlviewresolver_in_springmvc">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="Handler_Mapping_in_springMVC.shtml" title="Handler_Mapping_in_springMVC">Next</a></td>
+  </tr> 
+</table>
+
+<!-- Footer Start-->
+
+		</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->		
+

@@ -1,0 +1,135 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>Explaining the Servlet Life Cycle.</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="Explain the Servlet Life Cycle." >
+<meta name="keywords" CONTENT="Explain the Servlet Life Cycle.">
+
+<!-- header start-->	
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+   	  <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>Java Servlet Programing Laungage</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a><img src="/images/left_menu_bullet.gif"/> <a href="/java/">Java</a><img src="/images/left_menu_bullet.gif"/><a href="/java/servlet/">Servlet</a>
+       </div>
+
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/servlet/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	 
+<!-- header End-->
+<div class="heading">Explaining the Servlet Life Cycle.
+</div>
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="introduction_of_servlet.shtml" title="Introduction of Servlet">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="ServletContext_Interface.shtml" title="Defining the ServletContext Interface">Next</a></td>
+  </tr> 
+</table>
+
+<h3>Explain the Servlet Life Cycle.</h3>
+
+<p>Servlet Life Cycle defines how it is loaded and 
+instantiated, is initialized, handles requests from clients, and is taken out of 
+service, while life cycle in API expressed by the <font class="point_out">init</font>,
+<font class="point_out">service</font>, and methods of the <font class="point_out">javax.servlet.Servlet</font> interface that all servlets must implement directly or indirectly through the <font class="point_out">GenericServlet</font> or <font class="point_out">HttpServlet</font> abstract classes.</p>
+<ol>
+	<li>
+	<i>Loaded and Instantiated </i>:The loading and instantiation can 
+	occur when the container is started, or delayed until the container 
+	determines the servlet is needed to service a request. when the servlet 
+	engine is started, the servlet container loads the 
+	servlet class using normal Java class loading facilities. After loading the
+	Servlet class, the container 
+	instantiates it for use for client request.
+    </li>
+	<li>
+	<i>Initialization </i>: After the Instantiated load, the container must 
+	be initialized before it can handle request to client. The container 
+	initializes the servlet instance by calling the <font class="point_out">init</font> method of the <font class="point_out">Servlet</font> interface with a unique (per servlet declaration) object implementing the <font class="point_out">ServletConfig</font> interface. Error should be occurs while the servlet is initialized which is:
+	<ul>
+			<li>
+		<i>Error Conditions on Initialization </i>: Whenever a servlet should be initialized, the servlet instance throws an exception 
+	which is <font class="point_out">UnavailableException </font> or<font class="point_out">ServletException</font>, because the servlet must not be part of active service and must be released by the servlet container. A new instance may be instantiated and initialized by the 
+	container after a failed initialization. and remember <font class="point_out">destroy() </font> method is not called as it is 
+	considered unsuccessful initialization.
+		</li>
+		<li>
+		<i>Tool Considerations </i>: Servlet should not assumed in an 
+	active container runtime until the the <font class="point_out">init() </font> method 
+	of the <font class="point_out">Servlet</font> interface is called. The triggering of static initialization methods 
+	when a tool loads and introspects a Web application is to be distinguished from the calling of the init method.
+	</li>
+	</ul>
+	<li>
+	<i>Request Handling </i>: When a servlet is properly initialized, the servlet container may use to handle a 
+	client request which is represented by request object <font class="point_out">ServletRequest </font>. The <font class="point_out">ServletResponse</font> ( )method is provide the servlet fill out the response of all the request. While in case of HTTP request, the objects provided by the container are of types <font class="point_out"> HttpServletRequest </font> <font class="point_out">HttpServletResponse</font> 
+	<i> Note</i> some issue occurs by which a servlet container may handle 
+	no requests during its lifetime like:
+	<ul>
+	<li>
+	<i>Multithreading Issues </i>: In multithread issue a servlet 
+	container may send more than one requests( concurrent request) through 
+	the service method to the servlet.
+	</li>
+	<li>
+	<i>Exceptions During Request Handling </i>: A
+	<font class="point_out">ServletException </font> signals that some error occurred during the processing of the request 
+	and that the container should take appropriate measures to clean up the 
+	request. An UnavailableException signals that the servlet is unable to handle requests either 
+	temporarily or permanently.
+	</li>
+	<li>
+	<i>Thread Safety Issues </i>: Implementations of the request and 
+	response objects are not guaranteed to be thread safe. This means that they 
+	should only be used within the scope of the request handling thread.
+	</li>
+	</ul>
+	</li>
+	<li>
+	<i>End of Service </i>: The servlet container is not required to keep a servlet loaded for any particular period of time. whenever the servlet container determines that a servlet should be removed from service, than it calls the <font class="point_out">destroy </font> method of the <font class="point_out">Servlet</font> interface to allow the servlet to release all the resources that is hold and save any persistent state. The <font class="point_out">destroy</font> method only call, when it must complete execution of any thread that are currently running in the <font class="point_out">service</font> method of the servlet, or exceed a server-defined time limit.
+	</li>
+</ol>
+<div class="image">
+<img src="life%20cycle%20of%20servlet.png">
+</div>
+<i>Figure : Shows the Life cycle of the Servlets</i>
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="introduction_of_servlet.shtml" title="Introduction of Servlet">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="ServletContext_Interface.shtml" title="Defining the ServletContext Interface">Next</a></td>
+  </tr> 
+</table>
+
+<!-- Footer Start-->		
+		</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->

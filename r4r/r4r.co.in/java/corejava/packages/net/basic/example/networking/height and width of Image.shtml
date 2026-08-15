@@ -1,0 +1,271 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD>
+<meta http-equiv="Content-Language" content="en-us">
+<TITLE>To create a height and width of the Image</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name="description" CONTENT="Java Networking Tutorial,Java Networking Example" >
+<meta name="keywords" CONTENT="Java Networking Tutorial,Java Networking Example">
+<!-- header start-->
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+	<BODY>
+		<?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+        <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>Java Networking</h1>
+            <div class="link_menu"><br><div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+            <img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+            <a href="/java/">Java</a>
+  <img src="/images/left_menu_bullet.gif" width="11" height="6"> <a href="/java/corejava/">Core Java</a>
+    <img src="/images/left_menu_bullet.gif" width="11" height="6"> <a href="/java/corejava/packages/net/">Java Networking</a>
+  <img src="/images/left_menu_bullet.gif" width="11" height="6"> <a href="/java/corejava/packages/net/basic/example/networking">To create a height and width of the Image</a>
+</div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/corejava/packages/net/commonfiles/leftmenu.shtml'); ?></td>                                           
+                        <td style="80%" valign="top">
+
+                        <div class="main_content"> 	 
+	   	   <div class="heading">To create a height and width of the Image</div>
+<p>In this section we cover and explain To create a height and width of the Image in details for freshers and experienced</p> 
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="Downloadweb page.shtml" title="Downloadweb page">previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="HostNameIPAddress.shtml"title="HostNameIPAddress">Next</a></td>
+  </tr>
+</table>
+<!-- header End-->
+<h3>Example</h3>
+<div class="code">
+   <pre>
+<font face="Courier New">
+<font color="#0000ff">import </font><font color="#000000">java.net.*;</font>
+<font color="#0000ff">import </font><font color="#000000">java.io.*;</font>
+<font color="#0000ff">import </font><font color="#000000">java.awt.*;</font>
+<font color="#0000ff">import </font><font color="#000000">java.awt.image.*;</font>
+
+<font color="#0000ff">public class </font><font color="#000000">ImageSize </font><font color="#0000ff">extends </font><font color="#ff0000">Frame </font><font color="#000000">{</font>
+
+  <font color="#ff0000">TextField </font><font color="#000000">url;</font>
+  <font color="#ff0000">TextArea </font><font color="#000000">output;</font>
+  <font color="#ff0000">Button </font><font color="#000000">getURL;</font>
+
+  <font color="#0000ff">public static void </font><font color="#000000">main(</font><font color="#ff0000">String</font><font color="#000000">[] args) {</font>
+
+    <font color="#000000">ImageSize s = </font><font color="#0000ff">new </font><font color="#000000">ImageSize();</font>
+    <font color="#000000">s.resize(</font><font color="#800080">300</font><font color="#000000">, </font><font color="#800080">200</font><font color="#000000">);</font>
+    <font color="#000000">s.show();</font>
+
+  <font color="#000000">}</font>
+
+  <font color="#0000ff">public </font><font color="#000000">ImageSize() {</font>
+
+    <font color="#000000">setLayout(</font><font color="#0000ff">new </font><font color="#ff0000">BorderLayout</font><font color="#000000">());</font>
+    <font color="#000000">url = </font><font color="#0000ff">new </font><font color="#ff0000">TextField</font><font color="#000000">(</font><font color="#800080">40</font><font color="#000000">);</font>
+    <font color="#000000">add(</font><font color="#ff00ff">&quot;North&quot;</font><font color="#000000">, url);</font>
+    <font color="#000000">output = </font><font color="#0000ff">new </font><font color="#ff0000">TextArea</font><font color="#000000">(</font><font color="#800080">80</font><font color="#000000">, </font><font color="#800080">40</font><font color="#000000">);</font>
+    <font color="#000000">add(</font><font color="#ff00ff">&quot;Center&quot;</font><font color="#000000">, output);</font>
+    <font color="#000000">add(</font><font color="#ff00ff">&quot;South&quot;</font><font color="#000000">, </font><font color="#0000ff">new </font><font color="#ff0000">Button</font><font color="#000000">(</font><font color="#ff00ff">&quot;Get URL&quot;</font><font color="#000000">));</font>
+
+  <font color="#000000">}</font>
+
+  <font color="#0000ff">public boolean </font><font color="#000000">action(</font><font color="#ff0000">Event </font><font color="#000000">e, </font><font color="#ff0000">Object </font><font color="#000000">o) {</font>
+    <font color="#0000ff">if </font><font color="#000000">(e.target </font><font color="#0000ff">instanceof </font><font color="#ff0000">Button</font><font color="#000000">) {</font>
+      <font color="#000000">fixThePage(url.getText());</font>
+      <font color="#0000ff">return true</font><font color="#000000">;</font>
+    <font color="#000000">}</font>
+    <font color="#0000ff">return false</font><font color="#000000">;</font>
+
+  <font color="#000000">}</font>
+
+  <font color="#0000ff">public void </font><font color="#000000">fixThePage(</font><font color="#ff0000">String </font><font color="#000000">thePage) {</font>
+
+    <font color="#ff0000">String </font><font color="#000000">thisLine;</font>
+    <font color="#ff0000">URL </font><font color="#000000">root;</font>
+
+    <font color="#0000ff">if  </font><font color="#000000">(thePage != </font><font color="#0000ff">null</font><font color="#000000">) {</font>
+
+      <font color="#008000">//Open the URL for reading</font>
+      <font color="#0000ff">try </font><font color="#000000">{</font>
+        <font color="#0000ff">if </font><font color="#000000">(thePage.indexOf(</font><font color="#ff00ff">&quot;:&quot;</font><font color="#000000">) != -</font><font color="#800080">1</font><font color="#000000">) {</font>
+          <font color="#000000">root = </font><font color="#0000ff">new </font><font color="#ff0000">URL</font><font color="#000000">(thePage);</font>
+        <font color="#000000">}</font>
+        <font color="#0000ff">else </font><font color="#000000">{</font>
+          <font color="#000000">root = </font><font color="#0000ff">new </font><font color="#ff0000">URL</font><font color="#000000">(</font><font color="#ff00ff">&quot;http://&quot; </font><font color="#000000">+ thePage);</font>
+        <font color="#000000">}</font>
+        <font color="#000000">sizeAPage(root);</font>
+      <font color="#000000">}</font>
+      <font color="#0000ff">catch </font><font color="#000000">(</font><font color="#ff0000">MalformedURLException </font><font color="#000000">e) {</font>
+        <font color="#ff0000">System</font><font color="#000000">.err.println(thePage + </font><font color="#ff00ff">&quot; is not a parseable URL&quot;</font><font color="#000000">);</font>
+        <font color="#ff0000">System</font><font color="#000000">.err.println(e);</font>
+      <font color="#000000">}</font>
+    <font color="#000000">} </font><font color="#008000">//  end if</font>
+
+  <font color="#000000">} </font><font color="#008000">// end main</font>
+
+  <font color="#0000ff">public void </font><font color="#000000">sizeAPage(</font><font color="#ff0000">URL </font><font color="#000000">u) {</font>
+
+   <font color="#0000ff">char </font><font color="#000000">thisChar;</font>
+   <font color="#ff0000">String </font><font color="#000000">theTag;</font>
+
+   <font color="#0000ff">try </font><font color="#000000">{</font>
+     <font color="#ff0000">DataInputStream </font><font color="#000000">theHTML = </font><font color="#0000ff">new </font><font color="#ff0000">DataInputStream</font><font color="#000000">(u.openStream());</font>
+     <font color="#0000ff">try </font><font color="#000000">{</font>
+       <font color="#0000ff">while </font><font color="#000000">(</font><font color="#0000ff">true</font><font color="#000000">) {</font>
+         <font color="#000000">thisChar = (</font><font color="#0000ff">char</font><font color="#000000">) theHTML.readByte();</font>
+         <font color="#0000ff">if </font><font color="#000000">(thisChar == </font><font color="#ff00ff">'&lt;'</font><font color="#000000">) {</font>
+           <font color="#000000">theTag = readTag(theHTML);</font>
+           <font color="#0000ff">if </font><font color="#000000">(theTag.startsWith(</font><font color="#ff00ff">&quot;&lt;IMG&quot;</font><font color="#000000">)) {</font>
+             <font color="#000000">theTag = sizeImage(u, theTag);</font>
+           <font color="#000000">}</font>
+           <font color="#000000">theOutput.appendText(theTag);</font>
+         <font color="#000000">}</font>
+         <font color="#0000ff">else </font><font color="#000000">{</font>
+           <font color="#000000">theOutput.appendText(</font><font color="#ff0000">String</font><font color="#000000">.valueOf(thisChar));</font>
+         <font color="#000000">}</font>
+       <font color="#000000">} </font><font color="#008000">// end while </font>
+     <font color="#000000">}  </font><font color="#008000">// end try</font>
+     <font color="#0000ff">catch </font><font color="#000000">(</font><font color="#ff0000">EOFException </font><font color="#000000">e) {</font>
+       <font color="#008000">// Done with the Stream</font>
+     <font color="#000000">}</font>
+   <font color="#000000">}  </font><font color="#008000">// end try</font>
+   <font color="#0000ff">catch </font><font color="#000000">(</font><font color="#ff0000">IOException </font><font color="#000000">e) {</font>
+     <font color="#ff0000">System</font><font color="#000000">.err.println(e);</font>
+   <font color="#000000">}</font>
+
+  <font color="#000000">}  </font><font color="#008000">// end SaveAPage</font>
+
+  <font color="#0000ff">public </font><font color="#ff0000">String </font><font color="#000000">readTag(</font><font color="#ff0000">DataInputStream </font><font color="#000000">is) {</font>
+
+    <font color="#ff0000">StringBuffer </font><font color="#000000">theTag = </font><font color="#0000ff">new </font><font color="#ff0000">StringBuffer</font><font color="#000000">(</font><font color="#ff00ff">&quot;&lt;&quot;</font><font color="#000000">);</font>
+    <font color="#0000ff">char </font><font color="#000000">theChar = </font><font color="#ff00ff">'&lt;'</font><font color="#000000">;</font>
+
+    <font color="#0000ff">try </font><font color="#000000">{</font>
+       <font color="#0000ff">while </font><font color="#000000">(theChar != </font><font color="#ff00ff">'&gt;'</font><font color="#000000">) {</font>
+         <font color="#000000">theChar = (</font><font color="#0000ff">char</font><font color="#000000">) is.readByte();</font>
+         <font color="#000000">theTag.append(theChar);</font>
+       <font color="#000000">} </font><font color="#008000">// end while</font>
+     <font color="#000000">}  </font><font color="#008000">// end try</font>
+     <font color="#0000ff">catch </font><font color="#000000">(</font><font color="#ff0000">EOFException </font><font color="#000000">e) {</font>
+       <font color="#008000">// Done with the Stream</font>
+     <font color="#000000">}</font>
+     <font color="#0000ff">catch </font><font color="#000000">(</font><font color="#ff0000">Exception </font><font color="#000000">e) {</font>
+        <font color="#ff0000">System</font><font color="#000000">.err.println(e);</font>
+     <font color="#000000">}     </font>
+
+     <font color="#0000ff">return </font><font color="#000000">theTag.toString();</font>
+
+  <font color="#000000">}</font>
+
+  <font color="#0000ff">public </font><font color="#ff0000">String </font><font color="#000000">sizeImage(</font><font color="#ff0000">URL </font><font color="#000000">u, </font><font color="#ff0000">String </font><font color="#000000">tag) {</font>
+
+    <font color="#ff0000">String </font><font color="#000000">s1 = tag.toUpperCase();</font>
+
+    <font color="#0000ff">boolean </font><font color="#000000">hasHeightTag = s1.indexOf(</font><font color="#ff00ff">&quot;HEIGHT&quot;</font><font color="#000000">) != -</font><font color="#800080">1</font><font color="#000000">;</font>
+    <font color="#0000ff">boolean </font><font color="#000000">hasWidthTag = s1.indexOf(</font><font color="#ff00ff">&quot;WIDTH&quot;</font><font color="#000000">) != -</font><font color="#800080">1</font><font color="#000000">;</font>
+
+    <font color="#0000ff">if </font><font color="#000000">(hasHeightTag &amp;&amp; hasWidthTag) {</font>
+      <font color="#0000ff">return </font><font color="#000000">tag;</font>
+    <font color="#000000">}</font>
+    <font color="#0000ff">else </font><font color="#000000">{</font>
+      <font color="#ff0000">String </font><font color="#000000">newTag;</font>
+      <font color="#ff0000">Image </font><font color="#000000">thePicture;</font>
+      <font color="#0000ff">int </font><font color="#000000">p1, p2, p3, p4;</font>
+      <font color="#000000">p1 = s1.indexOf(</font><font color="#ff00ff">&quot;SRC&quot;</font><font color="#000000">);</font>
+      <font color="#000000">p2 = s1.indexOf (</font><font color="#ff00ff">&quot;=&quot;</font><font color="#000000">, p1);</font>
+      <font color="#000000">p3 = s1.indexOf(</font><font color="#ff00ff">&quot;\&quot;&quot;</font><font color="#000000">, p2);</font>
+      <font color="#000000">p4 = s1.indexOf(</font><font color="#ff00ff">&quot;\&quot;&quot;</font><font color="#000000">, p3+</font><font color="#800080">1</font><font color="#000000">);</font>
+      <font color="#ff0000">String </font><font color="#000000">theURL = tag.substring(p3+</font><font color="#800080">1</font><font color="#000000">, p4);</font>
+      <font color="#ff0000">URL </font><font color="#000000">thePictureURL;</font>
+      <font color="#0000ff">try </font><font color="#000000">{</font>
+        <font color="#0000ff">if </font><font color="#000000">(theURL.indexOf(</font><font color="#ff00ff">&quot;:&quot;</font><font color="#000000">)  == -</font><font color="#800080">1</font><font color="#000000">) {</font>
+          <font color="#008000">// it's not an absolute URL</font>
+          <font color="#000000">thePictureURL = </font><font color="#0000ff">new </font><font color="#ff0000">URL</font><font color="#000000">(u, theURL);</font>
+        <font color="#000000">}  </font><font color="#008000">// end if   </font>
+        <font color="#0000ff">else </font><font color="#000000">{</font>
+          <font color="#000000">thePictureURL = </font><font color="#0000ff">new </font><font color="#ff0000">URL</font><font color="#000000">(theURL);</font>
+        <font color="#000000">}</font>
+        <font color="#ff0000">Toolkit </font><font color="#000000">t = </font><font color="#ff0000">Toolkit</font><font color="#000000">.getDefaultToolkit();</font>
+        <font color="#000000">thePicture = t.getImage(thePictureURL);</font>
+        <font color="#000000">thePicture.getHeight(</font><font color="#0000ff">this</font><font color="#000000">);</font>
+        <font color="#0000ff">int </font><font color="#000000">last = tag.indexOf(</font><font color="#ff00ff">&quot;&gt;&quot;</font><font color="#000000">);</font>
+        <font color="#000000">newTag = tag.substring(</font><font color="#800080">0</font><font color="#000000">,last);</font>
+        <font color="#0000ff">if </font><font color="#000000">(!hasWidthTag) {</font>
+          <font color="#0000ff">while </font><font color="#000000">(thePicture.getWidth(</font><font color="#0000ff">this</font><font color="#000000">) == -</font><font color="#800080">1</font><font color="#000000">) {</font>
+            <font color="#0000ff">try </font><font color="#000000">{</font>
+              <font color="#ff0000">Thread</font><font color="#000000">.currentThread().sleep(</font><font color="#800080">100</font><font color="#000000">);</font>
+            <font color="#000000">}</font>
+            <font color="#0000ff">catch </font><font color="#000000">(</font><font color="#ff0000">InterruptedException </font><font color="#000000">e) {</font>
+            <font color="#000000">}</font>
+          <font color="#000000">}</font>
+          <font color="#000000">newTag = newTag + </font><font color="#ff00ff">&quot; width=&quot; </font><font color="#000000">+ thePicture.getWidth(</font><font color="#0000ff">this</font><font color="#000000">);</font>
+        <font color="#000000">}</font>
+        <font color="#0000ff">if </font><font color="#000000">(!hasHeightTag) {</font>
+          <font color="#0000ff">while </font><font color="#000000">(thePicture.getHeight(</font><font color="#0000ff">this</font><font color="#000000">) == -</font><font color="#800080">1</font><font color="#000000">) {</font>
+            <font color="#0000ff">try </font><font color="#000000">{</font>
+              <font color="#ff0000">Thread</font><font color="#000000">.currentThread().sleep(</font><font color="#800080">100</font><font color="#000000">);</font>
+            <font color="#000000">}</font>
+            <font color="#0000ff">catch </font><font color="#000000">(</font><font color="#ff0000">InterruptedException </font><font color="#000000">e) {</font>
+            <font color="#000000">}</font>
+          <font color="#000000">}</font>
+          <font color="#000000">newTag = newTag + </font><font color="#ff00ff">&quot; height=&quot; </font><font color="#000000">+ thePicture.getHeight(</font><font color="#0000ff">this</font><font color="#000000">);</font>
+        <font color="#000000">}</font>
+        <font color="#000000">newTag = newTag +  </font><font color="#ff00ff">&quot;&gt;&quot;</font><font color="#000000">;</font>
+      <font color="#000000">}</font>
+      <font color="#0000ff">catch </font><font color="#000000">(</font><font color="#ff0000">MalformedURLException </font><font color="#000000">e) {</font>
+        <font color="#000000">newTag = tag;</font>
+      <font color="#000000">}</font>
+      <font color="#0000ff">return </font><font color="#000000">newTag;    </font>
+    <font color="#000000">}</font>
+
+  <font color="#000000">}</font>
+
+  <font color="#008000">// For this applet you don't need to</font>
+  <font color="#008000">// download an entire Image, just enough to get the height and width</font>
+  <font color="#0000ff">public boolean </font><font color="#000000">imageUpdate(</font><font color="#ff0000">Image </font><font color="#000000">img, </font><font color="#0000ff">int </font><font color="#000000">infoflags, </font><font color="#0000ff">int </font><font color="#000000">x, </font><font color="#0000ff">int </font><font color="#000000">y, </font><font color="#0000ff">int </font><font color="#000000">width, </font><font color="#0000ff">int </font><font color="#000000">height) {</font>
+    <font color="#0000ff">if </font><font color="#000000">((infoflags &amp; </font><font color="#ff0000">ImageObserver</font><font color="#000000">.HEIGHT) == </font><font color="#ff0000">ImageObserver</font><font color="#000000">.HEIGHT  &amp;&amp;</font>
+        <font color="#000000">(infoflags &amp; </font><font color="#ff0000">ImageObserver</font><font color="#000000">.WIDTH) == </font><font color="#ff0000">ImageObserver</font><font color="#000000">.WIDTH)  {</font>
+        <font color="#0000ff">return false</font><font color="#000000">;</font>
+    <font color="#000000">}</font>
+    <font color="#0000ff">else </font><font color="#000000">{</font>
+      <font color="#0000ff">return true</font><font color="#000000">;</font>
+    <font color="#000000">}</font>
+
+  <font color="#000000">}</font>
+
+<font color="#000000">}</font>
+</font>
+</pre>
+</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="Downloadweb page.shtml" title="Downloadweb page">previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="HostNameIPAddress.shtml"title="HostNameIPAddress">Next</a></td>
+  </tr>
+</table>
+<!-- Footer Start-->	
+		           </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>

@@ -1,0 +1,120 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD>
+<meta http-equiv="Content-Language" content="en-us">
+<TITLE>creat auto shape trapezoid,how to create trapezoid shape</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name="description" CONTENT="creat auto shape trapezoid,how to create trapezoid shape" >
+<meta name="keywords" CONTENT="creat auto shape trapezoid,how to create trapezoid shape">
+<!-- header start-->	
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>POI</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+            <img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+            <a href="/java/">Java</a>
+              <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/java/apis/poi/">POI</a>
+
+              </div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/apis/poi/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	 
+
+<div class="heading">Creating Trapezoid shape</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="compressed_unicode.shtml" title="compressed unicode">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="find_record.shtml" title="find record">Next</a></td>
+  </tr> 
+</table>
+<!-- header End-->
+
+<p>In this page of the tutorials we are trying to create a trapezoid shape on PowerPoint slide with help of java plateform. In this program, we are creating a master slide for the slide show. </p><p>For creation of the slide show we can use the SlideShow constructor and for master slide creation we can use SlideMaster constructor. Then we create an object of Slide to create a slide .</p><p>To make the trapezoid shape in power point slide we have to use an object of AutoShape class in which we pass the shape type as trapezoid. To set the position we are using setAnchor() method. To set the color we are usingsetFillColor(Color.Red).</p>
+
+<h3>Example</h3>
+
+<div class="code">
+<pre>
+<font face="Arial"><font color="#0000ff">package </font><font color="#000000">r4r;</font>
+<font color="#0000ff">import </font><font color="#000000">org.apache.poi.hslf.HSLFSlideShow;</font>
+<font color="#0000ff">import </font><font color="#000000">org.apache.poi.hslf.model.Slide;</font>
+<font color="#0000ff">import </font><font color="#000000">org.apache.poi.hslf.model.*;</font>
+<font color="#0000ff">import </font><font color="#000000">org.apache.poi.hslf.usermodel.SlideShow;</font>
+<font color="#0000ff">import </font><font color="#000000">org.apache.poi.hslf.usermodel.*;</font>
+<font color="#0000ff">import </font><font color="#000000">java.io.*;</font>
+<font color="#0000ff">import </font><font color="#000000">java.awt.*;</font>
+<font color="#0000ff">import </font><font color="#000000">org.apache.poi.hslf.model.TextBox;</font>
+<font color="#0000ff">public class </font><font color="#000000">createtrapezoidshape {</font>
+	<font color="#0000ff">public static void </font><font color="#000000">main(</font><font color="#ff0000">String </font><font color="#000000">a[])</font>
+	  <font color="#000000">{</font>
+	  <font color="#0000ff">try</font>
+	  <font color="#000000">{ SlideShow Show = </font><font color="#0000ff">new </font><font color="#000000">SlideShow();</font>
+	  <font color="#000000">Slide slide = Show.createSlide();</font>
+	  <font color="#000000">AutoShape as1 = </font><font color="#0000ff">new </font><font color="#000000">AutoShape(ShapeTypes.Trapezoid);</font>
+	  <font color="#000000">as1.setAnchor(</font><font color="#0000ff">new </font><font color="#000000">java.awt.</font><font color="#ff0000">Rectangle</font><font color="#000000">(</font><font color="#800080">0</font><font color="#000000">, </font><font color="#800080">0</font><font color="#000000">, </font><font color="#800080">700</font><font color="#000000">, </font><font color="#800080">700</font><font color="#000000">));</font>
+	  <font color="#000000">as1.setFillColor(</font><font color="#ff0000">Color</font><font color="#000000">.DARK_GRAY);</font>
+	  <font color="#000000">AutoShape as2 = </font><font color="#0000ff">new </font><font color="#000000">AutoShape(ShapeTypes.Trapezoid);</font>
+	  <font color="#000000">as2.setAnchor(</font><font color="#0000ff">new </font><font color="#000000">java.awt.</font><font color="#ff0000">Rectangle</font><font color="#000000">(</font><font color="#800080">50</font><font color="#000000">, </font><font color="#800080">100</font><font color="#000000">, </font><font color="#800080">500</font><font color="#000000">, </font><font color="#800080">500</font><font color="#000000">));</font>
+	  <font color="#000000">as2.setFillColor(</font><font color="#ff0000">Color</font><font color="#000000">.CYAN);</font>
+	  <font color="#000000">AutoShape as3 = </font><font color="#0000ff">new </font><font color="#000000">AutoShape(ShapeTypes.Trapezoid);</font>
+	  <font color="#000000">as3.setAnchor(</font><font color="#0000ff">new </font><font color="#000000">java.awt.</font><font color="#ff0000">Rectangle</font><font color="#000000">(</font><font color="#800080">100</font><font color="#000000">, </font><font color="#800080">150</font><font color="#000000">, </font><font color="#800080">400</font><font color="#000000">, </font><font color="#800080">400</font><font color="#000000">));</font>
+	  <font color="#000000">as3.setFillColor(</font><font color="#ff0000">Color</font><font color="#000000">.green);</font>
+	  <font color="#000000">AutoShape as4 = </font><font color="#0000ff">new </font><font color="#000000">AutoShape(ShapeTypes.Trapezoid);</font>
+	  <font color="#000000">as4.setAnchor(</font><font color="#0000ff">new </font><font color="#000000">java.awt.</font><font color="#ff0000">Rectangle</font><font color="#000000">(</font><font color="#800080">250</font><font color="#000000">, </font><font color="#800080">250</font><font color="#000000">, </font><font color="#800080">100</font><font color="#000000">, </font><font color="#800080">100</font><font color="#000000">));</font>
+	  <font color="#000000">as4.setFillColor(</font><font color="#ff0000">Color</font><font color="#000000">.yellow);</font>
+	  <font color="#000000">slide.addShape(as1);</font>
+	  <font color="#000000">slide.addShape(as2);</font>
+	  <font color="#000000">slide.addShape(as3);</font>
+	  <font color="#000000">slide.addShape(as4);  </font>
+	  <font color="#ff0000">FileOutputStream </font><font color="#000000">fos = </font><font color="#0000ff">new </font><font color="#ff0000">FileOutputStream</font><font color="#000000">(</font><font color="#ff00ff">&quot;Trapezoidcreation.ppt&quot;</font><font color="#000000">);</font>
+	 <font color="#000000">Show.write(fos);</font>
+	  <font color="#000000">fos.close();</font>
+	  <font color="#000000">}</font><font color="#0000ff">catch</font><font color="#000000">(</font><font color="#ff0000">Exception </font><font color="#000000">e){}</font>
+	  <font color="#000000">}</font>
+<font color="#000000">}</font></font>
+</pre>
+</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="compressed_unicode.shtml" title="compressed unicode">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="find_record.shtml" title="find record">Next</a></td>
+  </tr> 
+</table>
+<!-- Footer Start-->	
+
+		</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->

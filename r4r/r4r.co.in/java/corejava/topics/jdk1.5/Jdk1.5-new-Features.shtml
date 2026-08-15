@@ -1,0 +1,206 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>Jdk1.5 new Features</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="Jdk1.5 new Features">
+<meta name="keywords" CONTENT="Jdk1.5 new Features">
+
+<!-- header start-->	
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>Java Programing laungage</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+            <img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+            <a href="/java/">Java</a>
+              <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/java/corejava/">Core Java</a>
+                                   <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/java/corejava/topics/jdk1.5/">JDK1.5</a>
+              </div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/corejava/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	 
+<!-- header End-->
+
+<div class="heading">Jdk1.5 new Features</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="Downling-Installing-JDK-1.5.shtml" title="Downling and Installing jdk 1.5">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="Difference-between-jdk1.5-and-jdk1.6.shtml" title="Difference between jdk1.5 and jdk1.6">Next</a></td>
+  </tr> 
+</table>
+
+<h2>Here are some new extra Features of Jdk1.5 as follows:</h2>
+
+<div class="heading">Generics</div>
+<p>provides compile-time (static) type safety for collections and eliminates the need for most typecasts (type conversion).</p>
+<p><i>Problem: </i>Collection element types</p>
+<ul>
+<li>Cannot be checked at compile time</li>
+<li>Assignment must use cast</li>
+<li>Can cause runtime errors ( ClassCastException)</li></ul>
+<h3>Solution: </h3>
+<ul>
+<li>Tell the compiler what type your collection is</li>
+<li>Compiler can fill in casts for you</li>
+<li>Guaranteed to succeed.</li></ul>
+<h3>Generics are NOT templates:</h3>
+<ul>
+<li>No code size increase</li>
+<li>No hideous complexity</li>
+<li>No &quot;template metaprogramming&quot;</li></ul>
+
+<div class="heading">Enhanced for each loop </div>
+<p>The for loop syntax is extended with special syntax for iterating over each member of either an array or any iterable, such as the standard collection classes fix the previously broken semantics of the java memory model, which defines how threads interact through memory.</p>
+<h2>Enhanced for Loop (for each):</h2>
+<h3>Problem:</h3>
+<ul>
+<li>Iterating over collections is tricky</li>
+<li>Often, iterator only used to get an element</li>
+<li>Iterator is error prone (Occurs three times in a for loop)</li>
+<li>Can produce subtle runtime errors.</li></ul>
+<p><i>Solution: </i>Let the compiler do it, New for loop syntax for (variable : collection)</p>
+
+<div class="heading">Metadata</div>
+<p>Also called annotations; allows language constructs such as classes and methods to be tagged with additional data, which can then be processed by metadata-aware utilities.</p>
+<h3>Problem:</h3>
+<ul>
+<li>Some APIs require lots of standard code</li>
+<li>How to indicate this to a tool</li></ul>
+<p><i>Solution: </i>Annotated source code e.g. @remote getPrice(Product p)</p>
+
+<div class="heading">Auto boxing/unboxing</div>
+<p>Automatic conversions between primitive types (such as int) and primitive wrapper classes (such as integer).</p>
+<h2>Auto-boxing of primitive types:</h2>
+<h3>Problem:</h3>
+<ul>
+<li>Conversion between primitive types and wrapper objects (and vice-versa)</li>
+<li>Needed when adding primitives to a collection</li></ul>
+<p><i>Solution: </i>Let the compiler do it</p>
+<div class="code">
+<PRE>
+<FONT FACE="Arial">
+<FONT COLOR="#ff0000">Integer </FONT><FONT COLOR="#000000">intObj = </FONT><FONT COLOR="#800080">22</FONT><FONT COLOR="#000000">; </FONT><FONT COLOR="#008000">// Boxing conversion</FONT>
+<FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">i = (</FONT><FONT COLOR="#0000ff">int</FONT><FONT COLOR="#000000">)intObj </FONT><FONT COLOR="#008000">// Unboxing conversion</FONT>
+<FONT COLOR="#ff0000">ArrayList </FONT><FONT COLOR="#000000">al = </FONT><FONT COLOR="#0000ff">new </FONT><FONT COLOR="#ff0000">ArrayList</FONT><FONT COLOR="#000000">();</FONT>
+<FONT COLOR="#000000">al.add(</FONT><FONT COLOR="#800080">22</FONT><FONT COLOR="#000000">); </FONT><FONT COLOR="#008000">// Boxing conversion</FONT>
+</FONT>
+</PRE>
+</div>
+
+<div class="heading">Enumerations</div>
+<p>The enum keyword creates a typesafe, ordered list of values (such as day.monday, day.tuesday, etc.). Previously this could only be achieved by non-typesafe constant integers or manually constructed classes (typesafe enum pattern).</p>
+<h2>Typesafe Enumerations:</h2>
+<h3>Problem:</h3>
+<ul>
+<li>Variable needs to hold limited set of values</li>
+<li><i>e.g.</i>Card suit can only be Spade, Diamond, Club, Heart</li></ul>
+<p><i>Solution: </i>New type of class declaration</p>
+<ul>
+<li>enum type has public, self-typed members for each enum constant</li>
+<li>new keyword, enum</li>
+<li>works with switch statement.</li>
+</ul>
+
+<div class="heading">Var args</div>
+<p>The last parameter of a method can now be declared using a type name followed by three dots (e.g. Void drawtext(string... Lines)). In the calling code any number of parameters of that type can be used and they are then placed in an array to be passed to the method, or alternatively the calling code can pass an array of that type.</p>
+<h3>Varargs Problem:</h3>
+<ul>
+<li>To have a method that takes a variable number of parameters</li>
+<li>Can be done with an array, but not nice</li>
+<li>Look at java.text.MessageFormat</li>
+</ul>
+<p><i>Solution: </i>Let the compiler do it for you</p>
+<ul>
+<li>
+New syntax: public static String format(String fmt, Object... args);
+</li>
+<li>
+Java gets printf !!!.
+</li></ul>
+
+<div class="heading">Static imports</div>
+<h3>Problem:</h3>
+<ul>
+<li>
+Having to fully qualify every static referenced from external classes
+</li></ul>
+<p><i>Solution: </i>New import syntax</p>
+<ul>
+<li>
+import static TypeName . Identifier ;
+</li>
+<li>
+import static Typename . * ;
+</li>
+<li>
+Also works for static methods and enums
+e.g Math.sin(x) becomes sin(x)
+</li></ul>
+
+<div class="heading">Concurrency Utilities</div>
+<ul>
+<li>
+Goal: Beat C performance in high end server side applications
+</li>
+<li>
+New framework for locks to provide greater flexibility over synchronized
+</li>
+<li>
+No more threads, use Executors
+</li>
+<li>
+Use anExecutor.execute(aRunnable)
+</li>
+<li>
+Not new Thread(aRunnable).start();
+</li>
+<li>
+Runnable and Callable
+</li>
+<li>
+Callable for things that return values and/or exceptions
+</li></ul>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="Downling-Installing-JDK-1.5.shtml" title="Downling and Installing jdk 1.5">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="Difference-between-jdk1.5-and-jdk1.6.shtml" title="Difference between jdk1.5 and jdk1.6">Next</a></td>
+  </tr> 
+</table>
+
+ <!-- Footer Start-->	
+
+		</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->

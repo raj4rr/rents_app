@@ -1,0 +1,174 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD>
+<meta http-equiv="Content-Language" content="en-us">
+<TITLE>Scope Of Spring Bean</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name="description" CONTENT="Scope of Spring bean learn with r4r tutorial covers all topics with examples and interview questions" >
+<meta name="keywords" CONTENT="Spring, Tutorial, Beginners, Scope of spring bean, How to create java class file, run application,inversion of control (IoC), dependency injection, bean scopes, bean life cycle, inner beans,
+ autowiring ">
+
+		<!-- header start-->	
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+     <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>Spring Tutorials</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+			<img src="/images/left_menu_bullet.gif"/> <a href="/spring/">Spring</a>
+
+       </div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/spring/commonfiles/leftmenucore.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	 
+
+<div class="heading">Scopes of Spring Bean </div>
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="spring_bean_lifecycle.shtml" title="spring_bean_lifecycle">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="autowiring_in_spring.shtml" title="autowiring_in_spring">Next</a></td>
+  </tr> 
+</table>
+<p>The core of spring framework is its bean factory and mechanisms to create and manage such beans inside Spring container. The beans in spring container can be created in five scopes.That are as follows:</p>
+<ol>
+<li>
+<i>singleton:</i> scopes to a single object instance per Spring IOC Container.</li>
+<li>
+<i>prototype:</i> scopes to any number of object instances.</li>
+<li>
+<i>request:</i> scopes to the lifecycle of a single HTTP request, available only when using a web aware ApplicationContext.</li>
+<li>
+<i>session:</i> scopes to the lifecycle of an HTTP session, also available only when using a web aware ApplicationContext.</li>
+<li>
+<i>global session:</i> scopes to the lifecycle of a global HTTP session, also available only when using a web aware ApplicationContext.</li>
+</ol>
+<div class="heading">singleton scope</div>
+<p>If scope is set to singleton, the Spring IoC container creates exactly one instance of the object defined by that bean definition. This single instance is stored in a cache of such singleton beans, and all subsequent requests and references for that named bean return the cached object.</p>
+<p>The default scope is always singleton however, when you need one and only one instance of a bean, you can set the scope property to singleton in the bean configuration file, as shown below:</p>
+<div class="code">
+<pre>
+<font color="#0000ff">&lt;</font><font color="#808000">bean </font><font color="#800080">id</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;..&quot; </font><font color="#800080">class</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;..&quot; </font><font color="#800080">scope</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;singleton&quot;</font><font color="#0000ff">&gt;&lt;/</font><font color="#808000">bean</font><font color="#0000ff">&gt;</font>
+</pre>
+</div>
+
+<h3>Example</h3>
+<p>Let us have working Eclipse IDE in place and follow the following steps to create a Spring application:</p>
+<div class="heading">Create Java Project</div>
+<p><i>Step1.</i> Now you create a simple Java Project using Eclipse IDE. Follow the option<font class="point_out"> File -> New -> Project </font>and finally select Java Project wizard from the wizard list. Now name your project as<font class="point_out">SpringScope</font> using the wizard window.</p>
+<div class="heading">Add spring jar files</div>
+<p><i>Step2.</i> Now add spring jar in your project, To do this, right click on your project name SpringScope and then follow the following option available in context menu:<font class="point_out">  Build Path -> Configure Build Path</font> to display the Java Build Path window as given below. There are mainly three jar files required to run this application, To load the jar files in eclipse IDE,<font class="point_out">  Right click on your project - Build Path - Add external archives - select all the required jar files - finish.</font></p>
+<ol>
+<li>
+antlr-runtime-3.0.1
+</li><li>
+org.springframework.aop-3.1.0
+</li><li>
+org.springframework.asm-3.1.0.
+</li><li>
+org.springframework.aspects-3.1.0.
+</li><li>
+org.springframework.beans-3.1.0.
+</li><li>
+org.springframework.context.support-3.1.0.
+</li><li>
+org.springframework.context-3.1.0.
+</li><li>
+org.springframework.core-3.1.0.
+</li><li>
+org.springframework.expression-3.1.0.
+</li><li>
+commons-logging-1.1.1
+</li>
+</ol>
+<div class="heading">Create Java class file</div>
+<p><i>Step3.</i> Now you create simply java file with any name. First we need to create a package with any name like<font class="point_out"> com.r4r.</font> To do this,<font class="point_out">  Right click on src in package </font>explorer section and follow the option :<font class="point_out">  New -> Package.</font> and then <font class="point_out"> Right click on package(com.r4r) - New - class - Write the class name e.g. Demo - finish.</font> Write the following code:</p>
+<div class="code">
+<pre>
+<font color="#0000ff">package </font><font color="#000000">com.r4r;</font>
+<font color="#0000ff">public class </font><font color="#000000">Demo {</font>
+<font color="#0000ff">private </font><font color="#ff0000">String </font><font color="#000000">message;</font>
+<font color="#0000ff">public void </font><font color="#000000">setMessage(</font><font color="#ff0000">String </font><font color="#000000">message){</font>
+<font color="#0000ff">this</font><font color="#000000">.message = message;</font>
+<font color="#000000">}</font>
+<font color="#0000ff">public void </font><font color="#000000">getMessage(){</font>
+<font color="#ff0000">System</font><font color="#000000">.out.println(</font><font color="#ff00ff">&quot;Your Message: &quot; </font><font color="#000000">+ message);</font>
+<font color="#000000">}}</font>
+</pre>
+</div>
+<p><i>Step4.</i> Now create the xml file click on <font class="point_out"> src- new -file -give the file name like Beans.xml </font>then finish.</p>
+<div class="code">
+<pre>
+<font color="#0000ff">&lt;?xml </font><font color="#ff0000">version</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;1.0&quot; </font><font color="#ff0000">encoding</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;UTF-8&quot;</font><font color="#800080">?</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">beans </font><font color="#ff0000">xmlns</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;http://www.springframework.org/schema/beans&quot;</font>
+<font color="#800080">xmlns:xsi</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</font>
+<font color="#800080">xsi:schemaLocation</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;http://www.springframework.org/schema/beans</font>
+<font color="#ff00ff">http://www.springframework.org/schema/beans/spring-beans-3.0.xsd&quot;</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">bean </font><font color="#800080">id</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;demo&quot; </font><font color="#800080">class</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;com.r4r.Demo&quot; </font><font color="#800080">scope</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;singleton&quot;</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">bean</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">beans</font><font color="#0000ff">&gt;</font>
+</pre>
+</div>
+<p><i>Step5.</i>Now Create the java Main class(MainApp.java),  Here we are getting the object of Demo class from the IOC container using the getBean() method of BeanFactory. </p>
+<div class="code">
+<pre>
+<font color="#0000ff">package </font><font color="#000000">com.r4r;</font>
+<font color="#0000ff">import </font><font color="#000000">org.springframework.context.ApplicationContext;</font>
+<font color="#0000ff">import </font><font color="#000000">org.springframework.context.support.ClassPathXmlApplicationContext;</font>
+<font color="#0000ff">public class </font><font color="#000000">MainApp {</font>
+<font color="#0000ff">public static void </font><font color="#000000">main(</font><font color="#ff0000">String</font><font color="#000000">[] args) {</font>
+<font color="#000000">ApplicationContext context = </font>
+	<font color="#0000ff">new </font><font color="#000000">ClassPathXmlApplicationContext(</font><font color="#ff00ff">&quot;Beans.xml&quot;</font><font color="#000000">);</font>
+<font color="#000000">Demo d1 = (Demo) context.getBean(</font><font color="#ff00ff">&quot;demo&quot;</font><font color="#000000">);</font>
+<font color="#000000">d1.setMessage(</font><font color="#ff00ff">&quot;Spring is very Easy Framework.&quot;</font><font color="#000000">);</font>
+<font color="#000000">d1.getMessage();</font>
+<font color="#000000">Demo d2 = (Demo) context.getBean(</font><font color="#ff00ff">&quot;demo&quot;</font><font color="#000000">);</font>
+<font color="#000000">d2.getMessage();</font>
+<font color="#000000">}}</font>
+</pre>
+</div>
+<div class="heading">Run Application</div>
+<p>Now run the Application you see the following output</p>
+<div class="output">
+<div class="image">
+<img src="../images/spring_scope_output.png">
+</div>
+</div>
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="spring_bean_lifecycle.shtml" title="spring_bean_lifecycle">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="autowiring_in_spring.shtml" title="autowiring_in_spring">Next</a></td>
+  </tr> 
+</table>
+
+		</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->

@@ -1,0 +1,139 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>Connecting to Various Data Sources;Connecting to SQL Server in C#;Connecting to a Microsoft Access Database in C#;Connecting to a Microsoft Access Database in Visual Basic .NET;Connecting to an Oracle Database in C#;Connecting to an Oracle Database in Visual Basic .NET</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="Connecting to Various Data Sources;Connecting to SQL Server in C#;Connecting to a Microsoft Access Database in C#;Connecting to a Microsoft Access Database in Visual Basic .NET;Connecting to an Oracle Database in C#;Connecting to an Oracle Database in Visual Basic .NET" >
+<meta name="keywords" CONTENT="Connecting to Various Data Sources;Connecting to SQL Server in C#;Connecting to a Microsoft Access Database in C#;Connecting to a Microsoft Access Database in Visual Basic .NET;Connecting to an Oracle Database in C#;Connecting to an Oracle Database in Visual Basic .NET">
+
+<!-- header start-->	
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>ADO.NET</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+            <img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+            <a href="/ado.net">ADO.Net</a>
+              <img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+
+			  <a href="/ado.net/01/tutorial/ado.net/">ADO.NET Tutorials</a>
+
+              </div>
+
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/ado.net/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	 
+<!-- header End-->	
+
+<div class="heading">Connecting to Various Data Sources</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="datareader.shtml" title="DataReader">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="use_of_CommandBuilder.shtml" title="Use of CommandBuilder">Next</a></td>
+  </tr> 
+</table>
+
+<p>There are following way to connect to a Microsoft SQL database and open and close a connection:</p>
+<ol>
+<li>Connecting to SQL Server in C#:</li>
+<div class="code">
+<pre>
+<font color="#000000">SqlConnection conn = </font><font color="#0000ff">new </font><font color="#000000">SqlConnection</font>
+<font color="#000000">(</font><font color="#ff00ff">&quot;Initial Catalog=computer;Server=(local);UID=sa;PWD=&quot;</font><font color="#000000">);</font>
+<font color="#000000">conn.Open();</font>
+<font color="#000000">conn.Close();</font>
+</pre>
+</div></ol>
+<h3>There are following way to connect to a Microsoft  Jet OLE DB provider. and open and close a connection:</h3>
+<ol>
+<li>Connecting to a Microsoft Access Database in C#</li>
+<div class="code">
+<pre>
+<font color="#000000">OleDbConnection conn = </font><font color="#0000ff">new </font><font color="#000000">OleDbConnection</font>
+<font color="#000000">(</font><font color="#ff00ff">&quot;Provider=Microsoft.Jet.OLEDB.4.0;&quot; </font>
+<font color="#000000">+</font><font color="#ff00ff">&quot;Data Source=c:\\emp.mdb;&quot; </font><font color="#000000">+</font>
+<font color="#ff00ff">&quot;User Id=admin;&quot; </font><font color="#000000">+ </font><font color="#ff00ff">&quot;Password=;&quot; </font><font color="#000000">);</font>
+<font color="#000000">conn.Open();</font>
+<font color="#000000">conn.Close();</font>
+</pre>
+</div>
+<li>Connecting to a Microsoft Access Database in Visual Basic .NET</li>
+<div class="code">
+<pre>
+<font color="#000000">OleDbConnection conn = </font><font color="#0000ff">new </font><font color="#000000">OleDbConnection</font>
+<font color="#000000">(</font><font color="#ff00ff">&quot;Provider=Microsoft.Jet.OLEDB.4.0;&quot; </font>
+<font color="#000000">+</font><font color="#ff00ff">&quot;Data Source=c:\\emp.mdb;&quot; </font><font color="#000000">+</font>
+<font color="#ff00ff">&quot;User Id=admin;&quot; </font><font color="#000000">+ </font><font color="#ff00ff">&quot;Password=;&quot; </font><font color="#000000">);</font>
+<font color="#000000">conn.Open();</font>
+<font color="#000000">conn.Close();</font>
+</pre>
+</div>
+
+<li>Connecting to an Oracle Database in C#</li>
+<div class="code">
+<pre>
+<font color="#000000">OleDbConnection conn = </font><font color="#0000ff">new </font><font color="#000000">OleDbConnection( _</font>
+               <font color="#ff00ff">&quot;Provider=OraOLEDB.Oracle&quot; </font><font color="#000000">+ _</font>
+               <font color="#ff00ff">&quot;Data Source=DataBasename&quot; </font><font color="#000000">+ _</font>
+                      <font color="#ff00ff">&quot;User Id=username;&quot; </font><font color="#000000">+ _</font>
+                      <font color="#ff00ff">&quot;Password=password;&quot; </font><font color="#000000">);</font>
+<font color="#000000">conn.Open();</font>
+<font color="#000000">conn.Close();</font>
+</pre>
+</div>
+
+<li> Connecting to an Oracle Database in Visual Basic .NET</li>
+<div class="code">
+<pre>
+<font color="#000000">Dim conn </font><font color="#0000ff">as </font><font color="#000000">OleDbConnection = New OleDbConnection( _</font>
+                      <font color="#ff00ff">&quot;Provider=OraOLEDB.Oracle&quot; </font><font color="#000000">+ _</font>
+                      <font color="#ff00ff">&quot;Data Source=DataBasename&quot; </font><font color="#000000">+ _</font>
+                             <font color="#ff00ff">&quot;User Id=username;&quot; </font><font color="#000000">+ _</font>
+                              <font color="#ff00ff">&quot;Password=password;&quot; </font><font color="#000000">)</font>
+<font color="#000000">conn.Open()</font>
+<font color="#000000">conn.Close()</font>
+</pre>
+</div></ol>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="datareader.shtml" title="DataReader">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="use_of_CommandBuilder.shtml" title="Use of CommandBuilder">Next</a></td>
+  </tr> 
+</table>
+
+<!-- Footer Start-->		
+		</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/dotnet/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->></BODY></HTML>

@@ -1,0 +1,31 @@
+/*Property :- It is just like method. Used to initials
+	and access the private attribute of class
+	get -->To get value
+	set -->To set value
+*/
+using System;
+public class a 
+{
+   private string name;
+   //Property
+   public string ram
+   {
+      get 
+      {
+         return name; 
+      }
+      set 
+      {
+         name = value; //value=keyword
+      }
+   }
+}
+public class MainClass 
+{
+   public static void Main() 
+   {
+   	a x=new a();
+	x.ram="santosh"; //set
+	System.Console.WriteLine(x.ram); //get
+   }
+}

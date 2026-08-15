@@ -1,0 +1,126 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>C Tutorial on MACROS WITH ARGUMENT,MACROS VS FUNCTION</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="Learn MACROS in C WITH ARGUMENT,MACROS VS FUNCTION,Arrays,Structures,Pointers,Storage class,Loops,Functions,Data types,C constants,Union,Preprocessor" >
+<meta name="keywords" CONTENT="MACROS WITH ARGUMENT,MACROS VS FUNCTION,Macros examples,Arrays,Structures,Pointers,Storage class,Loops,Functions,Data types,C constants,Union,Preprocessor,Interview questions and answers">
+
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+     <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>C Programming language</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a><img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/c/">C </a>
+              <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/c/basic_tutorials/06/">C Tutorial</a></div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/c/commonfiles/leftmenu.shtml'); ?></td>
+
+                       <td style="80%" valign="top">
+                        <div class="main_content"> 
+
+	<!-- header End-->	
+    <div class="heading">Macros in C</div>
+
+<table id="indexing">
+  <tr>
+   <td style="width:33%; text-align:left;"><a href="C_PREPROCESSOR.shtml" title="Pre processor in C">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="FILE_INCLUSION.shtml" title="File inclusion in C">Next</a></td>
+  </tr>
+</table>
+
+<h2>Macros with argument</h2>
+<p>The macros that we have used so far are called simple macros. Macros can have arguments, just as functions can. Here is an example that illustrates this fact.</p>
+
+<div class="code">
+<PRE>
+<FONT COLOR="#000000">#define </FONT><FONT COLOR="#ff0000">Area</FONT><FONT COLOR="#000000">) ( </FONT><FONT COLOR="#800080">3</FONT><FONT COLOR="#000000">.</FONT><FONT COLOR="#800080">14 </FONT><FONT COLOR="#000000">* x * x )</FONT>
+<FONT COLOR="#000000">main( )</FONT>
+<FONT COLOR="#000000">{</FONT>
+<FONT COLOR="#0000ff">float </FONT><FONT COLOR="#000000">r1 = </FONT><FONT COLOR="#800080">6</FONT><FONT COLOR="#000000">.</FONT><FONT COLOR="#800080">25</FONT><FONT COLOR="#000000">, r2 = </FONT><FONT COLOR="#800080">2</FONT><FONT COLOR="#000000">.</FONT><FONT COLOR="#800080">5</FONT><FONT COLOR="#000000">, a ;</FONT>
+<FONT COLOR="#000000">a = AREA ( r1 ) ;</FONT>
+<FONT COLOR="#000000">printf ( </FONT><FONT COLOR="#ff00ff">"\area of circle = %f"</FONT><FONT COLOR="#000000">, a ) ;</FONT>
+<FONT COLOR="#000000">a = AREA ( r2 ) ;</FONT>
+<FONT COLOR="#000000">printf ( </FONT><FONT COLOR="#ff00ff">"\area of circle = %f"</FONT><FONT COLOR="#000000">, a ) ;</FONT>
+<FONT COLOR="#000000">}</FONT>
+
+<FONT COLOR="#000000">Heres the output of the program...</FONT>
+<FONT COLOR="#ff0000">Area </FONT><FONT COLOR="#000000">of circle = </FONT><FONT COLOR="#800080">122</FONT><FONT COLOR="#000000">.</FONT><FONT COLOR="#800080">656250</FONT>
+<FONT COLOR="#ff0000">Area </FONT><FONT COLOR="#000000">of circle = </FONT><FONT COLOR="#800080">19</FONT><FONT COLOR="#000000">.</FONT><FONT COLOR="#800080">625000</FONT>
+</PRE>
+</div>
+
+<p>
+In this program wherever the pre-processor finds the phrase Area) it expands it into the statement ( 3.14 * x * x ). However, thats not all that it does. The x in the macro template Area) is an argument that matches the x in the macro expansion ( 3.14 * x * x ). The statement AREA(r1) in the program causes the variable r1 to be substituted for x. Thus the statement AREA(r1) is equivalent to: ( 3.14 * r1 * r1 ).</p>
+<p>After the above source code has passed through the pre-processor, what the compiler gets to work on will be this:</p>
+
+<div class="code">
+<PRE>
+<FONT COLOR="#000000">main( )</FONT>
+<FONT COLOR="#000000">{</FONT>
+<FONT COLOR="#0000ff">float </FONT><FONT COLOR="#000000">r1 = </FONT><FONT COLOR="#800080">6</FONT><FONT COLOR="#000000">.</FONT><FONT COLOR="#800080">25</FONT><FONT COLOR="#000000">, r2 = </FONT><FONT COLOR="#800080">2</FONT><FONT COLOR="#000000">.</FONT><FONT COLOR="#800080">5</FONT><FONT COLOR="#000000">, a ;</FONT>
+<FONT COLOR="#000000">a = </FONT><FONT COLOR="#800080">3</FONT><FONT COLOR="#000000">.</FONT><FONT COLOR="#800080">14 </FONT><FONT COLOR="#000000">* r1 *r1 ;</FONT>
+<FONT COLOR="#000000">printf ( </FONT><FONT COLOR="#ff00ff">"Area of circle = %f\n"</FONT><FONT COLOR="#000000">, a ) ;</FONT>
+<FONT COLOR="#000000">a = </FONT><FONT COLOR="#800080">3</FONT><FONT COLOR="#000000">.</FONT><FONT COLOR="#800080">14 </FONT><FONT COLOR="#000000">*r2 * r2 ;</FONT>
+<FONT COLOR="#000000">printf ( </FONT><FONT COLOR="#ff00ff">"Area of circle = %f"</FONT><FONT COLOR="#000000">, a ) ;</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#000000">Here is another example of macros with arguments:</FONT>
+<FONT COLOR="#000000">#define ISDIGIT(y) ( y &gt;= </FONT><FONT COLOR="#800080">48 </FONT><FONT COLOR="#000000">&amp;&amp; y &lt;= </FONT><FONT COLOR="#800080">57 </FONT><FONT COLOR="#000000">)</FONT>
+<FONT COLOR="#000000">main( )</FONT>
+<FONT COLOR="#000000">{</FONT>
+<FONT COLOR="#0000ff">char </FONT><FONT COLOR="#000000">ch ;</FONT>
+<FONT COLOR="#000000">printf ( </FONT><FONT COLOR="#ff00ff">"Enter any digit " </FONT><FONT COLOR="#000000">) ;</FONT>
+<FONT COLOR="#000000">scanf ( </FONT><FONT COLOR="#ff00ff">"%c"</FONT><FONT COLOR="#000000">, &amp;ch ) ;</FONT>
+<FONT COLOR="#0000ff">if </FONT><FONT COLOR="#000000">( ISDIGIT ( ch ) )</FONT>
+<FONT COLOR="#000000">printf ( </FONT><FONT COLOR="#ff00ff">"\nYou entered a digit" </FONT><FONT COLOR="#000000">) ;</FONT>
+<FONT COLOR="#0000ff">else</FONT>
+<FONT COLOR="#000000">printf ( </FONT><FONT COLOR="#ff00ff">"\nIllegal input" </FONT><FONT COLOR="#000000">) ;</FONT>
+<FONT COLOR="#000000">}</FONT>
+</PRE>
+</div>
+
+<h2>Macros vs Function</h2>
+<p>
+
+In a macro call the pre-processor replaces the macro template with its macro expansion, in a stupid, unthinking, literal way. As against this, in a function call the control is passed to a function along with certain arguments, some calculations are performed in the function and a useful value is returned back from the function.</p>
+
+<p>Usually macros make the program run faster but increase the program size, whereas functions make the program smaller and compact.</p>
+
+<p>If we use a macro hundred times in a program, the macro expansion goes into our source code at hundred different places, thus increasing the program size. On the other hand, if a function is used, then even if it is called from hundred different places in the program, it would take the same amount of space in the program.</p>
+
+<table id="indexing">
+  <tr>
+   <td style="width:33%; text-align:left;"><a href="C_PREPROCESSOR.shtml" title="Pre processor in C">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="FILE_INCLUSION.shtml" title="File inclusion in C">Next</a></td>
+  </tr>
+</table>
+
+<!--Footer  --> 
+   </div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>

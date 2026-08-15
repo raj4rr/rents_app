@@ -1,0 +1,150 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>Servlet Interview Questions and Answers</TITLE>
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<META content=r4r.co.in name=owner>
+<meta name="description" CONTENT="Servlet Interview Questions and Answers" >
+<meta name="keywords" CONTENT="Servlet Interview Questions and Answers">
+<!--Header start-->
+
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>FAQ</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a><img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+			<a href="/java/">Java </a>
+              <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/java/faq">Faqs</a>
+
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/corejava/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	  
+
+<!-- header End-->
+
+<div class="heading">Java Servlets Interview Questions and Answers(Subjective)</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="index_ejb_java.shtml" title="EJB Interview Questions and Answers(Subjective)
+">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="index_servlets1.shtml" title="2 Java Servlets Interview Questions and Answers(Subjective)">Next</a></td>
+  </tr>
+</table>
+
+<div class="heading">Q.1	What is the servlet? </div>
+
+<p><i>Answer: </i>Servlet is a server side programming language Which takes request in form of Http and gives response in the form of Http.
+</p>
+
+<div class="heading">Q.2	What is the architechture of servlet package? </div>
+<p><i>Answer: </i>Servlet Interface is the central abstraction. All servlets implements this Servlet Interface either direclty or indirectly ( may implement or extend Servlet Interfaces sub classes or sub interfaces)</p>
+          <p>Servlet</p>
+
+      <p>|</p>
+
+     <p> Generic Servlet</p>
+
+     <p> |</p>
+
+     <p> HttpServlet ( Class ) -- we will extend this class to handle GET / PUT 
+
+      HTTP requests</p>
+
+    <p>  |</p>
+
+    <p>  MyServlet</p>
+
+<div class="heading">Q.3	What is the difference between HttpServlet and GenericServlet? </div>
+<p><i>Answer: </i>GenericServlet has a service() method to handle requests.HttpServlet extends GenericServlet added new methods</p>
+<ul>
+<li>doGet() </li>
+<li>doPost() </li>
+<li>doHead() </li>
+<li>doPut() </li>
+<li>doOptions() </li>
+<li>doDelete() </li>
+<li>doTrace() methods </li>
+</ul>
+<p>Both these classes are abstract.</p>
+
+<div class="heading">Q.4	What's the difference between servlets and applets? </div>
+<p><i>Answer: </i>Servlets executes on Servers. Applets executes on browser. Unlike applets, however, servlets have no graphical user interface.</p>
+
+<div class="heading">Q.5	What are the uses of Servlets? </div>
+<p><i>Answer: </i>A servlet can handle multiple requests concurrently, and can synchronize requests. Servlets can forward requests to other servers and servlets. Thus servlets can be used to balance load among several servers. </p>
+
+<div class="heading">Q.6	When doGET() method will going to execute? </div>
+<p><i>Answer: </i>When we specified method='GET' in HTML</p>
+<h3>Example: </h3>
+
+<div class="code">
+<pre>
+<font color="#000000">&lt; form name='SSS' method='GET'&gt;</font>
+</pre>
+</div>
+
+<div class="heading">Q.7	When doPOST() method will going to execute? </div>
+<p><i>Answer: </i>When we specified method='POST' in HTML</p>
+
+<h3>Example: </h3>
+
+<div class="code">
+<pre>
+<font color="#000000">&lt; form name='SSS' method='POST' &gt;</font>
+</pre>
+</div>
+
+<div class="heading">Q.8	What is the difference between Difference between doGet() and doPost()? </div>
+<h3>Answer: </h3>
+<p><i>GET Method  </i>Using get method we can able to pass 2K data from HTML
+All data we are passing to Server will be displayed in URL (request string).This is used to sent small size data.</p>
+<p><i> POST Method: </i>In this method we does not have any size limitation. All data passed to server will be hidden, User cannot able to see this info on the browser. .The data is send into a small packets. This used to sent large amount of data. </p>
+
+<div class="heading">Q.9	What is the servlet life cycle? </div>
+
+<p><i>Answer: </i>When first request came in for the servlet , Server will invoke <font class="point_out"> init()</font> method of the servlet. There after if any user request the servlet program, Server will directly executes the <font class="point_out">service()</font> method. When Server want to remove the servlet from pool, then it will execute the <font class="point_out">destroy()</font> method. The <font class="point_out">init()</font> and <font class="point_out">destroy()</font> methods are called at only one time. But <font class="point_out">service()</font> method can call at each request. The <font class="point_out">service()</font> method creates a separate thread for each request and gives response according to request.</p>
+
+<div class="heading">Q.10	Which code line must be set before any of the lines that use the PrintWriter?</div>
+<h3>Answer: </h3>
+<p><i>setContentType()</i>method must be set. </p>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="index_ejb_java.shtml" title="EJB Interview Questions and Answers(Subjective)
+">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="index_servlets1.shtml" title="2 Java Servlets Interview Questions and Answers(Subjective)">Next</a></td>
+  </tr>
+</table>
+
+<!-- Footer Start-->
+
+</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>

@@ -1,0 +1,152 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD>
+<meta http-equiv="Content-Language" content="en-us">
+<TITLE>Facade Design Pattern Pattern</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name="description" CONTENT="Facade Design Pattern Pattern" >
+<meta name="keywords" CONTENT="Facade Design Pattern Pattern">
+
+<!-- header start-->	
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>Design Pattern Basic Tutorial</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+
+            		 <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/java/">java</a>           
+              <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/java/design-patterns/">Design Pattern</a>
+
+              </div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/design-patterns/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	 
+
+<!-- header end-->
+
+<div class="heading">Facade Pattern</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="decorator.shtml" title="decorator">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="flyweight.shtml" title="flyweight">Next</a></td>
+  </tr> 
+</table>
+
+<p>The facade pattern is used to simplifies to the complex system by providing a general interface or unified, which is a higher layer to these subsystems.</p>
+<div class="heading">Benefit and use of the Facade Pattern</div>
+
+<ol>
+<li>Facade is used to reduce complexity of a system.
+
+</li><li>
+It is reduce subsystem dependency, Decouple subsystems and improve portability.
+
+</li><li>
+It is used to Make an entry point to your subsystems.
+</li><li>
+Use in Minimization of the communication and dependency between subsystems.
+</li><li>
+Also used in Security and performance consideration.
+</li></ol>
+
+<h3>Example</h3>
+<div class="code">
+<pre>
+<font color="#008000">//Create the interface</font>
+<font color="#0000ff">package </font><font color="#000000">r4r;</font>
+<font color="#0000ff">public interface </font><font color="#000000">general {</font>
+<font color="#0000ff">public void </font><font color="#000000">accessGeneral();</font>
+<font color="#000000">}</font>
+<font color="#0000ff">interface </font><font color="#000000">Special </font><font color="#0000ff">extends </font><font color="#000000">general {</font>
+<font color="#0000ff">public void </font><font color="#000000">accessSpecial();</font>
+<font color="#000000">}</font>
+<font color="#0000ff">interface </font><font color="#000000">Private </font><font color="#0000ff">extends </font><font color="#000000">general {</font>
+<font color="#0000ff">public void </font><font color="#000000">accessPrivate();</font>
+<font color="#000000">}</font>
+
+<font color="#008000">//Create the class and implement the interface</font>
+<font color="#0000ff">package </font><font color="#000000">r4r;</font>
+<font color="#0000ff">class </font><font color="#000000">GeneralInfo </font><font color="#0000ff">implements </font><font color="#000000">general {</font>
+<font color="#0000ff">public void </font><font color="#000000">accessGeneral() {</font>
+<font color="#ff0000">System</font><font color="#000000">.out.println(</font><font color="#ff00ff">&quot;Hello this is General information&quot;</font><font color="#000000">);</font>
+<font color="#000000">}</font>
+
+<font color="#000000">}</font>
+<font color="#0000ff">class </font><font color="#000000">SpecialInfo </font><font color="#0000ff">implements </font><font color="#000000">Special{</font>
+<font color="#0000ff">public void </font><font color="#000000">accessSpecial() {</font>
+<font color="#ff0000">System</font><font color="#000000">.out.println(</font><font color="#ff00ff">&quot;This is special infornation connected people&quot;</font><font color="#000000">);</font>
+<font color="#000000">}</font>
+<font color="#0000ff">public void </font><font color="#000000">accessGeneral() {}</font>
+
+<font color="#000000">}</font>
+<font color="#0000ff">class </font><font color="#000000">PrivateInfo </font><font color="#0000ff">extends  </font><font color="#000000">SpecialInfo </font><font color="#0000ff">implements </font><font color="#000000">Private, Special {</font>
+<font color="#0000ff">public void </font><font color="#000000">accessPrivate() {</font>
+<font color="#ff0000">System</font><font color="#000000">.out.println(</font><font color="#ff00ff">&quot;This is private information private people connected&quot;</font><font color="#000000">);</font>
+<font color="#000000">}</font>
+<font color="#008000">// public void accessSpecial() {</font>
+<font color="#008000">//System.out.println(&quot;Welcome&quot;);</font>
+<font color="#008000">// }</font>
+<font color="#0000ff">public void </font><font color="#000000">accessGeneral() {</font>
+<font color="#ff0000">System</font><font color="#000000">.out.println(</font><font color="#ff00ff">&quot;General people now connected&quot;</font><font color="#000000">);</font>
+<font color="#000000">}</font>
+
+<font color="#000000">}</font>
+<font color="#0000ff">public class </font><font color="#000000">facadetest {</font>
+<font color="#0000ff">public static void </font><font color="#000000">main(</font><font color="#ff0000">String</font><font color="#000000">[] args)</font>
+<font color="#000000">{</font>
+<font color="#000000">GeneralInfo g1=</font><font color="#0000ff">new </font><font color="#000000">GeneralInfo();</font>
+<font color="#000000">SpecialInfo s1=</font><font color="#0000ff">new </font><font color="#000000">SpecialInfo();</font>
+<font color="#000000">PrivateInfo p1=</font><font color="#0000ff">new </font><font color="#000000">PrivateInfo();</font>
+<font color="#000000">p1.accessPrivate();</font>
+<font color="#000000">p1.accessGeneral();</font>
+<font color="#000000">p1.accessSpecial();</font>
+<font color="#000000">}</font>
+<font color="#000000">}</font>
+</font>
+</pre>
+</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="decorator.shtml" title="decorator">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="flyweight.shtml" title="flyweight">Next</a></td>
+  </tr> 
+</table>
+
+<!-- Footer Start-->	   	
+
+		</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->
+

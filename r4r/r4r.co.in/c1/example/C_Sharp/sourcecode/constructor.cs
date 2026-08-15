@@ -1,0 +1,43 @@
+/*Constructor :- 
+	1)It is used to intilase the private attribute  of class
+	2)It is just like method
+	3)Class name and constr name must be same
+	4)constr can be overloded
+	5)Cosntr can be parameterzied
+	6)we dont need to call it.
+	7)call automatically at the time of object creation	
+	8)when we r not defining any constr there will be a default constr
+	9)we dont use any return type
+*/
+class a
+{
+	private int k; 
+	//Constr Overloding
+	public a()//constr
+	{
+		k=1000;
+	}
+	public a(int p)//parameterzied constr
+	{
+		k=p;
+	}
+	
+	//Public method
+	public void display()
+	{
+		System.Console.WriteLine("The value of k is -->"+k);
+	}
+	
+}
+class b 
+{
+	public static void Main()
+	{
+		a x=new a();//uper wale ko  
+		x.display(); 
+		a y=new a(42432) ; //niche wale constr ko call karega
+		y.display();		
+	}
+}
+
+

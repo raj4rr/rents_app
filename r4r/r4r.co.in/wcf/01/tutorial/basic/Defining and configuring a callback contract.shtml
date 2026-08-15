@@ -1,0 +1,171 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>Defining and configuring a callback contract,Duplex proxy,Tool-generated duplex proxy,Client implementing the callback contract</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="Defining and configuring a callback contract,Duplex proxy,Tool-generated duplex proxy,Client implementing the callback contract" >
+<meta name="keywords" CONTENT="Defining and configuring a callback contract,Duplex proxy,Tool-generated duplex proxy,Client implementing the callback contract">
+
+<!--Header start-->
+
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>WCF</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a><img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+			<a href="/wcf">WCF with C# </a>
+              <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/wcf/01/tutorial/basic/">WCF Tutorials</a></div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/wcf/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	  
+
+<!-- Header End-->
+<div class="heading">Defining and configuring a callback contract</div>
+
+  <table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="Callback%20reentrancy.shtml" title="Callback reentrancy
+">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="Operations.shtml" title="Operations in WCF">Next</a></td>
+  </tr>
+</table>
+<p>We provide the  ServiceContract attribute with the type of the callback contract and the definition of the callback contract for define a service contract with a callback contract</p>
+<h3>Example:</h3>
+<div class="code">
+<pre>
+<font color="#0000ff">interface </font><font color="#000000">ISomeCallbackContract</font>
+<font color="#000000">{</font>
+   <font color="#000000">[OperationContract]</font>
+   <font color="#0000ff">void </font><font color="#000000">OnCallback( );</font>
+<font color="#000000">}</font>
+<font color="#000000">[ServiceContract(CallbackContract = </font><font color="#0000ff">typeof</font><font color="#000000">(ISomeCallbackContract))]</font>
+<font color="#0000ff">interface </font><font color="#000000">IMyContract</font>
+<font color="#000000">{</font>
+   <font color="#000000">[OperationContract]</font>
+   <font color="#0000ff">void </font><font color="#000000">operation1( );</font>
+<font color="#000000">}</font>
+</pre>
+</div>
+<div class="heading">Duplex proxy</div>
+<p>When we use such  a service endpoint whose contract defines a callback contract, then the client  use a proxy that will set up the bidirectional communication and pass the callback endpoint reference to the service. The proxy the client uses must derive from the specialized proxy class DuplexClientBase&lt;T&gt;.</p>
+<h3>Example of  DuplexClientBase&lt;T&gt;: </h3>
+<div class="code">
+<pre>
+<font color="#0000ff">public interface </font><font color="#000000">IDuplexContextChannel : IContextChannel</font>
+<font color="#000000">{</font>
+   <font color="#808000">InstanceContext </font><font color="#000000">CbInstance</font>
+   <font color="#000000">{get;set;}</font>
+   <font color="#008000">//More members</font>
+<font color="#000000">}</font>
+<font color="#0000ff">public abstract class </font><font color="#808000">DuplexClientBase</font><font color="#000000">&lt;T&gt; : </font>
+<font color="#808000">ClientBase</font><font color="#000000">&lt;T&gt; where T : </font><font color="#0000ff">class</font>
+<font color="#000000">{</font>
+   <font color="#0000ff">protected </font><font color="#808000">DuplexClientBase</font><font color="#000000">(</font><font color="#808000">InstanceContext </font><font color="#000000">callbackContext);</font>
+   <font color="#0000ff">protected </font><font color="#808000">DuplexClientBase</font><font color="#000000">(</font><font color="#808000">InstanceContext </font><font color="#000000">callbackContext,</font>
+                              <font color="#0000ff">string </font><font color="#000000">EpName);</font>
+   <font color="#0000ff">protected </font><font color="#808000">DuplexClientBase</font><font color="#000000">(</font><font color="#808000">InstanceContext </font><font color="#000000">callbackContext,</font>
+                              <font color="#808000">Binding </font><font color="#000000">binding,</font>
+                              <font color="#808000">EndpointAddress </font><font color="#000000">remoteAddress);</font>
+   <font color="#0000ff">protected </font><font color="#808000">DuplexClientBase</font><font color="#000000">(</font><font color="#0000ff">object </font><font color="#000000">CbInstance);</font>
+   <font color="#0000ff">protected </font><font color="#808000">DuplexClientBase</font><font color="#000000">(</font><font color="#0000ff">object </font><font color="#000000">CbInstance,</font>
+                              <font color="#0000ff">string </font><font color="#000000">endpointConfigurationName);</font>
+   <font color="#0000ff">protected </font><font color="#808000">DuplexClientBase</font><font color="#000000">(</font><font color="#0000ff">object </font><font color="#000000">CbInstance,</font><font color="#808000">Binding </font><font color="#000000">binding,</font>
+                              <font color="#808000">EndpointAddress </font><font color="#000000">remoteAddress);</font>
+
+   <font color="#0000ff">public </font><font color="#000000">IDuplexContextChannel InnerDuplexChannel</font>
+   <font color="#000000">{get;}</font>
+   <font color="#008000">//More members</font>
+<font color="#000000">}</font>
+</pre>
+</div>
+<div class="heading">Tool-generated duplex proxy</div>
+<p>When we use use SvcUtil or Visual Studio 2005 to create  a proxy class targeting a service with a callback contract then  the tools will create  a class that derives from DuplexClientBase&lt;T&gt;.</p>
+
+<div class="code">
+<pre>
+<font color="#000000">partial </font><font color="#0000ff">class </font><font color="#000000">MyContractClient : </font><font color="#808000">DuplexClientBase</font><font color="#000000">&lt;IMyContract&gt;,IMyContract</font>
+<font color="#000000">{</font>
+<font color="#0000ff">public </font><font color="#000000">MyContractClient(</font><font color="#808000">InstanceContext </font><font color="#000000">callbackContext) :</font>
+	<font color="#0000ff">base</font><font color="#000000">(callbackContext)</font>
+<font color="#000000">{}</font>
+<font color="#0000ff">public </font><font color="#000000">MyContractClient(</font><font color="#808000">InstanceContext </font><font color="#000000">callbackContext,</font><font color="#0000ff">string </font><font color="#000000">EpName) :</font>
+ <font color="#0000ff">base</font><font color="#000000">(callbackContext,EpName)</font>
+<font color="#000000">{}</font>
+<font color="#0000ff">public </font><font color="#000000">MyContractClient(</font><font color="#808000">InstanceContext </font><font color="#000000">callbackContext,</font><font color="#808000">Binding </font><font color="#000000">binding,</font>
+<font color="#808000">EndpointAddress </font><font color="#000000">remoteAddress) :</font>
+ <font color="#0000ff">base</font><font color="#000000">(callbackContext,binding,remoteAddress)</font>
+<font color="#000000">{}</font>
+<font color="#008000">//More constructors</font>
+<font color="#0000ff">public void </font><font color="#000000">operation( )</font>
+<font color="#000000">{</font>
+<font color="#000000">Channel.operation( );</font>
+<font color="#000000">}</font>
+<font color="#000000">}</font>
+</pre>
+</div>
+
+<h3>Client implementing the callback contract</h3>
+<div class="code">
+<pre>
+<font color="#0000ff">class </font><font color="#000000">MyClient : IMyContractCallback,IDisposable</font>
+<font color="#000000">{</font>
+   <font color="#000000">MyContractClient mypro;</font>
+
+   <font color="#0000ff">public void </font><font color="#000000">CallService( )</font>
+   <font color="#000000">{</font>
+      <font color="#808000">InstanceContext </font><font color="#000000">cn = </font><font color="#0000ff">new </font><font color="#000000">Instancecn(</font><font color="#0000ff">this</font><font color="#000000">);</font>
+      <font color="#000000">mypro = </font><font color="#0000ff">new </font><font color="#000000">MyContractClient(cn);</font>
+      <font color="#000000">mypro.operation( );</font>
+   <font color="#000000">}</font>
+   <font color="#0000ff">public void </font><font color="#000000">OnCallback( )</font>
+   <font color="#000000">{...}</font>
+
+   <font color="#0000ff">public void </font><font color="#000000">Dispose( )</font>
+   <font color="#000000">{</font>
+      <font color="#000000">mypro.Close( );</font>
+   <font color="#000000">}</font>
+<font color="#000000">}</font>
+</pre>
+</div>
+
+  <table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="Callback%20reentrancy.shtml" title="Callback reentrancy
+">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="Operations.shtml" title="Operations in WCF">Next</a></td>
+  </tr>
+</table>
+
+ <!--Footer  -->
+</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/dotnet/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>

@@ -1,0 +1,169 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HEAD>
+<TITLE>CASE,BREAK,WHILE,CONTINUE STATEMENT</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name="description" CONTENT="CASE,BREAK,WHILE,CONTINUE STATEMENT" >
+<meta name="keywords" CONTENT="CASE,BREAK,WHILE,CONTINUE STATEMENT">
+
+<!--header start-->
+
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>DATABASE & SQL/PLSQL</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a><img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+			<a href="/sql/">SQL </a>
+              </div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/sql/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	  
+
+                        	                        	<!-- Header End-->	
+ <div class="heading">The CASE statement and WHILE statement</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="if_else.shtml" title="The IF...ELSE Statement and BEGIN...END Statement">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="stored_procedure.shtml" title="Stored Procedures">Next</a></td>
+  </tr>
+</table>
+
+<h3>The CASE Statement</h3>
+
+<ol>
+  <li>SQL server provide a programming construct called CASE statement</li>
+  <li>In this situation where several conditions need to be evaluated</li>
+  <li>The CASE statement evaluate a list of conditions and return one of the various possible results</li>
+  <li>Here we can use IF statement to do same task</li>
+</ol>
+
+<h3>Syntax:</h3>
+
+<div class="code">
+<pre>
+CASE
+    WHEN boolean_expression THEN expression
+    [[WHEN boolean_expression THEN expression]..] 
+    [ELSE expression]
+END
+</pre>
+</div>
+
+<p>where, boolean_expression is a Boolean expression that 
+is evaluated when using the CASE statement. </p>
+
+<p><i> Example:</i>Give the position according to there Salary.</i>
+<div class="code">
+<pre>
+SELECT  emp_name, emp_sal, 'emp_position'= CASE
+   WHEN  emp_sal=60000  THEN  'Team Leader'
+   WHEN  emp_sal=45000  THEN  'Junior Developer'
+   WHEN  emp_sal=80000  THEN  'Project Manager'
+   WHEN  emp_sal=50000  THEN  'Developer'
+ELSE  'Unknown'
+END
+FROM  employee
+</pre>
+</div>
+
+<p><i>output</i></p>
+<div class="output">
+<div class="image">
+<img src="Image/case.gif">
+</div>
+</div>
+
+<h3>The WHILE Statement</h3>
+
+<ol>
+  <li>While statement is used in a batch, a stored procedure, a trigger, or a 
+  cursor</li>
+  <li>Its allowed a set of T-SQL statements to execute repeatedly as long as the 
+  given condition hold true  </li>
+</ol>
+
+<h3>Syntax:</h3>
+
+<p>WHILE <i>boolean_expression</i></p>
+
+<div class="code">
+
+<pre>{sql_statement}
+[BREAK]
+{sql_statement}
+[CONTINUE]
+<pre>
+</div>
+
+<p>where, boolean_expression is an expression that evaluate to TRUE or FALSE.</p>
+
+<p><i>sql_statement </i>is any SQL statement.</p>
+
+<p>BREAK cause the control to exit from the WHILE loop.</p>
+
+<p>CONTINUE cause the WHILE loop to restart, skipping all the statements after 
+the CONTINUE keyword.</p>
+
+<p>SQL Server provides the BREAK and CONTINUE statements that help control the 
+statements within the WHILE loop.</p>
+<p><i>Example: </i>Factorial of 5</p>
+
+<div class="code">
+<pre>
+DECLARE @num int
+DECLARE @fact int
+SELECT @num=5
+SELECT @fact=1
+WHILE @num>0
+BEGIN
+      SELECT @fact=@fact*@num
+      SELECT @num=@num-1
+END
+PRINT @fact
+</pre>
+</div>
+<i>output</i>
+<i>120</i>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="if_else.shtml" title="The IF...ELSE Statement and BEGIN...END Statement">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="stored_procedure.shtml" title="Stored Procedures">Next</a></td>
+  </tr>
+</table>
+
+                       <!--Footer  -->
+
+</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>

@@ -1,0 +1,266 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>WSDL (Web Services Description Language),Structure of the WSDL Document,WSDL Elements,Definition,Types,Message,Port type,Binding,Port,Service</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="WSDL (Web Services Description Language),Structure of the WSDL Document,WSDL Elements,Definition,Types,Message,Port type,Binding,Port,Service" >
+<meta name="keywords" CONTENT="WSDL (Web Services Description Language),Structure of the WSDL Document,WSDL Elements,Definition,Types,Message,Port type,Binding,Port,Service">
+
+<!-- header start-->	
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>Web Services</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+            <img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+           <a href="/webservice/">Web Services</a>
+
+              </div>
+
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/webservice/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	 
+
+<!-- header End-->	
+
+<div class="heading">WSDL (Web Services Description Language)</div>
+ <table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="UDDI.shtml" title="UDDI">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="Advantage_Disadvantage.shtml" title="Advantage and Disadvantage">Next</a></td>
+  </tr> 
+</table>
+
+<h3>Introduction</h3>
+<ul>
+  <li>
+  WSDL is an XML based protocol and a 
+  language that UDDI uses.</li>
+  <li>
+  WSDL developed 
+  jointly by Microsoft and IBM.</li>
+  <li>
+  WSDL describes that what operations will performed 
+  when client accessing web service.</li>
+  <li>
+  It exchanges the information in decentralized environment</li>
+  <li>
+  It exchanges the information in distributed environment</li>
+  <li>
+  It used as a combination with SOAP and XML Schema to 
+  provide web services over the Internet</li>
+</ul>
+<div class="image"><img src="Images/wsdl.gif"></div>
+
+<p><div class="heading">Structure of the WSDL Document</div></p>
+
+<div class="code">
+<pre>
+<font color="#0000ff">&lt;</font><font color="#808000">definitions</font><font color="#0000ff">&gt;</font>
+<font color="#000000"> </font><font color="#0000ff">&lt;</font><font color="#808000">types</font><font color="#0000ff">&gt;</font>
+<font color="#000000">   definition of types........</font>
+<font color="#000000"> </font><font color="#0000ff">&lt;/</font><font color="#808000">types</font><font color="#0000ff">&gt;</font>
+<font color="#000000"> </font><font color="#0000ff">&lt;</font><font color="#808000">message</font><font color="#0000ff">&gt;</font>
+<font color="#000000">   definition of a message....</font>
+<font color="#000000"> </font><font color="#0000ff">&lt;/</font><font color="#808000">message</font><font color="#0000ff">&gt;</font>
+<font color="#000000"> </font><font color="#0000ff">&lt;</font><font color="#808000">portType</font><font color="#0000ff">&gt;</font>
+<font color="#000000">      </font><font color="#0000ff">&lt;</font><font color="#808000">operation</font><font color="#0000ff">&gt;</font>
+<font color="#000000">	definition of a operation..  </font>
+<font color="#000000">      </font><font color="#0000ff">&lt;/</font><font color="#808000">operation</font><font color="#0000ff">&gt;</font>
+<font color="#000000"> </font><font color="#0000ff">&lt;/</font><font color="#808000">portType</font><font color="#0000ff">&gt;</font>
+<font color="#000000"> </font><font color="#0000ff">&lt;</font><font color="#808000">binding</font><font color="#0000ff">&gt;</font>
+<font color="#000000">   definition of a binding....</font>
+<font color="#000000"> </font><font color="#0000ff">&lt;/</font><font color="#808000">binding</font><font color="#0000ff">&gt;</font>
+<font color="#000000"> </font><font color="#0000ff">&lt;</font><font color="#808000">service</font><font color="#0000ff">&gt;</font>
+<font color="#000000">   definition of a service....</font>
+<font color="#000000"> </font><font color="#0000ff">&lt;/</font><font color="#808000">service</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">definitions</font><font color="#0000ff">&gt;</font>
+</pre>
+</div>
+
+<div class="heading">WSDL Elements</div>
+Three major elements of WSDL that can be defined separately and they are:
+<ol>
+  <li>Types</li>
+  <li>Operations</li>
+  <li>Binding</li>
+</ol>
+
+Following are the elements of WSDL document:
+<ol>
+<li> <i>Definition</i></li>
+<p>&lt;definition&gt;</font> element is define the name of web 
+service, it is la root element for any web services. It declares the namespaces. 
+It is like a container for the other elements of the document.</p>
+
+<div class="code">
+<pre>
+<font color="#0000ff">&lt;</font><font color="#808000">definitions </font><font color="#ff0000">name</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;ServiceName..&quot;</font>
+   <font color="#800080">targetNamespace</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;...&quot;</font>
+   <font color="#ff0000">xmlns</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;..&quot;</font>
+   <font color="#800080">xmlns:soap</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;...&quot;</font>
+   <font color="#800080">xmlns:tns</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;...&quot;</font>
+   <font color="#800080">xmlns:xsd</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;...&quot;</font><font color="#0000ff">&gt;</font>
+<font color="#000000">   ...........................</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">definitions</font><font color="#0000ff">&gt;</font>
+</pre>
+</div>
+
+<li>
+ <i>Types</i></li>
+<p>Every application needed to define its inputs and outputs in 
+and out of there domain for that one element necessary to care of defining 
+data types. In case of web services WSDL &lt;types&gt; 
+element take responsibility to defining data types. The types are XML documents, 
+or document parts. WSDL allowed the types to defined in separate elements in the 
+document that provide benefit to use this types are with multiple 
+Web services.</p>
+
+<div class="code">
+<pre>
+<font color="#0000ff">&lt;</font><font color="#808000">types</font><font color="#0000ff">&gt;</font>
+<font color="#000000">  </font><font color="#0000ff">&lt;</font><font color="#808000">schema </font><font color="#800080">targetNamespace</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;&quot;</font>
+            <font color="#ff0000">xmlns</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;&quot;</font><font color="#0000ff">&gt;</font>
+<font color="#000000">  </font><font color="#0000ff">&lt;</font><font color="#808000">element </font><font color="#ff0000">name</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;Request&quot;</font><font color="#0000ff">&gt;</font>
+<font color="#000000">      </font><font color="#0000ff">&lt;</font><font color="#808000">complexType</font><font color="#0000ff">&gt;&lt;</font><font color="#808000">all</font><font color="#0000ff">&gt;</font>
+<font color="#000000">   </font><font color="#0000ff">&lt;</font><font color="#808000">element </font><font color="#ff0000">name</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;request1&quot; </font><font color="#ff0000">type</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;string&quot;</font><font color="#0000ff">/&gt;</font>
+<font color="#000000">    </font><font color="#0000ff">&lt;/</font><font color="#808000">all</font><font color="#0000ff">&gt;&lt;/</font><font color="#808000">complexType</font><font color="#0000ff">&gt;</font>
+<font color="#000000">   </font><font color="#0000ff">&lt;/</font><font color="#808000">element</font><font color="#0000ff">&gt;</font>
+<font color="#000000">  </font><font color="#0000ff">&lt;/</font><font color="#808000">schema</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">types</font><font color="#0000ff">&gt;</font>
+</pre>
+</div>
+
+<li><i> Message</i></li>
+<p>Between the Web service providers and consumers the data being exchanged 
+described by &lt;message&gt;element.
+Each Web Service has two messages:</p>
+
+<ul>
+  <li>Input, describe parameter of web services. </li>
+  <li>Output, describe return data of web services.</li>
+</ul>
+<div class="code">
+<pre>
+<font color="#0000ff">&lt;</font><font color="#808000">message </font><font color="#ff0000">name</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;sss&quot;</font><font color="#0000ff">&gt;</font>
+<font color="#000000">      </font><font color="#0000ff">&lt;</font><font color="#808000">part </font><font color="#ff0000">name</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;sss1&quot; </font><font color="#ff0000">type</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;..&quot;</font><font color="#0000ff">/&gt;</font>
+<font color="#000000">   </font><font color="#0000ff">&lt;/</font><font color="#808000">message</font><font color="#0000ff">&gt;</font>
+<font color="#000000">   </font><font color="#0000ff">&lt;</font><font color="#808000">message </font><font color="#ff0000">name</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;rrr&quot;</font><font color="#0000ff">&gt;</font>
+<font color="#000000">      </font><font color="#0000ff">&lt;</font><font color="#808000">part </font><font color="#ff0000">name</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;ggg&quot; </font><font color="#ff0000">type</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;&quot;</font><font color="#0000ff">/&gt;</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">message</font><font color="#0000ff">&gt;</font>
+</pre>
+</div>
+
+<p>For each parameter of the Web Service's function defined it 
+may be&nbsp; zero or for more &lt;part&gt;parameter. 
+For all associates with a concrete 
+type defined in the &lt;types&gt;</font> container element.</p>
+<li><i> Port type</i></li>
+<p> The &lt;portType&gt; element combines multiple message elements 
+and&nbsp; mapped to multiple transports through various bindings. We can say 
+that a it provide a complete one way or round-trip operation. A
+&lt;portType&gt; can combine one request and one response message into 
+a single request/response operation. The &lt;portType&gt;
+element commonly used in SOAP services.</p>
+<div class="code">
+<pre>
+<font color="#0000ff">&lt;</font><font color="#808000">message </font><font color="#ff0000">name</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;sss&quot;</font><font color="#0000ff">&gt;</font>
+<font color="#000000">      </font><font color="#0000ff">&lt;</font><font color="#808000">part </font><font color="#ff0000">name</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;sss1&quot; </font><font color="#ff0000">type</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;..&quot;</font><font color="#0000ff">/&gt;</font>
+<font color="#000000">   </font><font color="#0000ff">&lt;/</font><font color="#808000">message</font><font color="#0000ff">&gt;</font>
+<font color="#000000">   </font><font color="#0000ff">&lt;</font><font color="#808000">message </font><font color="#ff0000">name</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;rrr&quot;</font><font color="#0000ff">&gt;</font>
+<font color="#000000">      </font><font color="#0000ff">&lt;</font><font color="#808000">part </font><font color="#ff0000">name</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;ggg&quot; </font><font color="#ff0000">type</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;&quot;</font><font color="#0000ff">/&gt;</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">message</font><font color="#0000ff">&gt;</font>
+</pre>
+</div>
+
+<li><i> Binding</li></i>
+<p>HTTP GET, HTTP POST, or SOAP and other transport make binding 
+easily available. The &lt;binding&gt; element 
+provide that how the portType operation transmitted over the network. It provide 
+concrete information about the protocols that is used for the transaction. 
+Binding also provide information that where service uploaded. </p>
+<div class="code">
+<pre>
+<font color="#0000ff">&lt;</font><font color="#808000">binding </font><font color="#ff0000">name</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;&quot; </font><font color="#ff0000">type</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;&quot;</font><font color="#0000ff">&gt;</font>
+</pre>
+</div>
+
+<li><i> Port</i></li>
+<p>A &lt;port&gt; element defines an individual endpoint by specifying a single 
+address for a binding. Port be the restricted to specify more than one address 
+information. It must be binding the address information.
+The port element has two attributes</p>
+<ol>
+  <li>The name attribute: It provide unique name among all port.</li>
+  <li>The binding attribute: The binding attribute banded the linking 
+  rules that defined by the WSDL.</li>
+</ol>
+<li><i> Service</i></li>
+<p>The&lt;service&gt;element defined the ports 
+and is a collection of port which 
+supported by the Web service. There is only one port element for each protocol 
+which supported the web services. It include the documentation element that 
+provide the Human readable Documentation. </p></ol>
+
+<div class="code">
+<pre>
+<font color="#0000ff">&lt;</font><font color="#808000">service </font><font color="#ff0000">name</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;Name&quot;</font><font color="#0000ff">&gt;</font>
+<font color="#000000">      </font><font color="#0000ff">&lt;</font><font color="#808000">documentation</font><font color="#0000ff">&gt;</font><font color="#000000">Hello</font><font color="#0000ff">&lt;/</font><font color="#808000">documentation</font><font color="#0000ff">&gt;</font>
+<font color="#000000">      </font><font color="#0000ff">&lt;</font><font color="#808000">port </font><font color="#800080">binding</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;&quot; </font><font color="#ff0000">name</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;&quot;</font><font color="#0000ff">&gt;</font>
+<font color="#000000">         </font><font color="#0000ff">&lt;</font><font color="#808000">soap:address</font>
+            <font color="#800080">location</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;&quot;</font><font color="#0000ff">&gt;</font>
+<font color="#000000">      </font><font color="#0000ff">&lt;/</font><font color="#808000">port</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">service</font><font color="#0000ff">&gt;</font>
+</pre>
+</div>
+
+<p>In addition to these major elements, the WSDL specification also defines the 
+following utility elements:</p>
+
+<p> <i>Documentation:</i> This element is used to provide Human readable 
+  document</p>
+ <p><i>Import:</i> Its import the WSDL document.</p>
+</li>
+</ul>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="UDDI.shtml" title="UDDI">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="Advantage_Disadvantage.shtml" title="Advantage and Disadvantage">Next</a></td>
+  </tr> 
+</table>
+
+<!-- Footer Start-->	
+
+		</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->

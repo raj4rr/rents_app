@@ -1,0 +1,145 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>Transactions in WCF,Transactional Resources,Transaction Properties,The Atomic property,The Consistent property,The Isolated property,The Durable property</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="Transactions in WCF,Transactional Resources,Transaction Properties,The Atomic property,The Consistent property,The Isolated property,The Durable property" >
+<meta name="keywords" CONTENT="Transactions in WCF,Transactional Resources,Transaction Properties,The Atomic property,The Consistent property,The Isolated property,The Durable property">
+
+<!--Header start-->
+
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>WCF</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a><img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+			<a href="/wcf">WCF with C# </a>
+              <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/wcf/01/tutorial/basic/">WCF Tutorials</a></div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/wcf/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	  
+
+<!-- Header End-->
+<div class="heading">Transactions in WCF</div>
+
+  <table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="Events.shtml" title="Events
+">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="Transaction%20Protocols%20and%20Managers.shtml" title="Transaction Protocols and Managers">Next</a></td>
+  </tr>
+</table>
+
+<p>Transaction is a building robust, high-quality service-oriented 
+applications. Transactions ensure that a group of related operations occur as a 
+single atomic unit. In other words, every operation in the unit must either all 
+succeed or all fail.</p>
+<p>WCF provides simple, declarative transaction support for service 
+developers, enabling you to configure parameters such as enlistment and voting, 
+all outside the scope of your service.WCF provides a centralized transaction 
+system that you can use to handle transaction operations for you.</p>
+
+<p>The WCF programming model create&nbsp; transactions very easy to use. You 
+group operations into a transaction <font class="point_out">scope </font>. This scope defines the atom of 
+a transaction. The following pseudo code demonstrates this:</p>
+<div class="code">
+<pre>
+<font color="#000000">Using(TransactionScope transcope = </font><font color="#0000ff">new </font><font color="#000000">TransactionScope())</font>
+<font color="#000000">{</font>
+<font color="#000000">Service1.submitRequest(solution);</font>
+<font color="#000000">Service2.submitRequest(solution);</font>
+<font color="#000000">Service3.submitRequest(solution);</font>
+<font color="#000000">transcope.Complete();</font>
+<font color="#000000">}</font>
+</pre>
+</div>
+
+<div class="heading">Transactional Resources</div>
+<p>Transactional programming needs for&nbsp; working with a resource such as a 
+database or a message queue which is provide capability of participating in a 
+transaction, and able to commit or roll back the changes made during the 
+transaction. Such resources have been around in one form or another for 
+decades.</p>
+<h3>Transaction Properties: </h3>
+<p>
+There are four properties: </p>
+<ol>
+<li>
+The Atomic property</li>
+<li>The Consistent property</li>
+
+<li>The Isolated property</li>
+<li>The Durable property</li>
+</ol>
+<p><i>1. The Atomic property: </i>Atomicity means that all the operations must either succeed as a group 
+or fail as a group. If one part of the transaction fails, the entire transaction 
+fails.means that when a transaction completes, all the changes it made to the 
+resource state must be made as if they were all one atomic, indivisible 
+operation.</p>
+
+<p><i>2. The Consistent property: </i>A consistent transaction is one that, when it is complete, leaves the data 
+store in a legal state. Legal state means that no integrity constraints are 
+violated.Note that consistency is different from atomicity.</p>
+<p>Even if all the 
+changes are committed as one atomic operation, the transaction is required to 
+guarantee that all those changes are consistent that they make sense and 
+consistent transactions mean that the outcome is exactly what we expected it to 
+be.</p>
+
+<p><i>3. The Isolated property: </i>
+Isolated means no other entity is able 
+to see the intermediate state of the resources during the transaction That is, 
+each transaction is unaware of other transactions executing concurrently in the 
+system &nbsp;because it may be inconsistent.</p>
+<p>For a transaction to follow the isolation 
+property, the changes that are part of the transaction should not be available 
+until the transaction is complete.</p>
+
+<p><i>4. The Durable property: </i>A transaction must survive failure to be called as durable. Once the 
+transaction is committed, any kind of failure that might affect the data store 
+should not affect it.durability is really a range of options.</p>
+<p> How resilient to 
+such catastrophes the resource should be is an open question that depends on the 
+nature and sensitivity of the data,</p>
+
+ <table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="Events.shtml" title="Events
+">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="Transaction%20Protocols%20and%20Managers.shtml" title="Transaction Protocols and Managers">Next</a></td>
+  </tr>
+</table>
+
+ <!--Footer  -->
+</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/dotnet/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>

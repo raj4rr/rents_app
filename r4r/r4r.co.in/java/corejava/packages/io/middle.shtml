@@ -1,0 +1,98 @@
+<div class="main_content">
+<div class="heading">FILE HANDLING (STREAM)</div>
+<p>All the Java Program can be pass through Input/Output (I/O) streams. A stream is an abstraction that either Consumer or Produces information, linked to a physical device by the Java I/O system. In java an object from which, read and write a sequence of bytes is called an input stream and an output stream respectively, specified in the abstract classes InputStream and OutputStream.  Streams also support different kind of data, including simple bytes, primitive data types, localized characters, and objects.</p>
+<p>The byte-oriented streams are inconvenient/ difficult for processing information stored in Unicode (recall that Unicode uses two bytes per character), there is a separate hierarchy of classes for processing Unicode characters that inherit from the abstract Reader and Writer classes. These classes have read and write operations that are based on 2-byte Unicode characters rather than on single-byte characters</p>
+
+  <div class="heading">IO Tutorials and Interview Questions</div>
+                        <div class="content_link">
+                   <p><a href="/java/corejava/packages/io/basic/tutorial/java_io/index.shtml">IO Basic Tutorials</a></p>
+                    <p><a href="IO_Interview_Questions_And_Answers/">IO FAQs</a></p>
+                    </div>
+
+<div class="heading">Overview of I/O within the Java</div>
+<p>Java I/O can be summarized as  follows</p>
+<ol>
+<li>In Java two kinds of stream use- 1) 8-bits stream introduce in Java 1.0 version, and 2) 16-bits stream introduce in Java 1.1 version, to over come limitation like did not support internationalized character sets (e.g Hindi, Korean , Chinese, 
+Japanese, etc).
+</li>
+<li>The 8-bits Stream are types of InputStream or OutputStream and 16-bits Stream are types of Reader (input) and Writer
+ (output).</li>
+<li>All I/O file in java is passing through using stream.</li>
+<li>Each stream offer one types of I/O service ( e.g. Binary I/O, Character I/O, byte array I/O, file I/O, etc).</li>
+</ol>
+<div class="heading">Byte Streams and Character Streams</div>
+<p>In java language, two type of stream is define- byte and character streams</p>
+<ul><li><i>Byte Streams: </i> Byte Streams provide a standard/ convenient means for handling input or output (I/O) of streams. 
+Generally, used for writing or reading of binary data.</li>
+<li><i>Character Streams: </i>Character Streams provide a standard/ convenient means for handling input and output (I/O) of 
+characters. Generally, used for handle Unicode (encode data) data and in some case, character streams are more efficient than byte streams.</li></ul>
+<div class="heading">Bridging the gap between Byte and character stream</div>
+ <p>Stream classes java.io.InputStreamReader and java.io.OutputStreamWriter able to provide the bridge to the gap between them. 
+ The main purpose of these classes is to convert the byte data into character data according to the specific encoding or 
+ platform default.</p>
+
+ <div class="code">
+ <pre>
+<font color="#008000">/*</font>
+<font color="#008000">* Syntax for Bridging the gap between the Byte and character stream</font>
+<font color="#008000">*/</font>
+
+<font color="#0000ff">package </font><font color="#000000">r4r.co.in;</font>
+
+<font color="#0000ff">class </font><font color="#000000">r4r </font>
+   <font color="#000000">{</font>
+<font color="#0000ff">public static void </font><font color="#000000">main(</font><font color="#ff0000">String
+</font><font color="#000000">[] args) </font>
+<font color="#000000">{</font>
+     <font color="#ff0000">BufferedReader </font><font color="#000000">reader = </font><font color="#0000ff">new 
+     </font><font color="#ff0000">BufferedReader</font><font color="#000000">(</font><font color="#0000ff">new </font>
+     <font color="#ff0000">InputStreamReader</font><font color="#000000">(</font><font color="#ff0000">System</font>
+     <font color="#000000">.in));</font>
+     <font color="#ff0000">System</font><font color="#000000">.out.println(</font><font color="#ff00ff">&quot;
+     Insert input String!&quot;</font><font color="#000000">);</font>
+     <font color="#ff0000">String </font><font color="#000000">string = reader.readLine();</font>
+<font color="#000000">}</font>
+   <font color="#000000">}</font>
+</pre>
+</div>
+<div class="heading">Streams classes</div>
+<p>Streams I/O  classes are belongs to java.io package and are of two types such as</p>
+<ol>
+<li><i>Top level abstract classes: </i>Abstract Reader and Writer classes are parent classes for character-stream based classes in the <i>java.io package. Reader classes are used to read 16-bit character streams and Writer classes are also used to write to 16-bit character streams. java.io.Reader and java.io.Writer are top level classes contain following method for reading and writing to
+ streams.</i></li>
+ <h3>Method of  java.io.Reader/ InputStream</h3>
+ <ul>
+ <li><i>abstract int read(): </i>use for reading the next byte of data from the input stream.</li>
+ <li><i>int read(char cbuf[]): </i> use for reading the bytes from the stream and stores them in cbuf[] array .</li>
+ <li><i>int read(char cbuf[]: </i> int offset, int length)-use for reading upto length bytes of data from the input stream into an
+  array of bytes.</li>
+ <li><i>void close(): </i> use for closes this input stream and releases all the system resources that associated with the stream.
+ </li></ul>
+ <h3>Method of  java.io.Writer /OutputStream</h3>
+ <ul>
+<li><i>int write(int c): </i>Use for write single Method</li>
+<li><i>int write(char cbuf[]): </i>Use for writes cbuf[] from the specified byte array to this output stream.</li>
+<li><i>int write(char cbuf[]: </i> int offset, int length)-Use for writes length bytes from the specified byte array starting at offset to this output stream.</li>
+<li><i>void flush():</i> use for flushes this output stream and forces any buffered output bytes to be written out.</li>
+<li><i>void close(): </i> use for closes this input stream and releases all the system resources that associated with the stream.
+</li></ul>
+<li><i>Descendant implementation classes: </i>Specialized Descendent Stream Classes are the subclass of Top level classes, provide additional functionality. All the Specialized classes is extend their parent classes.</li>
+<p>Use the syntax, the BufferedReader class not only provides buffered reading for efficiency but also provides methods such as 'readLine()' to read a line of input in serialization manner.</p>
+<div class="code">
+<pre>
+<font color="#ff0000">BufferedReader </font><font color="#000000">reader = </font><font color="#0000ff">new </font><font color="#ff0000">BufferedReader</font><font color="#000000">(</font><font color="#0000ff">new </font><font color="#ff0000">InputStreamReader</font><font color="#000000">(</font><font color="#ff0000">System</font><font color="#000000">.in));</font>
+<font color="#ff0000">String </font><font color="#000000">string = reader.readLine();</font>
+</pre>
+</div>
+
+ <p>The Specialized classes also belongs to java.io package like</p>
+ <ul>
+ <li> BufferedReader</li>
+  <li>FileReader</li>
+ <li> StringReader</li>
+  <li>LineNumberReader</li>
+  <li>FilterReader</li>
+  <li>PushbackReader</li>
+  <li>InputStreamReader</li>
+  </ul></ol>
+

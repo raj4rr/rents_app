@@ -1,0 +1,151 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD>
+<meta http-equiv="Content-Language" content="en-us">
+<TITLE>DHTML Moving elements around in the document Examples|dhtml tuotrial</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name="description" CONTENT="dhtml example of Moving elements around in the document how we can 
+move an element in document by using dhtml(dynamic html), basics, component of dhtml,dhtmldom, ns4, IE, javascript, html,htmldom, CSS " >
+<meta name="keywords" CONTENT="Dynamic html example of Moving elements around in the documen, html,
+ htmldom, javascript,cascading style sheet (css), dhtml for beginners, ns4, ie4, how to work, dhtml 
+ examples, dhtml interview questions, dhtml events">
+
+		<!-- header start-->	
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+     <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>DHTML Example</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a><img src="/images/left_menu_bullet.gif"/> <a href="/dhtml">DHTML</a>
+       </div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/dhtml/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	 
+
+<!-- header End-->
+
+<div class="heading">Moving elements around in the document</div>
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="How_TO_Make_web_Pages_With_DHTML.shtml" title="How TO Make web Pages With DHTML">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="how_%20to_start_with_DHTML.shtml" title="how to start with DHTML">Next</a></td>
+  </tr> 
+</table>
+<p> If you want to make animation than you should use moving element around the document. This feature is provided by DHTML. In Netscape, this is done by manipulating the left and top attributes of the &lt;layer&gt; tag.
+
+<div class="comment">Example of moving layer on any math eg</div>
+<div class="code">
+<pre>
+<font color="#000000">&lt;layer name=</font><font color="#ff00ff">&quot;space&quot; </font><font color="#000000">left=</font><font color="#800080">128</font><font color="#000000">&gt;</font>
+<font color="#000000">&lt;img src=</font><font color="#ff00ff">&quot;TN00018A.gif&quot;</font><font color="#000000">&gt;</font>
+<font color="#000000">&lt;/layer&gt;</font>
+<font color="#000000">&lt;script&gt;</font>
+<font color="#0000ff">function </font><font color="#000000">moving(){</font>
+<font color="#0000ff">if </font><font color="#000000">(</font><font color="#ff0000">document</font><font color="#000000">.space.left&lt;</font><font color="#800080">1000</font><font color="#000000">)</font>
+<font color="#ff0000">document</font><font color="#000000">.space.left+=</font><font color="#800080">5</font>
+<font color="#000000">moveid=setTimeout(</font><font color="#ff00ff">&quot;moving()&quot;</font><font color="#000000">,</font><font color="#800080">50</font><font color="#000000">)</font>
+<font color="#000000">}</font>
+<font color="#0000ff">function </font><font color="#000000">come_back(){</font>
+<font color="#000000">clearTimeout(moveid)</font>
+<font color="#ff0000">document</font><font color="#000000">.space.left=</font><font color="#800080">128</font>
+<font color="#000000">}</font>
+<font color="#000000">&lt;/script&gt;</font>
+<font color="#000000">&lt;form&gt;</font>
+<font color="#000000">&lt;input type=</font><font color="#ff00ff">&quot;button&quot; </font><font color="#000000">value=</font><font color="#ff00ff">&quot;Move&quot; </font><font color="#000000">onClick=</font><font color="#ff00ff">&quot;moving()&quot;</font><font color="#000000">&gt;</font>
+<font color="#000000">&lt;input type=</font><font color="#ff00ff">&quot;button&quot; </font><font color="#000000">value=</font><font color="#ff00ff">&quot;Come back&quot; </font><font color="#000000">onClick=</font><font color="#ff00ff">&quot;come_back()&quot;</font><font color="#000000">&gt;</font>
+<font color="#000000">&lt;/form&gt;</font>
+</pre>
+</div>
+
+<div class="comment">Example to rol over mouse movement</div>
+<p>An author creates a rollover effect to make part of a page react when the user moves the mouse pointer over it. With Internet Explorer 4.0, the process of creating a rollover effect is greatly simplified.</p>
+<div class="code">
+<pre>
+<font color="#000000">&lt;HTML&gt;</font>
+<font color="#000000">&lt;HEAD&gt;</font>
+<font color="#000000">&lt;STYLE&gt;</font>
+<font color="#000000">.Item {</font>
+   <font color="#000000">cursor: hand;</font>
+   <font color="#000000">font-family: verdana; </font>
+   <font color="#000000">font-size: </font><font color="#800080">20</font><font color="#000000">;</font>
+   <font color="#000000">font-style: normal;</font>
+   <font color="#000000">background-color: blue;</font>
+   <font color="#000000">color: white</font>
+ <font color="#000000">}</font>
+<font color="#000000">.Highlight {</font>
+   <font color="#000000">cursor: hand; </font>
+   <font color="#000000">font-family: verdana;</font>
+   <font color="#000000">font-size: </font><font color="#800080">20</font><font color="#000000">;</font>
+   <font color="#000000">font-style: italic;</font>
+   <font color="#000000">background-color: white;</font>
+   <font color="#000000">color: blue</font>
+ <font color="#000000">}</font>
+<font color="#000000">&lt;/STYLE&gt;</font>
+<font color="#000000">&lt;/HEAD&gt;</font>
+<font color="#000000">&lt;BODY&gt;</font>
+<font color="#000000">&lt;SPAN </font><font color="#0000ff">class</font><font color="#000000">=Item&gt;Milk&lt;/SPAN&gt;</font>
+<font color="#000000">&lt;SPAN </font><font color="#0000ff">class</font><font color="#000000">=Item&gt;Cookies&lt;/SPAN&gt;</font>
+<font color="#000000">&lt;SPAN </font><font color="#0000ff">class</font><font color="#000000">=Item&gt;Eggs&lt;/SPAN&gt;</font>
+<font color="#000000">&lt;SPAN </font><font color="#0000ff">class</font><font color="#000000">=Item&gt;Ham&lt;/SPAN&gt;</font>
+<font color="#000000">&lt;SPAN </font><font color="#0000ff">class</font><font color="#000000">=Item&gt;Cheese&lt;/SPAN&gt;</font>
+<font color="#000000">&lt;SPAN </font><font color="#0000ff">class</font><font color="#000000">=Item&gt;Pasta&lt;/SPAN&gt;</font>
+<font color="#000000">&lt;SPAN </font><font color="#0000ff">class</font><font color="#000000">=Item&gt;Chicken&lt;/SPAN&gt;</font>
+<font color="#000000">&lt;SCRIPT&gt;</font>
+<font color="#0000ff">function </font><font color="#000000">rollon() {</font>
+  <font color="#0000ff">if </font><font color="#000000">(</font><font color="#ff0000">window</font><font color="#000000">.event.srcElement.className == </font><font color="#ff00ff">&quot;Item&quot;</font><font color="#000000">) {</font>
+     <font color="#ff0000">window</font><font color="#000000">.event.srcElement.className = </font><font color="#ff00ff">&quot;Highlight&quot;</font><font color="#000000">;</font>
+  <font color="#000000">}</font>
+<font color="#000000">}</font>
+<font color="#ff0000">document</font><font color="#000000">.onmouseover = rollon;</font>
+<font color="#0000ff">function </font><font color="#000000">rolloff() {</font>
+  <font color="#0000ff">if </font><font color="#000000">(</font><font color="#ff0000">window</font><font color="#000000">.event.srcElement.className == </font><font color="#ff00ff">&quot;Highlight&quot;</font><font color="#000000">) {</font>
+     <font color="#ff0000">window</font><font color="#000000">.event.srcElement.className = </font><font color="#ff00ff">&quot;Item&quot;</font><font color="#000000">;</font>
+  <font color="#000000">}</font>
+<font color="#000000">}</font>
+<font color="#ff0000">document</font><font color="#000000">.onmouseout = rolloff;</font>
+<font color="#000000">&lt;/SCRIPT&gt;</font>
+<font color="#000000">&lt;/BODY&gt;</font>
+<font color="#000000">&lt;/HTML&gt;</font>
+</pre>
+</div>
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="How_TO_Make_web_Pages_With_DHTML.shtml" title="How TO Make web Pages With DHTML">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="how_%20to_start_with_DHTML.shtml" title="how to start with DHTML">Next</a></td>
+  </tr> 
+</table>
+
+<!-- Footer Start-->	
+
+		</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/webtechnology/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->

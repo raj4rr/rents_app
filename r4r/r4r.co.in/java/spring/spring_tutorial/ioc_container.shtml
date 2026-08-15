@@ -1,0 +1,128 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD>
+<meta http-equiv="Content-Language" content="en-us">
+<TITLE>IOC() container in Spring| sprin basics</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name="description" CONTENT="inversion of control tutorial provides you spring all topics in detail from
+basics level concepts to higher level concepts" >
+<meta name="keywords" CONTENT="IOC(inversion of control) introduction, IOC tutorial, aspect oriented programming (AOP), database access (JDBC), Transaction Management, Web MVC 
+framework, Web Flow, Exception handling, EJB integration and Sending email">
+
+		<!-- header start-->	
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+     <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>Spring Tutorials</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+			<img src="/images/left_menu_bullet.gif"/> <a href="/java/spring/">Spring</a>
+
+       </div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/spring/commonfiles/leftmenucore.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content">
+<div class="heading">Modern Spring IoC Container</div>
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="spring_jar.shtml" title="spring_jar">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="spring_bean_and_applicationcontext_container.shtml" title="spring_bean_and_applicationcontext_container">Next</a></td>
+  </tr> 
+</table>
+<p>The Spring IoC (Inversion of Control) container is at the core of the Spring Framework. The container automatically creates objects, wires them together, configures them, and manages their complete lifecycle from creation until destruction. The Spring container uses dependency injection (DI) to manage the components that make up an application. These managed objects are called <strong>Spring Beans</strong>.</p>
+<p>The Spring container gets its instructions on what objects to instantiate, configure, and assemble by reading configuration metadata. In modern Spring, this configuration metadata is provided almost exclusively via <strong>Java annotations</strong> (`@Component`, `@Service`, `@Configuration`, `@Bean`).</p>
+<ol>
+<li>
+Instantiate the application class
+</li><li>
+Configure the object
+</li><li>
+Assemble the dependencies between the objects
+</li>
+</ol>
+<div class="image">
+<img src="images/ioc_container.png">
+</div>
+<div class="heading">Types of Spring IoC container </div>
+<p>Historically, Spring provided two container interfaces: <code>BeanFactory</code> and <code>ApplicationContext</code>. Today, <code>ApplicationContext</code> is used universally.</p>
+
+<p><i>1. Spring BeanFactory:</i> The root interface for accessing the Spring container. It provides basic support for DI. The legacy implementation class was <code>XmlBeanFactory</code>, but this has been deprecated since Spring 3.1 and should no longer be used.</p>
+
+<p><i>2. Spring ApplicationContext:</i> This is a sub-interface of <code>BeanFactory</code>. It adds more enterprise-specific functionality such as resolving textual messages from a properties file, publishing application events, and application-layer specific contexts (like <code>WebApplicationContext</code>). <strong>ApplicationContext is the modern standard container.</strong></p>
+
+<h3>Modern Container Initialization</h3>
+<p>In a standard Java application without Spring Boot, you instantiate the container using <code>AnnotationConfigApplicationContext</code>:</p>
+<div class="code">
+<pre>
+<font color="#000000">ApplicationContext context = </font>
+<font color="#0000ff">new </font><font color="#000000">AnnotationConfigApplicationContext(AppConfig.</font><font color="#0000ff">class</font><font color="#000000">);</font>
+<font color="#000000">UserService service = context.getBean(UserService.</font><font color="#0000ff">class</font><font color="#000000">);</font>
+</pre>
+</div>
+
+<h3>Spring Boot Initialization</h3>
+<p>If you are using Spring Boot, the framework handles the creation of the <code>ApplicationContext</code> for you under the hood when you call <code>SpringApplication.run()</code>:</p>
+<div class="code">
+<pre>
+<font color="#000000">@</font><font color="#0000ff">SpringBootApplication</font>
+<font color="#0000ff">public class </font><font color="#000000">Application {</font>
+<font color="#0000ff">    public static void </font><font color="#000000">main(String[] args) {</font>
+<font color="#000000">        ApplicationContext context = SpringApplication.run(Application.</font><font color="#0000ff">class</font><font color="#000000">, args);</font>
+<font color="#000000">    }</font>
+<font color="#000000">}</font>
+</pre>
+</div>
+
+<div class="heading">Approaches to Inversion of Control</div>
+<p>Following are two approaches used to provide the Implementation of IOC:</p>
+<ol>
+<li>
+Dependency Injection (DI)
+</li><li>
+Dependency Lookup (DL)
+</li>
+</ol>
+<p><i>Dependency Injection (DI):</i> Dependencies of an object are automatically satisfied by the IoC container. The object does not have to actively ask for its dependencies.</p>
+<p><i>Dependency Lookup (DL):</i> Dependencies of an object are satisfied only when the object explicitly asks the container to provide them (e.g., calling <code>context.getBean()</code>).</p>
+<p><i>Note:</i> Modern Spring applications rely almost entirely on Dependency Injection (DI) via constructor injection. Dependency Lookup is generally considered an anti-pattern as it couples your code to the Spring Framework API.</p>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="spring_jar.shtml" title="spring_jar">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="spring_bean_and_applicationcontext_container.shtml" title="sp
+    ring_bean_and_applicationcontext_container">Next</a></td>
+  </tr> 
+</table>
+
+		</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->

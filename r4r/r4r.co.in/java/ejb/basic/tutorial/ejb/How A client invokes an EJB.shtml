@@ -1,0 +1,156 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+
+<HTML><HEAD>
+
+<meta http-equiv="Content-Language" content="en-us">
+
+<TITLE>How a client invoke EJB</TITLE>
+
+<META content="Rajesh Kumar" name="author">
+
+<META http-equiv="expires" content="0">
+
+<META content="r4r.co.in" name="owner">
+
+<META http-equiv=Content-Type content="text/html; charset=windows-1252">
+
+<meta name="description" CONTENT="How A client Invokes an EJB?,Narrow the returned object from the JNDI lookup to the home interface, as follows" >
+
+<meta name="keywords" CONTENT="How A client Invokes an EJB?,Narrow the returned object from the JNDI lookup to the home interface, as follows">
+
+<!--Header start-->
+
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>EJB</h1>
+            <div class="link_menu"><A href="/">R4R</A>
+
+<img border="0" src="/images/left_menu_bullet.gif" width="11" height="6"> <A href="/java">Java</A><img border="0" src="/images/left_menu_bullet.gif" width="11" height="6"><A href="/java/ejb/">EJB</A></font> <img border="0" src="/images/left_menu_bullet.gif" width="11" height="6"></div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/ejb/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	  
+
+<!-- header End-->
+
+<div class="heading">How A client Invokes an EJB?</div>
+
+ <table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="Enterprise%20container.shtml" title=" Introduction of Enterprise Container
+">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="Session%20bean.shtml" title="Session Beans">Next</a></td>
+  </tr>
+</table>
+<p>The all EJB clients implementing the steps to instantiating into a bean, and invoking its methods, 
+and destroy the bean:</p>
+
+<p>
+The home interface through a JNDI lookup. Follow JNDI and the EJB specification 
+
+conventions for retrieving the bean reference, and including setting up JNDI 
+
+properties if the bean is remote to the client. See <font class="point_out">How to Lookup the EJB 
+
+Reference</font>.</p>
+
+<h3>
+Narrow the returned object from the JNDI lookup to the home interface, as 
+
+follows:</h3>
+
+<p>When accessing the remote 
+
+interface, use the PortableRemoteObject.narrow method to narrow the returned 
+
+object.</p>
+<p>
+
+When accessing the local interface, cast the returned object with the local home 
+
+interface type.</p>
+<p>
+
+Create instances of the bean in the server through the returned object. Invoking 
+
+the create method on the home interface causes a new bean to be instantiated and 
+
+returns a bean reference.</p>
+
+<p><i>Note: </i>For entity beans that are already instantiated, you can retrieve the bean reference through one of its 
+
+finder methods.Invoke business methods, which are defined in the component (remote or local) 
+interface.After you are finished, invoke the remove method. This will either remove the 
+bean instance or return it to a pool. The container controls how to act on the 
+remove method.</p>
+
+<div class="code">
+<pre>
+<font color="#0000ff">package </font><font color="#000000">mypack;</font>
+<font color="#0000ff">import </font><font color="#000000">java.util.</font><font color="#ff0000">Scanner</font><font color="#000000">;</font>
+<font color="#0000ff">import </font><font color="#000000">javax.naming.</font><font color="#ff0000">InitialContext</font><font color="#000000">;</font>
+<font color="#0000ff">public class </font><font color="#000000">client</font>
+<font color="#000000">{</font>
+<font color="#0000ff">public static void </font><font color="#000000">main(Sting[] arg)</font>
+<font color="#000000">{</font>
+<font color="#0000ff">try</font>
+<font color="#000000">{</font>
+<font color="#ff0000">System</font><font color="#000000">.out.println(</font><font color="#ff00ff">&quot;obtaining remote object...&quot;</font><font color="#000000">);</font>
+<font color="#ff0000">InitialContext </font><font color="#000000">IC=</font><font color="#0000ff">new </font><font color="#000000">initialContext();</font>
+<font color="#000000">Adder remote=(Adder) IC.lookup(</font><font color="#ff00ff">&quot;adder&quot;</font><font color="#000000">);</font>
+<font color="#ff0000">System</font><font color="#000000">.out.println(</font><font color="#ff00ff">&quot;Remoking object obtained invoking method&quot;</font><font color="#000000">);</font>
+<font color="#ff0000">Scanner</font><font color="#000000">.s=</font><font color="#0000ff">new </font><font color="#ff0000">Scanner</font><font color="#000000">(</font><font color="#ff0000">System</font><font color="#000000">.in);</font>
+<font color="#ff0000">System</font><font color="#000000">.out.println(</font><font color="#ff00ff">&quot;Enter first No:&quot;</font><font color="#000000">);</font>
+<font color="#0000ff">int </font><font color="#000000">a=s.nextInt();</font>
+<font color="#ff0000">System</font><font color="#000000">.out.print(</font><font color="#ff00ff">&quot;Enter Second No:&quot;</font><font color="#000000">);</font>
+<font color="#0000ff">int </font><font color="#000000">b=s.nextInt();</font>
+<font color="#0000ff">int </font><font color="#000000">c=remote.add(a,b);</font>
+<font color="#ff0000">System</font><font color="#000000">.out.println(</font><font color="#ff00ff">&quot;Sum is&quot;</font><font color="#000000">+c);</font>
+<font color="#000000">}</font>
+<font color="#0000ff">catch </font><font color="#000000">(</font><font color="#ff0000">Exception </font><font color="#000000">e)</font>
+<font color="#000000">{</font>
+<font color="#ff0000">System</font><font color="#000000">.out.println(e);</font>
+<font color="#000000">}</font>
+<font color="#000000">}</font>
+</pre>
+</div>
+
+ <table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="Enterprise%20container.shtml" title=" Introduction of Enterprise Container
+">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="Session%20bean.shtml" title="Session Beans">Next</a></td>
+  </tr>
+</table>
+
+<!-- Footer Start-->
+</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>

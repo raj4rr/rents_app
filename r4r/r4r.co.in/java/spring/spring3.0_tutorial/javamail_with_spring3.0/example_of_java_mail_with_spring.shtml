@@ -1,0 +1,221 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD>
+<meta http-equiv="Content-Language" content="en-us">
+<TITLE>Javamail with Spring Examples|Spring Examples</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name="description" CONTENT="Javamail with Spring Examples learn with r4r tutorial provides all topics 
+with examples and interview questions" >
+<meta name="keywords" CONTENT="Spring,tutorial, examples, javamail with spring examples,spring javamail maven dependencies
+, spring javamail properties, spring javamail attachment">
+
+		<!-- header start-->	
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+     <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>Spring Tutorials</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+			<img src="/images/left_menu_bullet.gif"/> <a href="/spring/">Spring</a>
+
+       </div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/spring/commonfiles/leftmenucore.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	 
+
+<div class="heading">Java Mail with Spring3.0 Example</div>
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="java_mail_with_spring.shtml" title="java_mail_with_spring">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="java_mail_with_spring.shtml" title="java_mail_with_spring">Next</a></td>
+  </tr> 
+</table>
+<p>Spring framework provides many useful interfaces and classes for sending and receiving mails in Java. The <font class="point_out">org.springframework.mail </font>package is main package to support mail in Spring. Below we are providing the example of spring3.0 with JavaMail. </p>
+<div class="heading">Technologies used to run this Application.</div>
+<ol>
+<li>
+Spring 3.0
+</li><li>
+Eclipse IDE
+</li><li>
+JDK 1.6
+</li>
+</ol>
+<p>Let us have working Eclipse IDE in place and follow the following steps to create a Spring application:</p>
+<p><i>Step1.</i> Now you create a simple Java Project using Eclipse IDE. Follow the option<font class="point_out"> File -> New -> Project </font>and finally select Java Project wizard from the wizard list. Now name your project as <font class="point_out">JavaMailwithSpring3.0</font> using the wizard window as given below.</p>
+<div class="image">
+<img src="../images/javamail_spring_example.png">
+</div>
+<div class="heading">Add spring jar files</div>
+<p><i>Step2.</i> Now add spring jar in your project, To do this, right click on your project name<font class="point_out"> JavaMailwithSpring3.0</font> and then follow the following option available in context menu:<font class="point_out">  Build Path -> Configure Build Path</font> to display the Java Build Path window as given below. There are some jar files required to run this application, To load the jar files in eclipse IDE,<font class="point_out">  Right click on your project - Build Path - Add external archives - select all the required jar files - finish.</font></p>
+<ol>
+<li>
+com.springsource.org.apache.commons.logging-1.1.1.jar
+</li><li>
+com.springsource.org.apache.log4j-1.2.15.jar
+</li><li>
+jmxtools-1.2.1.jar
+</li><li>
+org.springframework.asm-3.1.0.
+</li><li>
+org.springframework.beans-3.1.0.
+</li><li>
+org.springframework.context.support-3.1.0.
+</li><li>
+org.springframework.context-3.1.0.
+</li><li>
+org.springframework.core-3.1.0.
+</li><li>
+spring-expression-3.1.0.RELEASE.jar
+</li><li>
+activation.jar
+</li><li>
+mail.jar
+</li>
+</ol>
+<div class="heading">Create Java class file</div>
+<p><i>Step3.</i> Now you create simply java file with any name. First we need to create a package with any name like<font class="point_out"> com.r4r.</font> To do this,<font class="point_out">  Right click on src in package </font>explorer section and follow the option :<font class="point_out">  New -> Package.</font> and then <font class="point_out"> Right click on package(com.r4r) - New - class - Write the class name e.g. Mail - finish.</font> Write the following code:</p>
+<div class="code">
+<pre>
+<font color="#0000ff">package </font><font color="#000000">com.r4r;</font>
+<font color="#0000ff">import </font><font color="#000000">java.io.</font><font color="#ff0000">File</font><font color="#000000">;  </font>
+<font color="#0000ff">import </font><font color="#000000">javax.mail.MessagingException;  </font>
+<font color="#0000ff">import </font><font color="#000000">javax.mail.internet.MimeMessage;  </font>
+<font color="#0000ff">import </font><font color="#000000">org.springframework.core.io.FileSystemResource;  </font>
+<font color="#0000ff">import </font><font color="#000000">org.springframework.mail.javamail.JavaMailSender;  </font>
+<font color="#0000ff">import </font><font color="#000000">org.springframework.mail.javamail.MimeMessageHelper;  </font>
+
+<font color="#0000ff">public class </font><font color="#000000">Mail{  </font>
+    <font color="#0000ff">private </font><font color="#000000">JavaMailSender mailSender;  </font>
+
+    <font color="#0000ff">public void </font><font color="#000000">setMailSender(JavaMailSender mailSender) {  </font>
+        <font color="#0000ff">this</font><font color="#000000">.mailSender = mailSender;  </font>
+    <font color="#000000">}  </font>
+
+    <font color="#0000ff">public void </font><font color="#000000">sendMail(</font><font color="#0000ff">final </font><font color="#ff0000">String </font><font color="#000000">from, </font><font color="#0000ff">final </font><font color="#ff0000">String </font><font color="#000000">to,</font>
+		<font color="#0000ff">final </font><font color="#ff0000">String </font><font color="#000000">subject,</font><font color="#0000ff">final </font><font color="#ff0000">String </font><font color="#000000">msg) {  </font>
+
+        <font color="#0000ff">try</font><font color="#000000">{  </font>
+        <font color="#000000">MimeMessage message = mailSender.createMimeMessage();  </font>
+        <font color="#000000">MimeMessageHelper helper = </font><font color="#0000ff">new </font><font color="#000000">MimeMessageHelper(message, </font><font color="#0000ff">true</font><font color="#000000">);  </font>
+        <font color="#000000">helper.setFrom(from);  </font>
+        <font color="#000000">helper.setTo(to);  </font>
+        <font color="#000000">helper.setSubject(subject);  </font>
+        <font color="#000000">helper.setText(msg);  </font>
+
+   <font color="#008000">// attach the file  </font>
+   <font color="#000000">FileSystemResource file = </font><font color="#0000ff">new </font><font color="#000000">FileSystemResource(</font><font color="#0000ff">new </font><font color="#ff0000">File</font><font color="#000000">(</font><font color="#ff00ff">&quot;C:/Users/...&quot;</font><font color="#000000">));  </font>
+        <font color="#008000">//give the any path of file in your system</font>
+        <font color="#000000">helper.addAttachment(</font><font color="#ff00ff">&quot;spring.jpg&quot;</font><font color="#000000">, file);</font>
+		<font color="#008000">//image will be sent by this name  </font>
+
+        <font color="#000000">mailSender.send(message);  </font>
+        <font color="#000000">}</font><font color="#0000ff">catch</font><font color="#000000">(MessagingException e)</font>
+        <font color="#000000">{</font>
+        	<font color="#000000">e.printStackTrace();</font>
+        <font color="#000000">}  </font>
+    <font color="#000000">}  </font>
+<font color="#000000">} </font>
+</pre>
+</div>
+<p><i>Step4.</i> Now create the xml file click on <font class="point_out"> src- new -file -give the file name like applicationContext.xml </font>then finish.</p>
+<div class="code">
+<pre>
+<font color="#0000ff">&lt;?xml </font><font color="#ff0000">version</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;1.0&quot; </font><font color="#ff0000">encoding</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;UTF-8&quot;</font><font color="#800080">?</font><font color="#0000ff">&gt;</font><font color="#000000">  </font>
+<font color="#0000ff">&lt;</font><font color="#808000">beans  </font>
+    <font color="#ff0000">xmlns</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;http://www.springframework.org/schema/beans&quot;  </font>
+    <font color="#800080">xmlns:xsi</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;  </font>
+    <font color="#800080">xmlns:p</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;http://www.springframework.org/schema/p&quot;  </font>
+    <font color="#800080">xsi:schemaLocation</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;http://www.springframework.org/schema/beans   </font>
+<font color="#ff00ff">http://www.springframework.org/schema/beans/spring-beans-3.0.xsd&quot;</font><font color="#0000ff">&gt;</font><font color="#000000">  </font>
+<font color="#000000">  </font>
+<font color="#0000ff">&lt;</font><font color="#808000">bean </font><font color="#800080">id</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;mailSender&quot; </font>
+<font color="#800080">class</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;org.springframework.mail.javamail.JavaMailSenderImpl&quot;</font><font color="#0000ff">&gt;</font><font color="#000000">  </font>
+<font color="#000000">  </font><font color="#0000ff">&lt;</font><font color="#808000">property </font><font color="#ff0000">name</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;host&quot; </font><font color="#800080">value</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;smtp.gmail.com&quot; </font><font color="#0000ff">/&gt;</font><font color="#000000">  </font>
+<font color="#000000">  </font><font color="#0000ff">&lt;</font><font color="#808000">property </font><font color="#ff0000">name</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;port&quot; </font><font color="#800080">value</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;587&quot; </font><font color="#0000ff">/&gt;</font>
+<font color="#000000">    </font><font color="#0000ff">&lt;</font><font color="#808000">property </font><font color="#ff0000">name</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;username&quot; </font><font color="#800080">value</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;anygmailid@gmail.com&quot; </font><font color="#0000ff">/&gt;</font><font color="#000000">  </font>
+<font color="#000000">    </font><font color="#0000ff">&lt;</font><font color="#808000">property </font><font color="#ff0000">name</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;password&quot; </font><font color="#800080">value</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;anygmailpassword&quot; </font><font color="#0000ff">/&gt;</font><font color="#000000">  </font>
+<font color="#000000">    </font><font color="#0000ff">&lt;</font><font color="#808000">property </font><font color="#ff0000">name</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;javaMailProperties&quot;</font><font color="#0000ff">&gt;</font><font color="#000000">  </font>
+<font color="#000000">       </font><font color="#0000ff">&lt;</font><font color="#808000">props</font><font color="#0000ff">&gt;</font><font color="#000000">  </font>
+<font color="#000000">            </font><font color="#0000ff">&lt;</font><font color="#808000">prop </font><font color="#800080">key</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;mail.smtp.auth&quot;</font><font color="#0000ff">&gt;</font><font color="#000000">true</font><font color="#0000ff">&lt;/</font><font color="#808000">prop</font><font color="#0000ff">&gt;</font>
+<font color="#000000">       	      </font><font color="#0000ff">&lt;</font><font color="#808000">prop </font><font color="#800080">key</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;mail.smtp.starttls.enable&quot;</font><font color="#0000ff">&gt;</font><font color="#000000">true</font><font color="#0000ff">&lt;/</font><font color="#808000">prop</font><font color="#0000ff">&gt;</font>
+<font color="#000000">              </font>
+<font color="#000000">        </font><font color="#0000ff">&lt;/</font><font color="#808000">props</font><font color="#0000ff">&gt;</font><font color="#000000">  </font>
+<font color="#000000">    </font><font color="#0000ff">&lt;/</font><font color="#808000">property</font><font color="#0000ff">&gt;</font><font color="#000000">  </font>
+<font color="#0000ff">&lt;/</font><font color="#808000">bean</font><font color="#0000ff">&gt;</font><font color="#000000">  </font>
+<font color="#0000ff">&lt;</font><font color="#808000">bean </font><font color="#800080">id</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;mail&quot; </font><font color="#800080">class</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;com.r4r.Mail&quot;</font><font color="#0000ff">&gt;</font><font color="#000000">  </font>
+<font color="#000000">    </font><font color="#0000ff">&lt;</font><font color="#808000">property </font><font color="#ff0000">name</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;mailSender&quot; </font><font color="#800080">ref</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;mailSender&quot; </font><font color="#0000ff">/&gt;</font><font color="#000000">  </font>
+<font color="#0000ff">&lt;/</font><font color="#808000">bean</font><font color="#0000ff">&gt;</font><font color="#000000">  </font>
+<font color="#0000ff">&lt;/</font><font color="#808000">beans</font><font color="#0000ff">&gt;</font><font color="#000000"> </font>
+</pre>
+</div>
+
+<p><i>Step5.</i> Now Create the java Main class (Test.java). </p>
+<div class="code">
+<pre>
+<font color="#0000ff">package </font><font color="#000000">com.r4r;</font>
+
+<font color="#0000ff">import </font><font color="#000000">org.springframework.beans.factory.*;  </font>
+<font color="#0000ff">import </font><font color="#000000">org.springframework.beans.factory.xml.XmlBeanFactory;  </font>
+<font color="#0000ff">import </font><font color="#000000">org.springframework.core.io.*;  </font>
+<font color="#0000ff">public class </font><font color="#000000">Test {   </font>
+<font color="#0000ff">public static void </font><font color="#000000">main(</font><font color="#ff0000">String</font><font color="#000000">[] args) {  </font>
+
+<font color="#000000">Resource resourse=</font><font color="#0000ff">new </font><font color="#000000">ClassPathResource(</font><font color="#ff00ff">&quot;applicationContext.xml&quot;</font><font color="#000000">);  </font>
+<font color="#000000">BeanFactory beanfactory=</font><font color="#0000ff">new </font><font color="#000000">XmlBeanFactory(resourse);  </font>
+<font color="#000000">Mail m=(Mail)beanfactory.getBean(</font><font color="#ff00ff">&quot;mail&quot;</font><font color="#000000">);  </font>
+<font color="#ff0000">String </font><font color="#000000">sender=</font><font color="#ff00ff">&quot;xyz@gmail.com&quot;</font><font color="#000000">;</font><font color="#008000">//write here sender gmail id  </font>
+<font color="#ff0000">String </font><font color="#000000">receiver=</font><font color="#ff00ff">&quot;abc@gmail.com&quot;</font><font color="#000000">;</font><font color="#008000">//write here receiver id  </font>
+<font color="#000000">m.sendMail(sender,receiver,</font><font color="#ff00ff">&quot;hi&quot;</font><font color="#000000">,</font><font color="#ff00ff">&quot;welcome to my friend...&quot;</font><font color="#000000">);  </font>
+
+<font color="#ff0000">System</font><font color="#000000">.out.println(</font><font color="#ff00ff">&quot;success mail with attachment....&quot;</font><font color="#000000">);  </font>
+<font color="#000000">}  </font>
+<font color="#000000">}  </font>
+</pre>
+</div>
+<p>Now run the Application you see the following output:</p>
+<div class="output">
+<div class="image">
+<img src="../images/javamail_spring_output.png">
+</div>
+</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="java_mail_with_spring.shtml" title="java_mail_with_spring">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="java_mail_with_spring.shtml" title="java_mail_with_spring">Next</a></td>
+  </tr> 
+</table>
+
+		</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->

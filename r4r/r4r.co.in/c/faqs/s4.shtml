@@ -1,0 +1,238 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+
+<HTML><HEAD><TITLE>C Interview Questions And Answers</TITLE>
+<META content=r4r.co.in name=owner>
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="Learn Easily C Interview Questions And Answers,c tutorial,c basics,c interview questions,C Examples,interview questions and answers with examples, programming language" >
+<meta name="keywords" CONTENT="C Interview Questions And Answers,c tutorial,c basics,c interview questions,C Examples,interview questions and answers with examples, programming language,examples,pointer,function,loop,else,if else,while,array,pre processor,post processor,structures,memory menagement,string,constants,variables,decisions making,c unions,c memory allocation, c operators,subejctive question,obejective question,literals,directives,stacks,queu,calloc,malloc">
+<link href="/css/main.css" rel="stylesheet" type="text/css" />
+        <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>C Interview Questions And Answers</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a><img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/c/">C </a>
+              <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/c/faqs/">C FAQS</a></div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/c/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 
+
+		<!-- Header End-->	
+<div class="heading">C FAQS</div> 
+    <table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;">
+    	<a href="s3.shtml" title="C Interview Questions And Answers">Previous</a>
+    </td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml" title="C FAQS">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="s5.shtml" title="C Interview Questions And Answers">Next</a></td>
+  </tr>
+</table>
+  <p><span class="style3"><font face="Verdana" size="2"><b>Q:Which bit wise operator is suitable for checking 
+  whether a particular bit is on or off? <br>
+  Ans:</b>The bitwise AND operator. Here is an example:enum {<br>
+  KBit0 = 1,<br>
+  KBit1,<br>
+  <br>
+  KBit31,<br>
+  };<br>
+  <br>
+  if ( some_int &amp; KBit24 )<br>
+  printf ( Bit number 24 is ON\n );<br>
+  else<br>
+  printf ( Bit number 24 is OFF\n );<br>
+  <br>
+  <b>Q:Which bit wise operator is suitable for turning off a particular bit in a 
+  number? <br>
+  Ans:</b>The bitwise AND operator, again. In the following code snippet, the 
+  bit number 24 is reset to zero. <br>
+  some_int = some_int &amp; ~KBit24; <br>
+  <br>
+  <b>Q:Which bit wise operator is suitable for putting on a particular bit in a 
+  number? <br>
+  Ans:</b>The bitwise OR operator. In the following code snippet, the bit number 
+  24 is turned ON: <br>
+  some_int = some_int | KBit24; <br>
+  <br>
+  <b>Q:Does there exist any other function which can be used to convert an 
+  integer or a float to a string? <br>
+  Ans:</b>Some implementations provide a nonstandard function called itoa(), 
+  which converts an integer to string. <br>
+
+  <br>
+  #include <br>
+  <br>
+  char *itoa(int value, char *string, int radix); <br>
+  <br>
+  DESCRIPTION<br>
+  The itoa() function constructs a string representation of an integer. <br>
+  <br>
+  PARAMETERS<br>
+  value:<br>
+  Is the integer to be converted to string representation. <br>
+  <br>
+  string:<br>
+  Points to the buffer that is to hold resulting string.<br>
+  The resulting string may be as long as seventeen bytes. <br>
+  <br>
+  radix:<br>
+  Is the base of the number; must be in the range 2 - 36. <br>
+  <br>
+  A portable solution exists. One can use sprintf(): <br>
+  <br>
+  char s[SOME_CONST];<br>
+  int i = 10;<br>
+  float f = 10.20;<br>
+  <br>
+  sprintf ( s, %d %f\n, i, f );<br>
+  <br>
+  <b>Q:Why does malloc(0) return valid memory address ? What's the use ? <br>
+  </b>Ans:<b>malloc(0)</b> does not return a non-NULL under every 
+  implementation.<br>
+  An implementation is free to behave in a manner it finds<br>
+  suitable, if the allocation size requested is zero. The<br>
+  implmentation may choose any of the following actions:<br>
+  <br>
+  * A null pointer is returned.<br>
+  * The behavior is same as if a space of non-zero size<br>
+  was requested. In this case, the usage of return<br>
+  value yields to undefined-behavior.<br>
+  <br>
+  <b>Q:Notice, however, that if the implementation returns a non-NULL value for 
+  a request of a zero-length space, a pointer to object of ZERO length is 
+  returned! Think, how an object of zero size should be represented?<br>
+  Ans:</b>For implementations that return non-NULL values, a typical usage is as 
+  follows:<br>
+  void<br>
+  func ( void )<br>
+  {<br>
+  int *p; /* p is a one-dimensional array,<br>
+  whose size will vary during the<br>
+  the lifetime of the program */<br>
+  size_t c;<br>
+  p = malloc(0); /* initial allocation */<br>
+  if (!p)<br>
+  {<br>
+  perror (FAILURE );<br>
+  return;<br>
+  }<br>
+  /*  */<br>
+  while (1)<br>
+  {<br>
+  c = (size_t)  ; /* Calculate allocation size */<br>
+  p = realloc ( p, c * sizeof *p );<br>
+  /* use p, or break from the loop */<br>
+  /*  */<br>
+  }<br>
+  return;<br>
+  }<br>
+  <br>
+  Notice that this program is not portable, since an implementation<br>
+  is free to return NULL for a malloc(0) request, as the C Standard<br>
+  does not support zero-sized objects.<br>
+
+  <br>
+  <b>Q:What are the different storage classes in C?<br>
+  Ans:</b>C has three types of storage: automatic, static and allocated. <br>
+  <br>
+  Variable having block scope and without static specifier have automatic 
+  storage duration. <br>
+  <br>
+  Variables with block scope, and with static specifier have static scope. 
+  Global variables (i.e, file scope) with or without the the static specifier 
+  also have static scope. <br>
+  <br>
+  Memory obtained from calls to malloc(), alloc() or realloc() belongs to 
+  allocated storage class. <br>
+  <br>
+  <b>Q:What is the difference between strings and character arrays? <br>
+  Ans:</b>A major difference is: string will have static storage duration, 
+  whereas as a character array will not, unless it is explicity specified by 
+  using the static keyword. <br>
+  <br>
+  Actually, a string is a character array with following properties: <br>
+  <br>
+  * the multibyte character sequence, to which we generally call string, is used 
+  to initialize an array of static storage duration. The size of this array is 
+  just sufficient to contain these characters plus the terminating NUL 
+  character. <br>
+  <br>
+  * it not specified what happens if this array, i.e., string, is modified. <br>
+  <br>
+  * Two strings of same value[1] may share same memory area. For example, in the 
+  following declarations: <br>
+  <br>
+  char *s1 = Calvin and Hobbes;<br>
+  char *s2 = Calvin and Hobbes;<br>
+  <br>
+  the strings pointed by s1 and s2 may reside in the same memory location. But, 
+  it is not true for the following: <br>
+  <br>
+  char ca1[] = Calvin and Hobbes;<br>
+  char ca2[] = Calvin and Hobbes;<br>
+  <br>
+  [1] The value of a string is the sequence of the values of the contained 
+  characters, in order. <br>
+  <br>
+  <b>Q:Write down the equivalent pointer expression for referring the same 
+  element a[i][j][k][l]? <br>
+  Ans:</b>a[i] == *(a+i)<br>
+  a[i][j] == *(*(a+i)+j)<br>
+  a[i][j][k] == *(*(*(a+i)+j)+k)<br>
+  a[i][j][k][l] == *(*(*(*(a+i)+j)+k)+l)<br>
+  <br>
+  <b>Q:Which bit wise operator is suitable for checking whether a particular bit 
+  is on or off? <br>
+  </b><br>
+  <b>Ans:</b>The bitwise AND operator. Here is an example:enum {<br>
+  KBit0 = 1,<br>
+  KBit1,<br>
+  <br>
+  KBit31,<br>
+  };<br>
+  <br>
+  if ( some_int &amp; KBit24 )<br>
+  printf ( Bit number 24 is ON\n );<br>
+  else<br>
+  printf ( Bit number 24 is OFF\n );<br>
+  <br>
+  <b>Q:Which bit wise operator is suitable for turning off a particular bit in a 
+  number? <br>
+  Ans:</b>The bitwise AND operator, again. In the following code snippet, the 
+  bit number 24 is reset to zero. <br>
+  some_int = some_int &amp; ~KBit24;</font> <br>
+  <br>
+    <table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;">
+    	<a href="s3.shtml" title="C Interview Questions And Answers">Previous</a>
+    </td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml" title="C FAQS">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="s5.shtml" title="C Interview Questions And Answers">Next</a></td>
+  </tr>
+</table>
+<!--Footer  --> 
+</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>

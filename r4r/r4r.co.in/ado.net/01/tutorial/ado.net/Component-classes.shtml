@@ -1,0 +1,136 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>Component classes;The Connection String in the App.Config File;Access database at runtime using ADO.NET;Describe CommandType property of a SQLCommand in ADO.NET;Define connected and disconnected data access in ADO.NET;Define connected and disconnected data access in ADO.NET;</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="Component classes;The Connection String in the App.Config File;Access database at runtime using ADO.NET;Describe CommandType property of a SQLCommand in ADO.NET;Define connected and disconnected data access in ADO.NET;Define connected and disconnected data access in ADO.NET;" >
+<meta name="keywords" CONTENT="Component classes;The Connection String in the App.Config File;Access database at runtime using ADO.NET;Describe CommandType property of a SQLCommand in ADO.NET;Define connected and disconnected data access in ADO.NET;Define connected and disconnected data access in ADO.NET;">
+
+<!-- header start-->	
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>ADO.NET</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+            <img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+            <a href="/ado.net">ADO.Net</a>
+              <img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+
+			  <a href="/ado.net/01/tutorial/ado.net/">ADO.NET Tutorials</a>
+
+              </div>
+
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/ado.net/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	 
+<!-- header End-->	
+
+<div class="heading">Component classes</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="THE_ADO.NET_%20Architecture.shtml" title="THE ADO.NET Architecture">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="sqlcommand.shtml" title="The SQLCOMMAND OBJECT">Next</a></td>
+  </tr> 
+</table>
+
+<ol><li>The Connection Object </li>
+<p>The Connection object creates the connection to the database. Microsoft Visual Studio .NET provides two types of Connection classes first is  the SqlConnection object, which is designed specifically to connect to Microsoft SQL Server 7.0 or later, and the other is  OleDbConnection object, it can provide connections to a wide range of database types like Microsoft Access and Oracle. The Connection object contains all of the information required to open a connection to the database.</p>
+
+<li>The Command Object </li>
+<p>It is represented by two corresponding classes: SqlCommand and OleDbCommand. Command objects are used to execute commands to a database across a data connection. Command objects can be used to execute stored procedures on the database, SQL commands, and  return complete tables directly. It provide three methods which are used to execute commands on the database:</p>
+<ul><i>ExecuteNonQuery</i>: Executes commands that have no return values 
+        such as INSERT, UPDATE or DELETE</ul>
+<ul><i>ExecuteScalar</i> : Returns a single value from a database query</ul> 
+<ul><i>ExecuteReader</i>: Returns a result set by way of a DataReader object</ul>
+
+<li>The DataReader Object</li>
+<p>The DataReader object provides a forward-only, read-only, connected stream recordset from a database. Unlike other components of the Data Provider, DataReader objects cannot be directly instantiated.The DataReader is returned as the result of the Command object's ExecuteReader method. The SqlCommand.ExecuteReader method returns a SqlDataReader object, and the OleDbCommand.ExecuteReader method returns an OleDbDataReader object. The DataReader can provide rows of data directly to application logic when we do not need to keep the data cached in memory because only one row is in memory at a time, the DataReader provides the lowest overhead in terms of system performance but requires the exclusive use of an open Connection object for the lifetime of the DataReader.</p>
+<li>The DataAdapter Object</li>
+<p>The DataAdapter is the class at the core of ADO .NET's disconnected data access. It is used  to fill a DataTable or DataSet with data from the database with it's Fill method. After the memory-resident data has been manipulated.Tthe DataAdapter can commit the changes to the database by calling the Update method. The DataAdapter provides four properties that represent database commands:</p>
+
+<ul>Select Command</ul>
+<ul>Insert Command</ul>
+<ul>Delete Command</ul>
+<ul>Update Command </ul>
+<p>When the Update method is called, changes in the DataSet are copied back to 
+the database and the appropriate InsertCommand, DeleteCommand, or UpdateCommand 
+is executed.</p>
+
+<div class="heading">Define connected and disconnected data access in ADO.NET</div>
+
+<p><i>connected data access in ADO.NET</i>:- Data reader is based on the connected architecture for data access. Does not allow data manipulation</p>
+<p><i>Disconnected data access in ADO.NET</i>:- Dataset supports disconnected data access architecture. This gives better performance results.</p>
+<h2>Describe CommandType property of a SQLCommand in ADO.NET.</h2>
+<p><i> CommandType property</i>:-CommandType property  is a property of Command object that can be set to Text, Storedprocedure. If it is Text, the command executes the database query. When it is StoredProcedure, the command runs the stored procedure. A SqlCommand is an object that allows specifying what is to be performed in the database.</p>
+
+<div class="heading">Access database at runtime using ADO.NET</div>
+<h3>Access database at runtime using Sqlconnection in ADO.NET</h3>
+<div class="code">
+<pre>
+<font color="#000000">Using </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Data</font><font color="#000000">.SqlClient;</font>
+<font color="#000000">SqlConnection con = </font><font color="#0000ff">new </font><font color="#000000">SqlConnection(connectionString)</font>
+<font color="#000000">con.Open();</font>
+<font color="#0000ff">string </font><font color="#000000">stringQuery = </font><font color="#ff00ff">&quot;select EmployeeName from emp&quot;</font><font color="#000000">;</font>
+<font color="#000000">SqlCommand cmd = </font><font color="#0000ff">new </font><font color="#000000">SqlCommand(stringQuery, con);</font>
+<font color="#000000">SqlDataReader dr = cmd.ExecuteReader();</font>
+<font color="#0000ff">while </font><font color="#000000">(dr.Read())</font>
+<font color="#000000">{</font>
+<font color="#808000">Console</font><font color="#000000">.WriteLine(dr [</font><font color="#800080">0</font><font color="#000000">]);</font>
+<font color="#000000">}</font>
+<font color="#000000">dr.Close(); </font>
+<font color="#000000">con.Close();</font>
+</pre>
+</div>
+<h3>The Connection String in the App.Config File</h3>
+
+<div class="code">
+<pre>
+<font color="#000000">&lt;connectionStrings&gt;</font>
+<font color="#000000">&lt;add name=</font><font color="#ff00ff">&quot;DragDropWinApp.Settings.TestConnectionString&quot;</font>
+<font color="#000000">connectionString=</font>
+<font color="#ff00ff">&quot;Data Source=(local);Initial Catalog=emp;Integrated Security=True&quot;</font>
+<font color="#000000">providerName=</font><font color="#ff00ff">&quot;System.Data.SqlClient&quot; </font><font color="#000000">/&gt;</font>
+</pre>
+</div></ol>
+
+ <table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="THE_ADO.NET_%20Architecture.shtml" title="THE ADO.NET Architecture">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="sqlcommand.shtml" title="The SQLCOMMAND OBJECT">Next</a></td>
+  </tr> 
+</table>
+
+<!-- Footer Start-->		
+		</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/dotnet/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->

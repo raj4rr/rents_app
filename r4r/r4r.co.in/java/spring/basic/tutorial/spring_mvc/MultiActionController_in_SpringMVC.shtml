@@ -1,0 +1,228 @@
+	<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+
+<HEAD>
+<TITLE>MultiActionController in Spring MVC</TITLE>
+
+<META content="r4r.co.in" name="owner">
+<META http-equiv="content-type" content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="MultiActionController in Spring MVC,spring,spring mvc,spring2.5,spring2.5 mvc" >
+<meta name="keywords" CONTENT="MultiActionController in Spring MVC,spring,spring mvc,spring2.5,spring2.5 mvc">
+
+<!-- header start-->	
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>Spring Framework</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+           <img src="/images/left_menu_bullet.gif" width="11" height="6"/>  <a href="/java/">Java</a>       <img src="/images/left_menu_bullet.gif" width="11" height="6"/><a href="/java/spring/">Spring</a>
+
+              </div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/spring/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	 
+
+<!-- header End--> 
+
+<div class="heading">MultiActionController in Spring MVC</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="UrlFilenameViewController_in_springMVC.shtml" title="UrlFilenameViewController_in_springMVC">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="BaseCommandController_in_springMVC.shtml" title="BaseCommandController_in_springMVC">Next</a></td>
+  </tr> 
+</table>
+
+	<div class="image">
+	 <img src="MultiActionController.GIF">
+     </div>
+<p>This controller provide the facility to controlled the multiple request handle by the same class. Subclass of this class handle different type of request through the following method:</p>
+<div class="code">
+<PRE>
+<FONT COLOR="#000000">ModelAndView actionName(HttpServletRequest request,
+ HttpServletResponse response); </FONT>
+</PRE>
+</div>
+<p>In the above method we are take the third parameter which name is HttpSession this parameter provide the facility to command the request processing.</p>
+
+<p><i>Syntax:</i></p>
+<div class="code">
+<PRE>
+ <FONT COLOR="#0000ff">public class </FONT><FONT COLOR="#000000">MultiActionController</FONT>
+<FONT COLOR="#0000ff">extends </FONT><FONT COLOR="#000000">AbstractController</FONT>
+<FONT COLOR="#0000ff">implements </FONT><FONT COLOR="#000000">lastModified</FONT>
+</PRE>
+</div>
+
+<p>This controller provide the following type of constructor:</p>
+<ol>
+<li>
+public MultiActionController()
+throws ApplicationContextException
+</li>
+<li>
+public MultiActionController(Object delegate)
+throws ApplicationContextException
+</li>
+</ol>
+
+     <p>This controller provide the following type of method:</p> 
+<p><i>setMethodNameResolver:</i></p>
+<div class="code">
+<PRE>
+<FONT COLOR="#0000ff">public final void </FONT><FONT COLOR="#000000">setMethodNameResolver</FONT>
+<FONT COLOR="#000000">(MethodNameResolver methodNameResolver);</FONT>
+</PRE>
+</div>
+
+<p><i>getMethodNameResolver:</i></p>
+<div class="code">
+<PRE>
+<FONT COLOR="#0000ff">public final </FONT><FONT COLOR="#000000">MethodNameResolver getMethodNameResolver();</FONT>
+</PRE>
+</div>
+
+<p><i>setValidators:</i></p>
+<div class="code">
+<PRE>
+<FONT COLOR="#0000ff">public final void </FONT><FONT COLOR="#000000">setValidator(</FONT><FONT COLOR="#ff0000">Validator</FONT><FONT COLOR="#000000">[] validators);</FONT>
+</PRE>
+</div>
+
+<p><i>getValidators:</i></p>
+<div class="code">
+<PRE>
+<FONT COLOR="#0000ff">public final </FONT><FONT COLOR="#ff0000">Validator</FONT><FONT COLOR="#000000">[] getValidators();</FONT>
+</PRE>
+</div>
+
+<p><i>setDelegate:</i></p>
+<div class="code">
+<PRE>
+<FONT COLOR="#0000ff">public final void </FONT><FONT COLOR="#000000">setDelegate(</FONT><FONT COLOR="#ff0000">Object </FONT><FONT COLOR="#000000">delegate);</FONT>
+</PRE>
+</div>
+
+<p><i>getLastModified:</i></p>
+<div class="code">
+<PRE>
+<FONT COLOR="#0000ff">public long </FONT><FONT COLOR="#000000">getLastModified(HttpServletRequest request);</FONT>
+</PRE>
+</div>
+
+<p><i>handleRequestInternal:</i></p>
+<div class="code">
+<PRE>
+<FONT COLOR="#0000ff">protected </FONT><FONT COLOR="#000000">ModelAndView handleRequestInternal</FONT>
+<FONT COLOR="#000000">(HttpServletRequest requ,HttpServletResponse respon)</FONT>
+<FONT COLOR="#0000ff">throws </FONT><FONT COLOR="#ff0000">Exception</FONT>
+</PRE>
+</div>
+
+<p><i>handleNoSuchRequestHandlingMethod:</i></p>
+<div class="code">
+<PRE>
+<FONT COLOR="#0000ff">protected </FONT><FONT COLOR="#000000">ModelAndView handleNoSuchRequestHandlingMethod</FONT>
+<FONT COLOR="#000000">(NoSuchRequestHandlingMethodException ex,HttpServletRequest</FONT>
+<FONT COLOR="#000000">request,HttpServletResponse response) </FONT><FONT COLOR="#0000ff">throws </FONT><FONT COLOR="#ff0000">Exception</FONT>
+</PRE>
+</div>
+
+<p><i>invokeNameMethod:</i></p>
+<div class="code">
+<PRE>
+<FONT COLOR="#0000ff">protected final </FONT><FONT COLOR="#000000">ModelAndView invokeNameMethod(</FONT><FONT COLOR="#ff0000">String </FONT><FONT COLOR="#000000">methodName,</FONT>
+<FONT COLOR="#000000">HttpServletRequest request,HttpServletResponse response) </FONT><FONT COLOR="#0000ff">throws</FONT>
+<FONT COLOR="#ff0000">Exception</FONT>
+</PRE>
+</div>
+
+<p><i>newCommandObject:</i></p>
+<div class="code">
+<PRE>
+<FONT COLOR="#0000ff">protected </FONT><FONT COLOR="#ff0000">Object </FONT><FONT COLOR="#000000">newCommandObject(</FONT><FONT COLOR="#ff0000">Class </FONT><FONT COLOR="#000000">clazz)</FONT><FONT COLOR="#0000ff">throws </FONT><FONT COLOR="#ff0000">Exception</FONT>
+</PRE>
+</div>
+
+<p><i>bind:</i></p>
+<div class="code">
+<PRE>
+<FONT COLOR="#0000ff">protected void </FONT><FONT COLOR="#000000">bind(ServletRequest request,</FONT><FONT COLOR="#ff0000">Object </FONT><FONT COLOR="#000000">command)</FONT>
+<FONT COLOR="#0000ff">throws </FONT><FONT COLOR="#ff0000">Exception</FONT>
+</PRE>
+</div>
+
+<p><i>createBinder:</i></p>
+<div class="code">
+<PRE>
+<FONT COLOR="#0000ff">protected </FONT><FONT COLOR="#000000">ServletRequestDataBind createBinder(ServletRequest</FONT>
+<FONT COLOR="#000000">request, </FONT><FONT COLOR="#ff0000">Object </FONT><FONT COLOR="#000000">command)</FONT><FONT COLOR="#0000ff">throws </FONT><FONT COLOR="#ff0000">Exception</FONT>
+</PRE>
+</div>
+
+<p><i>getCommandName:</i></p>
+<div class="code">
+<PRE>
+<FONT COLOR="#0000ff">protected </FONT><FONT COLOR="#ff0000">String </FONT><FONT COLOR="#000000">getCommandName(</FONT><FONT COLOR="#ff0000">Object </FONT><FONT COLOR="#000000">command);</FONT>
+</PRE>
+</div>
+
+<p><i>initBinder:</i></p>
+<div class="code">
+<PRE>
+<FONT COLOR="#0000ff">protected void </FONT><FONT COLOR="#000000">initBinder(ServletRequest request,</FONT>
+<FONT COLOR="#000000">ServletRequestDataBinder binder) </FONT><FONT COLOR="#0000ff">throws </FONT><FONT COLOR="#ff0000">Exception</FONT>
+</PRE>
+
+</div>
+
+<p><i>getExceptionHandler:</i></p>
+<div class="code">
+<PRE>
+<FONT COLOR="#0000ff">protected </FONT><FONT COLOR="#ff0000">Method </FONT><FONT COLOR="#000000">getExceptionHandler(</FONT><FONT COLOR="#ff0000">Throwable </FONT><FONT COLOR="#000000">ex);</FONT>
+</PRE>
+</div>
+
+<p><h3><a href="/java/spring/basic/example/springMVC_ex/Example_of_MultiActionController.shtml">Example of 
+    MultiActionController in Spring MVC</a></h3></p>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="UrlFilenameViewController_in_springMVC.shtml" title="UrlFilenameViewController_in_springMVC">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="BaseCommandController_in_springMVC.shtml" title="BaseCommandController_in_springMVC">Next</a></td>
+  </tr> 
+</table>
+
+<!-- Footer Start-->
+
+		</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->
+

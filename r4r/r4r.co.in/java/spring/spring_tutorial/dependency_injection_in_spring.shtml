@@ -1,0 +1,136 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD>
+<meta http-equiv="Content-Language" content="en-us">
+<TITLE>Dependency injecion in spring |spring dependency injection</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name="description" CONTENT="Spring dependency injection learn about dependency injection with 
+r4r tutorial with examples stepwise step" >
+<meta name="keywords" CONTENT="spring, tutorial, spring dependency injection ppt,spring dependency injection annotation,spring dependency injection types
+spring dependency injection example step by step">
+
+		<!-- header start-->	
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+     <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>Spring Tutorials</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+			<img src="/images/left_menu_bullet.gif"/> <a href="/java/spring/">Spring</a>
+
+       </div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/spring/commonfiles/leftmenucore.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content">
+<!-- LEGACY BANNER START -->
+<div style="background: rgba(255, 244, 229, 0.9); border-left: 5px solid #ff9800; padding: 20px; margin-bottom: 25px; border-radius: 8px; font-family: 'Inter', sans-serif; box-shadow: 0 4px 6px rgba(0,0,0,0.05);">
+    <h3 style="margin-top: 0; color: #e65100; font-size: 1.2rem; display: flex; align-items: center; gap: 8px;">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+        Legacy Spring Framework Warning
+    </h3>
+    <p style="margin-bottom: 0; color: #5d4037; font-size: 1.05rem; line-height: 1.5;">
+        This tutorial teaches an outdated version of Spring using <strong>legacy XML configuration</strong> (<code>applicationContext.xml</code>). Modern Spring applications rely on <strong>Spring Boot</strong> and <strong>Java Annotations</strong>. This page is preserved for historical context and maintaining legacy systems.
+    </p>
+</div>
+<!-- LEGACY BANNER END -->
+ 	 
+
+<div class="heading">Dependency Injection in Spring</div>
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="autowiring_in_spring.shtml" title="autowiring_in_spring">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="constructor_based_dependency_injection_example.shtml" title="constructor_based_dependency_injection_example">Next</a></td>
+  </tr> 
+</table>
+<p>Dependency Injection (DI) is a design pattern that removes the dependency from the programming code so that it can be easy to manage and test the application. Dependency Injection makes our programming code loosely coupled.</p>
+<p>Dependency injection (DI) is a process whereby objects define their dependencies, ie the other objects they work with, only through constructor arguments, arguments to a factory method, or properties that are set on the object instance after it is constructed or returned from a factory method. The container then injects those dependencies when it creates the bean.</p><p> This process is fundamentally the inverse, hence the name Inversion of Control (IOC), of the bean itself controlling the instantiation or location of its dependencies on its own by using direct construction of classes, or the Service Locator pattern.</p>
+<p>The Dependency Injection is a design pattern that removes the dependency of the programs. In such case we provide the information from the external source such as XML file. It makes our code loosely coupled and easier for testing. In such case we write the code as:</p>
+<h3>Example</h3>
+<div class="code">
+<pre>
+<font color="#0000ff">class </font><font color="#000000">Employee{</font>
+<font color="#000000">Address add;</font>
+<font color="#000000">Employee(Address add)</font>
+<font color="#000000">{</font>
+<font color="#0000ff">this</font><font color="#000000">.add=add;</font>
+<font color="#000000">}</font>
+<font color="#0000ff">public void </font><font color="#000000">setAddress(Address add)</font>
+ <font color="#000000">{</font>
+<font color="#0000ff">this</font><font color="#000000">.add=add;</font>
+ <font color="#000000">}</font>
+<font color="#000000">}</font>
+</pre>
+</div>
+
+<p>In this case,<font class="point_out"> instance of Address class</font> is provided by external souce such as XML file either by constructor or setter method.</p>
+<div class="heading">Dependency Lookup</div>
+<p>The Dependency Lookup is an approach where we get the resource after demand. There can be various ways to get the resource for example:</p>
+<div class="code">
+<pre>
+<font color="#000000">Employee emp = </font><font color="#0000ff">new </font><font color="#000000">EmployeeImpl();</font>
+</pre>
+</div>
+<p>Here we get the instance of Employee  class directly by new keyword.</p>
+<div class="code">
+<pre>
+<font color="#000000">Employee emp = </font><font color="#0000ff">new </font><font color="#000000">Employee.getEmployee();</font>
+</pre>
+</div>
+<p>Here we get the resource or instance of Employee class by calling the static factory method getEmployee(). There can be various ways to get the resource define above and face some problems with Dependency Lookup.</p>
+<ol>
+<li>
+Tight coupling
+</li>
+<li>
+Hard testing
+</li>
+</ol>
+<div class="heading">Types of Dependency Injection</div>
+<p>There are Two ways to perform Dependency Injection in Spring framework as given below:</p>
+<ol>
+<li>
+<i>By Constructor:</i> Constructor-based DI is accomplished when the container invokes a class constructor with a number of arguments, each representing a dependency on other class.</li>
+<li>
+<i>By Setter method:</i> Setter-based DI is accomplished by the container calling setter methods on your beans after invoking a no-argument constructor or no-argument static factory method to instantiate your bean.</li>
+</ol>
+<p>You can mix both, Constructor-based and Setter-based DI but it is a good rule of thumb to use constructor arguments for mandatory dependencies and setters for optional dependencies. Code is cleaner with the DI principle and decoupling is more effective when objects are provided with their dependencies.</p><p>The object does not look up its dependencies, and does not know the location or class of the dependencies rather everything is take care by the Spring Framework.</p>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="autowiring_in_spring.shtml" title="autowiring_in_spring">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="constructor_based_dependency_injection_example.shtml" title="constructor_based_dependency_injection_example">Next</a></td>
+  </tr> 
+</table>
+
+		</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->

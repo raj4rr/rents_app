@@ -1,0 +1,107 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>fscanf () function in C Library</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="fscanf () function in C Library, learn f fscanf () function wtih suitable examples,c tutorial,c basics,programming language,examples,pointer,function" >
+<meta name="keywords" CONTENT="c tutorial,c basics,programming language,examples,pointer,function,loop,else,if else,while,array,pre processor,post processor,structures,memory menagement,string,constants,variables,decisions making,c unions,c memory allocation, c operators, C pointers,c error handling, c file handling">
+
+		<link href="/css/main.css" rel="stylesheet" type="text/css" />
+        <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+
+	</HEAD>
+	<BODY>
+	<?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style="padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>C Programming language</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a><img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/c/">C</a><img src="/images/left_menu_bullet.gif" width="11" height="6"/><a href="/c/c_topics/c_file_handling/">C File Handling</a></div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/c/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 
+
+		<!-- Header End-->	
+<div class="heading">Formatted I/O : How to use fscanf( ) Function in C</div> 
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;">
+    	<a href="how_to_use_fprintf_function_in_c15.shtml" title="Formatted I/O : What is formatted input/output in C, How to use fprintf( ) Function">Previous</a>
+    </td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="block_read_write_and_how_to_use_fwrite_function_in_c.shtml" title="Record I/O : What is Block Read/Write, How to use fwrite( ) Function in C">Next</a></td>
+  </tr>
+</table>
+
+<p>fscanf Function Reads data from the stream and stores them according to the parameter format into the locations pointed by the additional arguments. The additional arguments should point to already allocated objects of the type specified by their corresponding format tag within the format string.</p>
+<div class="code">
+<PRE><FONT><FONT COLOR="#000000">fscanf (FILE *fptr , </FONT><FONT COLOR="#0000ff">const char </FONT><FONT COLOR="#000000">*format [,address,.....]);</FONT></FONT></PRE>
+</div>
+
+<p>The fscanf function works exactly like the scanf function except that it reads the information from the stream specified by stream instead of standard input device.</p><p>fscanf function Reads data from the stream and stores them according to the parameter format into the locations pointed by the additional arguments. The additional arguments should point to already allocated objects of the type specified by their corresponding format tag within the format string.</p>
+
+<div class="code">
+<PRE><FONT><FONT COLOR="#008000">/**program to understand the use of fscanff() */</FONT>
+<FONT COLOR="#ff0000">#include</FONT><FONT COLOR="#000000">&lt;stdio.h&gt;</FONT>
+<FONT COLOR="#ff0000">#include</FONT><FONT COLOR="#000000">&lt;conio.h&gt;</FONT>
+<FONT COLOR="#ff0000">#include</FONT><FONT COLOR="#000000">&lt;stdlib.h&gt;</FONT>
+<FONT COLOR="#0000ff">void </FONT><FONT COLOR="#000000">main( )</FONT>
+<FONT COLOR="#000000">{</FONT>
+	<FONT COLOR="#000000">clrscr();</FONT>
+	<FONT COLOR="#000000">FILE *fp ;</FONT>
+	<FONT COLOR="#0000ff">struct </FONT><FONT COLOR="#000000">emp</FONT>
+	<FONT COLOR="#000000">{[an error occurred </FONT><FONT COLOR="#0000ff">while </FONT><FONT COLOR="#000000">processing </FONT><FONT COLOR="#0000ff">this </FONT><FONT COLOR="#000000">directive]</FONT>
+	<FONT COLOR="#0000ff">char </FONT><FONT COLOR="#000000">name[</FONT><FONT COLOR="#800080">50</FONT><FONT COLOR="#000000">] ;</FONT>
+	<FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">age ;</FONT>
+	<FONT COLOR="#0000ff">float </FONT><FONT COLOR="#000000">sal ;</FONT>
+	<FONT COLOR="#000000">} ;</FONT>
+	<FONT COLOR="#0000ff">struct </FONT><FONT COLOR="#000000">emp e ;</FONT>
+	<FONT COLOR="#000000">fp = fopen ( </FONT><FONT COLOR="#ff00ff">"employee.txt"</FONT><FONT COLOR="#000000">, </FONT><FONT COLOR="#ff00ff">"r" </FONT><FONT COLOR="#000000">) ;</FONT>
+	<FONT COLOR="#0000ff">if </FONT><FONT COLOR="#000000">( fp == NULL )</FONT>
+	<FONT COLOR="#000000">{</FONT>
+	<FONT COLOR="#000000">puts ( </FONT><FONT COLOR="#ff00ff">"Cannot open file" </FONT><FONT COLOR="#000000">) ;</FONT>
+	<FONT COLOR="#000000">exit( ) ;</FONT>
+	<FONT COLOR="#000000">}</FONT>
+	<FONT COLOR="#0000ff">while </FONT><FONT COLOR="#000000">( fscanf ( fp, </FONT><FONT COLOR="#ff00ff">"%s %d %f"</FONT><FONT COLOR="#000000">, e.name, &amp;e.age, &amp;e.sal ) != EOF )</FONT>
+	<FONT COLOR="#000000">printf ( </FONT><FONT COLOR="#ff00ff">"\n%s %d %f"</FONT><FONT COLOR="#000000">, e.name, e.age, e.sal ) ;</FONT>
+	<FONT COLOR="#000000">fclose ( fp ) ;</FONT>
+<FONT COLOR="#000000">};</FONT></FONT></PRE>
+</div>
+<div class="output">
+	<p><i>Output</i> </p>
+    <p>Ashish   34   1250.500000</p>
+	<p>Anurag   21   1300.500000</p>
+	<p>Rajesh   27   1400.500000</p>
+</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;">
+    	<a href="how_to_use_fprintf_function_in_c15.shtml" title="Formatted I/O : What is formatted input/output in C, How to use fprintf( ) Function">Previous</a>
+    </td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="block_read_write_and_how_to_use_fwrite_function_in_c.shtml" title="Record I/O : What is Block Read/Write, How to use fwrite( ) Function in C">Next</a></td>
+  </tr>
+</table>
+<!--Footer  --> 
+</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>

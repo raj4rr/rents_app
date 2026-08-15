@@ -1,0 +1,447 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>C Tutorial on Loop control structure</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="Learn about LOOP CONTROL STRUCTURE,TYPES OF LOOP,WHILE LOOP,SOME CONDITIONS FOR WHILE LOOP,'FOR' LOOP,MULTIPLE INITIALIZATION IN FOR LOOP,THE 'DO WHILE' LOOP,NESTING OF LOOPS,THE ODD LOOP,THE BREAK STATEMENT,'CONTINUE' STATEMENT,Arrays,Structures,Pointers,Storage class,Loops,Functions,Data types,C constants,Union,Preprocessor">
+<meta name="keywords" CONTENT="LOOP CONTROL STRUCTURE,TYPES OF LOOP,WHILE LOOP,SOME CONDITIONS FOR WHILE LOOP,'FOR' LOOP,MULTIPLE INITIALIZATION IN FOR LOOP,THE 'DO WHILE' LOOP,NESTING OF LOOPS,THE BREAK STATEMENT,'CONTINUE' STATEMENT,Arrays,Structures,Pointers,Storage class,Loops,Functions,Data types,C constants,Union,Preprocessor,Interview questions and answers">
+
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+     <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>C Programming language</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a><img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/c/">C </a>
+              <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/c/basic_tutorials/06/">C Tutorial</a></div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/c/commonfiles/leftmenu.shtml'); ?></td>
+
+                       <td style="80%" valign="top">
+                        <div class="main_content"> 
+
+	<!-- header End-->	
+
+ <div class="heading">Loops in C</div>
+
+<table id="indexing">
+  <tr>
+   <td style="width:33%; text-align:left;"><a href="DECISION_USING_SWITCH-.shtml" title="Decision control in c: Switch statement">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="FUNCTION.shtml" title="Function in C">Next</a></td>
+  </tr>
+</table>
+
+<h2>Lop control structure</h2>
+<p>The versatility of the computer lies in its ability to perform a set of instructions repeatedly. This involves repeating some portion of the program either a specified number of times  until particular condition is being satisfied. there are methods by way of which we can repeat a part of program.</p>
+
+<h2>Types of loop</h2>
+<ol>
+   <li>Using a for statement</li>
+   <li>Using a while statement</li>
+   <li>Using a do while statement</li>
+</ol>
+
+<h2>While loop</h2>
+<p>This is the case when you want to do something a fixed number of times.</p>
+<p>For example-- if we want to calculate the gross salary of 10 people then the while loop is best suited for that process.</p>
+<p>The general form of the while loop is given below:</p>
+<div class="code">
+<PRE>
+<FONT COLOR="#000000">initialize loop counter;</FONT>
+
+<FONT COLOR="#0000ff">while</FONT><FONT COLOR="#000000">(test loop counter using a condition)</FONT>
+
+<FONT COLOR="#000000">{</FONT>
+
+<FONT COLOR="#0000ff">do this</FONT><FONT COLOR="#000000">;</FONT>
+
+<FONT COLOR="#000000">and </FONT><FONT COLOR="#0000ff">this</FONT><FONT COLOR="#000000">;</FONT>
+
+<FONT COLOR="#000000">increment loop counter;</FONT>
+
+<FONT COLOR="#000000">}</FONT>
+</PRE>
+</div>
+
+<h2>Some conditions for while loop</h2>
+<ol>
+   <li>The statement within the while loop would keep on getting executed till condition being tested remains true.</li>
+   <li>If condition becomes falls the control passes to the first statement that follows the body of the while loop.</li>
+   <li>The condition being tested may use may use relational or logical operators.
+
+for example-- 
+<div class="code">
+<PRE>
+<FONT COLOR="#0000ff">while</FONT><FONT COLOR="#000000">(i&lt;=</FONT><FONT COLOR="#800080">10</FONT><FONT COLOR="#000000">)</FONT>
+<FONT COLOR="#0000ff">while</FONT><FONT COLOR="#000000">(i&gt;=</FONT><FONT COLOR="#800080">10</FONT><FONT COLOR="#000000">&amp;&amp;j&lt;=</FONT><FONT COLOR="#800080">5</FONT><FONT COLOR="#000000">)</FONT>
+</PRE>
+</div>
+    </li>
+    <li>The statement within the loop may be a single line or a block of statement.
+    <div class="code">
+<PRE>
+<FONT COLOR="#0000ff">for </FONT><FONT COLOR="#000000">example--</FONT><FONT COLOR="#0000ff">while </FONT><FONT COLOR="#000000">( i &lt;= </FONT><FONT COLOR="#800080">10 </FONT><FONT COLOR="#000000">)</FONT>
+<FONT COLOR="#000000">i = i + </FONT><FONT COLOR="#800080">1</FONT><FONT COLOR="#000000">;</FONT>
+<FONT COLOR="#000000">is same as</FONT>
+<FONT COLOR="#0000ff">while </FONT><FONT COLOR="#000000">( i &lt;= </FONT><FONT COLOR="#800080">10</FONT><FONT COLOR="#000000">)</FONT>
+<FONT COLOR="#000000">{</FONT>
+<FONT COLOR="#000000">i = i + </FONT><FONT COLOR="#800080">1 </FONT><FONT COLOR="#000000">;</FONT>
+<FONT COLOR="#000000">}</FONT>
+</PRE>
+    </div>
+    </li>
+    <li>It is not necessary that  a loop counter must be an int. it can be float also.
+    <div class="code">
+<PRE>
+<FONT COLOR="#000000">main( )</FONT>
+<FONT COLOR="#000000">{</FONT>
+<FONT COLOR="#0000ff">float </FONT><FONT COLOR="#000000">a=</FONT><FONT COLOR="#800080">10</FONT><FONT COLOR="#000000">.</FONT><FONT COLOR="#800080">0</FONT><FONT COLOR="#000000">;</FONT>
+<FONT COLOR="#0000ff">while</FONT><FONT COLOR="#000000">(</FONT><FONT COLOR="#0000ff">float </FONT><FONT COLOR="#000000">a&lt;=</FONT><FONT COLOR="#800080">10</FONT><FONT COLOR="#000000">.</FONT><FONT COLOR="#800080">5</FONT><FONT COLOR="#000000">)</FONT>
+<FONT COLOR="#000000">{</FONT>
+<FONT COLOR="#000000">printf(</FONT><FONT COLOR="#ff00ff">"raindrops on roses"</FONT><FONT COLOR="#000000">);</FONT>
+<FONT COLOR="#000000">a=A+</FONT><FONT COLOR="#800080">0</FONT><FONT COLOR="#000000">.</FONT><FONT COLOR="#800080">1</FONT><FONT COLOR="#000000">;</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#000000">}</FONT>
+</PRE>
+    </div>
+    </li>
+</ol>
+
+<h2>For loop</h2>
+<p>The 'for' allows us to specify three things about a loop in a single line.</p>
+<ol>
+   <li>Setting a loop counter to an initial value.</li>
+   <li>Testing the loop counter to determine whether it's value has reached the number of repetition desired.</li>
+   <li>increasing the value of loop counter each time the program segment with in the loop has been executed.
+the general form of 'for' statement is as follows:
+<div class="code">
+<PRE>
+<FONT COLOR="#0000ff">for</FONT><FONT COLOR="#000000">(initialize counter;test counter;increment counter)</FONT>
+<FONT COLOR="#000000">{</FONT>
+<FONT COLOR="#0000ff">do this</FONT><FONT COLOR="#000000">;</FONT>
+<FONT COLOR="#000000">and </FONT><FONT COLOR="#0000ff">this</FONT><FONT COLOR="#000000">;</FONT>
+<FONT COLOR="#000000">and </FONT><FONT COLOR="#0000ff">this</FONT><FONT COLOR="#000000">;</FONT>
+<FONT COLOR="#000000">}</FONT>
+</PRE>
+</div>
+</li>
+</ol>
+
+<h3>Example</h3>
+<div class="code">
+<PRE>
+<FONT COLOR="#008000">/* Calculation of simple interest for 3 sets of p, n and r */</FONT>
+<FONT COLOR="#000000">main ( )</FONT>
+<FONT COLOR="#000000">{</FONT>
+<FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">p, n, count ;</FONT>
+<FONT COLOR="#0000ff">float </FONT><FONT COLOR="#000000">r, si ;</FONT>
+<FONT COLOR="#0000ff">for </FONT><FONT COLOR="#000000">( count = </FONT><FONT COLOR="#800080">1 </FONT><FONT COLOR="#000000">; count &lt;= </FONT><FONT COLOR="#800080">3 </FONT><FONT COLOR="#000000">; count = count + </FONT><FONT COLOR="#800080">1 </FONT><FONT COLOR="#000000">)</FONT>
+<FONT COLOR="#000000">{</FONT>
+<FONT COLOR="#000000">printf ( </FONT><FONT COLOR="#ff00ff">"Enter values of p, n, and r " </FONT><FONT COLOR="#000000">) ;</FONT>
+<FONT COLOR="#000000">scanf ( </FONT><FONT COLOR="#ff00ff">"%d %d %f"</FONT><FONT COLOR="#000000">, &amp;p, &amp;n, &amp;r ) ;</FONT>
+<FONT COLOR="#000000">si = p * n * r / </FONT><FONT COLOR="#800080">100 </FONT><FONT COLOR="#000000">;</FONT>
+<FONT COLOR="#000000">printf ( </FONT><FONT COLOR="#ff00ff">"Simple Interest = Rs.%f\n"</FONT><FONT COLOR="#000000">, si ) ;</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#000000">}</FONT>
+</PRE>
+</div>
+
+<p>The execution process for the above program is given as follows:</p>
+<ol>
+   <li> When the for statement is executed for the first time, the value of count is set to an initial value 1.</li>
+   <li> Now the condition count <= 3 is tested. Since count is 1 the condition is satisfied and the body of the loop is executed for the first time.</li>
+   <li>Upon reaching the closing brace of for, control is sent back to the for statement, where the value of count gets incremented by 1.</li>
+   <li>Again the test is performed to check whether the new value of count exceeds 3.</li>
+   <li>If the value of count is still within the range 1 to 3, the statements within the braces of for are executed again.</li>
+   <li>The body of the for loop continues to get executed till count doesnt exceed the final value 3.</li>
+   <li>When count reaches the value 4 the control exits from the loop and is transferred to the statement (if any) immediately after the body of for.</li>
+</ol>
+
+<h2>Multiple initialization in For loop</h2>
+<p>one statement separated by a comma. For example:</p>
+<div class="code">
+<PRE>
+<FONT COLOR="#0000ff">for </FONT><FONT COLOR="#000000">( i = </FONT><FONT COLOR="#800080">1</FONT><FONT COLOR="#000000">, j = </FONT><FONT COLOR="#800080">2 </FONT><FONT COLOR="#000000">; j &lt;= </FONT><FONT COLOR="#800080">10 </FONT><FONT COLOR="#000000">; j++ )</FONT>
+</PRE>
+</div>
+
+<p>Multiple statements can also be used in the incrementation expression of for loop; i.e., you can increment (or decrement) two or more variables at the same time. However, only one expression is allowed in the test expression. This expression may contain several conditions linked together using logical operators. Use of multiple statements in the initialisation expression also demonstrates why semicolons are used to separate the three expressions in the for loop. If commas had been used, they could not also have been used to separate multiple statements in the initialisation expression, without confusing the compiler.</p>
+
+<h2>The 'do while' code</h2>
+<p>The do-while loop looks like this:</p>
+<div class="code">
+<PRE>
+<FONT COLOR="#0000ff">do</FONT>
+<FONT COLOR="#000000">{</FONT>
+<FONT COLOR="#0000ff">this </FONT><FONT COLOR="#000000">;</FONT>
+<FONT COLOR="#000000">and </FONT><FONT COLOR="#0000ff">this </FONT><FONT COLOR="#000000">;</FONT>
+<FONT COLOR="#000000">and </FONT><FONT COLOR="#0000ff">this </FONT><FONT COLOR="#000000">;</FONT>
+<FONT COLOR="#000000">and </FONT><FONT COLOR="#0000ff">this </FONT><FONT COLOR="#000000">;</FONT>
+<FONT COLOR="#000000">} </FONT><FONT COLOR="#0000ff">while </FONT><FONT COLOR="#000000">( </FONT><FONT COLOR="#0000ff">this </FONT><FONT COLOR="#000000">condition is </FONT><FONT COLOR="#0000ff">true </FONT><FONT COLOR="#000000">) ;</FONT>
+</PRE>
+</div>
+
+<p>The major difference between the while loop and dowhile loop is that The while tests the condition before executing any of the statements within the while loop. As against this, the do-while tests the condition after having executed the statements within the loop.</p>
+
+<h3>Example</h3>
+<div class="code">
+<PRE>
+<FONT COLOR="#000000">main( )</FONT>
+<FONT COLOR="#000000">{</FONT>
+<FONT COLOR="#0000ff">do</FONT>
+<FONT COLOR="#000000">{</FONT>
+<FONT COLOR="#000000">printf ( </FONT><FONT COLOR="#ff00ff">"Hello there \n"</FONT><FONT COLOR="#000000">) ;</FONT>
+<FONT COLOR="#000000">} </FONT><FONT COLOR="#0000ff">while </FONT><FONT COLOR="#000000">( </FONT><FONT COLOR="#800080">4 </FONT><FONT COLOR="#000000">&lt; </FONT><FONT COLOR="#800080">1 </FONT><FONT COLOR="#000000">) ;</FONT>
+<FONT COLOR="#000000">}</FONT>
+</PRE>
+</div>
+
+<p>In this program the printf( ) would be executed once, since first the body of the loop is executed and then the condition is tested.</p>
+<p>break and continue are used with do-while just as they would be in a while or a for loop. A break takes you out of the do-while bypassing the conditional test. A continue sends you straight to the test at the end of the loop.</p>
+
+<h2>Nesting of Loops</h2>
+<p>The way if statements can be nested, similarly whiles and fors can also be nested. To understand how nested loops work, look at the program given below:</p>
+<div class="code">
+<PRE>
+<FONT COLOR="#008000">/* Demonstration of nested loops */</FONT>
+<FONT COLOR="#000000">main( )</FONT>
+<FONT COLOR="#000000">{</FONT>
+<FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">r, c, sum ;</FONT>
+<FONT COLOR="#0000ff">for </FONT><FONT COLOR="#000000">( r = </FONT><FONT COLOR="#800080">1 </FONT><FONT COLOR="#000000">; r &lt;= </FONT><FONT COLOR="#800080">3 </FONT><FONT COLOR="#000000">; r++ ) </FONT><FONT COLOR="#008000">/* outer loop */</FONT>
+<FONT COLOR="#000000">{</FONT>
+<FONT COLOR="#0000ff">for </FONT><FONT COLOR="#000000">( c = </FONT><FONT COLOR="#800080">1 </FONT><FONT COLOR="#000000">; c &lt;= </FONT><FONT COLOR="#800080">2 </FONT><FONT COLOR="#000000">; c++ ) </FONT><FONT COLOR="#008000">/* inner loop */</FONT>
+<FONT COLOR="#000000">{</FONT>
+<FONT COLOR="#000000">sum = r + c ;</FONT>
+<FONT COLOR="#000000">printf ( </FONT><FONT COLOR="#ff00ff">"r = %d c = %d sum = %d\n"</FONT><FONT COLOR="#000000">, r, c, sum ) ;</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#000000">}</FONT>
+
+<FONT COLOR="#000000">When you run </FONT><FONT COLOR="#0000ff">this </FONT><FONT COLOR="#000000">program you will get the following output:</FONT>
+<FONT COLOR="#000000">r = </FONT><FONT COLOR="#800080">1 </FONT><FONT COLOR="#000000">c = </FONT><FONT COLOR="#800080">1 </FONT><FONT COLOR="#000000">sum = </FONT><FONT COLOR="#800080">2</FONT>
+<FONT COLOR="#000000">r = </FONT><FONT COLOR="#800080">1 </FONT><FONT COLOR="#000000">c = </FONT><FONT COLOR="#800080">2 </FONT><FONT COLOR="#000000">sum = </FONT><FONT COLOR="#800080">3</FONT>
+<FONT COLOR="#000000">r = </FONT><FONT COLOR="#800080">2 </FONT><FONT COLOR="#000000">c = </FONT><FONT COLOR="#800080">1 </FONT><FONT COLOR="#000000">sum = </FONT><FONT COLOR="#800080">3</FONT>
+<FONT COLOR="#000000">r = </FONT><FONT COLOR="#800080">2 </FONT><FONT COLOR="#000000">c = </FONT><FONT COLOR="#800080">2 </FONT><FONT COLOR="#000000">sum = </FONT><FONT COLOR="#800080">4</FONT>
+<FONT COLOR="#000000">r = </FONT><FONT COLOR="#800080">3 </FONT><FONT COLOR="#000000">c = </FONT><FONT COLOR="#800080">1 </FONT><FONT COLOR="#000000">sum = </FONT><FONT COLOR="#800080">4</FONT>
+<FONT COLOR="#000000">r = </FONT><FONT COLOR="#800080">3 </FONT><FONT COLOR="#000000">c = </FONT><FONT COLOR="#800080">2 </FONT><FONT COLOR="#000000">sum = </FONT><FONT COLOR="#800080">5</FONT>
+</PRE>
+</div>
+
+<p>Here, for each value of r the inner loop is cycled through twice, with the variable c taking values from 1 to 2. The inner loop terminates when the value of c exceeds 2, and the outer loop terminates when the value of r exceeds 3.</p>
+<p>As you can see, the body of the outer for loop is indented, and the body of the inner for loop is further indented. These multiple indentations make the program easier to understand. Instead of using two statements, one to calculate sum and another to print it out, we can compact this into one single statement by saying:</p>
+<div class="code">
+<PRE>
+<FONT COLOR="#000000">printf ( </FONT><FONT COLOR="#ff00ff">"r = %d c = %d sum = %d\n"</FONT><FONT COLOR="#000000">, r, c, r + c ) ;</FONT>
+</PRE>
+</div>
+
+<p>The way for loops have been nested here, similarly, two while loops can also be nested. Not only this, a for loop can occur within a while loop, or a while within a for.</p>
+
+<h2>The odd loop</h2>
+<p>The loops that we have used so far executed the statements within them a finite number of times.</p>
+
+<h3>Example</h3>
+<div class="code">
+<PRE>
+<FONT COLOR="#008000">/* Execution of a loop an unknown number of times */</FONT>
+<FONT COLOR="#000000">main( )</FONT>
+<FONT COLOR="#000000">{</FONT>
+<FONT COLOR="#0000ff">char </FONT><FONT COLOR="#000000">another ;</FONT>
+<FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">num ;</FONT>
+<FONT COLOR="#0000ff">do</FONT>
+<FONT COLOR="#000000">{</FONT>
+<FONT COLOR="#000000">printf ( </FONT><FONT COLOR="#ff00ff">"Enter a number " </FONT><FONT COLOR="#000000">) ;</FONT>
+<FONT COLOR="#000000">scanf ( </FONT><FONT COLOR="#ff00ff">"%d"</FONT><FONT COLOR="#000000">, &amp;num ) ;</FONT>
+<FONT COLOR="#000000">printf ( </FONT><FONT COLOR="#ff00ff">"square of %d is %d"</FONT><FONT COLOR="#000000">, num, num * num ) ;</FONT>
+<FONT COLOR="#000000">printf ( </FONT><FONT COLOR="#ff00ff">"\nWant to enter another number y/n " </FONT><FONT COLOR="#000000">) ;</FONT>
+<FONT COLOR="#000000">scanf ( </FONT><FONT COLOR="#ff00ff">" %c"</FONT><FONT COLOR="#000000">, &amp;another ) ;</FONT>
+<FONT COLOR="#000000">} </FONT><FONT COLOR="#0000ff">while </FONT><FONT COLOR="#000000">( another == </FONT><FONT COLOR="#ff00ff">'y' </FONT><FONT COLOR="#000000">) ;</FONT>
+<FONT COLOR="#000000">}</FONT>
+
+<FONT COLOR="#000000">And here is the sample output...</FONT>
+<FONT COLOR="#000000">Enter a number </FONT><FONT COLOR="#800080">5</FONT>
+<FONT COLOR="#000000">square of </FONT><FONT COLOR="#800080">5 </FONT><FONT COLOR="#000000">is </FONT><FONT COLOR="#800080">25</FONT>
+<FONT COLOR="#000000">Want to enter another number y/n y</FONT>
+<FONT COLOR="#000000">Enter a number </FONT><FONT COLOR="#800080">7</FONT>
+<FONT COLOR="#000000">square of </FONT><FONT COLOR="#800080">7 </FONT><FONT COLOR="#000000">is </FONT><FONT COLOR="#800080">49</FONT>
+</PRE>
+</div>
+
+<p>In this program the do-while loop would keep getting executed till the user continues to answer y. The moment he answers n, the loop terminates, since the condition ( another == 'y' ) fails. Note that this loop ensures that statements within it are executed at least once even if n is supplied first time itself.</p>
+<p>Though it is simpler to program such a requirement using a do while loop, the same functionality if required, can also be accomplished using for and while loops as shown below:</p>
+<div class="code">
+<PRE>
+<FONT COLOR="#008000">/* odd loop using a for loop */</FONT>
+<FONT COLOR="#000000">main( )</FONT>
+<FONT COLOR="#000000">{</FONT>
+<FONT COLOR="#0000ff">char </FONT><FONT COLOR="#000000">another = </FONT><FONT COLOR="#ff00ff">'y' </FONT><FONT COLOR="#000000">;</FONT>
+<FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">num ;</FONT>
+<FONT COLOR="#0000ff">for </FONT><FONT COLOR="#000000">( ; another == </FONT><FONT COLOR="#ff00ff">'y' </FONT><FONT COLOR="#000000">; )</FONT>
+<FONT COLOR="#000000">{</FONT>
+<FONT COLOR="#000000">printf ( </FONT><FONT COLOR="#ff00ff">"Enter a number " </FONT><FONT COLOR="#000000">) ;</FONT>
+<FONT COLOR="#000000">scanf ( </FONT><FONT COLOR="#ff00ff">"%d"</FONT><FONT COLOR="#000000">, &amp;num ) ;</FONT>
+<FONT COLOR="#000000">printf ( </FONT><FONT COLOR="#ff00ff">"square of %d is %d"</FONT><FONT COLOR="#000000">, num, num * num ) ;</FONT>
+<FONT COLOR="#000000">printf ( </FONT><FONT COLOR="#ff00ff">"\nWant to enter another number y/n " </FONT><FONT COLOR="#000000">) ;</FONT>
+<FONT COLOR="#000000">scanf ( </FONT><FONT COLOR="#ff00ff">" %c"</FONT><FONT COLOR="#000000">, &amp;another ) ;</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#000000">}</FONT>
+</PRE>
+</div>
+
+<div class="code">
+<PRE>
+<FONT COLOR="#008000">/* odd loop using a while loop */</FONT>
+<FONT COLOR="#000000">main( )</FONT>
+<FONT COLOR="#000000">{</FONT>
+<FONT COLOR="#0000ff">char </FONT><FONT COLOR="#000000">another = </FONT><FONT COLOR="#ff00ff">'y' </FONT><FONT COLOR="#000000">;</FONT>
+<FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">num ;</FONT>
+<FONT COLOR="#0000ff">while </FONT><FONT COLOR="#000000">( another == </FONT><FONT COLOR="#ff00ff">'y' </FONT><FONT COLOR="#000000">)</FONT>
+<FONT COLOR="#000000">{</FONT>
+<FONT COLOR="#000000">printf ( </FONT><FONT COLOR="#ff00ff">"Enter a number " </FONT><FONT COLOR="#000000">) ;</FONT>
+<FONT COLOR="#000000">scanf ( </FONT><FONT COLOR="#ff00ff">"%d"</FONT><FONT COLOR="#000000">, &amp;num ) ;</FONT>
+<FONT COLOR="#000000">printf ( </FONT><FONT COLOR="#ff00ff">"square of %d is %d"</FONT><FONT COLOR="#000000">, num, num * num ) ;</FONT>
+<FONT COLOR="#000000">printf ( </FONT><FONT COLOR="#ff00ff">"\want to enter another number y/n " </FONT><FONT COLOR="#000000">) ;</FONT>
+<FONT COLOR="#000000">scanf ( </FONT><FONT COLOR="#ff00ff">" %c"</FONT><FONT COLOR="#000000">, &amp;another ) ;</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#000000">}</FONT>
+</PRE>
+</div>
+
+<h2>The break statement</h2>
+<p>when we want to jump out of a loop instantly, with out waiting to get back to the conditional test then we use the 'break' keyword. when 'break' encountered inside any loop, control automatically passes to the first statement after the loop. a 'break' is usually associated with an 'if'.</p>
+
+<h3>Example</h3>
+<p>Write a program to determine whether a number is prime or not. A prime number is one, which is divisible only by 1 or itself.</p>
+<div class="code">
+<PRE>
+<FONT COLOR="#000000">main( )</FONT>
+<FONT COLOR="#000000">{</FONT>
+<FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">num, i ;</FONT>
+<FONT COLOR="#000000">printf ( </FONT><FONT COLOR="#ff00ff">"Enter a number " </FONT><FONT COLOR="#000000">) ;</FONT>
+<FONT COLOR="#000000">scanf ( </FONT><FONT COLOR="#ff00ff">"%d"</FONT><FONT COLOR="#000000">, &amp;num ) ;</FONT>
+<FONT COLOR="#000000">i = </FONT><FONT COLOR="#800080">2 </FONT><FONT COLOR="#000000">;</FONT>
+<FONT COLOR="#0000ff">while </FONT><FONT COLOR="#000000">( i &lt;= num - </FONT><FONT COLOR="#800080">1 </FONT><FONT COLOR="#000000">)</FONT>
+<FONT COLOR="#000000">{</FONT>
+<FONT COLOR="#0000ff">if </FONT><FONT COLOR="#000000">( num % i == </FONT><FONT COLOR="#800080">0 </FONT><FONT COLOR="#000000">)</FONT>
+<FONT COLOR="#000000">{</FONT>
+<FONT COLOR="#000000">printf ( </FONT><FONT COLOR="#ff00ff">"Not a prime number" </FONT><FONT COLOR="#000000">) ;</FONT>
+<FONT COLOR="#0000ff">break </FONT><FONT COLOR="#000000">;</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#000000">i++ ;</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#0000ff">if </FONT><FONT COLOR="#000000">( i == num )</FONT>
+<FONT COLOR="#000000">printf ( </FONT><FONT COLOR="#ff00ff">"Prime number" </FONT><FONT COLOR="#000000">) ;</FONT>
+<FONT COLOR="#000000">}</FONT>
+</PRE>
+</div>
+
+<p>In this program the moment num % i turns out to be zero, (i.e.num is exactly divisible by i) the message Not a prime number is printed and the control breaks out of the while loop. Why does the program require the if statement after the while loop at all? Well, there are two ways the control could have reached outside the while loop:</p>
+
+<ol>
+   <li> It jumped out because the number proved to be not a prime .The loop came to an end because the value of i became equal to num.   </li>
+   <li>When the loop terminates in the second case, it means that there was no number between 2 to num - 1 that could exactly divide num. That is, num is indeed a prime. If this is true, the program should print out the message Prime number.</li>
+</ol>
+
+<h2>Continue statement</h2>
+<p>At the time of making the program when we want to take the control to the beginning of the loop, bypassing the statement inside the loop which has not been executed then the keyword 'continue' allows us to do so.</p>
+<p>A continue is usually associated with an if. As an example, let's consider the following program.</p>
+<div class="code">
+<PRE>
+<FONT COLOR="#000000">main( )</FONT>
+<FONT COLOR="#000000">{</FONT>
+<FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">i, j ;</FONT>
+<FONT COLOR="#0000ff">for </FONT><FONT COLOR="#000000">( i = </FONT><FONT COLOR="#800080">1 </FONT><FONT COLOR="#000000">; i &lt;= </FONT><FONT COLOR="#800080">2 </FONT><FONT COLOR="#000000">; i++ )</FONT>
+<FONT COLOR="#000000">{</FONT>
+<FONT COLOR="#0000ff">for </FONT><FONT COLOR="#000000">( j = </FONT><FONT COLOR="#800080">1 </FONT><FONT COLOR="#000000">; j &lt;= </FONT><FONT COLOR="#800080">2 </FONT><FONT COLOR="#000000">; j++ )</FONT>
+<FONT COLOR="#000000">{</FONT>
+<FONT COLOR="#0000ff">if </FONT><FONT COLOR="#000000">( i == j )</FONT>
+<FONT COLOR="#0000ff">continue </FONT><FONT COLOR="#000000">;</FONT>
+<FONT COLOR="#000000">printf ( </FONT><FONT COLOR="#ff00ff">"\n%d %d\n"</FONT><FONT COLOR="#000000">, i, j ) ;</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#000000">}</FONT>
+
+<FONT COLOR="#000000">The output of the above program would be...</FONT>
+<FONT COLOR="#800080">1 2</FONT>
+<FONT COLOR="#800080">2 1</FONT>
+</PRE>
+</div>
+
+<h2>Case control structure</h2>
+<p>C provides a special control statement that allows us to handle the difficult programming and to make a decision from the number of choices.</p>
+
+<h2>The "Goto" keyword</h2>
+<p>In a difficult programming situation it seems so easy to use a goto to take the control where you want.</p>
+<p>By the following example we can understand the use of goto keyword:</p>
+<div class="code">
+<PRE>
+<FONT COLOR="#000000">main( )</FONT>
+<FONT COLOR="#000000">{</FONT>
+<FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">goals ;</FONT>
+<FONT COLOR="#000000">printf ( </FONT><FONT COLOR="#ff00ff">"Enter the number of goals scored against India" </FONT><FONT COLOR="#000000">) ;</FONT>
+<FONT COLOR="#000000">scanf ( </FONT><FONT COLOR="#ff00ff">"%d"</FONT><FONT COLOR="#000000">, &amp;goals ) ;</FONT>
+<FONT COLOR="#0000ff">if </FONT><FONT COLOR="#000000">( goals &lt;= </FONT><FONT COLOR="#800080">5 </FONT><FONT COLOR="#000000">)</FONT>
+<FONT COLOR="#0000ff">goto </FONT><FONT COLOR="#000000">sos ;</FONT>
+<FONT COLOR="#0000ff">else</FONT>
+<FONT COLOR="#000000">{</FONT>
+<FONT COLOR="#000000">printf ( </FONT><FONT COLOR="#ff00ff">"About time soccer players learnt C\n" </FONT><FONT COLOR="#000000">) ;</FONT>
+<FONT COLOR="#000000">printf ( </FONT><FONT COLOR="#ff00ff">"and said goodbye! adieu! to soccer" </FONT><FONT COLOR="#000000">) ;</FONT>
+<FONT COLOR="#000000">exit( ) ; </FONT><FONT COLOR="#008000">/* terminates program execution */</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#000000">sos :</FONT>
+<FONT COLOR="#000000">printf ( </FONT><FONT COLOR="#ff00ff">"To err is human!" </FONT><FONT COLOR="#000000">)</FONT>
+<FONT COLOR="#000000">}</FONT>
+</PRE>
+</div>
+
+<h3>About the program</h3>
+<p>If the condition is satisfied the goto statement transfers control to the label sos, causing printf( ) following sos to be executed.</p>
+<ol>
+   <li>The label can be on a separate line or on the same line as the statement following it, as in
+   <div class="code">
+<PRE>
+ <FONT COLOR="#000000">sos : printf ( </FONT><FONT COLOR="#ff00ff">"To err is human!" </FONT><FONT COLOR="#000000">) ;</FONT>
+</PRE>
+   </div>
+   </li>
+   <li>Any number of gotos can take the control to the same label.</li>
+   <li>The exit( ) function is a standard library function which terminates the execution of the program. It is necessary to use this function since we don't want the statement<br>
+    printf ( "To err is human!" ) to get executed after execution of the else block.</li>
+    <li>The only programming situation in favour of using goto is when we want to take the control out of the loop that is contained in several other loops.</li>
+</ol>
+
+<table id="indexing">
+  <tr>
+   <td style="width:33%; text-align:left;"><a href="DECISION_USING_SWITCH-.shtml" title="Decision control in c: Switch statement">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="FUNCTION.shtml" title="Function in C">Next</a></td>
+  </tr>
+</table>
+
+<!--Footer  --> 
+   </div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>

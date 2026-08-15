@@ -1,0 +1,171 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD>
+<meta http-equiv="Content-Language" content="en-us">
+<TITLE>How can Fetching Array in MySQL database,Why Use It? mysql_fetch_array,What is a Row of Data</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name="description" CONTENT="How can Fetching Array in MySQL database,Why Use It? mysql_fetch_array,What is a Row of Data" >
+<meta name="keywords" CONTENT="How can Fetching Array in MySQL database,Why Use It? mysql_fetch_array,What is a Row of Data">
+
+<<!-- header start-->	
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>PHP Programing language</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+            <img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+            <a href="/php/">PHP</a>
+
+              </div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/php/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	  
+
+	   	   <div class="heading">PHP MySQL Fetch Array</div>
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="php_mysql_query.shtml"  title="PHP MySQL Query">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="php_mysql_select.shtml" title="PHP MySQL Select">Next</a></td></tr>
+</table>
+
+<!-- header End-->		   
+
+<p>MySQL database not using a Fetch Array function.The mysql_fetch_array is inbuilt in a PHP function that allows you to access data stored in the result returned from a successful mysql_query.</p> 
+<p>This lesson will teach you how and why to use mysql_fetch_array in your PHP Scripts.</p>
+
+<h3>Why mysql_fetch_array Use? </h3>
+<p>In mysql database when using mysql_query function then what is returned. It isn't something you can directly manipulate, that is for sure. Here is a sample SELECT query of a table we created in the MySQL Create Table lesson.</p>
+<div class="code">
+<pre>
+<font color="#000000">PHP and MySQL Code:</font>
+<font color="#800000">&lt;?php</font>
+<font color="#0000ff">$</font><font color="#008080">result </font><font color="#800000">= mysql_query(</font><font color="#ff00ff">&quot;SELECT * FROM example&quot;</font><font color="#800000">);</font>
+<font color="#800000">?&gt;</font>
+</pre>
+</div>
+
+<p>The value that mysql_query returns and stores into $result is a special type of data, it is a MySQL Resource. Additional PHP functions are required to extract the data from this Resource.</p>
+
+<h3>What is a Row of Data</h3>
+
+<p>The mysql_fetch_array function takes a MySQL query resource as an argument ($result) and returns the first row of data returned by the mysql_query. Our table example basically looks like the table below.</p>
+
+<i>Example MySQL Table:</i>
+<div class="table_content">
+<table>
+<tr>
+<td class="heading">Name</td>
+<td class="heading">Age</td>
+</tr>
+<tr>
+<td class="alternate_heading1">Amit</td>
+<td class="alternate_heading1">23</td>
+</tr>
+<tr>
+<td class="alternate_heading2">Akash</td>
+<td class="alternate_heading2">21</td>
+</tr>
+<tr>
+<td class="alternate_heading1">Abhinav</td>
+<td class="alternate_heading1">15</td>
+</tr>
+</table>
+</div>
+
+<p>The first row of data in this table is &quot;Amit&quot; and &quot;23&quot;. When we fetch an array from our MySQL Resource $result it should have Timmy's name and age in it.</p>
+<h3>Getting a Row of Data using mysql_fetch_array</h3>
+<p>In this database using mysql_fetch_array returns the first row in a MySQL Resource in the form of an associative array.and it's the columns of the MySQL Result can be accessed by using the column names of the table.</p>
+<div class="code">
+<pre>
+<font color="#000000">PHP and MySQL Code:</font>
+<font color="#800000">&lt;?php</font>
+<font color="#008000">// Make a MySQL Connection</font>
+
+<font color="#0000ff">$</font><font color="#008080">query </font><font color="#800000">= </font><font color="#ff00ff">&quot;SELECT * FROM example&quot;</font><font color="#800000">; </font>
+<font color="#0000ff">$</font><font color="#008080">result </font><font color="#800000">= mysql_query(</font><font color="#0000ff">$</font><font color="#008080">query</font><font color="#800000">) </font><font color="#0000ff">or die</font><font color="#800000">(mysql_error());</font>
+<font color="#0000ff">$</font><font color="#008080">row </font><font color="#800000">= mysql_fetch_array(</font><font color="#0000ff">$</font><font color="#008080">result</font><font color="#800000">) </font><font color="#0000ff">or die</font><font color="#800000">(mysql_error());</font>
+<font color="#0000ff">echo $</font><font color="#008080">row</font><font color="#800000">[</font><font color="#ff00ff">'name'</font><font color="#800000">]. </font><font color="#ff00ff">&quot; - &quot;</font><font color="#800000">. </font><font color="#0000ff">$</font><font color="#008080">row</font><font color="#800000">[</font><font color="#ff00ff">'age'</font><font color="#800000">];</font>
+<font color="#800000">?&gt;</font>
+</pre>
+</div>
+
+<p><i>Output:</i></p>
+<div class="output">
+Amit - 23</div>
+
+<p>This is just what we expected would happen! Now, the cool thing about mysql_fetch_array is that you can use it again on the same MySQL Resource to return the second, third, fourth and so on rows. You can keep doing this until the MySQL Resource has reached the end (which would be three times in our example).</p>
+
+<p>Sounds like an awfully repetitive task. It would be nice if we could get all our results from a MySQL Resource in an easy to do script.</p>
+
+<h3>How to Fetching Array with using While Loop</h3>
+<p>As we have said, the mysql_fetch_array function returns an associative array, but it also returns FALSE if there are no more rows to return! Using a PHP While Loop we can use this information to our advantage.</p>
+<p>If we place the statement &quot;$row = mysql_fetch_array()&quot; as our while loop's conditional statement we will accomplish two things. We will get a new row of MySQL information that we can print out each time the while loop checks its conditional statement. When there are no more rows the function will return FALSE causing the while loop to stop!</p>
+<p>Now that we know what we need to do and how to go about doing it, the code pretty much writes itself, so let's move on to the next lesson. Just kidding! </p>
+<p>Here is the code that will print out all the rows of our MySQL Resource.</p>
+
+<div class="code">
+<pre>
+<font color="#000000">PHP and MySQL Code:</font>
+<font color="#800000">&lt;?php</font>
+<font color="#008000">// Make a MySQL Connection</font>
+<font color="#0000ff">$</font><font color="#008080">query </font><font color="#800000">= </font><font color="#ff00ff">&quot;SELECT * FROM example&quot;</font><font color="#800000">; </font>
+<font color="#0000ff">$</font><font color="#008080">result </font><font color="#800000">= mysql_query(</font><font color="#0000ff">$</font><font color="#008080">query</font><font color="#800000">) </font><font color="#0000ff">or die</font><font color="#800000">(mysql_error());</font>
+<font color="#0000ff">while</font><font color="#800000">(</font><font color="#0000ff">$</font><font color="#008080">row </font><font color="#800000">= mysql_fetch_array(</font><font color="#0000ff">$</font><font color="#008080">result</font><font color="#800000">))</font>
+	<font color="#800000">{</font>
+<font color="#0000ff">echo $</font><font color="#008080">row</font><font color="#800000">[</font><font color="#ff00ff">'name'</font><font color="#800000">]. </font><font color="#ff00ff">&quot; - &quot;</font><font color="#800000">. </font><font color="#0000ff">$</font><font color="#008080">row</font><font color="#800000">[</font><font color="#ff00ff">'age'</font><font color="#800000">];</font>
+<font color="#0000ff">echo </font><font color="#ff00ff">&quot;&lt;br /&gt;&quot;</font><font color="#800000">;</font>
+    <font color="#800000">}</font>
+<font color="#800000">?&gt;</font>
+</pre>
+</div>
+
+<p><i>Output:</i></p>
+<div class="output">
+<pre>Amit - 23
+Akash - 21
+Abhinav - 15
+</pre>
+</div>
+<p>And there we have all the rows from our example table! You could apply this script to any MySQL table as long as you change both the table name in the query and the column names that we have in the associative array.</p>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="php_mysql_query.shtml"  title="PHP MySQL Query">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="php_mysql_select.shtml" title="PHP MySQL Select">Next</a></td></tr>
+</table>
+
+	<!-- Footer Start-->  	
+
+</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/php/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->

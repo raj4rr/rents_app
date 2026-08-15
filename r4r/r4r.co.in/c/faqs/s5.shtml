@@ -1,0 +1,175 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+
+<HTML><HEAD><TITLE>C Interview Questions And Answers</TITLE>
+<META content=r4r.co.in name=owner>
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="Learn simple C Interview Questions And Answers,c tutorial,c basics,c interview questions,c interview questions and answers,interview questions and answers with examples, programming language,examples,pointer,function,loop,else,if else,while,array,pre processor,post processor,structures,memory menagement,string,constants,variables" >
+<meta name="keywords" CONTENT="C Interview Questions And Answers,c tutorial,c basics,c interview questions,c interview questions and answers,interview questions and answers with examples, programming language,examples,pointer,function,loop,else,if else,while,array,pre processor,post processor,structures,memory menagement,string,constants,variables,decisions making,c unions,c memory allocation, c operators,subejctive question,obejective question,literals,directives,stacks,queu,calloc,malloc">
+<link href="/css/main.css" rel="stylesheet" type="text/css" />
+        <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>C Interview Questions And Answers</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a><img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/c/">C </a>
+              <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/c/faqs/">C FAQS</a></div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/c/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 
+
+		<!-- Header End-->	
+<div class="heading">C FAQS</div> 
+   <table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;">
+    	<a href="s4.shtml" title="C Interview Questions And Answers">Previous</a>
+    </td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml" title="C FAQS">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="s6.shtml" title="C Interview Questions And Answers">Next</a></td>
+  </tr>
+</table>
+  <p><span class="style3"><font face="Verdana" size="2"><b>Q:How do I write code that reads data at memory 
+  location specified by segment and offset? <br>
+  Ans:</b>Use peekb( ) function. This function returns byte(s) read from 
+  specific segment and offset locations in memory. The following program 
+  illustrates use of this function. In this program from VDU memory we have read 
+  characters and its attributes of the first row. The information stored in file 
+  is then further read and displayed using peek( ) function.<br>
+  #include &lt;stdio.h&gt;<br>
+  #include &lt;dos.h&gt; <br>
+  main( )<br>
+  { <br>
+  char far *scr = 0xB8000000 ;<br>
+  FILE *fp ;<br>
+  int offset ;<br>
+  char ch ; <br>
+  if ( ( fp = fopen ( &quot;scr.dat&quot;, &quot;wb&quot; ) ) == NULL )<br>
+  { <br>
+  printf ( &quot;\nUnable to open file&quot; ) ;<br>
+  exit( ) ; <br>
+  } <br>
+  // reads and writes to file<br>
+  for ( offset = 0 ; offset &lt; 160 ; offset++ )<br>
+  fprintf ( fp, &quot;%c&quot;, peekb ( scr, offset ) ) ;<br>
+  fclose ( fp ) ; <br>
+  if ( ( fp = fopen ( &quot;scr.dat&quot;, &quot;rb&quot; ) ) == NULL )<br>
+  { <br>
+  printf ( &quot;\nUnable to open file&quot; ) ;<br>
+  exit( ) ; <br>
+  } <br>
+  // reads and writes to file<br>
+  for ( offset = 0 ; offset &lt; 160 ; offset++ )<br>
+  { <br>
+  fscanf ( fp, &quot;%c&quot;, &amp;ch ) ;<br>
+  printf ( &quot;%c&quot;, ch ) ; <br>
+  } <br>
+  fclose ( fp ) ; <br>
+  }<br>
+  <b>Q:What is conversion operator?<br>
+
+  Ans:</b>class can have a public method for specific data type conversions.<br>
+  for example:<br>
+  class Boo<br>
+  {<br>
+  double value;<br>
+  public:<br>
+  Boo(int i )<br>
+  operator double() <br>
+  { <br>
+  return value;<br>
+  }<br>
+  };<br>
+  <br>
+  Boo BooObject;<br>
+  <br>
+  double i = BooObject; // assigning object to variable i of type double. now 
+  conversion operator gets called to assign the value.<br>
+  <br>
+
+  <br>
+  <b>Q:What is diff between malloc()/free() and new/delete?<br>
+  </b><br>
+  <b>Ans:</b>malloc allocates memory for object in heap but doesn't invoke 
+  object's constructor to initiallize the object.<br>
+  <br>
+  new allocates memory and also invokes constructor to initialize the object.<br>
+  <br>
+  malloc() and free() do not support object semantics <br>
+  Does not construct and destruct objects <br>
+  string * ptr = (string *)(malloc (sizeof(string)))<br>
+  Are not safe <br>
+  Does not calculate the size of the objects that it construct <br>
+  Returns a pointer to void <br>
+  int *p = (int *) (malloc(sizeof(int)));<br>
+  int *p = new int;<br>
+  Are not extensible <br>
+  new and delete can be overloaded in a class <br>
+  <br>
+  &quot;delete&quot; first calls the object's termination routine (i.e. its destructor) 
+  and then releases the space the object occupied on the heap memory. If an 
+  array of objects was created using new, then delete must be told that it is 
+  dealing with an array by preceding the name with an empty []:- <br>
+  <br>
+  Int_t *my_ints = new Int_t[10];<br>
+  <br>
+  ...<br>
+  delete []my_ints;<br>
+  <br>
+  <b>Q:what is the diff between &quot;new&quot; and &quot;operator new&quot; ? <br>
+  Ans:</b>&quot;operator new&quot; works like malloc.<br>
+  <br>
+  <b>Q:What is difference between template and macro??<br>
+  Ans:</b>There is no way for the compiler to verify that the macro parameters 
+  are of compatible types. The macro is expanded without any special type 
+  checking.<br>
+  <br>
+  If macro parameter has a postincremented variable ( like c++ ), the increment 
+  is performed two times.<br>
+  <br>
+  Because macros are expanded by the preprocessor, compiler error messages will 
+  refer to the expanded macro, rather than the macro definition itself. Also, 
+  the macro will show up in expanded form during debugging.<br>
+  <br>
+  for example:<br>
+  Macro:<br>
+  #define min(i, j) (i &lt; j ? i : j)<br>
+  template:<br>
+  template&lt;class T&gt; <br>
+  T min (T i, T j) <br>
+  { <br>
+  return i &lt; j ? i : j;<br>
+  }</font><br>
+    <table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;">
+    	<a href="s4.shtml" title="C Interview Questions And Answers">Previous</a>
+    </td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml" title="C FAQS">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="s6.shtml" title="C Interview Questions And Answers">Next</a></td>
+  </tr>
+</table>
+<!--Footer  --> 
+</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>

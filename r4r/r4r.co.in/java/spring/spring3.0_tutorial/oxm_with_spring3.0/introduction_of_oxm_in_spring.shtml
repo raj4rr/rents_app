@@ -1,0 +1,186 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD>
+<meta http-equiv="Content-Language" content="en-us">
+<TITLE>Spring OXM (Object XML Mappers) introduction|Spring tutorial</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name="description" CONTENT="Spring ORM (Object XML Mappers) tutorial provides you spring all topics in detail from
+basics level concepts to higher level concepts" >
+<meta name="keywords" CONTENT="Spring ORM (Object XML Mappers) introduction,ORM (Object XML Mappers), Inttroduction of spring ORM, what is spring ORM
+,Transaction Management, Web MVC ,framework, Web Flow, Exception handling, EJB integration and Sending email">
+
+		<!-- header start-->	
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+     <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>Spring Tutorials</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+			<img src="/images/left_menu_bullet.gif"/> <a href="/spring/">Spring</a>
+
+       </div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/spring/commonfiles/leftmenucore.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	 
+
+<div class="heading">Introduction of Spring OXM(Object XML Mapping)</div>
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="spring_and_castor_example.shtml" title="spring_and_castor_example">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="spring_and_jaxb_integration_example.shtml" title="spring_and_jaxb_integration_example">Next</a></td>
+  </tr> 
+</table>
+<p>Spring OXM stands for Spring Object XML Mapping and it is a module available in Spring to easy the mapping between java objects and XML documents. The module is extensible and hence it provides integration with various popular frameworks like<font class="point_out"> Castor, JAXB, XmlBeans and XStream.</font>
+<p>An O/X-Mapper allows you to map Java objects to XML-Data and XML-Data to Java objects. This is also known as XML-Marshalling or XML-Serialization and is absolutely no new invention. Some of the benefits of using Spring for your O/X mapping needs are: There are some advantages of OXM as follows:</p>
+<ol>
+<li>
+<i>Easy of configuration:</i>
+Springs bean factory makes it easy to configure marshallers, without needing to construct JAXB context, JiBX binding factories, etc. The marshallers can be configured as any other bean in your application context. Additionally, XML Schema-based configuration is available for a number of marshallers, making the configuration even simpler.</li>
+<li>
+<i>Consistent Interfaces:</i>
+Springs O/X mapping operates through two global interfaces: the Marshaller and Unmarshaller interface. These abstractions allow you to switch O/X mapping frameworks with relative ease, with little or no changes required on the classes that do the marshalling.</li>
+<li>
+<i>Consistent Exception Hierarchy:</i>
+Spring provides a conversion from exceptions from the underlying O/X mapping tool to its own exception hierarchy with the XmlMappingException as the root exception. As can be expected, these runtime exceptions wrap the original exception so no information is lost.</li>
+</ol>
+<div class="heading">Marshaller and Unmarshaller XML</div>
+<p>XML Marshaller is a marshaller serializes an object to XML. Here we will describe the Spring interfaces used for this purpose. Spring abstracts all marshalling operations behind the <font class="point_out">org.springframework.oxm.Marshaller</font> interface, the main methods of this as shows below.</p>
+<div class="code">
+<pre>
+<font color="#0000ff">public interface </font><font color="#000000">Marshaller {</font>
+<font color="#008000">/*</font>
+
+<font color="#008000">* Marshals the object graph with the given root into the provided Result.</font>
+
+<font color="#008000">*/</font>
+<font color="#0000ff">void </font><font color="#000000">marshal(</font><font color="#ff0000">Object </font><font color="#000000">graph, </font><font color="#ff0000">Result </font><font color="#000000">result) </font>
+<font color="#0000ff">throws </font><font color="#000000">XmlMappingException, </font><font color="#ff0000">IOException</font><font color="#000000">;</font>
+<font color="#000000">}</font>
+</pre>
+</div>
+<p>The Marshaller interface has one main method, which marshals the given object to a given<font class="point_out"> javax.xml.transform.Result</font>. Result is a tagging interface that basically represents an XML output abstraction: Each implementations wrap various XML representations, as described below:</p>
+<div class="table_content">
+<table>
+<tr>
+<td class="heading" style="width:50%;">Result implementation</td><td class="heading" style="width:50%;">Wraps XML representation</td>
+</tr>
+<tr>
+<td class="alternate_heading1">DOMResult</td><td class="alternate_heading1">org.w3c.dom.Node</td>
+</tr>
+<tr>
+<td class="alternate_heading2">SAXResult</td><td class="alternate_heading2">org.xml.sax.ContentHandler</td>
+</tr>
+<tr>
+<td class="alternate_heading1">StreamResult</td><td class="alternate_heading1">java.io.File, java.io.OutputStream, or java.io.Writer</td>
+</tr>
+</table>
+</div>
+
+<h3>XML Unmarshaller</h3>
+<p>An unmarshaller deserializes XML stream to an object. there is the org.springframework.oxm.Unmarshaller interface.</p>
+<div class="code">
+<pre>
+<font color="#0000ff">public interface </font><font color="#000000">Unmarshaller {</font>
+<font color="#008000">/*</font>
+<font color="#008000">* Unmarshals the given provided Source into an object graph.</font>
+<font color="#008000">*/</font>
+<font color="#ff0000">Object </font><font color="#000000">unmarshal(</font><font color="#ff0000">Source </font><font color="#000000">source) </font>
+<font color="#0000ff">throws </font><font color="#000000">XmlMappingException, </font><font color="#ff0000">IOException</font><font color="#000000">;</font>
+<font color="#000000">}</font>
+</pre>
+</div>
+<p>Unmarshaller interface also has one method, which reads from the given<font class="point_out"> javax.xml.transform.Source</font> (an XML input abstraction), and returns the object read. As with Result, Source is a tagging interface that has three concrete implementations. Each wraps a different XML representation, as described below:</p>
+<div class="table_content">
+<table>
+<tr>
+<td class="heading" style="width:50%;">Result implementation</td><td class="heading" style="width:50%;">Wraps XML representation</td>
+</tr>
+<tr>
+<td class="alternate_heading1">DOMSource</td><td class="alternate_heading1">org.w3c.dom.Node</td>
+</tr>
+<tr>
+<td class="alternate_heading2">SAXSource</td><td class="alternate_heading2">org.xml.sax.InputSource, and org.xml.sax.XMLReader</td>
+</tr>
+<tr>
+<td class="alternate_heading1">StreamSource</td><td class="alternate_heading1">java.io.File, java.io.InputStream, or java.io.Reader</td>
+</tr>
+</table>
+</div>
+<div class="heading">XML Schema-based Configuration</div>
+<p>Marshallers could be configured more concisely using tags from the OXM namespace. To make these tags available, the appropriate schema has to be referenced first in the preamble of the XML configuration file. Now the code below is related to OXM:</p>
+<div class="code">
+<pre>
+<font color="#0000ff">&lt;?xml </font><font color="#ff0000">version</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;1.0&quot; </font><font color="#ff0000">encoding</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;UTF-8&quot;</font><font color="#800080">?</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">beans </font><font color="#ff0000">xmlns</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;http://www.springframework.org/schema/beans&quot;</font>
+<font color="#800080">xmlns:xsi</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</font>
+<font color="#800080">xmlns:oxm</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;http://www.springframework.org/schema/oxm&quot;</font>
+<font color="#800080">xsi:schemaLocation</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;http://www.springframework.org/schema/beans</font>
+<font color="#ff00ff">http://www.springframework.org/schema/beans/spring-beans.xsd</font>
+<font color="#ff00ff">http://www.springframework.org/schema/oxm</font>
+<font color="#ff00ff">http://www.springframework.org/schema/oxm/spring-oxm.xsd&quot;</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">beans</font><font color="#0000ff">&gt;</font>
+</pre>
+</div>
+<p>Currently, the following tags are available in configuration file as given below:</p>
+<ol>
+<li>
+jaxb2-marshaller
+</li>
+<li>
+xmlbeans-marshaller
+</li>
+<li>
+castor-marshaller
+</li>
+<li>
+jibx-marshaller
+</li>
+</ol>
+<p>Each tag will be explained in its respective marshallers section. As an example though, here is how the configuration of a JAXB2 marshaller might look like:</p>
+<div class="code">
+<pre>
+<font color="#0000ff">&lt;</font><font color="#808000">oxm:jaxb2-marshaller </font><font color="#800080">id</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;marshaller&quot; </font>
+<font color="#800080">contextPath</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;org.springframework.ws.samples.airline.schema&quot;</font><font color="#0000ff">/&gt;</font>
+</pre>
+</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="spring_and_castor_example.shtml" title="spring_and_castor_example">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="spring_and_jaxb_integration_example.shtml" title="spring_and_jaxb_integration_example">Next</a></td>
+  </tr> 
+</table>
+
+		</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->
+

@@ -1,0 +1,210 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>Doubly linked list to insert node With C Program</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="Learn Doubly linked list to insert node With C Program,c tutorial,c basics,programming language,examples,pointer" >
+<meta name="keywords" CONTENT="c tutorial,c basics,programming language,examples,pointer,function,loop,else,if else,while,array,pre processor,post processor,structures,memory menagement,string,constants,variables,decisions making,c unions,c memory allocation, c operators, C pointers,c error handling, c file handling">
+	<link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+    <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>C Programming language</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a><img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/c/">C </a>
+              <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/c/c_topics/c_data_structures">C Data structures</a></div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/c/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 
+
+	<!-- Header End-->
+    <div class="heading">C - Doubly Linked List, Insertion</div>
+<table id="indexing">
+  <tr>
+   <td style="width:33%; text-align:left;">
+   	<a href="doubly_linkedlist.shtml" title="C - Doubly Linked List">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="deletion_doublylinkedlist.shtml" title="C - Doubly Linked List, Delete">Next</a></td>
+  </tr>
+</table>
+
+<p><i>Program to insert node in a doubly linked list that shows how to perform various insertion operations on the linked list.</i></p>
+<div class="code">
+<FONT>
+<FONT COLOR="#ff0000">#include</FONT><FONT>&lt;stdio.h&gt;</FONT><br>
+<FONT COLOR="#ff0000">#include</FONT><FONT>&lt;conio.h&gt;</FONT><br>
+<FONT COLOR="#ff0000">#include</FONT><FONT>&lt;malloc.h&gt;</FONT><br>
+<FONT COLOR="#ff0000">#include</FONT><FONT>&lt;process.h&gt;</FONT><br>
+<FONT COLOR="#0000ff">struct </FONT><FONT>node</FONT><br>
+&nbsp;&nbsp;&nbsp;
+    <FONT>{</FONT><br>
+<FONT COLOR="#0000ff">int </FONT><FONT>num;</FONT><br>
+<FONT COLOR="#0000ff">struct </FONT><FONT>node *next;</FONT><br>
+<FONT COLOR="#0000ff">struct </FONT><FONT>node *prev;</FONT><br>
+<FONT>};&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;                           </FONT><FONT COLOR="#008000">/* declaring a global node of type struct */</FONT><br>
+<FONT COLOR="#0000ff">typedef struct </FONT><FONT>node NODE;&nbsp;&nbsp;   </FONT><FONT COLOR="#008000">/* providing a type definition to the above created structure */</FONT><br>
+<FONT>NODE *head=NULL; </FONT><FONT COLOR="#008000">/* declaring some of the global variable that would be used 
+			throughout the program */</FONT><br>
+<FONT>NODE *temp, *first, last;</FONT><br>
+<FONT COLOR="#0000ff">int </FONT><FONT>info;</FONT><br>
+<FONT COLOR="#0000ff">void </FONT><FONT>display();</FONT><br>
+<FONT COLOR="#0000ff">void </FONT><FONT>insert_at_end();</FONT><br>
+<FONT COLOR="#0000ff">void </FONT><FONT>insert_at_begin();</FONT><br>
+<FONT COLOR="#0000ff">void </FONT><FONT>insert_at_specifiedpos();</FONT><br>
+<FONT COLOR="#0000ff">void </FONT><FONT>main()&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;            </FONT><FONT COLOR="#008000">/* starting the main method() */</FONT><br>
+<FONT>{</FONT><br>
+<FONT COLOR="#0000ff">int </FONT><FONT>i;</FONT><br>
+<FONT>clrscr();</FONT><br>
+<FONT>printf(</FONT><FONT COLOR="#ff00ff">"\nprogram for insertion in a doubly linked list :\n"</FONT><FONT>);</FONT><br>
+<FONT COLOR="#0000ff">do</FONT><br>
+<FONT>{</FONT><br>
+<FONT>printf(</FONT><FONT COLOR="#ff00ff">"\nEnter your choice :\n"</FONT><FONT>);</FONT><br>
+<FONT>printf(</FONT><FONT COLOR="#ff00ff">"\n1.Insert element at the end of the linkedlist :"</FONT><FONT>);</FONT><br>
+<FONT>printf(</FONT><FONT COLOR="#ff00ff">"\n2.Insert element at the begin of the linkedlist :"</FONT><FONT>);</FONT><br>
+<FONT>printf(</FONT><FONT COLOR="#ff00ff">"\n3.Insert at any specified position in the linkedlist :"</FONT><FONT>);</FONT><br>
+<FONT>printf(</FONT><FONT COLOR="#ff00ff">"\n4.Exit\n"</FONT><FONT>);</FONT><br>
+<FONT>fflush(stdin);</FONT><br>
+<FONT>scanf(</FONT><FONT COLOR="#ff00ff">"\n%d"</FONT><FONT>,&amp;i);</FONT><br>
+<FONT COLOR="#0000ff">switch</FONT><FONT>(i)</FONT><br>
+<FONT>{</FONT><br>
+<FONT COLOR="#0000ff">case </FONT><FONT COLOR="#800080">1</FONT><FONT>:</FONT><br>
+<FONT>insert_at_end();</FONT><br>
+<FONT>display();</FONT><br>
+<FONT COLOR="#0000ff">break</FONT><FONT>;</FONT><br>
+<FONT COLOR="#0000ff">case </FONT><FONT COLOR="#800080">2</FONT><FONT>:</FONT><br>
+<FONT>insert_at_begin();</FONT><br>
+<FONT>display();</FONT><br>
+<FONT COLOR="#0000ff">break</FONT><FONT>;</FONT><br>
+<FONT COLOR="#0000ff">case </FONT><FONT COLOR="#800080">3</FONT><FONT>:</FONT><br>
+<FONT>insert_at_specifiedpos();</FONT><br>
+<FONT>display();</FONT><br>
+<FONT COLOR="#0000ff">break</FONT><FONT>;</FONT><br>
+<FONT COLOR="#0000ff">case </FONT><FONT COLOR="#800080">4</FONT><FONT>:</FONT><br>
+<FONT>exit(</FONT><FONT COLOR="#800080">0</FONT><FONT>);</FONT><br>
+<FONT>}</FONT><br>
+<FONT>}</FONT><br>
+<FONT COLOR="#0000ff">while</FONT><FONT>(i&lt;=</FONT><FONT COLOR="#800080">4</FONT><FONT>);</FONT><br>
+<FONT>getch();</FONT><br>
+<FONT>}</FONT><br>
+<FONT COLOR="#0000ff">void </FONT><FONT>insert_at_end()</FONT><br>
+<FONT>{</FONT><br>
+<FONT>printf(</FONT><FONT COLOR="#ff00ff">"\nEnter your element in the linked list :"</FONT><FONT>);</FONT><br>
+<FONT>scanf(</FONT><FONT COLOR="#ff00ff">"%d"</FONT><FONT>,&amp;info);</FONT><br>
+<FONT>temp=(NODE *)malloc(</FONT><FONT COLOR="#0000ff">sizeof</FONT><FONT>(NODE));&nbsp;&nbsp;   </FONT><FONT COLOR="#008000">/* allocating memory for the node to be inserted */</FONT><br>
+<FONT>temp-&gt;num=info;</FONT><br>
+<FONT>temp-&gt;next=NULL;</FONT><br>
+<FONT>temp-&gt;prev=NULL;</FONT><br>
+<FONT COLOR="#0000ff">if</FONT><FONT>(head==NULL)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;                      </FONT><FONT COLOR="#008000">/* checking whether list is empty */</FONT><br>
+<FONT>{</FONT><br>
+<FONT>head=temp;</FONT><br>
+<FONT>first=temp;</FONT><br>
+<FONT>last=temp;</FONT><br>
+<FONT>}</FONT><br>
+<FONT COLOR="#0000ff">else</FONT><br>
+<FONT>{</FONT><br>
+<FONT>first=head;</FONT><br>
+<FONT COLOR="#0000ff">while</FONT><FONT>(first-&gt;next!=last)</FONT><br>
+<FONT>{</FONT><br>
+<FONT>first=first-&gt;next;</FONT><br>
+<FONT>}</FONT><br>
+<FONT>first-&gt;next=temp;</FONT><br>
+<FONT>temp-&gt;prev=first;</FONT><br>
+<FONT>temp-&gt;next=NULL;</FONT><br>
+<FONT>last=temp;</FONT><br>
+<FONT>}</FONT><br>
+<FONT>}</FONT><br>
+<FONT COLOR="#0000ff">void </FONT><FONT>display()</FONT><br>
+<FONT>{</FONT><br>
+<FONT>first=head;</FONT><br>
+<FONT>printf(</FONT><FONT COLOR="#ff00ff">"\nStatus of the doubly linked list is as follows :\n"</FONT><FONT>);</FONT><br>
+<FONT COLOR="#0000ff">while</FONT><FONT>(first-&gt;next!=NULL)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;                  </FONT><FONT COLOR="#008000">/* traversing the linked list */</FONT><br>
+<FONT>{</FONT><br>
+<FONT>printf(</FONT><FONT COLOR="#ff00ff">"\n%d"</FONT><FONT>,first-&gt;num);</FONT><br>
+<FONT>first=first-&gt;next;</FONT><br>
+<FONT>}</FONT><br>
+<FONT>}</FONT><br>
+<FONT COLOR="#0000ff">void </FONT><FONT>insert_at_begin()</FONT><br>
+<FONT>{</FONT><br>
+<FONT>printf(</FONT><FONT COLOR="#ff00ff">"\nEnter the value which do you want to insert at begining\n"</FONT><FONT>);</FONT><br>
+<FONT>scanf(</FONT><FONT COLOR="#ff00ff">"\n%d"</FONT><FONT>&amp;info);</FONT><br>
+<FONT>temp=(NODE *)malloc(</FONT><FONT COLOR="#0000ff">sizeof</FONT><FONT>(NODE));</FONT><br>
+<FONT>temp-&gt;num=info;</FONT><br>
+<FONT>temp-&gt;next=NULL;</FONT><br>
+<FONT>temp-&gt;prev=NULL;</FONT><br>
+<FONT COLOR="#0000ff">if</FONT><FONT>(head=NULL)</FONT><br>
+<FONT>{</FONT><br>
+<FONT>head=temp;</FONT><br>
+<FONT>last=temp;</FONT><br>
+<FONT>}</FONT><br>
+<FONT COLOR="#0000ff">else</FONT><br>
+<FONT>{</FONT><br>
+<FONT>temp-&gt;next=head;</FONT><br>
+<FONT>head-&gt;prev=temp;</FONT><br>
+<FONT>temp-&gt;prev=NULL</FONT><br>
+<FONT>head=temp;</FONT><br>
+<FONT>}</FONT><br>
+<FONT>}</FONT><br>
+<FONT COLOR="#0000ff">void </FONT><FONT>insert_at_specifiedpos()</FONT><br>
+<FONT>{</FONT><br>
+<FONT>NODE *second;</FONT><br>
+<FONT COLOR="#0000ff">int </FONT><FONT>node_num,info;</FONT><br>
+<FONT COLOR="#0000ff">int </FONT><FONT>i=</FONT><FONT COLOR="#800080">1</FONT><FONT>;</FONT><br>
+<FONT>printf(</FONT><FONT COLOR="#ff00ff">"\nEnter the nodenumber after which you want to insert new node\n"</FONT><FONT>);</FONT><br>
+<FONT>scanf(</FONT><FONT COLOR="#ff00ff">"%d"</FONT><FONT>,&amp;node_num);</FONT><br>
+<FONT>printf(</FONT><FONT COLOR="#ff00ff">"\nEnter the value of new node\n"</FONT><FONT>);</FONT><br>
+<FONT>scanf(</FONT><FONT COLOR="#ff00ff">"\n%d"</FONT><FONT>,&amp;info);</FONT><br>
+<FONT>temp=(NODE *)malloc(</FONT><FONT COLOR="#0000ff">sizeof</FONT><FONT>(NODE));</FONT><br>
+<FONT>temp-&gt;num=info;</FONT><br>
+<FONT>temp-&gt;next=NULL;</FONT><br>
+<FONT>temp-&gt;prev=NULL;</FONT><br>
+<FONT>first=head;</FONT><br>
+<FONT COLOR="#0000ff">while</FONT><FONT>(i&lt;node_num)</FONT><br>
+<FONT>{</FONT><br>
+<FONT>second=first;</FONT><br>
+<FONT>first=first-&gt;next;</FONT><br>
+<FONT>}</FONT><br>
+<FONT>temp-&gt;next=first;</FONT><br>
+<FONT>temp-&gt;prev=second;</FONT><br>
+<FONT>first-&gt;prev=temp;</FONT><br>
+<FONT>second-&gt;next=temp;</FONT><br>
+			<br>
+
+<FONT>}</FONT><br>
+<FONT>}</FONT></FONT>
+</div>
+
+<table id="indexing">
+  <tr>
+   <td style="width:33%; text-align:left;">
+   	<a href="doubly_linkedlist.shtml" title="C - Doubly Linked List">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="deletion_doublylinkedlist.shtml" title="C - Doubly Linked List, Delete">Next</a></td>
+  </tr>
+</table>
+
+<!--Footer  --> 
+</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>

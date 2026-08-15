@@ -1,0 +1,183 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD>
+<meta http-equiv="Content-Language" content="en-us">
+<TITLE>JSP Tutorials:-JSP Action</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=Content-Type content="text/html; charset=windows-1252">
+
+<meta name="description" content="JSP Tutorial - JSP Tutorials JSP Action, JSP (Java Server Pages) in simple and easy steps using this beginner's tutorial" />
+<meta name="keywords" content="JSP, Tutorials, Learning, Beginners, Basics, Life Cycle, Examples,Request, Server Response, Http, Filters, Exceptions, Cookies, Sessions, Database Access, File Uploading, File Uploading, Internationalization." />
+
+<!-- header start-->	
+
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+
+<?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+     <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>JSP Tutorials</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+			<img src="/images/left_menu_bullet.gif"/> <a href="/java/">Java</a>
+			<img src="/images/left_menu_bullet.gif"/> <a href="/java/jsp/">JSP</a>
+
+			       </div>
+
+            	<table>
+                    <tr>
+
+                         <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/jsp/jsp_basics/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	 
+
+<div class="heading">JSP Action</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="tablib.shtml" title="JSP Taglib directive">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="include_action.shtml" title=" JSP Include action tag ">Next</a></td>
+  </tr> 
+</table>
+
+<!-- header End--> 
+
+<h3>Jsp Action</h3>
+
+<p>In JSP is actions  used a constructs in XML syntax to control and behaviour of the servlet engine. We can dynamically insert  a  file,  reuse  JavaBeans  components,
+forward  the  user  to  another  page,  or  generate  HTML  for  the  Java plugin.</p>
+
+<p>
+There is only one syntax for the Action element, as it conforms to the XML standard:
+</p>
+
+<h3>Syntax used</h3>
+<div class="code">
+<pre>
+<span style="font-family: Arial"><span style="color: #0000ff">&lt;</span><span style="color: #808000">jsp:action_name </span><span style="color: #800080">attribute</span><span style="color: #0000ff">=</span><span style="color: #ff00ff">&quot;value&quot;</span><span style="color: #0000ff">/&gt;</span>
+</span></pre>
+</div>
+
+<h3>Some important Action tags</h3>
+
+<div class="table_content">
+ <table>
+ <tr><td class="heading" style="width:50%;"> Syntax</td><td class="heading" style="width:50%;">Purpose </td></tr>
+<tr><td class="alternate_heading1">jsp:include</td><td class="alternate_heading1">Includes a file at the time the page is requested</td></tr>
+
+<tr><td class="alternate_heading1">jsp:useBean</td><td class="alternate_heading1">find javaBean</td></tr>
+<tr><td class="alternate_heading1">jsp:setProperty</td><td class="alternate_heading1">Sets JavaBean property</td></tr>
+<tr><td class="alternate_heading1">jsp:getProperty</td><td class="alternate_heading1">inserts the property of a JavaBean into the output </td></tr>
+<tr><td class="alternate_heading1">jsp:forward</td><td class="alternate_heading1">Forwards the requester to a new page </td></tr>
+<tr><td class="alternate_heading1">jsp:plugin</td><td class="alternate_heading1">A specific code which makes an OBJECT or EMBED tag of Javaplugin </td></tr>
+<tr><td class="alternate_heading1">jsp:element</td><td class="alternate_heading1">Defines XML element  </td></tr>
+
+</table>
+</div>
+
+<h2>
+jsp:forward action tag
+</h2>
+
+<p>
+It can be used to forward the request to another resource it may be jsp.</p>
+
+<h3>
+Syntax used without parameter
+</h3>
+
+<div class="code">
+<pre>
+<span style="font-family: Arial">    <span style="color: #000000">&lt;jsp:forward page=</span><span style="color: #ff00ff">&quot;relativeURL | &lt;%= expression %&gt;&quot;</span><span style="color: #000000">&gt;  </span>
+    <span style="color: #000000">&lt;jsp:param name=</span><span style="color: #ff00ff">&quot;parametername&quot; </span><span style="color: #000000">value=</span><span style="color: #ff00ff">&quot;parametervalue | &lt;%=expression%&gt;&quot; </span><span style="color: #000000">/&gt;  </span>
+    <span style="color: #000000">&lt;/jsp:forward&gt;  </span>
+
+    <span style="color: #000000">&lt;jsp:forward page=</span><span style="color: #ff00ff">&quot;relativeURL | &lt;%= expression %&gt;&quot;</span><span style="color: #000000">&gt;  </span>
+    <span style="color: #000000">&lt;jsp:param name=</span><span style="color: #ff00ff">&quot;parametername&quot; </span><span style="color: #000000">value=</span><span style="color: #ff00ff">&quot;parametervalue | &lt;%=expression%&gt;&quot; </span><span style="color: #000000">/&gt;  </span>
+    <span style="color: #000000">&lt;/jsp:forward&gt; </span>
+</span></pre>
+</div>
+
+<h3>Example</h3>
+
+<i>
+index.jsp
+</i>
+
+<div class="code">
+<pre>
+<span style="font-family: Arial"><span style="color: #000000">    </span><span style="color: #0000ff">&lt;html&gt;</span><span style="color: #000000">  </span>
+<span style="color: #000000">    </span><span style="color: #0000ff">&lt;body&gt;</span><span style="color: #000000">  </span>
+<span style="color: #000000">    </span><span style="color: #0000ff">&lt;h2&gt;</span><span style="color: #000000">this is index page</span><span style="color: #0000ff">&lt;/h2&gt;</span><span style="color: #000000">  </span>
+<span style="color: #000000">    </span><span style="color: #0000ff">&lt;</span><span style="color: #808000">jsp:forward </span><span style="color: #800080">page</span><span style="color: #0000ff">=</span><span style="color: #ff00ff">&quot;printdate.jsp&quot; </span><span style="color: #0000ff">/&gt;</span><span style="color: #000000">  </span>
+<span style="color: #000000">    </span><span style="color: #0000ff">&lt;/body&gt;</span><span style="color: #000000">  </span>
+<span style="color: #000000">    </span><span style="color: #0000ff">&lt;/html&gt;</span><span style="color: #000000">  </span>
+
+<span style="color: #000000">    </span><span style="color: #0000ff">&lt;html&gt;</span><span style="color: #000000">  </span>
+<span style="color: #000000">    </span><span style="color: #0000ff">&lt;body&gt;</span><span style="color: #000000">  </span>
+<span style="color: #000000">    </span><span style="color: #0000ff">&lt;h2&gt;</span><span style="color: #000000">this is index page</span><span style="color: #0000ff">&lt;/h2&gt;</span><span style="color: #000000">  </span>
+<span style="color: #000000">    </span><span style="color: #0000ff">&lt;</span><span style="color: #808000">jsp:forward </span><span style="color: #800080">page</span><span style="color: #0000ff">=</span><span style="color: #ff00ff">&quot;printdate.jsp&quot; </span><span style="color: #0000ff">/&gt;</span><span style="color: #000000">  </span>
+<span style="color: #000000">    </span><span style="color: #0000ff">&lt;/body&gt;</span><span style="color: #000000">  </span>
+<span style="color: #000000">    </span><span style="color: #0000ff">&lt;/html&gt;</span><span style="color: #000000">  </span>
+</span></pre>
+</div>
+
+<i>
+printdate.jsp
+</i>
+
+<div class="code">
+<pre>
+<span style="font-family: Arial"><span style="color: #000000">    </span><span style="color: #0000ff">&lt;html&gt;</span><span style="color: #000000">  </span>
+<span style="color: #000000">    </span><span style="color: #0000ff">&lt;body&gt;</span><span style="color: #000000">  </span>
+<span style="color: #000000">    </span><span style="color: #800000">&lt;% </span><span style="color: #0000ff">out</span><span style="color: #800000">.print(</span><span style="color: #ff00ff">&quot;Today is:&quot;</span><span style="color: #800000">+java.util.Calendar.getInstance().getTime()); </span><span style="color: #800000">%&gt;</span><span style="color: #000000">  </span>
+<span style="color: #000000">    </span><span style="color: #0000ff">&lt;/body&gt;</span><span style="color: #000000">  </span>
+<span style="color: #000000">    </span><span style="color: #0000ff">&lt;/html&gt;</span><span style="color: #000000">  </span>
+
+<span style="color: #000000">    </span><span style="color: #0000ff">&lt;html&gt;</span><span style="color: #000000">  </span>
+<span style="color: #000000">    </span><span style="color: #0000ff">&lt;body&gt;</span><span style="color: #000000">  </span>
+<span style="color: #000000">    </span><span style="color: #800000">&lt;% </span><span style="color: #0000ff">out</span><span style="color: #800000">.print(</span><span style="color: #ff00ff">&quot;Today is:&quot;</span><span style="color: #800000">+java.util.Calendar.getInstance().getTime()); </span><span style="color: #800000">%&gt;</span><span style="color: #000000">  </span>
+<span style="color: #000000">    </span><span style="color: #0000ff">&lt;/body&gt;</span><span style="color: #000000">  </span>
+<span style="color: #000000">    </span><span style="color: #0000ff">&lt;/html&gt;</span><span style="color: #000000">  </span>
+</span></pre>
+</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="tablib.shtml" title="JSP Taglib directive">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="include_action.shtml" title=" JSP Include action tag ">Next</a></td>
+  </tr> 
+</table>
+
+	<!--Footer  --> 
+
+		</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+
+<!-- Footer End-->
+

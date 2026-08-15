@@ -1,0 +1,186 @@
+<html>
+
+<head>
+<title>Source Code Insert Form </title>
+
+<?php  require_once dirname(__FILE__) . '/../config/site_config.php';
+ require_once $CONFIG['CORE_PATH'] . "../db/sdbconnection.php";
+
+$id=$_GET["id"];
+$option=$_GET["option"];
+if (!$sconnection)
+  {
+  die('Could not connect: ' . mysql_error());
+  }
+
+ $rs = mysql_query("SELECT  *  FROM `sourcecode` WHERE  id='$id' ") or die("State query error!");
+ while(list($id,$title,$keywords,$descriptions,$introduction,$classdescription,$methoddescription,$sourcecodedescription,$sourcecode,$output,$file,$language,$username,$date,$hide) = mysql_fetch_row($rs))
+{
+
+?>
+
+<script language=javascript>
+function profileValidation()
+{
+
+		if (document.SForm.title.value.length ==0) {
+
+			alert("*Title Fields Can Not be NULL");
+			document.SForm.title.focus();
+			return ;
+
+		}	if (document.SForm.keywords.value.length ==0) {
+
+			alert("*Meta Keywords Fields Can Not be NULL");
+			document.SForm.keywords.focus();
+			return ;
+
+		}	if (document.SForm.descriptions.value.length ==0) {
+
+			alert("*Meta  Descriptions Fields Can Not be NULL");
+			document.SForm.descriptions.focus();
+			return ;
+
+		}	if (document.SForm.introduction.value.length ==0) {
+
+			alert("*Introduction Fields Can Not be NULL");
+			document.SForm.introduction.focus();
+			return ;
+
+		}	if (document.SForm.classdescription.value.length ==0) {
+
+			alert("*Class description Fields Can Not be NULL");
+			document.SForm.classdescription.focus();
+			return ;
+
+		}	if (document.SForm.methoddescription.value.length ==0) {
+
+			alert("*Method description Fields Can Not be NULL");
+			document.SForm.methoddescription.focus();
+			return ;
+
+		}	if (document.SForm.sourcecodedescription.value.length ==0) {
+
+			alert("*Source code description Fields Can Not be NULL");
+			document.SForm.sourcecodedescription.focus();
+			return ;
+
+		}	if (document.SForm.sourcecode.value.length ==0) {
+
+			alert("*Source code Fields Can Not be NULL");
+			document.SForm.sourcecode.focus();
+			return ;
+
+		}	if (document.SForm.language.value.length ==0) {
+
+			alert("*Keyword Language Fields Can Not be NULL");
+			document.SForm.language.focus();
+			return ;
+
+		}	if (document.SForm.username.value.length ==0) {
+
+			alert("*User name Fields Can Not be NULL");
+			document.SForm.username.focus();
+			return ;
+
+		}
+
+document.SForm.action="Update_Source_Code.php";
+document.SForm.submit();
+
+}
+</script>
+</head>
+
+<body>
+
+<form method="POST" name="SForm" enctype="multipart/form-data">
+
+  <p align="center">Update Source Code</p>
+  <p align="center"><b><font size="5">Source Code Update Form </font></b></p>
+  <table border="1" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="100%" id="AutoNumber1">
+    <tr>
+      <td width="25%">Title<font color="#FF0000">*</font></td>
+      <td width="75%">
+  <input type="text" name="title" size="50" tabindex="1" value="<?php echo $title; ?>"></td>
+    </tr>
+    <tr>
+      <td width="25%">Meta Data Keywords<font color="#FF0000">*</font></td>
+      <td width="75%">
+  <input type="text" name="keywords" size="50" tabindex="2" value="<?php echo $keywords; ?>"></td>
+    </tr>
+    <tr>
+      <td width="25%">Meta Data Descriptions<font color="#FF0000">*</font></td>
+      <td width="75%">
+  <input type="text" name="descriptions" size="50" tabindex="3" value="<?php echo $descriptions; ?>"></td>
+    </tr>
+    <tr>
+      <td width="25%">Introduction<font color="#FF0000">*</font></td>
+      <td width="75%">
+  <textarea rows="3" name="introduction" cols="69" tabindex="4"><?php echo $introduction; ?></textarea></td>
+    </tr>
+    <tr>
+      <td width="25%">Class/Library File&nbsp; Descriptions<font color="#FF0000">*</font></td>
+      <td width="75%">
+  <textarea rows="5" name="classdescription" cols="69" tabindex="5"><?php echo $classdescription; ?></textarea></td>
+    </tr>
+    <tr>
+      <td width="25%">Method Descriptions<font color="#FF0000">*</font></td>
+      <td width="75%">
+  <textarea rows="10" name="methoddescription" cols="69" tabindex="6"><?php echo $methoddescription; ?></textarea></td>
+    </tr>
+    <tr>
+      <td width="25%">Source Code Descriptions <font color="#FF0000">*</font></td>
+      <td width="75%">
+  <textarea rows="10" name="sourcecodedescription" cols="69" tabindex="7"><?php echo $sourcecodedescription; ?></textarea></td>
+    </tr>
+    <tr>
+      <td width="25%" >
+      Source Code<font color="#FF0000">*</font></td>
+  <td width="75%" >
+      <textarea rows="20" name="sourcecode" cols="69" tabindex="8"><?php echo $sourcecode; ?></textarea></td>
+    </tr>
+       <tr>
+      <td width="25%" >
+      Output</td>
+  <td width="75%" >
+      <textarea rows="5" name="output" cols="69" tabindex="9"><?php echo $output; ?></textarea></td>
+    </tr>
+       <tr>
+      <td width="25%" >
+      Image</td>
+  <td width="75%" >
+      <input type="file" name="file" size="37" tabindex="11"></td>
+    </tr>
+    <tr>
+      <td width="25%" >
+      <p align="left">
+  Source Code Keyword<font color="#FF0000">*</font></td>
+  <td width="75%" >
+      <p align="left">
+  <input type="text" name="language" size="50" tabindex="12" value="&lt;?php echo $output; ?&gt;"></td>
+    </tr>
+    <tr>
+      <td width="25%" >
+      User Name<font color="#FF0000">*</font></td>
+        <td width="75%" >
+      <input type="text" name="username" size="50" tabindex="13" value="&lt;?php echo $username; ?&gt;"></td>
+    </tr>
+    <tr>
+      <td width="100%" colspan="2">
+      <p align="center">
+  <input type="button" value="Save"  onclick="profileValidation();" name="save" tabindex="14">
+  <input type="reset" value="Reset" name="reset" tabindex="15">
+  </td>
+    </tr>
+  </table>
+</form>
+
+ <?php
+	}
+mysql_close($sconnection);
+?>
+
+</body>
+
+</html>

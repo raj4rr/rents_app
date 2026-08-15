@@ -1,0 +1,205 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>Interthread Communication in Thread</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="Interthread Communication in Thread">
+<meta name="keywords" CONTENT="Interthread Communication in Thread">
+
+<!-- header start-->	
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>Java Programing laungage</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+            <img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+            <a href="/java/">Java</a>
+              <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/java/corejava/">Core Java</a>
+
+                     <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/java/corejava/topics/thread/">Thread</a>
+              </div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/corejava/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	 
+<!-- header End-->
+
+<div class="heading">Inner thread Communication</div>
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="Synchronization.shtml" title="Synchronization">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="index.shtml" title="Home">Next</a></td>
+  </tr> 
+</table>
+
+ <p>Intertthread communication is  similar as interprocess communication, which allow other thread  to execute if one is waiting for resource. Such as in Producer Consumer problem if producer is producing some value then consumer have to wait. This Polling system may waste many CPU cycle. Thus interprocess communication help to reduce wasting of CPU cycles.</p>
+
+<p>In Java innerthread communication machanism can be achieved by help of three methods.</p>
+<ol>
+<li>
+<p><i>wait():</i> This method tells the calling thread to give up the monitor and go to sleep until some other thread enters the same monitor and calls notify().</p>
+</li>
+<li>
+<p><i>notify(): </i>This method wakes up the first thread that called wait( ) on the same object.</p>
+</li>
+<li>
+<p><i>notifyAll():</i> This method wakes up all the threads that called wait( ) on the same object. The highest priority thread will run first. But if there are no waiting threads, the notifys are forgotten.</p></li></ol>
+<p>The complete syntex of  all three methods are.</p>
+<div class="code">
+<pre>
+<font color="#0000ff">final void </font><font color="#000000">wait() </font><font color="#0000ff">throws </font><font color="#ff0000">InterruptedException</font><font color="#000000">; </font>
+</pre>
+</div>
+
+<p>It have two overloades</p>
+<ol>
+<li>final voidwait(long timeout)</li>
+ <li>final voidwait(long timeout, in nansec)</li>
+ </ol>
+<p>Here timeout in milli sec and nansec measured in nanosecond.</p>
+<div class="code">
+<pre>
+<font color="#0000ff">final void </font><font color="#000000">notify();</font>
+</pre>
+</div>
+<div class="code">
+<pre>
+<font color="#0000ff">final void </font><font color="#000000">notifyAll();</font>
+</pre>
+</div>
+
+<h3>An Example of   innerthread communication is Producer consumer problem</h3>
+<div class="code">
+<PRE>
+<FONT COLOR="#008000">/*</FONT>
+<FONT COLOR="#008000"> * imlementing interthread communication</FONT>
+<FONT COLOR="#008000"> */</FONT>
+<FONT COLOR="#0000ff">package </FONT><FONT COLOR="#000000">interthreadcommunicationex;</FONT>
+ <FONT COLOR="#0000ff">class </FONT><FONT COLOR="#000000">Q {</FONT>
+   <FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">n;</FONT>
+   <FONT COLOR="#0000ff">boolean </FONT><FONT COLOR="#000000">valueSet = </FONT><FONT COLOR="#0000ff">false</FONT><FONT COLOR="#000000">;</FONT>
+   <FONT COLOR="#0000ff">synchronized int </FONT><FONT COLOR="#000000">get() {</FONT>
+      <FONT COLOR="#0000ff">if</FONT><FONT COLOR="#000000">(!valueSet)</FONT>
+      <FONT COLOR="#0000ff">try </FONT><FONT COLOR="#000000">{</FONT>
+         <FONT COLOR="#000000">wait();</FONT>
+      <FONT COLOR="#000000">} </FONT><FONT COLOR="#0000ff">catch</FONT><FONT COLOR="#000000">(</FONT><FONT COLOR="#ff0000">InterruptedException </FONT><FONT COLOR="#000000">e) {</FONT>
+         <FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.println(</FONT><FONT COLOR="#ff00ff">"InterruptedException caught"</FONT><FONT COLOR="#000000">);</FONT>
+      <FONT COLOR="#000000">}</FONT>
+      <FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.println(</FONT><FONT COLOR="#ff00ff">"Got: " </FONT><FONT COLOR="#000000">+ n);</FONT>
+      <FONT COLOR="#000000">valueSet = </FONT><FONT COLOR="#0000ff">false</FONT><FONT COLOR="#000000">;</FONT>
+      <FONT COLOR="#000000">notify();</FONT>
+      <FONT COLOR="#0000ff">return </FONT><FONT COLOR="#000000">n;</FONT>
+   <FONT COLOR="#000000">}</FONT>
+   <FONT COLOR="#0000ff">synchronized void </FONT><FONT COLOR="#000000">put(</FONT><FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">n) {</FONT>
+      <FONT COLOR="#0000ff">if</FONT><FONT COLOR="#000000">(valueSet)</FONT>
+      <FONT COLOR="#0000ff">try </FONT><FONT COLOR="#000000">{</FONT>
+         <FONT COLOR="#000000">wait();</FONT>
+      <FONT COLOR="#000000">} </FONT><FONT COLOR="#0000ff">catch</FONT><FONT COLOR="#000000">(</FONT><FONT COLOR="#ff0000">InterruptedException </FONT><FONT COLOR="#000000">e) {</FONT>
+         <FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.println(</FONT><FONT COLOR="#ff00ff">"InterruptedException caught"</FONT><FONT COLOR="#000000">);</FONT>
+      <FONT COLOR="#000000">}</FONT>
+      <FONT COLOR="#0000ff">this</FONT><FONT COLOR="#000000">.n = n;</FONT>
+      <FONT COLOR="#000000">valueSet = </FONT><FONT COLOR="#0000ff">true</FONT><FONT COLOR="#000000">;</FONT>
+      <FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.println(</FONT><FONT COLOR="#ff00ff">"Put: " </FONT><FONT COLOR="#000000">+ n);</FONT>
+      <FONT COLOR="#000000">notify();</FONT>
+   <FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#0000ff">class </FONT><FONT COLOR="#000000">Producer </FONT><FONT COLOR="#0000ff">implements </FONT><FONT COLOR="#ff0000">Runnable </FONT><FONT COLOR="#000000">{</FONT>
+   <FONT COLOR="#000000">Q q;</FONT>
+   <FONT COLOR="#000000">Producer(Q q) {</FONT>
+      <FONT COLOR="#0000ff">this</FONT><FONT COLOR="#000000">.q = q;</FONT>
+      <FONT COLOR="#0000ff">new </FONT><FONT COLOR="#ff0000">Thread</FONT><FONT COLOR="#000000">(</FONT><FONT COLOR="#0000ff">this</FONT><FONT COLOR="#000000">, </FONT><FONT COLOR="#ff00ff">"Producer"</FONT><FONT COLOR="#000000">).start();</FONT>
+   <FONT COLOR="#000000">}</FONT>
+   <FONT COLOR="#0000ff">public void </FONT><FONT COLOR="#000000">run() {</FONT>
+      <FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">i = </FONT><FONT COLOR="#800080">0</FONT><FONT COLOR="#000000">;</FONT>
+      <FONT COLOR="#0000ff">while</FONT><FONT COLOR="#000000">(</FONT><FONT COLOR="#0000ff">true</FONT><FONT COLOR="#000000">) {</FONT>
+         <FONT COLOR="#000000">q.put(i++);</FONT>
+      <FONT COLOR="#000000">}</FONT>
+   <FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#0000ff">class </FONT><FONT COLOR="#000000">Consumer </FONT><FONT COLOR="#0000ff">implements </FONT><FONT COLOR="#ff0000">Runnable </FONT><FONT COLOR="#000000">{</FONT>
+    <FONT COLOR="#000000">Q q;</FONT>
+    <FONT COLOR="#000000">Consumer(Q q) {</FONT>
+       <FONT COLOR="#0000ff">this</FONT><FONT COLOR="#000000">.q = q;</FONT>
+       <FONT COLOR="#0000ff">new </FONT><FONT COLOR="#ff0000">Thread</FONT><FONT COLOR="#000000">(</FONT><FONT COLOR="#0000ff">this</FONT><FONT COLOR="#000000">, </FONT><FONT COLOR="#ff00ff">"Consumer"</FONT><FONT COLOR="#000000">).start();</FONT>
+    <FONT COLOR="#000000">}</FONT>
+    <FONT COLOR="#0000ff">public void </FONT><FONT COLOR="#000000">run() {</FONT>
+       <FONT COLOR="#0000ff">while</FONT><FONT COLOR="#000000">(</FONT><FONT COLOR="#0000ff">true</FONT><FONT COLOR="#000000">) {</FONT>
+       <FONT COLOR="#000000">q.get();</FONT>
+    <FONT COLOR="#000000">}</FONT>
+  <FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#0000ff">public class </FONT><FONT COLOR="#000000">interthrdcommn {</FONT>
+     <FONT COLOR="#0000ff">public static void </FONT><FONT COLOR="#000000">main(</FONT><FONT COLOR="#ff0000">String </FONT><FONT COLOR="#000000">args[]) {</FONT>
+      <FONT COLOR="#000000">Q q = </FONT><FONT COLOR="#0000ff">new </FONT><FONT COLOR="#000000">Q();</FONT>
+      <FONT COLOR="#0000ff">new </FONT><FONT COLOR="#000000">Producer(q);</FONT>
+      <FONT COLOR="#0000ff">new </FONT><FONT COLOR="#000000">Consumer(q);</FONT>
+      <FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.println(</FONT><FONT COLOR="#ff00ff">"Press Control-C to stop."</FONT><FONT COLOR="#000000">);</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#000000">}</FONT>
+</PRE>
+</div>
+<p><i>Output:</i></p>
+<div class="output">
+<PRE>
+<FONT COLOR="#000000">run:</FONT>
+<FONT COLOR="#000000">Put: </FONT><FONT COLOR="#800080">0</FONT>
+<FONT COLOR="#000000">Got: </FONT><FONT COLOR="#800080">0</FONT>
+<FONT COLOR="#000000">Put: </FONT><FONT COLOR="#800080">1</FONT>
+<FONT COLOR="#000000">Got: </FONT><FONT COLOR="#800080">1</FONT>
+<FONT COLOR="#000000">Put: </FONT><FONT COLOR="#800080">2</FONT>
+<FONT COLOR="#000000">Got: </FONT><FONT COLOR="#800080">2</FONT>
+<FONT COLOR="#000000">Put: </FONT><FONT COLOR="#800080">3</FONT>
+<FONT COLOR="#000000">Got: </FONT><FONT COLOR="#800080">3</FONT>
+<FONT COLOR="#000000">Put: </FONT><FONT COLOR="#800080">4</FONT>
+<FONT COLOR="#000000">Got: </FONT><FONT COLOR="#800080">4</FONT>
+<FONT COLOR="#000000">Put: </FONT><FONT COLOR="#800080">5</FONT>
+<FONT COLOR="#000000">Got: </FONT><FONT COLOR="#800080">5</FONT>
+<FONT COLOR="#000000">Put: </FONT><FONT COLOR="#800080">6</FONT>
+<FONT COLOR="#000000">Got: </FONT><FONT COLOR="#800080">6</FONT>
+<FONT COLOR="#000000">Put: </FONT><FONT COLOR="#800080">7</FONT>
+<FONT COLOR="#000000">Got: </FONT><FONT COLOR="#800080">7</FONT>
+<FONT COLOR="#000000">Put: </FONT><FONT COLOR="#800080">8</FONT>
+<FONT COLOR="#000000">Got: </FONT><FONT COLOR="#800080">8</FONT>
+</PRE>
+</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="Synchronization.shtml" title="Synchronization">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="index.shtml" title="Home">Next</a></td>
+  </tr> 
+</table>
+
+<!-- Footer Start-->	
+
+		</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->

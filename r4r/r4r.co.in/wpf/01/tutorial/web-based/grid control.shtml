@@ -1,0 +1,209 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>Grid Control in WPF WEB BASED</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="Grid Control in WPF WEB BASED" >
+<meta name="keywords" CONTENT="Grid Control in WPF WEB BASED">
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>Rectangle Control in WPF Web Base</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="Rectangle Control in WPF Web Base" >
+<meta name="keywords" CONTENT="Rectangle Control in WPF Web Base">
+
+<!--Header start-->
+
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>WPF Web Based</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a><img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+			<a href="/wpf">WPF with C# </a>
+              <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/wpf/01/tutorial/web-based/">WPF Web Based Tutorials</a></div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/wpf/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	  
+
+<!-- Header End-->                                   
+<div class="heading">Grid Control in WPF Web Based</div>
+
+ <table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="ellipse_control.shtml" title=" Ellipse Control
+">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="progressbar.shtml" title="Progressbar Control">Next</a></td>
+  </tr>
+</table>
+
+<p>The grid is a layout panel that arranges its child controls in a tabular 
+structure of rows and columns. Its functionality is similar to the HTML table 
+but more flexible.</p>
+<p>A grid consists of rows and columns . To setup this, use the following 
+definition:</p>
+
+<div class="code">
+<pre>
+<font color="#000000">&lt;!DOCTYPE HTML PUBLIC </font><font color="#ff00ff">&quot;-//W3C//DTD HTML 4.01 Transitional//EN&quot; </font>
+<font color="#000000">&lt;</font><font color="#808000">Grid</font><font color="#000000">.RowDefinitions&gt;</font>
+<font color="#000000">&lt;</font><font color="#808000">RowDefinition </font><font color="#000000">Height=</font><font color="#ff00ff">&quot;Auto&quot; </font><font color="#000000">/&gt;</font>
+<font color="#000000">&lt;</font><font color="#808000">RowDefinition </font><font color="#000000">Height=</font><font color="#ff00ff">&quot;Auto&quot; </font><font color="#000000">/&gt;</font>
+<font color="#000000">&lt;</font><font color="#808000">RowDefinition </font><font color="#000000">Height=</font><font color="#ff00ff">&quot;Auto&quot; </font><font color="#000000">/&gt;</font>
+<font color="#000000">&lt;/</font><font color="#808000">Grid</font><font color="#000000">.RowDefinitions&gt;</font>
+<font color="#000000">&lt;</font><font color="#808000">Grid</font><font color="#000000">.ColumnDefinitions&gt;</font>
+<font color="#000000">&lt;</font><font color="#808000">ColumnDefinition </font><font color="#000000">Width=</font><font color="#ff00ff">&quot;75&quot; </font><font color="#000000">/&gt;</font>
+<font color="#000000">&lt;</font><font color="#808000">ColumnDefinition </font><font color="#000000">Width=</font><font color="#ff00ff">&quot;Auto&quot; </font><font color="#000000">/&gt;</font>
+<font color="#000000">&lt;/</font><font color="#808000">Grid</font><font color="#000000">.ColumnDefinitions&gt;</font>
+</pre>
+</div>
+
+<p>A Grid has RowDefinitions and ColumnDefinitions that specify the height 
+(specific to the row), the width (specific to the column), and possibly other 
+dimensional aspects. Normally, you would expect to see a combination of row/cell 
+or row/column</p>
+<p>objects to lay out the grid; however, WPF works differently. Each control has a Grid.Row and Grid.Column, which specifies 
+the row/column to render in.</p>
+<p>The resize behaviour of the controls is defined by the HorizontalAlignment 
+and VerticalAlignment properties who define the anchors. The distance between 
+the anchor and the grid line is specified by the margin of the control.</p>
+
+<div class="heading">Define Rows and Columns in Grid</div>
+<p>The grid has one row and column by default. To create additional rows and 
+columns, you have to add RowDefinition items to the RowDefinitions collection 
+and ColumnDefinition items to the ColumnDefinitions collection. The following 
+example shows a grid with three rows and two columns.</p>
+<p>
+The size can be specified as an absolute amount of logical units, as a 
+percentage value or automatically.</p>
+<ul><li>
+Fixed Fixed size of logical units (1/96 inch)</li>
+<li>
+Auto Takes as much space as needed by the contained control</li>
+<li>
+Star (*) Takes as much space as available, percentally divided over all 
+star-sized columns. Star-sizes are like percentages, except that the sum of all 
+star columns does not have to be 100%. Remember that star-sizing does not work 
+if the grid size is calculated based on its content.</li>
+</ul>
+
+<div class="heading">How to Add Control To Grid</div>
+<p>To add controls to the grid layout panel just put the declaration between the 
+opening and closing tags of the Grid. Keep in mind that the row- and 
+columndefinitions must precced any definition of child controls.</p>
+<p>
+The grid layout panel provides the two attached properties Grid.Column and 
+Grid.Row to define the location of the control.</p>
+
+<div class="code">
+<pre>
+<font color="#000000">&lt;</font><font color="#808000">Grid</font><font color="#000000">&gt;</font>
+<font color="#000000">&lt;</font><font color="#808000">Grid</font><font color="#000000">.RowDefinitions&gt;</font>
+<font color="#000000">&lt;</font><font color="#808000">RowDefinition </font><font color="#000000">Height=</font><font color="#ff00ff">&quot;Auto&quot; </font><font color="#000000">/&gt;</font>
+<font color="#000000">&lt;</font><font color="#808000">RowDefinition </font><font color="#000000">Height=</font><font color="#ff00ff">&quot;Auto&quot; </font><font color="#000000">/&gt;</font>
+<font color="#000000">&lt;</font><font color="#808000">RowDefinition </font><font color="#000000">Height=</font><font color="#ff00ff">&quot;*&quot; </font><font color="#000000">/&gt;</font>
+<font color="#000000">&lt;</font><font color="#808000">RowDefinition </font><font color="#000000">Height=</font><font color="#ff00ff">&quot;28&quot; </font><font color="#000000">/&gt;</font>
+<font color="#000000">&lt;/</font><font color="#808000">Grid</font><font color="#000000">.RowDefinitions&gt;</font>
+<font color="#000000">&lt;</font><font color="#808000">Grid</font><font color="#000000">.ColumnDefinitions&gt;</font>
+<font color="#000000">&lt;</font><font color="#808000">ColumnDefinition </font><font color="#000000">Width=</font><font color="#ff00ff">&quot;Auto&quot; </font><font color="#000000">/&gt;</font>
+<font color="#000000">&lt;</font><font color="#808000">ColumnDefinition </font><font color="#000000">Width=</font><font color="#ff00ff">&quot;200&quot; </font><font color="#000000">/&gt;</font>
+<font color="#000000">&lt;/</font><font color="#808000">Grid</font><font color="#000000">.ColumnDefinitions&gt;</font>
+<font color="#000000">&lt;</font><font color="#808000">Label Grid</font><font color="#000000">.Row=</font><font color="#ff00ff">&quot;0&quot; </font><font color="#808000">Grid</font><font color="#000000">.Column=</font><font color="#ff00ff">&quot;0&quot; </font><font color="#808000">Content</font><font color="#000000">=</font><font color="#ff00ff">&quot;Name:&quot;</font><font color="#000000">/&gt;</font>
+<font color="#000000">&lt;</font><font color="#808000">Label Grid</font><font color="#000000">.Row=</font><font color="#ff00ff">&quot;1&quot; </font><font color="#808000">Grid</font><font color="#000000">.Column=</font><font color="#ff00ff">&quot;0&quot; </font><font color="#808000">Content</font><font color="#000000">=</font><font color="#ff00ff">&quot;E-Mail:&quot;</font><font color="#000000">/&gt;</font>
+<font color="#000000">&lt;</font><font color="#808000">Label Grid</font><font color="#000000">.Row=</font><font color="#ff00ff">&quot;2&quot; </font><font color="#808000">Grid</font><font color="#000000">.Column=</font><font color="#ff00ff">&quot;0&quot; </font><font color="#808000">Content</font><font color="#000000">=</font><font color="#ff00ff">&quot;Comment:&quot;</font><font color="#000000">/&gt;</font>
+<font color="#000000">&lt;</font><font color="#808000">TextBox Grid</font><font color="#000000">.Column=</font><font color="#ff00ff">&quot;1&quot; </font><font color="#808000">Grid</font><font color="#000000">.Row=</font><font color="#ff00ff">&quot;0&quot; </font><font color="#000000">Margin=</font><font color="#ff00ff">&quot;3&quot; </font><font color="#000000">/&gt;</font>
+<font color="#000000">&lt;</font><font color="#808000">TextBox Grid</font><font color="#000000">.Column=</font><font color="#ff00ff">&quot;1&quot; </font><font color="#808000">Grid</font><font color="#000000">.Row=</font><font color="#ff00ff">&quot;1&quot; </font><font color="#000000">Margin=</font><font color="#ff00ff">&quot;3&quot; </font><font color="#000000">/&gt;</font>
+<font color="#000000">&lt;</font><font color="#808000">TextBox Grid</font><font color="#000000">.Column=</font><font color="#ff00ff">&quot;1&quot; </font><font color="#808000">Grid</font><font color="#000000">.Row=</font><font color="#ff00ff">&quot;2&quot; </font><font color="#000000">Margin=</font><font color="#ff00ff">&quot;3&quot; </font><font color="#000000">/&gt;</font>
+<font color="#000000">&lt;</font><font color="#808000">Button Grid</font><font color="#000000">.Column=</font><font color="#ff00ff">&quot;1&quot; </font><font color="#808000">Grid</font><font color="#000000">.Row=</font><font color="#ff00ff">&quot;3&quot; </font><font color="#000000">HorizontalAlignment=</font><font color="#ff00ff">&quot;Right&quot; </font>
+      <font color="#000000">MinWidth=</font><font color="#ff00ff">&quot;80&quot; </font><font color="#000000">Margin=</font><font color="#ff00ff">&quot;3&quot; </font><font color="#808000">Content</font><font color="#000000">=</font><font color="#ff00ff">&quot;Send&quot;  </font><font color="#000000">/&gt;</font>
+<font color="#000000">&lt;/</font><font color="#808000">Grid</font><font color="#000000">&gt;</font>
+</pre>
+</div>
+
+<h3>Exapmle:</h3>
+
+<div class="output"><i>Grid Control</i>
+<div class="image">
+
+<img src="grid%20control.gif">
+
+</div>
+</div>
+
+<h3>.XAML CODE:</h3>
+<div class="code">
+<pre>
+<font color="#000000">&lt;</font><font color="#808000">Page </font><font color="#000000">x:Class=</font><font color="#ff00ff">&quot;WpfBrowserApplication5.Page1&quot;</font>
+<font color="#000000">xmlns=</font><font color="#ff00ff">&quot;http://schemas.microsoft.com/winfx/2006/xaml/presentation&quot;</font>
+<font color="#000000">xmlns:x=</font><font color="#ff00ff">&quot;http://schemas.microsoft.com/winfx/2006/xaml&quot;</font>
+<font color="#000000">Title=</font><font color="#ff00ff">&quot;Page1&quot;</font><font color="#000000">&gt;</font>
+<font color="#000000">&lt;</font><font color="#808000">Grid </font><font color="#000000">Height=</font><font color="#ff00ff">&quot;284&quot; </font><font color="#000000">Background=</font><font color="#ff00ff">&quot;Coral&quot; </font><font color="#000000">Width=</font><font color="#ff00ff">&quot;354&quot;</font><font color="#000000">&gt;</font>
+<font color="#000000">&lt;</font><font color="#808000">Grid</font><font color="#000000">.RowDefinitions&gt;</font>
+<font color="#000000">&lt;</font><font color="#808000">RowDefinition </font><font color="#000000">Height=</font><font color="#ff00ff">&quot;Auto&quot; </font><font color="#000000">MinHeight=</font><font color="#ff00ff">&quot;25&quot; </font><font color="#000000">/&gt;</font>
+<font color="#000000">&lt;</font><font color="#808000">RowDefinition </font><font color="#000000">Height=</font><font color="#ff00ff">&quot;Auto&quot; </font><font color="#000000">MinHeight=</font><font color="#ff00ff">&quot;27&quot; </font><font color="#000000">/&gt;</font>
+<font color="#000000">&lt;</font><font color="#808000">RowDefinition </font><font color="#000000">Height=</font><font color="#ff00ff">&quot;174*&quot; </font><font color="#000000">/&gt;</font>
+<font color="#000000">&lt;</font><font color="#808000">RowDefinition </font><font color="#000000">Height=</font><font color="#ff00ff">&quot;31.447*&quot; </font><font color="#000000">/&gt;</font>
+<font color="#000000">&lt;</font><font color="#808000">RowDefinition </font><font color="#000000">Height=</font><font color="#ff00ff">&quot;28&quot; </font><font color="#000000">/&gt;</font>
+<font color="#000000">&lt;/</font><font color="#808000">Grid</font><font color="#000000">.RowDefinitions&gt;</font>
+<font color="#000000">&lt;</font><font color="#808000">Grid</font><font color="#000000">.ColumnDefinitions&gt;</font>
+<font color="#000000">&lt;</font><font color="#808000">ColumnDefinition </font><font color="#000000">Width=</font><font color="#ff00ff">&quot;Auto&quot; </font><font color="#000000">MinWidth=</font><font color="#ff00ff">&quot;61&quot; </font><font color="#000000">/&gt;</font>
+<font color="#000000">&lt;</font><font color="#808000">ColumnDefinition </font><font color="#000000">Width=</font><font color="#ff00ff">&quot;200&quot; </font><font color="#000000">/&gt;</font>
+<font color="#000000">&lt;/</font><font color="#808000">Grid</font><font color="#000000">.ColumnDefinitions&gt;</font>
+<font color="#000000">&lt;</font><font color="#808000">Label Grid</font><font color="#000000">.Row=</font><font color="#ff00ff">&quot;0&quot; </font><font color="#808000">Grid</font><font color="#000000">.Column=</font><font color="#ff00ff">&quot;0&quot; </font><font color="#808000">Content</font><font color="#000000">=</font><font color="#ff00ff">&quot;Name:&quot;</font><font color="#000000">/&gt;</font>
+<font color="#000000">&lt;</font><font color="#808000">Label Grid</font><font color="#000000">.Row=</font><font color="#ff00ff">&quot;1&quot; </font><font color="#808000">Grid</font><font color="#000000">.Column=</font><font color="#ff00ff">&quot;0&quot; </font><font color="#808000">Content</font><font color="#000000">=</font><font color="#ff00ff">&quot;E-Mail:&quot;</font><font color="#000000">/&gt;</font>
+<font color="#000000">&lt;</font><font color="#808000">Label Grid</font><font color="#000000">.Row=</font><font color="#ff00ff">&quot;2&quot; </font><font color="#808000">Content</font><font color="#000000">=</font><font color="#ff00ff">&quot;Comment:&quot; </font><font color="#808000">Grid</font><font color="#000000">.RowSpan=</font><font color="#ff00ff">&quot;2&quot; </font><font color="#000000">/&gt;</font>
+<font color="#000000">&lt;</font><font color="#808000">TextBox Grid</font><font color="#000000">.Column=</font><font color="#ff00ff">&quot;1&quot; </font><font color="#808000">Grid</font><font color="#000000">.Row=</font><font color="#ff00ff">&quot;0&quot; </font><font color="#000000">Margin=</font><font color="#ff00ff">&quot;3&quot; </font><font color="#000000">/&gt;</font>
+<font color="#000000">&lt;</font><font color="#808000">TextBox Grid</font><font color="#000000">.Column=</font><font color="#ff00ff">&quot;1&quot; </font><font color="#808000">Grid</font><font color="#000000">.Row=</font><font color="#ff00ff">&quot;1&quot; </font><font color="#000000">Margin=</font><font color="#ff00ff">&quot;3&quot; </font><font color="#000000">/&gt;</font>
+<font color="#000000">&lt;</font><font color="#808000">TextBox Grid</font><font color="#000000">.Column=</font><font color="#ff00ff">&quot;1&quot; </font><font color="#808000">Grid</font><font color="#000000">.Row=</font><font color="#ff00ff">&quot;2&quot; </font><font color="#000000">Margin=</font><font color="#ff00ff">&quot;3&quot; </font><font color="#808000">Grid</font><font color="#000000">.RowSpan=</font><font color="#ff00ff">&quot;2&quot; </font><font color="#000000">/&gt;</font>
+<font color="#000000">&lt;</font><font color="#808000">Button Grid</font><font color="#000000">.Column=</font><font color="#ff00ff">&quot;1&quot; </font><font color="#808000">Grid</font><font color="#000000">.Row=</font><font color="#ff00ff">&quot;4&quot; </font><font color="#000000">HorizontalAlignment=</font><font color="#ff00ff">&quot;Right&quot; </font>
+        <font color="#000000">MinWidth=</font><font color="#ff00ff">&quot;80&quot; </font><font color="#000000">Margin=</font><font color="#ff00ff">&quot;3&quot; </font><font color="#808000">Content</font><font color="#000000">=</font><font color="#ff00ff">&quot;Discard&quot;</font><font color="#000000">/&gt;</font>
+<font color="#000000">&lt;</font><font color="#808000">Button Grid</font><font color="#000000">.Column=</font><font color="#ff00ff">&quot;1&quot; </font><font color="#808000">Grid</font><font color="#000000">.Row=</font><font color="#ff00ff">&quot;1&quot; </font><font color="#000000">HorizontalAlignment=</font><font color="#ff00ff">&quot;Right&quot; </font>
+        <font color="#000000">MinWidth=</font><font color="#ff00ff">&quot;80&quot; </font><font color="#000000">Margin=</font><font color="#ff00ff">&quot;0,5.999,-79.547,0&quot; </font><font color="#808000">Content</font><font color="#000000">=</font><font color="#ff00ff">&quot;Send&quot;</font>
+		<font color="#000000">Height=</font><font color="#ff00ff">&quot;21.277&quot; </font><font color="#808000">Grid</font><font color="#000000">.RowSpan=</font><font color="#ff00ff">&quot;2&quot; </font><font color="#000000">VerticalAlignment=</font><font color="#ff00ff">&quot;Top&quot;</font>
+		<font color="#000000">Width=</font><font color="#ff00ff">&quot;80&quot; </font><font color="#000000">/&gt;</font>
+<font color="#000000">&lt;/</font><font color="#808000">Grid</font><font color="#000000">&gt;</font>
+<font color="#000000">&lt;/</font><font color="#808000">Page</font><font color="#000000">&gt;</font>
+</pre>
+</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="ellipse_control.shtml" title=" Ellipse Control
+">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="progressbar.shtml" title="Progressbar Control">Next</a></td>
+  </tr>
+</table>
+
+<!--Footer  -->                                  
+</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/wpf/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>

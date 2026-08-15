@@ -1,0 +1,354 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<HTML><HEAD><TITLE>Syntax Of HQL(hibernate Query Language) Queries</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv="content-type" content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="Syntax Of HQL(hibernate Query Language) Queries Tutorial Learn About What HQL(hibernate Query Languge) 
+With Description And Examples mapping, collection mapping, component mapping, HQL(Hibenate Query Language), HCQL, Named Query, Caching" >
+<meta name="keywords" CONTENT="Syntax Of HQL(hibernate Query Language) Queries, Table Per Sub Class, Table Per Class Hierarchy, Hibernate, Tutorial, beginners, Fresher, Basics, How to work with collection in hibernate, Collection In Hibernate,
+ inheritance mapping, collection mapping, component mapping, HQL">
+
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<META http-equiv="Content-Language" content="en-us">
+<link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+<link href="/css/main.css" rel="stylesheet" type="text/css" />
+</HEAD>
+<BODY>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>Hibernate</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+            <img src="/images/left_menu_bullet.gif"/> <a href="/java/hibernate/">Hibernate</a>
+             </div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top">
+                            <?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/hibernate/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                       <div class="main_content">  	 
+
+      <div class="heading">Syntax to Use Hibernate query</div>
+
+      <table id="indexing">
+
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="step_to_execute_hql_query_using_hibernate.shtml" title="Step To Execute HQL queries Using Hibernate">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="simple_program_of_select_in_hql.shtml" title="Simple Program Of Select in HQL">Next</a></td>
+  </tr> 
+</table>
+      <p>
+          Hibernate Query Language (HQL) is an object-oriented query language, similar to SQL, 
+          but instead of operating on tables and columns, HQL works with persistent objects and their properties. 
+          HQL queries are translated by Hibernate into conventional SQL queries which in turns perform action on database.
+      </P>
+      <p>
+          Although you can use SQL statements directly with Hibernate using Native SQL but I would 
+          recommend to use HQL whenever possible to avoid database portability hassles, and to take 
+          advantage of Hibernate's SQL generation and caching strategies.
+      </P>
+      <p>
+          Keywords like SELECT , FROM and WHERE etc. are not case sensitive but properties like table 
+          and column names are case sensitive in HQL.
+      </p>
+      <h3>FROM Clause</h3>
+      <p>
+          You will use FROM clause if you want to load a complete persistent objects into memory. 
+          Following is the simple syntax of using FROM clause:
+      </p>
+      <div class="code">
+<pre><code>
+String hql = "FROM Employee";
+Query&lt;Employee&gt; query = session.createQuery(hql, Employee.class);
+List&lt;Employee&gt; results = query.getResultList();
+</code></pre>
+      </div>
+      <p>
+      If you need to fully qualify a class name in HQL, just specify the package and class name as follows:    
+      </p>
+      <div class="code">
+<pre><code>
+String hql = "FROM com.hibernatebook.criteria.Employee";
+Query&lt;Employee&gt; query = session.createQuery(hql, Employee.class);
+List&lt;Employee&gt; results = query.getResultList(); 
+</code></pre>
+      </div>
+      <h3>AS Clause</h3>
+      <p>
+          The AS clause can be used to assign aliases to the classes in your HQL queries, 
+          specially when you have long queries. For instance, our previous simple example would be the 
+          following:
+      </P>
+      <div class="code">
+<pre><code>
+String hql = "FROM Employee AS E";
+Query&lt;Employee&gt; query = session.createQuery(hql, Employee.class);
+List&lt;Employee&gt; results = query.getResultList();
+</code></pre>
+      </div>
+      <p>
+The AS keyword is optional and you can also specify the alias directly after the class name, as follows:          
+      </p>
+      <div class="code">
+<pre><code>
+String hql = "FROM Employee E";
+Query&lt;Employee&gt; query = session.createQuery(hql, Employee.class);
+List&lt;Employee&gt; results = query.getResultList();  
+</code></pre>
+      </div>
+      <h3>SELECT Clause</h3>
+      <p>
+          The SELECT clause provides more control over the result set than the from clause. 
+          If you want to obtain few properties of objects instead of the complete object, 
+          use the SELECT clause. Following is the simple syntax of using SELECT clause to get 
+          just first_name field of the Employee object:
+      </p>
+      <div class="code">
+<pre><code>
+String hql = "SELECT E.firstName FROM Employee E";
+Query&lt;String&gt; query = session.createQuery(hql, String.class);
+List&lt;String&gt; results = query.getResultList();
+</code></pre>
+      </div>
+      <p>
+          It is notable here that Employee.firstName is a property of Employee object rather 
+          than a field of the EMPLOYEE table.
+      </p>
+
+      <h3>WHERE Clause</h3>
+      <p>
+          If you want to narrow the specific objects that are returned from storage, 
+          you use the WHERE clause. Following is the simple syntax of using WHERE clause:
+      </p>
+
+      <div class="code">
+<pre><code>
+String hql = "FROM Employee E WHERE E.id = 10";
+Query&lt;Employee&gt; query = session.createQuery(hql, Employee.class);
+List&lt;Employee&gt; results = query.getResultList();
+</code></pre>
+      </div>
+
+      <h3>ORDER BY Clause</h3>
+      <p>
+         To sort your HQL query's results, you will need to use the ORDER BY clause. 
+         You can order the results by any property on the objects in the result set either 
+         ascending (ASC) or descending (DESC). Following is the simple syntax of using ORDER BY clause:          
+      </p>
+      <div class="code">
+<pre><code>
+String hql = "FROM Employee E WHERE E.id > 10 ORDER BY E.salary DESC";
+Query&lt;Employee&gt; query = session.createQuery(hql, Employee.class);
+List&lt;Employee&gt; results = query.getResultList();
+</code></pre>
+      </div>
+      <p>
+    If you wanted to sort by more than one property, you would just add the additional properties to the end of the order by clause, separated by commas as follows:      
+      </p>
+      <div class="code">
+<pre><code>
+String hql = "FROM Employee E WHERE E.id > 10 ORDER BY E.firstName DESC, E.salary DESC";
+Query&lt;Employee&gt; query = session.createQuery(hql, Employee.class);
+List&lt;Employee&gt; results = query.getResultList(); 
+</code></pre>
+      </div>
+      <h3>GROUP BY Clause</h3>
+      <p>
+          This clause lets Hibernate pull information from the database and group it based on a 
+          value of an attribute and, typically, use the result to include an aggregate value. 
+          Following is the simple syntax of using GROUP BY clause:
+      </p>
+      <div class="code">
+<pre><code>
+String hql = "SELECT SUM(E.salary), E.firstName FROM Employee E GROUP BY E.firstName";
+Query query = session.createQuery(hql);
+List results = query.getResultList();
+</code></pre>
+      </div>
+      <h3>Using Named Paramters</h3>
+      <p>
+          Hibernate supports named parameters in its HQL queries. This makes writing HQL queries that 
+          accept input from the user easy and you do not have to defend against SQL injection attacks. 
+          Following is the simple syntax of using named parameters:
+      </p>
+
+      <div class="code">
+<pre><code>
+String hql = "FROM Employee E WHERE E.id = :employee_id";
+Query&lt;Employee&gt; query = session.createQuery(hql, Employee.class);
+query.setParameter("employee_id", 10);
+List&lt;Employee&gt; results = query.getResultList();
+</code></pre>
+      </div>
+      <h3>UPDATE Clause</h3>
+      <p>
+          Bulk updates are new to HQL with Hibernate 3, and deletes work differently in Hibernate 3 
+          than they did in Hibernate 2. The Query interface now contains a method called 
+          executeUpdate() for executing HQL UPDATE or DELETE statements.
+      </p>
+
+      <p>
+The UPDATE clause can be used to update one or more properties of an one or more objects. 
+Following is the simple syntax of using UPDATE clause:          
+      </p>
+      <div class="code">
+<pre><code>
+String hql = "UPDATE Employee set salary = :salary WHERE id = :employee_id";
+Query query = session.createQuery(hql);
+query.setParameter("salary", 1000);
+query.setParameter("employee_id", 10);
+int result = query.executeUpdate();
+System.out.println("Rows affected: " + result); 
+</code></pre>
+      </div>
+      <h3>DELETE Clause</h3>
+      <p>
+          The DELETE clause can be used to delete one or more objects. 
+          Following is the simple syntax of using DELETE clause:
+      </p>
+
+      <div class="code">
+<pre><code>
+String hql = "DELETE FROM Employee WHERE id = :employee_id";
+Query query = session.createQuery(hql);
+query.setParameter("employee_id", 10);
+int result = query.executeUpdate();
+System.out.println("Rows affected: " + result); 
+</code></pre>
+      </div>
+      <h3>INSERT Clause</h3>
+      <p>
+HQL supports INSERT INTO clause only where records can be inserted from one object to another object. 
+Following is the simple syntax of using INSERT INTO clause:
+      </P>
+      <div class="code">
+<pre><code>
+String hql = "INSERT INTO Employee(firstName, lastName, salary) " + 
+             "SELECT firstName, lastName, salary FROM old_employee";
+Query query = session.createQuery(hql);
+int result = query.executeUpdate();
+System.out.println("Rows affected: " + result); 
+</code></pre>
+      </div>
+      <h3>Aggregate Methods</h3>
+      <p>
+          HQL supports a range of aggregate methods, similar to SQL. They work the same way in 
+          HQL as in SQL and following is the list of the available functions:
+      </p>
+
+      <div class="table_content">
+          <table>
+              <tr>
+                  <td class="heading">S.N.</td>
+                  <td class="heading">Functions</td>
+                  <td class="heading">Description</td>
+
+              </tr>
+              <tr>
+                  <td class="alternate_heading1">1</td>
+                  <td class="alternate_heading1">avg(property name)</td>
+                  <td class="alternate_heading1">The average of a property's value</td>
+
+              </tr>
+              <tr>
+                  <td class="alternate_heading2">2</td>
+                  <td class="alternate_heading2">count(property name or *)</td>
+                  <td class="alternate_heading2">The number of times a property occurs in the results</td>
+
+              </tr>
+              <tr>
+                  <td class="alternate_heading1">3</td>
+                  <td class="alternate_heading1">max(property name)</td>
+                  <td class="alternate_heading1">The maximum value of the property values</td>
+
+              </tr>
+              <tr>
+                  <td class="alternate_heading2">4</td>
+                  <td class="alternate_heading2">min(property name)</td>
+                  <td class="alternate_heading2">The minimum value of the property values</td>
+
+              </tr>
+              <tr>
+                  <td class="alternate_heading1">5</td>
+                  <td class="alternate_heading1">sum(property name)</td>
+                  <td class="alternate_heading1">The sum total of the property values</td>
+
+              </tr>
+          </table>
+      </div>
+
+      <p>
+          The distinct keyword only counts the unique values in the row set. 
+          The following query will return only unique count:
+      </p>	
+      <div class="code">
+<pre><code>
+String hql = "SELECT count(distinct E.firstName) FROM Employee E";
+Query&lt;Long&gt; query = session.createQuery(hql, Long.class);
+List&lt;Long&gt; results = query.getResultList(); 
+</code></pre>
+      </div>
+
+      <h3>Pagination using Query</h3>
+      <h3>There are two methods of the Query interface for pagination.</h3>
+      <div class="table_content">
+          <table>
+              <tr>
+                  <td class="heading">S.N.</td>
+                  <td class="heading">Method & Description</td>
+              </tr>
+              <tr>
+                  <td class="alternate_heading1">1</td>
+                  <td class="alternate_heading1">Query setFirstResult(int startPosition)(This method takes an integer that represents the first row in your result set, starting with row 0.)</td>
+              </tr>
+              <tr>
+                  <td class="alternate_heading2">2</td>
+                  <td class="alternate_heading2">Query setMaxResults(int maxResult)(This method tells Hibernate to retrieve a fixed number maxResults of objects.)</td>
+              </tr>
+          </table>
+      </div>
+      <p>
+          Using above two methods together, we can construct a paging component in our web or Swing 
+          application. Following is the example which you can extend to fetch 10 rows at a time:
+      </p>
+      <div class="code">
+<pre><code>
+String hql = "FROM Employee";
+Query&lt;Employee&gt; query = session.createQuery(hql, Employee.class);
+query.setFirstResult(0); // Starts at index 0
+query.setMaxResults(10); // Limits to 10 rows
+List&lt;Employee&gt; results = query.getResultList();
+</code></pre>
+      </div>
+        <table id="indexing">
+
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="step_to_execute_hql_query_using_hibernate.shtml" title="Step To Execute HQL queries Using Hibernate">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="simple_program_of_select_in_hql.shtml" title="Simple Program Of Select in HQL">Next</a></td>
+  </tr> 
+</table>
+
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+
+                <?php @include($_SERVER['DOCUMENT_ROOT'] . '/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>

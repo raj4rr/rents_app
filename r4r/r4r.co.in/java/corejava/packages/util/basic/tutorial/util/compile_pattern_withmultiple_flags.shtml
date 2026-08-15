@@ -1,0 +1,133 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD>
+<meta http-equiv="Content-Language" content="en-us">
+<TITLE>Compiling a Pattern with Multiple Flags,how to compile pattern with multiple flag</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name="description" CONTENT="Compiling a Pattern with Multiple Flags,how to compile pattern with multiple flag" >
+<meta name="keywords" CONTENT="Compiling a Pattern with Multiple Flags,how to compile pattern with multiple flag">
+
+<!-- header start-->	
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>Java Programing laungage</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+            <img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+            <a href="/java/">Java</a>
+              <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/java/corejava">Core Java</a>
+               <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/java/corejava/packages">Package</a>
+                     <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/java/corejava/packages/lang">Java Util Package</a>
+              </div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/corejava/packages/util/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	 
+
+<div class="heading">Compiling a Pattern with Multiple Flags</div>
+<p>In this programming tutorials, we are going to learn how to compile a pattern with multiple flags like multiline, case insensitivity of the characters in the string etc. This page of tutorials provides us an example for the implementation of the concept about how we can do this type of task. this example has been used some APIs for compiling pattern with multiple flags.</p>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="capture_text_ingroup.shtml" title="capture text ingroup">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="putmethod.shtml" title="put method">Next</a></td>
+  </tr> 
+</table>
+
+<!-- header End-->
+
+ <div class="heading">Code Description</div>
+ <h2>Pattern.compile(patternStr, Pattern.MULTILINE | Pattern.CASE_INSENSITIVE)</h2>
+ <p>This method is used to compile the string assigned with the String type variable patStr with multiple flags which are given follows.</p>
+ <ol>
+ <li>
+ <h3>patStr</h3>
+  </li>
+ <p>This is the string which has to be compiled.</p>
+
+ <li>
+ <h3>Pattern.MULTILINE</h3>
+  </li>
+ <p> This is the field of the Pattern class which denotes for the multiline characters in the given string. This field determines the compilation of the string with the multiline character which breaks the string after a specific part.</p>
+
+ <li>
+ <h3>Pattern.CASE_INSENSITIVE</h3>
+ </li>
+ <p>This is also a field of the Pattern class which is used to denote the case sensitivity of the character in the given String. By default pattern is compile the string in case sensitive mode. If we pass the CASE_INSENSITIVE field through the compile() method as parameter, it is ignore the case of characters in the string.</p>
+  </ol>
+
+ <h3>Example</h3>
+ <div class="code">
+<PRE>
+<FONT FACE="Arial">
+<FONT COLOR="#0000ff">package </FONT><FONT COLOR="#000000">r4r;</FONT>
+<FONT COLOR="#0000ff">import </FONT><FONT COLOR="#000000">java.util.*;</FONT>
+<FONT COLOR="#0000ff">import </FONT><FONT COLOR="#000000">java.util.regex.</FONT><FONT COLOR="#ff0000">Matcher</FONT><FONT COLOR="#000000">;</FONT>
+<FONT COLOR="#0000ff">import </FONT><FONT COLOR="#000000">java.util.regex.</FONT><FONT COLOR="#ff0000">Pattern</FONT><FONT COLOR="#000000">;</FONT>
+<FONT COLOR="#0000ff">public class </FONT><FONT COLOR="#000000">multiflagtest {</FONT>
+<FONT COLOR="#0000ff">public static void </FONT><FONT COLOR="#000000">main(</FONT><FONT COLOR="#ff0000">String</FONT><FONT COLOR="#000000">[] args){</FONT>
+<FONT COLOR="#ff0000">String </FONT><FONT COLOR="#000000">putStr = </FONT><FONT COLOR="#ff00ff">"Abc\ndef"</FONT><FONT COLOR="#000000">;</FONT><FONT COLOR="#008000">//Print the original string.</FONT>
+<FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.println(putStr);</FONT>
+<FONT COLOR="#ff0000">String </FONT><FONT COLOR="#000000">patStr = </FONT><FONT COLOR="#ff00ff">"\n"</FONT><FONT COLOR="#000000">;</FONT>
+<FONT COLOR="#ff0000">Pattern </FONT><FONT COLOR="#000000">pat = </FONT><FONT COLOR="#ff0000">Pattern</FONT><FONT COLOR="#000000">.compile(patStr, </FONT><FONT COLOR="#ff0000">Pattern</FONT><FONT COLOR="#000000">.MULTILINE |  </FONT>
+<FONT COLOR="#008000">// Compile with multiline and case-insensitive .</FONT>
+
+		<FONT COLOR="#ff0000">Pattern</FONT><FONT COLOR="#000000">.CASE_INSENSITIVE);</FONT>
+<FONT COLOR="#ff0000">Matcher </FONT><FONT COLOR="#000000">match = pat.matcher(putStr);</FONT>
+<FONT COLOR="#0000ff">boolean </FONT><FONT COLOR="#000000">matchFound = match.find(); </FONT>
+<FONT COLOR="#008000">//Finding new line and replacing with a tab.</FONT>
+<FONT COLOR="#ff0000">String </FONT><FONT COLOR="#000000">str = match.replaceAll(</FONT><FONT COLOR="#ff00ff">"\t"</FONT><FONT COLOR="#000000">);</FONT>
+<FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.println(matchFound);</FONT>
+<FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.println(str);</FONT>
+<FONT COLOR="#ff0000">String</FONT><FONT COLOR="#000000">[] str1 = </FONT><FONT COLOR="#ff00ff">"Abc\ndef"</FONT><FONT COLOR="#000000">.split(</FONT><FONT COLOR="#ff00ff">"\n"</FONT><FONT COLOR="#000000">);</FONT>
+<FONT COLOR="#008000">//Split from where the new line character lies in the string.</FONT>
+<FONT COLOR="#0000ff">for </FONT><FONT COLOR="#000000">(</FONT><FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">i =</FONT><FONT COLOR="#800080">1</FONT><FONT COLOR="#000000">; i&lt;str1.length; i++){</FONT>
+<FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.print(str1[i] + </FONT><FONT COLOR="#ff00ff">" "</FONT><FONT COLOR="#000000">);</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#000000">}</FONT>
+</FONT>
+</PRE>
+ </div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="capture_text_ingroup.shtml" title="capture text ingroup">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="putmethod.shtml" title="put method">Next</a></td>
+  </tr> 
+</table>
+
+<!-- Footer Start-->
+		</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->
+

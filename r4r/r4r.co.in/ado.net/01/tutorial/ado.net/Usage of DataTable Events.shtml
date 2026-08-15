@@ -1,0 +1,146 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>Usage of DataTable Events,Setting Up Various Event Handlers on a DataTable in C#,Implementations for the Event Handlers in C# </TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="Usage of DataTable Events,Setting Up Various Event Handlers on a DataTable in C#,Implementations for the Event Handlers in C# " >
+<meta name="keywords" CONTENT="Usage of DataTable Events,Setting Up Various Event Handlers on a DataTable in C#,Implementations for the Event Handlers in C# ">
+
+<!-- header start-->	
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>ADO.NET</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+            <img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+            <a href="/ado.net">ADO.Net</a>
+              <img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+
+			  <a href="/ado.net/01/tutorial/ado.net/">ADO.NET Tutorials</a>
+
+              </div>
+
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/ado.net/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	 
+<!-- header End-->	
+<div class="heading">Usage of DataTable Events</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="DataTable%20Events.shtml" title="DataTable Events">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="mergetwotable.shtml" title="Merge Two Table">Next</a></td>
+  </tr> 
+</table>
+
+<p> DataTable events can be split into three main categories:</p>
+<ul>
+<li><i>Column-based</i>: ColumnChanging, ColumnChanged</li>
+<li><i>Row-based</i>: RowChanging, RowChanged, RowDeleting, RowDeleted</li>
+<li><i>Table-based</i>: TableClearing, TableCleared, TableNewRow</li>
+</ul>
+<h3>Setting Up Various Event Handlers on a DataTable in C#</h3>
+<div class="code">
+<pre>
+<font color="#000000">CompanyTAble.ColumnChanged +=</font>
+<font color="#0000ff">new </font><font color="#000000">DataColumnChangeEventHandler(CompanyTAble_ColumnChanged);</font>
+<font color="#000000">CompanyTAble.ColumnChanging +=</font>
+<font color="#0000ff">new </font><font color="#000000">DataColumnChangeEventHandler(CompanyTAble_ColumnChanging);</font>
+<font color="#000000">CompanyTAble.RowChanged +=</font>
+<font color="#0000ff">new </font><font color="#000000">DataRowChangeEventHandler(CompanyTAble_RowChanged);</font>
+<font color="#000000">CompanyTAble.RowChanging +=</font>
+<font color="#0000ff">new </font><font color="#000000">DataRowChangeEventHandler(CompanyTAble_RowChanging);</font>
+<font color="#000000">CompanyTAble.RowDeleted +=</font>
+<font color="#0000ff">new </font><font color="#000000">DataRowChangeEventHandler(CompanyTAble_RowDeleted);</font>
+<font color="#000000">CompanyTAble.RowDeleting +=</font>
+<font color="#0000ff">new </font><font color="#000000">DataRowChangeEventHandler(CompanyTAble_RowDeleting);</font>
+</pre>
+</div>
+
+<h3>Implementations for the Event Handlers in C#</h3>
+<div class="code">
+<pre>
+<font color="#0000ff">private static void </font><font color="#000000">CompanyTable_ColumnChanged</font>
+<font color="#000000">(</font><font color="#0000ff">object </font><font color="#000000">sender, </font><font color="#808000">DataColumnChangeEventArgs </font><font color="#000000">e)</font>
+<font color="#000000">{</font>
+<font color="#808000">Console</font><font color="#000000">.WriteLine(</font><font color="#ff00ff">&quot;CompanyTable_ColumnChanged&quot;</font><font color="#000000">);</font>
+<font color="#808000">Console</font><font color="#000000">.WriteLine(</font><font color="#ff00ff">&quot; Value: &quot; </font><font color="#000000">+ e.Row[</font><font color="#ff00ff">&quot;Name&quot;</font><font color="#000000">].ToString());</font>
+<font color="#808000">Console</font><font color="#000000">.WriteLine(</font><font color="#ff00ff">&quot; RowState: &quot; </font><font color="#000000">+ e.Row.RowState.ToString());</font>
+<font color="#000000">}</font>
+<font color="#0000ff">private static void </font><font color="#000000">CompanyTable_ColumnChanging</font>
+<font color="#000000">(</font><font color="#0000ff">object </font><font color="#000000">sender, </font><font color="#808000">DataColumnChangeEventArgs </font><font color="#000000">e)</font>
+<font color="#000000">{</font>
+<font color="#808000">Console</font><font color="#000000">.WriteLine(</font><font color="#ff00ff">&quot;CompanyTable_ColumnChanging&quot;</font><font color="#000000">);</font>
+<font color="#808000">Console</font><font color="#000000">.WriteLine(</font><font color="#ff00ff">&quot; Value: &quot; </font><font color="#000000">+ e.Row[</font><font color="#ff00ff">&quot;Name&quot;</font><font color="#000000">].ToString());</font>
+<font color="#808000">Console</font><font color="#000000">.WriteLine(</font><font color="#ff00ff">&quot; RowState: &quot; </font><font color="#000000">+ e.Row.RowState.ToString());</font>
+<font color="#000000">}</font>
+<font color="#0000ff">private static void </font><font color="#000000">CompanyTable_RowChanged</font>
+<font color="#000000">(</font><font color="#0000ff">object </font><font color="#000000">sender, </font><font color="#808000">DataRowChangeEventArgs </font><font color="#000000">e)</font>
+<font color="#000000">{</font>
+<font color="#808000">Console</font><font color="#000000">.WriteLine(</font><font color="#ff00ff">&quot;CompanyTable_RowChanged&quot;</font><font color="#000000">);</font>
+<font color="#808000">Console</font><font color="#000000">.WriteLine(</font><font color="#ff00ff">&quot; Value: &quot; </font><font color="#000000">+ e.Row[</font><font color="#ff00ff">&quot;Name&quot;</font><font color="#000000">].ToString());</font>
+<font color="#808000">Console</font><font color="#000000">.WriteLine(</font><font color="#ff00ff">&quot; RowState: &quot; </font><font color="#000000">+ e.Row.RowState.ToString());</font>
+<font color="#000000">}</font>
+<font color="#0000ff">private static void </font><font color="#000000">CompanyTable_RowChanging</font>
+<font color="#000000">(</font><font color="#0000ff">object </font><font color="#000000">sender, </font><font color="#808000">DataRowChangeEventArgs </font><font color="#000000">e)</font>
+<font color="#000000">{</font>
+<font color="#808000">Console</font><font color="#000000">.WriteLine(</font><font color="#ff00ff">&quot;CompanyTable_RowChanging&quot;</font><font color="#000000">);</font>
+<font color="#808000">Console</font><font color="#000000">.WriteLine(</font><font color="#ff00ff">&quot; Value: &quot; </font><font color="#000000">+ e.Row[</font><font color="#ff00ff">&quot;Name&quot;</font><font color="#000000">].ToString());</font>
+<font color="#808000">Console</font><font color="#000000">.WriteLine(</font><font color="#ff00ff">&quot; RowState: &quot; </font><font color="#000000">+ e.Row.RowState.ToString());</font>
+<font color="#000000">}</font>
+<font color="#0000ff">private static void </font><font color="#000000">CompanyTable_RowDeleted</font>
+<font color="#000000">(</font><font color="#0000ff">object </font><font color="#000000">sender, </font><font color="#808000">DataRowChangeEventArgs </font><font color="#000000">e)</font>
+<font color="#000000">{</font>
+<font color="#808000">Console</font><font color="#000000">.WriteLine(</font><font color="#ff00ff">&quot;CompanyTable_RowDeleted&quot;</font><font color="#000000">);</font>
+<font color="#808000">Console</font><font color="#000000">.WriteLine(</font><font color="#ff00ff">&quot; RowState: &quot; </font><font color="#000000">+ e.Row.RowState.ToString());</font>
+<font color="#000000">}</font>
+<font color="#0000ff">private static void </font><font color="#000000">CompanyTable_RowDeleting</font>
+<font color="#000000">(</font><font color="#0000ff">object </font><font color="#000000">sender, </font><font color="#808000">DataRowChangeEventArgs </font><font color="#000000">e)</font>
+<font color="#000000">{</font>
+<font color="#808000">Console</font><font color="#000000">.WriteLine(</font><font color="#ff00ff">&quot;CompanyTable_RowDeleting&quot;</font><font color="#000000">);</font>
+<font color="#808000">Console</font><font color="#000000">.WriteLine(</font><font color="#ff00ff">&quot; RowState: &quot; </font><font color="#000000">+ e.Row.RowState.ToString());</font>
+<font color="#000000">}</font>
+</pre>
+</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="DataTable%20Events.shtml" title="DataTable Events">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="mergetwotable.shtml" title="Merge Two Table">Next</a></td>
+  </tr> 
+</table>
+
+<!-- Footer Start-->		
+		</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/dotnet/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->

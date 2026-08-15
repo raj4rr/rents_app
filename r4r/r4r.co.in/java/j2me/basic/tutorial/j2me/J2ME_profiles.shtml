@@ -1,0 +1,111 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD>
+<meta http-equiv="Content-Language" content="en-us">
+<TITLE>Java 2 Micro Edition (J2ME)</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name="description" CONTENT="AWT Examples,AWT Tutorials,AWT Tutorials for Begginers" >
+<meta name="keywords" CONTENT="AWT Examples,AWT Tutorials,AWT Tutorials for Begginers">
+
+<!-- header start-->	
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>Java Programing laungage</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+            <img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+         <a href="/java/">Java</a>
+              <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/java/j2me">J2ME</a>
+                     <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/java/j2me/basic/example/Mobile_Servlet">J2ME BASIC TUTORIALS</a>
+              </div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/j2me/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content">
+
+<div class="heading">J2ME profiles</div>
+
+	 <table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="J2ME_configurations.shtml" title="J2ME_configurations">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="Set up JME environment with NetBeans IDE.shtml" title="Set up JME environment with NetBeans IDE">Next</a></td>
+  </tr> 
+</table>
+	<!-- header End-->  
+<p>Profile play important role in making the J2ME architecture, different kind of Profiles are:</p>
+
+<ol><li><i>KJava Profile</i></li>
+<p>Java is Sun proprietary profile and contains the Java API and sit on the top of CLDC configuration. It contain a KVM or KJava Virtual Machine similar like J2SE virtual Machine and accepts same byte of codes and class file format. It's specially contain sun- specific API that runs on the Palm OS and deal with the J2SE Abstract Windowing Toolkit (AWT) functionality for testing the CLDC.</p>
+<p>Its main package is com.sun.kjava and GUI classes provide in this package for J2ME will be define separately through the Java Community Process and included in J2ME profiles. This profile (KJava) has been widely used by early and replace by MIDP profile. However, some third-party development tools have implemented commercial versions of KJava Profile (such as esmertecs Jbed).</p>
+<li><i>Mobile Information Device Profile (MIDP)</i></li>
+<p>MIDP is specification published for the use of Java, mobile devices, and embedded system. It is a part of Java Micro Edition (Java ME) framework and top of a Connected Limited Device Configuration (CLDC). The first MIDP device was launched in April 2001, developed under the Java Community Process.</p>
+<h3>Specification of MIDP launch under the Java Community Process.</h3>
+<ul><li>MIDP 1.0 (JSR 37) - Approved on September 19, 2000</li>
+<li>MIDP 2.0 (JSR 118) - Approved on November 20, 2002</li>
+<li>MIDP 3.0 (JSR 271) - Approved on December 9, 2009</li></ul>
+<h3>Core application programming interfaces (APIs) of MIDP</h3>
+<ul><li>javax.microedition.io</li>
+<li>javax.microedition.lcdui</li>
+<li>javax.microedition.rms</li>
+<li>javax.microedition.midlet</li></ul>
+<li><i> Personal Digital Assistance Profile (PDAP)</i></li>
+<p>PDAP is specifically designed for Palmtop or similar devices with limited power, typical battery operated, user interface displays like a pointing device and character input, with minimum of 512kb (and maximum 16MB) combined ROM (read only memory) and RAM (random access memory) hardware.</p>
+<li><i> Personal Profile</i></li>
+<p>Personal profile specification repacks the Personal Java APIs Environment to provide J2ME specification for devices that need a high degree of Internet connectivity. This profile builds on top of Foundation profile.</p>
+<li><i>Personal Basic profile</i></li>
+<p>This profile is intended to provide basic Graphical User Interface (GUI) capabilities to devices where the high-fidelity, feature-rich Personal Profile is not fully utilized or necessary means which running the CDC and Foundation Profile.</p>
+<li><i>RIM Profile</i></li>
+<p>RMI profile also builds on top of Foundation profile and supports inter-application RMI over TCP/IP connections for applications written to the Foundation Profile. It's provides the infrastructure to marshal objects as the parameters and return values of remote method calls while the dynamic class loading is utilized to make the marshalled objects available to a particular JVM during a remote call. A special type of protocol - wire protocol JRMP (Java Remote Method Protocol) is required for supported.</p>
+<h3>Core Application Programming Interface (APIs) of RMI:</h3>
+
+<div class="comment">java.rmi</div>
+<li><i>Foundation Profile</i></li>
+<p>The Foundation profiles specified for devices that can support a rich networked J2ME environment. It provides services for other device-specific profiles (such as Personal profile and RMI profile) to be layered on top of it.</p>
+<p>This profile specific design for CDC profiles that provide Graphical User Interface (GUI), Data storage, and distribution of java networking.</p>
+<li><i>Multimedia Profile</i></li>
+<p>This profile target the CLDC and CDC profile to provide basic multimedia support like playing sound, playing video and other media but this profile is not compatible with Java Media Framework (JMF). The core APIs of this profile will provide the controlling time based media such as sound and video along with sampling, streaming and synthetic audio capabilities. The profile is being designed for scalability, providing a set of basic services for more limited devices with a set of optional features for more powerful devices.</p>
+<li><i>Gaming Profile</i></li>
+<p>This profile provide the gaming interface for devices by include 3D model, physical modeling, character animation, rendering, 2D rendering, video buffering, gaming marshalling, network communication, streaming media, sound, game controller support, and hardware access. The CDC is target environment for this profile.</p>
+<li><i>Wireless Telephony Communications API (WTCA)</i></li>
+<p>This profile addressing the J2ME application with a reusability set of components support Short Messages Service (SMS) for receiving and sending message, Unstructured Supplementary Services Data (USSD) for exchange data, and Cell Broadcast Services (CBS) for allow applications to receive cell broadcast data.</p></ol>
+
+	 <table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="J2ME_configurations.shtml" title="J2ME_configurations">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="Set up JME environment with NetBeans IDE.shtml" title="Set up JME environment with NetBeans IDE">Next</a></td>
+  </tr> 
+</table>
+<!-- Footer Start-->	
+
+		</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->

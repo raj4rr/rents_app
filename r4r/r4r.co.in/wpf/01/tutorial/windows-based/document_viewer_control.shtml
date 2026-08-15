@@ -1,0 +1,176 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>Document Viewer Control in WPF</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="Document Viewer Control in WPF" >
+<meta name="keywords" CONTENT="Document Viewer Control in WPF">
+<!--Header Start-->
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+     <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>WPF</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a><img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+			<a href="/wpf/">WPF with C#</a><img src="/images/left_menu_bullet.gif" width="11" height="6"/>
+			<a href="/wpf/01/tutorial/windows-based/">WPF Window Based Tutorials</a>
+
+             <table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/wpf/commonfiles/leftmenu.shtml'); ?></td>
+
+                       <td style="80%" valign="top">
+                        <div class="main_content"> 
+
+  <!-- Header End-->                                                                                                                                                             
+
+<div class="heading">Document Viewer Control in WPF</div>   
+
+	 <table id ="indexing">
+	 <tr>
+	 <td style="width:33%; text-align:left;"><a href="The%20DockPanel%20layout.shtml" title="DockPanel Control">previous</a></td>
+	 <td style="width:34%; text-align:center;"><a href="index.shtml ">Home</a></td>
+	 <td style="width:33%; text-align:right;"><a href="Ellipse%20Control.shtml" title="Ellipse Control">Next</a></td>
+	 </tr>
+	     </table>
+
+		 <p>The DocumentViewer provides a very easy way to display the 
+contents of a document, edit a template's form fields and to navigate around a 
+document within a web browser. The server component returns standard web file 
+formats (HTML, CSS, JS and JPG etc.), thus documents can be displayed in the 
+browser without having to install any third party plugins, nor extensions.</p>
+<p>WPF does not support functionality to view Microsoft Word documents 
+but there is a work around this problem. WPF DocumentViewer control is used to 
+display fixed documents such as an XPS (XML Paper Specification) document. We 
+can open a Word document if we can convert a Word document to an XPS document. 
+This conversion is possible by using Office Interop and Office Tools frameworks 
+that is used to work with Office documents. </p>
+<p>Add Reference to XPS and Office Interop Assemblies</p>
+<p>Before we do any actual work, we must add reference to the following 
+assemblies.</p>
+
+<ul>
+<li>ReachFramework.dll</li>
+<li>Microsoft.Office.Tools.v9.0.dll</li>
+<li>Microsoft.Office.Tools.Word.v9.0dll</li>
+<li>Microsoft.VisualStudio.Tools.Office.Runtime.v9.0.dll</li>
+<li>Microsoft.Office.Interop.Word.dll</li>
+</ul>
+<p>
+The first assembly, ReachFramework.dll hosts the functionality for XPS documents 
+and rest of the assemblies hosts the functionality Office Interop and Office 
+Tools support.</p>
+<p>To add reference to these assemblies, you right click on Add 
+Reference on the project name in Solution Explorer. On the .NET Framework, 
+select ReachFramework and other assemblies from the list and click OK button. a 
+sshown in Figure below-</p>
+<div class="image">
+<img src="images/documnet%20viewer.JPG" >
+</div>
+<p>You may have multiple assemblies installed on your machine. Make 
+sure you select Version 12 for Microsoft.Office.Interop.Word assemblies as you 
+see in Figure bellow, otherwise your conversion will fail.</p>
+
+<div class="image">
+<img src="images/Documents1.JPG">
+</div>
+<p>Once you have added the reference to assemblies, you must import 
+the following namespaces to your code behind.</p>
+
+<div class="code">
+<pre>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">IO</font><font color="#000000">;</font>
+<font color="#0000ff">using </font><font color="#008080">Microsoft</font><font color="#000000">.Office.</font><font color="#008080">Interop</font><font color="#000000">.Word;</font>
+<font color="#0000ff">using </font><font color="#008080">Microsoft</font><font color="#000000">.</font><font color="#008080">Win32</font><font color="#000000">;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Windows</font><font color="#000000">.</font><font color="#008080">Xps</font><font color="#000000">.</font><font color="#008080">Packaging</font><font color="#000000">;</font>
+</pre>
+</div>
+<div class="heading">Convert Doc to XPS</div>
+<p>
+The SaveAs method of Document class available in OfficeInterop allows us to save 
+a word document as an XPS document. However, you must make sure you have version 
+12 of assembly added to your project as I mentioned before.</p>
+<p>
+The ConvertWordDocToXPSDoc method takes a full path of a word document file and 
+new full path of XPS document and converts doc file to an xps file.</p>
+
+<div class="code">
+<pre>
+<font color="#0000ff">private </font><font color="#808000">XpsDocument </font><font color="#000000">ConvertWordDocToXPSDoc(</font><font color="#0000ff">string </font><font color="#000000">wordDocName, </font><font color="#0000ff">string </font><font color="#000000">xpsDocName)</font>
+<font color="#000000">{</font>
+ <font color="#008000">// Create a WordApplication and add Document to it</font>
+<font color="#008080">Microsoft</font><font color="#000000">.Office.</font><font color="#008080">Interop</font><font color="#000000">.Word.</font><font color="#808000">Application</font>
+<font color="#000000">wordApplication = </font><font color="#0000ff">new </font><font color="#008080">Microsoft</font><font color="#000000">.Office.</font><font color="#008080">Interop</font><font color="#000000">.Word.</font><font color="#808000">Application</font><font color="#000000">();</font>
+<font color="#000000">wordApplication.</font><font color="#008080">Documents</font><font color="#000000">.Add(wordDocName);</font>
+<font color="#000000">Document doc = wordApplication.ActiveDocument;</font>
+<font color="#008000">// You must make sure you have Microsoft.Office.Interop.Word.Dll </font>
+<font color="#008000">//version 12.</font>
+<font color="#008000">// Version 11 or previous versions do not have WdSaveFormat.wdFormatXPS option</font>
+<font color="#0000ff">try</font>
+<font color="#000000">{</font>
+<font color="#000000">doc.SaveAs(xpsDocName, WdSaveFormat.wdFormatXPS);</font>
+<font color="#000000">wordApplication.Quit();</font>
+<font color="#808000">XpsDocument </font><font color="#000000">xpsDoc = </font><font color="#0000ff">new </font><font color="#808000">XpsDocument</font><font color="#000000">(xpsDocName, </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">IO</font><font color="#000000">.FileAccess.Read);</font>
+<font color="#0000ff">return </font><font color="#000000">xpsDoc;</font>
+<font color="#000000">}</font>
+<font color="#0000ff">catch </font><font color="#000000">(</font><font color="#808000">Exception </font><font color="#000000">exp)</font>
+<font color="#000000">{</font>
+<font color="#0000ff">string </font><font color="#000000">str = exp.</font><font color="#808000">Message</font><font color="#000000">;</font>
+<font color="#000000">}</font>
+<font color="#0000ff">return null</font><font color="#000000">;   </font>
+<font color="#000000">}</font>
+</pre>
+</div>
+
+<h3>DocumentViewer Control in XAML</h3>
+<div class="code">
+<pre>
+<font color="#0000ff">&lt;</font><font color="#808000">Grid</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">DocumentViewer </font><font color="#800080">HorizontalAlignment</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;Left&quot; </font><font color="#800080">Margin</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;0,42,0,0&quot;</font>
+             <font color="#800080">Name</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;documentViewer1&quot; </font><font color="#800080">VerticalAlignment</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;Top&quot;</font>
+			 <font color="#800080">Height</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;508&quot; </font><font color="#800080">Width</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;766&quot; </font><font color="#0000ff">/&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">TextBox </font><font color="#800080">Height</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;29&quot; </font><font color="#800080">HorizontalAlignment</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;Left&quot; </font><font color="#800080">Margin</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;6,6,0,0&quot;</font>
+             <font color="#800080">Name</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;SelectedFileTextBox&quot; </font><font color="#800080">VerticalAlignment</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;Top&quot;</font>
+			 <font color="#800080">Width</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;276&quot; </font><font color="#0000ff">/&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">Button </font><font color="#800080">Content</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;Browse&quot; </font><font color="#800080">Height</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;30&quot; </font><font color="#800080">HorizontalAlignment</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;Right&quot; </font>
+             <font color="#800080">Margin</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;0,6,353,0&quot; </font><font color="#800080">Name</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;BrowseButton&quot; </font><font color="#800080">VerticalAlignment</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;Top&quot;</font>
+			 <font color="#800080">Width</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;122&quot; </font><font color="#800080">Click</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;BrowseButton_Click&quot; </font><font color="#0000ff">/&gt;</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">Grid</font><font color="#0000ff">&gt;</font>
+</pre>
+</div>
+
+ <table id ="indexing">
+	 <tr>
+	 <td style="width:33%; text-align:left;"><a href="The%20DockPanel%20layout.shtml" title="DockPanel Control">previous</a></td>
+	 <td style="width:34%; text-align:center;"><a href="index.shtml ">Home</a></td>
+	 <td style="width:33%; text-align:right;"><a href="Ellipse%20Control.shtml" title="Ellipse Control">Next</a></td>
+	 </tr>
+	     </table>
+
+<!--footer-->                                                                                                                                                           
+
+	 </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>

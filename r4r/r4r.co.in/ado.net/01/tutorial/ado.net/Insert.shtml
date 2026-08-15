@@ -1,0 +1,196 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD>
+<meta http-equiv="Content-Language" content="en-us">
+<TITLE>Insert a Data in Database using Procedure in ASP .NET</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name="description" CONTENT="Insert a Data in Database using Procedure in ASP .NET" >
+<meta name="keywords" CONTENT="Insert a Data in Database using Procedure in ASP .NET">
+
+<!-- header start-->	
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>ADO.NET</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+            <img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+            <a href="/ado.net">ADO.Net</a>
+              <img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+
+			  <a href="/ado.net/01/tutorial/ado.net/">ADO.NET Tutorials</a>
+
+              </div>
+
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/ado.net/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	 
+<!-- header End-->	
+<div class="heading">Insert a Data in Database using Procedure in ASP .NET</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="update_grid.shtml" title="How To Update a Grid View Value Using Procedure in ASP .NET">Previous</a>
+	</td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="single.shtml" title="How to Get all Information SQL Server in ASP .NET">Next</a></td>
+  </tr> 
+</table>
+
+<p><i>Step 1</i>: First creating a Stored Procedure using SQL Server. Procedure name as AddEmpDetails</p>
+<div class="code">
+<pre>
+<font color="#000000">CREATE PROCEDURE  AddEmpDetails  @name nchar(</font><font color="#800080">10</font><font color="#000000">),</font>
+  <font color="#000000">@id nchar(</font><font color="#800080">10</font><font color="#000000">), @emp_age nchar(</font><font color="#800080">10</font><font color="#000000">)</font>
+<font color="#000000">AS</font>
+<font color="#000000">BEGIN</font>
+<font color="#000000">INSERT INTO emp_tbl(nme,age,emp_id) </font>
+  <font color="#000000">VALUES (@name,@emp_age,@id)</font>
+<font color="#000000">END</font>
+</pre>
+</div>
+
+<p><i>Step 2</i>: Design the page. Take a Grid View Control to show data and three textboxes and a button.</p>
+<div class="code">
+<pre>
+<font color="#000000">&lt;%@PageLanguage=</font><font color="#ff00ff">&quot;C#&quot;</font><font color="#000000">AutoEventWireup=</font><font color="#ff00ff">&quot;true&quot;</font>
+<font color="#000000">Codevirtual=</font><font color="#ff00ff">&quot;Default.aspx.cs&quot;</font><font color="#000000">Inherits=</font><font color="#ff00ff">&quot;_Default&quot;</font><font color="#000000">%&gt;</font>
+<font color="#000000">&lt;%@Registerassembly=</font><font color="#ff00ff">&quot;AjaxControlToolkit&quot;</font>
+<font color="#0000ff">namespace</font><font color="#000000">=</font><font color="#ff00ff">&quot;AjaxControlToolkit&quot;</font><font color="#000000">tagprefix=</font><font color="#ff00ff">&quot;cc1&quot;</font><font color="#000000">%&gt;</font>
+<font color="#000000">&lt;!DOCTYPEhtmlPUBLIC</font><font color="#ff00ff">&quot;-//W3C//DTDXHTML1.0</font>
+<font color="#000000">Transitional</font><font color="#008000">//EN&quot;&quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd&quot;&gt;</font>
+<font color="#000000">&lt;htmlxmlns=</font><font color="#ff00ff">&quot;http://www.w3.org/1999/xhtml&quot;</font><font color="#000000">&gt;</font>
+<font color="#000000">&lt;headid=</font><font color="#ff00ff">&quot;Head1&quot;</font><font color="#000000">runat=</font><font color="#ff00ff">&quot;server&quot;</font><font color="#000000">&gt;</font>
+<font color="#000000">&lt;title&gt;UntitledPage&lt;/title&gt;</font>
+<font color="#000000">&lt;/head&gt;</font>
+<font color="#000000">&lt;body&gt;&lt;formid=</font><font color="#ff00ff">&quot;form1&quot;</font><font color="#000000">runat=</font><font color="#ff00ff">&quot;server&quot;</font><font color="#000000">&gt;</font>
+<font color="#000000">&lt;div&gt;&lt;asp:GridViewID=</font><font color="#ff00ff">&quot;GridView1&quot;</font><font color="#000000">runat=</font><font color="#ff00ff">&quot;server&quot;</font><font color="#000000">AutoGenerateColumns=</font><font color="#ff00ff">&quot;False&quot;</font>
+<font color="#000000">BorderStyle=</font><font color="#ff00ff">&quot;Solid&quot;</font><font color="#000000">&gt;</font>
+<font color="#000000">&lt;RowStyleBackColor=</font><font color="#ff00ff">&quot;White&quot;</font><font color="#000000">BorderColor=</font><font color="#ff00ff">&quot;#333333&quot;</font><font color="#000000">BorderStyle=</font><font color="#ff00ff">&quot;Solid&quot;</font>
+<font color="#000000">BorderWidth=</font><font color="#ff00ff">&quot;2px&quot;</font><font color="#000000">/&gt;</font>
+<font color="#000000">&lt;Columns&gt;&lt;asp:BoundFieldDataField=</font><font color="#ff00ff">&quot;nme&quot;</font><font color="#000000">HeaderText=</font><font color="#ff00ff">&quot;Name&quot;</font><font color="#000000">/&gt;</font>
+<font color="#000000">&lt;asp:BoundFieldDataField=</font><font color="#ff00ff">&quot;age&quot;</font><font color="#000000">HeaderText=</font><font color="#ff00ff">&quot;Age&quot;</font><font color="#000000">/&gt;</font>
+<font color="#000000">&lt;asp:BoundFieldDataField=</font><font color="#ff00ff">&quot;emp_id&quot;</font><font color="#000000">HeaderText=</font><font color="#ff00ff">&quot;EmployeID&quot;</font><font color="#000000">/&gt;</font>
+<font color="#000000">&lt;/Columns&gt;&lt;HeaderStyleBackColor=</font><font color="#ff00ff">&quot;#CCCCCC&quot;</font><font color="#000000">BorderStyle=</font><font color="#ff00ff">&quot;Inset&quot;</font><font color="#000000">BorderWidth=</font><font color="#ff00ff">&quot;2px&quot;</font><font color="#000000">/&gt;</font>
+<font color="#000000">&lt;/asp:</font><font color="#808000">GridView</font><font color="#000000">&gt;&lt;/div&gt;</font>
+<font color="#000000">&lt;br/&gt;&lt;br/&gt;&lt;table&gt;</font>
+<font color="#000000">&lt;tr&gt;&lt;td&gt;EnterID:&lt;/td&gt;&lt;td&gt;</font>
+<font color="#000000">&lt;asp:TextBoxID=</font><font color="#ff00ff">&quot;TextBox1&quot;</font><font color="#000000">runat=</font><font color="#ff00ff">&quot;server&quot;</font><font color="#000000">&gt;&lt;/asp:</font><font color="#808000">TextBox</font><font color="#000000">&gt;&lt;/td&gt;&lt;/tr&gt;</font>
+<font color="#000000">&lt;tr&gt;&lt;td&gt;EnterName:&lt;/td&gt;&lt;td&gt;</font>
+<font color="#000000">&lt;asp:TextBoxID=</font><font color="#ff00ff">&quot;TextBox2&quot;</font><font color="#000000">runat=</font><font color="#ff00ff">&quot;server&quot;</font><font color="#000000">&gt;&lt;/asp:</font><font color="#808000">TextBox</font><font color="#000000">&gt;&lt;/td&gt;&lt;/tr&gt;</font>
+<font color="#000000">&lt;tr&gt;&lt;td&gt;EnterAge:&lt;/td&gt;&lt;td&gt;</font>
+<font color="#000000">&lt;asp:TextBoxID=</font><font color="#ff00ff">&quot;TextBox3&quot;</font><font color="#000000">runat=</font><font color="#ff00ff">&quot;server&quot;</font><font color="#000000">&gt;&lt;/asp:</font><font color="#808000">TextBox</font><font color="#000000">&gt;&lt;/td&gt;&lt;/tr&gt;</font>
+<font color="#000000">&lt;tr&gt;&lt;td&gt;</font>
+<font color="#000000">&lt;asp:ButtonID=</font><font color="#ff00ff">&quot;Button1&quot;</font><font color="#000000">runat=</font><font color="#ff00ff">&quot;server&quot;</font><font color="#008080">Text</font><font color="#000000">=</font><font color="#ff00ff">&quot;Add&quot;</font><font color="#000000">onclick=</font><font color="#ff00ff">&quot;Button1_Click&quot;</font><font color="#000000">/&gt;</font>
+<font color="#000000">&lt;/td&gt;&lt;/tr&gt;</font>
+<font color="#000000">&lt;/table&gt;</font>
+<font color="#000000">&lt;/form&gt;</font>
+<font color="#000000">&lt;/body&gt;</font>
+<font color="#000000">&lt;/html&gt;</font>
+</pre>
+</div>
+
+<p><i>Step 3</i>:Default.aspx.cs Code.</p>
+<div class="code">
+<pre>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Configuration</font><font color="#000000">;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Data</font><font color="#000000">;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.Linq;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Web</font><font color="#000000">;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Web</font><font color="#000000">.</font><font color="#008080">Security</font><font color="#000000">;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Web</font><font color="#000000">.</font><font color="#008080">UI</font><font color="#000000">;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Web</font><font color="#000000">.</font><font color="#008080">UI</font><font color="#000000">.</font><font color="#008080">HtmlControls</font><font color="#000000">;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Web</font><font color="#000000">.</font><font color="#008080">UI</font><font color="#000000">.</font><font color="#008080">WebControls</font><font color="#000000">;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Web</font><font color="#000000">.</font><font color="#008080">UI</font><font color="#000000">.</font><font color="#008080">WebControls</font><font color="#000000">.</font><font color="#008080">WebParts</font><font color="#000000">;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Xml</font><font color="#000000">.Linq;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Data</font><font color="#000000">.SqlClient;</font>
+<font color="#0000ff">public </font><font color="#000000">partial </font><font color="#0000ff">class </font><font color="#000000">_Default : </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Web</font><font color="#000000">.</font><font color="#008080">UI</font><font color="#000000">.</font><font color="#808000">Page</font>
+<font color="#000000">{</font>
+<font color="#000000">SqlConnection newConnection = </font><font color="#0000ff">new </font>
+<font color="#000000">SqlConnection(@</font><font color="#ff00ff">&quot;Data Source=R4R-3EFD13BB468\SQLEXPRESS; </font>
+<font color="#000000">initial catalog=newDatabase;integrated security=</font><font color="#0000ff">true</font><font color="#000000">;</font><font color="#ff00ff">&quot;);</font>
+<font color="#0000ff">protected void </font><font color="#000000">Page_Load(</font><font color="#0000ff">object </font><font color="#000000">sender, </font><font color="#808000">EventArgs </font><font color="#000000">e)</font>
+<font color="#000000">{</font>
+<font color="#000000">newConnection.Open();</font>
+<font color="#000000">SqlCommand cmdd = </font><font color="#0000ff">new </font><font color="#000000">SqlCommand(</font><font color="#ff00ff">&quot;Select * from emp_tbl&quot;</font><font color="#000000">, newConnection);</font>
+<font color="#000000">SqlDataReader dr = cmdd.ExecuteReader();</font>
+<font color="#0000ff">if </font><font color="#000000">(dr.HasRows)</font>
+<font color="#000000">{</font>
+<font color="#000000">GridView1.DataSource = dr;</font>
+<font color="#000000">GridView1.DataBind();</font>
+<font color="#000000">}</font>
+<font color="#000000">newConnection.Close();</font>
+<font color="#000000">}</font>
+<font color="#0000ff">public void </font><font color="#000000">addValue(</font><font color="#0000ff">string </font><font color="#000000">emp_name, </font><font color="#0000ff">string </font><font color="#000000">Id, </font><font color="#0000ff">string </font><font color="#000000">emp_age)</font>
+<font color="#000000">{</font>
+<font color="#000000">newConnection.Open();</font>
+<font color="#000000">SqlCommand cmd = </font><font color="#0000ff">new </font><font color="#000000">SqlCommand(</font><font color="#ff00ff">&quot;AddEmpDetails&quot;</font><font color="#000000">, newConnection);</font>
+<font color="#000000">cmd.CommandType = CommandType.StoredProcedure; </font><font color="#008000">//Procedure</font>
+<font color="#000000">cmd.Parameters.AddWithValue(</font><font color="#ff00ff">&quot;@name&quot;</font><font color="#000000">, emp_name);</font>
+<font color="#000000">cmd.Parameters.AddWithValue(</font><font color="#ff00ff">&quot;@id&quot;</font><font color="#000000">, Id);</font>
+<font color="#000000">cmd.Parameters.AddWithValue(</font><font color="#ff00ff">&quot;@emp_age&quot;</font><font color="#000000">, emp_age);</font>
+<font color="#000000">cmd.ExecuteNonQuery();</font>
+<font color="#000000">newConnection.Close();</font>
+<font color="#000000">}</font>
+<font color="#0000ff">protected void </font><font color="#000000">Button1_Click(</font><font color="#0000ff">object </font><font color="#000000">sender, </font><font color="#808000">EventArgs </font><font color="#000000">e)</font>
+<font color="#000000">{  </font>
+<font color="#000000">addValue(TextBox2.</font><font color="#008080">Text</font><font color="#000000">, TextBox1.</font><font color="#008080">Text</font><font color="#000000">, TextBox3.</font><font color="#008080">Text</font><font color="#000000">);</font>
+<font color="#000000">Response.Redirect(</font><font color="#ff00ff">&quot;Default.aspx&quot;</font><font color="#000000">);</font>
+<font color="#000000">}</font>
+<font color="#000000">}</font>
+</pre>
+</div>
+
+<p><i>Step 4</i>: Run the Application.</p>
+
+<div class="image">
+<img src="Image/insert.gif">
+</div>
+<p>Click on Add button.</p>
+
+<div class="image">
+<img src="Image/insert1.gif">
+</div>
+<p>The Value is added in the database</p>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="update_grid.shtml" title="How To Update a Grid View Value Using Procedure in ASP .NET">Previous</a>
+	</td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="single.shtml" title="How to Get all Information SQL Server in ASP .NET">Next</a></td>
+  </tr> 
+</table>
+
+<!-- Footer Start-->		
+		</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/dotnet/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->

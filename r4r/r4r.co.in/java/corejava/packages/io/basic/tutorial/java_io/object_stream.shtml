@@ -1,0 +1,130 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD>
+<meta http-equiv="Content-Language" content="en-us">
+<TITLE>Object Stream,store object of the variable type,step of store object in variable type</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name="description" CONTENT="Object Stream,store object of the variable type,step of store object in variable type" >
+<meta name="keywords" CONTENT="Object Stream,store object of the variable type,step of store object in variable type">
+
+<!-- header start-->	
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>Java Programing laungage</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+            <img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+            <a href="/java/">Java</a>
+              <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/java/corejava">Core Java</a>
+               <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/java/corejava/packages">Package</a>
+                     <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/java/corejava/packages/io">Java IO Package</a>
+              </div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/corejava/packages/io/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	 
+
+	   	   <div class="heading">Object Stream</div>
+           <p>If you want to store the same type data then need to used the fixed-size record format. however , the object which we are create in the program is rarely same type.</p>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="Exception_of_IO.shtml" title="Exception of IO">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="make_class_serializable.shtml" title="Make class serializable">Next</a></td>
+  </tr>
+</table>
+<!-- header End-->  
+
+<h3>Example</h3>
+<p>Suppose that we are have an array called student, which is normally an array of the student record. but it is contain the object that is a instances of the child class such as Manage.</p>
+<p>If we want to save the file, which is stored information, then we are save the object firstly and then the data that is define the current state of the object. When we are reading this information back from a file. you must read the object type; create the blank object of that type and fill it with the data, which is stored in the file;</p>
+
+<h2>Store Object of variable type</h2>
+<p>There are many steps for saving data in variable type:</p>
+<ul>
+<li>
+we are open the ObjectOutputStream object.
+<div class="code">
+<PRE>
+<FONT FACE="Arial">
+<FONT COLOR="#ff0000">ObjectOutputStream </FONT><FONT COLOR="#000000">oos=</FONT><FONT COLOR="#0000ff">new </FONT><FONT COLOR="#ff0000">ObjectOutputStream</FONT><FONT COLOR="#000000">(</FONT><FONT COLOR="#0000ff">new </FONT><FONT COLOR="#ff0000">FileOutputStream</FONT><FONT COLOR="#000000">(</FONT><FONT COLOR="#ff00ff">"student.dat"</FONT><FONT COLOR="#000000">));</FONT>
+</FONT>
+</PRE>
+</div>
+</li>
+<li>
+Save the object with use of the writeObject() method which is included into the ObjectOutputStream class.
+<div class="code">
+<PRE>
+<FONT FACE="Arial">
+<FONT COLOR="#000000">student sam=</FONT><FONT COLOR="#0000ff">new </FONT><FONT COLOR="#000000">student(</FONT><FONT COLOR="#ff00ff">"sam"</FONT><FONT COLOR="#000000">,</FONT><FONT COLOR="#800080">100</FONT><FONT COLOR="#000000">,</FONT><FONT COLOR="#800080">1987</FONT><FONT COLOR="#000000">,</FONT><FONT COLOR="#800080">03</FONT><FONT COLOR="#000000">,</FONT><FONT COLOR="#800080">29</FONT><FONT COLOR="#000000">);</FONT>
+<FONT COLOR="#000000">out.writeObject(sam);</FONT>
+<FONT COLOR="#000000">out.writeObject(senior);</FONT>
+</FONT>
+</PRE>
+</div>
+</li>
+<li>
+ For read the object in back in, get the ObjectInputStream object;
+<div class="code">
+<PRE>
+<FONT FACE="Arial">
+<FONT COLOR="#ff0000">ObjectInputStream </FONT><FONT COLOR="#000000">ois=</FONT><FONT COLOR="#0000ff">new </FONT><FONT COLOR="#ff0000">ObjectInputStream</FONT><FONT COLOR="#000000">(</FONT><FONT COLOR="#0000ff">new </FONT><FONT COLOR="#ff0000">FileInputStream</FONT><FONT COLOR="#000000">(</FONT><FONT COLOR="#ff00ff">"student.dat"</FONT><FONT COLOR="#000000">));</FONT>
+</FONT>
+</PRE>
+</div>
+</li></ul>
+<ul><li>
+Then retrieved the object in the same order with help of the readObject() method.
+<div class="code">
+<PRE>
+<FONT FACE="Arial">
+<FONT COLOR="#000000">student s1=(student)ois.readObject();</FONT>
+<FONT COLOR="#000000">student s2=(student)ois.readObject();</FONT>
+</FONT>
+</PRE>
+</div>
+</li>
+</ul>   
+<p>if you are reading the back object, then you are carefully keep the track number of object which is saved their order and types. all call to the readObject() method for read another object type.</p>	   
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="Exception_of_IO.shtml" title="Exception of IO">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="make_class_serializable.shtml" title="Make class serializable">Next</a></td>
+  </tr>
+</table>
+<!-- Footer Start-->
+
+		</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->

@@ -1,0 +1,145 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>Arrays represented in c, array tutorial in c,array examples,array programs</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="How arrays are represented in the memory ? 2 dimensional array, 3 dimensional array,array malloc,c array memory,array pointer, array examples, array string in c language," >
+<meta name="keywords" CONTENT="arrays represented in c, array calloc, array malloc,c array memory,array pointer, array examples, array string in c language, arrays questions in c, 2 dimensional array, 3 dimensional array  ">
+
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>C Programming language</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a><img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/c/">C </a>
+              <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/c/c_basics_tutorials/">Learn C in 9 days</a></div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/c/commonfiles/new-leftmenu.shtml'); ?></td>
+
+                       <td style="80%" valign="top">
+                        <div class="main_content"> 	
+
+                        	 <!-- Header End--> 		
+
+<div class="heading"><font style="background:#FF9966; padding:7px 0px 7px 7px;">Day <font style="background:#E95409; padding:7px;">5</font></font> Array representation in memory using C Programming language</div> 
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="access_elements_of_array.shtml" title="Access elements of Array in C Programming language">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="two_dimensional_array_representation_in_memory.shtml" title="Two dimensional Array representation in memory using C Programming language">Next</a></td>
+  </tr>
+</table>
+
+<p>Mainly arrays are categorized in</p>
+	<ul>
+		<li>One dimensional array</li>
+		<li>Multidimensional array</li>
+	</ul>
+<p>
+<h2># One dimensional Array representation in memory</h2>
+<p><b>One dimensional arrays</b> are the simple arrays that we have so far discussed. In <a href="access_elements_of_array.shtml">previous examples</a> we have shown how to initialize and declare one dimensional array, now we will discuss how it is represented in the memory. As we know now 1-d array are linear array in which elements are stored in the successive memory locations. The element at the very first position in the array is called its base address.</p>
+
+<div class="code">
+<pre>
+<font color="#0000ff">int </font><font color="#000000">arr[</font><font color="#800080">5</font><font color="#000000">];</font>
+</pre>
+</div>
+<i> Now consider the following example :</i>
+<table cellpadding="5" cellspacing="5">
+	<tr>
+        <td style="background:#EAEAEA; width:20%;">Element</td>
+        <td style="width:16%; background:#FBFBFB; text-align:center;">34</td>
+        <td style="width:16%; background:#FBFBFB; text-align:center;">78</td>
+        <td style="width:16%; background:#FBFBFB; text-align:center;">98</td>
+        <td style="width:16%; background:#FBFBFB; text-align:center;">45</td>
+        <td style="width:16%; background:#FBFBFB; text-align:center;">56</td>
+    </tr>
+    <tr>
+    	<td style="background:#EAEAEA;">Index</td>
+        <td style="width:16%; background:#FBFBFB; text-align:center;">arr[0] = 100</td>
+        <td style="width:16%; background:#FBFBFB; text-align:center;">arr[1] = ?</td>
+        <td style="width:16%; background:#FBFBFB; text-align:center;">arr[2] = ?</td>
+        <td style="width:16%; background:#FBFBFB; text-align:center;">arr[3] = ?</td>
+        <td style="width:16%; background:#FBFBFB; text-align:center;">arr[4] = ?</td></tr>
+</table>
+<p>Above we have defined an array of five elements of integer type whose first index element is at base address 100. i.e, the element arr[0] is stored at base address 100. Now for calculating the starting address of the next element i.e. of a[1], we can use the following 
+formula :</p>
+<p><b>Base Address (B)+ No. of bytes occupied by element (C) * index of the element (i)</b></p>
+
+<p style="color:#008000;">/* Here C is constant integer and vary according to the data type of the array, for e.g. for integer the value of C will be 4 bytes, since an integer occupies 4 bytes of memory. */</p>
+<p>Now, we can calculate the starting address of second element of the array as :</p>
+
+<div class="code">
+<pre>
+<font color="#000000">arr[</font><font color="#800080">1</font><font color="#000000">] = </font><font color="#800080">100 </font><font color="#000000">+ </font><font color="#800080">4 </font><font color="#000000">* </font><font color="#800080">1 </font><font color="#000000">= </font><font color="#800080">104</font><font color="#000000">;</font>
+<font color="#008000">/*Thus starting address of second element of array is 104 */</font>
+</pre>
+</div>
+
+<p>Similarly other addresses can be calculated in the same manner as :</p>
+<div class="code">
+<pre>
+<font color="#000000">arr[</font><font color="#800080">2</font><font color="#000000">] = </font><font color="#800080">100 </font><font color="#000000">+ </font><font color="#800080">4 </font><font color="#000000">* </font><font color="#800080">2 </font><font color="#000000">= </font><font color="#800080">108</font>
+<font color="#000000">arr[</font><font color="#800080">3</font><font color="#000000">] = </font><font color="#800080">100 </font><font color="#000000">+ </font><font color="#800080">4 </font><font color="#000000">* </font><font color="#800080">3 </font><font color="#000000">= </font><font color="#800080">112</font>
+<font color="#000000">arr[</font><font color="#800080">4</font><font color="#000000">] = </font><font color="#800080">100 </font><font color="#000000">+ </font><font color="#800080">4 </font><font color="#000000">* </font><font color="#800080">4 </font><font color="#000000">= </font><font color="#800080">116</font>
+</pre>
+</div>
+
+<i>Example</i>
+<div class="code">
+<pre>
+<font color="#ff0000">#include</font><font color="#000000">&lt;stdio.h&gt;</font>
+<font color="#ff0000">#include</font><font color="#000000">&lt;conio.h&gt;</font>
+<font color="#0000ff">void </font><font color="#000000">main()</font>
+<font color="#000000">{</font>
+	<font color="#0000ff">int </font><font color="#000000">a[] = {</font><font color="#800080">20</font><font color="#000000">, </font><font color="#800080">30</font><font color="#000000">, </font><font color="#800080">50</font><font color="#000000">, </font><font color="#800080">70</font><font color="#000000">, </font><font color="#800080">100</font><font color="#000000">};</font>
+	<font color="#0000ff">int </font><font color="#000000">n, sum=</font><font color="#800080">0</font><font color="#000000">;</font>
+	<font color="#0000ff">for </font><font color="#000000">( n=</font><font color="#800080">0 </font><font color="#000000">; n&lt;</font><font color="#800080">5 </font><font color="#000000">; n++ )</font>
+	<font color="#000000">{</font>
+		<font color="#000000">sum += a[n];</font>
+	<font color="#000000">}</font>
+	<font color="#000000">printf (</font><font color="#ff00ff">&quot;%d&quot;</font><font color="#000000">, sum);</font>
+	<font color="#0000ff">return </font><font color="#800080">0</font><font color="#000000">;</font>
+<font color="#000000">}</font>
+</pre>
+</div>
+
+<div class="output">
+<i>Output:</i> 270
+</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="access_elements_of_array.shtml" title="Access elements of Array in C Programming language">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="two_dimensional_array_representation_in_memory.shtml" title="Two dimensional Array representation in memory using C Programming language">Next</a></td>
+  </tr>
+</table>
+
+                        <!--Footer  --> 	
+ </div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/c/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>

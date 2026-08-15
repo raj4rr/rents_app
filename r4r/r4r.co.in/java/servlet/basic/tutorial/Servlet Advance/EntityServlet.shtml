@@ -1,0 +1,530 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD>
+<meta http-equiv="Content-Language" content="en-us">
+<TITLE>Create an application for access JPA Entity class into Servlet </TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name="description" CONTENT="Create an application for access JPA Entity class into Servlet " >
+<meta name="keywords" CONTENT="Create an application for access JPA Entity class into Servlet, JPAServlet, jpaservlet example, jpaservlet program, access JPA in servlet, access Entity class in servlet, entity class from datbase in servlet example, use entity class in servlet, entity class from database use in servlet, JPA, servlet, how to use JPA into servlet, JPA+Servlet example, jpa+servlet, entity class in servlet, servlet and JPA, servlet and Entity class ,advance servlet, servlet advance example, servlet programs, servlet advance programs ">
+<!-- header start-->	
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+   	  <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>Java Servlet Programing Laungage</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a><img src="/images/left_menu_bullet.gif"/> <a href="/java/servlet/../">Java</a><img src="/images/left_menu_bullet.gif"/><a href="/java/servlet/">Servlet</a><img src="/images/left_menu_bullet.gif"/><a href="index.shtml">Advance Servlet Examples</a>
+       </div>
+
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/servlet/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	 
+<!-- header End-->
+
+<div class="heading">Create an application for access JPA Entity class into Servlet</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="EJBServlet.shtml" title="Create an application for access EJB session Bean into Servlet">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="JPAServlet.shtml" title="Create an application for access JPA Entity class from database into 
+Servlet">Next</a></td>
+  </tr> 
+</table>
+
+<p>In this Servlet application, an Entity class which is part of Java Persistence API is accessed for inserting and fetching data through servlet.Consider following steps for create this application</p>
+     <p><i>Step-1 </i>Create a new web project and name it as <font class="point_out">EntityServlet</font>. Go to source package and name it as <font class="point_out">r4r.Entity.Servlet</font>, now right click over package and go to New -&gt; other -&gt;New File, window open (as show into below picture). Now choose Persistence from the Categories list and and Entity Class from File Types list, then click on Next button.
+	 <div class="image">
+			<img src="ServletAdvance%20image/EntityServlet1.gif">
+	</div>		
+
+<p><i>Step-2  </i>Now New Entity Class window open, Specify the values as shown in below picture, and don't forget to tick on check box for create Persistence Unit for application. After fill all the entry click on Next button.
+<div class="image">
+			<img src="ServletAdvance%20image/EntityServlet2.gif">
+	</div>		
+
+<p><i>Step-3 </i> After Create Persistence Unit, now provide database connection to Persistence Unit as describe below image. It is not necessary to connect with EclipseLink(JPA 2.0), many other option are also available.</p>
+
+<p> <i>RememberTable Generation Strategy </i></p>
+
+			<p><i>Create</i>- is use for create a table and use same table every 
+			time program is run.</p>
+
+			<p><i>Drop and Create</i>- is used for create a table but it drop the 
+			old table and generate new one on same place every time program is 
+			run.</p>
+<div class="image">
+			<img src="ServletAdvance%20image/EntityServlet3.gif">
+	</div>		
+
+<h3>Application directory structure</h3>
+<div class="image">
+<img src="ServletAdvance%20image/EntityServlet4.gif">
+</div>
+
+<h3>persistence.xml</h3>
+<div class="code">
+<pre>
+<font color="#0000ff">&lt;?xml </font><font color="#ff0000">version</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;1.0&quot; </font><font color="#ff0000">encoding</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;UTF-8&quot;</font><font color="#800080">?</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">persistence </font><font color="#ff0000">version</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;2.0&quot;</font>
+  <font color="#ff0000">xmlns</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;http://java.sun.com/xml/ns/persistence&quot; </font>
+  <font color="#800080">xmlns:xsi</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</font>
+  <font color="#800080">xsi:schemaLocation</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;http://java.sun.com/xml/ns/persistence</font>
+<font color="#ff00ff">   http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd&quot;</font><font color="#0000ff">&gt;</font>
+<font color="#000000"> </font><font color="#0000ff">&lt;</font><font color="#808000">persistence-unit </font><font color="#ff0000">name</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;EntityServletPU&quot;</font>
+			<font color="#800080">transaction-type</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;RESOURCE_LOCAL&quot;</font><font color="#0000ff">&gt;</font>
+<font color="#000000">  </font><font color="#0000ff">&lt;</font><font color="#808000">provider</font><font color="#0000ff">&gt;</font><font color="#000000">org.eclipse.persistence.jpa.PersistenceProvider</font><font color="#0000ff">&lt;/</font><font color="#808000">provider</font><font color="#0000ff">&gt;</font>
+<font color="#000000">  </font><font color="#0000ff">&lt;</font><font color="#808000">class</font><font color="#0000ff">&gt;</font><font color="#000000">r4r.Entity.Servlet.ServletEntity</font><font color="#0000ff">&lt;/</font><font color="#808000">class</font><font color="#0000ff">&gt;</font>
+<font color="#000000">  </font><font color="#0000ff">&lt;</font><font color="#808000">exclude-unlisted-classes</font><font color="#0000ff">&gt;</font><font color="#000000">false</font><font color="#0000ff">&lt;/</font><font color="#808000">exclude-unlisted-classes</font><font color="#0000ff">&gt;</font>
+<font color="#000000">  </font><font color="#0000ff">&lt;</font><font color="#808000">properties</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">property </font><font color="#ff0000">name</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;javax.persistence.jdbc.url&quot;</font>
+	<font color="#800080">value</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;jdbc:mysql://localhost:3306/r4r&quot;</font><font color="#0000ff">/&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">property </font><font color="#ff0000">name</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;javax.persistence.jdbc.password&quot; </font><font color="#800080">value</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;root&quot;</font><font color="#0000ff">/&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">property </font><font color="#ff0000">name</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;javax.persistence.jdbc.driver&quot; </font>
+		<font color="#800080">value</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;com.mysql.jdbc.Driver&quot;</font><font color="#0000ff">/&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">property </font><font color="#ff0000">name</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;javax.persistence.jdbc.user&quot; </font><font color="#800080">value</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;root&quot;</font><font color="#0000ff">/&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">property </font><font color="#ff0000">name</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;eclipselink.ddl-generation&quot; </font><font color="#800080">value</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;create-tables&quot;</font><font color="#0000ff">/&gt;</font>
+<font color="#000000">  </font><font color="#0000ff">&lt;/</font><font color="#808000">properties</font><font color="#0000ff">&gt;</font>
+<font color="#000000"> </font><font color="#0000ff">&lt;/</font><font color="#808000">persistence-unit</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">persistence</font><font color="#0000ff">&gt;</font>
+</pre>
+</div>
+
+<h3>Entity Class</h3>
+<div class="code">
+<pre>
+<font color="#008000">/*</font>
+<font color="#008000"> * Save as a ServletEntity.java</font>
+<font color="#008000"> */</font>
+<font color="#0000ff">package </font><font color="#000000">r4r.</font><font color="#ff0000">Entity</font><font color="#000000">.Servlet;</font>
+
+<font color="#0000ff">import </font><font color="#000000">java.io.</font><font color="#ff0000">Serializable</font><font color="#000000">;</font>
+<font color="#0000ff">import </font><font color="#000000">javax.persistence.Basic;</font>
+<font color="#0000ff">import </font><font color="#000000">javax.persistence.Column;</font>
+<font color="#0000ff">import </font><font color="#000000">javax.persistence.</font><font color="#ff0000">Entity</font><font color="#000000">;</font>
+<font color="#0000ff">import </font><font color="#000000">javax.persistence.GeneratedValue;</font>
+<font color="#0000ff">import </font><font color="#000000">javax.persistence.GenerationType;</font>
+<font color="#0000ff">import </font><font color="#000000">javax.persistence.Id;</font>
+<font color="#0000ff">import </font><font color="#000000">javax.persistence.NamedQueries;</font>
+<font color="#0000ff">import </font><font color="#000000">javax.persistence.NamedQuery;</font>
+<font color="#0000ff">import </font><font color="#000000">javax.persistence.Table;</font>
+<font color="#0000ff">import </font><font color="#000000">javax.xml.bind.annotation.XmlRootElement;</font>
+
+<font color="#008000">/**</font>
+<font color="#008000"> *</font>
+<font color="#008000"> * @author R4R</font>
+<font color="#008000"> */</font>
+<font color="#000000">@</font><font color="#0000ff">Entity</font>
+<font color="#000000">@</font><font color="#0000ff">Table</font><font color="#000000">(name = </font><font color="#ff00ff">&quot;SERVLETENTITY&quot;</font><font color="#000000">)</font>
+<font color="#000000">@</font><font color="#0000ff">XmlRootElement</font>
+<font color="#000000">@</font><font color="#0000ff">NamedQueries</font><font color="#000000">({</font>
+ <font color="#000000">@</font><font color="#0000ff">NamedQuery</font><font color="#000000">(name = </font><font color="#ff00ff">&quot;ServletEntity.findAll&quot;</font><font color="#000000">, query = </font>
+	      <font color="#ff00ff">&quot;SELECT s FROM ServletEntity s&quot;</font><font color="#000000">)</font>
+<font color="#000000">})</font>
+<font color="#0000ff">public class </font><font color="#000000">ServletEntity </font><font color="#0000ff">implements </font><font color="#ff0000">Serializable </font><font color="#000000">{</font>
+
+ <font color="#0000ff">private static final long </font><font color="#000000">serialVersionUID = </font><font color="#800080">1L</font><font color="#000000">;</font>
+ <font color="#000000">@</font><font color="#0000ff">Id</font>
+ <font color="#000000">@</font><font color="#0000ff">GeneratedValue</font><font color="#000000">(strategy = GenerationType.AUTO)</font>
+ <font color="#000000">@</font><font color="#0000ff">Basic</font><font color="#000000">(optional = </font><font color="#0000ff">false</font><font color="#000000">)</font>
+ <font color="#000000">@</font><font color="#0000ff">Column</font><font color="#000000">(name = </font><font color="#ff00ff">&quot;ID&quot;</font><font color="#000000">)</font>
+ <font color="#0000ff">private </font><font color="#ff0000">Integer </font><font color="#000000">id;</font>
+ <font color="#000000">@</font><font color="#0000ff">Column</font><font color="#000000">(name = </font><font color="#ff00ff">&quot;FIRSTNAME&quot;</font><font color="#000000">)</font>
+ <font color="#0000ff">private </font><font color="#ff0000">String </font><font color="#000000">fname;</font>
+ <font color="#000000">@</font><font color="#0000ff">Column</font><font color="#000000">(name = </font><font color="#ff00ff">&quot;LASTNAME&quot;</font><font color="#000000">)</font>
+ <font color="#0000ff">private </font><font color="#ff0000">String </font><font color="#000000">lname;</font>
+ <font color="#000000">@</font><font color="#0000ff">Column</font><font color="#000000">(name = </font><font color="#ff00ff">&quot;CITY&quot;</font><font color="#000000">)</font>
+ <font color="#0000ff">private </font><font color="#ff0000">String </font><font color="#000000">city;</font>
+ <font color="#000000">@</font><font color="#0000ff">Column</font><font color="#000000">(name = </font><font color="#ff00ff">&quot;COUNTRY&quot;</font><font color="#000000">)</font>
+ <font color="#0000ff">private </font><font color="#ff0000">String </font><font color="#000000">country;</font>
+
+ <font color="#008000">//-------------------------- Constructor</font>
+ <font color="#0000ff">public </font><font color="#000000">ServletEntity() {</font>
+ <font color="#000000">}</font>
+
+ <font color="#0000ff">public </font><font color="#000000">ServletEntity(</font><font color="#ff0000">Integer </font><font color="#000000">id) {</font>
+  <font color="#0000ff">this</font><font color="#000000">.id = id;</font>
+ <font color="#000000">}</font>
+
+ <font color="#0000ff">public </font><font color="#000000">ServletEntity(</font><font color="#ff0000">Integer </font><font color="#000000">id, </font><font color="#ff0000">String </font><font color="#000000">fname,</font>
+	  <font color="#ff0000">String </font><font color="#000000">lname, </font><font color="#ff0000">String </font><font color="#000000">city, </font><font color="#ff0000">String </font><font color="#000000">country) {</font>
+  <font color="#0000ff">this</font><font color="#000000">.id = id;</font>
+  <font color="#0000ff">this</font><font color="#000000">.fname = fname;</font>
+  <font color="#0000ff">this</font><font color="#000000">.lname = lname;</font>
+  <font color="#0000ff">this</font><font color="#000000">.city = city;</font>
+  <font color="#0000ff">this</font><font color="#000000">.country = country;</font>
+ <font color="#000000">}</font>
+
+ <font color="#000000">@</font><font color="#0000ff">Override</font>
+ <font color="#0000ff">public int </font><font color="#000000">hashCode() {</font>
+  <font color="#0000ff">int </font><font color="#000000">hash = </font><font color="#800080">0</font><font color="#000000">;</font>
+  <font color="#000000">hash += (id != </font><font color="#0000ff">null </font><font color="#000000">? id.hashCode() : </font><font color="#800080">0</font><font color="#000000">);</font>
+  <font color="#0000ff">return </font><font color="#000000">hash;</font>
+ <font color="#000000">}</font>
+
+ <font color="#000000">@</font><font color="#0000ff">Override</font>
+ <font color="#0000ff">public boolean </font><font color="#000000">equals(</font><font color="#ff0000">Object </font><font color="#000000">object) {</font>
+<font color="#008000">//TODO:Warning -this method won't work in the case the id fields are not set</font>
+  <font color="#0000ff">if </font><font color="#000000">(!(object </font><font color="#0000ff">instanceof </font><font color="#000000">ServletEntity)) {</font>
+<font color="#0000ff">return false</font><font color="#000000">;</font>
+  <font color="#000000">}</font>
+  <font color="#000000">ServletEntity other = (ServletEntity) object;</font>
+  <font color="#0000ff">if </font><font color="#000000">((</font><font color="#0000ff">this</font><font color="#000000">.id == </font><font color="#0000ff">null </font><font color="#000000">&amp;&amp; other.id != </font><font color="#0000ff">null</font><font color="#000000">) || </font>
+	    <font color="#000000">(</font><font color="#0000ff">this</font><font color="#000000">.id != </font><font color="#0000ff">null </font><font color="#000000">&amp;&amp; !</font><font color="#0000ff">this</font><font color="#000000">.id.equals(other.id))) {</font>
+<font color="#0000ff">return false</font><font color="#000000">;</font>
+  <font color="#000000">}</font>
+  <font color="#0000ff">return true</font><font color="#000000">;</font>
+ <font color="#000000">}</font>
+
+ <font color="#000000">@</font><font color="#0000ff">Override</font>
+ <font color="#0000ff">public </font><font color="#ff0000">String </font><font color="#000000">toString() {</font>
+  <font color="#0000ff">return </font><font color="#ff00ff">&quot;r4r.Entity.Servlet.ServletEntity[ id=&quot; </font><font color="#000000">+ id + </font><font color="#ff00ff">&quot; ]&quot;</font><font color="#000000">;</font>
+ <font color="#000000">}</font>
+
+ <font color="#008000">//------------------------------ Getter/Setter</font>
+ <font color="#0000ff">public </font><font color="#ff0000">Integer </font><font color="#000000">getId() {</font>
+  <font color="#0000ff">return </font><font color="#000000">id;</font>
+ <font color="#000000">}</font>
+
+ <font color="#0000ff">public void </font><font color="#000000">setId(</font><font color="#ff0000">Integer </font><font color="#000000">id) {</font>
+  <font color="#0000ff">this</font><font color="#000000">.id = id;</font>
+ <font color="#000000">}</font>
+
+ <font color="#0000ff">public </font><font color="#ff0000">String </font><font color="#000000">getCity() {</font>
+  <font color="#0000ff">return </font><font color="#000000">city;</font>
+ <font color="#000000">}</font>
+
+ <font color="#0000ff">public void </font><font color="#000000">setCity(</font><font color="#ff0000">String </font><font color="#000000">city) {</font>
+  <font color="#0000ff">this</font><font color="#000000">.city = city;</font>
+ <font color="#000000">}</font>
+
+ <font color="#0000ff">public </font><font color="#ff0000">String </font><font color="#000000">getCountry() {</font>
+  <font color="#0000ff">return </font><font color="#000000">country;</font>
+ <font color="#000000">}</font>
+
+ <font color="#0000ff">public void </font><font color="#000000">setCountry(</font><font color="#ff0000">String </font><font color="#000000">country) {</font>
+  <font color="#0000ff">this</font><font color="#000000">.country = country;</font>
+ <font color="#000000">}</font>
+
+ <font color="#0000ff">public </font><font color="#ff0000">String </font><font color="#000000">getFname() {</font>
+  <font color="#0000ff">return </font><font color="#000000">fname;</font>
+ <font color="#000000">}</font>
+
+ <font color="#0000ff">public void </font><font color="#000000">setFname(</font><font color="#ff0000">String </font><font color="#000000">fname) {</font>
+  <font color="#0000ff">this</font><font color="#000000">.fname = fname;</font>
+ <font color="#000000">}</font>
+
+ <font color="#0000ff">public </font><font color="#ff0000">String </font><font color="#000000">getLname() {</font>
+  <font color="#0000ff">return </font><font color="#000000">lname;</font>
+ <font color="#000000">}</font>
+
+ <font color="#0000ff">public void </font><font color="#000000">setLname(</font><font color="#ff0000">String </font><font color="#000000">lname) {</font>
+  <font color="#0000ff">this</font><font color="#000000">.lname = lname;</font>
+ <font color="#000000">}</font>
+<font color="#000000">}			</font>
+</pre>
+</div>
+
+<h3>web.xml</h3>
+<div class="code">
+<pre>
+<font color="#0000ff">&lt;?xml </font><font color="#ff0000">version</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;1.0&quot; </font><font color="#ff0000">encoding</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;UTF-8&quot;</font><font color="#800080">?</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">web-app </font><font color="#ff0000">version</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;3.0&quot; </font>
+ <font color="#ff0000">xmlns</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;http://java.sun.com/xml/ns/javaee&quot;</font>
+ <font color="#800080">xmlns:xsi</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;http://www.w3.org/2001/XMLSchema-instance&quot; </font>
+ <font color="#800080">xsi:schemaLocation</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;http://java.sun.com/xml/ns/javaee </font>
+<font color="#ff00ff">   http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd&quot;</font><font color="#0000ff">&gt;</font>
+<font color="#000000">  </font><font color="#0000ff">&lt;</font><font color="#808000">servlet</font><font color="#0000ff">&gt;</font>
+<font color="#000000">   </font><font color="#0000ff">&lt;</font><font color="#808000">servlet-name</font><font color="#0000ff">&gt;</font><font color="#000000">EntityServlet</font><font color="#0000ff">&lt;/</font><font color="#808000">servlet-name</font><font color="#0000ff">&gt;</font>
+<font color="#000000">   </font><font color="#0000ff">&lt;</font><font color="#808000">servlet-class</font><font color="#0000ff">&gt;</font><font color="#000000">r4r.Entity.Servlet.EntityServlet</font><font color="#0000ff">&lt;/</font><font color="#808000">servlet-class</font><font color="#0000ff">&gt;</font>
+<font color="#000000">  </font><font color="#0000ff">&lt;/</font><font color="#808000">servlet</font><font color="#0000ff">&gt;</font>
+<font color="#000000">  </font><font color="#0000ff">&lt;</font><font color="#808000">servlet-mapping</font><font color="#0000ff">&gt;</font>
+<font color="#000000">        </font><font color="#0000ff">&lt;</font><font color="#808000">servlet-name</font><font color="#0000ff">&gt;</font><font color="#000000">EntityServlet</font><font color="#0000ff">&lt;/</font><font color="#808000">servlet-name</font><font color="#0000ff">&gt;</font>
+<font color="#000000">        </font><font color="#0000ff">&lt;</font><font color="#808000">url-pattern</font><font color="#0000ff">&gt;</font><font color="#000000">/EntityServlet</font><font color="#0000ff">&lt;/</font><font color="#808000">url-pattern</font><font color="#0000ff">&gt;</font>
+<font color="#000000">  </font><font color="#0000ff">&lt;/</font><font color="#808000">servlet-mapping</font><font color="#0000ff">&gt;</font>
+<font color="#000000">  </font><font color="#0000ff">&lt;</font><font color="#808000">session-config</font><font color="#0000ff">&gt;</font>
+<font color="#000000">        </font><font color="#0000ff">&lt;</font><font color="#808000">session-timeout</font><font color="#0000ff">&gt;</font>
+<font color="#000000">            30</font>
+<font color="#000000">        </font><font color="#0000ff">&lt;/</font><font color="#808000">session-timeout</font><font color="#0000ff">&gt;</font>
+<font color="#000000">  </font><font color="#0000ff">&lt;/</font><font color="#808000">session-config</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">web-app</font><font color="#0000ff">&gt;</font>
+</pre>
+</div>
+
+<h3>Index.jsp</h3>
+<div class="code">
+<pre>
+<font color="#800000">&lt;%-- </font>
+ <font color="#800000">Document: index.jsp</font>
+<font color="#800000">--%&gt;</font>
+<font color="#800000">&lt;%@page contentType=</font><font color="#ff00ff">&quot;text/html&quot; </font><font color="#800000">pageEncoding=</font><font color="#ff00ff">&quot;UTF-8&quot;</font><font color="#800000">%&gt;</font>
+<font color="#0000ff">&lt;!DOCTYPE </font><font color="#800080">html</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;html&gt;</font>
+<font color="#000000"> </font><font color="#0000ff">&lt;head&gt;</font>
+<font color="#000000"> </font><font color="#0000ff">&lt;meta </font><font color="#ff0000">http-equiv</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;Content-Type&quot; </font><font color="#ff0000">content</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;text/html; charset=UTF-8&quot;</font><font color="#0000ff">&gt;</font>
+<font color="#000000"> </font><font color="#0000ff">&lt;title&gt;</font><font color="#000000">r4r.co.in-index</font><font color="#0000ff">&lt;/title&gt;</font>
+<font color="#000000"> </font><font color="#0000ff">&lt;/head&gt;</font>
+<font color="#000000"> </font><font color="#0000ff">&lt;body&gt;</font>
+<font color="#000000">  </font><font color="#0000ff">&lt;h1&gt;</font><font color="#000000">Insert and Fetch data through Entity class!</font><font color="#0000ff">&lt;/h1&gt;</font>
+<font color="#000000">  </font><font color="#0000ff">&lt;form </font><font color="#ff0000">action</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;EntityServlet&quot; </font><font color="#ff0000">method</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;POST&quot;</font><font color="#0000ff">&gt;</font>
+<font color="#000000">   Firstname: </font><font color="#0000ff">&lt;input </font><font color="#ff0000">type</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;text&quot; </font><font color="#ff0000">name</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;fname&quot;</font>
+    <font color="#ff0000">value</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;&quot; </font><font color="#ff0000">size</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;30&quot; </font><font color="#ff0000">maxlength</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;10&quot; </font><font color="#0000ff">/&gt;</font><font color="#000000">(not null)</font><font color="#0000ff">&lt;br/&gt;</font>
+<font color="#000000">   Lastname: </font><font color="#0000ff">&lt;input </font><font color="#ff0000">type</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;text&quot; </font><font color="#ff0000">name</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;lname&quot;</font>
+    <font color="#ff0000">value</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;&quot; </font><font color="#ff0000">size</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;30&quot; </font><font color="#ff0000">maxlength</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;10&quot;</font><font color="#0000ff">/&gt;</font><font color="#000000">(not null)</font><font color="#0000ff">&lt;br/&gt;</font>
+<font color="#000000">   City: </font><font color="#0000ff">&lt;input </font><font color="#ff0000">type</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;text&quot; </font><font color="#ff0000">name</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;city&quot; </font>
+    <font color="#ff0000">value</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;&quot; </font><font color="#ff0000">size</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;30&quot; </font><font color="#ff0000">maxlength</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;10&quot; </font><font color="#0000ff">/&gt;</font><font color="#000000">(not null)</font><font color="#0000ff">&lt;br/&gt;</font>
+<font color="#000000">   Country: </font><font color="#0000ff">&lt;input </font><font color="#ff0000">type</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;text&quot; </font><font color="#ff0000">name</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;country&quot;</font>
+    <font color="#ff0000">value</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;&quot; </font><font color="#ff0000">size</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;30&quot; </font><font color="#ff0000">maxlength</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;10&quot;</font><font color="#0000ff">/&gt;</font><font color="#000000">(not null)</font><font color="#0000ff">&lt;br/&gt;</font>
+<font color="#000000">   </font><font color="#0000ff">&lt;input </font><font color="#ff0000">type</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;submit&quot; </font><font color="#ff0000">value</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;Insert Data&quot; </font><font color="#ff0000">name</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;insert&quot; </font><font color="#0000ff">/&gt;</font>
+<font color="#000000">   </font><font color="#0000ff">&lt;input </font><font color="#ff0000">type</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;submit&quot; </font><font color="#ff0000">value</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;Fetch Data&quot; </font><font color="#ff0000">name</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;fetch&quot; </font><font color="#0000ff">/&gt;</font>
+<font color="#000000">  </font><font color="#0000ff">&lt;/form&gt;</font>
+<font color="#000000"> </font><font color="#0000ff">&lt;/body&gt;</font>
+<font color="#0000ff">&lt;/html&gt;</font>
+</pre>
+</div>
+
+<h3>Servlet Program</h3>
+<div class="code">
+<pre>
+<font color="#008000">/*</font>
+<font color="#008000"> * Save as a EntityServlet.java</font>
+<font color="#008000"> */</font>
+<font color="#0000ff">package </font><font color="#000000">r4r.</font><font color="#ff0000">Entity</font><font color="#000000">.Servlet;</font>
+<font color="#0000ff">import </font><font color="#000000">java.io.*;</font>
+<font color="#0000ff">import </font><font color="#000000">java.util.</font><font color="#ff0000">List</font><font color="#000000">;</font>
+<font color="#0000ff">import </font><font color="#000000">javax.persistence.*;</font>
+<font color="#0000ff">import </font><font color="#000000">javax.servlet.ServletException;</font>
+<font color="#0000ff">import </font><font color="#000000">javax.servlet.http.*;</font>
+<font color="#008000">/**</font>
+<font color="#008000"> *</font>
+<font color="#008000"> * @author R4R</font>
+<font color="#008000"> */</font>
+<font color="#0000ff">public class </font><font color="#000000">EntityServlet </font><font color="#0000ff">extends </font><font color="#000000">HttpServlet {</font>
+
+ <font color="#0000ff">private static </font><font color="#000000">EntityManagerFactory emf;</font>
+ <font color="#0000ff">private static </font><font color="#000000">EntityManager em;</font>
+
+ <font color="#000000">@</font><font color="#0000ff">Override</font>
+ <font color="#0000ff">public void </font><font color="#000000">init() </font><font color="#0000ff">throws </font><font color="#000000">ServletException {</font>
+  <font color="#000000">emf = Persistence.createEntityManagerFactory(</font><font color="#ff00ff">&quot;EntityServletPU&quot;</font><font color="#000000">);</font>
+  <font color="#000000">em = emf.createEntityManager();</font>
+ <font color="#000000">}</font>
+
+ <font color="#000000">@</font><font color="#0000ff">Override</font>
+ <font color="#0000ff">protected void </font><font color="#000000">doGet(HttpServletRequest request,</font>
+  <font color="#000000">HttpServletResponse response)</font><font color="#0000ff">throws </font><font color="#000000">ServletException,</font><font color="#ff0000">IOException</font>
+	<font color="#000000">{</font>
+ <font color="#000000">}</font>
+
+ <font color="#000000">@</font><font color="#0000ff">Override</font>
+ <font color="#0000ff">protected void </font><font color="#000000">doPost(HttpServletRequest request,</font>
+  <font color="#000000">HttpServletResponse response)</font><font color="#0000ff">throws </font><font color="#000000">ServletException,</font><font color="#ff0000">IOException</font>
+ <font color="#000000">{</font>
+  <font color="#000000">response.setContentType(</font><font color="#ff00ff">&quot;text/html;charset=UTF-8&quot;</font><font color="#000000">);</font>
+  <font color="#ff0000">PrintWriter </font><font color="#000000">out = response.getWriter();</font>
+
+  <font color="#008000">//Get value from TextField in index.jsp</font>
+  <font color="#ff0000">String </font><font color="#000000">fname = request.getParameter(</font><font color="#ff00ff">&quot;fname&quot;</font><font color="#000000">);</font>
+  <font color="#ff0000">String </font><font color="#000000">lname = request.getParameter(</font><font color="#ff00ff">&quot;lname&quot;</font><font color="#000000">);</font>
+  <font color="#ff0000">String </font><font color="#000000">city = request.getParameter(</font><font color="#ff00ff">&quot;city&quot;</font><font color="#000000">);</font>
+  <font color="#ff0000">String </font><font color="#000000">country = request.getParameter(</font><font color="#ff00ff">&quot;country&quot;</font><font color="#000000">);</font>
+
+  <font color="#0000ff">try </font><font color="#000000">{</font>
+<font color="#0000ff">if </font><font color="#000000">(request.getParameter(</font><font color="#ff00ff">&quot;insert&quot;</font><font color="#000000">) != </font><font color="#0000ff">null</font><font color="#000000">) {</font>
+ <font color="#0000ff">if </font><font color="#000000">(!fname.equals(</font><font color="#ff00ff">&quot;&quot;</font><font color="#000000">) || !lname.equals(</font><font color="#ff00ff">&quot;&quot;</font><font color="#000000">) || </font>
+	        <font color="#000000">!city.equals(</font><font color="#ff00ff">&quot;&quot;</font><font color="#000000">) || !country.equals(</font><font color="#ff00ff">&quot;&quot;</font><font color="#000000">)) </font>
+<font color="#000000">{</font>
+
+  <font color="#008000">//create ServletEntity Object and store value into it</font>
+  <font color="#000000">ServletEntity servletEntity = </font><font color="#0000ff">new </font><font color="#000000">ServletEntity();</font>
+  <font color="#000000">em.getTransaction().begin();</font>
+  <font color="#000000">servletEntity.setFname(fname);</font>
+  <font color="#000000">servletEntity.setLname(lname);</font>
+  <font color="#000000">servletEntity.setCity(city);</font>
+  <font color="#000000">servletEntity.setCountry(country);</font>
+  <font color="#000000">em.getTransaction().commit();</font>
+
+  <font color="#000000">out.println(</font><font color="#ff00ff">&quot;Data successfully store into Entity table&quot;</font><font color="#000000">);</font>
+  <font color="#000000">out.println(</font><font color="#ff00ff">&quot;&lt;BR&gt;&lt;a href=\&quot;index.jsp\&quot;&gt;Return to index page&lt;/a&gt;&quot;</font><font color="#000000">);</font>
+ <font color="#000000">} </font><font color="#0000ff">else </font><font color="#000000">{</font>
+  <font color="#000000">out.println(</font><font color="#ff00ff">&quot;Please don't leave any testField empty&quot;</font><font color="#000000">);</font>
+  <font color="#000000">out.println(</font><font color="#ff00ff">&quot;&lt;BR&gt;&lt;a href=\&quot;index.jsp\&quot;&gt;Return to index page&lt;/a&gt;&quot;</font><font color="#000000">);</font>
+ <font color="#000000">}</font>
+<font color="#000000">} </font><font color="#0000ff">else </font><font color="#000000">{</font>
+ <font color="#008000">//invoke method</font>
+ <font color="#000000">prcessHeader(out);</font>
+ <font color="#000000">processRequest(out);</font>
+ <font color="#000000">processFooter(out);</font>
+<font color="#000000">}</font>
+  <font color="#000000">} </font><font color="#0000ff">finally </font><font color="#000000">{</font>
+<font color="#008000">//free all resource</font>
+<font color="#000000">em.close();</font>
+<font color="#000000">emf.close();</font>
+<font color="#000000">out.flush();</font>
+<font color="#000000">out.close();</font>
+  <font color="#000000">}</font>
+ <font color="#000000">}</font>
+
+ <font color="#000000">@</font><font color="#0000ff">Override</font>
+ <font color="#0000ff">public </font><font color="#ff0000">String </font><font color="#000000">getServletInfo() {</font>
+  <font color="#0000ff">return </font><font color="#ff00ff">&quot;r4r.co.in-EntityServlet&quot;</font><font color="#000000">;</font>
+ <font color="#000000">}</font>
+
+ <font color="#008000">//prcessHeader method is used to handle output form Head</font>
+ <font color="#0000ff">private void </font><font color="#000000">prcessHeader(</font><font color="#ff0000">PrintWriter </font><font color="#000000">out) {</font>
+  <font color="#000000">out.println(</font><font color="#ff00ff">&quot;&lt;html&gt;&quot;</font><font color="#000000">);</font>
+  <font color="#000000">out.println(</font><font color="#ff00ff">&quot;&lt;head&gt;&quot;</font><font color="#000000">);</font>
+  <font color="#000000">out.println(</font><font color="#ff00ff">&quot;&lt;title&gt;&quot; </font><font color="#000000">+ getServletInfo() + </font><font color="#ff00ff">&quot;&lt;/title&gt;&quot;</font><font color="#000000">);</font>
+  <font color="#000000">out.println(</font><font color="#ff00ff">&quot;&lt;/head&gt;&quot;</font><font color="#000000">);</font>
+  <font color="#000000">out.println(</font><font color="#ff00ff">&quot;&lt;body&gt;&quot;</font><font color="#000000">);</font>
+  <font color="#000000">out.println(</font><font color="#ff00ff">&quot;&lt;h1&gt;Fetch Data from Database&lt;/h1&gt;&quot;</font><font color="#000000">);</font>
+  <font color="#000000">out.println(</font><font color="#ff00ff">&quot;&lt;table border=\&quot;1\&quot; cellspacing=\</font>
+                           <font color="#ff00ff">&quot;2\&quot;cellpadding=\&quot;2\&quot;&gt;&quot;</font><font color="#000000">);</font>
+  <font color="#000000">out.println(</font><font color="#ff00ff">&quot;&lt;thead&gt;&lt;tr&gt;&quot;</font><font color="#000000">);</font>
+  <font color="#000000">out.println(</font><font color="#ff00ff">&quot;&lt;td&gt; Id &lt;/td&gt;&quot;</font><font color="#000000">);</font>
+  <font color="#000000">out.println(</font><font color="#ff00ff">&quot;&lt;td&gt; FirstName &lt;/td&gt;&quot;</font><font color="#000000">);</font>
+  <font color="#000000">out.println(</font><font color="#ff00ff">&quot;&lt;td&gt; Lastname &lt;/td&gt;&quot;</font><font color="#000000">);</font>
+  <font color="#000000">out.println(</font><font color="#ff00ff">&quot;&lt;td&gt; City &lt;/td&gt;&quot;</font><font color="#000000">);</font>
+  <font color="#000000">out.println(</font><font color="#ff00ff">&quot;&lt;td&gt; Country &lt;/td&gt;&quot;</font><font color="#000000">);</font>
+  <font color="#000000">out.println(</font><font color="#ff00ff">&quot;&lt;/thead&gt;&lt;/tr&gt;&quot;</font><font color="#000000">);</font>
+ <font color="#000000">}</font>
+
+ <font color="#008000">//prcessRequest method is used to handle output form Body</font>
+ <font color="#0000ff">private void </font><font color="#000000">processRequest(</font><font color="#ff0000">PrintWriter </font><font color="#000000">out) {</font>
+  <font color="#000000">em.getTransaction().begin();</font>
+  <font color="#008000">//fetch total record from Entity class and store into List</font>
+  <font color="#ff0000">Query </font><font color="#000000">q = em.createQuery</font>
+	            <font color="#000000">(</font><font color="#ff00ff">&quot;select object(o) from ServletEntity as o&quot;</font><font color="#000000">);</font>
+  <font color="#ff0000">List</font><font color="#000000">&lt;ServletEntity&gt; list = q.getResultList();</font>
+  <font color="#000000">out.println(</font><font color="#ff00ff">&quot;Total result found :&lt;b&gt;&quot; </font>
+	                   <font color="#000000">+ list.size() + </font><font color="#ff00ff">&quot;&lt;/b&gt;&lt;BR&gt;&quot;</font><font color="#000000">);</font>
+  <font color="#0000ff">for </font><font color="#000000">(</font><font color="#0000ff">int </font><font color="#000000">i = </font><font color="#800080">0</font><font color="#000000">; i &lt; list.size(); i++) {</font>
+<font color="#000000">ServletEntity servletEntity = list.get(i);</font>
+<font color="#008000">//display record on browser</font>
+<font color="#000000">out.println(</font><font color="#ff00ff">&quot;&lt;tbody&gt;&lt;tr&gt;&quot;</font><font color="#000000">);</font>
+<font color="#000000">out.println(</font><font color="#ff00ff">&quot;&lt;td&gt; &quot; </font><font color="#000000">+ </font><font color="#ff00ff">&quot;&lt;I&gt;&lt;b&gt;&quot;</font>
+                  <font color="#000000">+ servletEntity.getId() + </font><font color="#ff00ff">&quot;&lt;/I&gt;&lt;/b&gt;&quot; </font><font color="#000000">+ </font><font color="#ff00ff">&quot;&lt;/td&gt;&quot;</font><font color="#000000">);</font>
+<font color="#000000">out.println(</font><font color="#ff00ff">&quot;&lt;td&gt; &quot; </font><font color="#000000">+ </font><font color="#ff00ff">&quot;&lt;I&gt;&lt;b&gt;&quot; </font>
+	              <font color="#000000">+ servletEntity.getFname() + </font><font color="#ff00ff">&quot;&lt;/I&gt;&lt;/b&gt;&quot; </font><font color="#000000">+ </font><font color="#ff00ff">&quot;&lt;/td&gt;&quot;</font><font color="#000000">);</font>
+<font color="#000000">out.println(</font><font color="#ff00ff">&quot;&lt;td&gt; &quot; </font><font color="#000000">+ </font><font color="#ff00ff">&quot;&lt;I&gt;&lt;b&gt;&quot;</font>
+                  <font color="#000000">+ servletEntity.getLname() + </font><font color="#ff00ff">&quot;&lt;/I&gt;&lt;/b&gt;&quot; </font><font color="#000000">+ </font><font color="#ff00ff">&quot;&lt;/td&gt;&quot;</font><font color="#000000">);</font>
+<font color="#000000">out.println(</font><font color="#ff00ff">&quot;&lt;td&gt; &quot; </font><font color="#000000">+ </font><font color="#ff00ff">&quot;&lt;I&gt;&lt;b&gt;&quot; </font>
+	              <font color="#000000">+ servletEntity.getCity() + </font><font color="#ff00ff">&quot;&lt;/I&gt;&lt;/b&gt;&quot; </font><font color="#000000">+ </font><font color="#ff00ff">&quot;&lt;/td&gt;&quot;</font><font color="#000000">);</font>
+<font color="#000000">out.println(</font><font color="#ff00ff">&quot;&lt;td&gt; &quot; </font><font color="#000000">+ </font><font color="#ff00ff">&quot;&lt;I&gt;&lt;b&gt;&quot;</font>
+                  <font color="#000000">+ servletEntity.getCountry() + </font><font color="#ff00ff">&quot;&lt;/I&gt;&lt;/b&gt;&quot; </font><font color="#000000">+ </font><font color="#ff00ff">&quot;&lt;/td&gt;&quot;</font><font color="#000000">);</font>
+<font color="#000000">out.println(</font><font color="#ff00ff">&quot;&lt;/tr&gt;&lt;/tbody&gt;&quot;</font><font color="#000000">);</font>
+  <font color="#000000">}</font>
+ <font color="#000000">}</font>
+
+ <font color="#008000">//prcessFooter method is used to handle output form Footer</font>
+ <font color="#0000ff">private void </font><font color="#000000">processFooter(</font><font color="#ff0000">PrintWriter </font><font color="#000000">out) {</font>
+  <font color="#000000">out.println(</font><font color="#ff00ff">&quot;&lt;/body&gt;&quot;</font><font color="#000000">);</font>
+  <font color="#000000">out.println(</font><font color="#ff00ff">&quot;&lt;/html&gt;&quot;</font><font color="#000000">);</font>
+  <font color="#000000">out.println(</font><font color="#ff00ff">&quot;&lt;BR&gt;&lt;a href=\&quot;index.jsp\&quot;&gt;Return to index page&lt;/a&gt;&quot;</font><font color="#000000">);</font>
+ <font color="#000000">}</font>
+<font color="#000000">}</font>
+</pre>
+</div>
+
+<h3>Test Program </h3>
+<div class="code">
+<pre>
+<font color="#008000">/*</font>
+<font color="#008000"> * Save as a EntityServletMain.java</font>
+<font color="#008000"> * This class is only for test purpose</font>
+<font color="#008000"> (fetch data from database and display over server console)</font>
+<font color="#008000">*/</font>
+<font color="#0000ff">package </font><font color="#000000">r4r.</font><font color="#ff0000">Entity</font><font color="#000000">.Servlet;</font>
+<font color="#0000ff">import </font><font color="#000000">java.util.</font><font color="#ff0000">List</font><font color="#000000">;</font>
+<font color="#0000ff">import </font><font color="#000000">javax.persistence.*;</font>
+<font color="#008000">/**</font>
+<font color="#008000"> *</font>
+<font color="#008000"> * @author R4R</font>
+<font color="#008000"> */</font>
+<font color="#0000ff">public class </font><font color="#000000">EntityServletMain {</font>
+
+ <font color="#0000ff">private static final </font><font color="#000000">EntityManagerFactory emf =</font>
+	  <font color="#000000">Persistence.createEntityManagerFactory(</font><font color="#ff00ff">&quot;EntityServletPU&quot;</font><font color="#000000">);</font>
+ <font color="#0000ff">private static </font><font color="#000000">EntityManager em = emf.createEntityManager();</font>
+ <font color="#0000ff">public static void </font><font color="#000000">main(</font><font color="#ff0000">String</font><font color="#000000">[] args) {</font>
+ <font color="#0000ff">try</font>
+ <font color="#000000">{</font>
+
+ <font color="#000000">}</font>
+ <font color="#0000ff">catch </font><font color="#000000">()</font>
+ <font color="#000000">{</font>
+ <font color="#000000">}{</font>
+ <font color="#000000">em.getTransaction().begin();</font>
+ <font color="#008000">//fetch total record from Entity class and store into List</font>
+ <font color="#ff0000">Query </font><font color="#000000">q = em.createQuery</font>
+	  <font color="#000000">(</font><font color="#ff00ff">&quot;select object(o) from ServletEntity as o&quot;</font><font color="#000000">);</font>
+<font color="#ff0000">List</font><font color="#000000">&lt;ServletEntity&gt; list = q.getResultList();</font>
+<font color="#ff0000">System</font><font color="#000000">.out.printf</font>
+	   <font color="#000000">(</font><font color="#ff00ff">&quot;Total (%d) result found into table&quot;</font><font color="#000000">, list.size());</font>
+
+<font color="#0000ff">for </font><font color="#000000">(</font><font color="#0000ff">int </font><font color="#000000">i = </font><font color="#800080">0</font><font color="#000000">; i &lt; list.size(); i++) {</font>
+ <font color="#000000">ServletEntity entity = list.get(i);</font>
+ <font color="#008000">//display record over server console</font>
+ <font color="#ff0000">System</font><font color="#000000">.out.println(entity.getId() + </font><font color="#ff00ff">&quot;|&quot; </font>
+	          <font color="#000000">+ entity.getFname() + </font><font color="#ff00ff">&quot;|&quot; </font><font color="#000000">+ entity.getLname()</font>
+<font color="#000000">+ </font><font color="#ff00ff">&quot;|&quot; </font><font color="#000000">+ entity.getCity() + </font><font color="#ff00ff">&quot;|&quot; </font><font color="#000000">+ entity.getCountry());</font>
+<font color="#000000">}</font>
+  <font color="#000000">} </font><font color="#0000ff">finally </font><font color="#000000">{</font>
+<font color="#008000">//free all resource</font>
+<font color="#000000">em.getTransaction().commit();</font>
+<font color="#000000">em.close();</font>
+<font color="#000000">emf.close();</font>
+  <font color="#000000">}</font>
+ <font color="#000000">}</font>
+<font color="#000000">}</font>
+</pre>
+</div>
+<i>Output of Program</i>
+<div class="image">
+<img src="ServletAdvance%20image/EntityServlet5.gif">
+</div>
+<div class="image">
+<img src="ServletAdvance%20image/EntityServlet7.gif">
+</div>
+<div class="image">
+<img src="ServletAdvance%20image/EntityServlet8.gif">
+</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="EJBServlet.shtml" title="Create an application for access EJB session Bean into Servlet">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="JPAServlet.shtml" title="Create an application for access JPA Entity class from database into 
+Servlet">Next</a></td>
+  </tr> 
+</table>
+
+<!-- Footer Start-->		
+		</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->

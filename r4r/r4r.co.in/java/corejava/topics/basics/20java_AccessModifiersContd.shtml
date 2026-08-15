@@ -1,0 +1,139 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>protected modifier,default modifier</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="protected modifier,default modifier" >
+<meta name="keywords" CONTENT="protected modifier,default modifier">
+
+<!-- header start-->
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>Java Programing laungage</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+            <img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+            <a href="/java/">Java</a>
+              <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/java/corejava">Core Java</a>
+               <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/java/corejava/topics/basics/">Basics</a>
+
+              </div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/corejava/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	 
+<!-- header End-->	
+
+<div class="heading">Protected Modifier</div>
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="19java_AccessModifiers.shtml" title="What are access modifiers in java?,public modifier, private modifier">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="21java_UsageModifiers.shtml" title="What are Usage Modifiers in java, final Modifier, static Modifier">Next</a></td>
+  </tr> 
+</table>
+<p>The protected modifier makes a class member more visible than private modifier but less accessible than public modifier. This modifier may be applied only to class members viz.<font class="point_out"> variables, methods, </font>and <font class="point-out">inner classes</font>but not to the class itself. A class member declared protected is visible to the following elements: </p> 
+
+<ol>
+<li>
+<p>The classes in the same package that contains the class that owns the protected member.</p>
+</li>
+<li>
+<p>The subclasses of the class that owns the protected member. These subclasses have access even if they are not in the same package as the parent class.</p>
+</li>
+</ol>
+<p>The usage of protected modifier can be shown as,</p>
+<h3>Example</h3>
+<div class="code">
+<PRE>
+<FONT FACE="Arial">
+<FONT COLOR="#000000">Java Tutorialslass ModifierDemo</FONT>
+ <FONT COLOR="#000000">{</FONT>
+ <FONT COLOR="#0000ff">private int </FONT><FONT COLOR="#000000">i=</FONT><FONT COLOR="#800080">10</FONT><FONT COLOR="#000000">;</FONT>
+ <FONT COLOR="#0000ff">protected int </FONT><FONT COLOR="#000000">j=</FONT><FONT COLOR="#800080">5</FONT><FONT COLOR="#000000">;</FONT>
+ <FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#000000">Java Tutorialslass PublicModifier </FONT><FONT COLOR="#0000ff">extends </FONT><FONT COLOR="#000000">ModifierDemo</FONT>
+<FONT COLOR="#000000">{</FONT>
+	<FONT COLOR="#0000ff">public static void </FONT><FONT COLOR="#000000">main(</FONT><FONT COLOR="#ff0000">String</FONT><FONT COLOR="#000000">[] args) </FONT>
+	<FONT COLOR="#000000">{</FONT>
+		<FONT COLOR="#000000">PublicModifier obj=</FONT><FONT COLOR="#0000ff">new </FONT><FONT COLOR="#000000">PublicModifier();</FONT>
+	    <FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.println(</FONT><FONT COLOR="#ff00ff">"The value of i is :"</FONT><FONT COLOR="#000000">+obj.i);   </FONT>
+		<FONT COLOR="#008000">// cause a compile error as i's defined private.</FONT>
+		<FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.println(</FONT><FONT COLOR="#ff00ff">"The value of j is :"</FONT><FONT COLOR="#000000">+obj.j);   </FONT>
+		<FONT COLOR="#008000">// print the value of j =5, as j is declared protected</FONT>
+	<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#000000">}</FONT>
+</FONT>
+</PRE>
+</div>
+
+<div class="heading"> default modifier</div>
+ <p>In java we cannot specify any modifier for the variables inside a method, and also we cannot specify the protected modifier for a class. When we do not specify any access modifier for an element, it is implied that the access is default. It can be applied to a class, a variable, or a method.</p><p> A class or a class member declared default i.e. with no access modifier specified is accessible from anywhere in the same package in which the accessed class exists. Consider the following code fragment:</p>
+ <div class="code">
+<PRE>
+<FONT FACE="Arial">
+<FONT COLOR="#0000ff">package </FONT><FONT COLOR="#000000">example;</FONT>
+<FONT COLOR="#000000">Java Tutorialslass ShowExample</FONT>
+ <FONT COLOR="#000000">{</FONT>
+<FONT COLOR="#0000ff">private int </FONT><FONT COLOR="#000000">i=</FONT><FONT COLOR="#800080">10</FONT><FONT COLOR="#000000">;</FONT>
+ <FONT COLOR="#0000ff">void </FONT><FONT COLOR="#000000">Show()</FONT>
+<FONT COLOR="#000000">{</FONT>
+ <FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.println(</FONT><FONT COLOR="#ff00ff">"The value of  i is :"</FONT><FONT COLOR="#000000">+i);</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#000000">}</FONT>
+</FONT>
+</PRE>
+ </div>
+ <p>Above code contains a method of default modifier show returning void, and it is contained in a package called example.</p>
+ <div class="code">
+<PRE>
+<FONT FACE="Arial">
+<FONT COLOR="#0000ff">package </FONT><FONT COLOR="#000000">example2;</FONT>
+<FONT COLOR="#000000">Java Tutorialslass ReviewExample </FONT><FONT COLOR="#0000ff">extends </FONT><FONT COLOR="#000000">ShowExample</FONT>
+<FONT COLOR="#000000">{</FONT>
+<FONT COLOR="#000000">Show();     </FONT><FONT COLOR="#008000">// will cause compiler error</FONT>
+<FONT COLOR="#000000">}</FONT>
+</FONT>
+</PRE>
+ </div>
+<p>The Show() method called in class ReviewExample causes a compiler error, as Show() method is declared default in ShowExample which is in a totally different  package and, it is obvious that a default method cannot be accessed from a different package other than in which  it is defined.  </p>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="19java_AccessModifiers.shtml" title="What are access modifiers in java?,public modifier, private modifier">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="21java_UsageModifiers.shtml" title="What are Usage Modifiers in java, final Modifier, static Modifier">Next</a></td>
+  </tr> 
+</table>
+
+<!-- Footer Start-->	
+
+		</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->

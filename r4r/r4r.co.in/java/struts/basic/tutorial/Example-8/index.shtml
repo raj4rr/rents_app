@@ -1,0 +1,558 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>Creating a Login Application with DynaActionForm in Struts</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="Creating a Login Application with DynaActionForm in Struts" >
+<meta name="keywords" CONTENT="Creating a Login Application with DynaActionForm in Struts">
+
+<!-- header start-->	
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>Struts</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+            <img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+            <a href="/java/">Java</a>
+              <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/java/struts">Struts</a>
+              </div>
+
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/struts/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	 
+<!-- header End-->
+
+<div class="heading">Application- 8 : Creating a Login Application with DynaActionForm in Struts</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="../Example-7" title="Creating a Calculated Day in a Week Application with Struts">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="../Example-9" title="Creating a Struts Application used in Struts">Next</a></td>
+  </tr> 
+</table>
+<p>In this chapter, you create a  very simple application  for the purpose of Calculated Day in a week with Struts from start to end. For each piece of the application, we show you the code and then explain the code. This application design in NetBeans IDE- 6.8  with Struts 1.3.</p>	
+<h3>Requirement  for your struts application-</h3> 
+<ul><li>At least one view component is required in every Application.</li>
+<li>A subclass of ActionForm is used to submit the date as application needed.</li>
+<li>A subclass of Action class which provide specific processing functionality for the application.</li>
+<li>A web.xml file is required for calling ActionServlet and struts-config.xml.</li>
+<li>A struts-config.xml file is required for updating and mapping the update.  </li></ul>
+<p>Let's Start the application, this application provide a good understanding how struts framework works and also understanding the development of Struts applications</p>
+<p>Now, Following the some steps for develop your first application name as computeDay. computeDay application contain following page- </p>
+<ul><li>Three View file name as index.jsp, register.jsp and success.jsp</li>
+<li>One JavaBeans file name as computeForm.java, used for store data as application need.</li>
+<li>one Action file name as computeAction.java, used for provide specific processing functionality.</li>
+<li>Two XML file name as web.xml and struts-config.xml file, used for provide control, mapping and validation in application. </li></ul>
+<p><i>Step- 1 :</i> Start your IDE ( NetBeans 6.8 with struts 1.3).</p>
+<p><i>Step- 2 :</i> Open a new project( Crtl+Shift+N), name it , add server( Apache Tomcat 6.0.20 ), then add struts framework 1.3 , and don't forget to add Struts TLDs.</p>
+<p>When you click Finish button, your NetBeans IDE configure everything in place and project open in your IDE.</p>
+<div class="image"><img src="images/DynaForm.png"> </div>
+<p><i>Step- 3:</i> Open index.jsp page, from your struts application and code it as describe below.</p>
+<div class="code"><pre>
+&lt;%--  Document : index.jsp
+Description  : First Page of DynaFormLogin Application--%&gt;
+&lt;<font color="#0000ff">%@page</font><font color="#000000"> contentType=&quot;text/html&quot;%&gt;</font>
+&lt;<font color="#0000ff">%@page</font><font color="#000000"> pageEncoding=&quot;UTF-8&quot;%&gt;</font>
+&lt;%@ taglib uri=&quot;<font color="#0000ff">http://struts.apache.org/tags-bean</font><font color="#000000">&quot;</font>
+prefix=&quot;bean&quot; %&gt;
+&lt;%@ taglib uri=&quot;<font color="#0000ff">http://struts.apache.org/tags-html</font><font color="#000000">&quot; </font>
+prefix=&quot;html&quot; %&gt;
+&lt;html:html lang=&quot;true&quot;&gt;
+&lt;head&gt;
+&lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html
+; charset=UTF-8&quot;&gt;
+&lt;title&gt;&lt;bean:message key=&quot;welcome.title&quot;/&gt;&lt;/title&gt;
+&lt;html:base/&gt;
+&lt;/head&gt;
+&lt;body style=&quot;background-color: white&quot;&gt;
+&lt;html:form action=&quot;/login&quot; &gt;
+&lt;h3&gt;&lt;bean:message key=&quot;welcome.heading&quot;/&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;bean:message key=&quot;welcome.message&quot;/&gt;&lt;/p&gt;
+&lt;html:errors /&gt;
+&lt;ul&gt;
+&lt;table border=&quot;0&quot; cellspacing=&quot;4&quot; cellpadding=&quot;4&quot;&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;bean:message key=&quot;welcome.userName&quot;/&gt;&lt;/td&gt;
+&lt;td&gt;&lt;html:text property=&quot;LoginName&quot; size=&quot;25&quot;
+maxlength=&quot;15&quot; /&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;bean:message key=&quot;welcome.password&quot;/&gt;&lt;/td&gt;
+&lt;td&gt;&lt;html:password property=&quot;LoginPassword&quot; size=&quot;25&quot;
+maxlength=&quot;15&quot; /&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align=&quot;center&quot;&gt;&lt;html:submit value=&quot; Check Login &quot; /&gt;
+&lt;/td&gt;
+&lt;td align=&quot;center&quot;&gt;&lt;html:reset value=&quot; Reset &quot; /&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;/ul&gt;
+&lt;ul&gt;
+&lt;hr size=&quot;+2&quot; width=&quot;80%&quot; style=&quot;color: blue&quot;&gt;
+&lt;BR&gt;
+&lt;p&gt;&lt;font face=&quot;Arial&quot;&gt; New User please regiset
+yourself first by
+&lt;html:link style=&quot;cursor: auto;color: green&quot; 
+forward=&quot;register&quot;&gt; Click Here&lt;/html:link&gt;&lt;/font&gt;&lt;/p&gt;
+&lt;/ul&gt;
+&lt;/html:form&gt;
+&lt;/body&gt;
+&lt;/html:html&gt;
+</pre>
+</div>
+<p><i>Step- 4:</i>  Open register.jsp page from your struts application and code it as describe below.</p>
+<div class="code"><pre>
+&lt;%--  Document : register.jsp
+Description  : Second Page of DynaFormLogin
+Application--%&gt;
+&lt;<font color="#0000ff">%@page</font><font color="#000000"> contentType=&quot;text/html&quot; pageEncoding=&quot;UTF-8&quot;%&gt;</font>
+&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.01
+Transitional//EN&quot;
+&quot;<font color="#0000ff">http://www.w3.org/TR/html4/loose.dtd</font><font color="#000000">&quot;&gt;</font>
+&lt;<font color="#0000ff">%@taglib</font><font color="#000000"> uri=&quot;</font><font color="#0000ff">http://struts.apache.org/tags-html</font><font color="#000000">&quot;</font>
+prefix=&quot;html&quot; %&gt;
+&lt;<font color="#0000ff">%@taglib</font><font color="#000000"> uri=&quot;</font><font color="#0000ff">http://struts.apache.org/tags-bean</font><font color="#000000">&quot; </font>
+prefix=&quot;bean&quot; %&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;meta http-equiv=&quot;Content-Type&quot; 
+content=&quot;text/html; charset=UTF-8&quot;&gt;
+&lt;title&gt;Register Page&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;html:form action=&quot;/register&quot;&gt;
+&lt;h1&gt;&lt;bean:message key=&quot;welcome.heading&quot; /&gt;&lt;/h1&gt;
+&lt;html:errors /&gt;
+&lt;table border=&quot;0&quot; cellspacing=&quot;4&quot; cellpadding=&quot;4&quot;&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;bean:message key=&quot;welcome.userName&quot; /&gt;&lt;/td&gt;
+&lt;td&gt;&lt;html:text property=&quot;RegUserName&quot; size=&quot;25&quot; 
+maxlength=&quot;15&quot; /&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;bean:message key=&quot;welcome.password&quot; /&gt;&lt;/td&gt;
+&lt;td&gt;&lt;html:password property=&quot;RegPassword&quot; size=&quot;25&quot;
+maxlength=&quot;15&quot; /&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;bean:message key=&quot;welcome.name&quot; /&gt;&lt;/td&gt;
+&lt;td&gt;&lt;html:text property=&quot;RegName&quot; size=&quot;25&quot; 
+maxlength=&quot;15&quot; /&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;bean:message key=&quot;welcome.number&quot; /&gt;&lt;/td&gt;
+&lt;td&gt;&lt;html:text property=&quot;RegNumber&quot; size=&quot;25&quot; 
+maxlength=&quot;15&quot; /&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;bean:message key=&quot;welcome.email&quot; /&gt;&lt;/td&gt;
+&lt;td&gt;&lt;html:text property=&quot;email&quot; size=&quot;25&quot; 
+maxlength=&quot;25&quot; /&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align=&quot;center&quot;&gt;&lt;html:submit value=&quot; Register &quot; /&gt;&lt;/td&gt;
+&lt;td align=&quot;center&quot;&gt;&lt;html:reset value=&quot; Reset &quot; /&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;/html:form&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</pre>
+</div>
+<p><i>Step- 5:</i>  Open success.jsp page from your struts application and code it as describe below.</p>
+<div class="code"><pre>
+&lt;%--  Document : success.jsp
+Description  : Third Page of DynaFormLogin
+Application--%&gt;
+&lt;<font color="#0000ff">%@page</font><font color="#000000"> contentType=&quot;text/html&quot; pageEncoding=&quot;UTF-8&quot;%&gt;</font>
+&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.01 
+Transitional//EN&quot;
+&quot;<font color="#0000ff">http://www.w3.org/TR/html4/loose.dtd</font><font color="#000000">&quot;&gt;</font>
+&lt;<font color="#0000ff">%@taglib</font><font color="#000000"> uri=&quot;</font><font color="#0000ff">http://struts.apache.org/tags-bean</font><font color="#000000">&quot; </font>
+prefix=&quot;bean&quot; %&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;meta http-equiv=&quot;Content-Type&quot;
+content=&quot;text/html; charset=UTF-8&quot;&gt;
+&lt;title&gt;Success Page&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;h2&gt;Congratulations! You have successfully logged in &lt;/h2&gt;
+&lt;b&gt; Your Detail here:&lt;/b&gt;
+&lt;ul&gt;
+&lt;table border=&quot;0&quot; cellspacing=&quot;4&quot; cellpadding=&quot;4&quot;&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt; UserName:&lt;/td&gt;
+&lt;td&gt;&lt;b&gt;&lt;bean:write name=&quot;RegisterForm&quot; 
+property=&quot;RegUserName&quot; /&gt;&lt;/b&gt; &lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt; Password:&lt;/td&gt;
+&lt;td&gt;&lt;b&gt;&lt;bean:write name=&quot;RegisterForm&quot; 
+property=&quot;RegPassword&quot; /&gt;&lt;/b&gt; &lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt; Name:&lt;/td&gt;
+&lt;td&gt;&lt;b&gt;&lt;bean:write name=&quot;RegisterForm&quot;
+property=&quot;RegName&quot; /&gt;&lt;/b&gt; &lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt; Number:&lt;/td&gt;
+&lt;td&gt;&lt;b&gt;&lt;bean:write name=&quot;RegisterForm&quot;
+property=&quot;RegNumber&quot; /&gt;&lt;/b&gt; &lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt; Email-ID:&lt;/td&gt;
+&lt;td&gt;&lt;b&gt;&lt;bean:write name=&quot;RegisterForm&quot;
+property=&quot;email&quot; /&gt;&lt;/b&gt; &lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;/ul&gt;
+&lt;ul&gt;
+&lt;p&gt;Return to &lt;a style=&quot;cursor: auto&quot; 
+href=&quot;index.jsp&quot;&gt;home page&lt;/a&gt;&lt;/p&gt;
+&lt;/ul&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</pre>
+</div>
+<p><i>Step- 6: </i>Open web.xml file place in WEB-INF folder, this file is used to map the ActionServlet( work as backbone of application, every Action, Validation and ActionForm class control by this class) , struts-config.xml file, welcome file and five different TagLibrary.</p>
+<div class="code"><pre>
+&lt;!-- Save as a web.xml--&gt;
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;web-app version=&quot;2.5&quot; 
+xmlns=&quot;<font color="#0000ff">http://java.sun.com/xml/ns/javaee</font><font color="#000000">&quot;</font>
+xmlns:xsi=&quot;<font color="#0000ff">http://www.w3.org/2001/XMLSchema-instance</font><font color="#000000">&quot; </font>
+xsi:schemaLocation=&quot;<font color="#0000ff">http://java.sun.com/xml/ns/javaee</font><font color="#000000"> </font>
+<font color="#0000ff">http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd</font><font color="#000000">&quot;&gt;</font>
+ &lt;servlet&gt;
+&lt;!-- ActionServlet map here, however you can't find 
+this class within the project but it work as a backbone
+of the project --&gt;
+&lt;servlet-name&gt;action&lt;/servlet-name&gt;
+&lt;servlet-class&gt;org.apache.struts.action
+.ActionServlet&lt;/servlet-class&gt;
+&lt;!-- Your struts-config.xml file map here--&gt;
+&lt;init-param&gt;
+    &lt;param-name&gt;config&lt;/param-name&gt;
+    &lt;param-value&gt;/WEB-INF/struts-config.xml&lt;/param-value&gt;
+&lt;/init-param&gt;
+&lt;init-param&gt;
+    &lt;param-name&gt;debug&lt;/param-name&gt;
+    &lt;param-value&gt;2&lt;/param-value&gt;
+&lt;/init-param&gt;
+&lt;init-param&gt;
+    &lt;param-name&gt;detail&lt;/param-name&gt;
+    &lt;param-value&gt;2&lt;/param-value&gt;
+&lt;/init-param&gt;
+&lt;load-on-startup&gt;2&lt;/load-on-startup&gt;
+    &lt;/servlet&gt;
+&lt;!-- Action class map with URL --&gt;
+    &lt;servlet-mapping&gt;
+&lt;servlet-name&gt;action&lt;/servlet-name&gt;
+&lt;url-pattern&gt;*.do&lt;/url-pattern&gt;
+    &lt;/servlet-mapping&gt;
+    &lt;session-config&gt;
+&lt;session-timeout&gt;
+    30
+&lt;/session-timeout&gt;
+    &lt;/session-config&gt;
+&lt;!-- Welcome file map here: --&gt;
+    &lt;welcome-file-list&gt;
+&lt;welcome-file&gt;index.jsp&lt;/welcome-file&gt;
+    &lt;/welcome-file-list&gt;
+    &lt;jsp-config&gt;
+&lt;!-- All the Tag Library which used with in the project --&gt;
+&lt;taglib&gt;
+    &lt;taglib-uri&gt;/WEB-INF/struts-bean.tld&lt;/taglib-uri&gt;
+    &lt;taglib-location&gt;/WEB-INF/struts-bean.tld
+    &lt;/taglib-location&gt;
+&lt;/taglib&gt;
+&lt;taglib&gt;
+    &lt;taglib-uri&gt;/WEB-INF/struts-html.tld&lt;/taglib-uri&gt;
+    &lt;taglib-location&gt;/WEB-INF/struts-html.tld
+    &lt;/taglib-location&gt;
+&lt;/taglib&gt;
+&lt;taglib&gt;
+    &lt;taglib-uri&gt;/WEB-INF/struts-logic.tld&lt;/taglib-uri&gt;
+    &lt;taglib-location&gt;/WEB-INF/struts-logic.tld
+    &lt;/taglib-location&gt;
+&lt;/taglib&gt;
+&lt;taglib&gt;
+    &lt;taglib-uri&gt;/WEB-INF/struts-nested.tld&lt;/taglib-uri&gt;
+    &lt;taglib-location&gt;/WEB-INF/struts-nested.tld
+    &lt;/taglib-location&gt;
+&lt;/taglib&gt;
+&lt;taglib&gt;
+    &lt;taglib-uri&gt;/WEB-INF/struts-tiles.tld&lt;/taglib-uri&gt;
+    &lt;taglib-location&gt;/WEB-INF/struts-tiles.tld
+        &lt;/taglib-location&gt;
+&lt;/taglib&gt;
+    &lt;/jsp-config&gt;
+&lt;/web-app&gt;
+</pre>
+</div>
+<p><i>Step- 7:</i> Open struts-config.xml  file place in WEB-INF folder, this file is used to map Model class, Exception class, Validation class, Action class( Action class further choose View class) and ApplicationResource class</p>
+<div class="code"><pre>
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; ?&gt;
+&lt;!DOCTYPE struts-config PUBLIC
+&quot;-//Apache Software Foundation
+//DTD Struts Configuration 1.3//EN&quot;
+&quot;<font color="#0000ff">http://jakarta.apache.org/struts/dtds/struts-config_1_3.dtd</font><font color="#000000">&quot;&gt;</font>
+&lt;struts-config&gt;
+&lt;form-beans&gt;
+  &lt;!-- DynaActionForm is flexible dynamic sets of properties --&gt;
+&lt;form-bean name=&quot;RegisterForm&quot; type=&quot;org.apache
+.struts.action.DynaActionForm&quot; &gt;
+&lt;form-property name=&quot;LoginName&quot; type=&quot;java.lang.String&quot; /&gt;
+&lt;form-property name=&quot;LoginPassword&quot; type=&quot;java.lang.String&quot; /&gt;
+&lt;form-property name=&quot;RegUserName&quot; type=&quot;java.lang.String&quot; /&gt;
+&lt;form-property name=&quot;RegPassword&quot; type=&quot;java.lang.String&quot; /&gt;
+&lt;form-property name=&quot;RegName&quot; type=&quot;java.lang.String&quot; /&gt;
+&lt;form-property name=&quot;RegNumber&quot; type=&quot;java.lang.Integer&quot; /&gt;
+&lt;form-property name=&quot;email&quot; type=&quot;java.lang.String&quot; /&gt;
+&lt;/form-bean&gt;
+&lt;/form-beans&gt;
+&lt;global-exceptions&gt;
+&lt;/global-exceptions&gt;
+&lt;global-forwards&gt;
+&lt;!--  file call by &lt;<font color="#0000ff">http:link</font><font color="#000000"> forward /&gt; --&gt;</font>
+&lt;forward name=&quot;register&quot; path=&quot;/register.jsp&quot;/&gt;
+&lt;/global-forwards&gt;
+ &lt;!-- All Action class, Bean class,
+ Forward Action  map here--&gt;
+&lt;action-mappings&gt;
+&lt;action input=&quot;/register.jsp&quot; name=&quot;RegisterForm&quot; 
+path=&quot;/register&quot; scope=&quot;session&quot;
+type=&quot;r4r.struts.RegisterAction&quot;&gt;
+&lt;forward name=&quot;success&quot; path=&quot;/index.jsp&quot;/&gt;
+&lt;forward name=&quot;failure&quot; path=&quot;/register.jsp&quot;/&gt;
+&lt;/action&gt;
+&lt;action input=&quot;/index.jsp&quot; name=&quot;RegisterForm&quot; 
+path=&quot;/login&quot; scope=&quot;session&quot; type=&quot;r4r.struts.LoginAction&quot;&gt;
+&lt;forward name=&quot;success&quot; path=&quot;/success.jsp&quot;/&gt;
+&lt;forward name=&quot;failure&quot; path=&quot;/index.jsp&quot;/&gt;
+&lt;/action&gt;
+&lt;/action-mappings&gt;
+&lt;controller processorClass=&quot;org.apache.struts
+.tiles.TilesRequestProcessor&quot;/&gt;
+&lt;message-resources parameter=&quot;com/myapp/struts
+/ApplicationResource&quot;/&gt;
+&lt;!-- ========== Tiles plugin ==========--&gt;
+  &lt;plug-in className=&quot;org.apache.struts.tiles.TilesPlugin&quot; &gt;
+&lt;set-property property=&quot;definitions-config&quot;
+value=&quot;/WEB-INF/tiles-defs.xml&quot; /&gt;
+&lt;set-property property=&quot;moduleAware&quot; value=&quot;true&quot; /&gt;
+&lt;/plug-in&gt;
+&lt;!-- ========= Validator plugin ========== --&gt;
+&lt;plug-in className=&quot;org.apache.struts
+.validator.ValidatorPlugIn&quot;&gt;
+&lt;set-property
+property=&quot;pathnames&quot;
+value=&quot;/WEB-INF/validator-rules.xml,/WEB-INF/validation.xml&quot;/&gt;
+&lt;/plug-in&gt;
+&lt;/struts-config&gt;
+</pre>
+</div>
+<p><i>Step- 8:</i> Now introduce Bean class into struts-config.xml file, Since in this application we used  DyanActionForm which provide dynamic bean property in struts application, so no need to define another class for bean. As we mention the property into DyanActionForm into struts-config.xml file and call there property with in appliccation by making instance of DynaActionForm.</p>
+<p><i>Step- 9:</i> Since, application contain two different JSP page, hence two Action( or execute method) class required. So, the class are-</p>
+<p>First class named as a RegisterAction.java, which call by register.jsp page.</p>
+<div class="code"><pre>
+/* Save as a RegisterAction.java */
+package r4r.struts;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import org.apache.struts.action.ActionErrors;
+import org.apache.struts.action.ActionForm;
+import org.apache.struts.action.ActionForward;
+import org.apache.struts.action.ActionMapping;
+import org.apache.struts.action.ActionMessage;
+import org.apache.struts.action.DynaActionForm;
+public class RegisterAction extends org.apache
+.struts.action.Action {
+/* forward name=&quot;&quot; path=&quot;&quot; */
+private static final String SUCCESS = &quot;success&quot;;
+private static final String FAILURE = &quot;failure&quot;;
+/* This is the action called from the Struts framework.
+ * @return
+ */
+@Override
+public ActionForward execute(ActionMapping mapping,
+ActionForm form,
+HttpServletRequest request, HttpServletResponse response)
+throws Exception {
+ActionErrors errors = new ActionErrors();
+//Make the instance of DynaActionForm Here
+DynaActionForm actionForm = (DynaActionForm) form;
+/* ---- Call the property from DynaActionForm ---- */
+String RegUserName = (String) actionForm.get(&quot;RegUserName&quot;);
+String RegPassword = (String) actionForm.get(&quot;RegPassword&quot;);
+String RegName = (String) actionForm.get(&quot;RegName&quot;);
+String email = (String) actionForm.get(&quot;email&quot;);
+int RegNumber = (Integer) actionForm.get(&quot;RegNumber&quot;);
+/*----- Set up validation into register.jsp page -- */
+if (RegUserName == null || RegUserName.length() &lt; 1) {
+errors.add(&quot;RegUserName&quot;, new ActionMessage(&quot;error.userName&quot;));
+}
+if (RegPassword == null || RegPassword.length() &lt; 1) {
+errors.add(&quot;password&quot;, new ActionMessage(&quot;error.password&quot;));
+}
+if (RegName == null || RegName.length() &lt; 1) {
+errors.add(&quot;RegName&quot;, new ActionMessage(&quot;error.RegName&quot;));
+}
+if (email.equals(&quot;&quot;) || email.indexOf('@') == -1 ||
+email.indexOf('.') == -1
+|| email.indexOf(&quot;@@&quot;) != -1 || email.indexOf(&quot;..&quot;) != -1) {
+errors.add(&quot;email&quot;, new ActionMessage(&quot;error.email&quot;));
+}
+if (RegNumber == 0) {
+errors.add(&quot;RegNumber&quot;, new ActionMessage(&quot;error.RegNumber&quot;));
+}
+//Save the specified error messages in HTTP request attribute
+saveErrors(request, errors);
+if (errors.isEmpty()) {
+return mapping.findForward(SUCCESS);
+} else {
+return mapping.findForward(FAILURE);
+}
+}
+}
+</pre>
+</div>
+<p>Second class named as a LoginAction.java ,which call by index.jsp page.</p>
+<div class="code"><pre>
+/* Save as a LoginAction.java */
+package r4r.struts;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import org.apache.struts.action.ActionErrors;
+import org.apache.struts.action.ActionForm;
+import org.apache.struts.action.ActionForward;
+import org.apache.struts.action.ActionMapping;
+import org.apache.struts.action.ActionMessage;
+import org.apache.struts.action.DynaActionForm;
+public class LoginAction extends org.apache
+.struts.action.Action {
+/* forward name=&quot;&quot; path=&quot;&quot; */
+private static final String SUCCESS = &quot;success&quot;;
+private static final String FAILURE = &quot;failure&quot;;
+/* This is the action called from the Struts framework.
+ * @return
+ */
+@Override
+public ActionForward execute(ActionMapping mapping,
+ActionForm form,
+HttpServletRequest request, HttpServletResponse response)
+throws Exception {
+ActionErrors errors = new ActionErrors();
+//DynaActionForm call here
+DynaActionForm actionForm = (DynaActionForm) form;
+boolean flag1 = false;
+boolean flag2 = false;
+boolean flag3 = false;
+/* --- index.jsp page property ---  */
+String LoginName = (String) actionForm.get(&quot;LoginName&quot;);
+String LoginPassword = (String) actionForm
+.get(&quot;LoginPassword&quot;);
+/* --- Register.jsp page property ---  */
+String RegUserName = (String) actionForm.get(&quot;RegUserName&quot;);
+String RegPassword = (String) actionForm.get(&quot;RegPassword&quot;);
+/*----- Set up validation into index.jsp page -- */
+if (LoginName == null || LoginName.length() &lt; 1) {
+errors.add(&quot;RegUserName&quot;, new ActionMessage(&quot;error.userName&quot;));
+}
+if (LoginPassword == null || LoginPassword.length() &lt; 1) {
+errors.add(&quot;password&quot;, new ActionMessage(&quot;error.password&quot;));
+}
+//Save the specified error messages in HTTP request attribute
+saveErrors(request, errors);
+if (errors.isEmpty()) {
+flag1 = true;
+} else {
+flag1 = false;
+}
+//Match the Data from two different Pages
+if (LoginName.equals(RegUserName)) {
+flag2 = true;
+} else {
+errors.add(&quot;userMatch&quot;, new ActionMessage(&quot;error.userMatch&quot;));
+if (errors.size() != 0) {
+saveErrors(request, errors);
+}
+}
+if (LoginPassword.equals(RegPassword)) {
+flag3 = true;
+} else {
+errors.add(&quot;passMatch&quot;, new ActionMessage(&quot;error.passMatch&quot;));
+if (errors.size() != 0) {
+saveErrors(request, errors);
+}
+}
+//Checking flags condition
+if (flag1 == true &amp;&amp; flag2 == true &amp;&amp; flag3 == true) {
+return mapping.findForward(SUCCESS);
+} else {
+return mapping.findForward(FAILURE);
+}
+}
+}
+</pre>
+</div>
+<p><u><i>Run your application:</i></u></p>
+<p>Now your application is complete, so now start run your application. Start your server( which you embedded when configure our struts application), then right click your application and click upon Run option or open your welcome( index.jsp) page and press shift+F6.</p>
+<div class="image"><img src="images/DynaForm1.png"></div>
+<div class="image"><img src="images/DynaForm2.png"></div>
+<div class="image"><img src="images/DynaForm3.png"></div>
+<div class="image"><img src="images/DynaForm6.png"></div>
+<div class="image"><img src="images/DynaForm7.png"></div>
+<div class="image"><img src="images/DynaForm8.png"></div>
+<div class="image"><img src="images/DynaForm9.png"></div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="../Example-7" title="Creating a Calculated Day in a Week Application with Struts">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="../Example-9" title="Creating a Struts Application used in Struts">Next</a></td>
+  </tr> 
+</table>
+
+	<!-- Footer Start-->	
+		</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->

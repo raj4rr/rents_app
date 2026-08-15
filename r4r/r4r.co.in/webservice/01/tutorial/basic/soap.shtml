@@ -1,0 +1,452 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>SOAP (Simple Object Access Protocol),Introduction,Why SOAP,Syntax for SOAP,SOAP Envelope Element,Some Features Of SOAP,SOAP Header Element,SOAP Header element can have following two attributes,SOAP Body Element,SOAP Fault Element,The SOAP Fault Codes,SOAP Encoding,Scalar Types,Compound Types,SOAP and HTTP,SOAP Implementations</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="SOAP (Simple Object Access Protocol),Introduction,Why SOAP,Syntax for SOAP,SOAP Envelope Element,Some Features Of SOAP,SOAP Header Element,SOAP Header element can have following two attributes,SOAP Body Element,SOAP Fault Element,The SOAP Fault Codes,SOAP Encoding,Scalar Types,Compound Types,SOAP and HTTP,SOAP Implementations" >
+<meta name="keywords" CONTENT="SOAP (Simple Object Access Protocol),Introduction,Why SOAP,Syntax for SOAP,SOAP Envelope Element,Some Features Of SOAP,SOAP Header Element,SOAP Header element can have following two attributes,SOAP Body Element,SOAP Fault Element,The SOAP Fault Codes,SOAP Encoding,Scalar Types,Compound Types,SOAP and HTTP,SOAP Implementations">
+
+<!-- header start-->	
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>Web Services</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+            <img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+           <a href="/webservice/">Web Services</a>
+
+              </div>
+
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/webservice/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	 
+
+<!-- header End-->	
+
+<div class="heading">SOAP (Simple Object Access Protocol)</div>
+ <table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="xml.shtml" title="XML-RPC">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="UDDI.shtml" title="UDDI">Next</a></td>
+  </tr> 
+</table>
+
+<h3>Introduction</h3>
+<p> SOAP is a W3C recommendation. SOAP is an XML-based protocol 
+for exchanging information between computers. SOAP is acronym for Simple Object 
+Access Protocol. Soap provide data transport layer for web services which 
+designed for communication through internet means we can say that SOAP is a 
+communication protocol. It is a platform independent and can be used for 
+broadcasting a message. SOAP is language independent and it can be exchange 
+complete documents. SOAP enables client applications to easily connect to remote 
+services and invoke remote methods. Other frameworks like CORBA, DCOM, and Java 
+RMI, provide similar functionality but SOAP messages are written in XML.</p>
+<h2>Why SOAP</h2>
+<p> To develop any application over&nbsp; internet, communication 
+is necessary. Today's applications communicate using Remote Procedure Calls (RPC) 
+but RPC represents security problem; firewalls and proxy servers will block this 
+kind of traffic. The communication establish between objects, like DCOM and 
+CORBA, but one problem occurring that&nbsp; HTTP was not designed for that types 
+communications. A better way to communicate between applications is over HTTP, 
+because HTTP is supported by all Internet browsers and servers. SOAP provides 
+facility to communicate between applications running on different operating 
+systems, with different technologies and programming languages.</p>
+<i>A SOAP message is a XML document containing the following 
+elements:-</i>
+<ul>
+  <li>
+<i>Envelope:</i> (Mandatory) defines the start and the end of 
+the message.
+  </li>
+  <li>
+<i>Header:</i> (Optional) Contains any optional attributes of 
+the message used in processing the message, either at an intermediary point or 
+at the ultimate end point.
+  </li>
+  <li>
+<i>Body:</i> (Mandatory) Contains the XML data comprising the 
+message being sent.
+  </li>
+  <li>
+  <i>Fault:</i> </b>(Optional) An optional Fault element that 
+provides information about errors that occurred while processing the message.
+  </li>
+</ul>
+
+<i>Syntax for soap:</i>
+<div class="code">
+<pre>
+<font color="#0000ff">&lt;?xml </font><font color="#ff0000">version</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;1.0&quot;</font><font color="#800080">?</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">soap:Envelope</font>
+<font color="#800080">xmlns:soap</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;&quot;</font>
+<font color="#800080">soap:encodingStyle</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;&quot;</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">soap:Header</font><font color="#0000ff">&gt;</font>
+<font color="#000000">...</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">soap:Header</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">soap:Body</font><font color="#0000ff">&gt;</font>
+<font color="#000000">...</font>
+<font color="#000000">  </font><font color="#0000ff">&lt;</font><font color="#808000">soap:Fault</font><font color="#0000ff">&gt;</font>
+<font color="#000000">  ...</font>
+<font color="#000000">  </font><font color="#0000ff">&lt;/</font><font color="#808000">soap:Fault</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">soap:Body</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">soap:Envelope</font><font color="#0000ff">&gt;</font>
+
+</pre>
+</div>
+
+<div class="heading">SOAP Envelope Element</div>
+
+<p>The SOAP envelope indicates the start and the end of the 
+message. SOAP envelope as a packaging mechanism and its solves the problem to 
+knowing when receiving a message with message are ready to process it.</p>
+
+<div class="code">
+<pre>
+
+<font color="#0000ff">&lt;?xml </font><font color="#ff0000">version</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;1.0&quot;</font><font color="#800080">?</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">soap:Envelope</font>
+<font color="#800080">xmlns:soap</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;&quot;</font>
+<font color="#800080">soap:encodingStyle</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;&quot;</font><font color="#0000ff">&gt;</font>
+<font color="#000000">  ...</font>
+<font color="#000000">  Information Message</font>
+<font color="#000000">  ...</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">soap:Envelope</font><font color="#0000ff">&gt;</font>
+</pre>
+</div>
+
+<h2>Some Features are:</h2>
+<ul>
+  <li>Envelope element is mandatory part of SOAP message and SOAP message has a 
+  root Envelop element</li>
+  <li>Soap Message Envelope element&nbsp; contained exactly one Body element. It 
+  is necessary.</li>
+  <li>When Envelope contains a Header element then&nbsp; it must contain no more 
+  than one. In that case it must appear as the first child of the Envelope, 
+  before the Body.</li>
+  <li>SOAP versions change as well as envelop be changed. </li>
+  <li>The optional SOAP encoding is also specified using a namespace name and 
+  the optional encodingStyle element, which could also point to an encoding 
+  style other than the SOAP one.</li>
+</ul>
+<div class="heading">SOAP Header Element</div>
+<p>The Header element can be used to specify a digital signature for password-protected 
+services; likewise, it can be used to specify an account number for pay-per-use 
+SOAP services. Header elements are optional part of SOAP messages and it can 
+occur multiple times. Headers are intended to add new features and functionality 
+and it is the first immediate child element of the SOAP envelope. If in a SOAP 
+message more than one header is defined then all immediate child elements 
+of the SOAP header are interpreted as SOAP header blocks.</p>
+
+<div class="code">
+<pre>
+<font color="#0000ff">&lt;</font><font color="#808000">soap:Header</font><font color="#0000ff">&gt;</font>
+<font color="#000000">  </font><font color="#0000ff">&lt;</font><font color="#808000">m:Trans </font><font color="#800080">xmlns:m</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;/&quot;</font>
+  <font color="#800080">soap:mustUnderstand</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;1&quot;</font><font color="#0000ff">&gt;</font><font color="#000000">....</font>
+<font color="#000000">  </font><font color="#0000ff">&lt;/</font><font color="#808000">m:Trans</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">soap:Header</font><font color="#0000ff">&gt;</font>
+</pre>
+</div>
+
+<p><i>SOAP Header element can have following two attributes:</p></i>
+<ul>
+  <li>
+ <i>Actor attribute:</i> The SOAP protocol defines a message 
+path as a list of SOAP service nodes. Each of these intermediate nodes can 
+perform some processing and then forward the message to the next node in the 
+chain. By setting the Actor attribute, the client can specify the recipient of 
+the SOAP header.
+  </li>
+  <li>
+
+<i>MustUnderstand attribute:</i> This attribute indicate that a Header element 
+is optional or mandatory. 
+
+  </li>
+</ul>
+<div class="heading">SOAP Body Element</div>
+<p>The SOAP body is a mandatory element which contains the 
+application-defined XML data being exchanged in the SOAP message. The body must 
+be contained within the envelope and must follow any headers that might be 
+defined for the message. The body is defined as a child element of the envelope, 
+and the semantics for the body are defined in the associated SOAP schema.</p>
+<div class="code">
+<pre>
+<font color="#0000ff">&lt;</font><font color="#808000">soap:Body</font><font color="#0000ff">&gt;</font>
+<font color="#000000">  </font><font color="#0000ff">&lt;</font><font color="#808000">m:GetPrice </font><font color="#800080">xmlns:m</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;/&quot;</font><font color="#0000ff">&gt;</font>
+<font color="#000000">    </font><font color="#0000ff">&lt;</font><font color="#808000">m:Item</font><font color="#0000ff">&gt;</font><font color="#000000">Tables</font><font color="#0000ff">&lt;/</font><font color="#808000">m:Item</font><font color="#0000ff">&gt;</font>
+<font color="#000000">  </font><font color="#0000ff">&lt;/</font><font color="#808000">m:GetPrice</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">soap:Body</font><font color="#0000ff">&gt;</font>
+</pre>
+</div>
+
+<div class="heading">SOAP Fault Element</div>
+<p>SOAP fault element is in the body of the message when an error occurs during 
+processing the response to a SOAP message. The fault is returned to the sender 
+of the SOAP message. Its use the fault mechanism to return specific information 
+about error. It is important to know that SOAP message can carry only one fault 
+block It is the optional part of SOAP message.</p>
+
+<p><i>The SOAP Fault element has the following sub elements</i></p>
+
+<div class="table_content">
+<table>
+<tr>
+<td class ="heading" style="width=:30%;">Sub Element</td>
+<td class ="heading" style="width=:70%;">Description</td>
+</tr>
+
+<tr>
+<td class ="alternate_heading1">&lt;faultCode&gt;</td>
+<td class ="alternate_heading1">A text code used to indicate and identify the a class of errors.</td>
+
+</tr>
+
+<tr>
+<td class ="alternate_heading2">&lt;faultString&gt;</td>
+<td class ="alternate_heading2">Explanation of the fault in human readable format.</td>
+</tr>
+
+<tr>
+<td class ="alternate_heading1">&lt;faultActor&gt;</td>
+<td class ="alternate_heading1">A text string indicating that who caused the fault, a node that does not act as the ultimate destination must include a faultActor element.</td>
+</tr>
+
+<tr>
+<td class ="alternate_heading2" >&lt;detail&gt;</td>
+<td class ="alternate_heading2">An element used to carry application-specific error messages. The detail element can contain child elements, called detail entries</td>
+</tr>
+<tr>
+
+</table>
+</div>
+
+<p><i>The SOAP Fault Codes </i></p>
+
+<div class="table_content">
+<table>
+<tr>
+<td class ="heading" style="width=:30%;">Error</td>
+<td class ="heading" style="width=:70%;">Description</td>
+</tr>
+
+<tr>
+<td class ="alternate_heading1">VersionMismatch</td>
+<td class ="alternate_heading1">Found an invalid namespace for the SOAP Envelope element</td>
+</tr>
+
+<tr>
+<td class ="alternate_heading2">MustUnderstand</td>
+<td class ="alternate_heading2">An immediate child element of the Header element, with the mustUnderstand attribute set to "1", was not understood</td>
+</tr>
+
+<tr>
+<td class ="alternate_heading1">Client</td>
+<td class ="alternate_heading1">The message was incorrectly formed or contained incorrect information</td>
+</tr>
+
+<tr>
+<td class ="alternate_heading2" >:Server</td>
+<td class ="alternate_heading2">There was a problem with the server so the message could not proceed</td>
+</tr>
+<tr>
+
+</table>
+</div>
+
+<div class="heading">SOAP Encoding</div>
+<p>SOAP includes a built-in set of rules for encoding data types. This enables 
+the SOAP message to indicate specific data types, such as integers, floats, 
+doubles, or arrays. SOAP data types are divided into two categories:</p>
+<ol>
+<li> <i>Scalar Types:</i>Scalar types contain 
+exactly one value for example last name, price.</li></p>
+<div class="table_content">
+<table>
+<tr>
+<td class ="heading" style="width=:30%;">Simple Type</td>
+<td class ="heading" style="width=:70%;">Example</td>
+</tr>
+
+<tr>
+<tr>
+<td class ="alternate_heading1">boolean	</td>
+<td class ="alternate_heading1">true, false, 1, 0</td>
+</tr>
+
+<tr>
+<td class ="alternate_heading2">float</td>
+<td class ="alternate_heading2">-INF, -1E4, -0, 0, 12.78E-2, 12, INF, NaN</td>
+</tr>
+
+<tr>
+<td class ="alternate_heading1">double</td>
+<td class ="alternate_heading1">-INF, -1E4, -0, 0, 12.78E-2, 12, INF, NaN</td>
+</tr>
+
+<tr>
+<td class ="alternate_heading2" >decimal</td>
+<td class ="alternate_heading2">-1.23, 0, 123.4, 1000.00x</td>
+</tr>
+
+<tr>
+<td class ="alternate_heading2" >decimal</td>
+<td class ="alternate_heading2">100010</td>
+</tr>
+
+<tr>
+<td class ="alternate_heading2" >binary</td>
+<td class ="alternate_heading2">-1.23, 0, 123.4, 1000.00x</td>
+</tr>
+
+<tr>
+<td class ="alternate_heading2" >integer</td>
+<td class ="alternate_heading2">-126789, -1, 0</td>
+</tr>
+
+<tr>
+<td class ="alternate_heading2" >negativeInteger</td>
+<td class ="alternate_heading2">-1, 12678967543233</td>
+</tr>
+
+<tr>
+<td class ="alternate_heading2" >long</td>
+<td class ="alternate_heading2">-1.23, 0, 123.4, 1000.00x</td>
+</tr>
+
+<tr>
+<td class ="alternate_heading2" >int</td>
+<td class ="alternate_heading2">-1, 126789675</td>
+
+</tr>
+<tr><td class ="alternate_heading2" >short</td>
+<td class ="alternate_heading2">-1, 12678</td>
+</tr>
+
+<tr>
+<td class ="alternate_heading2" >byte</td>
+<td class ="alternate_heading2">-1, 126</td>
+</tr>
+
+<tr>
+<td class ="alternate_heading2" >nonNegativeInteger</td>
+<td class ="alternate_heading2">0, 1, 126789</td>
+</tr>
+
+<tr>
+<td class ="alternate_heading2" >unsignedLong</td>
+<td class ="alternate_heading2">0, 12678967543233</td>
+</tr>
+
+<tr>
+<td class ="alternate_heading2" >unsignedInt</td>
+<td class ="alternate_heading2">0, 1267896754</td>
+</tr>
+
+<tr>
+<td class ="alternate_heading2" >unsignedShort</td>
+<td class ="alternate_heading2">0, 12678	</td>
+</tr>
+
+<tr>
+<td class ="alternate_heading2" >unsignedBytee</td>
+<td class ="alternate_heading2">0, 126</td>
+</tr>
+
+<tr>
+<td class ="alternate_heading2" >positiveInteger</td>
+<td class ="alternate_heading2">1, 126789</td>
+</tr>
+
+<tr>
+<td class ="alternate_heading2" >date</td>
+<td class ="alternate_heading2">1999-05-31, ---05</td>
+</tr>
+
+<tr>
+<td class ="alternate_heading2" >time</td>
+<td class ="alternate_heading2">13:20:00.000, 13:20:00.000-05:00</td>
+</tr>
+</table>
+</div>
+
+<li><i>Compound Types:</li></i>Compound types 
+contain multiple values, such as a purchase order or a list of stock quotes. 
+Compound types are further subdivided into arrays and structs.
+
+<p><i>Array: </i>
+SOAP arrays have a very specific set 
+of rules, means you must require to specified both the element type and&nbsp; size 
+of array. It also 
+supports multidimensional arrays. One thing is important to know that all SOAP implementations 
+not support multidimensional functionality.
+To create an array, you must specify it: </p>
+<ol>
+  <li>
+Type of Array.
+  </li>
+  <li>
+The array must 
+also include an arrayType attribute. This attribute is required to specify the 
+data type for the contained elements and the dimension of the array.
+  </li>
+</ol>
+<p><i>Structs:</i> Structs contain 
+multiple values, but each element is specified with a unique accessor element.
+</p>
+<div class="heading">SOAP and HTTP</div>
+<ul>
+  <li>
+<p>SOAP is not tied to any one transport protocol. SOAP can be 
+transported via SMTP, FTP or Microsoft Message Queuing (MSMQ). SOAP used HTTP 
+request to send SOAP request. SOAP responses are returned within the content of 
+the HTTP response. Means SOAP specification includes details on HTTP only.</p>
+  </li>
+  <li>
+<p>HTTP requests and HTTP responses both are required to set 
+their content type to text/xml. The SOAP specification mandates that the client 
+must provide a SOAPAction header, but the actual value of the SOAPAction header 
+is dependent on the SOAP server implementation.</p>
+  </li>
+</ul>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="xml.shtml" title="XML-RPC">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="UDDI.shtml" title="UDDI">Next</a></td>
+  </tr> 
+</table>
+
+<!-- Footer Start-->	
+
+		</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->

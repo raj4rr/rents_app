@@ -1,0 +1,227 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>How to Rotate Image in Picture Box Using C#</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="How to Rotate Image in Picture Box Using C#" >
+<meta name="keywords" CONTENT="How to Rotate Image in Picture Box Using C#">
+
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+     <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>C# Tutorial</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a><img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/c1/">C#</a>
+
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/c1/commonfiles/leftmenu.shtml'); ?></td>
+
+                       <td style="80%" valign="top">
+                        <div class="main_content"> 
+
+	<!-- Header End-->
+
+	<div class="heading">How to Rotate Image in Picture Box Using C#</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="Diffrence%20between%20array%20and%20arraylist.shtml" 
+    title="Difference between Array and ArrayList">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="Calculating%20Duration%20Between%20Two%20Dates%20in%20Years,%20Months%20and%20Days.shtml" 
+    title="Calculating Duration Between Two Dates in Years, Months and Days">Next</a></td>
+  </tr>
+</table>
+<p>Right Click On solution Explorer -&gt; Add newitem -&gt; Add Class</p>
+<h3>Class name: Utilities</h3>
+<div class="code">
+<pre>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Drawing</font><font color="#000000">;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Drawing</font><font color="#000000">.Drawing2D;</font>
+
+<font color="#0000ff">namespace </font><font color="#000000">RotatePictureBox {   </font>
+<font color="#0000ff">public sealed class </font><font color="#000000">Utilities{</font>
+<font color="#0000ff">private </font><font color="#000000">Utilities()</font>
+<font color="#000000">{</font>
+<font color="#000000">}</font>
+
+<font color="#0000ff">public static </font><font color="#808000">Bitmap </font><font color="#000000">RotateImage(</font><font color="#808000">Image </font><font color="#000000">image, </font><font color="#0000ff">float </font><font color="#000000">angle)</font>
+<font color="#000000">{</font>
+<font color="#0000ff">return </font><font color="#000000">RotateImage(image, </font><font color="#0000ff">new </font><font color="#000000">PointF((</font><font color="#0000ff">float</font><font color="#000000">)image.Width / </font><font color="#800080">2</font><font color="#000000">,</font>
+<font color="#000000">(</font><font color="#0000ff">float</font><font color="#000000">)image.Height / </font><font color="#800080">2</font><font color="#000000">), angle);</font>
+<font color="#000000">}</font>
+
+<font color="#0000ff">public static </font><font color="#808000">Bitmap </font><font color="#000000">RotateImage(</font><font color="#808000">Image </font><font color="#000000">image, PointF offset, </font>
+<font color="#0000ff">float </font><font color="#000000">angle)</font>
+<font color="#000000">{</font>
+<font color="#0000ff">if </font><font color="#000000">(image ==</font><font color="#0000ff">null</font><font color="#000000">)</font>
+<font color="#0000ff">throw new </font><font color="#808000">ArgumentNullException</font><font color="#000000">(</font><font color="#ff00ff">&quot;image&quot;</font><font color="#000000">);</font>
+
+<font color="#008000">//create a new empty bitmap to hold rotated image</font>
+
+<font color="#808000">Bitmap </font><font color="#000000">rotatedBmp = </font><font color="#0000ff">new </font>
+<font color="#808000">Bitmap</font><font color="#000000">(image.Width, image.Height);</font>
+
+<font color="#000000">rotatedBmp.SetResolution(image.HorizontalResolution,</font>
+ <font color="#000000">image.VerticalResolution);</font>
+
+<font color="#008000">//make a graphics object from the empty bitmap</font>
+
+<font color="#808000">Graphics </font><font color="#000000">g = </font><font color="#808000">Graphics</font><font color="#000000">.FromImage(rotatedBmp);</font>
+
+<font color="#008000">//Put the rotation point in the center of the image</font>
+
+<font color="#000000">g.</font><font color="#808000">TranslateTransform</font><font color="#000000">(offset.X, offset.Y);</font>
+
+<font color="#008000">//rotate the image</font>
+<font color="#000000">g.</font><font color="#808000">RotateTransform</font><font color="#000000">(angle);</font>
+
+<font color="#008000">//move the image back</font>
+
+<font color="#000000">g.</font><font color="#808000">TranslateTransform</font><font color="#000000">(-offset.X, -offset.Y);</font>
+<font color="#008000">//draw passed in image onto </font>
+<font color="#000000">graphics </font><font color="#0000ff">object </font><font color="#000000">g.DrawImage(image, </font><font color="#0000ff">new </font><font color="#000000">PointF( </font><font color="#800080">0</font><font color="#000000">, </font><font color="#800080">0</font><font color="#000000">));</font>
+
+<font color="#0000ff">return </font><font color="#000000">rotatedBmp;</font>
+<font color="#000000">}</font>
+<font color="#000000">}</font>
+<font color="#000000">}</font>
+</pre>
+</div>
+
+<h3>.cs Code</h3>
+
+<div class="code">
+<pre>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Collections</font><font color="#000000">.</font><font color="#008080">Generic</font><font color="#000000">;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">ComponentModel</font><font color="#000000">;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Data</font><font color="#000000">;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Drawing</font><font color="#000000">;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Text</font><font color="#000000">;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.;</font>
+
+<font color="#0000ff">namespace </font><font color="#000000">RotatePictureBox {</font>
+<font color="#0000ff">public </font><font color="#000000">partial </font><font color="#0000ff">class </font><font color="#000000">Form1 : </font><font color="#808000">Form </font><font color="#000000">{</font>
+<font color="#0000ff">private </font><font color="#808000">Bitmap </font><font color="#000000">image = </font><font color="#0000ff">null</font><font color="#000000">;</font>
+<font color="#0000ff">private float </font><font color="#000000">angle = </font><font color="#800080">0</font><font color="#000000">.</font><font color="#800080">0f</font><font color="#000000">;</font>
+
+<font color="#0000ff">public </font><font color="#000000">Form1() {</font>
+<font color="#000000">InitializeComponent();</font>
+
+<font color="#000000">angleNumericUpDown.Value = (Decimal)angle;</font>
+<font color="#000000">}</font>
+<font color="#008000">//Load image</font>
+
+<font color="#0000ff">private void </font><font color="#000000">LoadImageBtn_Click(</font><font color="#0000ff">object </font><font color="#000000">sender, </font><font color="#808000">EventArgs </font><font color="#000000">e) {</font>
+<font color="#000000">lfd.InitialDirectory = </font><font color="#808000">Application</font><font color="#000000">.StartupPath;</font>
+
+<font color="#000000">}</font>
+
+<font color="#0000ff">private void </font><font color="#000000">lfd_FileOk(</font><font color="#0000ff">object </font><font color="#000000">sender, </font><font color="#808000">CancelEventArgs </font><font color="#000000">e) {</font>
+<font color="#0000ff">try</font><font color="#000000">{</font>
+<font color="#000000">image = </font><font color="#0000ff">new </font><font color="#808000">Bitmap</font><font color="#000000">(lfd.FileName);</font>
+
+<font color="#000000">pictureBox1.</font><font color="#808000">Image </font><font color="#000000">= (</font><font color="#808000">Bitmap</font><font color="#000000">)image.Clone();</font>
+<font color="#000000">ImagePathTxtBox.</font><font color="#008080">Text </font><font color="#000000">= lfd.FileName;</font>
+<font color="#000000">}</font>
+<font color="#0000ff">catch </font><font color="#000000">(</font><font color="#808000">Exception </font><font color="#000000">ex)</font>
+<font color="#000000">{</font>
+<font color="#808000">MessageBox</font><font color="#000000">.Show(ex.</font><font color="#808000">Message</font><font color="#000000">);</font>
+<font color="#000000">}</font>
+
+<font color="#000000">RotateImage(pictureBox1, image, angle);</font>
+<font color="#000000">}</font>
+
+<font color="#0000ff">protected override void </font><font color="#000000">OnKeyDown(</font><font color="#808000">KeyEventArgs </font><font color="#000000">e) {</font>
+<font color="#0000ff">switch </font><font color="#000000">(e.KeyCode){</font>
+<font color="#0000ff">case </font><font color="#000000">Keys.Up:</font>
+
+<font color="#000000">RotateImage(pictureBox1, image, angle++);</font>
+<font color="#0000ff">break</font><font color="#000000">;</font>
+
+<font color="#0000ff">case </font><font color="#000000">Keys.Down: RotateImage(pictureBox1, image, angle--);</font>
+
+<font color="#0000ff">break</font><font color="#000000">;</font>
+<font color="#0000ff">case </font><font color="#000000">Keys.Right: RotateImage(pictureBox1, image, angle++);</font>
+
+<font color="#0000ff">break</font><font color="#000000">;</font>
+<font color="#0000ff">case </font><font color="#000000">Keys.Left: RotateImage(pictureBox1, image, angle--);</font>
+
+<font color="#0000ff">break</font><font color="#000000">;</font>
+<font color="#000000">}</font>
+<font color="#000000">}</font>
+
+<font color="#0000ff">private void </font><font color="#000000">angleNumericUpDown_ValueChanged(</font><font color="#0000ff">object </font><font color="#000000">sender, </font><font color="#808000">EventArgs </font><font color="#000000">e)</font>
+<font color="#000000">{</font>
+<font color="#000000">angle = (</font><font color="#0000ff">float</font><font color="#000000">)angleNumericUpDown.Value;</font>
+<font color="#000000">RotateImage(pictureBox1, image, angle);</font>
+<font color="#000000">}</font>
+
+<font color="#0000ff">private void </font><font color="#000000">RotateImage(</font><font color="#808000">PictureBox </font><font color="#000000">pb, </font><font color="#808000">Image </font><font color="#000000">img, </font><font color="#0000ff">float </font><font color="#000000">angle){</font>
+<font color="#0000ff">if </font><font color="#000000">(img == </font><font color="#0000ff">null </font><font color="#000000">|| pb.</font><font color="#808000">Image </font><font color="#000000">== </font><font color="#0000ff">null</font><font color="#000000">)</font>
+<font color="#0000ff">return</font><font color="#000000">;</font>
+
+<font color="#808000">Image </font><font color="#000000">oldImage = pb.</font><font color="#808000">Image</font><font color="#000000">;</font>
+<font color="#000000">pb.</font><font color="#808000">Image </font><font color="#000000">= Utilities.RotateImage(img, angle);</font>
+<font color="#0000ff">if </font><font color="#000000">(oldImage != </font><font color="#0000ff">null</font><font color="#000000">)</font>
+<font color="#000000">{</font>
+<font color="#000000">oldImage.Dispose();</font>
+<font color="#000000">}</font>
+<font color="#000000">}</font>
+
+<font color="#0000ff">private void </font><font color="#000000">pictureBox1_Click(</font><font color="#0000ff">object </font><font color="#000000">sender, </font><font color="#808000">EventArgs </font><font color="#000000">e) {</font>
+
+<font color="#000000">}</font>
+<font color="#000000">}</font>
+<font color="#000000">}</font>
+</pre>
+</div>
+
+<p><h3>Output</h3></p>
+<div class="output">
+<div class="image">
+<img src="rotate.gif">
+</div></div>
+<p>When You Change Angel Image Will be Rotate According To Angel Like This</p>
+<div class="output">
+<div class="image">
+<img src="rotate1.gif">
+</div></div>
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="Diffrence%20between%20array%20and%20arraylist.shtml" 
+    title="Difference between Array and ArrayList">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="Calculating%20Duration%20Between%20Two%20Dates%20in%20Years,%20Months%20and%20Days.shtml" 
+    title="Calculating Duration Between Two Dates in Years, Months and Days">Next</a></td>
+  </tr>
+</table>
+ <!--Footer-->
+   </div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/dotnet/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+     <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>

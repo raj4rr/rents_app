@@ -1,0 +1,182 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>Per-Call Services,Configuring Per-Call Services,Per-call service and client Example,Example of  Implementing a per-call service</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="Per-Call Services,Configuring Per-Call Services,Per-call service and client Example,Example of  Implementing a per-call service" >
+<meta name="keywords" CONTENT="Per-Call Services,Configuring Per-Call Services,Per-call service and client Example,Example of  Implementing a per-call service">
+
+<!--Header start-->
+
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>WCF</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a><img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+			<a href="/wcf">WCF with C# </a>
+              <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/wcf/01/tutorial/basic/">WCF Tutorials</a></div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/wcf/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	  
+
+<!-- Header End-->
+<div class="heading">Per-Call Services</div>
+
+  <table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="DataTableHelper.ToArray(%20).shtml" title="DataTableHelper.ToArray( )
+">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="Per-Session%20Services.shtml" title="Per-Session Services">Next</a></td>
+  </tr>
+</table>
+<p>PerCall service instances are created with every 
+method call on the server side and destroyed also with 
+every method call on the server side and When the service type is 
+created for per-call activation, a service 
+instance (the CLR object) exists only while a client call is in progress. Every 
+client request gets a new dedicated service instance.</p>
+
+<h3>Per call activation works as given below: </h3>
+<ol>
+  <li>
+    The client calls the proxy and the proxy forwards the call to the service.</li>
+	<li>WCF creates a service instance and calls the method on it.</li>
+	<li>if the object implements <font class="point_out">IDisposable </font>, WCF calls <font class="point_out">IDisposable.Dispose( )</font>on it then  the method call returns.</li>
+	<li> The proxy forwards the call to the service. when The client calls the proxy and</li>
+	<li>WCF creates an object and calls the method on it.</li>
+</ol>
+
+<div class="heading">Configuring Per-Call Services</div>
+<p>To configure a service type as a per-call service, We apply the ServiceBehavior attribute with the InstanceContextMode property set to InstanceContextMode.PerCall:</p>
+
+<div class="code">
+<pre>
+<font color="#000000">[ServiceContract]</font>
+<font color="#0000ff">interface </font><font color="#000000">IMyContract</font>
+<font color="#000000">{...}</font>
+
+<font color="#000000">[ServiceBehavior(InstanceContextMode = InstanceContextMode.PerCall)]</font>
+<font color="#0000ff">class </font><font color="#000000">MyService : IMyContract</font>
+<font color="#000000">{...}</font>
+</pre>
+</div>
+
+<h3>Per-call service and client Example: </h3>
+<div class="code">
+<pre>
+<font color="#008000">///////////////////////// Service code /////////////////////</font>
+<font color="#000000">[ServiceContract]</font>
+<font color="#0000ff">interface </font><font color="#000000">IMyContract</font>
+<font color="#000000">{</font>
+   <font color="#000000">[OperationContract]</font>
+   <font color="#0000ff">void </font><font color="#000000">operation( );</font>
+<font color="#000000">}</font>
+<font color="#000000">[ServiceBehavior(InstanceContextMode = InstanceContextMode.PerCall)]</font>
+<font color="#0000ff">class </font><font color="#000000">MyService : IMyContract,IDisposable</font>
+<font color="#000000">{</font>
+   <font color="#0000ff">int </font><font color="#000000">flag = </font><font color="#800080">0</font><font color="#000000">;</font>
+   <font color="#000000">MyService( )</font>
+   <font color="#000000">{</font>
+      <font color="#808000">Trace</font><font color="#000000">.WriteLine(</font><font color="#ff00ff">&quot;MyService.MyService( )&quot;</font><font color="#000000">);</font>
+   <font color="#000000">}</font>
+   <font color="#0000ff">public void </font><font color="#000000">operation( )</font>
+   <font color="#000000">{</font>
+      <font color="#000000">flag++;</font>
+      <font color="#808000">Trace</font><font color="#000000">.WriteLine(</font><font color="#ff00ff">&quot;Counter = &quot; </font><font color="#000000">+ flag);</font>
+   <font color="#000000">}</font>
+   <font color="#0000ff">public void </font><font color="#000000">Dispose( )</font>
+   <font color="#000000">{</font>
+      <font color="#808000">Trace</font><font color="#000000">.WriteLine(</font><font color="#ff00ff">&quot;MyService.Dispose( )&quot;</font><font color="#000000">);</font>
+   <font color="#000000">}</font>
+<font color="#000000">}</font>
+<font color="#008000">///////////////////////// Client code /////////////////////</font>
+<font color="#000000">MyContractClient proxy = </font><font color="#0000ff">new </font><font color="#000000">MyContractClient( );</font>
+<font color="#000000">proxy.operation( );</font>
+<font color="#000000">proxy.operation( );</font>
+<font color="#000000">proxy.Close( );</font>
+
+<font color="#008000">//Possible Output</font>
+<font color="#000000">MyService.MyService( )</font>
+<font color="#000000">Counter = </font><font color="#800080">1</font>
+<font color="#000000">MyService.Dispose( )</font>
+<font color="#000000">MyService.MyService( )</font>
+<font color="#000000">Counter = </font><font color="#800080">1</font>
+<font color="#000000">MyService.Dispose( )</font>
+</pre>
+</div>
+
+<h3>Example of  Implementing a per-call service: </h3>
+<div class="code">
+<pre>
+<font color="#000000">[DataContract]</font>
+<font color="#0000ff">class </font><font color="#000000">Exapmleofpercallservice</font>
+<font color="#000000">{...}</font>
+
+<font color="#000000">[ServiceContract]</font>
+<font color="#0000ff">interface </font><font color="#000000">IMyContract</font>
+<font color="#000000">{</font>
+   <font color="#000000">[OperationContract]</font>
+   <font color="#0000ff">void </font><font color="#000000">MyMethod(Exapmleofpercallservice stateIdentifier);</font>
+<font color="#000000">}</font>
+<font color="#000000">[ServiceBehavior(InstanceContextMode = InstanceContextMode.PerCall)]</font>
+<font color="#0000ff">class </font><font color="#000000">MyPerCallService : IMyContract,IDisposable</font>
+<font color="#000000">{</font>
+   <font color="#0000ff">public void </font><font color="#000000">MyMethod(Exapmleofpercallservice stateIdentifier)</font>
+   <font color="#000000">{</font>
+      <font color="#000000">GetState(stateIdentifier);</font>
+      <font color="#000000">DoWork( );</font>
+      <font color="#000000">SaveState(stateIdentifier);</font>
+   <font color="#000000">}</font>
+   <font color="#0000ff">void </font><font color="#000000">GetState(Exapmleofpercallservice stateIdentifier)</font>
+   <font color="#000000">{...}</font>
+   <font color="#0000ff">void </font><font color="#000000">DoWork( )</font>
+   <font color="#000000">{...}</font>
+   <font color="#0000ff">void </font><font color="#000000">SaveState(Exapmleofpercallservice stateIdentifier)</font>
+   <font color="#000000">{...}</font>
+   <font color="#0000ff">public void </font><font color="#000000">Dispose( )</font>
+   <font color="#000000">{...}</font>
+<font color="#000000">}</font>
+</pre>
+</div>
+
+  <table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="DataTableHelper.ToArray(%20).shtml" title="DataTableHelper.ToArray( )
+">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="Per-Session%20Services.shtml" title="Per-Session Services">Next</a></td>
+  </tr>
+</table>
+
+ <!--Footer  -->
+</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/dotnet/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>

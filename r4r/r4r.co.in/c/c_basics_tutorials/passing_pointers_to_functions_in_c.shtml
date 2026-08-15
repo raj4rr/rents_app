@@ -1,0 +1,109 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>Benefit of using function,Pointer in C</TITLE>
+<META content=r4r.co.in name=owner>
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="Benefits of using function in C with examples,Pointers in C,Data types,Array,Pointers,Functions,Union,Structures,Storage class,C constants,Data types,Preprocessors.Storage class">
+<meta name="keywords" CONTENT="Benefits of using function,Pointer in C,Types of functions in C,Function prototype,Function declaration,Nesting of function,Calling function in c,Recursive function in c,Pointers,Loops,Union,Structures,Data types,Storage class,C constants">
+<META content="Rajesh Kumar" name=author>
+<META http-equiv="expires" content="0"> 
+
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+     <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>C Programming language</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a><img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/c/">C </a>
+              <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/c/c_basics_tutorials/">Learn C in 9 days</a></div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/c/commonfiles/new-leftmenu.shtml'); ?></td>
+
+                       <td style="80%" valign="top">
+                        <div class="main_content">
+
+	 <!-- Header End--> 		
+<div class="heading"><font style="background:#FF9966; padding:7px 0px 7px 7px;">Day <font style="background:#E95409; padding:7px;">7</font></font> Passing pointers to functions in C Programming language</div>    
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="pointer_to_pointer_in_c.shtml" title="Pointer to Pointer in C Programming language">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="return_pointers_from_functions_in_c.shtml" title="Pointer to Function in C Programming language: Return pointer from functions">Next</a></td>
+  </tr>
+</table>	
+<p>The function pointer is a powerful feature in c. In memory a function has a physical location that can be assigned to a pointer. This address is the entry point of the function and it is the address used when the function is called. Once a pointer points to a function, the function can be called through that pointer. Function pointers also allow functions to be passed as arguments to other functions or function pointers is a pointers, that point to the address of a function.</p>
+<p>Now we can se that when we run the any program than that running program gets a certain space in the main-memory. than the executable compiled program code and variables are put inside this memory. Thus that program code have a functions than that function in the program code is, like e.g. a character field, nothing else than an address. It is only important how you, or better your compiler/processor, interpret the memory a pointer points to.</p>  
+<h3># Passing pointers to functions in C</h3>
+<div class="code">
+<pre>
+<font color="#ff0000">#include </font><font color="#000000">&lt;stdio.h&gt;</font>
+
+<font color="#008000">/* function declaration */</font>
+<font color="#0000ff">double </font><font color="#000000">calAverage(</font><font color="#0000ff">int </font><font color="#000000">*ary, </font><font color="#0000ff">int </font><font color="#000000">sz);</font>
+
+<font color="#0000ff">int </font><font color="#000000">main ()</font>
+<font color="#000000">{</font>
+   <font color="#008000">/* an int array with 5 elements */</font>
+   <font color="#0000ff">int </font><font color="#000000">price[</font><font color="#800080">5</font><font color="#000000">] = {</font><font color="#800080">1000</font><font color="#000000">, </font><font color="#800080">2</font><font color="#000000">, </font><font color="#800080">3</font><font color="#000000">, </font><font color="#800080">17</font><font color="#000000">, </font><font color="#800080">50</font><font color="#000000">};</font>
+   <font color="#0000ff">double </font><font color="#000000">ag;</font>
+
+   <font color="#008000">/* pass pointer to the array as an argument */</font>
+   <font color="#000000">ag = calAverage( price, </font><font color="#800080">5 </font><font color="#000000">) ;</font>
+
+   <font color="#008000">/* output the returned value  */</font>
+   <font color="#000000">printf(</font><font color="#ff00ff">&quot;Average value is: %f\n&quot;</font><font color="#000000">, ag );</font>
+
+   <font color="#0000ff">return </font><font color="#800080">0</font><font color="#000000">;</font>
+<font color="#000000">}</font>
+
+<font color="#0000ff">double </font><font color="#000000">calAverage(</font><font color="#0000ff">int </font><font color="#000000">*ary, </font><font color="#0000ff">int </font><font color="#000000">sz)</font>
+<font color="#000000">{</font>
+  <font color="#0000ff">int    </font><font color="#000000">i, sum = </font><font color="#800080">0</font><font color="#000000">;       </font>
+  <font color="#0000ff">double </font><font color="#000000">ag;          </font>
+
+  <font color="#0000ff">for </font><font color="#000000">(i = </font><font color="#800080">0</font><font color="#000000">; i &lt; sz; ++i)</font>
+  <font color="#000000">{</font>
+    <font color="#000000">sum += ary[i];</font>
+  <font color="#000000">}</font>
+
+  <font color="#000000">ag = (</font><font color="#0000ff">double</font><font color="#000000">)sum / sz;</font>
+
+  <font color="#0000ff">return </font><font color="#000000">ag;</font>
+<font color="#000000">}</font>
+</pre>
+</div>
+<div class="output"><i>Output</i>
+<p>Average value is: 214.400000</p>
+</div> 
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="pointer_to_pointer_in_c.shtml" title="Pointer to Pointer in C Programming language">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="return_pointers_from_functions_in_c.shtml" title="Pointer to Function in C Programming language: Return pointer from functions">Next</a></td>
+  </tr>
+</table>
+<!--Footer  --> 	
+</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/c/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>

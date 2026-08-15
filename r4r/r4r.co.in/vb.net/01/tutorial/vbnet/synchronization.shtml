@@ -1,0 +1,185 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>Synchronization in C#,Introduction of Synchronization,Synchronization in Threads,Why we use Lock keyword,Using of Monitor</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="Synchronization in C#,Introduction of Synchronization,Synchronization in Threads,Why we use Lock keyword,Using of Monitor" >
+<meta name="keywords" CONTENT="Synchronization in C#,Introduction of Synchronization,Synchronization in Threads,Why we use Lock keyword,Using of Monitor">
+<!-- header start-->	
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>VB.NET Technology</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+            <img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+            <a href="/vb.net/">VB.net</a>
+              <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/vb.net/01/tutorial/vbnet/">VB.NET Tutorial</a>
+
+              </div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/vb.net/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	 
+
+<div class="heading">Creating Bar Chart in windows using VB.Net </div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="ipaddress.shtml" title="How to get IP Address of Websites in VB.Net application ">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="Creating%20Word%20document%20using%20C-sharp.shtml" title="Creating Word document using VB.Net">Next</a></td>
+  </tr> 
+</table>
+<!-- header End-->	
+
+<h3>
+Introduction of Synchronization</h3><p>Synchronization is particularly important when threads access the same data; its surprisingly easy to run aground in this area.
+</p>
+<p>
+Synchronization constructs can be divided into four categories:
+</p>
+<ol>
+	<li>Simple blocking methods</li>
+    <li>Locking constructs</li>
+    <li>Signaling constructs</li>
+    <li>No blocking synchronization constructs</li>
+</ol>
+<h3>
+Synchronization in Threads</h3><p> Synchronization is needed in thread when we have multiple threads that share data, we need to provide synchronized access to the data. We have to deal with synchronization issues related to concurrent access to variables and objects accessible by multiple threads at the same time.
+</p>
+<div class="code">
+<pre>
+<font face="Courier New"><font color="#000000">Imports System.Threading</font>
+<font color="#000000">Module Module1</font>
+    <font color="#0000ff">Class </font><font color="#000000">Program</font>
+        <font color="#000000">Shared </font><font color="#0000ff">Sub </font><font color="#000000">Main()</font>
+            <font color="#000000">Console.WriteLine(</font><font color="#ff00ff">&quot;-----&gt;  Multiple Threads ----&gt;&quot;</font><font color="#000000">)</font>
+            <font color="#0000ff">Dim </font><font color="#000000">p As New Printer()</font>
+            <font color="#0000ff">Dim </font><font color="#000000">Threads As Thread() = New Thread(</font><font color="#800080">2</font><font color="#000000">) {}</font>
+            <font color="#0000ff">For </font><font color="#000000">i As Integer = </font><font color="#800080">0 </font><font color="#0000ff">To </font><font color="#800080">2</font>
+                <font color="#000000">Threads(i) = New Thread(New ThreadStart(AddressOf p.PrintNumbers))</font>
+                <font color="#000000">Threads(i).Name = </font><font color="#ff00ff">&quot;Child &quot; </font><font color="#000000">&amp; i</font>
+            <font color="#0000ff">Next</font>
+            <font color="#0000ff">For Each </font><font color="#000000">t As Thread </font><font color="#0000ff">In </font><font color="#000000">Threads</font>
+                <font color="#000000">t.Start()</font>
+            <font color="#0000ff">Next</font>
+            <font color="#000000">Console.ReadLine()</font>
+        <font color="#0000ff">End Sub</font>
+    <font color="#0000ff">End Class</font>
+    <font color="#0000ff">Class </font><font color="#000000">Printer</font>
+        <font color="#0000ff">Public Sub </font><font color="#000000">PrintNumbers()</font>
+            <font color="#0000ff">For </font><font color="#000000">i As Integer = </font><font color="#800080">0 </font><font color="#0000ff">To </font><font color="#800080">4</font>
+                <font color="#000000">Thread.Sleep(</font><font color="#800080">100</font><font color="#000000">)</font>
+                <font color="#000000">Console.Write(i &amp; </font><font color="#ff00ff">&quot;,&quot;</font><font color="#000000">)</font>
+            <font color="#0000ff">Next</font>
+            <font color="#000000">Console.WriteLine()</font>
+        <font color="#0000ff">End Sub</font>
+    <font color="#0000ff">End Class</font>
+<font color="#0000ff">End </font><font color="#000000">Module</font></font>
+</pre>
+</div>
+
+<div class="image">
+<img src="synchronization.PNG ">
+</div>
+
+<h3>Why we use Lock keyword</h3><p> lock(object)  is used to synchronize the shared object.</p>
+<br>
+<h3>
+Syntax</h3>
+
+<div class="code">
+<pre>
+<font face="Arial"><font color="#000000">SyncLock objecttobelocked</font>
+	<font color="#000000">objecttobelocked.somemethod()</font>
+<font color="#0000ff">End </font><font color="#000000">SyncLock</font></font>
+</pre>
+</div>
+<ul>
+<li><p><b>objecttobelocked</b> is the object reference which is used by more than one thread to call the method on that object.</p></li>
+
+<li><p>The <b>lock</b> keyword requires us to specify a token (an object reference) that must be acquired by a thread to enter within the lock scope.</p></li>
+</ul>
+<p><b>Using of Monitor</b>- The lock scope actually resolves to the Monitor class after being processed by the VB.Net compiler. Lock keyword is just a notation for <b>Imports System.Threading.Monitor class.</b></p>
+
+<div class="code">
+<pre>
+<font face="Arial"><font color="#000000">Imports System.Threading</font>
+<font color="#000000">Imports System.Threading.Monitor</font>
+<font color="#000000">Module Module1</font>
+    <font color="#0000ff">Class </font><font color="#000000">Program</font>
+        <font color="#000000">Shared </font><font color="#0000ff">Sub </font><font color="#000000">Main(</font><font color="#0000ff">ByVal </font><font color="#000000">arg As </font><font color="#ff0000">String</font><font color="#000000">())</font>
+            <font color="#000000">Console.WriteLine(</font><font color="#ff00ff">&quot; -----&gt;  Multiple Threads  -----&gt;&quot;</font><font color="#000000">)</font>
+            <font color="#0000ff">Dim </font><font color="#000000">p As New Printer()</font>
+            <font color="#0000ff">Dim </font><font color="#000000">Threads As Thread() = New Thread(</font><font color="#800080">2</font><font color="#000000">) {}</font>
+            <font color="#0000ff">For </font><font color="#000000">i As Integer = </font><font color="#800080">0 </font><font color="#0000ff">To </font><font color="#800080">2</font>
+                <font color="#000000">Threads(i) = New Thread(New ThreadStart(AddressOf p.PrintNumbers))</font>
+                <font color="#000000">Threads(i).Name = </font><font color="#ff00ff">&quot;Child &quot; </font><font color="#000000">&amp; i</font>
+            <font color="#0000ff">Next</font>
+            <font color="#0000ff">For Each </font><font color="#000000">t As Thread </font><font color="#0000ff">In </font><font color="#000000">Threads</font>
+                <font color="#000000">t.Start()</font>
+            <font color="#0000ff">Next</font>
+            <font color="#000000">Console.ReadLine()</font>
+        <font color="#0000ff">End Sub</font>
+    <font color="#0000ff">End Class</font>
+    <font color="#0000ff">Class </font><font color="#000000">Printer</font>
+        <font color="#0000ff">Public Sub </font><font color="#000000">PrintNumbers()</font>
+            <font color="#000000">Monitor.Enter(Me)</font>
+            <font color="#000000">Try</font>
+                <font color="#0000ff">For </font><font color="#000000">i As Integer = </font><font color="#800080">0 </font><font color="#0000ff">To </font><font color="#800080">4</font>
+                    <font color="#000000">Thread.Sleep(</font><font color="#800080">100</font><font color="#000000">)</font>
+                    <font color="#000000">Console.Write(i &amp; </font><font color="#ff00ff">&quot;,&quot;</font><font color="#000000">)</font>
+                <font color="#0000ff">Next</font>
+                <font color="#000000">Console.WriteLine()</font>
+            <font color="#000000">Finally</font>
+                <font color="#000000">Monitor.[</font><font color="#0000ff">Exit</font><font color="#000000">](Me)</font>
+            <font color="#0000ff">End </font><font color="#000000">Try</font>
+        <font color="#0000ff">End Sub</font>
+    <font color="#0000ff">End Class</font>
+<font color="#0000ff">End </font><font color="#000000">Module</font></font>
+</pre>
+</div>
+
+<div class="image">
+<img src="synchronization2.PNG">
+</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="ipaddress.shtml" title="How to get IP Address of Websites in VB.Net application ">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="Creating%20Word%20document%20using%20C-sharp.shtml" title="Creating Word document using VB.Net">Next</a></td>
+  </tr> 
+</table>
+<!-- Footer Start-->		
+
+		</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/dotnet/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->

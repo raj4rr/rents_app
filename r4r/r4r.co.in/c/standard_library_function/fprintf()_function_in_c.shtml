@@ -1,0 +1,252 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http:///www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML>
+
+	<HEAD>
+		<TITLE>fprintf() Function </TITLE>
+		<META content="Rajesh Kumar" name="author">
+		<META http-equiv="expires" content="0">
+		<META content="r4r.co.in" name="owner">
+		<META http-equiv="content-type" content="text/html; charset=iso-8859-1">
+		<meta name="description" CONTENT="">
+		<meta name="keywords" CONTENT="">
+
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>Standard Library Functions in C</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a><img src="/images/left_menu_bullet.gif"/> <a href="/c/">c</a></div>
+            	<table>
+                    <tr>
+                      <td width="19%" valign="top" style="width:20%"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/c/commonfiles/s-library-leftmenu.shtml'); ?></td>
+
+                        <td width="81%" style="80%" valign="top">
+
+                        		<!-- Header End-->	
+                     <div class="main_content">
+<div class="heading">fprintf() Function</div>
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="index.shtml" title="Standard Library Functions in C">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml" title="Standard Library Functions in C">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="fscanf()_function_in_c.shtml" title="fscanf() Function">Next</a></td>
+  </tr> 
+</table>
+<h1>Description</h1>
+<p>The C library function, The <b>fprintf( )</b> function used for write data to text file.</p>
+
+<h1>Declaration</h1>
+<p>Following is the declaration for fprintf() function.</p>
+<div class="code">
+<PRE><FONT FACE="Arial"><FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">fprintf(FILE *stream, </FONT><FONT COLOR="#0000ff">const char </FONT><FONT COLOR="#000000">*format,[argu1,argu2 .... argun  ]);</FONT></FONT></PRE>
+</div>
+
+<h1>Parameters</h1>
+<p><b>Stream</b> - This is the Pointer to a FILE object that identifies an output stream.</p> 
+<p><b>Format</b> - Here control string refers to a string that contains formatting information, and arg1,are argument that represent the individual output data items. The argument may include variables, constants and stringgs. It can optionally contain embedded format specifiers that are replaced by the values specified in subsequent additional arguments and formatted as requested.</p>
+<p>A format specifier follows this prototype:</p>
+
+<div class="code">
+<PRE><FONT FACE="Arial"><FONT COLOR="#000000">%[flags][width][.precision][length]specifier</FONT></FONT></PRE>
+</div>
+<p>Where the specifier character at the end is the most significant component, since it defines the type and the interpretation of its corresponding argument:</p>
+
+    <div class="table_content">
+<table>
+<tr>
+	<td class="heading">specifier</td>
+    <td class="heading">Output</td>
+    <td class="heading">Example</td>
+</tr>
+<tr>
+	<td class="alternate_heading1">d or i</td><td class="alternate_heading1">Signed decimal integer</td><td class="alternate_heading1">392</td>
+</tr>
+<tr>
+	<td class="alternate_heading2">u</td><td class="alternate_heading2">Unsigned decimal integer</td><td class="alternate_heading2">7235</td>
+</tr>
+<tr>
+	<td class="alternate_heading1">o</td><td class="alternate_heading1">Unsigned octal</td><td class="alternate_heading1">610</td>
+</tr>
+<tr>
+	<td class="alternate_heading2">x</td><td class="alternate_heading2">Unsigned hexadecimal integer</td><td class="alternate_heading2">7fa</td>
+</tr>
+<tr>
+	<td class="alternate_heading1">X</td><td class="alternate_heading1">Unsigned hexadecimal integer (uppercase)</td><td class="alternate_heading1">7FA</td>
+</tr>
+<tr>
+	<td class="alternate_heading2">f</td><td class="alternate_heading2">Decimal floating point, lowercase</td><td class="alternate_heading2">392.65</td>
+</tr>
+<tr>
+	<td class="alternate_heading1">F</td><td class="alternate_heading1">Decimal floating point, uppercase</td><td class="alternate_heading1">392.65</td>
+</tr>
+<tr>
+	<td class="alternate_heading2">e</td><td class="alternate_heading2">Scientific notation (mantissa/exponent), lowercase</td><td class="alternate_heading2">3.9265e+2</td>
+</tr>
+ <tr>
+	<td class="alternate_heading1">E</td><td class="alternate_heading1">Scientific notation (mantissa/exponent), uppercase</td><td class="alternate_heading1">3.9265E+2</td>
+</tr>
+<tr>
+	<td class="alternate_heading2">g</td><td class="alternate_heading2">Use the shortest representation: %e or %f</td><td class="alternate_heading2">392.65</td>
+</tr>
+<tr>
+	<td class="alternate_heading1">G</td><td class="alternate_heading1">Use the shortest representation: %E or %F</td><td class="alternate_heading1">392.65</td>
+</tr>
+<tr>
+	<td class="alternate_heading2">a</td><td class="alternate_heading2">Hexadecimal floating point, lowercase</td><td class="alternate_heading2">-0xc.90fep-2</td>
+</tr>
+<tr>
+	<td class="alternate_heading1">A</td><td class="alternate_heading1">Hexadecimal floating point, uppercase</td><td class="alternate_heading1">-0XC.90FEP-2</td>
+</tr>
+<tr>
+	<td class="alternate_heading2">c</td><td class="alternate_heading2">Character</td><td class="alternate_heading2">a</td>
+</tr>
+<tr>
+	<td class="alternate_heading1">s</td><td class="alternate_heading1">String of characters</td><td class="alternate_heading1">sample</td>
+</tr>
+<tr>
+	<td class="alternate_heading2">p</td><td class="alternate_heading2">Pointer address</td><td class="alternate_heading2">b8000000</td>
+</tr>
+<tr>
+	<td class="alternate_heading1">n</td><td class="alternate_heading1">Nothing printed.The corresponding argument must be a pointer to a signed int.
+The number of characters written so far is stored in the pointed location.	</td><td class="alternate_heading1"></td>
+</tr>
+<tr>
+	<td class="alternate_heading2">%</td><td class="alternate_heading2">A % followed by another % character will write a single % to the stream</td><td class="alternate_heading2">%</td>
+</tr>
+</table>
+</div>
+
+<p>The format specifier can also contain sub-specifiers: flags, width, .precision and modifiers (in that order), which are optional and follow these specifications:</p>
+
+<div class="table_content">
+<table>
+<tr>
+	<td class="heading">flags</td>
+    <td class="heading">description</td>
+</tr>
+<tr>
+	<td class="alternate_heading1">-</td><td class="alternate_heading1">Left-justify within the given field width; Right justification is the default (see width sub-specifier).</td>
+</tr>
+<tr>
+	<td class="alternate_heading2">+</td><td class="alternate_heading2">Forces to preceed the result with a plus or minus sign (+ or -) even for positive numbers. By default, only negative numbers are preceded with a - sign.</td>
+</tr>
+<tr>
+	<td class="alternate_heading1">(space)	</td><td class="alternate_heading1">If no sign is going to be written, a blank space is inserted before the value.</td>
+</tr>
+<tr>
+	<td class="alternate_heading2">#</td><td class="alternate_heading2">Used with o, x or X specifiers the value is preceeded with 0, 0x or 0X respectively for values different than zero.
+Used with a, A, e, E, f, F, g or G it forces the written output to contain a decimal point even if no more digits follow. By default, if no digits follow, no decimal point is written.</td>
+</tr>
+<tr>
+	<td class="alternate_heading1">0</td><td class="alternate_heading1">Left-pads the number with zeroes (0) instead of spaces when padding is specified (see width sub-specifier).</td>
+</tr>
+</table>
+</div>
+
+<div class="table_content">
+<table>
+<tr>
+	<td class="heading">width</td>
+    <td class="heading">Description</td>
+</tr>
+<tr>
+	<td class="alternate_heading1">(number)</td><td class="alternate_heading1">Minimum number of characters to be printed. If the value to be printed is shorter than this number, the result is padded with blank spaces. The value is not truncated even if the result is larger.</td>
+</tr>
+<tr>
+	<td class="alternate_heading2">*</td><td class="alternate_heading2">The width is not specified in the format string, but as an additional integer value argument preceding the argument that has to be formatted.</td>
+</tr>
+</table>
+</div>
+
+<div class="table_content">
+<table>
+<tr>
+	<td class="heading">.precision</td>
+    <td class="heading">Description</td>
+</tr>
+<tr>
+	<td class="alternate_heading1">.number</td><td class="alternate_heading1">For integer specifiers (d, i, o, u, x, X) - precision specifies the minimum number of digits to be written. If the value to be written is shorter than this number, the result is padded with leading zeros. The value is not truncated even if the result is longer. A precision of 0 means that no character is written for the value 0. For e, E and f specifiers: this is the number of digits to be printed after the decimal point. For g and G specifiers: This is the maximum number of significant digits to be printed. For s: this is the maximum number of characters to be printed. By default all characters are printed until the ending null character is encountered. For c type: it has no effect. When no precision is specified, the default is 1. If the period is specified without an explicit value for precision, 0 is assumed.</td>
+</tr>
+<tr>
+	<td class="alternate_heading2">.*</td><td class="alternate_heading2">The precision is not specified in the format string, but as an additional integer value argument preceding the argument that has to be formatted.
+length	Description</td>
+</tr>
+</table>
+</div>
+
+<div class="table_content">
+<table>
+<tr>
+	<td class="heading">length</td>
+    <td class="heading">Description</td>
+</tr>
+<tr>
+	<td class="alternate_heading1">h</td><td class="alternate_heading1">The argument is interpreted as a short int or unsigned short int (only applies to integer specifiers: i, d, o, u, x and X).</td>
+</tr>
+<tr>
+	<td class="alternate_heading2">l</td><td class="alternate_heading2">The argument is interpreted as a long int or unsigned long int for integer specifiers (i, d, o, u, x and X), and as a wide character or wide character string for specifiers c and s.</td>
+</tr>
+</table>
+</div>
+
+<p><b>additional arguments</b> -  Depending on the format string, The control string can include a flag, Which affects the appearance of the output. The flag must be placed immediately after percent sign(%).There should be the same number of these arguments as the number of %-tags that expect a value.</p>
+
+<h1>Return Value</h1>
+<p>On success, the total number of characters written is returned otherwise, If an error occurs, it will return a negative value.</p>
+
+<h1>Example</h1>
+<div class="code">
+<PRE><FONT FACE="Arial"><FONT COLOR="#000000">#include &lt;stdio.h&gt;</FONT>
+<FONT COLOR="#000000">#include &lt;stdlib.h&gt;</FONT>
+
+<FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">main()</FONT>
+<FONT COLOR="#000000">{</FONT>
+   <FONT COLOR="#000000">FILE * fp;</FONT>
+
+   <FONT COLOR="#000000">fp = fopen (</FONT><FONT COLOR="#ff00ff">"myfile.txt"</FONT><FONT COLOR="#000000">, </FONT><FONT COLOR="#ff00ff">"w+"</FONT><FONT COLOR="#000000">);</FONT>
+   <FONT COLOR="#000000">fprintf(fp, </FONT><FONT COLOR="#ff00ff">"%s %s %s %d"</FONT><FONT COLOR="#000000">, </FONT><FONT COLOR="#ff00ff">"i"</FONT><FONT COLOR="#000000">, </FONT><FONT COLOR="#ff00ff">"am"</FONT><FONT COLOR="#000000">, </FONT><FONT COLOR="#ff00ff">"sandeep"</FONT><FONT COLOR="#000000">);</FONT>
+
+   <FONT COLOR="#000000">fclose(fp);</FONT>
+
+   <FONT COLOR="#0000ff">return</FONT><FONT COLOR="#000000">(</FONT><FONT COLOR="#800080">0</FONT><FONT COLOR="#000000">);</FONT>
+<FONT COLOR="#000000">}</FONT></FONT></PRE>
+</div>
+
+<h2>Output</h2>
+<div class="code">
+<PRE><FONT FACE="Arial"><FONT COLOR="#000000">i am sandeep</FONT></FONT></PRE>
+</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="index.shtml" title="Standard Library Functions in C">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml" title="Standard Library Functions in C">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="fscanf()_function_in_c.shtml" title="fscanf() Function">Next</a></td>
+  </tr> 
+</table>
+
+					<!--Footer  --> 	
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/c/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+

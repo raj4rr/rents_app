@@ -1,0 +1,161 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>Merge  Table in c#,Different Table Structures,No Primary Key</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="Merge  Table in c#,Different Table Structures,No Primary Key" >
+<meta name="keywords" CONTENT="Merge  Table in c#,Different Table Structures,No Primary Key">
+
+<!-- header start-->	
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>ADO.NET</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+            <img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+            <a href="/ado.net">ADO.Net</a>
+              <img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+
+			  <a href="/ado.net/01/tutorial/ado.net/">ADO.NET Tutorials</a>
+
+              </div>
+
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/ado.net/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	 
+<!-- header End-->	
+<div class="heading">Merge Table</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="Usage%20of%20DataTable%20Events.shtml" title="Usage of DataTable Events">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="Same%20Table%20Structures%20with%20Primary%20Key.shtml" title="Same Table Structures, with Primary Key">Next</a></td>
+  </tr> 
+</table>
+
+<ol>
+<li> Different Table Structures,No Primary Key
+<p>In the strongly typed DataSet, Table0 can be used as a sample table that has no primary keys defined on it.</p>
+<div class="image">
+<img src="images/mergetwotable2.jpg">
+</div>
+</li>
+
+<li>Binding the  student  datasource in table1 and table2
+<div class="image">
+<img src="images/mergetwotable4.jpg" <="" p="">
+</div>
+</li>
+
+<li>write the code
+
+<div class="code">
+<pre>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Collections</font><font color="#000000">.</font><font color="#008080">Generic</font><font color="#000000">;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">ComponentModel</font><font color="#000000">;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Data</font><font color="#000000">;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Drawing</font><font color="#000000">;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.Linq;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Text</font><font color="#000000">;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Windows</font><font color="#000000">.</font><font color="#008080">Forms</font><font color="#000000">;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Data</font><font color="#000000">.OleDb;</font>
+<font color="#0000ff">namespace </font><font color="#000000">WindowsFormsApplication13</font>
+<font color="#000000">{</font>
+<font color="#0000ff">public </font><font color="#000000">partial </font><font color="#0000ff">class </font><font color="#000000">Form1 : </font><font color="#808000">Form</font>
+<font color="#000000">{</font>
+<font color="#0000ff">public </font><font color="#000000">Form1()</font>
+<font color="#000000">{</font>
+<font color="#000000">InitializeComponent();</font>
+<font color="#000000">}</font>
+<font color="#0000ff">private void </font><font color="#000000">Form1_Load(</font><font color="#0000ff">object </font><font color="#000000">sender, </font><font color="#808000">EventArgs </font><font color="#000000">e)</font>
+<font color="#000000">{</font>
+<font color="#008000">// TODO: This line of code loads data into </font>
+<font color="#008000">//the 'studentDataSet.student' table. </font>
+<font color="#000000">You can move, or remove it, </font><font color="#0000ff">as </font><font color="#000000">needed.</font>
+<font color="#0000ff">this</font><font color="#000000">.studentTableAdapter.Fill(</font><font color="#0000ff">this</font><font color="#000000">.studentDataSet.student);</font>
+<font color="#008000">// TODO: This line of code loads data into </font>
+<font color="#008000">//the 'studentDataSet.std1' table. </font>
+<font color="#000000">You can move, or remove it, </font><font color="#0000ff">as </font><font color="#000000">needed.</font>
+<font color="#0000ff">this</font><font color="#000000">.std1TableAdapter.Fill(</font><font color="#0000ff">this</font><font color="#000000">.studentDataSet.std1);   </font>
+<font color="#000000">}</font>
+<font color="#0000ff">private void </font><font color="#000000">button1_Click(</font><font color="#0000ff">object </font><font color="#000000">sender, </font><font color="#808000">EventArgs </font><font color="#000000">e)</font>
+<font color="#000000">{</font>
+<font color="#000000">OleDbConnection con = </font><font color="#0000ff">new </font><font color="#000000">OleDbConnection</font>
+<font color="#000000">(</font><font color="#ff00ff">&quot;Provider=Microsoft.Jet.OLEDB.4.0;</font>
+<font color="#008080">Data </font><font color="#000000">Source=F:\\student.mdb</font><font color="#ff00ff">&quot;);</font>
+<font color="#000000">OleDbDataAdapter ad = </font><font color="#0000ff">new </font><font color="#000000">OleDbDataAdapter(</font><font color="#ff00ff">&quot;select * from std1&quot;</font><font color="#000000">, con);</font>
+<font color="#808000">DataTable </font><font color="#000000">tb1 = </font><font color="#0000ff">new </font><font color="#808000">DataTable</font><font color="#000000">();</font>
+<font color="#000000">ad.Fill(tb1);</font>
+<font color="#000000">dataGridView4.Visible = </font><font color="#0000ff">true</font><font color="#000000">;</font>
+<font color="#000000">dataGridView4.DataSource = tb1;</font>
+<font color="#000000">OleDbDataAdapter ad1 = </font><font color="#0000ff">new </font><font color="#000000">OleDbDataAdapter</font>
+<font color="#000000">(</font><font color="#ff00ff">&quot;select * from student&quot;</font><font color="#000000">, con);</font>
+<font color="#808000">DataTable </font><font color="#000000">tb2 = </font><font color="#0000ff">new </font><font color="#808000">DataTable</font><font color="#000000">();</font>
+<font color="#000000">ad1.Fill(tb2);</font>
+<font color="#000000">tb1.Merge(tb2);</font>
+<font color="#000000">dataGridView3.DataSource = tb1;</font>
+<font color="#000000">dataGridView3.Visible = </font><font color="#0000ff">true</font><font color="#000000">;</font>
+<font color="#000000">dataGridView1.Visible = </font><font color="#0000ff">false</font><font color="#000000">;</font>
+<font color="#000000">label1.Visible = </font><font color="#0000ff">false</font><font color="#000000">;</font>
+<font color="#000000">label2.Visible = </font><font color="#0000ff">false</font><font color="#000000">; </font>
+<font color="#000000">}</font>
+<font color="#000000">}</font>
+<font color="#000000">}</font>
+</pre>
+</div>
+</li>
+
+<li>Run thr program
+<div class="image">
+<img src="images/mergetwotable6.jpg">
+</div></li>
+
+<li>click the merge button
+<div class="image">
+<img src="images/mergetwotable8.jpg">
+</div>
+</li>
+</ol>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="Usage%20of%20DataTable%20Events.shtml" title="Usage of DataTable Events">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="Same%20Table%20Structures%20with%20Primary%20Key.shtml" title="Same Table Structures, with Primary Key">Next</a></td>
+  </tr> 
+</table>
+
+<!-- Footer Start-->		
+		</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/dotnet/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->

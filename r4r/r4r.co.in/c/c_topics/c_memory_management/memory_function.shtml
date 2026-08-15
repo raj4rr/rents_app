@@ -1,0 +1,180 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>malloc() Function,calloc() Function,free() Function,realloc() Function</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="Learn How to use malloc() Function,calloc()Function,free() Function,realloc() Function" >
+<meta name="keywords" CONTENT="c tutorial,c basics,programming language,malloc() Function,calloc()Function,free() Function,realloc() Function,examples,pointer,function,loop,else,if else,while,array,pre processor,post processor,structures,memory menagement,string,constants,variables,decisions making,c unions,c memory allocation, c operators, C pointers,c error handling, c file handling">
+<link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>C Programming language</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a><img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/c/">C </a>
+              <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/c/c_topics/c_memory_management">C Memory Management </a></div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/c/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 
+
+		<!-- Header End-->	
+<div class="heading">C Memory functions : malloc() function</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="memory_management.shtml">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="index.shtml">Next</a></td>
+  </tr>
+</table>
+
+<p>malloc() function allocate a block of byte of memory in byte. In this when the memory block needed explicitly requested. The malloc() function is same as a function is request for RAM in the system&nbsp; memory. If the request is grant then a&nbsp;void pointer return and the pointer point start of that block. If the request fail then a NULL pointer return.</p>
+
+<div class="code">    
+    <font>malloc( number of element * </font>
+    <font color="#0000FF" >sizeof</font></font><FONT>(element</font><FONT>)</font><FONT><font>);</font>
+</div>
+<h2>Example</h2>
+<div class="code">
+<FONT><font COLOR="#0000ff">int </font>
+			<font><FONT>* ptr;</FONT><br>
+<FONT>ptr = malloc(</FONT><FONT COLOR="#800080">10</FONT><FONT>*</FONT><FONT COLOR="#0000ff">sizeof</FONT><FONT>(</FONT><FONT COLOR="#0000ff">int</FONT><FONT>));</FONT></font></FONT>
+</div>
+<p>Where size represents the memory required in bytes .The memory which is provided is contiguous memory. But malloc function return void pointer so it needed type casting of that pointer.</p>
+
+<div class="code">(type cast)malloc( number of element * sizeof(element));</div>
+<h2>Example</h2>
+<div class="code">
+<font COLOR="#0000ff">int </font><font><FONT>* ptr;</FONT><br>
+<FONT>ptr =(</FONT><FONT COLOR="#0000ff">int</FONT><FONT>*) malloc(</FONT><FONT COLOR="#800080">10</FONT><FONT>*</FONT><FONT COLOR="#0000ff">sizeof</FONT><FONT>(</FONT><FONT COLOR="#0000ff">int</FONT><FONT>));</FONT></font>
+</div>
+<h2>Similarly for allocation of memory to a structure variable </h2>
+<div class="code">
+<font>(</font><font color="#0000FF">struct</font><font> name)malloc( 
+</font><font color="#0000FF">sizeof</font><font>(</font><font color="#0000FF">struct</font><font> name));</font>
+</div>
+
+<h2>Example</h2>
+<div class="code">
+<font COLOR="#0000ff">struct </font><font><FONT>employee</FONT><br>
+<FONT>{</FONT><br>
+				<FONT COLOR="#0000ff">int </FONT><FONT>emp_id;</FONT><br>
+				<FONT COLOR="#0000ff">char </FONT><FONT>emp_name[</FONT><FONT COLOR="#800080">20</FONT><FONT>];</FONT><br>
+				<FONT COLOR="#0000ff">float </FONT><FONT>emp_contact_no;</FONT><br>
+			<br>
+
+<FONT>};</FONT></font></FONT><p>
+<font ><br>
+<FONT COLOR="#0000ff">struct </FONT><FONT>employee *ptr</FONT><br>
+<FONT>ptr=(</FONT><FONT COLOR="#0000ff">struct </FONT><FONT>employee*)malloc(</FONT><FONT COLOR="#0000ff">sizeof</FONT><FONT>(</FONT><FONT COLOR="#0000ff">struct </FONT><FONT>employee));</FONT>
+</div>
+
+<div class="heading">calloc() function</div>
+<p>In malloc requested memory is provided a block of contiguous memory . calloc() function  is similar to the malloc rather then calloc() function allocated the memory block for an array of elements. Memory for a group of objects used calloc() function. If calloc() function is executed successfully then its allocated memory  is set as zero and a pointer  returned and if the function failed then a NULL pointer return.</p>
+<div class="code">
+	<font color="#0000FF">void</font><font> 
+		*calloc(size_t 
+number,size_t size);</font>
+</div>
+<p>size_t used for unsigned on most compilers. The number is the number of 	objects which is allocate, and size is the size (in bytes) of each object.</p>
+
+<h2>Example</h2>
+<div class="code">
+<FONT  COLOR="#0000ff">
+<FONT COLOR="#0000ff">int </FONT><FONT>main () {</FONT><br>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>
+<FONT COLOR="#0000ff">int </FONT><FONT>number,i;</FONT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>
+&nbsp;&nbsp; <FONT>printf(</FONT><FONT COLOR="#ff00ff">&quot;Enter the number &quot;</FONT><FONT>);</FONT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>
+&nbsp;&nbsp; <FONT>scanf(</FONT><FONT COLOR="#ff00ff">&quot;%d&quot;</FONT><FONT>,&amp;number);</FONT>&nbsp;&nbsp;<br>
+&nbsp;&nbsp; <FONT>printf(</FONT><FONT COLOR="#ff00ff">&quot;Number which is here are&quot;</FONT><FONT>,number);</FONT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>
+&nbsp;&nbsp; <FONT COLOR="#0000ff">int </FONT><FONT>*ptr = (</FONT><FONT COLOR="#0000ff">int </FONT><FONT>*) calloc (number,</FONT><FONT COLOR="#0000ff">sizeof</FONT><FONT>(</FONT><FONT COLOR="#0000ff">int</FONT><FONT>));</FONT><br>
+&nbsp;&nbsp;&nbsp;&nbsp; <FONT COLOR="#0000ff">for </FONT><FONT>(i=</FONT><FONT COLOR="#800080">0</FONT><FONT>; i&lt;number;i++) {</FONT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>
+<FONT>                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ptr[i] = i +i;</FONT><br>
+&nbsp;
+  <FONT>&nbsp;&nbsp;&nbsp;&nbsp; }</FONT><br>
+<FONT COLOR="#0000ff">&nbsp;&nbsp; for </FONT><FONT>(i=</FONT><FONT COLOR="#800080">0</FONT><FONT>; i&lt;number;i++) {</FONT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <FONT>printf(</FONT><FONT COLOR="#ff00ff">&quot;Result is %d %d\n&quot;</FONT><FONT>,i,ptr[i]);</FONT><br>
+&nbsp;&nbsp; <FONT>}</FONT><br>
+<FONT>};</FONT></FONT>
+</div>
+
+<div class="heading"> free() function</div>
+<p>For deallocation of the memory which is allocated through the malloc() function and calloc() function used free() function.</p>
+<div class="code">free(ptr);</div>
+
+<h2>Example:</h2>
+<div class="code">
+<FONT  COLOR="#0000ff"><FONT COLOR="#0000ff">int </FONT><FONT>main () {</FONT><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br><FONT COLOR="#0000ff">int </FONT><FONT>number, i;</FONT>&nbsp;<br>&nbsp;&nbsp;&nbsp; <FONT>printf(</FONT><FONT COLOR="#ff00ff">&quot;Enter the number &quot;</FONT><FONT>);</FONT><br>&nbsp;&nbsp;&nbsp;&nbsp;<FONT>scanf(</FONT><FONT COLOR="#ff00ff">&quot;%d&quot;</FONT><FONT>,&amp;number);</FONT><br>&nbsp;&nbsp;&nbsp;&nbsp;<FONT>printf(</FONT><FONT COLOR="#ff00ff">&quot;Number which is here are&quot;</FONT><FONT>,number);</FONT> <br>&nbsp;&nbsp;&nbsp;&nbsp; <FONT COLOR="#0000ff">for </FONT><FONT>(i=</FONT><FONT COLOR="#800080">0</FONT><FONT>; i&lt;number;i++) {<br>			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;			ptr[i] = i +i;<br>&nbsp;&nbsp; }</FONT><FONT COLOR="#0000ff"><br>	for </FONT><FONT>(i=</FONT><FONT COLOR="#800080">0</FONT><FONT>; i&lt;number;i++) {</FONT><br>&nbsp; <FONT>printf(</FONT><FONT COLOR="#ff00ff">&quot;Result is %d %d\n&quot;</FONT><FONT>,i,ptr[i]);</FONT><br>	&nbsp; <FONT>}<br></FONT>&nbsp;</FONT><font ><font><fonrsize="3">free(ptr);</fonr><br>		}</FONT>;</font>
+</font>
+</div>
+
+<div class="heading">realloc() function</div>
+<p>realloc() function is used&nbsp; for resize the size of memory block which is allocated by the malloc() and calloc () function. Two situation where use realloc() function.</p>
+<ul>
+	<li>When allocated block is insufficient need more memory then use realloc().</li>
+    <li>When allocated memory is much more then the required application then use realloc().</li>
+    </ul>
+ <div class="code"><FONT><font>realloc(ptr, new size);</font></div>
+
+<h2>Example</h2>
+<div class="code">
+<pre><font ><font color="#008000">/* Through realloc() resize the memory&nbsp; */</font>
+<font color="#ff0000">#include </font><font>&lt;stdio.h&gt;</font>
+<font color="#ff0000">#include </font><font>&lt;stdlib.h&gt;</font>
+<font color="#ff0000">#include </font><font>&lt;string.h&gt;</font>
+<font color="#0000ff">void </font><font>main {</font>
+  <font color="#0000ff">char </font><font>buffer[</font><font color="#800080">80</font><font>], *msg;</font>
+
+   <font>puts(</font><font color="#ff00ff">&quot;Enter the text line&quot;</font><font>);</font><font color="#008000">// Input a string.</font>
+<font>gets(buffer);</font>
+
+<font></font><font color="#008000">/* The string copied in to initial allocated block */</font>
+<font>msg = realloc(NULL, strlen(buffur)+</font><font color="#800080">1</font><font>);</font>
+<font>strcpy(msg, buffer);</font>
+
+    <font>puts(message); </font><font color="#008000">// Display the message which copied.</font>
+<font>puts(</font><font color="#ff00ff">&quot;Enter another text line.&quot;</font><font>); </font><font color="#008000">//Get another string from the user.</font>
+<font>gets(buffer);</font>
+
+<font> </font><font color="#008000">/* Resize the memory and also concatenate the string to it. */</font>
+<font>msg = realloc(msg,(strlen(msg) + strlen(buffer)+</font><font color="#800080">1</font><font>));</font>
+<font>strcat(msg, buffer);</font>
+<font>};</font>
+&nbsp;</font>
+</pre>
+</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="memory_management.shtml">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="index.shtml">Next</a></td>
+  </tr>
+</table>
+<!-- Footer Start-->	
+
+		</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>

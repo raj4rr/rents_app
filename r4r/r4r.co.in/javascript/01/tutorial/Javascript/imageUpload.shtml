@@ -1,0 +1,124 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>How to use Image Upload control in JavaScript</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="How to use Image Upload control in JavaScript" >
+<meta name="keywords" CONTENT="How to use Image Upload control in JavaScript">
+
+<link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>Javascript language</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+            <img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+            <a href="/javascript/">Javascript</a>
+              <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/javascript/01/tutorial/Javascript/">Javascript Example</a>
+
+              </div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/javascript/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	 
+<!-- header End-->
+<div class="heading">Image Upload Control</div>
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="cal.shtml"title="Calculator in JavaScript">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="btnClk.shtml"title="Show the Clock on Button">Next</a></td>
+  </tr> 
+</table>
+<h3>How to use Image Upload control in JavaScript</h3>
+
+<p><i>Step 1. Written below code in your application.</i></p>
+<div class="code">
+<pre>
+<font color="#000000">&lt;html&gt;</font>
+<font color="#000000">&lt;script language=</font><font color="#ff00ff">&quot;javascript&quot;</font><font color="#000000">&gt;</font>
+<font color="#0000ff">var </font><font color="#000000">maxWidth=</font><font color="#800080">100</font><font color="#000000">;</font>
+<font color="#0000ff">var </font><font color="#000000">maxHeight=</font><font color="#800080">100</font><font color="#000000">;</font>
+<font color="#0000ff">var </font><font color="#000000">fileTypes=[</font><font color="#ff00ff">&quot;bmp&quot;</font><font color="#000000">,</font><font color="#ff00ff">&quot;gif&quot;</font><font color="#000000">,</font><font color="#ff00ff">&quot;png&quot;</font><font color="#000000">,</font><font color="#ff00ff">&quot;jpg&quot;</font><font color="#000000">,</font><font color="#ff00ff">&quot;jpeg&quot;</font><font color="#000000">];</font>
+<font color="#0000ff">var </font><font color="#000000">outImage=</font><font color="#ff00ff">&quot;previewField&quot;</font><font color="#000000">;</font>
+<font color="#0000ff">var </font><font color="#000000">defaultPic=</font><font color="#ff00ff">&quot;spacer.gif&quot;</font><font color="#000000">;</font>
+<font color="#0000ff">function </font><font color="#000000">preview(what){</font>
+  <font color="#0000ff">var </font><font color="#000000">source=what.value;</font>
+  <font color="#0000ff">var </font><font color="#000000">ext=source.substring(source.lastIndexOf(</font><font color="#ff00ff">&quot;.&quot;</font><font color="#000000">)+</font><font color="#800080">1</font><font color="#000000">,source.length).toLowerCase();</font>
+  <font color="#0000ff">for </font><font color="#000000">(</font><font color="#0000ff">var </font><font color="#000000">i=</font><font color="#800080">0</font><font color="#000000">; i&lt;fileTypes.length; i++) </font><font color="#0000ff">if </font><font color="#000000">(fileTypes[i]==ext) </font><font color="#0000ff">break</font><font color="#000000">;</font>
+  <font color="#000000">globalPic=</font><font color="#0000ff">new </font><font color="#ff0000">Image</font><font color="#000000">();</font>
+  <font color="#0000ff">if </font><font color="#000000">(i&lt;fileTypes.length) globalPic.src=source;</font>
+  <font color="#0000ff">else </font><font color="#000000">{</font>
+    <font color="#000000">globalPic.src=defaultPic;</font>
+    <font color="#000000">alert(</font><font color="#ff00ff">&quot;That is not avalid image\nPlease load an image with an </font>
+<font color="#000000">extention of one of the following:\n\n</font><font color="#ff00ff">&quot;+fileTypes.join(&quot;</font><font color="#000000">, </font><font color="#ff00ff">&quot;));</font>
+  <font color="#000000">}</font>
+  <font color="#000000">setTimeout(</font><font color="#ff00ff">&quot;apply_changed()&quot;</font><font color="#000000">,</font><font color="#800080">200</font><font color="#000000">);</font>
+<font color="#000000">}</font>
+<font color="#0000ff">var </font><font color="#000000">globalPic;</font>
+<font color="#0000ff">function </font><font color="#000000">apply_changed(){</font>
+  <font color="#0000ff">var </font><font color="#000000">field=</font><font color="#ff0000">document</font><font color="#000000">.getElementById(outImage);</font>
+  <font color="#0000ff">var </font><font color="#000000">x=parseInt(globalPic.width);</font>
+  <font color="#0000ff">var </font><font color="#000000">y=parseInt(globalPic.height);</font>
+  <font color="#0000ff">if </font><font color="#000000">(x&gt;maxWidth) {</font>
+    <font color="#000000">y*=maxWidth/x;</font>
+    <font color="#000000">x=maxWidth;</font>
+  <font color="#000000">}</font>
+  <font color="#0000ff">if </font><font color="#000000">(y&gt;maxHeight) {</font>
+    <font color="#000000">x*=maxHeight/y;</font>
+    <font color="#000000">y=maxHeight;</font>
+  <font color="#000000">}</font>
+  <font color="#000000">field.style.display=(x&lt;</font><font color="#800080">1 </font><font color="#000000">|| y&lt;</font><font color="#800080">1</font><font color="#000000">)?</font><font color="#ff00ff">&quot;none&quot;</font><font color="#000000">:</font><font color="#ff00ff">&quot;&quot;</font><font color="#000000">;</font>
+  <font color="#000000">field.src=globalPic.src;</font>
+  <font color="#000000">field.width=x;</font>
+  <font color="#000000">field.height=y;</font>
+<font color="#000000">}</font>
+<font color="#000000">&lt;/script&gt;</font>
+<font color="#000000">&lt;body&gt;</font>
+<font color="#000000">&lt;input type=</font><font color="#ff00ff">&quot;file&quot; </font><font color="#000000">id=</font><font color="#ff00ff">&quot;picField&quot; </font><font color="#000000">onchange=</font><font color="#ff00ff">&quot;preview(this)&quot;</font><font color="#000000">&gt;</font>
+<font color="#000000">&lt;/body&gt;</font>
+<font color="#000000">&lt;/html&gt;</font>
+</pre>
+</div>
+
+<p><i>Step 2. Run the Application. Click on Button.</i></p>
+
+<div class="image">
+<img src="Image/image.gif">
+ </div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="cal.shtml"title="Calculator in JavaScript">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="btnClk.shtml"title="Show the Clock on Button">Next</a></td>
+  </tr> 
+</table>
+
+<!-- Footer Start-->
+		</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->

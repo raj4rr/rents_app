@@ -1,0 +1,185 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD>
+<meta http-equiv="Content-Language" content="en-us">
+<TITLE>Example of Intrusive approach</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name="description" CONTENT="Show in a Message Box using Validation Summary,spring travels,spring tutorials,spring framework,spring mvc,spring interview question,spring framework tutorials,spring aop" >
+<meta name="keywords" CONTENT="Show in a Message Box using Validation Summary,spring travels,spring tutorials,spring framework,spring mvc,spring interview question,spring framework tutorials,spring aop">
+
+<!-- header start-->	
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>Spring Framework</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+           <img src="/images/left_menu_bullet.gif" width="11" height="6"/>  <a href="/java/">Java</a>    
+		      <img src="/images/left_menu_bullet.gif" width="11" height="6"/><a href="/java/spring/">Spring</a>
+
+              </div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/spring/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	 
+
+<!-- header End--> 
+
+<div class="heading">Example of Intrusive approach</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="LifecycleIOC.shtml" title="Lifecycle IOC">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="Non-intrusiveExample.shtml" title="Non-intrusive Example">Next</a></td>
+  </tr> 
+</table>
+
+ <p><i>Introduction:</i> This approach provide the facility to initialize the bean through the InitializingBean interface. This interface implement in our bean class then its provide a method name afterPropertiesSet() to override in our bean class.</p>
+<p>Technology use to run this source code</p>
+<ol>
+<li>
+    Spring 2.5
+    </li>
+    <li>
+    Eclipse
+    </li>
+    <li>
+    JDK 1.6
+    </li>
+    </ol>
+
+<p>Source Code:</p>
+
+<h3>applicationContext.xml</h3>
+<div class="code">
+<PRE>
+<FONT COLOR="#0000ff">&lt;?xml </FONT><FONT COLOR="#ff0000">version</FONT><FONT COLOR="#0000ff">=</FONT><FONT COLOR="#ff00ff">"1.0" </FONT><FONT COLOR="#ff0000">encoding</FONT><FONT COLOR="#0000ff">=</FONT><FONT COLOR="#ff00ff">"UTF-8"</FONT><FONT COLOR="#800080">?</FONT><FONT COLOR="#0000ff">&gt;</FONT>
+<FONT COLOR="#0000ff">&lt;</FONT><FONT COLOR="#808000">beans</FONT>
+<FONT COLOR="#ff0000">xmlns</FONT><FONT COLOR="#0000ff">=</FONT><FONT COLOR="#ff00ff">"http://www.springframework.org/schema/beans"</FONT>
+<FONT COLOR="#800080">xmlns:xsi</FONT><FONT COLOR="#0000ff">=</FONT><FONT COLOR="#ff00ff">"http://www.w3.org/2001/XMLSchema-instance"</FONT>
+<FONT COLOR="#800080">xmlns:p</FONT><FONT COLOR="#0000ff">=</FONT><FONT COLOR="#ff00ff">"http://www.springframework.org/schema/p"</FONT>
+<FONT COLOR="#800080">xsi:schemaLocation</FONT><FONT COLOR="#0000ff">=</FONT><FONT COLOR="#ff00ff">"http://www.springframework.org/schema/beans</FONT>
+<FONT COLOR="#ff00ff">	http://www.springframework.org/schema/beans/spring-beans-2.5.xsd"</FONT><FONT COLOR="#0000ff">&gt;</FONT>
+<FONT COLOR="#0000ff">&lt;</FONT><FONT COLOR="#808000">bean </FONT><FONT COLOR="#800080">id</FONT><FONT COLOR="#0000ff">=</FONT><FONT COLOR="#ff00ff">"one" </FONT><FONT COLOR="#800080">class</FONT><FONT COLOR="#0000ff">=</FONT><FONT COLOR="#ff00ff">"org.r4r.One" </FONT><FONT COLOR="#800080">init-method</FONT><FONT COLOR="#0000ff">=</FONT><FONT COLOR="#ff00ff">"init"</FONT><FONT COLOR="#0000ff">/&gt;</FONT>
+<FONT COLOR="#0000ff">&lt;</FONT><FONT COLOR="#808000">bean </FONT><FONT COLOR="#800080">id</FONT><FONT COLOR="#0000ff">=</FONT><FONT COLOR="#ff00ff">"two" </FONT><FONT COLOR="#800080">class</FONT><FONT COLOR="#0000ff">=</FONT><FONT COLOR="#ff00ff">"org.r4r.Two" </FONT><FONT COLOR="#800080">init-method</FONT><FONT COLOR="#0000ff">=</FONT><FONT COLOR="#ff00ff">"init" </FONT><FONT COLOR="#800080">destroy-method</FONT><FONT COLOR="#0000ff">=</FONT><FONT COLOR="#ff00ff">"cleanUp"</FONT><FONT COLOR="#0000ff">/&gt;</FONT>
+<FONT COLOR="#0000ff">&lt;/</FONT><FONT COLOR="#808000">beans</FONT><FONT COLOR="#0000ff">&gt;</FONT>
+</PRE>
+</div>
+
+<h3>One.java</h3>
+<div class="code">
+<PRE>
+<FONT COLOR="#0000ff">package </FONT><FONT COLOR="#000000">org.r4r;</FONT>
+<FONT COLOR="#0000ff">import </FONT><FONT COLOR="#000000">org.springframework.beans.factory.DisposableBean;</FONT>
+<FONT COLOR="#0000ff">public class </FONT><FONT COLOR="#000000">One </FONT><FONT COLOR="#0000ff">implements </FONT><FONT COLOR="#000000">DisposableBean {</FONT>
+<FONT COLOR="#000000">@Override</FONT>
+<FONT COLOR="#0000ff">public void </FONT><FONT COLOR="#000000">destroy() </FONT><FONT COLOR="#0000ff">throws </FONT><FONT COLOR="#ff0000">Exception </FONT><FONT COLOR="#000000">{</FONT>
+<FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.println(</FONT><FONT COLOR="#ff00ff">"One is given a chance to performed cleanup operation"</FONT><FONT COLOR="#000000">);</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#0000ff">public </FONT><FONT COLOR="#000000">One(){</FONT>
+<FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.println(</FONT><FONT COLOR="#ff00ff">"One is instantiated..."</FONT><FONT COLOR="#000000">);</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#0000ff">public void </FONT><FONT COLOR="#000000">init(){</FONT>
+<FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.println(</FONT><FONT COLOR="#ff00ff">"One is given a chance to initialize"</FONT><FONT COLOR="#000000">);</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#000000">}</FONT>
+</PRE>
+</div>	   
+
+ <h3>Two.java</h3>
+<div class="code">
+<PRE>
+<FONT COLOR="#0000ff">package </FONT><FONT COLOR="#000000">org.r4r;</FONT>
+<FONT COLOR="#0000ff">import </FONT><FONT COLOR="#000000">org.springframework.beans.factory.InitializingBean;</FONT>
+<FONT COLOR="#0000ff">public class </FONT><FONT COLOR="#000000">Two </FONT><FONT COLOR="#0000ff">implements </FONT><FONT COLOR="#000000">InitializingBean {</FONT>
+<FONT COLOR="#000000">@Override</FONT>
+<FONT COLOR="#0000ff">public void </FONT><FONT COLOR="#000000">afterPropertiesSet() </FONT><FONT COLOR="#0000ff">throws </FONT><FONT COLOR="#ff0000">Exception </FONT><FONT COLOR="#000000">{</FONT>
+<FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.println(</FONT><FONT COLOR="#ff00ff">"Intrusive initialization of two"</FONT><FONT COLOR="#000000">);</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#0000ff">public </FONT><FONT COLOR="#000000">Two(){</FONT>
+<FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.println(</FONT><FONT COLOR="#ff00ff">"Two is instantiated...."</FONT><FONT COLOR="#000000">);</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#0000ff">public void </FONT><FONT COLOR="#000000">init(){</FONT>
+<FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.println(</FONT><FONT COLOR="#ff00ff">"Nonintrunsive initialization of two...."</FONT><FONT COLOR="#000000">);</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#0000ff">public void </FONT><FONT COLOR="#000000">cleanUp(){</FONT>
+<FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.println(</FONT><FONT COLOR="#ff00ff">"Non-intrunsive cleanup of two..."</FONT><FONT COLOR="#000000">);</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#000000">}</FONT>
+</PRE>
+</div>
+
+<h3>Test.java</h3>
+<div class="code">
+<PRE>
+<FONT COLOR="#0000ff">package </FONT><FONT COLOR="#000000">org.r4r;</FONT>
+<FONT COLOR="#0000ff">import </FONT><FONT COLOR="#000000">org.springframework.beans.factory.BeanFactory;</FONT>
+<FONT COLOR="#0000ff">import </FONT><FONT COLOR="#000000">org.springframework.beans.factory.xml.XmlBeanFactory;</FONT>
+<FONT COLOR="#0000ff">import </FONT><FONT COLOR="#000000">org.springframework.core.io.ClassPathResource;</FONT>
+<FONT COLOR="#0000ff">import </FONT><FONT COLOR="#000000">org.springframework.core.io.Resource;</FONT>
+<FONT COLOR="#0000ff">public class </FONT><FONT COLOR="#000000">Test {</FONT>
+<FONT COLOR="#0000ff">public static void </FONT><FONT COLOR="#000000">main(</FONT><FONT COLOR="#ff0000">String</FONT><FONT COLOR="#000000">[] args) {</FONT>
+<FONT COLOR="#000000">Resource r=</FONT><FONT COLOR="#0000ff">new </FONT><FONT COLOR="#000000">ClassPathResource(</FONT><FONT COLOR="#ff00ff">"applicationContext.xml"</FONT><FONT COLOR="#000000">);</FONT>
+<FONT COLOR="#000000">BeanFactory f=</FONT><FONT COLOR="#0000ff">new </FONT><FONT COLOR="#000000">XmlBeanFactory(r);</FONT>
+<FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.println(</FONT><FONT COLOR="#ff00ff">"Obtaining bean one..."</FONT><FONT COLOR="#000000">);</FONT>
+<FONT COLOR="#000000">One one=(One)f.getBean(</FONT><FONT COLOR="#ff00ff">"one"</FONT><FONT COLOR="#000000">);</FONT>
+<FONT COLOR="#000000">f.isSingleton(</FONT><FONT COLOR="#ff00ff">"one"</FONT><FONT COLOR="#000000">);</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#000000">}</FONT>
+</PRE>
+</div>
+
+<p><h3>output:</h3></p>
+<div class="output">
+<PRE>
+<FONT COLOR="#000000">Obtaining bean one...</FONT>
+<FONT COLOR="#000000">One is instantiated...</FONT>
+<FONT COLOR="#000000">One is given a chance to initialize</FONT>
+<FONT COLOR="#000000">Obtaining bean two...</FONT>
+<FONT COLOR="#000000">Two is instantiated....</FONT>
+<FONT COLOR="#000000">Intrusive initialization of two</FONT>
+<FONT COLOR="#000000">Nonintrunsive initialization of two....</FONT>
+</PRE>
+</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="LifecycleIOC.shtml" title="Lifecycle IOC">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="Non-intrusiveExample.shtml" title="Non-intrusive Example">Next</a></td>
+  </tr> 
+</table>
+
+<!-- Footer Start-->
+
+		</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->
+

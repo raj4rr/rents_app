@@ -1,0 +1,150 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+
+<HTML><HEAD>
+
+<link rel="stylesheet" type="text/css" href="/css/style.css" />
+
+<link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+
+<meta http-equiv="Content-Language" content="en-us">
+
+<TITLE>Message Driven beans</TITLE>
+
+<META content="Rajesh Kumar" name="author">
+
+<META http-equiv="expires" content="0">
+
+<META content="r4r.co.in" name="owner">
+
+<META http-equiv=Content-Type content="text/html; charset=windows-1252">
+
+<meta name="description" CONTENT="Message Driven Beans,Difference between Session beans and Message Driven beans,Entity Beans" >
+
+<meta name="keywords" CONTENT="Message Driven Beans,Difference between Session beans and Message Driven beans,Entity Beans">
+
+</HEAD>
+
+<!--Header start-->
+
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+   <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>EJB</h1>
+            <div class="link_menu"><A href="/">R4R</A>
+
+<img border="0" src="/images/left_menu_bullet.gif" width="11" height="6"> <A href="/java">Java</A><img border="0" src="/images/left_menu_bullet.gif" width="11" height="6"><A href="/java/ejb/">EJB</A></font> </div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/ejb/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	  
+
+<!-- header End-->
+
+<div class="heading">Message Driven Beans:</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="when%20we%20using%20Session%20beans.shtml" title=" Using Session Beans
+">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="Creating%20an%20Entity%20Bean.shtml" title="Creating A Entity Beans">Next</a></td>
+  </tr>
+</table>
+
+<p>The Message Driven beans are distributed components which encapsulate business logic and application. A 
+Message-Driven bean's is an enterprise bean that allowing J2EE applications to 
+process messages asynchronously.</p>
+
+<p>It acts as a JMS message listener, which is 
+similar to an event listener except that it receiving Messages instead of 
+events. The messages may be sent by any J2EE component--an application client, 
+another enterprise bean, or a Web component--or by a JMS application or system 
+that does not use J2EE technology.</p>
+<p>
+Message-driven beans currently process only JMS messages, but in the future they 
+may be used to process other kinds of messages.</p>
+
+<h3>Difference between Session beans and Message Driven beans:</h3>
+<ol>
+<li>Session beans are Synchronous where as message driven beans are Asynchronous.</li>
+
+<li>Session beans are based o RMI where as Message Driven beans are based o Java Messaging Services (JMS).</li>
+</ol>
+
+<p>A Message-Driven Bean's resembling a stateless session bean.</p>
+
+<p>A message-driven bean's instances retaining no data or conversational state for 
+a specific client.</p>
+
+<p>All instances of a message-driven bean are equivalent, allowing the EJB 
+
+container to assign a message to any message-driven bean instance. </p>
+
+<p>The container can pool these instances to allow streams of messages to be 
+
+processed concurrently.</p>
+
+<p>A Single Message-driven bean can process messages from multiple clients.</p>
+
+<p>The instance variables of the message-driven bean instance can contain some 
+state across the handling of client messages-for example, a JMS API connection, 
+an open database connection, or an object reference to an enterprise bean 
+object.</p>
+
+<p>
+When a message arrives, the container calls the message-driven bean's on Message 
+method to process the message. The on Message method normally casts the message 
+to one of the five JMS message types and handles it in accordance with the 
+application's business logic. The on Message method may call helper methods, or 
+it may invoke a session or entity bean to process the information in the message 
+or to store it in a database.</p>
+
+<div class="heading">Entity Beans:</div>
+
+<p>An Entity beans represent distributed application data as distributed 
+component. In EJB 3.0 a persistent API's in JPA (Java persistent API) was 
+introduce Sun Micro System. which is used by EJB Container for persisting 
+entities. An Entity bean's represented a business object in a persistent storage 
+mechanism. </p>
+
+<p>Some examples of business objects are customers, orders, and 
+products. In the J2EE SDK, The persistent storage mechanism is a relational 
+database. Typically, each entity bean has an underlying table in a relational 
+database, and each instance of the bean corresponds to a row in that table.</p>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="when%20we%20using%20Session%20beans.shtml" title=" Using Session Beans
+">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="Creating%20an%20Entity%20Bean.shtml" title="Creating A Entity Beans">Next</a></td>
+  </tr>
+</table>
+
+<!-- Footer Start-->
+</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>

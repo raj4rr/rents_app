@@ -1,0 +1,156 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>Adding Records Using Mapped Names </TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="Adding Records Using Mapped Names " >
+<meta name="keywords" CONTENT="Adding Records Using Mapped Names ">
+
+<!-- header start-->	
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>ADO.NET</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+            <img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+            <a href="/ado.net">ADO.Net</a>
+              <img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+
+			  <a href="/ado.net/01/tutorial/ado.net/">ADO.NET Tutorials</a>
+
+              </div>
+
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/ado.net/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	 
+<!-- header End-->	
+<div class="heading">Adding Records Using Mapped Names</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="Merge%20Case%20%20Absolutely%20Different%20Table%20Structures.shtml" title="Merge Case : Absolutely Different Table Structures">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="Updating%20Records%20Using%20Mapped%20Names.shtml" title="Updating Records Using Mapped Names">Next</a></td>
+  </tr> 
+</table>
+
+<p>TableMappings and ColumnMappings help you bridge this translation gap of different column/table names in fetching data. The same concepts can be applied to other database operations, such as inserting a new record or updating an existing</p>
+
+<h2>Example of Adding a Record Using C#</h2>
+<div class="code">
+<pre>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Collections</font><font color="#000000">.</font><font color="#008080">Generic</font><font color="#000000">;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Text</font><font color="#000000">;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Data</font><font color="#000000">.OleDb;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Data</font><font color="#000000">.</font><font color="#008080">Common</font><font color="#000000">;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Data</font><font color="#000000">;</font>
+<font color="#0000ff">namespace </font><font color="#000000">addrecord</font>
+<font color="#000000">{</font>
+<font color="#0000ff">class </font><font color="#000000">Program</font>
+<font color="#000000">{</font>
+<font color="#0000ff">static void </font><font color="#000000">Main(</font><font color="#0000ff">string</font><font color="#000000">[] args)</font>
+<font color="#000000">{</font>
+<font color="#808000">DataSet </font><font color="#000000">ds = </font><font color="#0000ff">new </font><font color="#808000">DataSet</font><font color="#000000">(</font><font color="#ff00ff">&quot;Users&quot;</font><font color="#000000">);</font>
+<font color="#0000ff">try</font>
+<font color="#000000">{</font>
+<font color="#008000">// Define a connection object</font>
+<font color="#000000">OleDbConnection dbConn = </font><font color="#0000ff">new </font><font color="#000000">OleDbConnection(</font>
+<font color="#ff00ff">&quot;Provider=Microsoft.Jet.OLEDB.4.0;&quot; </font><font color="#000000">+</font>
+<font color="#ff00ff">&quot;Password=;User ID=Admin;Data Source=db.mdb&quot;</font><font color="#000000">);</font>
+<font color="#008000">// Create a data adapter to retrieve records from DB</font>
+<font color="#000000">OleDbDataAdapter dataadp =</font>
+<font color="#0000ff">new </font><font color="#000000">OleDbDataAdapter(</font><font color="#ff00ff">&quot;SELECT ID,Ename,En0,cty,st&quot; </font><font color="#000000">+</font>
+<font color="#ff00ff">&quot; FROM Emp&quot;</font><font color="#000000">, dbConn);</font>
+<font color="#008000">// Define each column to map</font>
+<font color="#808000">DataColumnMapping </font><font color="#000000">dcmUserID =</font>
+<font color="#0000ff">new </font><font color="#808000">DataColumnMapping</font><font color="#000000">(</font><font color="#ff00ff">&quot;ID&quot;</font><font color="#000000">, </font><font color="#ff00ff">&quot;UserID&quot;</font><font color="#000000">);</font>
+<font color="#808000">DataColumnMapping </font><font color="#000000">dcmEmpName =</font>
+<font color="#0000ff">new </font><font color="#808000">DataColumnMapping</font><font color="#000000">(</font><font color="#ff00ff">&quot;Ename&quot;</font><font color="#000000">, </font><font color="#ff00ff">&quot;Name&quot;</font><font color="#000000">);</font>
+<font color="#808000">DataColumnMapping </font><font color="#000000">dcmEmpNumber =</font>
+<font color="#0000ff">new </font><font color="#808000">DataColumnMapping</font><font color="#000000">(</font><font color="#ff00ff">&quot;En0&quot;</font><font color="#000000">, </font><font color="#ff00ff">&quot;Eno&quot;</font><font color="#000000">);</font>
+<font color="#808000">DataColumnMapping </font><font color="#000000">dcmCity =</font>
+<font color="#0000ff">new </font><font color="#808000">DataColumnMapping</font><font color="#000000">(</font><font color="#ff00ff">&quot;cty&quot;</font><font color="#000000">, </font><font color="#ff00ff">&quot;City&quot;</font><font color="#000000">);</font>
+<font color="#808000">DataColumnMapping </font><font color="#000000">dcmState =</font>
+<font color="#0000ff">new </font><font color="#808000">DataColumnMapping</font><font color="#000000">(</font><font color="#ff00ff">&quot;st&quot;</font><font color="#000000">, </font><font color="#ff00ff">&quot;State&quot;</font><font color="#000000">);</font>
+<font color="#008000">// Define the table containing the mapped columns</font>
+<font color="#808000">DataTableMapping </font><font color="#000000">dtmUsers = </font><font color="#0000ff">new </font><font color="#808000">DataTableMapping</font><font color="#000000">(</font><font color="#ff00ff">&quot;Table&quot;</font><font color="#000000">, </font><font color="#ff00ff">&quot;User&quot;</font><font color="#000000">);</font>
+<font color="#000000">dtmUsers.ColumnMappings.Add(dcmUserID);</font>
+<font color="#000000">dtmUsers.ColumnMappings.Add(dcmEmpName);</font>
+<font color="#000000">dtmUsers.ColumnMappings.Add(dcmEmpNumber);</font>
+<font color="#000000">dtmUsers.ColumnMappings.Add(dcmCity);</font>
+<font color="#000000">dtmUsers.ColumnMappings.Add(dcmState);</font>
+<font color="#008000">// Activate the mapping mechanism</font>
+<font color="#000000">dataadp.TableMappings.Add(dtmUsers);</font>
+<font color="#008000">// Fill the dataset</font>
+<font color="#000000">dataadp.Fill(ds);</font>
+<font color="#008000">// Declare a command builder to create SQL instructions</font>
+<font color="#008000">// to create and update records.</font>
+<font color="#000000">OleDbCommandBuilder cb = </font><font color="#0000ff">new </font><font color="#000000">OleDbCommandBuilder(dataadp);</font>
+<font color="#008000">// Insert a new record in the DataSet</font>
+<font color="#808000">DataRow </font><font color="#000000">r = ds.Tables[</font><font color="#ff00ff">&quot;User&quot;</font><font color="#000000">].NewRow();</font>
+<font color="#000000">r[</font><font color="#ff00ff">&quot;Eno&quot;</font><font color="#000000">] = </font><font color="#ff00ff">&quot;1050&quot;</font><font color="#000000">;</font>
+<font color="#000000">r[</font><font color="#ff00ff">&quot;City&quot;</font><font color="#000000">] = </font><font color="#ff00ff">&quot;Delhi&quot;</font><font color="#000000">;</font>
+<font color="#000000">r[</font><font color="#ff00ff">&quot;State&quot;</font><font color="#000000">] = </font><font color="#ff00ff">&quot;NewDelhi&quot;</font><font color="#000000">;</font>
+<font color="#000000">ds.Tables[</font><font color="#ff00ff">&quot;User&quot;</font><font color="#000000">].Rows.Add(r);</font>
+<font color="#008000">// Insert the record in the database</font>
+<font color="#000000">dataadp.Update(ds.GetChanges());</font>
+<font color="#008000">// Align in-memory data with the data source ones</font>
+<font color="#000000">ds.AcceptChanges();</font>
+<font color="#008000">// Print successfully message</font>
+<font color="#808000">Console</font><font color="#000000">.WriteLine(</font><font color="#ff00ff">&quot;A new record has been&quot;</font>
+<font color="#000000">+ </font><font color="#ff00ff">&quot; added to the database.&quot;</font><font color="#000000">);</font>
+<font color="#000000">}</font>
+<font color="#0000ff">catch </font><font color="#000000">(</font><font color="#808000">Exception </font><font color="#000000">ex)</font>
+<font color="#000000">{</font>
+<font color="#008000">// Reject DataSet changes</font>
+<font color="#000000">ds.RejectChanges();</font>
+<font color="#008000">// An error occurred. Show the error message</font>
+<font color="#808000">Console</font><font color="#000000">.WriteLine(ex.</font><font color="#808000">Message</font><font color="#000000">);</font>
+<font color="#000000">}</font>
+<font color="#000000">}</font>
+<font color="#000000">}</font>
+<font color="#000000">}</font>
+</pre>
+</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="Merge%20Case%20%20Absolutely%20Different%20Table%20Structures.shtml" title="Merge Case : Absolutely Different Table Structures">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="Updating%20Records%20Using%20Mapped%20Names.shtml" title="Updating Records Using Mapped Names">Next</a></td>
+  </tr> 
+</table>
+
+<!-- Footer Start-->		
+		</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/dotnet/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->

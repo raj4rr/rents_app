@@ -1,0 +1,141 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>DataReader;Example  of  DataReader;Data Retrieval Methods of the DataReader Object;Differences between DataSet and DataReader;Limitations of the DataReader</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="DataReader;Example  of  DataReader;Data Retrieval Methods of the DataReader Object;Differences between DataSet and DataReader;Limitations of the DataReader" >
+<meta name="keywords" CONTENT="DataReader;Example  of  DataReader;Data Retrieval Methods of the DataReader Object;Differences between DataSet and DataReader;Limitations of the DataReader">
+
+<!-- header start-->	
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>ADO.NET</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+            <img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+            <a href="/ado.net">ADO.Net</a>
+              <img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+
+			  <a href="/ado.net/01/tutorial/ado.net/">ADO.NET Tutorials</a>
+
+              </div>
+
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/ado.net/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	 
+<!-- header End-->	
+
+<div class="heading">DataReader</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="Handling%20DataAdapter%20Events.shtml" title="Handling DataAdapter Events">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="Connecting%20to%20Various%20Data%20Sources.shtml" title="Connecting to Various Data Sources">Next</a></td>
+  </tr> 
+</table>
+
+<p>The DataReader provides a read-only, forward-only stream of results from a database query or stored procedure and we can  use a DataReader if it is desirable,and possible, to keep the connection to the database open while data is being processed.A DataReader is a lightweight object  which  provides read-only, forward-only data in a very fast and efficient way . DataReader is efficient than using a DataAdapter but it is limited  and  Data access with DataReader is read-only, i.e, you  cannot make any changes (update) to data and forward-only, i.e we cannot go back to the previous record which was accessed.</p>
+<p> DataReader requires the exclusive use of an active connection for the entire time if it is in existence and we instantiate a DataReader by calling  a Command object's ExecuteReader command. When the DataReader is first returned it is positioned before the first record of the result set. To making the first record available we   need to call the Read method and  If a record is exist, the Read method moves the DataReader for  next record and returns True and  If a record is not available then  the Read method returns False. we can   use a While Loop to iterate through the records with the Read method.</p>
+<div class="heading">
+Example  of  DataReader</div>
+<div class="code">
+<pre>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Data</font><font color="#000000">;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Data</font><font color="#000000">.SqlClient;</font>
+<font color="#0000ff">public class </font><font color="#000000">empnamereader {</font>
+<font color="#0000ff">public static void </font><font color="#000000">Main() {</font>
+<font color="#000000">SqlConnection con = </font><font color="#0000ff">new </font><font color="#000000">SqlConnection(</font>
+<font color="#ff00ff">&quot;server=(local)\mycomputer;database=emp;trusted_connection=yes&quot;</font>
+<font color="#000000">);</font>
+<font color="#0000ff">string </font><font color="#000000">s = </font><font color="#ff00ff">&quot;SELECT * FROM emp&quot;</font><font color="#000000">;</font>
+<font color="#000000">con.Open();</font>
+<font color="#000000">sqlcommand cmd=</font><font color="#0000ff">new </font><font color="#000000">sqlcommand(s, con);</font>
+<font color="#000000">SqlDataReader dr = cmd.ExecuteReader();</font>
+<font color="#0000ff">while </font><font color="#000000">(dr.Read()) {</font>
+<font color="#808000">Console</font><font color="#000000">.WriteLine(sdr[</font><font color="#ff00ff">&quot;empname&quot;</font><font color="#000000">] );</font>
+<font color="#000000">}</font>
+<font color="#000000">con.Close();</font>
+<font color="#000000">}</font>
+<font color="#000000">}</font>
+</pre>
+</div>
+<p>
+<div class="heading">
+Data Retrieval Methods of the DataReader Object</div>
+<p>
+<div class="table_content">
+<table>
+<tr><td class="heading"style="width:30;">Method</td> <td class="heading"style="width:70;">Field Type</td></tr>
+<tr><td class="alternate_heading1"style="width:30;">GetBoolean()</td> <td class="alternate_heading1"style="width:70;">Bool</td></tr>
+<tr><td class="alternate_heading2"style="width:30;">GetByte()</td> <td class="alternate_heading2"style="width:70;">Byte</td></tr>
+<tr><td class="alternate_heading1"style="width:30;">GetChar()</td> <td class="alternate_heading1"style="width:70;">Char</td></tr>
+<tr><td class="alternate_heading2"style="width:30;">GetDateTime()</td> <td class="alternate_heading2"style="width:70;">DateTime</td></tr>
+<tr><td class="alternate_heading1"style="width:30;">GetDecimal()</td> <td class="alternate_heading1"style="width:70;">Decimal</td></tr>
+<tr><td class="alternate_heading2"style="width:30;">GetDouble()</td> <td class="alternate_heading2"style="width:70;">Double</td></tr>
+<tr><td class="alternate_heading1"style="width:30;">GetFloat()</td> <td class="alternate_heading1"style="width:70;">Float</td></tr>
+<tr><td class="alternate_heading2"style="width:30;">GetGuid()</td> <td class="alternate_heading2"style="width:70;">	Guid</td></tr>
+<tr><td class="alternate_heading1"style="width:30;">GetInt16()</td> <td class="alternate_heading1"style="width:70;">Int16</td></tr>
+<tr><td class="alternate_heading2"style="width:30;">GetInt32()</td> <td class="alternate_heading2"style="width:70;">Int32</td></tr>
+<tr><td class="alternate_heading1"style="width:30;">GetInt64()</td> <td class="alternate_heading1"style="width:70;">Int64</td></tr>
+<tr><td class="alternate_heading2"style="width:30;">GetString()</td> <td class="alternate_heading2"style="width:70;">String</td></tr>
+</table></div></p></p>
+<p>
+<div class="heading">Differences between DataSet and DataReader</div>
+<p>
+<div class="table_content">
+<table>
+<tr><td class="heading"style="width:30;">DataSet</td> <td class="heading"style="width:70;">DataReader</td></tr>
+<tr><td class="alternate_heading1"style="width:30;">DataSet object can contain multiple rowsets from the same data source as well as from the relationships between them.</td> <td class="alternate_heading1"style="width:70;">DataReader provides forward-only and read-only access to data.</td></tr>
+
+<tr><td class="alternate_heading2"style="width:30;">Dataset is a disconnected architecture.</td> <td class="alternate_heading2"style="width:70;">Datareader is connected architecture.</td></tr>
+<tr><td class="alternate_heading1"style="width:30;">Dataset can persist data.</td> <td class="alternate_heading1"style="width:70;">Datareader can not persist data.</td></tr>
+<tr><td class="alternate_heading2"style="width:30;">A DataSet is well suited for data that needs to be retrieved from multiple tables.</td> <td class="alternate_heading2"style="width:70;">It has live connection while reading data</td></tr>
+<tr><td class="alternate_heading1"style="width:30;"> DatsSet is slower than DataReader ,Due to overhead.</td> <td class="alternate_heading1"style="width:70;">Speed performance is better in DataReader</td></tr>
+</table></div></p></p>
+
+<h3>
+Limitations of the DataReader</h3>
+<p>There is  not possible to sort, filter, or manipulate the data while using a DataReader, since it is read-only and forward-only.</p>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="Handling%20DataAdapter%20Events.shtml" title="Handling DataAdapter Events">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="Connecting%20to%20Various%20Data%20Sources.shtml" title="Connecting to Various Data Sources">Next</a></td>
+  </tr> 
+</table>
+
+<!-- Footer Start-->		
+		</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/dotnet/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->></BODY></HTML>

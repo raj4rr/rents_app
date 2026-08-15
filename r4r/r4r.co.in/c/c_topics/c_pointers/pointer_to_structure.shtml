@@ -1,0 +1,126 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>Pointer and Structure Using C Language</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="Learn Pointer and Structure Using C Language,c tutorial,c basics,programming language,examples,pointer,function,loop,else,if else,while,array,pre processor,post processor" >
+<meta name="keywords" CONTENT="c tutorial,c basics,programming language,examples,pointer,function,loop,else,if else,while,array,pre processor,post processor,structures,memory menagement,string,constants,variables,decisions making,c unions,c memory allocation, c operators, C pointers,c error handling, c file handling">
+<link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>C Programming language</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a><img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/c/">C </a>
+              <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/c/c_topics/c_pointers/">C Pointer</a></div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/c/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 
+
+		<!-- Header End-->	
+
+<div class="heading"> Pointer to Structure</div>
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="pointer_to_function.shtml">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="addvantage_of_pointer.shtml">Next</a></td>
+  </tr>
+</table>
+<p>In structure we can access multiple data types under a single name for easy manipulation. example we want to refer to address with multiple data like house number, street, zip code, country. C is support structure which allows that we want to wrap one or more variables with different data types. A structure can contain any valid data types like int, char, float even arrays and other structures. Each variable in structure is called a structure member.
+</p>
+<h3>Example</h3>
+<div class="code">
+<FONT color="#000080"><FONT COLOR="#0000ff">struct </FONT><FONT>address{</FONT><br>
+&nbsp;&nbsp;&nbsp; <FONT COLOR="#0000ff">unsigned int </FONT><FONT>house_number;</FONT><br>
+&nbsp;&nbsp;&nbsp;&nbsp;
+	  <FONT COLOR="#0000ff">char </FONT><FONT>street_name[</FONT><FONT COLOR="#800080">50</FONT><FONT>];</FONT><br>
+&nbsp;&nbsp;&nbsp;&nbsp; <FONT COLOR="#0000ff">int </FONT><FONT>zip_code;</FONT><br>
+&nbsp;&nbsp;&nbsp;&nbsp; <FONT COLOR="#0000ff">char </FONT><FONT>country[</FONT><FONT COLOR="#800080">50</FONT><FONT>];</FONT><br>
+&nbsp; <FONT>};</FONT></FONT>
+</div>
+
+<p>A structure can contain pointers as structure members and we can create a pointer to a structure as follows:</p>
+<div class="code">
+<font color="#000080">
+			<PRE><FONT><FONT COLOR="#0000ff">struct </FONT><FONT>invoice</FONT>
+  <FONT>{</FONT>
+    <FONT COLOR="#0000ff"> char</FONT><FONT>* code;</FONT>
+    <FONT COLOR="#0000ff"> char </FONT><FONT>date[</FONT><FONT COLOR="#800080">12</FONT><FONT>];</FONT>
+   <FONT>};</FONT>
+
+   <FONT COLOR="#0000ff">struct </FONT><FONT>address billing_addr;</FONT>
+   <FONT COLOR="#0000ff">struct </FONT><FONT>address *pa = &amp;billing_addr;</FONT></FONT></PRE>
+</FONT>
+</div>
+
+<h3>Example of pointer to structure</h3>
+<div class="code">
+	<pre><font><font color="#ff0000">#include </font><font>&lt;stdio.h&gt;</font>
+	<font color="#ff0000">#include </font><font>&lt;string.h&gt;</font>
+
+<font color="#0000ff">struct </font><font>man{                      </font><font color="#008000">/* the structure type */</font>
+    <font color="#0000ff">char </font><font>lastname[</font><font color="#800080">20</font><font>];           </font><font color="#008000">/* last name */</font>
+    <font color="#0000ff">char </font><font>firstname[</font><font color="#800080">20</font><font>];          </font><font color="#008000">/* first name */</font>
+    <font color="#0000ff">int </font><font>age;                     </font><font color="#008000">/* age */</font>
+    <font color="#0000ff">float </font><font>rate;                  </font><font color="#008000">/* e.g. 12.75 per hour */</font>
+<font>};</font>
+
+<font color="#0000ff">struct </font><font>man my_struct;            </font><font color="#008000">/* define the structure */</font>
+<font color="#0000ff">void </font><font>show_name(</font><font color="#0000ff">struct </font><font>man *p);   </font><font color="#008000">/* function prototype */</font>
+
+<font color="#0000ff">int </font><font>main(</font><font color="#0000ff">void</font><font>)</font>
+<font>{</font>
+    <font color="#0000ff">struct </font><font>man *st_ptr;          </font><font color="#008000">/* a pointer to a structure */</font>
+    <font>st_ptr = &amp;my_struct;         </font><font color="#008000">/* point the pointer to my_struct */</font>
+    <font>strcpy(my_struct.lastname,</font><font color="#ff00ff">&quot;tiger&quot;</font><font>);</font>
+    <font>strcpy(my_struct.firstname,</font><font color="#ff00ff">&quot;rakesh&quot;</font><font>);</font>
+    <font>printf(</font><font color="#ff00ff">&quot;%s &quot;</font><font>,my_struct.firstname);</font>
+    <font>printf(</font><font color="#ff00ff">&quot;%s&quot;</font><font>,my_struct.lastname);</font>
+    <font>my_struct.age = </font><font color="#800080">30</font><font>;</font>
+    <font>show_name(st_ptr);           </font><font color="#008000">/* pass the pointer */</font>
+    <font color="#0000ff">return </font><font color="#800080">0</font><font>;</font>
+<font>}</font>
+
+<font color="#0000ff">void </font><font>show_name(</font><font color="#0000ff">struct </font><font>man *p)</font>
+<font>{</font>
+    <font>printf(</font><font color="#ff00ff">&quot;%s &quot;</font><font>, p-&gt;firstname);  </font><font color="#008000">/* p points to a structure */</font>
+    <font>printf(</font><font color="#ff00ff">&quot;%s &quot;</font><font>, p-&gt;lastname);</font>
+    <font>printf(</font><font color="#ff00ff">&quot;%d&quot;</font><font>, p-&gt;age);</font>
+<font>}</font>;
+</font></pre>
+</div>
+<div class="output"><p><i>Output</i>: rakesh tigerrakesh tiger 30</p></div>
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="pointer_to_function.shtml">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="addvantage_of_pointer.shtml">Next</a></td>
+  </tr>
+</table>
+<!-- Footer Start-->	
+	</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>

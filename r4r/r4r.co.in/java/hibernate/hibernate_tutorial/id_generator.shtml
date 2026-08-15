@@ -1,0 +1,107 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<HTML><HEAD><TITLE>ID Generator In Hibernate tutorial</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv="content-type" content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT=" ID Generator In Hibernate tutorial Step by step covers all topics of hibernate architecture, object relation mapping(ORM), 
+hibernate query language(HQl), Presistent classes, Objects, Collections, interceptors" >
+<meta name="keywords" CONTENT="ID Generator In Hibernate tutorial, Auto Increment Generator, Hibernate tutorial, Beginner, Fresher , Objects, Collections, interceptors, Hibernate, basics of hibernate native sql, caching,HQL queries, association, has a mapping
+ , many to one mapping, hibernate architecture">
+
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<META http-equiv="Content-Language" content="en-us">
+<link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+<link href="/css/main.css" rel="stylesheet" type="text/css" />
+</HEAD>
+<BODY>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>Hibernate</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+            <img src="/images/left_menu_bullet.gif"/> <a href="/java/hibernate/">Hibernate</a>
+             </div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top">
+                            <?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/hibernate/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                       <div class="main_content">  	 
+
+      <div class="heading">Id Generator in Hibernate</div>
+
+      <table id="indexing">
+
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="hibernate_architecture.shtml" title="Hibernate Architecture">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="increment.shtml" title="Increment">Next</a></td>
+  </tr> 
+</table>
+      <p>
+          When we are using the hibernate the we also know about that in the mapping class must 
+          declare the primary key column of the database table. In the Most classes always having the 
+          JavaBeans-style property holding the unique identifier of an instance. 
+          The <id> element defines the mapping from that property to the primay key column.
+      </p>
+      <p>
+          Id generator is used to auto generate id of objects.Different database support different 
+          types of generator. most commonly used generator that are supported by oracle are:
+      </p>
+      <ol>
+          <li>increment</li>
+          <li>sequential</li>
+      </ol>
+
+      <h3>increment</h3><p>Increment generator uses highest value of primary key increases to generator id value.</p>
+      <div class="code">
+<pre><code class="language-xml">
+&lt;id
+    name="propertyName"
+    type="typename"
+    column="column_name"
+    unsaved-value="null|any|none|undefined|id_value"
+    access="field|property|ClassName"
+    node="element-name|@attribute-name|element/@attribute|."&gt;
+
+    &lt;generator class="generatorClass"/&gt;
+&lt;/id&gt;
+</code></pre>
+      </div>
+      <p>
+          If the name attribute is missing, that assumed that the class has no identifier property. 
+          and the unsaved-value attribute is almost never needed in hibernate3. 
+          There is an altern <composite-id> declaration that allows access to legacy data with 
+          composite key. Its use is strongly discouraged for anything else.
+      </p>
+     <table id="indexing">
+
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="hibernate_architecture.shtml" title="Hibernate Architecture">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="increment.shtml" title="Increment">Next</a></td>
+  </tr> 
+</table>
+
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+
+                <?php @include($_SERVER['DOCUMENT_ROOT'] . '/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>

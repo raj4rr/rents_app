@@ -1,0 +1,163 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<HTML><HEAD><TITLE>Polymorphism in Java</TITLE>
+
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv="content-type" content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="Polymorphism in java with java compile time polymorphism and java runtime polymorphism with suitable example.">
+<meta name="keywords" CONTENT="run time, polymorphism, java, dynamic, method, compile time, example, overriding, overloading">
+
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>Java Programing laungage</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a><img src="/images/left_menu_bullet.gif"/> <a href="/java/">Java</a><img src="/images/left_menu_bullet.gif"/> <a href="/java/corejava">Core Java</a></div>
+            	<table>
+                    <tr>
+                      <td width="19%" valign="top" style="width:20%"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/corejava/commonfiles/leftmenu.shtml'); ?></td>
+
+                      <td style="80%" valign="top">
+
+                     <div class="main_content">
+<div class="heading">Polymorphism in Java</div>
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="modifiers_visibility_labels_for_members_of_a_class_or_interface_or_class.shtml" title="Modifiers/Visibility for a Class or Interrface or member of a Class">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml" title="Java Programming Tutorials">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="method_overriding_or_dynamic_binding_injava.shtml" title="Runtime polymorphism (dynamic binding or method overriding)">Next</a></td>
+  </tr> 
+</table> 
+<p>Polymorphism in java is a concept by which we can perform a single action by different ways. When two or more same statements having different meaning then it is called as   polymorphism. Polymorphism is derived from 2 greek words: poly and morphs. The word &quot;poly&quot; means many and &quot;morphs&quot; means forms. The most common use of polymorphism in OOP occurs when a parent class reference is used to refer to a child class object. There are two types of polymorphism in java: compile time polymorphism (static binding)and runtime polymorphism(dynamic binding). We can perform polymorphism in java by method overloading and method overriding. Method overloading is an example of static polymorphism, while method overriding is an example of dynamic polymorphism. Polymorphism means one name and many forms. </p>
+
+<p>Types of Ploymorphism</p>
+<ol>
+<li>Method Overloading.</li>
+<li>Method Overriding.</li>
+</ol>
+
+<ol>
+<li><b>Method Overloading</b>
+
+<p>Method overloading means there are several methods present in a class having the same name but different types/order/number of parameters. When two or more methods of same name in a class, provided that there argument list or parameters are different. This concept is known as Method Overloading. Method overloading increases the readability of the program.</p>
+
+<p><b>Different ways to overload the method:</b></p>
+<ol>
+<li>By changing number of arguments</li>
+<div class="code">
+<PRE><FONT FACE="Arial"><FONT COLOR="#000000">Example:</FONT>
+<FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">sum(</FONT><FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">a,</FONT><FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">b);</FONT>
+<FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">sum(</FONT><FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">a,</FONT><FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">b,</FONT><FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">c);</FONT></FONT></PRE>
+</div>
+
+<li>By changing the data type</li>
+<div class="code">
+<PRE><FONT FACE="Arial"><FONT COLOR="#000000">Example:</FONT>
+<FONT COLOR="#0000ff">float </FONT><FONT COLOR="#000000">sum(</FONT><FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">a,</FONT><FONT COLOR="#0000ff">float </FONT><FONT COLOR="#000000">b);</FONT>
+<FONT COLOR="#0000ff">float </FONT><FONT COLOR="#000000">sum(</FONT><FONT COLOR="#0000ff">float </FONT><FONT COLOR="#000000">a,</FONT><FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">b);</FONT></FONT></PRE>
+</div>
+
+<h2>Rules for Method Overloading</h2>
+<ol>
+<li>Overloading can take place in the same class or in its sub-class.</li>
+<li>Constructor in Java can be overloaded.</li>
+<li>Overloaded methods must have a different argument list.</li>
+<li>The parameters may differ in their type or number, or in both.</li>
+<li>They may have the same or different return types.</li>
+<li>It is also known as compile time polymorphism.</li>
+</ol>
+
+<h3>Example :</h3>
+<div class="code">
+<PRE><FONT FACE="Arial"><FONT COLOR="#008000">// Method Overloading by changing the no. of arguments</FONT>
+<FONT COLOR="#0000ff">class </FONT><FONT COLOR="#000000">Calculation</FONT>
+<FONT COLOR="#000000">{  </FONT>
+	<FONT COLOR="#0000ff">void </FONT><FONT COLOR="#000000">sum(</FONT><FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">a,</FONT><FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">b)</FONT>
+	<FONT COLOR="#000000">{</FONT>
+		<FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.println(a+b);</FONT>
+	<FONT COLOR="#000000">}  </FONT>
+	<FONT COLOR="#0000ff">void </FONT><FONT COLOR="#000000">sum(</FONT><FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">a,</FONT><FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">b,</FONT><FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">c)</FONT>
+	<FONT COLOR="#000000">{</FONT>
+		<FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.println(a+b+c);</FONT>
+	<FONT COLOR="#000000">}  </FONT>
+
+	 <FONT COLOR="#0000ff">public static void </FONT><FONT COLOR="#000000">main(</FONT><FONT COLOR="#ff0000">String </FONT><FONT COLOR="#000000">args[])</FONT>
+	<FONT COLOR="#000000">{  </FONT>
+		<FONT COLOR="#000000">Calculation obj=</FONT><FONT COLOR="#0000ff">new </FONT><FONT COLOR="#000000">Calculation();  </FONT>
+		<FONT COLOR="#000000">obj.sum(</FONT><FONT COLOR="#800080">10</FONT><FONT COLOR="#000000">,</FONT><FONT COLOR="#800080">10</FONT><FONT COLOR="#000000">,</FONT><FONT COLOR="#800080">10</FONT><FONT COLOR="#000000">);  </FONT>
+		<FONT COLOR="#000000">obj.sum(</FONT><FONT COLOR="#800080">20</FONT><FONT COLOR="#000000">,</FONT><FONT COLOR="#800080">20</FONT><FONT COLOR="#000000">);  </FONT>
+	<FONT COLOR="#000000">}  </FONT>
+<FONT COLOR="#000000">}</FONT></FONT></PRE>
+</div>
+
+<h3>output :</h3>
+<div class="code">
+<PRE><FONT FACE="Arial"><FONT COLOR="#800080">30</FONT>
+
+<FONT COLOR="#800080">40</FONT></FONT></PRE>
+</div>
+
+<h3>Example :</h3>
+<div class="code">
+<PRE><FONT FACE="Arial"><FONT COLOR="#008000">//Method Overloading by changing data type of argument</FONT>
+<FONT COLOR="#0000ff">class </FONT><FONT COLOR="#000000">Calculation2</FONT>
+<FONT COLOR="#000000">{  </FONT>
+	<FONT COLOR="#0000ff">void </FONT><FONT COLOR="#000000">sum(</FONT><FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">a,</FONT><FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">b)</FONT>
+	<FONT COLOR="#000000">{</FONT>
+		<FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.println(a+b);</FONT>
+	<FONT COLOR="#000000">}  </FONT>
+	<FONT COLOR="#0000ff">void </FONT><FONT COLOR="#000000">sum(</FONT><FONT COLOR="#0000ff">double </FONT><FONT COLOR="#000000">a,</FONT><FONT COLOR="#0000ff">double </FONT><FONT COLOR="#000000">b)</FONT>
+	<FONT COLOR="#000000">{</FONT>
+		<FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.println(a+b);</FONT>
+	<FONT COLOR="#000000">}  </FONT>
+
+  <FONT COLOR="#0000ff">public static void </FONT><FONT COLOR="#000000">main(</FONT><FONT COLOR="#ff0000">String </FONT><FONT COLOR="#000000">args[])</FONT>
+  <FONT COLOR="#000000">{  </FONT>
+	<FONT COLOR="#000000">Calculation2 obj=</FONT><FONT COLOR="#0000ff">new </FONT><FONT COLOR="#000000">Calculation2();  </FONT>
+	<FONT COLOR="#000000">obj.sum(</FONT><FONT COLOR="#800080">10</FONT><FONT COLOR="#000000">.</FONT><FONT COLOR="#800080">5</FONT><FONT COLOR="#000000">,</FONT><FONT COLOR="#800080">10</FONT><FONT COLOR="#000000">.</FONT><FONT COLOR="#800080">5</FONT><FONT COLOR="#000000">);  </FONT>
+	<FONT COLOR="#000000">obj.sum(</FONT><FONT COLOR="#800080">20</FONT><FONT COLOR="#000000">,</FONT><FONT COLOR="#800080">20</FONT><FONT COLOR="#000000">);  </FONT>
+  <FONT COLOR="#000000">}  </FONT>
+<FONT COLOR="#000000">} </FONT></FONT></PRE>
+</div>
+
+<h3>output :</h3>
+<div class="code">
+<PRE><FONT FACE="Arial"><FONT COLOR="#800080">21</FONT><FONT COLOR="#000000">.</FONT><FONT COLOR="#800080">0</FONT>
+
+<FONT COLOR="#800080">40</FONT></FONT></PRE>
+</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="modifiers_visibility_labels_for_members_of_a_class_or_interface_or_class.shtml" title="Modifiers/Visibility for a Class or Interrface or member of a Class">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml" title="Java Programming Tutorials">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="method_overriding_or_dynamic_binding_injava.shtml" title="Runtime polymorphism (dynamic binding or method overriding)">Next</a></td>
+  </tr> 
+</table>
+
+                      </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+

@@ -1,0 +1,135 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>How to create a Data Base in SQL server</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="How to create a Data Base in SQL server" >
+<meta name="keywords" CONTENT="How to create a Data Base in SQL server">
+
+<!--header start-->
+
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>DATABASE & SQL/PLSQL</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a><img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+			<a href="/sql/">SQL </a>
+              </div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/sql/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	  
+
+                        	                        	<!-- Header End-->	
+
+    <div class="heading">How to create a Data Base in SQL server</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="union.shtml" title="Using UNION Operator">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="mdf_ldf_ndf.shtml" title=".mdf, .ndf and .ldf extension files">Next</a></td>
+  </tr>
+</table>     
+
+<p>The creation of a database involves the database and determining the size of the database and the files used to store data in the 
+database.</p>
+<div class="code">
+<pre>
+CREATE DATABASE <i>database_name</i>
+ON
+[&lt;filespace&gt;...n]
+[&lt;filegroup&gt;...n]
+LOG ON
+(NAME=<i>logical_file_name,</i>
+FILENAME=<i>'os_file_name'</i>,
+SIZE=<i>size</i>,MAXSIZE=<i>max_size</i>,
+FILEGROWTH=<i>growth_increment</i>)
+</pre>
+</div>
+
+<p>where,<i> data_base</i> name is the name of new database.</p>
+<p>ON specifies the disk files used to store the data portion of the database.</p>
+
+<p>NAME=<i>logical_file_name</i> specifies the logical name for the file.</p>
+
+<p>FILENAME=<i>os_file_name</i> specifies the operating system file name.</p>
+
+<p>SIZE=size specifies the initial size f the file defined in the (&lt;filespace&gt;) list.</p>
+
+<p>MAXSIZE=<i>max_size</i> specifies the maximum size to which the file defined in the &lt;filespace&gt; list can grow</p>
+
+<p>FILEGROWTH=<i>growth_incremet</i> specifies the growth increament of the file defined in the &lt;filespace&gt; list.</p>
+
+<p>FILEGROUP <i>filegroup_name</i> name specifies the name of the filegroup.</p>
+
+<p>LOG ON specifies the disk files used to store the log files.</p>
+
+<h3> Example:</h3>
+<div class="code">
+<pre>
+CREATE DATABASE  aditya
+ON
+(NAME=aditya_dat,
+FILENAME='C:\Program Files\Microsoft SQL Server\MSSQL\DATA\aditya.mdf',
+SIZE=12,
+MAXSIZE=100,
+FILEGROWTH=2)
+LOG ON
+(NAME='aditya_log',
+FILENAME='C:\Program Files\Microsoft SQL Server\MSSQL\DATA\aditya.ldf',
+SIZE=4 MB,
+MAXSIZE=50 MB,
+FILEGROWTH=2 MB)
+</pre>
+</div>
+
+<p>The CREATE DATABASE process is allocating 12.00 MB on disk 'aditya_dat'.</p>
+<p>The CREATE DATABASE process is allocating 4.00 MB on disk 'aditya_log'.</p>
+
+<p><i>output</i></p>
+<div class="output">
+<div class="image">
+<img src="Image/create_database.gif">
+</div>
+</div>
+<p>Aditya named database created</p>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="union.shtml" title="Using UNION Operator">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="mdf_ldf_ndf.shtml" title=".mdf, .ndf and .ldf extension files">Next</a></td>
+  </tr>
+</table>  
+
+                       <!--Footer  -->
+
+</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>

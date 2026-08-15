@@ -1,0 +1,99 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>Understanding the Model-View-Controller Design Pattern,CONTROLLERFILTERDISPATCHER,MODELACTION,VIEWRESULT</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="Understanding the Model-View-Controller Design Pattern,CONTROLLERFILTERDISPATCHER,MODELACTION,VIEWRESULT" >
+<meta name="keywords" CONTENT="Understanding the Model-View-Controller Design Pattern,CONTROLLERFILTERDISPATCHER,MODELACTION,VIEWRESULT">
+
+<!-- header start-->	
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>Struts</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+            <img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+            <a href="/java/">Java</a>
+              <img src="/images/left_menu_bullet.gif" width="11" height="6"/>
+              <A href="/java/struts/basic/tutorial/01">Struts1.3 Basic Tutorials </a>
+              </div>
+
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/struts/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	 
+
+<div class="heading">Understanding the Model-View-Controller Design Pattern</div>
+<!-- header End-->
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="Introduction%20of%20struts.shtml" title="Introduction of struts">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="advantages.shtml" title="Advantages of MVC,Concept of Struts framework,Brief description of Model-View-Controller(MVC)">Next</a></td>
+  </tr> 
+</table>
+
+<p>An <font class="point_out">Application framework </font>is a skeleton of an application that can be customized by the application developer as needed. Struts is an application framework that unifies the interaction of the various components of a J2EE Web application such as JavaServlets, JavaServer pages, JavaBeans, and Business logic  into one consistent whole. Struts provides this unification by implementing the Model-View-Controller (MVC) design pattern for web application. </p>
+<p>The MVC pattern separates responsibilities into three layers of functionality:</p>
+<ul><li><font class="point_out">Model -Action -- </font>The data and Business logics.</li>
+<li><font class="point_out">View -Result --</font> The presentation.</li>
+<li><font class="point_out">Controller- </font>FilterDispatcher -- The flow control.</li></ul>
+<div class="image"><img src="images/MCV.png"></div>
+
+<h3>CONTROLLERFILTERDISPATCHER </h3>
+<p>The controller's main job is to map requests to action i.e. the controller is the first component to act in the processing. The Controller handles all requests from the user and selects the view to return. When the Controller receives a request from user, Controller forwards the request to the appropriate handler, which interprets what action to take based on that request. The Controller calls on the Model to perform the desired function. After the Model has performed the function, the Controller selects the View to send back to the user based on the state of the Models data.</p>
+<p>In the Web application, the incoming HTTP requests can be thought of as commands that the user issues to the application. One of the fundamental tasks of a web application is routing these requests to the appropriate set of actions that should be taken within the application itself.</p>
+<p>The FilterDispatcher is introduce into struts 2 framework. This important object is a servlet filter that inspects each incoming request to determine which Struts 2 action should handle the request.</p>
+<h3>MODELACTION</h3>
+<p>The model is the internal state of the application which provides necessary access to the business data as well as the business logic needed to manipulate that data. The Model typically has some means to interact with persistent storage  such as a database  to retrieve, add, and update the data.
+</p>In Struts 2 action serves play two important roles.</ul>
+<p>An action is an encapsulation of the calls to business logic into a single unit of work.</p>
+<p>The action serves as a locus of data transfer.</p>
+
+<p>However, the developer of the<font class="point_out"> Model </font> components will be focusing on the creation of JavaBeans classes that support all of the functional requirements. The precise nature of the beans is completely widely depend upon the requirement of project. So the scope of Beans are:-</p>
+<ul><li><font class="point_out">page :- </font>Beans request that visible within a single page or servlet( in which Bean is create)</li>
+<li><font class="point_out">request :-</font> Bean request that visible within a single page as well as to any page or servlet that is included in this page, or forwarded to by this page.</li>
+<li><font class="point_out">Session :-</font> Bean request that visible into many pages or servlet until the particular user session not expire.</li>
+<li><font class="point_out">Application :-</font> Bean request visible within the web application.</li></ul>
+	<h3>VIEWRESULT</h3>
+<p> The view is the presentation component of the MVC pattern. The View is responsible for displaying data from the Model to the user. This layer also sends user data to the Controller. View pages are commonly JSP pages, JSF page, HTML pages, Velocity templates, or some other presentation-layer technology.</p>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="Introduction%20of%20struts.shtml" title="Introduction of struts">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="advantages.shtml" title="Advantages of MVC,Concept of Struts framework,Brief description of Model-View-Controller(MVC)">Next</a></td>
+  </tr> 
+</table>
+
+<!-- Footer Start-->	
+
+		</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->

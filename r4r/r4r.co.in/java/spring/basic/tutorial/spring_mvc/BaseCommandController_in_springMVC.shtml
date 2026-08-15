@@ -1,0 +1,310 @@
+	<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+
+<HEAD>
+<TITLE>BaseCommandController in Spring MVC</TITLE>
+
+<META content="r4r.co.in" name="owner">
+<META http-equiv="content-type" content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="BaseCommandController in Spring MVC,spring,spring mvc,spring2.5,spring2.5 mvc" >
+<meta name="keywords" CONTENT="BaseCommandController in Spring MVC,spring,spring mvc,spring2.5,spring2.5 mvc">
+
+<!-- header start-->	
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>Spring Framework</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+           <img src="/images/left_menu_bullet.gif" width="11" height="6"/>  <a href="/java/">Java</a>       <img src="/images/left_menu_bullet.gif" width="11" height="6"/><a href="/java/spring/">Spring</a>
+
+              </div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/spring/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	 
+
+<!-- header End--> 
+
+<div class="heading">BaseCommandController in Spring MVC</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="MultiActionController_in_SpringMVC.shtml" title="MultiActionController_in_SpringMVC">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="AbstractCommandController_in_SpringMVC.shtml" title="AbstractCommandController_in_SpringMVC">Next</a></td>
+  </tr> 
+</table>
+
+	<div class="image">
+	 <img src="BaseCommandController.GIF">
+     </div>
+<p>This controller provide the facility to create an Object it means that command object on received of a request and populate command object with request parameter.</p>
+<p>It is also provide the facility to populate JavaBean based> on request parameter ,validation and custom editors it means of propertyEditors to transform objects into strings.</p>
+<p><i>Syntax:</i></p>
+<div class="code">
+<PRE>
+<FONT COLOR="#0000ff">public abstract class </FONT><FONT COLOR="#000000">BaseCommandController</FONT>
+<FONT COLOR="#0000ff">extends </FONT><FONT COLOR="#000000">AbstractController</FONT>
+</PRE>
+</div>
+
+<p>This Controller provide following types of method:</p>
+
+<p><i>setCommandName:</i></p>
+<div class="code">
+<PRE>
+<FONT COLOR="#0000ff">public final void </FONT><FONT COLOR="#000000">setCommandName(</FONT><FONT COLOR="#ff0000">String </FONT><FONT COLOR="#000000">commandName)</FONT>
+</PRE>
+</div>
+
+<p><i>getCommandName:</i></p>
+<div class="code">
+<PRE>
+<FONT COLOR="#0000ff">public final </FONT><FONT COLOR="#ff0000">String </FONT><FONT COLOR="#000000">getCommandName()</FONT>
+</PRE>
+</div>
+
+<p><i>setCommandClass:</i></p>
+<div class="code">
+<PRE>
+<FONT COLOR="#0000ff">public final void </FONT><FONT COLOR="#000000">setCommandClass(</FONT><FONT COLOR="#ff0000">Class </FONT><FONT COLOR="#000000">commandClass)</FONT>
+</PRE>
+</div>
+
+<p><i>getCommandClass:</i></p>
+<div class="code">
+<PRE>
+<FONT COLOR="#0000ff">public final </FONT><FONT COLOR="#ff0000">Class </FONT><FONT COLOR="#000000">getCommandClass()</FONT>
+</PRE>
+</div>
+
+<p><i>setValidator:</i></p>
+<div class="code">
+<PRE>
+<FONT COLOR="#0000ff">public final void </FONT><FONT COLOR="#000000">setValidator(</FONT><FONT COLOR="#ff0000">Validator </FONT><FONT COLOR="#000000">validator)</FONT>
+</PRE>
+</div>
+
+<p><i>getValidator:</i></p>
+<div class="code">
+<PRE>
+<FONT COLOR="#0000ff">public final </FONT><FONT COLOR="#ff0000">Validator </FONT><FONT COLOR="#000000">getValidator()</FONT>
+</PRE>
+</div>
+
+<p><i>setValidators:</i></p>
+<div class="code">
+<PRE>
+<FONT COLOR="#0000ff">public final void </FONT><FONT COLOR="#ff0000">Validator</FONT><FONT COLOR="#000000">[] getValidators()</FONT>
+</PRE>
+</div>
+
+<p><i>setValidateOnBinding:</i></p>
+<div class="code">
+<PRE>
+<FONT COLOR="#0000ff">public final void </FONT><FONT COLOR="#000000">setValidateOnBinding(</FONT><FONT COLOR="#0000ff">boolean </FONT><FONT COLOR="#000000">validateOnBinding)</FONT>
+</PRE>
+</div>
+
+<p><i>isValidateOnBinding:</i></p>
+<div class="code">
+<PRE>
+<FONT COLOR="#0000ff">public final boolean </FONT><FONT COLOR="#000000">isValidateOnBinding()</FONT>
+</PRE>
+</div>
+
+<p><i>setMessageCodesResolver:</i></p>
+<div class="code">
+<PRE>
+<FONT COLOR="#0000ff">public final void </FONT><FONT COLOR="#000000">setMessageCodesResolver</FONT>
+<FONT COLOR="#000000">(MessageCodesResolver messageCodesResolver)</FONT>
+</PRE>
+</div>
+
+<p><i>getMessageCodesResolver:</i></p>
+<div class="code">
+<PRE>
+<FONT COLOR="#0000ff">public final </FONT><FONT COLOR="#000000">MessageCodesResolver getMessageCodesResolver()</FONT>
+</PRE>
+</div>
+
+<p><i>setBindingErrorProcessor:</i></p>
+<div class="code">
+<PRE>
+<FONT COLOR="#0000ff">public final void </FONT><FONT COLOR="#000000">setBindingErrorProcessor</FONT>
+<FONT COLOR="#000000">(BindingErrorProcessor bindingErrorProcessor)</FONT>
+</PRE>
+</div>
+
+<p><i>getBindingErrorProcessor:</i></p>
+<div class="code">
+<PRE>
+<FONT COLOR="#0000ff">public final </FONT><FONT COLOR="#000000">BindingErrorProcessor getBindingErrorProcessor()</FONT>
+</PRE>
+</div>
+
+<p><i>setPropertyEditorRegistrar:</i></p>
+<div class="code">
+<PRE>
+<FONT COLOR="#0000ff">public final void </FONT><FONT COLOR="#000000">setPropertyEditorRegistrar</FONT>
+<FONT COLOR="#000000">(PropertyEditorRegistrar propertyEditorRegistrar)</FONT>
+
+</PRE>
+</div>
+
+<p><i>setPropertyEditorRegistrars:</i></p>
+<div class="code">
+<PRE>
+<FONT COLOR="#0000ff">public final void </FONT><FONT COLOR="#000000">setPropertyEditorRegistrars</FONT>
+<FONT COLOR="#000000">(PropertyEditorRegistrar[] propertyEditorRegistrar)</FONT>
+</PRE>
+</div>
+
+<p><i>getPropertyEditorRegistrar:</i></p>
+<div class="code">
+<PRE>
+<FONT COLOR="#0000ff">public final </FONT><FONT COLOR="#000000">PropertyEditorRegistrar[] getPropertyEditorRegistrar()</FONT>
+</PRE>
+</div>
+
+<p><i>initApplicationContext:</i></p>
+<div class="code">
+<PRE>
+<FONT COLOR="#0000ff">protected void </FONT><FONT COLOR="#000000">initApplicationContext()</FONT>
+</PRE>
+</div>
+
+<p><i>getCommand:</i></p>
+<div class="code">
+<PRE>
+<FONT COLOR="#0000ff">protected </FONT><FONT COLOR="#ff0000">Object </FONT><FONT COLOR="#000000">getCommand(HttpServletRequest request)</FONT>
+<FONT COLOR="#0000ff">throws </FONT><FONT COLOR="#ff0000">Exception</FONT>
+</PRE>
+</div>
+
+<p><i>createCommand:</i></p>
+<div class="code">
+<PRE>
+<FONT COLOR="#0000ff">protected final </FONT><FONT COLOR="#ff0000">Object </FONT><FONT COLOR="#000000">createCommand()</FONT><FONT COLOR="#0000ff">throws </FONT><FONT COLOR="#ff0000">Exception</FONT>
+</PRE>
+</div>
+
+<p><i>checkCommand:</i></p>
+<div class="code">
+<PRE>
+<FONT COLOR="#0000ff">protected final boolean </FONT><FONT COLOR="#000000">checkCommand(</FONT><FONT COLOR="#ff0000">Object </FONT><FONT COLOR="#000000">command)</FONT>
+</PRE>
+</div>
+
+<p><i>bindAndValidate:</i></p>
+<div class="code">
+<PRE>
+<FONT COLOR="#0000ff">protected final </FONT><FONT COLOR="#000000">ServletRequestDataBinder bindAndValidate</FONT>
+<FONT COLOR="#000000">(HttpServletRequest request,</FONT><FONT COLOR="#ff0000">Object </FONT><FONT COLOR="#000000">command)</FONT><FONT COLOR="#0000ff">throws </FONT><FONT COLOR="#ff0000">Exception</FONT>
+</PRE>
+</div>
+
+<p><i>suppressBinding:</i></p>
+<div class="code">
+<PRE>
+<FONT COLOR="#0000ff">protected boolean </FONT><FONT COLOR="#000000">suppressBinding(HttpServletRequest request)</FONT>
+</PRE>
+</div>
+
+<p><i>createBinder:</i></p>
+<div class="code">
+<PRE>
+<FONT COLOR="#0000ff">protected </FONT><FONT COLOR="#000000">SrvletRequestDataBinder createBinder</FONT>
+<FONT COLOR="#000000">(HttpServletRequest request,</FONT><FONT COLOR="#ff0000">Object </FONT><FONT COLOR="#000000">command)</FONT><FONT COLOR="#0000ff">throws </FONT><FONT COLOR="#ff0000">Exception</FONT>
+</PRE>
+</div>
+
+  <p><i>prepareBinder:</i></p>
+<div class="code">
+<PRE>
+<FONT COLOR="#0000ff">protected final void </FONT><FONT COLOR="#000000">prepareBinder</FONT>
+<FONT COLOR="#000000">(ServletRequestDataBinder binder)</FONT>
+</PRE>
+</div>
+
+<p><i>initBinder:</i></p>
+<div class="code">
+<PRE>
+<FONT COLOR="#0000ff">protected void </FONT><FONT COLOR="#000000">initBinder(HttpServletRequest request,</FONT>
+<FONT COLOR="#000000">ServletResponseDataBinder binder)</FONT><FONT COLOR="#0000ff">throws </FONT><FONT COLOR="#ff0000">Exception</FONT>
+</PRE>
+</div>
+
+<p><i>onBind:</i></p>
+<div class="code">
+<PRE>
+<FONT COLOR="#0000ff">protected void </FONT><FONT COLOR="#000000">onBind(HttpServletRequest request, </FONT><FONT COLOR="#ff0000">Object </FONT><FONT COLOR="#000000">command,</FONT>
+<FONT COLOR="#ff0000">BindException </FONT><FONT COLOR="#000000">errors)</FONT><FONT COLOR="#0000ff">throws </FONT><FONT COLOR="#ff0000">Exception</FONT>
+</PRE>
+</div>
+
+<p><i>onBind:</i></p>
+<div class="code">
+<PRE>
+<FONT COLOR="#0000ff">protected void </FONT><FONT COLOR="#000000">onBind(HttpServletRequest request, </FONT><FONT COLOR="#ff0000">Object </FONT><FONT COLOR="#000000">command)</FONT>
+<FONT COLOR="#0000ff">throws </FONT><FONT COLOR="#ff0000">Exception</FONT>
+</PRE>
+</div>
+
+<p><i>suppressValidation:</i></p>
+<div class="code">
+<PRE>
+<FONT COLOR="#0000ff">protected boolean </FONT><FONT COLOR="#000000">suppressValidation(HttpServletRequest request)</FONT>
+</PRE>
+</div>
+<p><i>onBindAndValidate:</i></p>
+<div class="code">
+<PRE>
+<FONT FACE="Arial">
+<FONT COLOR="#0000ff">protected void </FONT><FONT COLOR="#000000">onBindAndValidate(HttpServletRequest request,</FONT>
+<FONT COLOR="#ff0000">Object </FONT><FONT COLOR="#000000">command,</FONT><FONT COLOR="#ff0000">BindException </FONT><FONT COLOR="#000000">errors)</FONT><FONT COLOR="#0000ff">throws </FONT><FONT COLOR="#ff0000">Exception</FONT>
+</FONT>
+</PRE>
+</div>
+
+<p><h3><a href="/java/spring/basic/example/springMVC_ex/Example_of_BaseCommandController.shtml">
+    Example of BaseCommandController in Spring MVC</a></h3></p>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="MultiActionController_in_SpringMVC.shtml" title="MultiActionController_in_SpringMVC">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="AbstractCommandController_in_SpringMVC.shtml" title="AbstractCommandController_in_SpringMVC">Next</a></td>
+  </tr> 
+</table>
+
+<!-- Footer Start-->
+
+		</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->
+

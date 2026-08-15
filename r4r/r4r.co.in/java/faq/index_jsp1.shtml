@@ -1,0 +1,231 @@
+
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+
+<HTML><HEAD><TITLE>2 JSP Interview Questions and Answers(Subjective)</TITLE>
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+
+<META content=r4r.co.in name=owner>
+
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+
+<meta name="description" CONTENT="Advance Java ebooks,Advance Java example, Advance Java interview questions ,Advance Java interview answers,Advance Java interview questions and answers" >
+
+<meta name="keywords" CONTENT="Advance Java ebooks,Advance Java example, Advance Java interview questions ,Advance Java interview answers,Advance Java interview questions and answers">
+<!--Header start-->
+
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>FAQ</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a><img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+			<a href="/java/">Java </a>
+              <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/java/faq">Faqs</a>
+
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/corejava/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	  
+
+<!-- header End-->
+
+<div class="heading">2 JSP Interview Questions and Answers(Subjective)</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="index_jsp.shtml" title="JSP Interview Questions and Answers(Subjective)
+">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="index.shtml" title="Home">Next</a></td>
+  </tr>
+</table>
+
+<div class="heading">Q.11	How does a servlet communicate with a JSP page?</div>
+<p><i>Answer: </i>The following code snippet 
+
+shows how a servlet instantiates a bean and initializes it with FORM data posted 
+
+by a browser. The bean is then placed into the request, and the call is then 
+
+forwarded to the JSP page, Bean1.jsp, by means of a request dispatcher for 
+
+downstream processing. </P>
+
+<div class="code">
+<pre>
+<font color="#0000ff">public void </font><font color="#000000">doPost (HttpServletRequest request, HttpServletResponse response)</font>
+<font color="#000000">{</font>
+<font color="#0000ff">try </font><font color="#000000">{</font>
+<font color="#000000">govi.FormBean f = </font><font color="#0000ff">new </font><font color="#000000">govi.FormBean();</font>
+<font color="#ff0000">String </font><font color="#000000">id = request.getParameter(</font><font color="#ff00ff">&quot;id&quot;</font><font color="#000000">);</font>
+<font color="#000000">f.setName(request.getParameter(</font><font color="#ff00ff">&quot;name&quot;</font><font color="#000000">));</font>
+<font color="#000000">f.setAddr(request.getParameter(</font><font color="#ff00ff">&quot;addr&quot;</font><font color="#000000">));</font>
+<font color="#000000">f.setAge(request.getParameter(</font><font color="#ff00ff">&quot;age&quot;</font><font color="#000000">));</font>
+<font color="#008000">//use the id to compute</font>
+<font color="#008000">//additional bean properties like info</font>
+<font color="#008000">//maybe perform a db query, etc.</font>
+<font color="#008000">// . . .</font>
+<font color="#000000">f.setPersonalizationInfo(info);</font>
+<font color="#000000">request.setAttribute(</font><font color="#ff00ff">&quot;fBean&quot;</font><font color="#000000">,f);</font>
+<font color="#000000">getServletConfig().getServletContext().getRequestDispatcher</font>
+<font color="#000000">(</font><font color="#ff00ff">&quot;/jsp/Bean1.jsp&quot;</font><font color="#000000">).forward(request, response);</font>
+<font color="#000000">} </font><font color="#0000ff">catch </font><font color="#000000">(</font><font color="#ff0000">Exception </font><font color="#000000">ex) {</font>
+<font color="#000000">. . .</font>
+<font color="#000000">}</font>
+<font color="#000000">}</font>
+</pre>
+</div>
+
+<p>The JSP page Bean1.jsp can then process fBean, after first extracting it from the default request scope via the useBean action.</p>
+<div class="code">
+<pre>
+<font color="#000000">jsp:useBean id=</font><font color="#ff00ff">&quot;fBean&quot; </font><font color="#0000ff">class</font><font color="#000000">=</font><font color="#ff00ff">&quot;govi.FormBean&quot; </font><font color="#000000">scope=</font><font color="#ff00ff">&quot;request&quot;</font>
+<font color="#000000">/ jsp:getProperty name=</font><font color="#ff00ff">&quot;fBean&quot; </font><font color="#000000">property=</font><font color="#ff00ff">&quot;name&quot;</font>
+<font color="#000000">/ jsp:getProperty name=</font><font color="#ff00ff">&quot;fBean&quot; </font><font color="#000000">property=</font><font color="#ff00ff">&quot;addr&quot;</font>
+<font color="#000000">/ jsp:getProperty name=</font><font color="#ff00ff">&quot;fBean&quot; </font><font color="#000000">property=</font><font color="#ff00ff">&quot;age&quot;</font>
+<font color="#000000">/ jsp:getProperty name=</font><font color="#ff00ff">&quot;fBean&quot; </font><font color="#000000">property=</font><font color="#ff00ff">&quot;personalizationInfo&quot; </font><font color="#000000">/</font>
+</pre>
+</div>
+
+<h3>Q.12	How do I have the JSP-generated servlet subclass my own custom servlet class, instead of the default?</h3>
+<p><i>Answer: </i>One should be very careful when having JSP pages extend custom servlet classes as opposed to the default one generated by the JSP engine. In doing so, you may lose out on any advanced optimization that may be provided by the JSP engine. In any case, your new superclass has to fulfill the contract with the JSP engine by:
+Implementing the HttpJspPage interface, if the protocol used is HTTP, or implementing JspPage otherwise Ensuring that all the methods in the Servlet interface are declared final Additionally, your servlet superclass also needs to do the following:</p>
+<ul>
+<li>The service() method has to invoke the _jspService() method</li>
+
+<li>The init() method has to invoke the jspInit() method </li>
+<li>The destroy() method has to invoke jspDestroy()</li>
+<li>If any of the above conditions are not satisfied, the JSP engine may throw a translation error.</li>
+</ul>
+<p>Once the superclass has been developed, you can have your JSP extend it as follows:</p>
+
+<div class="code">
+<pre>
+<font color="#800000">&lt;%</font><font color="#800000">@ page extends=</font><font color="#ff00ff">&quot;packageName.ServletName&quot; </font><font color="#800000">%&gt;</font>
+</pre>
+</div>
+
+<p>How can I prevent the word "null" from appearing in my HTML input text fields when I populate them with a resultset that has null values? - You could make a simple wrapper function, like </p>
+
+<div class="code">
+<pre>
+<font color="#800000">&lt;%</font><font color="#800000">!</font>
+<font color="#ff0000">String </font><font color="#800000">blanknull(</font><font color="#ff0000">String </font><font color="#800000">s) {</font>
+<font color="#800000">return (s == </font><font color="#0000ff">null</font><font color="#800000">) ? </font><font color="#ff00ff">&quot;&quot; </font><font color="#800000">: s;</font>
+<font color="#800000">}</font>
+<font color="#800000">%&gt;</font>
+</pre>
+</div>
+
+<p>then use it inside your JSP form, like</p>
+
+<div class="code">
+<pre>
+<font color="#0000ff">&lt;</font><font color="#808000">input </font><font color="#ff0000">type</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;text&quot; </font><font color="#ff0000">name</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;shoesize&quot; </font><font color="#800080">value</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;</font><font color="#800000">&lt;%</font><font color="#800000">=blanknull(shoesize)% &gt;</font><font color="#ff00ff">&quot; &gt;</font>
+</pre>
+</div>
+
+<div class="heading">Q.13	How can I get to print the stacktrace for an exception occuring within my JSP page? </div>
+
+<p><i>Answer: </i>By printing out the exceptions stack trace, you can usually diagonse a problem better when debugging JSP pages. By looking at a stack trace, a programmer should be able to discern which method threw the exception and which method called that method. However, you cannot print the stacktrace using the JSP out implicit variable, which is of type JspWriter. You will have to use a PrintWriter object instead. The following snippet demonstrates how you can print a stacktrace from within a JSP error page: </p>
+
+<div class="code">
+<pre>
+<font color="#800000">&lt;%</font><font color="#800000">@ page isErrorPage=</font><font color="#ff00ff">&quot;true&quot; </font><font color="#800000">%&gt;</font>
+<font color="#800000">&lt;%</font>
+<font color="#800000">out.println(</font><font color="#ff00ff">&quot; &quot;</font><font color="#800000">);</font>
+<font color="#800000">PrintWriter pw = response.getWriter();</font>
+<font color="#800000">exception.printStackTrace(pw);</font>
+<font color="#800000">out.println(</font><font color="#ff00ff">&quot; &quot;</font><font color="#800000">);</font>
+<font color="#800000">%&gt;</font>
+</pre>
+</div>
+
+<div class="heading">Q.14	How do you pass an InitParameter to a JSP?</div>
+<p><i>Answer: </i>The JspPage interface defines the jspInit() and jspDestroy() method which the page writer can use in their pages and are invoked in much the same manner as the init() and destory() methods of a servlet. The example page below enumerates through all the parameters and prints them to the console. </p>
+
+<div class="code">
+<pre>
+<font color="#800000">&lt;%</font><font color="#800000">@ page import=</font><font color="#ff00ff">&quot;java.util.*&quot; </font><font color="#800000">%&gt;</font>
+<font color="#800000">&lt;%</font><font color="#800000">!</font>
+<font color="#800000">ServletConfig cfg =</font><font color="#0000ff">null</font><font color="#800000">;</font>
+<font color="#0000ff">public </font><font color="#800000">void jspInit(){</font>
+<font color="#800000">ServletConfig cfg=getServletConfig();</font>
+<font color="#0000ff">for </font><font color="#800000">(Enumeration e=cfg.getInitParameterNames(); e.hasMoreElements();)</font>
+<font color="#800000">{</font>
+<font color="#ff0000">String </font><font color="#800000">name=(</font><font color="#ff0000">String</font><font color="#800000">)e.nextElement();</font>
+<font color="#ff0000">String </font><font color="#800000">value = cfg.getInitParameter(name);</font>
+<font color="#800000">System.out.println(name+</font><font color="#ff00ff">&quot;=&quot;</font><font color="#800000">+value);</font>
+<font color="#800000">}</font>
+<font color="#800000">}</font>
+<font color="#800000">%&gt;</font>
+</pre>
+</div>
+
+<div class="heading">Q.15	How can my JSP page communicate with an EJB Session Bean?</div>
+<p><i>Answer: </i>The following is a code snippet that demonstrates how a JSPpage can interact with an EJB session bean:</p>
+
+<div class="code">
+<pre>
+<font color="#800000">&lt;%</font><font color="#800000">@ page import=</font><font color="#ff00ff">&quot;javax.naming.*, javax.rmi.PortableRemoteObject,</font>
+<font color="#800000">foo.AccountHome, foo.Account</font><font color="#ff00ff">&quot; </font><font color="#800000">%&gt;</font>
+<font color="#800000">&lt;%</font><font color="#800000">!</font>
+<font color="#800000">//declare a </font><font color="#ff00ff">&quot;global&quot; </font><font color="#800000">reference </font><font color="#0000ff">to </font><font color="#800000">an instance of the home</font>
+<font color="#800000">interface of the session bean</font>
+<font color="#800000">AccountHome accHome=</font><font color="#0000ff">null</font><font color="#800000">;</font>
+<font color="#0000ff">public </font><font color="#800000">void jspInit() {</font>
+<font color="#800000">//obtain an instance of the home interface</font>
+<font color="#800000">InitialContext cntxt = new InitialContext( );</font>
+<font color="#800000">Object ref= cntxt.lookup(</font><font color="#ff00ff">&quot;java:comp/env/ejb/AccountEJB&quot;</font><font color="#800000">);</font>
+<font color="#800000">accHome = (AccountHome)PortableRemoteObject.narrow(ref,AccountHome.</font><font color="#0000ff">class</font><font color="#800000">);</font>
+<font color="#800000">}</font>
+<font color="#800000">%&gt;</font>
+<font color="#800000">&lt;%</font>
+<font color="#800000">//instantiate the session bean</font>
+<font color="#800000">Account acct = accHome.create();</font>
+<font color="#800000">//invoke the remote methods</font>
+<font color="#800000">acct.doWhatever(...);</font>
+<font color="#800000">// etc etc...</font>
+<font color="#800000">%&gt;</font>
+</pre>
+
+</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="index_jsp.shtml" title="JSP Interview Questions and Answers(Subjective)
+">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="index.shtml" title="Home">Next</a></td>
+  </tr>
+</table>
+
+<!-- Footer Start-->
+
+</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>

@@ -1,0 +1,239 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+
+<HTML><HEAD><TITLE>RDBMS Interviews Questions And Answers,Orcale Interviews Questions And Answers,SQL Interviews Questions And Answers</TITLE>
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<META content=r4r.co.in name=owner>
+<meta name="description" CONTENT="RDBMS Interviews Questions And Answers,Orcale Interviews Questions And Answers,SQL Interviews Questions And Answers" >
+<meta name="keywords" CONTENT="RDBMS Interviews Questions And Answers,Orcale Interviews Questions And Answers,SQL Interviews Questions And Answers">
+<META content="Rajesh Kumar" name=author>
+<META http-equiv=expires content=0>
+
+<!--header start-->
+
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>DATABASE & SQL/PLSQL</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a><img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+			<a href="/sql/">SQL </a>
+              <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/sql/01/tutorial/basics">SQL & DATABASE BASIC</a></div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/sql/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	  
+
+                        	<!-- Header End-->	
+
+	  <div class="heading">Oacle interview Questions And Answer</div>
+
+    <table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="Oracle interview Questions 11.shtml" title="Oracle interview Questions 11">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="Oracle interview Questions 13.shtml" title="Oracle interview Questions 13">Next</a></td>
+  </tr>
+</table>
+
+    <div class="heading">To see current user name ?</div>
+      <div class="code">
+      <pre>
+       SQL> show user;
+      </pre>
+      </div>
+
+      <h2> Change SQL prompt name ?</h2>
+      <p>SQL> set sqlprompt R4R >  </p> 
+
+      <h2> Switch to DOS prompt ?</h2>
+      <div class="code">
+      <pre>
+      SQL> host;
+      </pre>
+      </div>
+
+      <h2> How do I eliminate the duplicate rows ? </h2>
+<div class="code">
+<pre>
+SQL> delete from table_name where rowid not in (select max(rowid) 
+from table group by duplicate_values_field_name); 
+</pre>
+</div>
+      <p><i>or</i></p>
+      <div class="code">
+<pre>
+SQL> delete duplicate_values_field_name dv from 
+table_name ta where rowid 
+<(select min(rowid) from table_name tb where ta.dv=tb.dv); 
+</pre>
+      </div>
+
+      <h3>Example.</h3>
+     <ul>
+     <li>Table Emp </li>
+     <li>Empno Ename </li>
+     <li>101 Scott </li>
+     <li>102 Jiyo </li>
+     <li>103 Millor </li>
+     <li>104 Jiyo </li>
+     <li>105 Smith </li>
+     </ul>
+     <div class="code">
+<pre>
+delete ename from emp a where rowid < ( select min(rowid) 
+from emp b where a.ename = b.ename); 
+</pre>
+</div>
+      <ul>
+      <li>The output like,</li>
+      <li>Empno Ename </li>
+      <li>101 Scott</li>
+      <li>102 Millor</li>
+       <li>103 Jiyo</li>
+       <li>104 Smith</li>
+     </ul>
+
+      <h2>How do I display row number with records? </h2>
+      <p>To achive this use rownum pseudocolumn with query, like </p>
+      <div class="code">
+<pre>SQL> select rownum, ename from emp; 
+</pre>
+    </div>  
+    <div class="output">
+<i>output</i> </div>
+<ol><li>Scott</li> 
+  <li>Millor </li>
+ <li> Jiyo </li>
+  <li>Smith
+</li>   
+
+</ol>  
+
+<div class="heading">Display the records between two range </div>
+<p><div class="code">
+<pre>select rownum, empno, ename from emp where rowid in
+(select rowid from emp where rownum <=&upto minus
+select rowid from emp where rownum<&Start); 
+</pre>
+</div>
+<ul>
+<li>Enter value for upto: 10 </li>
+<li>Enter value for Start: 7  </li>
+</ul>
+
+<div class="table_content">
+<table>
+<tr>
+<td class="heading" style="width:33%;">ROWNUM</td><td class="heading" style="width:34%;">EMPNO</td><td class="heading" style="width:33%;">ENAME</td>
+</tr>
+
+<tr>
+<td class="alternate_heading1">1 </td>
+<td class="alternate_heading1">7782 </td>
+<td class="alternate_heading1">CLARK  </td>
+</tr>
+<tr>
+<td class="alternate_heading1">2 </td>
+<td class="alternate_heading1">7788 </td>
+<td class="alternate_heading1">SCOTT </td>
+</tr>
+<tr> 
+<td class="alternate_heading1">3 </td>
+<td class="alternate_heading1">7839</td>
+<td class="alternate_heading1">KING </td>
+</tr>
+<tr>
+<td class="alternate_heading1">4 </td>
+<td class="alternate_heading1">7844 </td>
+<td class="alternate_heading1">TURNER  </td>
+</tr>
+</table>
+</div>
+
+<h2>I know the nvl function only allows the same data type(ie. number or char or date Nvl(comm, 0)), 
+if commission is null then the text Not Applicable want to display, instead of blank space. 
+How do I write the query? </h2>
+<div class="code">
+<pre>SQL> select nvl(to_char(comm.),'NA') from emp;
+</pre>
+</div>
+
+<i>output:</i><p>NVL(TO_CHAR(COMM),'NA') </p>
+<ul>
+NA 
+300 
+500 
+NA
+1400
+NA
+</ul>
+
+<h2>Oracle cursor ?</h2>
+<ul>
+ <p>Implicit & Explicit cursors</p> 
+<p>Oracle uses work areas called private SQL areas to create SQL statements.</p>
+<p>PL/SQL construct to identify each and every work are used, is called as Cursor.</p>
+<p>For SQL queries returning a single row, PL/SQL declares all implicit cursors.</p>
+<p>For queries that returning more than one row, the cursor needs to be explicitly declared.</p>
+</ul>
+
+<div class="heading"> Implicit Cursor attributes ? </div>
+<p>Same as explicit cursor but prefixed by the word SQL
+SQL%Found, SQL%NOTFOUND, SQL%ROWCOUNT, SQL%ISOPEN </p>
+<i>Tips:</i><ol><li>Here SQL%ISOPEN is false, because oracle automatically closed 
+the implicit cursor after executing SQL statements.</li>
+<li> All are Boolean attributes. </li> </ol>
+
+<h2> Find out nth highest salary from emp table </h2> 
+<div class="code">
+<pre>
+SELECT DISTINCT (a.sal) FROM EMP A WHERE &N = (SELECT COUNT (DISTINCT (b.sal))
+ FROM EMP B WHERE a.sal<=b.sal); 
+</pre>
+</div>
+<p>Enter value for n: 2 </p>
+<p>SAL </p>
+<p>3700 </p>
+
+<h2> To view installed Oracle version information </h2>
+<div class="code">
+<pre>
+ SQL> select banner from v$version;
+</pre>
+</div>
+
+   <table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="Oracle interview Questions 11.shtml" title="Oracle interview Questions 11">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="Oracle interview Questions 13.shtml" title="Oracle interview Questions 13">Next</a></td>
+  </tr>
+</table>
+
+                         <!--Footer  -->
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>

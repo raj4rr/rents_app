@@ -1,0 +1,196 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>Error Provider Control in C#</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="Error Provider Control in C#" >
+<meta name="keywords" CONTENT="Error Provider Control in C#">
+<!-- header start-->	
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>VB.NET Technology</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+            <img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+            <a href="/vb.net/">VB.net</a>
+              <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/vb.net/01/tutorial/vbnet/">VB.NET Tutorial</a>
+
+              </div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/vb.net/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	 
+
+<div class="heading">Error Provider Control</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="data.shtml" title="Data Controls">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="help_provider.shtml" title="Help Provider">Next</a></td>
+  </tr> 
+</table><!-- header End-->	
+
+<p>This control provides a user interface that indicates to user that a control on a form has error associated with it. In other had it works as validation upon the controls to handle the error causes by inputting wrong by user.</p>
+
+<p>Drag this control as shown in below picture</p>
+
+<div class="image">
+<img src=" image/error1.JPG">
+</div>
+
+<h3>Adding error provider control on textbox for blank not allow</h3>
+
+<h3>Write this code on textbox validating event</h3>
+
+<p>Output will shown in below picture if user leave name blank.</p>
+<div class="code">
+<pre>
+<font face="Arial"><font color="#0000ff">Private Sub </font><font color="#000000">TextBox1_Validating(</font><font color="#0000ff">ByVal </font><font color="#000000">sender As System.Object, </font>
+	<font color="#0000ff">ByVal </font><font color="#000000">e As System.ComponentModel.CancelEventArgs) Handles TextBox1.Validating</font>
+        <font color="#000000">ValidateName()</font>
+    <font color="#0000ff">End Sub</font>
+    <font color="#0000ff">Private Function </font><font color="#000000">ValidateName() As Boolean</font>
+        <font color="#0000ff">Dim </font><font color="#000000">bStatus As Boolean = </font><font color="#0000ff">True</font>
+        <font color="#0000ff">If </font><font color="#000000">textBox1.Text = </font><font color="#ff00ff">&quot;&quot; </font><font color="#0000ff">Then</font>
+            <font color="#000000">errorProvider1.SetError(textBox1, </font><font color="#ff00ff">&quot;Please enter your Name&quot;</font><font color="#000000">)</font>
+            <font color="#000000">bStatus = </font><font color="#0000ff">False</font>
+        <font color="#0000ff">Else</font>
+            <font color="#000000">errorProvider1.SetError(textBox1, </font><font color="#ff00ff">&quot;&quot;</font><font color="#000000">)</font>
+        <font color="#0000ff">End If</font>
+        <font color="#000000">Return bStatus</font>
+    <font color="#0000ff">End Function</font></font>
+</pre>
+</div>
+
+<div class="image">
+<img src="image/error2.JPG ">
+</div>
+<h3>Validating for age.  For validating age i have covered three conditions for validate</h3>
+
+<ol>
+	<li>If user leave this blank.</li>
+
+    <li>If entered age is less than 18.</li>
+
+    <li>If user input character  value in place of numeric.</li>
+</li>
+<h3>Write this code on Textbox2 validating Event</h3>
+
+<div class="code">
+<pre>
+<font face="Arial"><font color="#0000ff">Private Sub </font><font color="#000000">TextBox2_TextChanged(</font><font color="#0000ff">ByVal </font><font color="#000000">sender As System.Object, </font>
+<font color="#0000ff">ByVal </font><font color="#000000">e As System.EventArgs) Handles TextBox2.TextChanged</font>
+        <font color="#000000">ValidateAge()</font>
+    <font color="#0000ff">End Sub</font>
+    <font color="#0000ff">Private Function </font><font color="#000000">ValidateAge() As Boolean</font>
+        <font color="#0000ff">Dim </font><font color="#000000">bStatus As Boolean = </font><font color="#0000ff">True</font>
+        <font color="#0000ff">If </font><font color="#000000">textBox2.Text = </font><font color="#ff00ff">&quot;&quot; </font><font color="#0000ff">Then</font>
+            <font color="#000000">errorProvider1.SetError(textBox2, </font><font color="#ff00ff">&quot;Please enter your Age&quot;</font><font color="#000000">)</font>
+            <font color="#000000">bStatus = </font><font color="#0000ff">False</font>
+        <font color="#0000ff">Else</font>
+            <font color="#000000">errorProvider1.SetError(textBox2, </font><font color="#ff00ff">&quot;&quot;</font><font color="#000000">)</font>
+            <font color="#000000">Try</font>
+                <font color="#0000ff">Dim </font><font color="#000000">temp As Integer = Integer.Parse(textBox2.Text)</font>
+                <font color="#000000">errorProvider1.SetError(textBox2, </font><font color="#ff00ff">&quot;&quot;</font><font color="#000000">)</font>
+                <font color="#0000ff">If </font><font color="#000000">temp &lt; </font><font color="#800080">18 </font><font color="#0000ff">Then</font>
+                    <font color="#000000">errorProvider1.SetError(textBox2, </font>
+			<font color="#ff00ff">&quot;You must be atleast 18 years old to setup a test&quot;</font><font color="#000000">)</font>
+                    <font color="#000000">bStatus = </font><font color="#0000ff">False</font>
+                <font color="#0000ff">Else</font>
+                    <font color="#000000">errorProvider1.SetError(textBox2, </font><font color="#ff00ff">&quot;&quot;</font><font color="#000000">)</font>
+                <font color="#0000ff">End If</font>
+            <font color="#000000">Catch</font>
+                <font color="#000000">errorProvider1.SetError(textBox2, </font><font color="#ff00ff">&quot;Please enter your age as a number&quot;</font><font color="#000000">)</font>
+                <font color="#000000">bStatus = </font><font color="#0000ff">False</font>
+            <font color="#0000ff">End </font><font color="#000000">Try</font>
+        <font color="#0000ff">End If</font>
+        <font color="#000000">Return bStatus</font>
+    <font color="#0000ff">End Function</font></font>
+</pre>
+</div>
+
+<h3>Output of this error provider is shown below</h3>
+
+<div class="image">
+<img src=" image/error3.JPG">
+</div>
+
+<div class="image">
+<img src="image/error4.JPG ">
+</div>
+
+<div class="image">
+<img src="image/error5.JPG ">
+</div>
+
+<h3>Using error provider control on DatetimePicker Control</h3>
+
+<p>If user select weekend day for test then he will get error message- Like shown in below picture</p>
+
+<div class="code">
+<pre>
+<font face="Arial"><font color="#0000ff">Private Sub </font><font color="#000000">DateTimePicker1_Validating(</font><font color="#0000ff">ByVal </font><font color="#000000">sender As System.Object, </font>
+	<font color="#0000ff">ByVal </font><font color="#000000">e As System.ComponentModel.CancelEventArgs) </font>
+	<font color="#000000">Handles DateTimePicker1.Validating</font>
+        <font color="#000000">ValidateTestDate()</font>
+    <font color="#0000ff">End Sub</font>
+<font color="#0000ff">Private Function </font><font color="#000000">ValidateTestDate() As Boolean</font>
+        <font color="#0000ff">Dim </font><font color="#000000">bStatus As Boolean = </font><font color="#0000ff">True</font>
+        <font color="#0000ff">If </font><font color="#000000">(dateTimePicker1.Value.DayOfWeek = DayOfWeek.Sunday) </font>
+	<font color="#000000">OrElse (dateTimePicker1.Value.DayOfWeek = DayOfWeek.Saturday) </font><font color="#0000ff">Then</font>
+            <font color="#000000">errorProvider1.SetError(dateTimePicker1,</font>
+	 <font color="#ff00ff">&quot;Appointment cannot be scheduled in the weekend. Please select a weekday&quot;</font><font color="#000000">)</font>
+            <font color="#000000">bStatus = </font><font color="#0000ff">False</font>
+        <font color="#0000ff">Else</font>
+            <font color="#000000">errorProvider1.SetError(dateTimePicker1, </font><font color="#ff00ff">&quot;&quot;</font><font color="#000000">)</font>
+        <font color="#0000ff">End If</font>
+        <font color="#000000">Return bStatus</font>
+<font color="#0000ff">End Function</font></font>
+</pre>
+</div>
+
+<p>Write above code on DatetimePicker Validating Event.</p>
+
+<div class="image">
+<img src="image/error6.JPG ">
+</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="data.shtml" title="Data Controls">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="help_provider.shtml" title="Help Provider">Next</a></td>
+  </tr> 
+</table>
+<!-- Footer Start-->		
+
+		</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/dotnet/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->

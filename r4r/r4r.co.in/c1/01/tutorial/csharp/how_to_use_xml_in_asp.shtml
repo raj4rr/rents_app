@@ -1,0 +1,199 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>How to use XML In ASP.NET</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="How to use XML In ASP.NET" >
+<meta name="keywords" CONTENT="How to use XML In ASP.NET">
+
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+     <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>C# Tutorial</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a><img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/c1/">C#</a>
+
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/c1/commonfiles/leftmenu.shtml'); ?></td>
+
+                       <td style="80%" valign="top">
+                        <div class="main_content"> 
+
+	<!-- Header End-->
+
+	<div class="heading">How to use xml</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="how_to_save_data_in_xml_file.shtml" 
+    title="How to Save Data in XML File">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="remoting_in_asp.shtml" 
+    title="Remoting in asp">Next</a></td>
+  </tr>
+</table>
+<p>.NET Framework has extensive support for working with XML Language. In the .NET framework, the support for XML documents
+ includes</p>
+ <ul>
+<li>XML namespace</li>
+<li>XML designer</li>
+<li>XML Web Server control</li>
+<li>XML DOM support</li>
+</ul>
+
+<h3>XML Namespace</h3>
+<p>The System.Xml namespace provides a Large set of classes for processing XML data.There Are more classes such as</p>
+<p><i>XmlTextReader-</i> It Provides forward only access to a stream of XML data and checks whether or not an XML document is well 
+formed. This class neither creates as in-memory structure nor validates the XML document against the DTD. You can declare an
+ object of the XmlTextReader class by including the System.Xml namespace in the application. The syntax to declare an object 
+ of this class is as follows</p>
+ <font class="point_out">XmlTextReader reader = new XmlTextReader("XML1.xml");</font>
+ <p>It is important to note that the .xml file you pass as an argument to the constructor of the XmlTextReader class exists 
+ in the \WINNT\System32 folder</p>
+ <p><i>XmlTextWriter-</i> Provides forward only way of generating streams or files containing XML data that conforms to W3C XML
+  1.0. If you want to declare an object of the XmlTextWriter class, you must include the System.Xml. The syntax to decare 
+  an object of this class is as follows</p>
+  <font class="point_out">XmlTextWriter writer = new XmlTextWriter(Response.Output);</font>
+  <p>Here Response.Output represents an outgoing HTTP response stream to which you want to send the XML data.</p>
+  <p><i>XmlDataDocument- </i>Provides support for XML and relational data in W3C XML DOM. You can use this class with a dataset to
+   provide relational and non-relational views of the same set of data. This class is primarily used when you want to access 
+   the functions of ADO.NET. The syntax to declare an object of this class is as follows</p>
+   <pre>
+  DataSet ds=new DataSet();
+  XmlDataDocument doc=new XmlDocument(ds);
+   </pre>
+   <p>There are a number of reasons to use XmlDataDocument</p>
+   <ul>
+   <li>It gives you the freedom to work with any data by using the DOM.</li>
+    <li>There is synchronization between an XmlDatadocument and a DataSet, and any changes in one will be reflected in
+     the other.</li>
+<li>When an XML document is loaded into an XmlDatadocument, the schema is preserved.</li>
+</ul>
+<h3>How to Create XML Application in .Net</h3>
+<p>Visual Studio .NET provides the XML designer that you can use to create and edit XML documents. you need to perform the
+ following steps by using the XML designer of Visual Studio .NET</p>
+   <ul><li>Create a new ASP.NET Web application.</li>
+   <li>Select the Add New Item option and Choose Xml File</li></ul>
+
+   <div class="image">
+   <img src="xml.gif">
+   </div>
+
+   <ul><li>Select XML File as the template from the right pane. Specify the name as "Registraion.xml" and click open.</li>
+ <li>The XML designer is displayed. The XML designer has automatically generated a line that notifies the browser that 
+ the document being processed is an XML document, as displayed in the figure</li></ul>
+
+ <div class="image">
+ <img src="xml1.gif">
+ </div>
+
+ <p>How to Display Xml File In Gridview</p>
+ <h3>.cs Code</h3>
+
+ <div class="code">
+<pre>
+<font color="#808000">DataSet </font><font color="#000000">ds =  </font><font color="#0000ff">new </font><font color="#808000">DataSet</font><font color="#000000">();</font>
+<font color="#000000">ds.ReadXml(MapPath(</font><font color="#ff00ff">&quot;Registration.xml&quot;</font><font color="#000000">));</font>
+<font color="#000000">GridView1.DataSource = ds;</font>
+<font color="#000000">GridView1.DataBind();</font>
+</pre>
+</div>
+
+<h3>Code of Registration.xml file</h3>
+
+<div class="code">
+<pre>
+<font color="#0000ff">&lt;?xml </font><font color="#ff0000">version</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;1.0&quot; </font><font color="#ff0000">encoding</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;utf-8&quot; </font><font color="#800080">?</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">registration</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">userdata</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">firstname</font><font color="#0000ff">&gt;</font><font color="#000000">santhu</font><font color="#0000ff">&lt;/</font><font color="#808000">firstname</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">mobileno</font><font color="#0000ff">&gt;</font><font color="#000000">98480</font><font color="#0000ff">&lt;/</font><font color="#808000">mobileno</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">country</font><font color="#0000ff">&gt;</font><font color="#000000">India</font><font color="#0000ff">&lt;/</font><font color="#808000">country</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">emailId</font><font color="#0000ff">&gt;</font><font color="#000000">santhweb@gmail.com</font><font color="#0000ff">&lt;/</font><font color="#808000">emailId</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">loginname</font><font color="#0000ff">&gt;</font><font color="#000000">santhu</font><font color="#0000ff">&lt;/</font><font color="#808000">loginname</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">loginPwd</font><font color="#0000ff">&gt;</font><font color="#000000">web123</font><font color="#0000ff">&lt;/</font><font color="#808000">loginPwd</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">userdata</font><font color="#0000ff">&gt;</font>
+
+<font color="#0000ff">&lt;</font><font color="#808000">userdata</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">firstname</font><font color="#0000ff">&gt;</font><font color="#000000">raju</font><font color="#0000ff">&lt;/</font><font color="#808000">firstname</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">mobileno</font><font color="#0000ff">&gt;</font><font color="#000000">9838610261</font><font color="#0000ff">&lt;/</font><font color="#808000">mobileno</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">country</font><font color="#0000ff">&gt;</font><font color="#000000">India</font><font color="#0000ff">&lt;/</font><font color="#808000">country</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">emailId</font><font color="#0000ff">&gt;</font><font color="#000000">rajuweb@gmail.com</font><font color="#0000ff">&lt;/</font><font color="#808000">emailId</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">loginname</font><font color="#0000ff">&gt;</font><font color="#000000">raju</font><font color="#0000ff">&lt;/</font><font color="#808000">loginname</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">loginPwd</font><font color="#0000ff">&gt;</font><font color="#000000">raju123</font><font color="#0000ff">&lt;/</font><font color="#808000">loginPwd</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">userdata</font><font color="#0000ff">&gt;</font>
+
+<font color="#0000ff">&lt;</font><font color="#808000">userdata</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">firstname</font><font color="#0000ff">&gt;</font><font color="#000000">kiran</font><font color="#0000ff">&lt;/</font><font color="#808000">firstname</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">mobileno</font><font color="#0000ff">&gt;</font><font color="#000000">9998888785</font><font color="#0000ff">&lt;/</font><font color="#808000">mobileno</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">country</font><font color="#0000ff">&gt;</font><font color="#000000">India</font><font color="#0000ff">&lt;/</font><font color="#808000">country</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">emailId</font><font color="#0000ff">&gt;</font><font color="#000000">kiranweb@gmail.com</font><font color="#0000ff">&lt;/</font><font color="#808000">emailId</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">loginname</font><font color="#0000ff">&gt;</font><font color="#000000">kiran</font><font color="#0000ff">&lt;/</font><font color="#808000">loginname</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">loginPwd</font><font color="#0000ff">&gt;</font><font color="#000000">kiran222</font><font color="#0000ff">&lt;/</font><font color="#808000">loginPwd</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">userdata</font><font color="#0000ff">&gt;</font>
+
+<font color="#0000ff">&lt;</font><font color="#808000">userdata</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">firstname</font><font color="#0000ff">&gt;</font><font color="#000000">rakesh</font><font color="#0000ff">&lt;/</font><font color="#808000">firstname</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">mobileno</font><font color="#0000ff">&gt;</font><font color="#000000">9990512118</font><font color="#0000ff">&lt;/</font><font color="#808000">mobileno</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">country</font><font color="#0000ff">&gt;</font><font color="#000000">India</font><font color="#0000ff">&lt;/</font><font color="#808000">country</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">emailId</font><font color="#0000ff">&gt;</font><font color="#000000">Ankit@gmail.com</font><font color="#0000ff">&lt;/</font><font color="#808000">emailId</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">loginname</font><font color="#0000ff">&gt;</font><font color="#000000">rakesh </font><font color="#0000ff">&lt;/</font><font color="#808000">loginname</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">loginPwd</font><font color="#0000ff">&gt;</font><font color="#000000">rak345</font><font color="#0000ff">&lt;/</font><font color="#808000">loginPwd</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">userdata</font><font color="#0000ff">&gt;</font>
+
+<font color="#0000ff">&lt;</font><font color="#808000">userdata</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">firstname</font><font color="#0000ff">&gt;</font><font color="#000000">john</font><font color="#0000ff">&lt;/</font><font color="#808000">firstname</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">mobileno</font><font color="#0000ff">&gt;</font><font color="#000000">9838610261</font><font color="#0000ff">&lt;/</font><font color="#808000">mobileno</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">country</font><font color="#0000ff">&gt;</font><font color="#000000">India</font><font color="#0000ff">&lt;/</font><font color="#808000">country</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">emailId</font><font color="#0000ff">&gt;</font><font color="#000000">john@gmail.com</font><font color="#0000ff">&lt;/</font><font color="#808000">emailId</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">loginname</font><font color="#0000ff">&gt;</font><font color="#000000">john</font><font color="#0000ff">&lt;/</font><font color="#808000">loginname</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">loginPwd</font><font color="#0000ff">&gt;</font><font color="#000000">john234</font><font color="#0000ff">&lt;/</font><font color="#808000">loginPwd</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">userdata</font><font color="#0000ff">&gt;</font>
+
+<font color="#0000ff">&lt;/</font><font color="#808000">registration</font><font color="#0000ff">&gt;</font>
+</pre>
+</div>
+
+<p><h3>Output</h3></p>
+<div class="output">
+<div class="image">
+<img src="xml3.gif">
+</div></div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="how_to_save_data_in_xml_file.shtml" 
+    title="How to Save Data in XML File">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="remoting_in_asp.shtml" 
+    title="Remoting in asp">Next</a></td>
+  </tr>
+</table>
+ <!--Footer-->
+   </div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/dotnet/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+     <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+

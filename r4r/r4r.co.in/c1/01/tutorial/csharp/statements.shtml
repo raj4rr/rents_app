@@ -1,0 +1,238 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>The if Statement,The switch Statement,The while Loop,The do Loop,The for Loop,Foreach Statement</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="The if Statement,The switch Statement,The while Loop,The do Loop,The for Loop,Foreach Statement" >
+<meta name="keywords" CONTENT="The if Statement,The switch Statement,The while Loop,The do Loop,The for Loop,Foreach Statement">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+     <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>C# Tutorial</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a><img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/c1/">C#</a>
+
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/c1/commonfiles/leftmenu.shtml'); ?></td>
+
+                       <td style="80%" valign="top">
+                        <div class="main_content"> 
+
+	<!-- Header End-->
+
+  <div class="heading">Control Statements</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="Operators,%20types%20and%20variables.shtml" title="Operators, types and variables in C#">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="Arrays,indexer and collection.shtml" title="Arrays, Indexer and Collections">Next</a></td>
+  </tr>
+</table>
+<h3>The if Statement</h3>
+<p>if statement is used to  take different paths of logic, depending on the conditions.</p>
+<div class="code">
+<pre>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Windows</font><font color="#000000">.</font><font color="#008080">Forms</font><font color="#000000">;</font>
+
+<font color="#0000ff">class </font><font color="#000000">iftest {</font>
+<font color="#0000ff">public static void </font><font color="#000000">Main() {</font>
+<font color="#0000ff">if </font><font color="#000000">(totalMarks &gt;= </font><font color="#800080">80</font><font color="#000000">) </font>
+<font color="#000000">{</font>
+ <font color="#808000">MessageBox</font><font color="#000000">.Show(</font><font color="#ff00ff">&quot;Got Higher First Class &quot;</font><font color="#000000">);</font>
+<font color="#000000">}</font>
+<font color="#0000ff">else if </font><font color="#000000">(totalMarks &gt;= </font><font color="#800080">60</font><font color="#000000">) </font>
+<font color="#000000">{</font>
+ <font color="#808000">MessageBox</font><font color="#000000">.Show(</font><font color="#ff00ff">&quot;Got First Class &quot;</font><font color="#000000">);</font>
+<font color="#000000">}</font>
+<font color="#0000ff">else if </font><font color="#000000">(totalMarks &gt;= </font><font color="#800080">40</font><font color="#000000">)</font>
+<font color="#000000">{</font>
+ <font color="#808000">MessageBox</font><font color="#000000">.Show( </font><font color="#ff00ff">&quot;Just pass only&quot;</font><font color="#000000">);</font>
+<font color="#000000">}</font>
+<font color="#0000ff">else</font>
+<font color="#000000">{</font>
+<font color="#808000">MessageBox</font><font color="#000000">.Show(</font><font color="#ff00ff">&quot;Failed&quot;</font><font color="#000000">);</font>
+
+<font color="#000000">}</font>
+<font color="#000000">}</font>
+<font color="#000000">}</font>
+</pre>
+</div>
+
+<div class="heading">The switch Statement</div>
+<p>Another form of selection statement is the switch statement, which executes a set of logic depending on the value of
+ a given parameter. The types of the values a switch statement operates on can be booleans, enums, integral types, and 
+ strings. </p>
+ <div class="code">
+<pre>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">;</font>
+<font color="#0000ff">class </font><font color="#000000">SwitchTest </font>
+<font color="#000000">{</font>
+<font color="#0000ff">public static void </font><font color="#000000">Main()  </font>
+<font color="#000000">{</font>
+<font color="#808000">Console</font><font color="#000000">.WriteLine(</font><font color="#ff00ff">&quot;milk bottel size: 1=Small 2=Medium 3=Large&quot;</font><font color="#000000">); </font>
+<font color="#808000">Console</font><font color="#000000">.Write(</font><font color="#ff00ff">&quot;Please enter your selection: &quot;</font><font color="#000000">); </font>
+<font color="#0000ff">string </font><font color="#000000">s = </font><font color="#808000">Console</font><font color="#000000">.ReadLine(); </font>
+<font color="#0000ff">int </font><font color="#000000">n = </font><font color="#0000ff">int</font><font color="#000000">.Parse(s);</font>
+<font color="#0000ff">int </font><font color="#000000">price = </font><font color="#800080">0</font><font color="#000000">;</font>
+<font color="#0000ff">switch</font><font color="#000000">(n) </font>
+<font color="#000000">{</font>
+<font color="#0000ff">case </font><font color="#800080">1</font><font color="#000000">:</font>
+<font color="#000000">price += </font><font color="#800080">25</font><font color="#000000">;</font>
+<font color="#0000ff">break</font><font color="#000000">;</font>
+<font color="#0000ff">case </font><font color="#800080">2</font><font color="#000000">:</font>
+<font color="#000000">price += </font><font color="#800080">25</font><font color="#000000">;</font>
+<font color="#0000ff">goto case </font><font color="#800080">1</font><font color="#000000">; </font>
+<font color="#0000ff">case </font><font color="#800080">3</font><font color="#000000">:</font>
+<font color="#000000">price += </font><font color="#800080">50</font><font color="#000000">;</font>
+<font color="#0000ff">goto case </font><font color="#800080">1</font><font color="#000000">;</font>
+<font color="#0000ff">default</font><font color="#000000">:</font>
+<font color="#808000">Console</font><font color="#000000">.WriteLine(</font><font color="#ff00ff">&quot;Invalid selection. Please select 1, 2, or 3.&quot;</font>
+<font color="#000000">); </font>
+<font color="#0000ff">break</font><font color="#000000">;</font>
+<font color="#000000">}</font>
+<font color="#0000ff">if </font><font color="#000000">(price != </font><font color="#800080">0</font><font color="#000000">)</font>
+<font color="#808000">Console</font><font color="#000000">.WriteLine(</font><font color="#ff00ff">&quot;Please insert {0} cents.&quot;</font><font color="#000000">, price);</font>
+<font color="#808000">Console</font><font color="#000000">.WriteLine( </font><font color="#ff00ff">&quot;Thank you for your business.&quot;</font><font color="#000000">);</font>
+<font color="#000000">}</font>
+<font color="#000000">}</font>
+</pre>
+</div>
+
+<div class="heading">The while Loop</div>
+<p>While loop is used to check a condition and then continues to execute a block of code as long as the condition evaluates
+ to a boolean value of true. Syntax:-</p>
+ <pre>
+  while (<boolean expression>)
+      { 
+         <statements>
+      }
+ </pre>
+ <p>When the boolean expression evaluates to false, the while loop statements are skipped and execution begins after the 
+ closing brace of that block of code.</p>
+ <div class="code">
+<pre>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">;</font>
+<font color="#0000ff">class </font><font color="#000000">whiletest {</font>
+<font color="#0000ff">static void </font><font color="#000000">Main()</font>
+<font color="#000000">{</font>
+<font color="#008000">// Continue in while loop until index is equal to ten.</font>
+<font color="#0000ff">int </font><font color="#000000">i = </font><font color="#800080">0</font><font color="#000000">;</font>
+<font color="#0000ff">while </font><font color="#000000">(i &lt; </font><font color="#800080">10</font><font color="#000000">)</font>
+<font color="#000000">{</font>
+<font color="#808000">Console</font><font color="#000000">.Write(</font><font color="#ff00ff">&quot;While statement &quot;</font><font color="#000000">);</font>
+<font color="#008000">// Write the index to the screen.</font>
+<font color="#808000">Console</font><font color="#000000">.WriteLine(i);</font>
+<font color="#008000">// Iterate the variable.</font>
+<font color="#000000">i++;</font>
+<font color="#000000">}</font>
+<font color="#000000">}</font>
+<font color="#000000">}</font>
+</pre>
+</div>
+
+<div class="heading">The do Loop</div>
+<p>A do loop is similar to the while loop, except that it checks its condition at the end of the loop. This means that the 
+do loop is guaranteed to execute at least one time. </p>
+<div class="code">
+<pre>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">;</font>
+<font color="#0000ff">class </font><font color="#000000">DoWhileLoopDemo {</font>
+<font color="#0000ff">public static void </font><font color="#000000">Main() {</font>
+<font color="#0000ff">int </font><font color="#000000">i = </font><font color="#800080">0</font><font color="#000000">;</font>
+<font color="#008000">// Initialize counter variable</font>
+<font color="#0000ff">do </font><font color="#000000">{</font>
+<font color="#0000ff">if </font><font color="#000000">((i % </font><font color="#800080">2</font><font color="#000000">) == </font><font color="#800080">0</font><font color="#000000">)</font>
+<font color="#000000">{</font>
+<font color="#808000">Console</font><font color="#000000">.WriteLine(i);</font>
+<font color="#000000">}</font>
+<font color="#000000">i++;</font><font color="#008000">//Increment the counter</font>
+<font color="#000000">}</font>
+<font color="#0000ff">while </font><font color="#000000">(i &lt;= Limit); </font>
+<font color="#008000">// Condition check</font>
+<font color="#000000">}</font>
+<font color="#000000">}</font>
+</pre>
+</div>
+
+<div class="heading">The for Loop</div>
+<p>It works like a while loop, except that the syntax of the for loop includes initialization and condition modification. 
+for loops are appropriate when you know exactly how many times you want to perform the statements within the loop. The 
+contents within the for loop parentheses hold three sections separated by semicolons<pre> (<initializer list>; <boolean 
+expression>;<iterator list>) { <statements> }.</pre></p>
+
+<div class="code">
+<pre>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">;</font>
+<font color="#0000ff">class </font><font color="#000000">ForLoop {</font>
+<font color="#0000ff">public static void </font><font color="#000000">Main() {</font>
+<font color="#0000ff">for </font><font color="#000000">(</font><font color="#0000ff">int </font><font color="#000000">i=</font><font color="#800080">0</font><font color="#000000">; i &lt; </font><font color="#800080">20</font><font color="#000000">; i++)</font>
+<font color="#000000">{</font>
+<font color="#0000ff">if </font><font color="#000000">(i == </font><font color="#800080">10</font><font color="#000000">)</font>
+<font color="#0000ff">break</font><font color="#000000">;</font>
+
+<font color="#0000ff">if </font><font color="#000000">(i % </font><font color="#800080">2 </font><font color="#000000">== </font><font color="#800080">0</font><font color="#000000">)</font>
+<font color="#0000ff">continue</font><font color="#000000">;</font>
+
+<font color="#808000">Console</font><font color="#000000">.Write(</font><font color="#ff00ff">&quot;{0} &quot;</font><font color="#000000">, i);</font>
+<font color="#000000">}</font>
+<font color="#808000">Console</font><font color="#000000">.WriteLine();</font>
+<font color="#000000">}</font>
+<font color="#000000">}</font>
+</pre>
+</div>
+
+<div class="heading">Foreach Statement</div>
+<p>The foreach statement is new to the C family of languages; it is used for looping through the elements of an array 
+or a collection.</p>
+<div class="code">
+<pre>
+<font color="#0000ff">class </font><font color="#000000">ForEachTest {</font>
+<font color="#0000ff">static void </font><font color="#000000">Main(</font><font color="#0000ff">string</font><font color="#000000">[] args) {</font>
+<font color="#0000ff">int</font><font color="#000000">[] num = </font><font color="#0000ff">new int</font><font color="#000000">[] { </font><font color="#800080">0</font><font color="#000000">, </font><font color="#800080">1</font><font color="#000000">, </font><font color="#800080">2</font><font color="#000000">, </font><font color="#800080">3</font>
+<font color="#000000">, </font><font color="#800080">4</font><font color="#000000">, </font><font color="#800080">5</font><font color="#000000">, </font><font color="#800080">6</font><font color="#000000">,</font><font color="#800080">7</font><font color="#000000">,</font><font color="#800080">8 </font><font color="#000000">};</font>
+<font color="#0000ff">foreach </font><font color="#000000">(</font><font color="#0000ff">int </font><font color="#000000">i </font><font color="#0000ff">in </font><font color="#000000">num)</font>
+<font color="#000000">{</font>
+<font color="#008080">System</font><font color="#000000">.</font><font color="#808000">Console</font><font color="#000000">.WriteLine(i);</font>
+<font color="#000000">}</font>
+<font color="#000000">}</font>
+<font color="#000000">}</font>
+</pre>
+</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="Operators,%20types%20and%20variables.shtml" title="Operators, types and variables in C#">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="Arrays,indexer and collection.shtml" title="Arrays, Indexer and Collections">Next</a></td>
+  </tr>
+</table>
+   <!--Footer-->
+   </div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/dotnet/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+     <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>

@@ -1,0 +1,211 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" 
+
+"http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>How to display all colors in Combobox in C#</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="How to display all colors in Combobox in C#" >
+<meta name="keywords" CONTENT="How to display all colors in Combobox in C#">
+
+<LINK href="/c1/css/new_css.css" type="text/css" rel="stylesheet">
+<script type="text/javascript" src="/c1/js/directlinks.js"></script>
+<link href="http://r4r.co.in/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+</HEAD>
+<BODY leftMargin="0" topMargin="0">
+
+<!--#include File="/c1/common-files/new_header.shtml" -->
+
+<DIV id="LeftMNav">
+
+<!--#include File="/c1/common-files/new_menu.shtml" --></DIV>
+
+<TABLE cellSpacing="0" cellPadding="0" width="100%" border="0">
+  <TBODY>
+  <TR>
+
+    <TD width="120" vAlign="top" class="nav">
+
+      <DIV id="LeftMNav" align="left">
+
+<!--#include File="/c1/common-files/new_left_menu.shtml" -->
+      </DIV>
+	  </TD>
+
+     <TD width="847" align="left" vAlign="top"  colspan="2">
+<!--#include File="/c1/common-files/googleadds1.shtml" -->
+
+	   
+ <table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" 
+
+bordercolor="#111111" width="100%" id="AutoNumber1">
+  <tr>
+    <td width="33%">
+<a href="default_cons.shtml">
+<img border="0" src="/c1/images/previous.gif" alt="previous" width="46" 
+
+height="25"></a></td>
+    <td width="33%">
+    <p align="center">
+<a href="index.shtml">
+<img border="0" src="/c1/images/home.gif" alt="Home" width="46" height="25"></a></td>
+    <td width="34%">
+    <p align="right">
+<a href="Drag%20and%20drop%20the%20PictureBox.shtml">
+<img border="0" src="/c1/images/next.gif" alt="Next" width="46" height="25"></a></td>
+  </tr>
+</table>
+
+<p><font size="4" color="#0000FF"><html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>New Page 1</title>
+</head>
+
+<body>
+
+<p><u><font color="#0000FF"><b>How to display all colors in Combobox in C# -</b></font></u></p>
+</font>
+<p>In this application, you can add all colors in ComboBox control and you can 
+change color of the Window form on selecting the color from ComboBox color list. 
+You can design the form as given below-</p>
+<font size="4" color="#0000FF">
+<p align="center">
+<img border="0" src="image/combocolor.PNG" width="419" height="359"></p>
+<p align="left"><font color="#0000FF"><b>Code for Load Color Button Click-</b></font></p>
+<table border="1" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="100%" id="AutoNumber1">
+  <tr>
+    <td width="100%"><pre><font face="Courier New">
+ <font color="#0000ff">private void </font><font color="#000000">btnLoad_Click(</font><font color="#0000ff">object </font><font color="#000000">sender, </font><font color="#808000">EventArgs </font><font color="#000000">e)</font>
+        <font color="#000000">{</font>
+           
+            <font color="#808000">Type </font><font color="#000000">colorType = </font><font color="#0000ff">typeof</font><font color="#000000">(</font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Drawing</font><font color="#000000">.Color);</font>
+            <font color="#808000">PropertyInfo</font><font color="#000000">[] propInfoList = colorType.GetProperties(BindingFlags.Static | BindingFlags.DeclaredOnly | BindingFlags.Public);</font>
+            <font color="#0000ff">foreach </font><font color="#000000">(</font><font color="#808000">PropertyInfo </font><font color="#000000">c </font><font color="#0000ff">in </font><font color="#000000">propInfoList)</font>
+            <font color="#000000">{</font>
+                <font color="#0000ff">this</font><font color="#000000">.cmbboxClr.Items.Add(c.Name);</font>
+            <font color="#000000">}</font>
+           
+        <font color="#000000">}</font>
+</font>
+</pre>
+</td>
+  </tr>
+</table>
+
+<p>After click on Load color button you will get colors in ComboBox control as 
+below-</p>
+<p align="center">
+<img border="0" src="image/combocolor1.PNG" width="492" height="363"></p>
+<p align="left">
+<b><font color="#0000FF">Code for drawing colors in ComboBox-</font></b></p>
+<table border="1" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="100%" id="AutoNumber3">
+  <tr>
+    <td width="100%"><pre><font face="Courier New">
+<font color="#0000ff">private void </font><font color="#000000">cmbboxClr_DrawItem(</font><font color="#0000ff">object </font><font color="#000000">sender, </font><font color="#808000">DrawItemEventArgs </font><font color="#000000">e)</font>
+        <font color="#000000">{</font>
+            <font color="#808000">Graphics </font><font color="#000000">g = e.</font><font color="#808000">Graphics</font><font color="#000000">;</font>
+            <font color="#808000">Rectangle </font><font color="#000000">rect = e.Bounds;</font>
+            <font color="#0000ff">if </font><font color="#000000">(e.Index &gt;= </font><font color="#800080">0</font><font color="#000000">)</font>
+            <font color="#000000">{</font>
+                <font color="#0000ff">string </font><font color="#000000">n = ((</font><font color="#808000">ComboBox</font><font color="#000000">)sender).Items[e.Index].ToString();</font>
+                <font color="#808000">Font </font><font color="#000000">f = </font><font color="#0000ff">new </font><font color="#808000">Font</font><font color="#000000">(</font><font color="#ff00ff">&quot;Arial&quot;</font><font color="#000000">, </font><font color="#800080">9</font><font color="#000000">, FontStyle.Regular);</font>
+                <font color="#000000">Color c = Color.FromName(n);</font>
+                <font color="#808000">Brush </font><font color="#000000">b = </font><font color="#0000ff">new </font><font color="#808000">SolidBrush</font><font color="#000000">(c);</font>
+                <font color="#000000">g.DrawString(n, f, </font><font color="#808000">Brushes</font><font color="#000000">.Black, rect.X, rect.Top);</font>
+                <font color="#000000">g.FillRectangle(b, rect.X + </font><font color="#800080">110</font><font color="#000000">, rect.Y + </font><font color="#800080">5</font><font color="#000000">, rect.Width - </font><font color="#800080">10</font><font color="#000000">, rect.Height - </font><font color="#800080">10</font><font color="#000000">);</font>
+            <font color="#000000">}</font>
+        <font color="#000000">}</font>
+</font>
+</pre>
+</td>
+  </tr>
+</table><!--#include virtual="/commonfiles/ads-middle.shtml" -->
+<p align="left">After selecting colors from ComboBox List the form color will 
+change. As below in Picture.</p>
+<p align="center">
+<img border="0" src="image/combocolor2.PNG" width="492" height="362"></p>
+<p align="left"><b><font color="#0000FF">Code for ComboBox Selected index Change is 
+given below-</font></b></p>
+<table border="1" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="100%" id="AutoNumber2">
+  <tr>
+    <td width="100%"><pre><font face="Courier New">
+<font color="#0000ff">private void </font><font color="#000000">cmbboxClr_SelectedIndexChanged(</font><font color="#0000ff">object </font><font color="#000000">sender, </font><font color="#808000">EventArgs </font><font color="#000000">e)</font>
+        <font color="#000000">{</font>
+           <font color="#0000ff">string </font><font color="#000000">color = </font><font color="#0000ff">this</font><font color="#000000">.cmbboxClr.SelectedItem.ToString();</font>
+           <font color="#000000">Form1 f = </font><font color="#0000ff">new </font><font color="#000000">Form1();</font>
+           <font color="#0000ff">this</font><font color="#000000">.BackColor = Color.FromName(color);</font>
+           <font color="#808000">MessageBox</font><font color="#000000">.Show(</font><font color="#ff00ff">&quot;Form Back Ground Color has been Changed!!!&quot;</font><font color="#000000">);</font>
+        <font color="#000000">}</font>
+</font>
+</pre>
+</td>
+  </tr>
+</table>
+
+</body>
+
+</html></font></p>
+
+<p>&nbsp;</p>
+
+<table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" 
+
+bordercolor="#111111" width="100%" id="AutoNumber1">
+  <tr>
+    <td width="33%">
+<a href="default_cons.shtml">
+<img border="0" src="/c1/images/previous.gif" alt="previous" width="46" 
+
+height="25"></a></td>
+    <td width="33%">
+    <p align="center">
+<a href="index.shtml">
+<img border="0" src="/c1/images/home.gif" alt="Home" width="46" height="25"></a></td>
+    <td width="34%">
+    <p align="right">
+<a href="Drag%20and%20drop%20the%20PictureBox.shtml">
+<img border="0" src="/c1/images/next.gif" alt="Next" width="46" height="25"></a></td>
+  </tr>
+</table>
+
+
+<!--#include File="/c1/common-files/googleadds2.shtml" -->
+
+
+	
+
+    <TD width="120" id=LeftMNavR align="left" vAlign="top" >
+
+	<!--#include File="/c1/common-files/project_list.shtml" -->
+
+      </TD></TR>
+
+  <TR>
+
+    <TD vAlign="top"><!--#include File="/c1/common-files/contact_us.shtml" --> </TD>
+
+    <TD align="left" vAlign="top"><!--#include File="/c1/common-files/comment.shtml" 
+
+--></TD>
+
+    <TD vAlign="top" align="left"><!--#include File="/c1/common-files/news.shtml" --></TD>
+
+    <TD align="left" vAlign="top" ><!--#include 
+
+File="/c1/common-files/left_most_footer.shtml" --></TD>
+
+  </TR>
+
+  </TBODY></TABLE>
+
+</DIV>
+
+<DIV></DIV>
+
+</BODY></HTML>

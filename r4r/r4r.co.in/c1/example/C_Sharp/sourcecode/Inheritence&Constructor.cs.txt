@@ -1,0 +1,50 @@
+//Inheritance  and constructor in C#
+class a
+{
+	public a()
+	{
+		System.Console.WriteLine("constr a");	
+	}
+	public virtual void display()
+	{
+		System.Console.WriteLine("A");
+	}
+}
+class b : a //b is child of a
+{
+	public b()
+	{
+		System.Console.WriteLine("constr b");	
+	}
+	public override void display()
+	{
+		System.Console.WriteLine("B");
+	}
+}
+class d : b //d is child of b
+{
+	public d()
+	{
+		System.Console.WriteLine("constr d");	
+	}
+	public override  void display()
+	{
+		System.Console.WriteLine("D");
+	}
+}
+
+class c 
+{
+	public static void Main()
+	{
+		d x=new d();//Normally object of child
+		x.display();
+	}
+}
+
+/*
+	constr calling:- top to bottom
+	method :- bottom to top
+*/
+
+

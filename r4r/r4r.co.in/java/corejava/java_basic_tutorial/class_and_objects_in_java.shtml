@@ -1,0 +1,107 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<HTML><HEAD><TITLE>Class & Objects in java</TITLE>
+
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv="content-type" content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="Object in java and class in java with real time examples, state, behavior, identity, method, anonymous object and more.">
+<meta name="keywords" CONTENT="classes and objects,object oriented, programming, object in java, classes in java, class, object, class, java, example, state, behavior, identity, method">
+
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>Java Programing laungage</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a><img src="/images/left_menu_bullet.gif"/> <a href="/java/">Java</a><img src="/images/left_menu_bullet.gif"/> <a href="/java/corejava">Core Java</a></div>
+            	<table>
+                    <tr>
+                      <td width="19%" valign="top" style="width:20%"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/corejava/commonfiles/leftmenu.shtml'); ?></td>
+
+                      <td style="80%" valign="top">
+
+                     <div class="main_content">
+<div class="heading">Class & Objects in java</div>
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="class_declaration_in_java_programming.shtml" title="Class Declaration in Java">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml" title="Java Programming Tutorials">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="encapsulation_in_java.shtml" title="Encapsulation in Java">Next</a></td>
+  </tr> 
+</table> 
+<h2>Defining a Class</h2>
+<p>A class represent ADT(Abstract Data Type). it acts like a template using which we can create multiple objects. A class Declaration only create a template, it does not create an actual object. A class creates a new data type that can be used to create object. That is a class creates a logical framework that defines the relationship between its members. when we declare an object of a class, we are creating an instance of that class. Thus a class is a logical construct. An object has physically reality.</p>
+
+<h3>Example :</h3>
+<div class="code">
+<PRE><FONT FACE="Arial"><FONT COLOR="#000000">modifiers </FONT><FONT COLOR="#0000ff">class </FONT><FONT COLOR="#000000">&lt;</FONT><FONT COLOR="#0000ff">class</FONT><FONT COLOR="#000000">-name&gt;</FONT>
+<FONT COLOR="#000000">{</FONT>
+			<FONT COLOR="#000000">modifier type variables;</FONT>
+			<FONT COLOR="#000000">.</FONT>
+			<FONT COLOR="#000000">.</FONT>
+			<FONT COLOR="#000000">.</FONT>
+			<FONT COLOR="#000000">.</FONT>
+			<FONT COLOR="#000000">modifiers type methodName1(parameter-list)</FONT>
+			<FONT COLOR="#000000">{</FONT>
+					<FONT COLOR="#000000">&lt;body of the method&gt;</FONT>
+			<FONT COLOR="#000000">}</FONT>
+			<FONT COLOR="#000000">.</FONT>
+			<FONT COLOR="#000000">.</FONT>
+<FONT COLOR="#000000">}</FONT></FONT></PRE>
+</div>
+
+<p><h2>Declaring Objects</h2></p>
+<div class="code">
+<PRE><FONT FACE="Arial"><FONT COLOR="#000000">Student s1;</FONT></FONT></PRE>
+</div>
+
+<p>s1 is not an object. In c++ s1 will be treated as object but in java s1 is only a variable which can hold reference to an object of type student. This variable will hold garbage or null reference until we assign reference of some object of class student. It does not yet point to an actual object. Any attempt to use this variable at this point will result in a compile_time error. It is just like a pointer to an object in c/c++. If this variable is declared inside any block or a method then it is a local variable and will not be initialized to null, but if it is declared in a class then it will be an instance variable and will automatically be initialized to null.</p>
+
+<h2>Allocating Memory</h2>
+<p>In java memory is allocated dynamically with the help of new operator.</p>
+<div class="code">
+<PRE><FONT FACE="Arial"><FONT COLOR="#000000">s1=</FONT><FONT COLOR="#0000ff">new </FONT><FONT COLOR="#000000">student();;</FONT></FONT></PRE>
+</div>
+
+<p>New operator will allocate memory for an object of class student and return its reference, which is then assigned to reference type variable s1. It will also call a default constructor to initialize member variables.</p>
+
+<div class="code">
+<PRE><FONT FACE="Arial"><FONT COLOR="#000000">above two statements can be combined:</FONT>
+<FONT COLOR="#000000">student s1=</FONT><FONT COLOR="#0000ff">new </FONT><FONT COLOR="#000000">student();</FONT></FONT></PRE>
+</div>
+
+<p><b>note1:</b>new allocates memory for an object during runtime. If new is unable to allocate memory (because memory is finite.) then it generate a run time exception/error</p>
+<p><b>note2:</b>if we assign a reference variable to another reference variable then only reference (address) will be transferred. There will not be any duplicate copy of the object. for example if we create another reference variable s2(student s2) and then (s1=s2). This will not create duplicate object, same object is referenced by s1 and s2. Any changes made in s2 will also be reflected in s1. No memory allocation is done with this assign. after a few steps if we assign null in s1 then that object will be destroyed by the garbage collector and the memory occupied by that object will be freed.</p>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="class_declaration_in_java_programming.shtml" title="Class Declaration in Java">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml" title="Java Programming Tutorials">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="encapsulation_in_java.shtml" title="Encapsulation in Java">Next</a></td>
+  </tr> 
+</table> 
+
+                      </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>

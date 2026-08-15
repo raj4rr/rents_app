@@ -1,0 +1,108 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD>
+<meta http-equiv="Content-Language" content="en-us">
+<TITLE>jms(java message service) with spring tutorial</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name="description" CONTENT="jms(java message service) with spring tutorial learn how to use webservices in spring with this tutorial 
+provide description of all topics with examples" >
+<meta name="keywords" CONTENT="JMS with spring, java message service, Requirement and Advantages
+ of JMS, JMS API Architecture, components of JMS, main components Of JMS">
+
+		<!-- header start-->	
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+     <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>Spring Tutorials</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+			<img src="/images/left_menu_bullet.gif"/> <a href="/spring/">Spring</a>
+
+       </div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/spring/commonfiles/leftmenucore.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	 
+
+<div class="heading">JMS (Java Message Service)</div>
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="example_of_spring_and_jms_integration.shtml" title="example_of_spring_and_jms_integration">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="jms_messaging_models.shtml" title="jms_messaging_models">Next</a></td>
+  </tr> 
+</table>
+<p>Spring provides a JMS integration framework that simplifies the use of the JMS API much like Springs integration does for the JDBC API. JMS (Java Message Service) is an API that provides the facility to create, send and read messages. It provides loosely coupled, reliable and asynchronous communication. JMS is also known as a messaging service. Messaging is a technique to communicate applications or software components. JMS is mainly used to send and receive message from one application to another.</p>
+<p>Spring provides a number of message listener containers that are used to create Message-Driven POJOs (MDPs). Spring also provides a declarative way of creating message listeners. The package org.springframework.jms.core provides the core functionality for using JMS. It contains JMS template classes that simplify the use of the JMS by handling the creation and release of resources, much like the JdbcTemplate does for JDBC.</p>
+<p>The package org.springframework.jms.support provides JMSException translation functionality. The package org.springframework.jms.support.converter provides a MessageConverter abstraction to convert between Java objects and JMS messages. The package org.springframework.jms.support.destination provides various strategies for managing JMS destinations, such as providing a service locator for destinations stored in JNDI.</p>
+<p>The package org.springframework.jms.annotation provides the necessary infrastructure to support annotation-driven listener endpoints using @JmsListener. The package org.springframework.jms.config provides the parser implementation for the jms namespace as well the java config support to configure listener containers and create listener endpoints. Finally, the package org.springframework.jms.connection provides an implementation of the ConnectionFactory suitable for use in standalone applications.</p>
+<div class="heading">Requirement and Advantages of JMS</div>
+<p>In this topic we define why to need of JMS API Generally, user sends message to application. But, if we want to send message from one application to another, we need to use JMS API. Consider a scenario, one application A is running in DELHI and another application B is running in MUMBAI. To send message from A application to B, we need to use JMS API.
+The Main Advantages of JMS API are as follows:</p>
+<ol>
+<li>
+<i>Asynchronous:</i> A JMS provider can deliver messages to a client as they arrive; a client does not have to request messages in order to receive them.</li>
+<li>
+<i>Reliable:</i> The JMS API can ensure that a message is delivered once and only once. Lower levels of reliability are available for applications that can afford to miss messages or to receive duplicate messages.</li></ol>
+<div class="heading">JMS API Architecture</div>
+<div class="image">
+<img src="../images/spring-jms-arch.png">
+</div>
+
+<p>The main components of JMS API are below here.</p>
+<ol>
+<li>
+<i>JMS Client:</i> The Java application which produces/consumes message is known as JMS Client.</li>
+<li>
+<i>Service Provider:</i> A messaging system which implements the JMS interfaces.There are Many service providers are available. Examples are open JMS , JBoss Messaging.</li>
+<li>
+<i>Messages:</i> Messages are objects using to communicate between clients.</li>
+<li>
+<i>Administered Objects:</i> These are preconfigured objects. Two types of administered objects are destinations and connection factories.</li>
+<ul>
+<li>
+<i>Connection factory:</i> It is an administered object with which a connection between JMS client and Service provider is establishing.</li>
+<li>
+<i>Destination:</i> Destination is the object into which a JMS client targets its messages. Also the JMS client receives messages from the destination. And hence the JMS system is loosely coupled .</li>
+</ul>
+<li>
+<i>Native Clients:</i> They uses Message Products native API instead of JMS API.</li>
+</ol>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="example_of_spring_and_jms_integration.shtml" title="example_of_spring_and_jms_integration">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="jms_messaging_models.shtml" title="jms_messaging_models">Next</a></td>
+  </tr> 
+</table>
+
+		</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->

@@ -1,0 +1,124 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>ADO.NET and XML</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="ADO.NET and XML" >
+<meta name="keywords" CONTENT="ADO.NET and XML">
+
+<!-- header start-->	
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>ADO.NET</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+            <img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+            <a href="/ado.net">ADO.Net</a>
+              <img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+
+			  <a href="/ado.net/01/tutorial/ado.net/">ADO.NET Tutorials</a>
+
+              </div>
+
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/ado.net/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	 
+<!-- header End-->	
+
+<div class="heading">Dataset object in ADO .NET</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="Handling_Connection_%20Events.shtml" title="Handling Connection Events">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="The%20steps%20involved%20to%20fill%20a%20dataset.shtml" title="The steps involved to fill a dataset?">Next</a></td>
+  </tr> 
+</table>
+
+<p>The DataSet object is a disconnected storage.DataSet is a disconnected  in-memory representation of data. It can be considered as a local copy of the relevant portions of the database. The DataSet is persisted in memory and the data in it can be manipulated and updated independent of the database. It represents related tables, constraints, and relationships among the tables. DataSet reads and writes data and schema as XML documents.The DataSet object is a disconnected storage.It is used for manipulation of relational data. The DataSet is filled with data from the storeWe fill it with data fetched from the data store. Once the work is done with the dataset, connection is reestablished and the changes are reflected back into the store.</p>
+<p>ADO.NET DataSet can contain more than one table and also contains information about table relationships, the columns they contain, and any   constraints that apply. Each table in a DataSet can contain multiple rows. Once data is retrieved from the database into a DataSet object, an application can disconnect from the database before processing the DataSet. This is an important feature of the ADO.NET DataSet. It gives us an in-memory, disconnected copy of a portion of the database which we can process without retaining an active connection to the database server.</p>
+
+<div class="heading">Creating and using a DataSet</div>
+<p>The typical steps in creating and using a DataSet are:</p>
+<ul>(i)Create a DataSet object</ul>
+<ul>(ii) Connect to a database</ul>
+<ul>(iii)Fill the DataSet with one or more tables or views</ul>
+<ul>(iv)Disconnect from the database</ul>
+<ul>(v)Use the DataSet in the application</ul>
+<h2>Example of  DataSet</h2>
+
+<div class="code">
+<pre>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Data</font><font color="#000000">;</font>
+<font color="#0000ff">using </font><font color="#008080">System</font><font color="#000000">.</font><font color="#008080">Data</font><font color="#000000">.SqlClient;</font>
+<font color="#0000ff">public class </font><font color="#000000">empcount {</font>
+<font color="#0000ff">public static void </font><font color="#000000">Main() {</font>
+<font color="#008000">//change the following connection string, as necessary...</font>
+<font color="#0000ff">string </font><font color="#000000">con =</font><font color="#ff00ff">&quot;server=(local)\kamal;</font>
+  <font color="#000000">database=Emp;trusted_connection=yes</font><font color="#ff00ff">&quot;;</font>
+<font color="#808000">DataSet </font><font color="#000000">ds = </font><font color="#0000ff">new </font><font color="#808000">DataSet</font><font color="#000000">(</font><font color="#ff00ff">&quot;EmpDataSet&quot;</font><font color="#000000">);</font>
+<font color="#000000">SqlDataAdapter sad;</font>
+<font color="#0000ff">string </font><font color="#000000">sl;</font>
+<font color="#000000">sl = </font><font color="#ff00ff">&quot;SELECT COUNT(*) AS cnt FROM employee&quot;</font><font color="#000000">;</font>
+<font color="#000000">sad = </font><font color="#0000ff">new </font><font color="#000000">SqlDataAdapter(sl, con);</font>
+<font color="#000000">sad.Fill(ds, </font><font color="#ff00ff">&quot;emp_count&quot;</font><font color="#000000">);</font>
+<font color="#000000">sl = </font><font color="#ff00ff">&quot;SELECT COUNT(*) AS cnt FROM compocation&quot;</font><font color="#000000">;</font>
+<font color="#000000">sad = </font><font color="#0000ff">new </font><font color="#000000">SqlDataAdapter(sl, con);</font>
+<font color="#000000">sad.Fill(ds, </font><font color="#ff00ff">&quot;comploc_count&quot;</font><font color="#000000">);</font>
+<font color="#0000ff">int </font><font color="#000000">totalemp = (</font><font color="#0000ff">int</font><font color="#000000">) ds.Tables</font>
+   <font color="#000000">[</font><font color="#ff00ff">&quot;emp_count&quot;</font><font color="#000000">].Rows[</font><font color="#800080">0</font><font color="#000000">][</font><font color="#ff00ff">&quot;cnt&quot;</font><font color="#000000">];</font>
+<font color="#0000ff">int </font><font color="#000000">comploc = (</font><font color="#0000ff">int</font><font color="#000000">) ds.Tables</font>
+  <font color="#000000">[</font><font color="#ff00ff">&quot;comploc_count&quot;</font><font color="#000000">].Rows[</font><font color="#800080">0</font><font color="#000000">][</font><font color="#ff00ff">&quot;cnt&quot;</font><font color="#000000">];</font>
+<font color="#808000">Console</font><font color="#000000">.WriteLine(</font>
+<font color="#ff00ff">&quot;There are {0} employee, </font>
+     <font color="#000000">{</font><font color="#800080">1</font><font color="#000000">} complocation .</font><font color="#ff00ff">&quot;,</font>
+<font color="#000000">totalemp ,</font>
+ <font color="#000000">comploc,</font>
+<font color="#000000">);</font>
+<font color="#000000">}</font>
+<font color="#000000">}</font>
+</pre>
+
+</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="Handling_Connection_%20Events.shtml" title="Handling Connection Events">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="The%20steps%20involved%20to%20fill%20a%20dataset.shtml" title="The steps involved to fill a dataset?">Next</a></td>
+  </tr> 
+</table>
+
+<!-- Footer Start-->		
+		</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/dotnet/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->

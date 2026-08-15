@@ -1,0 +1,218 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>Canvas Control In WPF Web Base</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="Canvas Control In WPF Web Base" >
+<meta name="keywords" CONTENT="Canvas Control In WPF Web Base">
+<!--Header start-->
+
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>WPF Web Based</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a><img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+			<a href="/wpf">WPF with C# </a>
+              <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/wpf/01/tutorial/web-based/">WPF Web Based Tutorials</a></div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/wpf/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	  
+
+<!-- Header End-->                                   
+<div class="heading">Canvas Control In WPF Web Base</div>
+
+ <table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="textbox_control_in_wpf.SHTML" title="TextBox Control In WPF
+">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="checkbox_control_in_wpf.shtml" title="CheckBox Control In WPF">Next</a></td>
+  </tr>
+</table>
+
+<p>Before you really start working in WPF you first should be aware of the controls 
+those are used as container controls in WPF. Actually, each and every control in 
+WPF is a container control. But Canvas and Grid are the two main controls those 
+are used as container in most of the cases. This section will explain about 
+Canvas control in detail.</p>
+
+<h3>Canvas is a Container</h3>
+
+<p>Like all other controls, Canvas is a container control in WPF. It can have 'n' 
+number of children of it. If you have added Buttons, TextBlocks, Textboxes or 
+any other controls inside Canvas then those controls are children of canvas, at 
+the same time one can say that Canvas is a parent control for them. To add a 
+Canvas in your XAML code, use the following piece of code.</p>
+
+<h3>XAML Code:</h3>
+<div class="code">
+<pre>
+<font color="#0000ff">&lt;</font><font color="#808000">Canvas </font><font color="#800080">Name</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;cnvMain&quot; </font><font color="#800080">Background</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;Red&quot; </font><font color="#800080">Height</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;300&quot; </font><font color="#800080">Width</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;300&quot;</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">Canvas</font><font color="#0000ff">&gt;</font>
+</pre>
+</div>
+
+<h3>C# Code:</h3>
+<div class="code">
+<pre>
+<font face="Courier New">
+<font color="#808000">Canvas </font><font color="#000000">cnvMain = New </font><font color="#808000">Canvas</font><font color="#000000">();</font>
+<font color="#000000">cnvMain.Height = </font><font color="#800080">300</font><font color="#000000">;</font>
+<font color="#000000">cnvMain.Width = </font><font color="#800080">300</font><font color="#000000">;</font>
+<font color="#000000">cnvMain.Background = New </font><font color="#808000">SolidColorBrush</font><font color="#000000">(</font><font color="#808000">Colors</font><font color="#000000">.Red);</font>
+</font>
+</pre>
+</div
+
+><p>
+Since, page does not have children property, add above Canvas in the page using 
+following Code.</p>
+
+<div class="code">
+<pre>
+<font color="#000000">pgMain.</font><font color="#808000">Content </font><font color="#000000">= cnvMain;</font>
+</pre>
+</div>
+<p>If you have used canvas as a container control, all the controls those are added 
+as child controls of Canvas should have main two properties.</p>
+<br>
+<ol>
+<li>Canvas.Top</li>
+<li>Canvas.Left</li>
+</ol>
+<p>
+These two properties are used for the proper positioning of the controls which 
+are inside the Canvas. These properties (Left and Top) are related to the parent 
+canvas for any control. An example will help you understand this easily.<br>
+</p>
+<p>If you want to add a TextBlock inside the canvas, you can add it using Following 
+Code.</p>
+<h3>XAML Code:</h3>
+
+<div class="code">
+<pre>
+<font color="#0000ff">&lt;</font><font color="#808000">Canvas </font><font color="#800080">Name</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;cnvMain&quot; </font><font color="#800080">Background</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;Red&quot; </font><font color="#800080">Height</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;300&quot; </font><font color="#800080">Width</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;300&quot;</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">TextBlock </font><font color="#800080">Name</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;tbTest&quot; </font><font color="#800080">Height</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;40&quot; </font><font color="#800080">Width</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;100&quot; </font><font color="#800080">Text</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;Hello&quot;</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">TextBlock</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">Canvas</font><font color="#0000ff">&gt;</font>
+</pre>
+</div>
+<h3>C# Code:</h3>
+
+<div class="code">
+<pre>
+<font color="#808000">TextBlock </font><font color="#000000">tbTest = </font><font color="#0000ff">new </font><font color="#808000">TextBlock</font><font color="#000000">();</font>
+<font color="#000000">tbTest.Height = </font><font color="#800080">40</font><font color="#000000">;</font>
+<font color="#000000">tbTest.Width = </font><font color="#800080">100</font><font color="#000000">;</font>
+<font color="#000000">tbTest.</font><font color="#008080">Text </font><font color="#000000">= </font><font color="#ff00ff">&quot;Hello&quot;</font><font color="#000000">;</font>
+<font color="#000000">cnvMain.Children.Add(tbTest);</font>
+</pre>
+</div>
+<p>
+Check output of the above code. You will see that TextBlock having Text &quot;Hello&quot; 
+Would appear in the Top Left Corner of the Canvas.</p>
+<p>
+Now, if you want to set the position of this control inside the Canvas, you can 
+use Canvas.Left and Canvas.Top property in the XAML code. If you want to set 
+these properties runtime then, you must use following piece of code for that,</p>
+
+<div class="code">
+<pre>
+<font color="#000000">tbTest.SetValue(</font><font color="#808000">Canvas</font><font color="#000000">.LeftProperty, </font><font color="#800080">30</font><font color="#000000">.</font><font color="#800080">0</font><font color="#000000">);</font>
+<font color="#000000">tbTest.SetValue(</font><font color="#808000">Canvas</font><font color="#000000">.TopProperty, </font><font color="#800080">100</font><font color="#000000">.</font><font color="#800080">0</font><font color="#000000">);</font>
+</pre>
+</div>
+
+<p>These properties are Attached or dependent properties, means those are dependent 
+upon their parent control. To set such properties we should use, SetValue() 
+function.</p>
+
+<p>These are some of the basic properties. You can use properties which are useful 
+for you. One very important feature provided by Visual Studio is intellisence. 
+Use it and explore the properties related to the controls.</p>
+<h3>Example:</h3>
+<div class="code">
+<pre>
+<font face="Courier New">
+<font color="#0000ff">&lt;</font><font color="#808000">Page </font><font color="#800080">x:Class</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;WpfBrowserApplication2.CANVAS&quot;</font>
+<font color="#ff0000">xmlns</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;http://schemas.microsoft.com/winfx/2006/xaml/presentation&quot;</font>
+<font color="#800080">xmlns:x</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;http://schemas.microsoft.com/winfx/2006/xaml&quot;</font>
+<font color="#800080">Title</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;CANVAS&quot;</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">Grid</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">Grid</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">Border </font><font color="#800080">Background</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;Plum&quot; </font><font color="#800080">CornerRadius</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;20&quot;</font>
+    <font color="#800080">BorderBrush</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;Yellow&quot; </font><font color="#800080">BorderThickness</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;2&quot;</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">Canvas</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">TextBox </font><font color="#800080">Background</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;PaleGreen&quot; </font><font color="#800080">Grid</font><font color="#000000">.</font><font color="#800080">Row</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;0&quot; </font><font color="#800080">Grid</font><font color="#000000">.</font><font color="#800080">Column</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;0&quot;</font>
+         <font color="#800080">Canvas</font><font color="#000000">.</font><font color="#800080">Top</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;10&quot; </font><font color="#800080">Canvas</font><font color="#000000">.</font><font color="#800080">Left</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;10&quot; </font><font color="#800080">Height</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;30&quot;</font>
+		 <font color="#800080">FontSize</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;15&quot; </font><font color="#800080">Foreground</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;white&quot; </font><font color="#800080">Canvas Layout 1</font>
+<font color="#000000">&lt;/</font><font color="#800080">TextBox</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">TextBox </font><font color="#800080">Background</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;AliceBlue&quot; </font><font color="#800080">Grid</font><font color="#000000">.</font><font color="#800080">Row</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;1&quot; </font><font color="#800080">Grid</font><font color="#000000">.</font><font color="#800080">Column</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;0&quot;</font>
+ <font color="#800080">Canvas</font><font color="#000000">.</font><font color="#800080">Top</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;50&quot; </font><font color="#800080">Canvas</font><font color="#000000">.</font><font color="#800080">Left</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;120&quot; </font><font color="#800080">Height</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;30&quot; </font><font color="#800080">FontSize</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;15&quot;</font>
+ <font color="#800080">Foreground</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;white&quot;</font><font color="#0000ff">&gt;</font><font color="#000000"> Canvas Layout 2</font><font color="#0000ff">&lt;/</font><font color="#808000">TextBox</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">TextBox </font><font color="#800080">Background</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;White&quot; </font><font color="#800080">Grid</font><font color="#000000">.</font><font color="#800080">Row</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;1&quot; </font><font color="#800080">Grid</font><font color="#000000">.</font><font color="#800080">Column</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;1&quot;</font>
+     <font color="#800080">Canvas</font><font color="#000000">.</font><font color="#800080">Top</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;115&quot; </font><font color="#800080">Canvas</font><font color="#000000">.</font><font color="#800080">Right</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;70&quot; </font><font color="#800080">Height</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;30&quot; </font>
+      <font color="#800080">FontSize</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;15&quot; </font><font color="#800080">Foreground</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;Red&quot;</font><font color="#0000ff">&gt;</font><font color="#000000">Canvas Layout 3</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">TextBox</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">TextBox </font><font color="#800080">Background</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;Green&quot; </font><font color="#800080">Grid</font><font color="#000000">.</font><font color="#800080">Row</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;1&quot; </font><font color="#800080">Grid</font><font color="#000000">.</font><font color="#800080">Column</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;1&quot;</font>
+  <font color="#800080">Canvas</font><font color="#000000">.</font><font color="#800080">Bottom</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;50&quot; </font><font color="#800080">Canvas</font><font color="#000000">.</font><font color="#800080">Right</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;120&quot; </font><font color="#800080">Height</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;30&quot; </font><font color="#800080">FontSize</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;15&quot;</font>
+   <font color="#800080">Foreground</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;white&quot;</font><font color="#0000ff">&gt;</font><font color="#000000">Canvas Layout 4</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">TextBox</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">TextBox </font><font color="#800080">Background</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;OrangeRed&quot; </font><font color="#800080">Grid</font><font color="#000000">.</font><font color="#800080">Row</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;0&quot; </font><font color="#800080">Grid</font><font color="#000000">.</font><font color="#800080">Column</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;1&quot;</font>
+ <font color="#800080">Canvas</font><font color="#000000">.</font><font color="#800080">Bottom</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;10&quot; </font><font color="#800080">Canvas</font><font color="#000000">.</font><font color="#800080">Right</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;10&quot; </font><font color="#800080">Height</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;30&quot; </font><font color="#800080">FontSize</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;15&quot;</font>
+  <font color="#800080">Foreground</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;white&quot;</font><font color="#0000ff">&gt;</font><font color="#000000">Canvas Layout 5</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">TextBox</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">Canvas</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">Border</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">Grid</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">Grid</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">Page</font><font color="#0000ff">&gt;</font>
+</font>
+</pre>
+</div>
+<div class="output"><p><i>Output:</i></p>
+<div class="image">
+
+<img src="canvas.gif">
+</div>
+</div>
+
+  <table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="textbox_control_in_wpf.SHTML" title="TextBox Control In WPF
+">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="checkbox_control_in_wpf.shtml" title="CheckBox Control In WPF">Next</a></td>
+  </tr>
+</table>
+
+<!--Footer  -->                                  
+</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/wpf/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>

@@ -1,0 +1,113 @@
+/*Array:-
+C# supports single-dimensional arrays, multidimensional arrays 
+(rectangular arrays), and array-of-arrays (jagged arrays). 
+
+To Declare:-
+==========
+Single-dimensional arrays:
+int[] numbers;
+
+Multidimensional arrays:
+string[,] names;
+
+Array-of-arrays (jagged):
+byte[][] scores;
+
+Declaring them  does not actually create the arrays.In C#, 
+arrays are objects  and must be instantiated. The following
+ examples show how to create arrays:
+
+Single-dimensional arrays:
+int[] numbers = new int[5];
+
+
+Multidimensional arrays:
+string[,] names = new string[5,4];
+ 
+Array-of-arrays (jagged):
+byte[][] scores = new byte[5][];
+for (int x = 0; x < scores.Length; x++) 
+{
+   scores[x] = new byte[4]+x;
+}
+
+Initializing Arrays
+=============
+ Single-Dimensional Array
+ =====================
+  int[] numbers = new int[5] {1, 2, 3, 4, 5};
+  string[] names = new string[3] {"Matt", "Joanne", "Robert"};
+
+ You can omit the size of the array, like this:
+  int[] numbers = new int[] {1, 2, 3, 4, 5};
+
+ string[] names = new string[] {"Matt", "Joanne", "Robert"};
+ 
+You can also omit the new operator if an initializer is
+ provided, like this:
+ int[] numbers = {1, 2, 3, 4, 5};
+ string[] names = {"Matt", "Joanne", "Robert"};
+
+Multidimensional Array
+===================
+int[,] numbers = new int[3, 2] { {1, 2}, {3, 4}, {5, 6} };
+string[,] siblings = new string[2, 2] { {"Mike","Amy"}, 
+{"Mary","Albert"} };
+
+You can omit the size of the array, like this:
+int[,] numbers = new int[,] { {1, 2}, {3, 4}, {5, 6} };
+string[,] siblings = new string[,] { {"Mike","Amy"},
+{"Mary","Albert"} };
+
+You can also omit the new operator if an initializer 
+is provided, like this:
+int[,] numbers = { {1, 2}, {3, 4}, {5, 6} };
+string[,] siblings = { {"Mike", "Amy"}, {"Mary", "Albert"} };
+
+Jagged Array (Array-of-Arrays)
+========================
+You can initialize jagged arrays like this example:
+int[][] numbers = new int[2][] { new int[] {2,3,4}, new 
+int[] {5,6,7,8,9} };
+
+You can also omit the size of the first array, like this:
+int[][] numbers = new int[][] { new int[] {2,3,4}, new 
+int[] {5,6,7,8,9} };
+-or-
+int[][] numbers = { new int[] {2,3,4}, new int[] {5,6,7,8,9} };
+
+using foreach:-
+=============
+int[] numbers = {4, 5, 6, 1, 2, 3, -2, -1, 0};
+foreach (int i in numbers)
+{
+   System.Console.WriteLine(i);
+}
+*/
+using System;
+class DeclareArraysSample
+{
+    public static void Main()
+    {
+        // Single-dimensional array
+        int[] numbers = new int[5];
+
+        // Multidimensional array
+        string[,] names = new string[5,4];
+
+        // Array-of-arrays (jagged array)
+        byte[][] scores = new byte[5][];
+  // Create the jagged array
+        for (int i = 0; i < scores.Length; i++)
+        {
+            scores[i] = new byte[i+3];
+        }
+
+        // Print length of each row
+        for (int i = 0; i < scores.Length; i++)
+        {
+            Console.WriteLine("Length of row {0} is {1}", 
+i, scores[i].Length);
+        }
+    }
+}

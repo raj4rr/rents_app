@@ -1,0 +1,146 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>The DuplexChannelFactory<T,C> class,Adding duplex support to InProcFactory</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="The DuplexChannelFactory<T,C> class,Adding duplex support to InProcFactory" >
+<meta name="keywords" CONTENT="The DuplexChannelFactory<T,C> class,Adding duplex support to InProcFactory">
+
+<!--Header start-->
+
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>WCF</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a><img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+			<a href="/wcf">WCF with C# </a>
+              <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/wcf/01/tutorial/basic/">WCF Tutorials</a></div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/wcf/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	  
+
+<!-- Header End-->
+<div class="heading">The DuplexChannelFactory&lt;T,C&gt; class</div>
+
+  <table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="Throttling.shtml" title="Throttling
+">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="Events.shtml" title="Events">Next</a></td>
+  </tr>
+</table>
+
+<p>DuplexChannelFactory&lt;T&gt; is a base class, ChannelFactory&lt;T&gt;, except its constructors expect either a callback instance or a callback context. The use of object for the callback instance and the lack of type safety. Similar to fixing up the DuplexClientBase&lt;T&gt; class.</p>
+<div class="code">
+<pre>
+<font color="#0000ff">public class </font><font color="#808000">DuplexChannelFactory</font><font color="#000000">&lt;T,C&gt; : </font><font color="#808000">DuplexChannelFactory</font><font color="#000000">&lt;T&gt; </font>
+<font color="#000000">where T : </font><font color="#0000ff">class</font>
+<font color="#000000">{</font>
+<font color="#0000ff">static </font><font color="#808000">DuplexChannelFactory</font><font color="#000000">( )</font>
+<font color="#000000">{</font>
+<font color="#808000">DuplexClientBase</font><font color="#000000">&lt;T,C&gt;.VerifyCallback( );</font>
+<font color="#000000">}</font>
+<font color="#0000ff">public static </font><font color="#000000">T CreateChannel(C callback,</font><font color="#0000ff">string </font><font color="#000000">EPName)</font>
+<font color="#000000">{</font>
+<font color="#0000ff">return </font><font color="#808000">DuplexChannelFactory</font><font color="#000000">&lt;T&gt;.CreateChannel(callback,EPName);</font>
+<font color="#000000">}</font>
+<font color="#0000ff">public static </font><font color="#000000">T CreateChannel(</font><font color="#808000">InstanceContext</font><font color="#000000">&lt;C&gt; context,</font><font color="#0000ff">string </font><font color="#000000">EPName)</font>
+<font color="#000000">{</font>
+<font color="#0000ff">return </font><font color="#808000">DuplexChannelFactory</font><font color="#000000">&lt;T&gt;.CreateChannel(context.Context,EPName);</font>
+<font color="#000000">}</font>
+<font color="#0000ff">public static </font><font color="#000000">T CreateChannel(C callback,</font><font color="#808000">Binding </font><font color="#000000">binding,</font>
+<font color="#808000">EndpointAddress </font><font color="#000000">endpointAddress)</font>
+<font color="#000000">{</font>
+<font color="#0000ff">return </font><font color="#808000">DuplexChannelFactory</font><font color="#000000">&lt;T&gt;.CreateChannel(callback,binding,</font>
+  <font color="#000000">endpointAddress);</font>
+<font color="#000000">}</font>
+<font color="#0000ff">public static </font><font color="#000000">T CreateChannel(</font><font color="#808000">InstanceContext</font><font color="#000000">&lt;C&gt; context,</font><font color="#808000">Binding </font><font color="#000000">binding,</font>
+<font color="#808000">EndpointAddress </font><font color="#000000">endpointAddress)</font>
+<font color="#000000">{</font>
+<font color="#0000ff">return </font><font color="#808000">DuplexChannelFactory</font><font color="#000000">&lt;T&gt;.CreateChannel(context,binding,</font>
+<font color="#000000">endpointAddress);</font>
+<font color="#000000">}</font>
+<font color="#0000ff">public </font><font color="#808000">DuplexChannelFactory</font><font color="#000000">(C callback) : </font><font color="#0000ff">base</font><font color="#000000">(callback)</font>
+<font color="#000000">{}</font>
+<font color="#0000ff">public </font><font color="#808000">DuplexChannelFactory</font><font color="#000000">(C callback,</font><font color="#0000ff">string </font><font color="#000000">EPName):</font>
+ <font color="#0000ff">base</font><font color="#000000">(callback,EPName)</font>
+<font color="#000000">{}</font>
+<font color="#0000ff">public </font><font color="#808000">DuplexChannelFactory</font><font color="#000000">(</font><font color="#808000">InstanceContext</font><font color="#000000">&lt;C&gt; context,</font><font color="#0000ff">string </font><font color="#000000">EPName) :</font>
+ <font color="#0000ff">base</font><font color="#000000">(context.Context,EPName)</font>
+<font color="#000000">{}</font>
+<font color="#008000">//More constructors</font>
+<font color="#000000">}</font>
+</pre>
+</div>
+
+<h3>Adding duplex support to InProcFactory: </h3>
+<div class="code">
+<pre>
+<font color="#0000ff">public static class </font><font color="#000000">InProcFactory</font>
+<font color="#000000">{</font>
+<font color="#0000ff">public static </font><font color="#000000">I CreateInstance&lt;S,I,C&gt;(C callback) where I : </font><font color="#0000ff">class</font>
+  <font color="#000000">where S : </font><font color="#0000ff">class</font><font color="#000000">,I</font>
+<font color="#000000">{</font>
+<font color="#808000">InstanceContext</font><font color="#000000">&lt;C&gt; context = </font><font color="#0000ff">new </font><font color="#808000">InstanceContext</font><font color="#000000">&lt;C&gt;(callback);</font>
+<font color="#0000ff">return </font><font color="#000000">CreateInstance&lt;S,I,C&gt;(context);</font>
+<font color="#000000">}</font>
+<font color="#0000ff">public static </font><font color="#000000">I CreateInstance&lt;S,I,C&gt;(</font><font color="#808000">InstanceContext</font><font color="#000000">&lt;C&gt; context)</font>
+  <font color="#000000">where I : </font><font color="#0000ff">class</font>
+  <font color="#000000">where S : </font><font color="#0000ff">class</font><font color="#000000">,I</font>
+<font color="#000000">{</font>
+<font color="#000000">HostRecord hostRecord = GetHostRecord&lt;S,I&gt;( );</font>
+<font color="#0000ff">return  </font><font color="#808000">DuplexChannelFactory</font><font color="#000000">&lt;I,C&gt;.CreateChannel(</font>
+  <font color="#000000">context,NamedPipeBinding,</font><font color="#0000ff">new </font><font color="#808000">EndpointAddress</font><font color="#000000">(hostRecord.Address));</font>
+<font color="#000000">}</font>
+<font color="#008000">//More members</font>
+<font color="#000000">}</font>
+<font color="#008000">//Sample client</font>
+<font color="#000000">IMyContractCallback callback = </font><font color="#0000ff">new </font><font color="#000000">MyClient( );</font>
+<font color="#000000">IMyContract proxy = InProcFactory.CreateInstance</font>
+  <font color="#000000">&lt;MyService,IMyContract,IMyContractCallback&gt;(callback);</font>
+<font color="#000000">proxy.DoSomething( );</font>
+<font color="#000000">InProcFactory.CloseProxy(proxy);</font>
+</pre>
+</div>
+
+  <table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="Throttling.shtml" title="Throttling
+">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="Events.shtml" title="Events">Next</a></td>
+  </tr>
+</table>
+
+ <!--Footer  -->
+</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/dotnet/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>

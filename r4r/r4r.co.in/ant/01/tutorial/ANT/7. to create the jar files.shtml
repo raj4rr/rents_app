@@ -1,0 +1,150 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD>
+<meta http-equiv="Content-Language" content="en-us">
+<TITLE>To create the jar files</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name="description" CONTENT="Statement of the JDBC,Statement,PreparedStatement,CallableStatement" >
+<meta name="keywords" CONTENT="Statement of the JDBC,Statement,PreparedStatement,CallableStatement">
+
+<!-- header start-->	
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>Ant</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+            <img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+            <a href="/ant/">Ant</a>
+
+                                   <img src="/images/left_menu_bullet.gif" width="11" height="6"/>
+								    <a href="/ant/01/tutorial/ANT/">Ant tutorials</a>
+              </div>
+
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/ant/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	 
+
+<div class="heading"><p>How you can create a jar file with the using of Ant</p></div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="6.%20How%20do%20i%20get%20started%20to%20use%20ant.shtml" title="How do I get started to use ant, Can you give me a "Hello World" ant Script?">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="8.Apache%20Ivy.shtml" title="What is Apache Ivy?">Next</a></td>
+  </tr> 
+</table>	   
+<!-- header End-->
+
+<p>The Ant specially using to create the jar file , document files war files , so 
+this topic we are creating a jar file with the using of Ant.</p>
+<p>To ensure that you install the Ant. Then unzip the downloading file and 
+creating the build.xml file.</p>
+<p>The execution of ANT file is done from the directory where build.xml resides and 
+simply typing ant command on console and hit enter will start the execution of 
+build file.</p>
+<div class="code">
+<pre>
+<font color="#0000ff">&lt;?xml </font><font color="#ff0000">version</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;1.0&quot; </font><font color="#800080">?</font><font color="#0000ff">&gt;</font><font color="#000000"> </font>
+<font color="#0000ff">&lt;</font><font color="#808000">project </font><font color="#ff0000">name</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;java&quot; </font><font color="#800080">default</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;compress&quot;</font><font color="#0000ff">&gt;</font>
+<font color="#000000">	</font><font color="#0000ff">&lt;</font><font color="#808000">target </font><font color="#ff0000">name</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;compile&quot;</font><font color="#0000ff">&gt;</font>
+<font color="#000000">        </font><font color="#0000ff">&lt;</font><font color="#808000">javac </font><font color="#800080">srcdir</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;com/java/log4j&quot;</font><font color="#0000ff">/&gt;</font>
+<font color="#000000">        </font><font color="#0000ff">&lt;</font><font color="#808000">echo</font><font color="#0000ff">&gt;</font><font color="#000000"> Compile the files Complete! </font><font color="#0000ff">&lt;/</font><font color="#808000">echo</font><font color="#0000ff">&gt;</font>
+<font color="#000000">    </font><font color="#0000ff">&lt;/</font><font color="#808000">target</font><font color="#0000ff">&gt;</font>
+<font color="#000000">    </font>
+<font color="#000000">    </font><font color="#0000ff">&lt;</font><font color="#808000">target </font><font color="#ff0000">name</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;compress&quot; </font><font color="#800080">depends</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;compile&quot;</font><font color="#0000ff">&gt;</font>
+<font color="#000000">      </font><font color="#0000ff">&lt;</font><font color="#808000">jar </font><font color="#800080">destfile</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;java.jar&quot; </font><font color="#800080">basedir</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;.&quot; </font><font color="#800080">includes</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;*.class&quot;</font><font color="#0000ff">/&gt;</font>
+<font color="#000000">           </font><font color="#0000ff">&lt;</font><font color="#808000">echo</font><font color="#0000ff">&gt;</font><font color="#000000"> Building .jar file Complete! </font><font color="#0000ff">&lt;/</font><font color="#808000">echo</font><font color="#0000ff">&gt;</font>
+<font color="#000000">    </font><font color="#0000ff">&lt;/</font><font color="#808000">target</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">project</font><font color="#0000ff">&gt;</font>
+</pre>
+</div>
+<p>In this build.xml file the &lt;project name&gt; is the 
+root file element it means the name attribute is represented to the name of the project.<p>
+<p>&lt;target&gt;element can exist multiple times within project element and each one of them represents a single stage. </p>
+<p>In the above build.xml, we have compile target element which contains two tasks, one - &lt;echo&gt;and the other &lt;javac&gt; which builds java files.
+The other target element 'compress' is dependent upon compile target element.</p> 
+<p>It creates a jar file which includes all the .class files in current directory.</p>
+<p>Then creating a jar file using ant.</p>
+<p>The most of the time ant is using to compile and build the java projects. 
+These means it is generating the file and then compiling and building the jar files. 
+Firstly we created the build.xml file in the directory where sources are 
+located. The sources are contain the subdirectory there name is src. we also 
+need to including a jar file where compiling.</p>
+
+<p><h3>The ant task contain a few tasks for doing the following operations:</i></h3>
+<ol>
+<li> when you create the jar file then firstly you clean the build directory if exists.</li>
+<li>create the build directory where the new classes will be built.</li>
+<li>Compile the java classes.</li>
+<li>Build the jar file from the java classes.</li></ol>
+<div class="code">
+<pre>
+
+<font color="#0000ff">&lt;</font><font color="#808000">project </font><font color="#ff0000">name</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;usingant&quot; </font><font color="#800080">basedir</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;.&quot; </font><font color="#800080">default</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;jar&quot;</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">property </font><font color="#ff0000">name</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;build&quot; </font><font color="#800080">value</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;build&quot;</font><font color="#0000ff">/&gt;</font>
+<font color="#000000">	</font><font color="#0000ff">&lt;</font><font color="#808000">property </font><font color="#800080">file</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;build.properties&quot;</font><font color="#0000ff">/&gt;</font>
+<font color="#000000">	</font><font color="#0000ff">&lt;</font><font color="#808000">target </font><font color="#ff0000">name</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;clean&quot;</font><font color="#0000ff">&gt;</font>
+<font color="#000000">		</font><font color="#0000ff">&lt;</font><font color="#808000">delete </font><font color="#800080">dir</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;${build}&quot;</font><font color="#0000ff">/&gt;</font>
+<font color="#000000">	</font><font color="#0000ff">&lt;/</font><font color="#808000">target</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">target </font><font color="#ff0000">name</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;init&quot; </font><font color="#800080">depends</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;clean&quot;</font><font color="#0000ff">&gt;</font>
+<font color="#000000">		</font><font color="#0000ff">&lt;</font><font color="#808000">mkdir </font><font color="#800080">dir</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;${build}&quot;</font><font color="#0000ff">/&gt;</font>
+<font color="#000000"> </font><font color="#0000ff">&lt;/</font><font color="#808000">target</font><font color="#0000ff">&gt;</font><font color="#000000">	</font>
+<font color="#000000"> </font><font color="#0000ff">&lt;</font><font color="#808000">target </font><font color="#ff0000">name</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;compile&quot; </font><font color="#800080">depends</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;init&quot;</font><font color="#0000ff">&gt;</font>
+<font color="#000000"> </font><font color="#008000">&lt;!-- Compile the java code --&gt;</font>
+<font color="#000000">	</font><font color="#0000ff">&lt;</font><font color="#808000">javac </font><font color="#800080">srcdir</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;src&quot; </font><font color="#800080">destdir</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;${build}&quot;</font><font color="#0000ff">&gt;</font>
+<font color="#000000">	 </font><font color="#0000ff">&lt;</font><font color="#808000">classpath</font><font color="#0000ff">&gt;</font>
+<font color="#000000">	   </font><font color="#0000ff">&lt;</font><font color="#808000">pathelement </font><font color="#800080">location</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;${env.LIB}/required-jar1.jar&quot;</font><font color="#0000ff">/&gt;</font>
+<font color="#000000">		 </font><font color="#0000ff">&lt;</font><font color="#808000">pathelement </font><font color="#800080">location</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;${env.LIB}/required-jar2.jar&quot;</font><font color="#0000ff">/&gt;</font>
+<font color="#000000">	 </font><font color="#0000ff">&lt;/</font><font color="#808000">classpath</font><font color="#0000ff">&gt;</font>
+<font color="#000000">    </font><font color="#0000ff">&lt;/</font><font color="#808000">javac</font><font color="#0000ff">&gt;</font>
+<font color="#000000"> </font><font color="#0000ff">&lt;/</font><font color="#808000">target</font><font color="#0000ff">&gt;</font><font color="#000000">	</font>
+<font color="#000000">  </font><font color="#0000ff">&lt;</font><font color="#808000">target </font><font color="#ff0000">name</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;jar&quot; </font><font color="#800080">depends</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;compile&quot;</font><font color="#0000ff">&gt;</font>
+<font color="#000000">	</font><font color="#008000">&lt;!-- Build the jar file --&gt;</font>
+<font color="#000000">	 </font><font color="#0000ff">&lt;</font><font color="#808000">jar </font><font color="#800080">basedir</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;${build}&quot; </font><font color="#800080">destfile</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;${build}/new-jar.jar&quot;</font><font color="#0000ff">/&gt;</font>
+<font color="#000000">  </font><font color="#0000ff">&lt;/</font><font color="#808000">target</font><font color="#0000ff">&gt;</font>
+<font color="#000000"> </font><font color="#0000ff">&lt;/</font><font color="#808000">project</font><font color="#0000ff">&gt;</font>
+
+</pre>
+</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="6.%20How%20do%20i%20get%20started%20to%20use%20ant.shtml" title="How do I get started to use ant, Can you give me a "Hello World" ant Script?">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="8.Apache%20Ivy.shtml" title="What is Apache Ivy?" ant Script?">Next</a></td>
+  </tr> 
+</table>
+
+<!-- Footer Start-->	
+
+		</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->

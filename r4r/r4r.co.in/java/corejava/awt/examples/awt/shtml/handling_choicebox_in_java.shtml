@@ -1,0 +1,145 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD>
+<meta http-equiv="Content-Language" content="en-us">
+<TITLE>Handling Choice Box in java </TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name="description" CONTENT="Handling Choice Box in java ,How to Handling Choice Box in java,which type Handling Choice Box in java" >
+<meta name="keywords" CONTENT="Handling Choice Box in java ,How to Handling Choice Box in java,which type Handling Choice Box in java">
+
+<!-- header start-->	
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>Java AWT Tutorials</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+            <img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+            <a href="/java/">Java</a>
+			<img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/java/corejava/">Core Java</a>
+              <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/java/corejava/awt/">AWT</a>
+
+              </div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/corejava/awt/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	 
+
+<!-- header End--> 
+<div class="heading">Handling Choice Box in java</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="handling_checkbox_in_java.shtml" title="handling checkbox">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="set%20_font_of_string_in_java.shtml" title="set fontof string">Next</a></td>
+  </tr> 
+</table>
+
+<p>In this example we are going to handle Choice Box. To control the Choice Box we are using three type of package. One is <b>java.awt.* </b>second is  <b>java.applet.* </b>and third is <b>java.awt.event.*;</b> .The java.awt.* is used for GUI interface. AWT classes are contain in this package. The  java.applet.* package is used to create an applet and java.awt.event.*; defined within the java.awt.*; package is a subclass of EventObject. It is a super class of all AWT-based event.</p>
+
+<p>The Choice class is used to create a pop-up list of items from which the user may choose. A choice control is a form of menu. Each item in a list is a string that appears as a left-justified label in the order it is add to the choice object.To add a selection to the list, call add().</p>
+<p><b>void add(string name);</b></p>
+
+<h3>In our example first we implement two interface:</h3>
+<p><b>ItemListener():</b>  Each listener implement the ItemLinstner.</p>
+<p><b>itemStateChange():</b> When a option is selected or an event is occur this interface is called.</p>
+<p>To deterrmine which item is currently selected,you may call : <b>String getSelectedItem();</b> It returns a string containing the name of the item.
+or <b> int getSelectedIndex();</b> It return the index of the item.</p>
+<p>To obtain the number of item in the list call:</p>
+<p><b>int getItemCount();</b></p>
+<p>In our example we create two choice menu one is  country and other is city.</p>
+
+<h3>Example</h3>
+<div class="code">
+<PRE>
+<FONT COLOR="#008000">//Choice</FONT>
+<FONT COLOR="#0000ff">import </FONT><FONT COLOR="#000000">java.awt.*;</FONT>
+<FONT COLOR="#0000ff">import </FONT><FONT COLOR="#000000">java.awt.event.*;</FONT>
+<FONT COLOR="#0000ff">import </FONT><FONT COLOR="#000000">java.applet.*;</FONT>
+<FONT COLOR="#008000">/*</FONT>
+<FONT COLOR="#008000">&lt;applet code="ChoiceDemo" width=300 height=200&gt;</FONT>
+<FONT COLOR="#008000">&lt;/applet&gt;</FONT>
+<FONT COLOR="#008000">*/</FONT>
+<FONT COLOR="#0000ff">public class </FONT><FONT COLOR="#000000">ChoiceDemo </FONT><FONT COLOR="#0000ff">extends </FONT><FONT COLOR="#ff0000">Applet </FONT><FONT COLOR="#0000ff">implements </FONT><FONT COLOR="#ff0000">ItemListener </FONT><FONT COLOR="#000000">{</FONT>
+<FONT COLOR="#ff0000">Choice </FONT><FONT COLOR="#000000">country,city;</FONT>
+<FONT COLOR="#ff0000">String </FONT><FONT COLOR="#000000">msg=</FONT><FONT COLOR="#ff00ff">""</FONT><FONT COLOR="#000000">;</FONT>
+<FONT COLOR="#0000ff">public void </FONT><FONT COLOR="#000000">init(){</FONT>
+<FONT COLOR="#000000">country = </FONT><FONT COLOR="#0000ff">new </FONT><FONT COLOR="#ff0000">Choice</FONT><FONT COLOR="#000000">();</FONT>
+<FONT COLOR="#000000">city = </FONT><FONT COLOR="#0000ff">new </FONT><FONT COLOR="#ff0000">Choice</FONT><FONT COLOR="#000000">();</FONT>
+<FONT COLOR="#000000">country.add(</FONT><FONT COLOR="#ff00ff">"India"</FONT><FONT COLOR="#000000">);</FONT>
+<FONT COLOR="#000000">country.add(</FONT><FONT COLOR="#ff00ff">"Rusia"</FONT><FONT COLOR="#000000">);</FONT>
+<FONT COLOR="#000000">country.add(</FONT><FONT COLOR="#ff00ff">"Pakistan"</FONT><FONT COLOR="#000000">);</FONT>
+<FONT COLOR="#000000">country.add(</FONT><FONT COLOR="#ff00ff">"Srilanka"</FONT><FONT COLOR="#000000">);</FONT>
+<FONT COLOR="#000000">city.add(</FONT><FONT COLOR="#ff00ff">"unnao"</FONT><FONT COLOR="#000000">);</FONT>
+<FONT COLOR="#000000">city.add(</FONT><FONT COLOR="#ff00ff">"Lucknow"</FONT><FONT COLOR="#000000">); </FONT>
+<FONT COLOR="#000000">city.add(</FONT><FONT COLOR="#ff00ff">"Lahour"</FONT><FONT COLOR="#000000">); </FONT>
+<FONT COLOR="#000000">city.add(</FONT><FONT COLOR="#ff00ff">"Kuvait"</FONT><FONT COLOR="#000000">);</FONT>
+<FONT COLOR="#000000">city.select(</FONT><FONT COLOR="#ff00ff">"Caindy"</FONT><FONT COLOR="#000000">);</FONT>
+<FONT COLOR="#000000">add(country);</FONT>
+<FONT COLOR="#000000">add(city);</FONT>
+<FONT COLOR="#000000">country.addItemListener(</FONT><FONT COLOR="#0000ff">this</FONT><FONT COLOR="#000000">);</FONT>
+<FONT COLOR="#000000">city.addItemListener(</FONT><FONT COLOR="#0000ff">this</FONT><FONT COLOR="#000000">);</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#0000ff">public void </FONT><FONT COLOR="#000000">itemStateChanged(</FONT><FONT COLOR="#ff0000">ItemEvent </FONT><FONT COLOR="#000000">ie){</FONT>
+<FONT COLOR="#000000">repaint();</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#0000ff">public void </FONT><FONT COLOR="#000000">paint(</FONT><FONT COLOR="#ff0000">Graphics </FONT><FONT COLOR="#000000">g){</FONT>
+<FONT COLOR="#000000">msg=</FONT><FONT COLOR="#ff00ff">"Your country name is:"</FONT><FONT COLOR="#000000">;</FONT>
+<FONT COLOR="#000000">msg+=country.getSelectedItem();</FONT>
+<FONT COLOR="#000000">g.drawString(msg,</FONT><FONT COLOR="#800080">6</FONT><FONT COLOR="#000000">,</FONT><FONT COLOR="#800080">120</FONT><FONT COLOR="#000000">);</FONT>
+<FONT COLOR="#000000">msg=</FONT><FONT COLOR="#ff00ff">"your city name is:"</FONT><FONT COLOR="#000000">;</FONT>
+<FONT COLOR="#000000">msg += city.getSelectedItem();</FONT>
+<FONT COLOR="#000000">g.drawString(msg,</FONT><FONT COLOR="#800080">6</FONT><FONT COLOR="#000000">,</FONT><FONT COLOR="#800080">140</FONT><FONT COLOR="#000000">);</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#000000">}</FONT>
+</PRE>
+</div>
+
+<p><h3>Output Of Example:</h3></p>
+<div class="output">
+<div class="image">
+<img src="../images/handli5.jpg">
+</div></div>
+
+<h3><a href="../Control%20fundamental/ChoiceDemo.java.txt">Download Source Code</a></h3>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="handling_checkbox_in_java.shtml" title="handling checkbox">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="set%20_font_of_string_in_java.shtml" title="set fontof string">Next</a></td>
+  </tr> 
+</table>
+
+<!-- Footer Start-->	
+
+		</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->

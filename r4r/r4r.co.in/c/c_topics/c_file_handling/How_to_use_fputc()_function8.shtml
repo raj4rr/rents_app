@@ -1,0 +1,100 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>Character I/O in C Language:    fputc() ,  fgetc() , getc() , putc() .</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT=" How to use Character I/O:    fputc() ,  fgetc() , getc() , putc() ,How to use fputc() Function in C Language " >
+<meta name="keywords" CONTENT="c tutorial,c basics,programming language,examples,pointer,function,loop,else,if else,while,array,pre processor,post processor,structures,memory menagement,string,constants,variables,decisions making,c unions,c memory allocation, c operators, C pointers,c error handling, c file handlingfputc() ,  fgetc() , getc() , putc() ,How to use fputc() Function in C">
+
+	<link href="/css/main.css" rel="stylesheet" type="text/css" />
+        <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+
+	</HEAD>
+	<BODY>
+	<?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style="padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>C Programming language</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a><img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/c/">C</a><img src="/images/left_menu_bullet.gif" width="11" height="6"/><a href="/c/c_topics/c_file_handling/">C File Handling</a></div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/c/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 
+
+		<!-- Header End-->	
+<div class="heading">Character I/O : How to use fputc( ) Function in C</div> 
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;">
+    	<a href="general_structure_of_file_program_and_some_function7.shtml" title="C - General Structure of File program, Some function used for File Handling">Previous</a>
+    </td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="How_to_use_fgetc()_function_in_c9.shtml" title="Character I/O : How to use fgetc( ) Function in C">Next</a></td>
+  </tr>
+</table>
+
+<p><i>fputc() Function</i>:  This function writes a character to a specified file at the current file position and then increment the file position pointer. The <font class="point_out">putc()</font> macro acts essentially identically to <font class="point_out">fputc()</font>, but is a macro  that expands in-line. It may evaluate stream more than once, so arguments given to <font class="point_out">putc()</font> should not be expressions with potential side effects.</p>
+
+<div class="code">
+<font color="#0000FF"><span class="kw4">int</span></font><font> 
+fputc<span class="br0">(</span><span class="kw4">int</span> c<span class="sy0">,</span> 
+FILE <span class="sy0">*</span>fp<span class="br0">)</span><span class="sy0">;</span></font>
+</div>
+
+<p>The <font class="point_out">fputc()</font> function returns an integer representing  the character written. If a write error occurs the error indicator is set and <font class="point_out">fputc()</font> returns EOF.</p>
+
+<div class="code">
+<font color="#008000">/** program to understand the use of fputc( ) function */</font><p><FONT>
+			<FONT COLOR="#ff0000">#include</FONT><FONT>&lt;stdio.h&gt;</FONT><br>
+<FONT COLOR="#0000ff">void </FONT><FONT>main()</FONT><br>
+<FONT>{</FONT><br>
+<FONT>FILE *p;</FONT><br>
+<FONT COLOR="#0000ff">char </FONT><FONT>ch;</FONT><br>
+<FONT COLOR="#0000ff">if</FONT><FONT>((p==fopen(</FONT><FONT COLOR="#ff00ff">&quot;myfile.txt&quot;</FONT><FONT>,</FONT><FONT COLOR="#ff00ff">&quot;w&quot;</FONT><FONT>))== NULL)</FONT><br>
+{<br>
+<FONT>printf(</FONT><FONT COLOR="#ff00ff">&quot;this file does not 
+exist\n&quot;</FONT><FONT>);</FONT><br>
+<FONT>exit()</FONT><br>
+<FONT>}</FONT><br>
+<FONT COLOR="#0000ff">else</FONT><br>
+<FONT>{</FONT><br>
+	<FONT>printf(</FONT><FONT COLOR="#ff00ff">&quot;enter the text&quot;</FONT><FONT>)</FONT><br>
+<FONT COLOR="#0000ff">while</FONT><FONT>((ch==getchar())!=EOF)</FONT><br>
+		<FONT>fputc(ch,p);</FONT><br>
+<FONT>}</FONT><br>
+<FONT>fclose(p);</FONT><br>
+<FONT>};</FONT></FONT>
+</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;">
+    	<a href="general_structure_of_file_program_and_some_function7.shtml" title="C - General Structure of File program, Some function used for File Handling">Previous</a>
+    </td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="How_to_use_fgetc()_function_in_c9.shtml" title="Character I/O : How to use fgetc( ) Function in C">Next</a></td>
+  </tr>
+</table>
+
+<!--Footer  --> 
+</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>

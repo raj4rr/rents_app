@@ -1,0 +1,164 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>WCF  Addresses,WCF transport schemas,The way to read an address</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="WCF  Addresses,WCF transport schemas,The way to read an address" >
+<meta name="keywords" CONTENT="WCF  Addresses,WCF transport schemas,The way to read an address">
+
+<!--Header start-->
+
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>WCF</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a><img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+			<a href="/wcf">WCF with C# </a>
+              <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/wcf/01/tutorial/basic/">WCF Tutorials</a></div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/wcf/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	  
+
+<!-- Header End-->
+<div class="heading">WCF Addresses</div>
+
+  <table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="Service%20contracts.shtml" title="Service contracts
+">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="WCF%20Bindings.shtml" title="WCF Bindings">Next</a></td>
+  </tr>
+</table>
+
+  <p>WCF address provides two important elements:</p>
+  <ol>
+  <li><i>The location of the service: </i>The location portion of the address 
+indicates the name of the target machine, site, or network; a communication 
+port, pipe, or queue; and an optional specific path or URI. A
+URI is a Universal Resource Identifier, and can 
+be any unique string, such as the service name or a GUID.</li>
+
+<li><i>The transport protocol</i> or transport 
+schema used to communicate with the service.</li>
+</ol>
+<div class="heading">WCF transport schemas: </div>
+<p>WCF 1.0 supports the following transport schemas</p>
+<ol>
+<li>HTTP</li>
+<li>TCP</li>
+<li>)Peer network</li>
+<li>IPC (Inter-Process Communication over named pipes)</li>
+<li>MSMQ</li>
+</ol>
+<p ><font face="Verdana" size="2">Addresses always have the following format:</font></p>
+<font class="point_out">[base address]/[optional URI]</font>
+
+<p>The base address is always in this format:</p>
+<font class="point_out">[transport]://[machine or domain][:optional port]</font>
+<h3>EXAMPLE:</h3>
+<ul>
+<li>http://localhost:8001</li>
+<li>http://localhost:8001/MyService</li>
+<li>net.tcp://localhost:8002/MyService</li>
+<li>net.pipe://localhost/MyPipe</li>
+<li>net.msmq://localhost/private/MyService</li>
+</ul>
+
+<h3>The way to read an address such as</h3>
+<p><a href="http://localhost:8001">http://localhost:8001</a> is like this: &quot;Using HTTP, go to the machine called localhost, 
+where on port 8001 someone is waiting for my calls.</p>
+<h3>If there is also a URI such as:</h3>
+<p><a href="http://localhost:8001/MyService">http://localhost:8001/MyService</a></p>
+<p>http://localhost:8001/MyService</p>
+
+<p>then the address would read as follows: &quot;Using HTTP, go to the machine called localhost, where on port 8001 someone called</p>
+<p>MyService is waiting for my calls.&quot;</p>
+<h3> HTTP Addresses: </h3>
+
+<p>HTTP addresses use http for transport, and can also use 
+https for secure transport. You typically use HTTP addresses with outward-facing
+</p>
+<p>
+Internet-based services, and can specify a port such as:</p>
+<p>http://localhost:8001</p>
+<p>
+When the port number is unspecified, it defaults to 80. Similar to TCP 
+addresses, two HTTP addresses from the same host can share a port, even on the 
+same machine.</p>
+
+<h3>TCP: </h3>
+
+<p>TCP addresses use 
+net.tcp 
+for the transport, and typically include a port number such as:</p>
+<p>net.tcp://localhost:8002/MyService</p>
+<p>When a port number is not specified, the TCP address defaults to port 8080:</p>
+<p>net.tcp://localhost/MyService</p>
+<p>
+It is possible for two TCP addresses (from the same host, which will be discussed more later on in this chapter) to share a port:</p>
+<p>net.tcp://localhost:8002/MyService</p>
+<p>net.tcp://localhost:8002/MyOtherService</p>
+<h3>IPC Addresses (Inter-Process Communication over named pipes)</h3>
+<p>IPC addresses use net.pipe for transport, to 
+indicate the use of the Windows named pipe mechanism. In WCF, services that use 
+named pipes can only accept calls from the same machine. Consequently, you must 
+specify either the explicit local machine name or localhost for the 
+machine name, followed by a unique string for the pipe name:</p>
+<p>net.pipe://localhost/MyPipe</p>
+
+<h3> MSMQ Addresses:</h3>
+<p>MSMQ addresses use net.msmq for transport, to 
+indicate the use of the Microsoft Message Queue (MSMQ). You must specify the 
+queue name. When you're dealing with private queues, you must specify the queue 
+type, but that can be omitted for public queues:</p>
+<p>net.msmq://localhost/private/MyService</p>
+<p>net.msmq://localhost/MyService</p>
+
+<h3>Peer Network Address:</h3>
+<p>Peer network addresses use net.p2p for transport, to 
+indicate the use of the Windows peer network transport. You must specify the 
+peer network name as well as a unique path and port. Using and configuring peer 
+networks is beyond the scope of this book, and you will see very little mention 
+of peer networks in subsequent chapters.</p>
+
+   <table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="Service%20contracts.shtml" title="Service contracts
+">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="WCF%20Bindings.shtml" title="WCF Bindings">Next</a></td>
+  </tr>
+</table>
+
+<!--Footer  -->
+</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/dotnet/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>

@@ -1,0 +1,135 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>fwrite() function in c language</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="Learn fwrite() function in c language with examples,c tutorial,c basics,programming language,examples,pointer,function,loop,else,if else,while,array,pre processor,post processor" >
+<meta name="keywords" CONTENT="c, c tutorial,c basics,programming language,examples,pointer,function,loop,else,if else,while,array,pre processor,post processor,structures,memory menagement,string,constants,variables,decisions making,c unions,c memory allocation, c operators, C pointers,c error handling, c file handlingC Interview Questions And Answers,">
+<link href="/css/main.css" rel="stylesheet" type="text/css" />
+        <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+
+	</HEAD>
+	<BODY>
+	<?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style="padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>C Programming language</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a><img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/c/">C</a><img src="/images/left_menu_bullet.gif" width="11" height="6"/><a href="/c/c_topics/c_file_handling/">C File Handling</a></div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/c/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 
+
+		<!-- Header End-->	
+<div class="heading">How to use random access File in C: fseek( ) Function</div> 
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;">
+    	<a href="CALL_BY_VALUE_AND_CALL_BY_REFERENCE.shtml" title="Record I/O : How to use fread( ) Function in C">Previous</a>
+    </td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="Random_access_file_in_c_and_how_to_use_fseek.shtml" title="How to use Random access File in C: ftell( ) Function">Next</a></td>
+  </tr>
+</table>
+
+<p><font size="2" color="#0000FF" face="Verdana"><u><b>fwrite ( ) function:</b></u>&nbsp;&nbsp;&nbsp;&nbsp;
+</font><code><font size="2" face="Verdana">fwrite</font></code><font size="2" face="Verdana"> function writes a block of data to the given file.</font></p>
+<p><font face="Verdana" size="2"><font color="#FF0000">Syntax:&nbsp;&nbsp;&nbsp; </font>size_t fwrite
+<span class="br0">(</span><span class="kw4">const</span> <span class="kw4">void</span>
+<span class="sy0">*</span>ptr<span class="sy0">,</span> size_t size<span class="sy0">,</span> 
+size_t count<span class="sy0">,</span> FILE <span class="sy0">*</span>stream<span class="br0">)</span><span class="sy0"> 
+;</span></font></p>
+<p><font face="Verdana" size="2"><span class="sy0">size_t is&nbsp; defined in stdio.h .</span>void means that 
+it is a pointer that can be used for any type variable.<span class="sy0"> ptr is&nbsp; 
+points to the block of&nbsp; memory that contains the information to be written 
+to the file ,size denotes the length of each itemsin bytes</span></font></p>
+<p><font face="Verdana" size="2"><span class="sy0">n is the number of items to be written to the file . fptr 
+is a file pointer which points to the file to which the&nbsp; data is written 
+.if successful , fwrite will return n items.on error it will return a number 
+less then n.</span></font></p>
+<p><font face="Verdana" size="2"><span class="sy0">struct emp<br>
+{</span></font></p>
+<p><font face="Verdana" size="2"><span class="sy0"><br>
+char name[40] ;<br>
+int age ;<br>
+float sal ;<br>
+}employee ;</span></font></p>
+<p><font face="Verdana" size="2"><span class="sy0">fwrite(&amp;employee,sizeof(employee),1,fp) ;</span></font></p>
+<p><font face="Verdana" size="2"><span class="sy0">this will write single structure to the file.&nbsp;&nbsp;&nbsp;&nbsp;
+</span></font></p>
+<p>
+<font size="2" color="#008000" face="Verdana">/*&nbsp; Receives records from keyboard and 
+writes them to a file in binary mode */</font></p>
+<table border="2" width="50%" bordercolor="#008000" id="table1" height="211">
+	<tr>
+		<td>
+
+<PRE><FONT FACE="Verdana">
+<FONT COLOR="#ff0000">#include</FONT><FONT COLOR="#000000">&lt;stdio.h&gt;</FONT>
+<FONT COLOR="#000000">main( )</FONT>
+<FONT COLOR="#000000">{</FONT>
+<FONT COLOR="#000000">FILE *fp ;</FONT>
+<FONT COLOR="#0000ff">char </FONT><FONT COLOR="#000000">another = </FONT><FONT COLOR="#ff00ff">'Y' </FONT><FONT COLOR="#000000">;</FONT>
+<FONT COLOR="#0000ff">struct </FONT><FONT COLOR="#000000">emp</FONT>
+<FONT COLOR="#000000">{</FONT>
+<FONT COLOR="#0000ff">char </FONT><FONT COLOR="#000000">name[</FONT><FONT COLOR="#800080">40</FONT><FONT COLOR="#000000">] ;</FONT>
+<FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">age ;</FONT>
+<FONT COLOR="#0000ff">float </FONT>sal<FONT COLOR="#000000"> ;</FONT>
+<FONT COLOR="#000000">} ;</FONT>
+<FONT COLOR="#0000ff">struct </FONT><FONT COLOR="#000000">emp e ;</FONT>
+<FONT COLOR="#000000">fp = fopen ( </FONT><FONT COLOR="#ff00ff">&quot;EMP.DAT&quot;</FONT><FONT COLOR="#000000">, </FONT><FONT COLOR="#ff00ff">&quot;wb&quot; </FONT><FONT COLOR="#000000">) ;</FONT>
+<FONT COLOR="#0000ff">if </FONT><FONT COLOR="#000000">( fp == NULL )</FONT>
+<FONT COLOR="#000000">{</FONT>
+<FONT COLOR="#000000">puts ( </FONT><FONT COLOR="#ff00ff">&quot;Cannot open file&quot; </FONT><FONT COLOR="#000000">) ;</FONT>
+<FONT COLOR="#000000">exit( ) ;</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#0000ff">while </FONT><FONT COLOR="#000000">( another == </FONT><FONT COLOR="#ff00ff">'Y' </FONT><FONT COLOR="#000000">)</FONT>
+<FONT COLOR="#000000">{</FONT>
+<FONT COLOR="#000000">printf ( </FONT><FONT COLOR="#ff00ff">&quot;\nEnter name, age and basic salary: &quot; </FONT><FONT COLOR="#000000">) ;</FONT>
+<FONT COLOR="#000000">scanf ( </FONT><FONT COLOR="#ff00ff">&quot;%s %d %f&quot;</FONT><FONT COLOR="#000000">, e.name, &amp;e.age, &amp;e.sal ) ;</FONT>
+<FONT COLOR="#000000">fwrite ( &amp;e, </FONT><FONT COLOR="#0000ff">sizeof </FONT><FONT COLOR="#000000">( e ), </FONT><FONT COLOR="#800080">1</FONT><FONT COLOR="#000000">, fp ) ;</FONT>
+<FONT COLOR="#000000">printf ( </FONT><FONT COLOR="#ff00ff">&quot;Add another record (Y/N) &quot; </FONT><FONT COLOR="#000000">) ;</FONT>
+<FONT COLOR="#000000">Chapter </FONT><FONT COLOR="#800080">12</FONT><FONT COLOR="#000000">: File Input/Output </FONT><FONT COLOR="#800080">439</FONT>
+<FONT COLOR="#000000">fflush ( stdin ) ;</FONT>
+<FONT COLOR="#000000">another = getche( ) ;</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#000000">fclose ( fp ) ;</FONT>
+<FONT COLOR="#000000">}</FONT>
+
+</FONT></PRE>
+</td>
+	</tr>
+</table>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;">
+    	<a href="CALL_BY_VALUE_AND_CALL_BY_REFERENCE.shtml" title="Record I/O : How to use fread( ) Function in C">Previous</a>
+    </td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="Random_access_file_in_c_and_how_to_use_fseek.shtml" title="How to use Random access File in C: ftell( ) Function">Next</a></td>
+  </tr>
+</table>
+
+<!--Footer  --> 
+</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>

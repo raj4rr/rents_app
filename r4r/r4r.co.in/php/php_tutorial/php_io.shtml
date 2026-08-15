@@ -1,0 +1,302 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>PHP I/O|IO in PHP|PHP tutorial</TITLE>
+<META content=r4r.co.in name=owner>
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="PHP  I/O-learn with r4r php tutorial covers all  topics of php from basics concept to higher level php
+best examples interview questions in easy and short way" >
+<meta name="keywords" CONTENT="PHP, Programming, Language, Built-in Function,HTML,CSS,XML,JavaScript,DOM,jQuery Library, Web Design,Object 
+Oriented PHP, PHP Variables, Scalars,Arrays,Object Oriented In PHP,Exception In PHP,Filters In PHP">
+<META content="Rajesh Kumar" name=author>
+<!-- header start-->	
+
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>PHP Programing language</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+            <img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+            <a href="/php/">Php</a>
+              </div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/php/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	 
+
+	   	   <div class="heading">File Input/Output in PHP</div>
+
+		   <table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="php_fileinclusion.shtml" title="php File Inclusion">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="php_function.shtml" title="php Functions">Next</a></td>
+  </tr>
+</table>
+
+<h3>File Input/Output</h3>
+<p>In php Files, you can learn how to create files, write files, read files and uploading files.</p>
+<i>There are some file input/output methods:</i>
+<ol>
+<li>Open and Create a file</li>
+<li>Read a file</li>
+<li>Write a file</li>
+<li>Close a file</li>
+</ol>
+<h3>Modes of file:</h3>
+<p>There are some modes(access modifier) by using you can modified a file with file() funtions.</p>
+
+<div class="table_content">
+<table>
+<tr>
+<td class="heading">Mode</td>
+<td class="heading">Description</td>
+</tr>
+<tr>
+<td class="alternate_heading1"> r </td>
+<td class="alternate_heading1"><pre>Opens the file for reading only.
+Places the file pointer at the beginning of the file.
+</pre>
+</td>
+</tr>
+<tr>
+<td class="alternate_heading2"> r+ </td>
+<td class="alternate_heading2"><pre>Opens the file for reading and writing.
+Places the file pointer at the beginning of the file.
+</pre>
+</td>
+</tr>
+<tr>
+<td class="alternate_heading1"> w </td>
+<td class="alternate_heading1"><pre>Opens the file for writing only.
+Places the file pointer at the beginning of the file. 
+and truncates the file to zero length. 
+If files does not exist then it attemts to create a file.
+</pre>
+</td>
+</tr>
+<tr>
+<td class="alternate_heading2"> w+ </td>
+<td class="alternate_heading2"><pre>Opens the file for reading and writing only.
+Places the file pointer at the beginning of the file.
+and truncates the file to zero length. If files does not
+exist then it attemts to create a file.
+</pre>
+</td>
+</tr>
+<tr>
+<td class="alternate_heading1"> a </td>
+<td class="alternate_heading1"><pre>Opens the file for writing only.
+Places the file pointer at the end of the file.
+If files does not exist then it attemts to create a file.
+</pre>
+</td>
+</tr>
+<tr>
+<td class="alternate_heading2"> a+ </td>
+<td class="alternate_heading2"><pre>Opens the file for reading and writing only.
+Places the file pointer at the end of the file.
+If files does not exist then it attemts to create a file.
+</pre>
+</td>
+</tr>
+</table>
+</div>
+<p></p>
+<div class="heading">Open and Create a file:</div> 
+<p>In Php, to open existing files and to create new files using <font class="point_out">fopen()</font>. The <font class="point_out">fopen()</font> function accepts two  arguments. First argument is the name including the path of the file to open. And second argument is an attribute incicating the mode in which to open the file. It returns a file handle which is subsequently used for all future read and write interactions with that file.</p>
+<i>Syntax:</i>
+<div class="code">
+<pre>
+<font color="#000000">fopen(&quot;filename&quot;, &quot;access modifier&quot;);</font>
+</pre>
+</div>
+<h3>Example:</h3>
+<div class="code">
+<pre>
+<font color="#800000">&lt;?php</font>
+<font color="#ff0000">fopen</font><font color="#800000">(</font><font color="#ff00ff">&quot;fileOne.txt&quot;</font><font color="#800000">, </font><font color="#ff00ff">&quot;a&quot;</font><font color="#800000">);</font>
+<font color="#800000">?&gt;</font>
+</pre>
+</div>
+<div class="heading">Read a file:</div>
+<p>In Php, if you open a file by using <font class="point_out">fopen()</font> function. It can be read by using <font class="point_out">fread()</font> function. It can be file pointer and the length of the file expressed in bytes. The file length can be found by using <font class="point_out">filesize()</font> function.</p>
+<i>Syntax:</i>
+<div class="code">
+<pre>
+<font color="#000000">fgets($fileHandle)</font>
+</pre>
+</div>
+<h3>Example:</h3>
+<div class="code">
+<pre>
+<font color="#800000">&lt;?php</font>
+<font color="#0000ff">$</font><font color="#008080">theFile </font><font color="#800000">= </font><font color="#ff0000">fopen</font><font color="#800000">(</font><font color="#ff00ff">&quot;fileOne.txt&quot;</font><font color="#800000">, </font><font color="#ff00ff">&quot;r&quot;</font><font color="#800000">);</font>
+<font color="#0000ff">$</font><font color="#008080">theText </font><font color="#800000">= </font><font color="#ff0000">fgets</font><font color="#800000">(</font><font color="#0000ff">$</font><font color="#008080">theFile</font><font color="#800000">);</font>
+<font color="#0000ff">print $</font><font color="#008080">theText</font><font color="#800000">;</font>
+<font color="#800000">?&gt;</font>
+</pre>
+</div>
+<div class="heading">Write a file:</div>
+<p>A new file can be written or text can be appended to an existing file by the use of <font class="point_out">fwrite()</font> function. This function requires two arguments one for <font class="point_out">file pointer</font>and second for the string of data that is to be written. Optionally a third integer argument can be included to specify the length of the data to write. If the third argument is included, writing would will stop after the specified length has been reached.</p>
+<i>Syntax:</i>
+<div class="code">
+<pre>
+<font color="#000000">fputs($fileHandle, $text);</font>
+</pre>
+</div>
+<h3>Example:</h3>
+<div class="code">
+<pre>
+<font color="#800000">&lt;?php</font>
+<font color="#0000ff">$</font><font color="#008080">theFile </font><font color="#800000">= </font><font color="#ff0000">fopen</font><font color="#800000">(</font><font color="#ff00ff">&quot;fileOne.txt&quot;</font><font color="#800000">, </font><font color="#ff00ff">&quot;w&quot;</font><font color="#800000">);</font>
+<font color="#ff0000">fputs</font><font color="#800000">(</font><font color="#0000ff">$</font><font color="#008080">theFile</font><font color="#800000">, </font><font color="#ff00ff">&quot;line of text&quot;</font><font color="#800000">);</font>
+<font color="#800000">?&gt;</font>
+</pre>
+</div>
+<div class="heading">Closing a File:</div>
+<p>In Php, if any file open for reading or writing that file must be closed. This can only be done by using <font class="point_out">fclose()</font> function.</p>
+<i>Syntax:</i>
+<div class="code">
+<pre>
+<font color="#000000">fclose($fileHandle);</font>
+</pre>
+</div>
+<h3>Example:</h3>
+<div class="code">
+<pre>
+<font color="#800000">&lt;?php</font>
+<font color="#0000ff">$</font><font color="#008080">theFile </font><font color="#800000">= </font><font color="#ff0000">fopen</font><font color="#800000">(</font><font color="#ff00ff">&quot;fileOne.txt&quot;</font><font color="#800000">, </font><font color="#ff00ff">&quot;w&quot;</font><font color="#800000">);</font>
+<font color="#ff0000">fclose</font><font color="#800000">(</font><font color="#0000ff">$</font><font color="#008080">theFile</font><font color="#800000">);</font>
+<font color="#800000">?&gt;</font>
+</pre>
+</div>
+<h3>File Functions in Php</h3>
+<p>Some file functions are as follows:</p>
+<div class="table_content">
+<table>
+<tr>
+<td class="heading">Function</td>
+<td class="heading">Description</td>
+</tr>
+<tr>
+<td class="alternate_heading1">basename()</td>
+<td class="alternate_heading1">Returns the filename component of a path</td>
+</tr>
+<tr>
+<td class="alternate_heading2">chgrp()</td>
+<td class="alternate_heading2">Changes the file group.</td>
+</tr>
+<tr>
+<td class="alternate_heading1">chmod()</td>
+<td class="alternate_heading1">Changes the file mode.</td>
+</tr>
+<tr>
+<td class="alternate_heading2">chown()</td>
+<td class="alternate_heading2">Changes the file owner.</td>
+</tr>
+<tr>
+<td class="alternate_heading1">copy()</td>
+<td class="alternate_heading1">Copies a file.</td>
+</tr>
+<tr>
+<td class="alternate_heading2">delete()</td>
+<td class="alternate_heading2">Deletes a file.</td>
+</tr>
+<tr>
+<td class="alternate_heading1">dirname()</td>
+<td class="alternate_heading1">Returns the directory name component of a path.</td>
+</tr>
+<tr>
+<td class="alternate_heading2">fclose()</td>
+<td class="alternate_heading2">Closes an open file.</td>
+</tr>
+<tr>
+<td class="alternate_heading1">fgetc()</td>
+<td class="alternate_heading1">Returns a character from an open file.</td>
+</tr>
+<tr>
+<td class="alternate_heading2">fgets()</td>
+<td class="alternate_heading2">Returns a line from an open file.</td>
+</tr>
+<tr>
+<td class="alternate_heading1">file()</td>
+<td class="alternate_heading1">Reads a file into an array.</td>
+</tr>
+<tr>
+<td class="alternate_heading2">filesize()</td>
+<td class="alternate_heading2">Returns the file size.</td>
+</tr>
+<tr>
+<td class="alternate_heading1">filetype()</td>
+<td class="alternate_heading1">Returns the file type.</td>
+</tr>
+<tr>
+<td class="alternate_heading2">fopen()</td>
+<td class="alternate_heading2">Opens a file or URL.</td>
+</tr>
+<tr>
+<td class="alternate_heading1">fputs()</td>
+<td class="alternate_heading1">Alias of fwrite().</td>
+</tr>
+<tr>
+<td class="alternate_heading2">fread()</td>
+<td class="alternate_heading2">Reads from an open file.</td>
+</tr>
+<tr>
+<td class="alternate_heading1">fscanf()</td>
+<td class="alternate_heading1">Parses input from an open file according to a specified format.</td>
+</tr>
+<tr>
+<td class="alternate_heading2">fseek()</td>
+<td class="alternate_heading2">Seeks in an open file.</td>
+</tr>
+<tr>
+<td class="alternate_heading1">fwrite()</td>
+<td class="alternate_heading1">Writes to an open file.</td>
+</tr>
+<tr>
+<td class="alternate_heading2">popen()</td>
+<td class="alternate_heading2">Opens a pipe.</td>
+</tr>
+<tr>
+<td class="alternate_heading1">pclose()</td>
+<td class="alternate_heading1">Closes a pipe opened by popen().</td>
+</tr>
+</table>
+</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="php_fileinclusion.shtml" title="php File Inclusion">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="php_function.shtml" title="php Functions">Next</a></td>
+  </tr>
+</table>
+
+</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/webtechnology/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->

@@ -1,0 +1,150 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>Struts Basic questions and answers,Struts Subjective questions and answers</TITLE>
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<META content=r4r.co.in name=owner>
+<meta name="description" CONTENT="Struts Basic questions and answers,Struts Subjective questions and answers" >
+<meta name="keywords" CONTENT="Struts Basic questions and answers,Struts Subjective questions and answers">
+<!--Header start-->
+
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>FAQ</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a><img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+			<a href="/java/">Java </a>
+              <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/java/faq">Faqs</a>
+
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/corejava/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	  
+
+<!-- header End-->
+
+<div class="heading">Struts Basic Questions and Answers</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="index_struts1.shtml" title="2 Struts Interview Questions and Answers(Subjective)
+">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="JDBC.shtml" title="Java JDBC Interview Question with Ansewser">Next</a></td>
+  </tr>
+</table>
+
+<h3>Q.1	How you will make available any Message Resources Definitions file to the Struts Framework Environment?</h3>
+
+<p><i>Answer: </i>The Message Resources Definitions file is a simple *.properties files and these files contains the messages that can be used in the struts project. Message Resources Definitions files can be added to the struts-config.xml file through &lt;message-resources /&gt; tag.</p>
+
+<h3>Example: </h3>
+<div class="code">
+<pre>
+<font color="#0000ff">&lt;</font><font color="#808000">message-resources </font><font color="#800080">parameter</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;MessageResources&quot; </font><font color="#0000ff">/&gt;</font><font color="#000000"> </font>
+</pre>
+</div>
+
+<div class="heading">Q.2	Write code of any Action Class?</div>
+<p><i>Answer: </i>Here is the code of Action Class that returns the ActionForward object.</p>
+<h3>ExampleAction.java </h3>
+<div class="code">
+<pre>
+<font color="#0000ff">import </font><font color="#000000">javax.servlet.http.*;</font>
+<font color="#0000ff">import </font><font color="#000000">org.apache.struts.action.</font><font color="#ff0000">Action</font><font color="#000000">;</font>
+<font color="#0000ff">import </font><font color="#000000">org.apache.struts.action.ActionForm;</font>
+<font color="#0000ff">import </font><font color="#000000">org.apache.struts.action.ActionForward;</font>
+<font color="#0000ff">import </font><font color="#000000">org.apache.struts.action.ActionMapping; </font>
+<font color="#0000ff">public class </font><font color="#000000">ExampleAction </font><font color="#0000ff">extends </font><font color="#ff0000">Action</font>
+<font color="#000000">{</font>
+<font color="#0000ff">public </font><font color="#000000">ActionForward execute(ActionMapping mapping,</font>
+	<font color="#000000">ActionForm form,   HttpServletRequest request,</font>
+	<font color="#000000">HttpServletResponse response) </font><font color="#0000ff">throws </font><font color="#ff0000">Exception</font>
+<font color="#000000">{</font>
+ <font color="#0000ff">return </font><font color="#000000">mapping.findForward(</font><font color="#ff00ff">&quot;testAction&quot;</font><font color="#000000">);</font>
+<font color="#000000">}</font>
+<font color="#000000">}   </font>
+</pre>
+</div>
+
+<div class="heading">Q.2	How you will display validation fail errors on jsp page?</div>
+<p><i>Answer: </i>Following tag displays all the errors:</p>
+<div class="code">
+<pre>
+<font color="#0000ff">&lt;</font><font color="#808000">html:errors</font><font color="#0000ff">/&gt;</font>
+</pre>
+</div>
+
+<h3>Q.3	How you will enable front-end validation based on the xml in validation.xml?</h3>
+<p><i>Answer: </i>The &lt;html:javascript&gt; tag to allow front-end validation based on the xml in validation.xml. </p>
+<h3>Example: </h3>
+<div class="code">
+<pre>
+<font color="#0000ff">&lt;</font><font color="#808000">html:javascript </font><font color="#800080">formName</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;loginForm&quot; </font>
+<font color="#800080">dynamicJavascript</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;true&quot; </font>
+<font color="#800080">staticJavascript</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;true&quot; </font><font color="#0000ff">/&gt;</font><font color="#000000"> </font>
+</pre>
+</div>
+
+<p>generates the client side java script for the form "loginForm" as defined in the validation.xml file. The &lt;html:javascript&gt; when added in the jsp file generates the client site validation script.</p>
+
+<div class="heading">Q.4	What is RequestProcessor and RequestDispatcher?</div>
+<p><i>Answer: </i>The class <font class="point_out">org.apache.struts.action. RequestProcessor </font>process the request from the controller. We can make a sublass of RequestProcessor with our own version and modify how the request is processed.</p>
+<p>A <font class="point_out">RequestDispatcher</font> object can be used to forward a request to the resource or to include the resource in a response. The resource can be dynamic or static.</p>
+<p>The pathname must begin with a &quot;/&quot; and is interpreted as relative to the current context root. Use <font class="point_out">getContext()</font> method is used  to obtain a <font class="point_out">RequestDispatcher</font> for resources in foreign contexts. This method returns null if the <font class="point_out">ServletContext</font> cannot return a RequestDispatcher.</p>
+
+<h3>Q.5	What are the uses of tiles-def.xml file, resourcebundle.properties file, validation.xml file?</h3>
+<h3>Answer: </h3>
+<p><i> tiles-def.xml </i>is an xml file used to configure tiles with the struts application. You can define the layout / header / footer / body content for your View.</p>
+<p><i>resourcebundle.properties </i>file is used to configure the message (error/ other messages) for the struts applications. </p>
+<p><i>validation.xml </i>is used to declare sets of validations that should be applied to FormBeans. </p>
+
+<div class="heading">Q.6	What are the disadvantages of Struts?</div>
+<p><i>Answer: </i>Struts is very robust framework and is being used extensively in the industry. But there are some disadvantages of the Struts:</p>
+<ol>
+<li>High Learning Curve Struts requires lot of efforts to learn and master it. For any small project less experience developers could spend more time on learning the Struts.</li>
+<li>Harder to learn Struts are harder to learn, benchmark and optimize.</li>
+</ol>
+
+<div class="heading">Q.7	What are the difference between &lt;bean:message&gt; and &lt;bean:write&gt;?</div>
+<h3>Answer: </h3>
+<p><i>&lt;bean:message&gt;: </i>This tag is used to output locale-specific text (from the properties files) from a <font class="point_out">MessageResources bundle</font>.</p>
+<p><i>&lt;bean:write&gt;: </i>This tag is used to output property values from a bean. <font class="point_out">&lt;bean:write&gt;</font> is a commonly used tag which enables the programmers to easily present the data. </p>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="index_struts1.shtml" title="2 Struts Interview Questions and Answers(Subjective)
+">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="JDBC.shtml" title="Java JDBC Interview Question with Ansewser">Next</a></td>
+  </tr>
+</table>
+
+<!-- Footer Start-->
+
+</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>

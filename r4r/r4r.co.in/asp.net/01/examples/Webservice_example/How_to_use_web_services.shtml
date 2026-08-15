@@ -1,0 +1,135 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HEAD><TITLE>How to Use web Services in ASP. Net using C#</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="How to Use web Services in ASP. Net using C#" >
+<meta name="keywords" CONTENT="How to Use web Services in ASP. Net using C#">
+
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+     <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>ASP.NET Technology</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a><img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/asp.net/">ASP.NET</a>
+
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/asp.net/commonfiles/leftmenu.shtml'); ?></td>
+
+                       <td style="80%" valign="top">
+                        <div class="main_content"> 
+
+	<!-- Header End-->
+
+  <div class="heading">Use of web Services in ASP.NET using C#</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="how_to_make_a_web_services.shtml" title="Web Service For Calculate Age when user input Date">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="how_to_use_web_services_in_conso.shtml" title="Use of web Services in Console Application using C#">Next</a></td>
+  </tr>
+</table>
+
+<h2>How to Use web Services in ASP. Net using C#</h2>
+
+<p><i>Step 1:</i> Run Your Service and open a new Website, Add a label and one textBox to enter radius of Circle</p>
+<div class="image">
+<img src="Images/How_to_use_web_services_files.jpg">
+</div>
+
+<p>Click on Add web Reference</p>
+<div class="image">
+<img src="Images/hw6.GIF">
+</div>
+
+<p>Copy the URL of Your running web Service and paste it in Your Web Reference window</p>
+<div class="image">
+<img src="Images/hw7.GIF">
+</div>
+
+<p>Click on Go</p>
+
+<p><i>Step 2:</i> You can change your Web reference name but you remember this. click on add Reference</p>
+<div class="image">
+<img src="Images/hw8.GIF">
+</div>
+
+<p>The service will be added in your application</p>
+<div class="image">
+<img src="Images/hw9.GIF">
+<img src="Images/hw9.GIF">
+</div>
+
+<p><i>Step 3:</i> Now add the Web reference (name space)  in your application (shown below). written the following code in your .cs file (Default.aspx.cs).</p>
+
+<div class="code">
+<PRE>
+<FONT FACE="Arial"><FONT COLOR="#0000ff">using </FONT><FONT COLOR="#008080">System</FONT><FONT COLOR="#000000">;</FONT>
+<FONT COLOR="#0000ff">using </FONT><FONT COLOR="#008080">System</FONT><FONT COLOR="#000000">.</FONT><FONT COLOR="#008080">Configuration</FONT><FONT COLOR="#000000">;</FONT>
+<FONT COLOR="#0000ff">using </FONT><FONT COLOR="#008080">System</FONT><FONT COLOR="#000000">.</FONT><FONT COLOR="#008080">Web</FONT><FONT COLOR="#000000">;</FONT>
+<FONT COLOR="#0000ff">using </FONT><FONT COLOR="#008080">System</FONT><FONT COLOR="#000000">.</FONT><FONT COLOR="#008080">Data</FONT><FONT COLOR="#000000">;</FONT>
+<FONT COLOR="#0000ff">using </FONT><FONT COLOR="#008080">System</FONT><FONT COLOR="#000000">.</FONT><FONT COLOR="#008080">Web</FONT><FONT COLOR="#000000">.</FONT><FONT COLOR="#008080">Security</FONT><FONT COLOR="#000000">;</FONT>
+<FONT COLOR="#0000ff">using </FONT><FONT COLOR="#008080">System</FONT><FONT COLOR="#000000">.</FONT><FONT COLOR="#008080">Web</FONT><FONT COLOR="#000000">.</FONT><FONT COLOR="#008080">UI</FONT><FONT COLOR="#000000">;</FONT>
+<FONT COLOR="#0000ff">using </FONT><FONT COLOR="#008080">System</FONT><FONT COLOR="#000000">.</FONT><FONT COLOR="#008080">Web</FONT><FONT COLOR="#000000">.</FONT><FONT COLOR="#008080">UI</FONT><FONT COLOR="#000000">.</FONT><FONT COLOR="#008080">HtmlControls</FONT><FONT COLOR="#000000">;</FONT>
+<FONT COLOR="#0000ff">using </FONT><FONT COLOR="#008080">System</FONT><FONT COLOR="#000000">.</FONT><FONT COLOR="#008080">Web</FONT><FONT COLOR="#000000">.</FONT><FONT COLOR="#008080">UI</FONT><FONT COLOR="#000000">.</FONT><FONT COLOR="#008080">WebControls</FONT><FONT COLOR="#000000">;</FONT>
+<FONT COLOR="#0000ff">using </FONT><FONT COLOR="#008080">System</FONT><FONT COLOR="#000000">.</FONT><FONT COLOR="#008080">Web</FONT><FONT COLOR="#000000">.</FONT><FONT COLOR="#008080">UI</FONT><FONT COLOR="#000000">.</FONT><FONT COLOR="#008080">WebControls</FONT><FONT COLOR="#000000">.WebParts;</FONT>
+<FONT COLOR="#0000ff">using </FONT><FONT COLOR="#008080">System</FONT><FONT COLOR="#000000">.</FONT><FONT COLOR="#008080">Xml</FONT><FONT COLOR="#000000">.Linq;</FONT>
+<FONT COLOR="#0000ff">using </FONT><FONT COLOR="#000000">localhost;</FONT>
+<FONT COLOR="#0000ff">public </FONT><FONT COLOR="#000000">partial </FONT><FONT COLOR="#0000ff">class </FONT><FONT COLOR="#000000">_Default : </FONT><FONT COLOR="#008080">System</FONT><FONT COLOR="#000000">.</FONT><FONT COLOR="#008080">Web</FONT><FONT COLOR="#000000">.</FONT><FONT COLOR="#008080">UI</FONT><FONT COLOR="#000000">.</FONT><FONT COLOR="#808000">Page </FONT>
+<FONT COLOR="#000000">{</FONT>
+    <FONT COLOR="#808000">Service </FONT><FONT COLOR="#000000">ser = </FONT><FONT COLOR="#0000ff">new </FONT><FONT COLOR="#808000">Service</FONT><FONT COLOR="#000000">();</FONT>
+    <FONT COLOR="#0000ff">protected void </FONT><FONT COLOR="#000000">Page_Load(</FONT><FONT COLOR="#0000ff">object </FONT><FONT COLOR="#000000">sender, </FONT><FONT COLOR="#808000">EventArgs </FONT><FONT COLOR="#000000">e)</FONT>
+    <FONT COLOR="#000000">{</FONT>
+
+    <FONT COLOR="#000000">}</FONT>
+    <FONT COLOR="#0000ff">protected void </FONT><FONT COLOR="#000000">Button1_Click(</FONT><FONT COLOR="#0000ff">object </FONT><FONT COLOR="#000000">sender, </FONT><FONT COLOR="#808000">EventArgs </FONT><FONT COLOR="#000000">e)</FONT>
+    <FONT COLOR="#000000">{</FONT>
+        <FONT COLOR="#0000ff">double </FONT><FONT COLOR="#000000">area = ser.CircleArea(</FONT><FONT COLOR="#0000ff">int</FONT><FONT COLOR="#000000">.Parse(TextBox1.</FONT><FONT COLOR="#008080">Text</FONT><FONT COLOR="#000000">));</FONT>
+        <FONT COLOR="#000000">Label2.</FONT><FONT COLOR="#008080">Text </FONT><FONT COLOR="#000000">= </FONT><FONT COLOR="#ff00ff">"Area is :  " </FONT><FONT COLOR="#000000">+ area.ToString();</FONT>
+    <FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#000000">}</FONT></FONT>
+</PRE>
+</div>
+
+<p><i>Step 4:</i> Run your application (Necessary to running your web service which you use in your application)</p>
+<div class="image">
+<img src="Images/hw10.GIF">
+</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="how_to_make_a_web_services.shtml" title="Web Service For Calculate Age when user input Date">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="how_to_use_web_services_in_conso.shtml" title="Use of web Services in Console Application using C#">Next</a></td>
+  </tr>
+</table>
+
+<!--Footer  -->
+   </div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/dotnet/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+

@@ -1,0 +1,230 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD>
+<meta http-equiv="Content-Language" content="en-us">
+<TITLE>Create an application for getting prime factor of a number through Servlet </TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name="description" CONTENT="Create an application for get prime factor of a number through servlet " >
+<meta name="keywords" CONTENT="Create an application for get prime factor of a number through servlet ">
+	<!-- header start-->	
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+   	  <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>Java Servlet Programing Laungage</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a><img src="/images/left_menu_bullet.gif"/> <a href="/java/servlet/../">Java</a><img src="/images/left_menu_bullet.gif"/><a href="/java/servlet/">Servlet</a><img src="/images/left_menu_bullet.gif"/><a href="index.shtml">Generic Servlet</a>
+       </div>
+
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/servlet/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	 
+<!-- header End-->
+
+<div class="heading">Create an application for getting prime factor of a number through Servlet</div>
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="clientPullServlet.shtml" title="Create an application for accessing new URL through client">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="calculateDayServlet.shtml" title="Create an application for calculating a day through Servlet">Next</a></td>
+  </tr> 
+</table>
+
+<p>In this Generic Servlet program, a number is divided into its prime Factorization 
+through Servlet.</p>
+<h3>Web.xml</h3>
+<div class="code">
+<pre>
+<font color="#0000ff">&lt;?xml </font><font color="#ff0000">version</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;1.0&quot; </font><font color="#ff0000">encoding</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;UTF-8&quot;</font><font color="#800080">?</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;</font><font color="#808000">web-app </font><font color="#ff0000">version</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;3.0&quot;</font>
+	<font color="#ff0000">xmlns</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;http://java.sun.com/xml/ns/javaee&quot;</font>
+	  <font color="#800080">xmlns:xsi</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</font>
+ <font color="#800080">xsi:schemaLocation</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;http://java.sun.com/xml/ns/javaee</font>
+<font color="#ff00ff">			http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd&quot;</font><font color="#0000ff">&gt;</font>
+<font color="#000000">  </font><font color="#0000ff">&lt;</font><font color="#808000">servlet</font><font color="#0000ff">&gt;</font>
+<font color="#000000">    </font><font color="#0000ff">&lt;</font><font color="#808000">servlet-name</font><font color="#0000ff">&gt;</font><font color="#000000">primeFactorServlet</font><font color="#0000ff">&lt;/</font><font color="#808000">servlet-name</font><font color="#0000ff">&gt;</font>
+<font color="#000000">    </font><font color="#0000ff">&lt;</font><font color="#808000">servlet-class</font><font color="#0000ff">&gt;</font><font color="#000000">r4r.GenericServlet.primeFactorServlet</font><font color="#0000ff">&lt;/</font><font color="#808000">servlet-class</font><font color="#0000ff">&gt;</font>
+<font color="#000000">  </font><font color="#0000ff">&lt;/</font><font color="#808000">servlet</font><font color="#0000ff">&gt;</font>
+<font color="#000000">  </font><font color="#0000ff">&lt;</font><font color="#808000">servlet-mapping</font><font color="#0000ff">&gt;</font><font color="#000000"> </font>
+<font color="#000000">    </font><font color="#0000ff">&lt;</font><font color="#808000">servlet-name</font><font color="#0000ff">&gt;</font><font color="#000000">primeFactorServlet</font><font color="#0000ff">&lt;/</font><font color="#808000">servlet-name</font><font color="#0000ff">&gt;</font>
+<font color="#000000">    </font><font color="#0000ff">&lt;</font><font color="#808000">url-pattern</font><font color="#0000ff">&gt;</font><font color="#000000">/primeFactorServlet</font><font color="#0000ff">&lt;/</font><font color="#808000">url-pattern</font><font color="#0000ff">&gt;</font>
+<font color="#000000">  </font><font color="#0000ff">&lt;/</font><font color="#808000">servlet-mapping</font><font color="#0000ff">&gt;</font>
+<font color="#000000">  </font><font color="#0000ff">&lt;</font><font color="#808000">session-config</font><font color="#0000ff">&gt;</font>
+<font color="#000000">     </font><font color="#0000ff">&lt;</font><font color="#808000">session-timeout</font><font color="#0000ff">&gt;</font>
+<font color="#000000">          30</font>
+<font color="#000000">     </font><font color="#0000ff">&lt;/</font><font color="#808000">session-timeout</font><font color="#0000ff">&gt;</font>
+<font color="#000000">  </font><font color="#0000ff">&lt;/</font><font color="#808000">session-config</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;/</font><font color="#808000">web-app</font><font color="#0000ff">&gt;</font>
+</pre>
+</div>
+
+<h3>Index.jsp</h3>
+<div class="code">
+<pre>
+<font color="#800000">&lt;%-- </font>
+ <font color="#800000">Document   : index.jsp</font>
+<font color="#800000">--%&gt;</font>
+<font color="#800000">&lt;%@page contentType=</font><font color="#ff00ff">&quot;text/html&quot; </font><font color="#800000">pageEncoding=</font><font color="#ff00ff">&quot;UTF-8&quot;</font><font color="#800000">%&gt;</font>
+<font color="#0000ff">&lt;!DOCTYPE </font><font color="#800080">html</font><font color="#0000ff">&gt;</font>
+<font color="#0000ff">&lt;html&gt;</font>
+<font color="#000000"> </font><font color="#0000ff">&lt;head&gt;</font>
+<font color="#000000">   </font><font color="#0000ff">&lt;meta </font><font color="#ff0000">http-equiv</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;Content-Type&quot; </font><font color="#ff0000">content</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;text/html; charset=UTF-8&quot;</font><font color="#0000ff">&gt;</font>
+<font color="#000000">   </font><font color="#0000ff">&lt;title&gt;</font><font color="#000000">r4r.co.in-GenericServlet</font><font color="#0000ff">&lt;/title&gt;</font>
+<font color="#000000"> </font><font color="#0000ff">&lt;/head&gt;</font>
+<font color="#000000"> </font><font color="#0000ff">&lt;body&gt;</font>
+<font color="#000000">   </font><font color="#0000ff">&lt;form&gt;</font>
+<font color="#000000">     </font><font color="#0000ff">&lt;h1&gt;</font><font color="#000000">Access GenericServlet by servlet's Name!</font><font color="#0000ff">&lt;/h1&gt;</font>
+<font color="#000000">     </font><font color="#0000ff">&lt;a </font><font color="#ff0000">href</font><font color="#0000ff">=</font><font color="#ff00ff">&quot;primeFactorServlet&quot;</font><font color="#0000ff">&gt;</font><font color="#000000">primeFactorServlet</font><font color="#0000ff">&lt;/a&gt;</font>
+<font color="#000000">   </font><font color="#0000ff">&lt;/form&gt;</font>
+<font color="#000000"> </font><font color="#0000ff">&lt;/body&gt;</font>
+<font color="#0000ff">&lt;/html&gt;</font>
+</pre>
+</div>			
+
+<h3>Servlet Program</h3>
+<div class="code">
+<pre>
+<font color="#008000">/*</font>
+<font color="#008000"> * Save as a primeFactorServlet.java</font>
+<font color="#008000">*/</font>
+<font color="#0000ff">package </font><font color="#000000">r4r.GenericServlet;</font>
+<font color="#0000ff">import </font><font color="#000000">java.io.</font><font color="#ff0000">IOException</font><font color="#000000">;</font>
+<font color="#0000ff">import </font><font color="#000000">java.io.</font><font color="#ff0000">PrintWriter</font><font color="#000000">;</font>
+<font color="#0000ff">import </font><font color="#000000">javax.servlet.GenericServlet;</font>
+<font color="#0000ff">import </font><font color="#000000">javax.servlet.ServletException;</font>
+<font color="#0000ff">import </font><font color="#000000">javax.servlet.ServletRequest;</font>
+<font color="#0000ff">import </font><font color="#000000">javax.servlet.ServletResponse;</font>
+<font color="#008000">/**</font>
+<font color="#008000"> *</font>
+<font color="#008000"> * @author R4R</font>
+<font color="#008000">*/</font>
+ <font color="#0000ff">public class </font><font color="#000000">primeFactorServlet </font><font color="#0000ff">extends </font><font color="#000000">GenericServlet </font>
+ <font color="#000000">{</font>
+   <font color="#000000">@</font><font color="#0000ff">Override</font>
+   <font color="#0000ff">public void </font><font color="#000000">service(ServletRequest req,</font>
+	<font color="#000000">ServletResponse res) </font><font color="#0000ff">throws </font><font color="#000000">ServletException,</font><font color="#ff0000">IOException</font>
+  <font color="#000000">{</font>
+   <font color="#000000">res.setContentType(</font><font color="#ff00ff">&quot;text/html;charset=UTF-8&quot;</font><font color="#000000">);</font>
+   <font color="#ff0000">PrintWriter </font><font color="#000000">out = res.getWriter();</font>
+   <font color="#0000ff">try</font>
+   <font color="#000000">{</font>
+
+   <font color="#000000">}</font>
+   <font color="#0000ff">catch </font><font color="#000000">()</font>
+   <font color="#000000">{</font>
+   <font color="#000000">}</font>
+   <font color="#000000">{</font>
+    <font color="#008000">/* TODO output your page here */</font>
+    <font color="#000000">out.println(</font><font color="#ff00ff">&quot;&lt;html&gt;&quot;</font><font color="#000000">);</font>
+    <font color="#000000">out.println(</font><font color="#ff00ff">&quot;&lt;head&gt;&quot;</font><font color="#000000">);</font>
+    <font color="#000000">out.println(</font><font color="#ff00ff">&quot;&lt;title&gt;&quot; </font><font color="#000000">+ getServletInfo() + </font><font color="#ff00ff">&quot;&lt;/title&gt;&quot;</font><font color="#000000">);</font>
+    <font color="#000000">out.println(</font><font color="#ff00ff">&quot;&lt;/head&gt;&quot;</font><font color="#000000">);</font>
+    <font color="#000000">out.println(</font><font color="#ff00ff">&quot;&lt;body&gt;&quot;</font><font color="#000000">);</font>
+    <font color="#000000">out.println(</font><font color="#ff00ff">&quot;&lt;h1&gt;Servlet primeFactorServlet&lt;/h1&gt;&quot;</font><font color="#000000">);</font>
+    <font color="#000000">out.println(</font><font color="#ff00ff">&quot;&lt;form action=\&quot;primeFactorServlet\&quot;&gt;&quot;</font><font color="#000000">);</font>
+<font color="#000000">out.println</font>
+<font color="#000000">(</font><font color="#ff00ff">&quot;EnterNumber &lt;input type=\&quot;text\&quot;name=\&quot;number\&quot;
+value=\&quot;\&quot;size=\&quot;20\&quot;maxlength=\&quot;5\&quot;/&gt;/2&quot;</font><font color="#000000">);</font>
+<font color="#000000">out.println</font>
+<font color="#000000">(</font><font color="#ff00ff">&quot;&lt;BR&gt;&lt;input type=\&quot;submit\&quot; value=\&quot;Prime Factor\&quot; name=\&quot;submit\&quot; /&gt;&quot;</font><font color="#000000">);</font>
+	<font color="#000000">out.println(</font><font color="#ff00ff">&quot;&lt;input type=\&quot;reset\&quot; value=\&quot;Reset\&quot; /&gt;&quot;</font><font color="#000000">);</font>
+    <font color="#000000">out.println(</font><font color="#ff00ff">&quot;&lt;/form&gt;&quot;</font><font color="#000000">);</font>
+    <font color="#000000">out.println(</font><font color="#ff00ff">&quot;&lt;/body&gt;&quot;</font><font color="#000000">);</font>
+    <font color="#000000">out.println(</font><font color="#ff00ff">&quot;&lt;/html&gt;&quot;</font><font color="#000000">);</font>
+	<font color="#008000">/* ------------------------------------ */</font>
+    <font color="#0000ff">if </font><font color="#000000">(req.getParameter(</font><font color="#ff00ff">&quot;submit&quot;</font><font color="#000000">) != </font><font color="#0000ff">null</font><font color="#000000">) {</font>
+      <font color="#0000ff">double </font><font color="#000000">num = </font><font color="#ff0000">Double</font><font color="#000000">.parseDouble(req.getParameter(</font><font color="#ff00ff">&quot;number&quot;</font><font color="#000000">));</font>
+	                <font color="#008000">//Type conversion</font>
+       <font color="#008000">// Invoke method</font>
+       <font color="#000000">processRequest(num, out);</font>
+       <font color="#000000">}</font>
+	   <font color="#0000ff">else</font>
+	<font color="#000000">{</font>
+        <font color="#000000">out.println(</font><font color="#ff00ff">&quot;Don't leave textField empty&quot;</font><font color="#000000">);</font>
+     <font color="#000000">}</font>
+     <font color="#000000">} </font>
+	 <font color="#0000ff">finally</font>
+	<font color="#000000">{</font>
+        <font color="#000000">out.close(); </font><font color="#008000">// free resource </font>
+    <font color="#000000">}</font>
+    <font color="#000000">}</font>
+    <font color="#0000ff">protected void </font><font color="#000000">processRequest(</font><font color="#0000ff">double </font><font color="#000000">num,</font>
+		<font color="#ff0000">PrintWriter </font><font color="#000000">out)</font><font color="#0000ff">throws </font><font color="#000000">ServletException,</font><font color="#ff0000">IOException</font>
+	 <font color="#000000">{</font>
+        <font color="#008000">//Check input number is positive or negative</font>
+       <font color="#0000ff">if </font><font color="#000000">(num &gt;= </font><font color="#800080">0</font><font color="#000000">) {</font>
+            <font color="#008000">//Check number is even or odd</font>
+       <font color="#0000ff">if</font><font color="#000000">((num % </font><font color="#800080">2</font><font color="#000000">.</font><font color="#800080">0</font><font color="#000000">) != </font><font color="#800080">1</font><font color="#000000">) {</font>
+           <font color="#000000">out.printf(</font><font color="#ff00ff">&quot;Input number (%.1f) is positive and Even &quot;</font><font color="#000000">,</font>
+			          <font color="#000000">num);</font>
+       <font color="#000000">}</font>
+	   <font color="#0000ff">else</font>
+	   <font color="#000000">{</font>
+           <font color="#000000">out.printf(</font><font color="#ff00ff">&quot;Input number (%.1f) is positive and ODD &quot;</font><font color="#000000">,</font>
+			           <font color="#000000">num);</font>
+       <font color="#000000">}</font>
+            <font color="#008000">// Code for prime factorization </font>
+          <font color="#000000">out.print(</font><font color="#ff00ff">&quot;&lt;BR&gt;The prime factorization of &quot; </font><font color="#000000">+ num + </font><font color="#ff00ff">&quot; = &quot;</font><font color="#000000">);</font>
+       <font color="#0000ff">for </font><font color="#000000">(</font><font color="#0000ff">double </font><font color="#000000">i = </font><font color="#800080">2</font><font color="#000000">; i &lt;= num / i; i++) {</font>
+           <font color="#008000">// Continue loop until number divide by i</font>
+       <font color="#0000ff">while </font><font color="#000000">(num % i == </font><font color="#800080">0</font><font color="#000000">) {</font>
+       <font color="#000000">out.print(i + </font><font color="#ff00ff">&quot; x &quot;</font><font color="#000000">);</font>
+       <font color="#000000">num = num / i;</font>
+      <font color="#000000">}</font>
+      <font color="#000000">}</font>
+       <font color="#000000">out.print(num);</font>
+      <font color="#000000">}</font>
+	  <font color="#0000ff">else</font>
+	  <font color="#000000">{</font>
+       <font color="#000000">out.printf(</font><font color="#ff00ff">&quot;Enter number (%.1f) is negative &quot;</font><font color="#000000">, num);</font>
+      <font color="#000000">}</font>
+    <font color="#000000">}</font>
+    <font color="#000000">@</font><font color="#0000ff">Override</font>
+    <font color="#0000ff">public </font><font color="#ff0000">String </font><font color="#000000">getServletInfo() {</font>
+        <font color="#0000ff">return </font><font color="#ff00ff">&quot;r4r.co.in-primeFactorServlet&quot;</font><font color="#000000">;</font>
+    <font color="#000000">}</font>
+<font color="#000000">}</font>
+</pre>
+</div>
+
+<i>Output of Program</i>
+<div class="image">
+<img src="GenericServlet%20Image/primeFactorServlet.gif" >
+</div>	
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="clientPullServlet.shtml" title="Create an application for accessing new URL through client">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="calculateDayServlet.shtml" title="Create an application for calculating a day through Servlet">Next</a></td>
+  </tr> 
+</table>
+<!-- Footer Start-->		
+		</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->

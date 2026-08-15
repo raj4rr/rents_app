@@ -1,0 +1,180 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>WCF Hosting,The WCF host architecture,Hosting Environment,WCF Supported protocol,WCF hosting options and supported features</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="WCF Hosting,The WCF host architecture,Hosting Environment,WCF Supported protocol,WCF hosting options and supported features" >
+<meta name="keywords" CONTENT="WCF Hosting,The WCF host architecture,Hosting Environment,WCF Supported protocol,WCF hosting options and supported features">
+
+<!--Header start-->
+
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>WCF</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a><img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+			<a href="/wcf">WCF with C# </a>
+              <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/wcf/01/tutorial/basic/">WCF Tutorials</a></div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/wcf/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	  
+
+<!-- Header End-->
+<div class="heading">WCF Hosting</div>
+
+  <table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="Format%20and%20Encoding.shtml" title="Format and Encoding Binding
+">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="Binding and Reliability.shtml" title="Binding and Reliability in WCF">Next</a></td>
+  </tr>
+</table>
+
+<p>WCF service has to be hosted in windows process 
+called as host process. Single host process can host multiple servers and same 
+service type can be hosted in multiple host process</p>
+<p>There are mainly four different way of hosting the WCF service.</p>
+
+<ol>
+<li>IIS hosting</li>
+<li>Self hosting</li>
+<li>Windows Activation Service</li>
+<li>Windows Service</li>
+</ol>
+<div class="heading">The WCF host architecture</div>
+<div class="image">
+<img src="image/wcfarchitectitre/2.gif">
+</div>
+<p>The WCF context is conceptually similar to the Enterprise Services context or 
+the .NET context-bound object context Multiple hosting and protocols supported by WCF. Microsoft has introduced the 
+WCF concept in order to make distributed application development and deployment 
+simple.</p>
+<div class="table_content">
+<table>
+<tr>
+<td class="heading" style="width:50%">Hosting Environment</td>
+<td class="heading" style="width:50%">Supported protocol</td>
+</tr>
+
+<tr>
+<td class="alternate_heading1" >Windows console and form application</td>
+<td class="alternate_heading1" >HTTP,net.tcp,net.pipe,net.msmq</td>
+</tr>
+
+<tr>
+<td class="alternate_heading2" >Windows service application (formerly known as NT services)</td>
+<td class="alternate_heading2" >HTTP,net.tcp,net.pipe,net.msmq</td>
+</tr>
+
+<tr>
+<td class="alternate_heading1" >Web server IIS6</td>
+<td class="alternate_heading1" >http, wshttp</td>
+</tr>
+
+<tr>
+<td class="alternate_heading2" >Web server IIS7 - Windows Process Activation Service (WAS)</td>
+<td class="alternate_heading2" >HTTP,net.tcp,net.pipe,net.msmq</td>
+</tr>
+</table>
+</div>
+
+<p>A summary of hosting options and supported features. </p>
+<div class="table_content">
+<table>
+<tr>
+<td class="heading" style="width:25:">Feature</td>
+<td class="heading" style="width:25:">Self-Hosting</td>
+<td class="heading" style="width:25:">IIS Hosting</td>
+<td class="heading" style="width:25:">WAS Hosting</td>
+</tr>
+
+<tr>
+<td class="alternate_heading1" >Executable Process/ App Domain</td>
+<td class="alternate_heading1" >Yes</td>
+<td class="alternate_heading1" >Yes</td>
+<td class="alternate_heading1" >Yes</td>
+</tr>
+
+<tr>
+<td class="alternate_heading2" >Configuration</td>
+<td class="alternate_heading2" >App.config</td>
+<td class="alternate_heading2" >Web.config</td>
+<td class="alternate_heading2" >Web.config</td>
+</tr>
+
+<tr>
+<td class="alternate_heading1" >Activation</td>
+<td class="alternate_heading1" >Manual at startup</td>
+<td class="alternate_heading1" >Message-based</td>
+<td class="alternate_heading1" >Message-based</td>
+</tr>
+<tr>
+<td class="alternate_heading2" >Idle-Time Management</td>
+<td class="alternate_heading2" >No</td>
+<td class="alternate_heading2" >Yes</td>
+<td class="alternate_heading2" >Yes</td>
+</tr>
+
+<tr>
+<td class="alternate_heading1" >Health Monitoring</td>
+<td class="alternate_heading1" >No</td>
+<td class="alternate_heading1" >Yes</td>
+<td class="alternate_heading1" >Yes</td>
+</tr>
+
+<tr>
+<td class="alternate_heading2" >Process Recycling</td>
+<td class="alternate_heading2" >No</td>
+<td class="alternate_heading2" >Yes</td>
+<td class="alternate_heading2" >Yes</td>
+</tr>
+
+<tr>
+<td class="alternate_heading1" >Management Tools</td>
+<td class="alternate_heading1" >No</td>
+<td class="alternate_heading1" >Yes</td>
+<td class="alternate_heading1" >Yes</td>
+</tr>
+</table>
+</div>
+
+  <table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="Format%20and%20Encoding.shtml" title="Format and Encoding Binding">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="Binding and Reliability.shtml" title="Binding and Reliability in WCF">Next</a></td>
+  </tr>
+</table>
+
+ <!--Footer  -->
+</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/dotnet/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>

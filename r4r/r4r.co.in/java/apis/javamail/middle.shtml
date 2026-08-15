@@ -1,0 +1,85 @@
+<div class="main_content">
+<div class="heading">Javamail</div>
+<p>Javamail is a Java  API which is used to send and receive email through SMTP,.POP3 and IMAP . JavaMail is built into the 
+Java EE platform, but also provides an optional package for use in Java SE. The JavaMail API is  a platform-independent and protocol-independent framework which is used to build mail and appliction messaging. </p>
+<p>JavaMail is a set of abstract classes that create a framework for sending, receiving and handling e-mail, along with implementations of those classes. IMAP and SMTP allowing you to get started immediately on sending and receiving mail.  The javax.mail package definesclasses that are common to all mail systems. </p>
+<p>Javamail  can be used to create personal mail filters, simple mailing lists and customized personal mail applications, as well as to add full e-mail capabilities to an Enterprise application or create a full-fledged e-mail client.</p>
+<div class="heading">JavaMail Tutorials and Interview Question</div>
+                        <div class="content_link">
+                        	<a href="basic/tutorial/javamail/">JavaMail Basic Tutorials</a>
+                            </div>
+                          <div class="content_link">
+                        	<a href="basic/example/examples/">JavaMail Basic Example</a>
+                            </div>
+							<div class="content_link">
+                            <a href="/java/apis/javamail/JavaMail_Interview_Questions_And_Answers">JavaMail FAQs</a>
+                            </div>
+
+<div class="heading">Role of SMTP, IMAP and POP3</div>
+<h3>SMTP Simple Mail Transfer Protocol</h3>
+<p>allows two mail servers to communicate using a simple language, and provides a step-by-step protocol for exchanging information.</p>
+<h3>IMAP Internet Mail Access Protocol</h3>
+<p>It is client/server  mail protocol. SMTP delivers mail to a central location, where the user can either log in and read it directly or use a client/server mail protocol to read it remotely. IMAP is keep mail on a remote server and let the user interact with it there.</p>
+<h3>POP3 Post Office Protocol</h3>
+<p>POP3 is  forward a user's mail to a single machine, where the user can go offline and read it, if necessary. IPOP3 is mainly used when connection is slow.</p>
+
+<div class="heading">CLASSES OF JAVAMAIL API</div>
+<p>JavaMail API contains number of classes few important of them are listed below<p>
+<h3>javax.mail.Session</h3>
+<p>It is the top-level class of javax.mail API its most commonly used methods provide the ability to control and load the classes    that represent the service provider implementations (SPI) for various mail protocols</p>
+<h3>javax.mail.Store</h3>
+<p>it is implemented by a service provider, such as a POP Mail implementation developer. and allows for read, write, monitor, and search access for a particular mail protocol</p>
+<h3>javax.mail.Transport</h3>
+<p>This class send a message over a specific protocol.</p>
+<h3>javax.mail.Folder</h3>
+<p>It gives hierarchical organization to mail messages and provides access to e-mail messages in the form of javax.mail.Message class objects.</p>
+<h3>javax.mail.Message</h3>
+<p>It  models all the details of an actual e-mail message, such as the subject line, sender/recipient e-mail address, sent date, and so on.</p>
+
+<div class="heading">Uses of Javamail API</div>
+<p> Possible uses of Javamail API are  following </p>
+<ul>
+<li>Javamail API is used to send email from any type of java application.</li>
+
+<li>It is used to read ,compose, and sending email.</li>
+
+<li>The one of the important use of Javamail API is to create GUI mail client.</li>
+
+<li>It also used to send Email from java stored procedures and one of the important use of it ,is it help to search messages.</li>
+
+<li>It is important  to install javamail API to work with it.</li></ul>
+<div class="heading">Examples</div>
+<p>This example is create to send message</p>
+<div class="code">
+<pre>
+<font color="#008000">//import the package javax.mail  and then sub package javax.mail.internet.</font>
+<font color="#0000ff">import </font><font color="#000000">java.util.*;</font>
+<font color="#0000ff">import </font><font color="#000000">javax.mail.*;</font>
+<font color="#0000ff">import </font><font color="#000000">javax.mail.internet.*;</font>
+<font color="#008000">//create a class and declare the host address ,source address and destination address.as</font>
+<font color="#0000ff">public class </font><font color="#000000">SendMail {</font>
+    <font color="#0000ff">public static void </font><font color="#000000">main(</font><font color="#ff0000">String </font><font color="#000000">args[]) </font><font color="#0000ff">throws </font><font color="#ff0000">Exception </font><font color="#000000">{</font>
+        <font color="#ff0000">String </font><font color="#000000">host = </font><font color="#ff00ff">&quot;192.168.10.205&quot;</font><font color="#000000">;</font>
+        <font color="#ff0000">String </font><font color="#000000">from = </font><font color="#ff00ff">&quot;r4r@localhost&quot;</font><font color="#000000">;</font>
+        <font color="#ff0000">String </font><font color="#000000">to = </font><font color="#ff00ff">&quot;r4r@localhost&quot;</font><font color="#000000">; </font>
+<font color="#008000">//Get system properties as:</font>
+ <font color="#ff0000">Properties </font><font color="#000000">properties = </font><font color="#ff0000">System</font><font color="#000000">.getProperties();</font>
+<font color="#008000">//Setup mail server as:</font>
+       <font color="#000000">properties.setProperty(</font><font color="#ff00ff">&quot;mail.smtp.host&quot;</font><font color="#000000">, host);</font>
+<font color="#008000">// Get the default Session object. as:</font>
+ <font color="#000000">Session session = Session.getDefaultInstance(properties);</font>
+<font color="#008000">// Create a default MimeMessage object. as:</font>
+  <font color="#000000">MimeMessage message = </font><font color="#0000ff">new </font><font color="#000000">MimeMessage(session);</font>
+<font color="#008000">//Set the RFC 822 &quot;From&quot; header field using the value of the InternetAddress.getLocalAddress method.  as: </font>
+<font color="#000000">message.setFrom(</font><font color="#0000ff">new </font><font color="#000000">InternetAddress(from));</font>
+<font color="#008000">//Add the given addresses to the specified recipient type as:</font>
+ <font color="#000000">message.addRecipient(Message.RecipientType.TO, </font><font color="#0000ff">new </font><font color="#000000">InternetAddress(to));</font>
+<font color="#008000">//Set the &quot;Subject&quot; header field as:</font>
+ <font color="#000000">message.setSubject(</font><font color="#ff00ff">&quot;hello..!&quot;</font><font color="#000000">);</font>
+<font color="#008000">// Sets the given String as this part's content,with a MIME type of &quot;text/plain&quot; as:</font>
+<font color="#000000">message.setText(</font><font color="#ff00ff">&quot;Hello ......&quot;</font><font color="#000000">);</font>
+<font color="#008000">//Send message</font>
+ <font color="#000000">Transport.send(message);</font>
+<font color="#ff0000">System</font><font color="#000000">.out.println(</font><font color="#ff00ff">&quot;Message is Send.....&quot;</font><font color="#000000">);</font>
+</pre>
+</div>

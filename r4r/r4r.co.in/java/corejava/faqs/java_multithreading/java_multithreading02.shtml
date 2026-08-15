@@ -1,0 +1,136 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>What is dead Lock?</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="What is dead Lock?" >
+<meta name="keywords" CONTENT="What is dead Lock?">
+
+<!-- header start-->
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+	<BODY>
+		<?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+        <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>Java Multithreading FAQ Tutorials</h1>
+            <div class="link_menu"><br><div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+            <img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+            <a href="/java/">Java</a>
+			<img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/java/corejava/">Core Java</a>
+  <img src="/images/left_menu_bullet.gif" width="11" height="6"> <a href="/java/corejava/faqs/">FAQS</a>
+  </div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/corejava/collections/commonfiles/leftmenu.shtml'); ?></td>                                           
+                        <td style="80%" valign="top">
+
+                        <div class="main_content"> 	 
+
+	<!-- header End-->
+
+<div class="heading">Dead Lock</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="java_multithreading01.shtml" title="Multithreading">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="java_multithreading03.shtml" title="Synchronization method in Multithreading">Next</a></td>
+  </tr> 
+</table>
+
+<p>Dead lock  is a typically error condition that occur relates specifically to multitasking is deadlock, which occurs when two threads have a circular dependency on each other and a pair of synchronized objects. Deadlock generally occur for two reasons: </p>
+<ol>
+<li>
+In general, it occurs when the two threads time-slice in just the right way.
+ </li>
+<li>
+It may involve more than two threads and two synchronized objects.
+</li>
+</ol>	
+
+<h3>Example</h3>
+<div class="code">
+<PRE>
+<FONT COLOR="#008000">// An example of deadlock.</FONT>
+<FONT COLOR="#0000ff">package </FONT><FONT COLOR="#000000">r4r.co.in;</FONT>
+<FONT COLOR="#0000ff">class </FONT><FONT COLOR="#000000">A {</FONT>
+<FONT COLOR="#0000ff">synchronized void </FONT><FONT COLOR="#000000">call(B y) {</FONT>
+<FONT COLOR="#ff0000">String </FONT><FONT COLOR="#000000">name = </FONT><FONT COLOR="#ff0000">Thread</FONT><FONT COLOR="#000000">.currentThread().getName();</FONT>
+<FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.println(name + </FONT><FONT COLOR="#ff00ff">" initilization A"</FONT><FONT COLOR="#000000">);</FONT>
+<FONT COLOR="#0000ff">try </FONT><FONT COLOR="#000000">{</FONT>
+<FONT COLOR="#ff0000">Thread</FONT><FONT COLOR="#000000">.sleep(</FONT><FONT COLOR="#800080">500</FONT><FONT COLOR="#000000">);</FONT>
+<FONT COLOR="#000000">} </FONT><FONT COLOR="#0000ff">catch </FONT><FONT COLOR="#000000">(</FONT><FONT COLOR="#ff0000">Exception </FONT><FONT COLOR="#000000">e) {</FONT>
+<FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.println(</FONT><FONT COLOR="#ff00ff">" Interrupted" </FONT><FONT COLOR="#000000">+ e);</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.println(name + </FONT><FONT COLOR="#ff00ff">" trying to initilization B.last()"</FONT><FONT COLOR="#000000">);</FONT>
+<FONT COLOR="#000000">y.last();</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#0000ff">synchronized void </FONT><FONT COLOR="#000000">last() {</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#0000ff">class </FONT><FONT COLOR="#000000">B {</FONT>
+<FONT COLOR="#0000ff">synchronized void </FONT><FONT COLOR="#000000">bar(A x) {</FONT>
+<FONT COLOR="#ff0000">String </FONT><FONT COLOR="#000000">name = </FONT><FONT COLOR="#ff0000">Thread</FONT><FONT COLOR="#000000">.currentThread().getName();</FONT>
+<FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.println(name + </FONT><FONT COLOR="#ff00ff">" initilization B "</FONT><FONT COLOR="#000000">);</FONT>
+<FONT COLOR="#0000ff">try </FONT><FONT COLOR="#000000">{</FONT>
+<FONT COLOR="#ff0000">Thread</FONT><FONT COLOR="#000000">.sleep(</FONT><FONT COLOR="#800080">1000</FONT><FONT COLOR="#000000">);</FONT>
+<FONT COLOR="#000000">} </FONT><FONT COLOR="#0000ff">catch </FONT><FONT COLOR="#000000">(</FONT><FONT COLOR="#ff0000">Exception </FONT><FONT COLOR="#000000">e) {</FONT>
+<FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.println(</FONT><FONT COLOR="#ff00ff">" Interrupted" </FONT><FONT COLOR="#000000">+ e);</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.println(name + </FONT><FONT COLOR="#ff00ff">" trying to initilization A.last()"</FONT><FONT COLOR="#000000">);</FONT>
+<FONT COLOR="#000000">x.last();</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#0000ff">synchronized void </FONT><FONT COLOR="#000000">last() {</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#0000ff">class </FONT><FONT COLOR="#000000">Deadlock </FONT><FONT COLOR="#0000ff">implements </FONT><FONT COLOR="#ff0000">Runnable </FONT><FONT COLOR="#000000">{</FONT>
+<FONT COLOR="#000000">A x = </FONT><FONT COLOR="#0000ff">new </FONT><FONT COLOR="#000000">A();</FONT>
+<FONT COLOR="#000000">B y = </FONT><FONT COLOR="#0000ff">new </FONT><FONT COLOR="#000000">B();</FONT>
+<FONT COLOR="#000000">Deadlock() {</FONT>
+<FONT COLOR="#ff0000">Thread</FONT><FONT COLOR="#000000">.currentThread().setName(</FONT><FONT COLOR="#ff00ff">"MainThread"</FONT><FONT COLOR="#000000">);</FONT>
+<FONT COLOR="#ff0000">Thread </FONT><FONT COLOR="#000000">t = </FONT><FONT COLOR="#0000ff">new </FONT><FONT COLOR="#ff0000">Thread</FONT><FONT COLOR="#000000">(</FONT><FONT COLOR="#0000ff">this</FONT><FONT COLOR="#000000">, </FONT><FONT COLOR="#ff00ff">"ChildThread"</FONT><FONT COLOR="#000000">);</FONT>
+<FONT COLOR="#000000">t.start();</FONT>
+<FONT COLOR="#000000">x.call(y); </FONT><FONT COLOR="#008000">// get lock on a in this thread.</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#0000ff">public void </FONT><FONT COLOR="#000000">run() {</FONT>
+<FONT COLOR="#000000">y.bar(x); </FONT><FONT COLOR="#008000">// get lock on b in other thread.</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#0000ff">public static void </FONT><FONT COLOR="#000000">main(</FONT><FONT COLOR="#ff0000">String </FONT><FONT COLOR="#000000">args[]) {</FONT>
+<FONT COLOR="#0000ff">new </FONT><FONT COLOR="#000000">Deadlock();</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#000000">}</FONT>
+</PRE>
+</div>    
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="java_multithreading01.shtml" title="Multithreading">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="java_multithreading03.shtml" title="Synchronization method in Multithreading">Next</a></td>
+  </tr> 
+</table>
+
+    <!-- Footer Start-->
+    </div>
+		           </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!--footer end-->

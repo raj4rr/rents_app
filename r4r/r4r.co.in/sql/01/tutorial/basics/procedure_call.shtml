@@ -1,0 +1,108 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+
+<TITLE>How to Call One Procedure From Other</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name="description" CONTENT="How to Call One Procedure From Other" >
+<meta name="keywords" CONTENT="How to Call One Procedure From Other">
+
+<LINK href="/sql/css/new_css.css" type="text/css" rel="stylesheet">
+
+<!--header start-->
+
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>DATABASE & SQL/PLSQL</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a><img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+			<a href="/sql/">SQL </a>
+              </div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/sql/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	  
+
+                        	                        	<!-- Header End-->	
+ <div class="heading">How to Call One Procedure From Other</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="Start_with_sQL_server.shtml" title="Start with SQL Server">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="introduction.shtml" title="Introduction (Database)">Next</a></td>
+  </tr>
+</table>
+
+<p><font color="#0000FF" size="4"><b>How to Call One Procedure From Other</b></font></p>
+<ul>
+  <li><font color="#111111">It is possible to execute and call one&nbsp; 
+  procedure from within another procedure</font></li>
+  <li><font color="#111111">A procedure that calls or executes another procedure 
+  is known as the calling procedure</font></li>
+  <li><font color="#111111">A procedure that is called or executed by the 
+  calling procedure is termed as the called procedure</font></li>
+</ul>
+<p><b>For Example</b></p>
+<p><font color="#0000FF">CREATE PROCEDURE</font> <i>&nbsp;infList @name char(15)
+</i><br>
+<font color="#0000FF">AS <br>
+BEGIN <br>
+EXEC</font>&nbsp; <i>addressList @name</i> <br>
+<font color="#0000FF">EXEC</font> <i>&nbsp;empNameList</i> <br>
+<font color="#0000FF">END <br>
+SELECT</font> <i>&nbsp;emp_id,emp_name,emp_add</i> <br>
+<font color="#0000FF">FROM</font>&nbsp; <i>employee</i> <br>
+<font color="#0000FF">WHERE</font>&nbsp; <i>emp_name=@name</i> </p>
+<p>The command (s) completed successfully.</p>
+<p><b>Check the existence of procedure</b></p>
+<p><font color="#800000">sp_helptext</font> <i>&nbsp;infList</i></p>
+<p><img border="0" src="Image/cal_procedure.gif" width="362" height="223"></p>
+
+<p><b>Execute the Procedure</b></p>
+
+<p><font color="#0000FF">EXECUTE</font> <i>&nbsp;infList aditya</i></p>
+
+<p><b>Out Put</b></p>
+
+<p><img border="0" src="Image/cal_procedure1.gif" width="280" height="226"><br>
+&nbsp;</p>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="Start_with_sQL_server.shtml" title="How To Create Stored Procedure">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="introduction.shtml" title="Introduction (Database)">Next</a></td>
+  </tr>
+</table>
+
+                       <!--Footer  -->
+
+</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>

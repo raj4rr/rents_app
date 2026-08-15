@@ -1,0 +1,191 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>Benefit of using function,Pointer in C</TITLE>
+<META content=r4r.co.in name=owner>
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="Benefits of using function in C with examples,Pointers in C,Data types,Array,Pointers,Functions,Union,Structures,Storage class,C constants,Data types,Preprocessors.Storage class">
+<meta name="keywords" CONTENT="Benefits of using function,Pointer in C,Types of functions in C,Function prototype,Function declaration,Nesting of function,Calling function in c,Recursive function in c,Pointers,Loops,Union,Structures,Data types,Storage class,C constants">
+<META content="Rajesh Kumar" name=author>
+<META http-equiv="expires" content="0"> 
+
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+     <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>C Programming language</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a><img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/c/">C </a>
+              <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/c/c_basics_tutorials/">Learn C in 9 days</a></div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/c/commonfiles/new-leftmenu.shtml'); ?></td>
+
+                       <td style="80%" valign="top">
+                        <div class="main_content">
+
+	 <!-- Header End--> 		
+<div class="heading"><font style="background:#FF9966; padding:7px 0px 7px 7px;">Day <font style="background:#E95409; padding:7px;">7</font></font> Pointer arithmetic in C Programming language</div>    
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="array_pointers_in_c.shtml" title="Array of Pointers in C Programming language">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="pointer_to_pointer_in_c.shtml" title="Pointer to Pointer in C Programming language">Next</a></td>
+  </tr>
+</table>	
+
+<h2># Pointer arithmetic in C Programming language</h2>
+<p>Arithmetic operations on a pointer is possible. There are four arithmetic operators that can be used on pointers: ++, --, +, and -</p>
+<p>To understand pointer arithmetic, let us consider that ptr is an integer (Assuming 32-bit integers) pointer which points to the address 1000.</p>
+<p>Let us perform the following arithmetic operation on the pointer:</p>
+<div class="code">
+<pre>
+<font color="#0000ff">int </font><font color="#000000">*ptr;</font>
+<font color="#000000">ptr++;</font>
+</pre>
+</div>
+<p>After above operation,  ptr will be point to the next  location 1004. The reason behind that, each time ptr incremented and it will located to next integer which is 4 bytes ( i.e. 1004)  next to previous location (i.e. 1000). This operation doesnt impact on actual value at memory location, Means value at memory location not changed.</p>
+In case of char:
+<div class="code">
+<pre>
+<font color="#0000ff">char </font><font color="#000000">*ptr;</font>
+<font color="#000000">ptr++;</font>
+</pre>
+</div> 
+<p>If ptr points to a character whose address is 1000, then above operation will point to the location 1001 because next character will be available at 1001.</p>
+<h2># Incrementing a Pointer</h2>
+<div class="code">
+<pre>
+<font color="#ff0000">#include </font><font color="#000000">&lt;stdio.h&gt;</font>
+
+<font color="#0000ff">const int </font><font color="#000000">MAX = </font><font color="#800080">3</font><font color="#000000">;</font>
+
+<font color="#0000ff">int </font><font color="#000000">main ()</font>
+<font color="#000000">{</font>
+   <font color="#0000ff">int  </font><font color="#000000">variable[] = {</font><font color="#800080">10</font><font color="#000000">, </font><font color="#800080">100</font><font color="#000000">, </font><font color="#800080">200</font><font color="#000000">};</font>
+   <font color="#0000ff">int  </font><font color="#000000">i, *ptr;</font>
+
+   <font color="#008000">/* let us have array address in pointer */</font>
+   <font color="#000000">ptr = variable;</font>
+   <font color="#0000ff">for </font><font color="#000000">( i = </font><font color="#800080">0</font><font color="#000000">; i &lt; MAX; i++)</font>
+   <font color="#000000">{</font>
+
+      <font color="#000000">printf(</font><font color="#ff00ff">&quot;Address of variable[%d] = %x\n&quot;</font><font color="#000000">, i, ptr );</font>
+      <font color="#000000">printf(</font><font color="#ff00ff">&quot;Value of variable[%d] = %d\n&quot;</font><font color="#000000">, i, *ptr );</font>
+
+      <font color="#000000">ptr++;</font><font color="#008000">/* move to the next location */</font>
+   <font color="#000000">}</font>
+   <font color="#0000ff">return </font><font color="#800080">0</font><font color="#000000">;</font>
+<font color="#000000">}</font>
+</pre>
+</div>
+<div class="output"><i>Output</i>
+<p>Address of variable[0] = 2d5a5180
+<br>Value of variable[0] = 10
+<br>Address of variable[1] = 2d5a5184
+<br>Value of variable[1] = 100
+<br>Address of variable[2] = 2d5a5188
+<br>Value of variable[2] = 200</p>
+</div>
+
+<h2># Decrementing a Pointer</h2>
+<div class="code">
+<pre>
+<font color="#ff0000">#include </font><font color="#000000">&lt;stdio.h&gt;</font>
+
+<font color="#0000ff">const int </font><font color="#000000">MAX = </font><font color="#800080">3</font><font color="#000000">;</font>
+
+<font color="#0000ff">int </font><font color="#000000">main ()</font>
+<font color="#000000">{</font>
+   <font color="#0000ff">int  </font><font color="#000000">variable[] = {</font><font color="#800080">10</font><font color="#000000">, </font><font color="#800080">100</font><font color="#000000">, </font><font color="#800080">200</font><font color="#000000">};</font>
+   <font color="#0000ff">int  </font><font color="#000000">i, *ptr;</font>
+
+   <font color="#008000">/* let us have array address in pointer */</font>
+   <font color="#000000">ptr = variable;</font>
+   <font color="#0000ff">for </font><font color="#000000">( i = </font><font color="#800080">0</font><font color="#000000">; i &lt; MAX; i++)</font>
+   <font color="#000000">{</font>
+
+      <font color="#000000">printf(</font><font color="#ff00ff">&quot;Address of variable[%d] = %x\n&quot;</font><font color="#000000">, i, ptr );</font>
+      <font color="#000000">printf(</font><font color="#ff00ff">&quot;Value of variable[%d] = %d\n&quot;</font><font color="#000000">, i, *ptr );</font>
+
+      <font color="#000000">ptr--;</font><font color="#008000">/* move to the next location */</font>
+   <font color="#000000">}</font>
+   <font color="#0000ff">return </font><font color="#800080">0</font><font color="#000000">;</font>
+<font color="#000000">}</font>
+</pre>
+</div>
+<div class="output"><i>Output</i>
+<p>Address of variable[0] = 6bc7f248
+<br>Value of variable[0] = 200
+<br>Address of variable[1] = 6bc7f244
+<br>Value of variable[1] = 100
+<br>Address of variable[2] = 6bc7f240
+<br>Value of variable[2] = 10</p>
+</div>
+<h2># Pointer Comparisons</h2>
+<p>Pointers may be compared by using relational operators, such as ==, <, and >. </p>
+<div class="code">
+<pre>
+<font color="#ff0000">#include </font><font color="#000000">&lt;stdio.h&gt;</font>
+
+<font color="#0000ff">const int </font><font color="#000000">MAX = </font><font color="#800080">3</font><font color="#000000">;</font>
+
+<font color="#0000ff">int </font><font color="#000000">main ()</font>
+<font color="#000000">{</font>
+   <font color="#0000ff">int  </font><font color="#000000">var[] = {</font><font color="#800080">10</font><font color="#000000">, </font><font color="#800080">100</font><font color="#000000">, </font><font color="#800080">200</font><font color="#000000">};</font>
+   <font color="#0000ff">int  </font><font color="#000000">i, *ptr;</font>
+
+   <font color="#000000">ptr = var;</font>
+   <font color="#000000">i = </font><font color="#800080">0</font><font color="#000000">;</font>
+   <font color="#0000ff">while </font><font color="#000000">( ptr &lt;= &amp;var[MAX - </font><font color="#800080">1</font><font color="#000000">] )</font>
+   <font color="#000000">{</font>
+
+      <font color="#000000">printf(</font><font color="#ff00ff">&quot;Address of var[%d] = %x\n&quot;</font><font color="#000000">, i, ptr );</font>
+      <font color="#000000">printf(</font><font color="#ff00ff">&quot;Value of var[%d] = %d\n&quot;</font><font color="#000000">, i, *ptr );</font>
+
+      <font color="#000000">ptr++;</font>
+      <font color="#000000">i++;</font>
+   <font color="#000000">}</font>
+   <font color="#0000ff">return </font><font color="#800080">0</font><font color="#000000">;</font>
+<font color="#000000">}</font>
+</pre>
+</div>
+<div class="output">
+<p>Address of var[0] = b0073c40
+<br>Value of var[0] = 10
+<br>Address of var[1] = b0073c44
+<br>Value of var[1] = 100
+<br>Address of var[2] = b0073c48
+<br>Value of var[2] = 200</p>
+</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="array_pointers_in_c.shtml" title="Array of Pointers in C Programming language">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="pointer_to_pointer_in_c.shtml" title="Pointer to Pointer in C Programming language">Next</a></td>
+  </tr>
+</table>	
+
+<!--Footer  --> 	
+</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/c/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>

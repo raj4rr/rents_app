@@ -1,0 +1,225 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>Jdk1.8 new Features</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="New features in Java SE 8">
+<meta name="keywords" CONTENT="New features in Java SE 8">
+
+<!-- header start-->	
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>Java Programing laungage</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+            <img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+            <a href="/java/">Java</a>
+              <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/java/corejava/">Core Java</a>
+
+                     <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/java/corejava/topics/jdk8/">JDK1.8</a>
+              </div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/corejava/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	 
+<!-- header End-->
+
+<div class="heading">Jdk1.8 new Features</div>
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="jdk1.8-Introduction.shtml" title="Introduction of JDK1.8">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="index.shtml" title="Home">Next</a></td>
+  </tr> 
+</table>
+
+ <p>Java 8 was released on 18 March 2014. The code name culture is dropped with Java 8 and so no official code name going forward from Java 8.</p>
+
+<ol>
+<li>
+Lambda Expressions
+</li>
+<li>
+Pipelines and Streams
+</li>
+<li>
+Date and Time API
+</li>
+<li>
+Default Methods
+</li>
+<li>
+Type Annotations
+</li>
+<li>
+Nashhorn JavaScript Engine
+</li>
+<li>
+Concurrent Accumulators
+</li>
+<li>
+Parallel operations
+</li>
+<li>
+PermGen Error Removed
+</li>
+<li>
+TLS SNI
+</li>
+ </ol>
+
+<p><i>Lambdas: </i>Lambdas bring anonymous function types in Java (JSR 335): (parameters) -&gt; {body} 
+ <h3>Example</h3> 
+ <div class=" code">
+ (x,y) -&gt; x + y
+ </div>
+<p><i>Lambdas:</i> Lambdas bring anonymous function types in Java (parameters) -&gt; {body}</p>
+<h3>Example</h3> 
+<div class="code">
+(x,y) -&gt; x + y  well  Groovy (a superset of java) already provides this 
+</div>
+<p><i>Lambdas:</i> Lambdas can be used in place of functional interfaces (interfaces with just one method such as Runnable)</p>
+<h3>Example</h3> 
+<div class="code">
+<PRE>
+<FONT COLOR="#0000ff">new </FONT><FONT COLOR="#ff0000">Thread</FONT><FONT COLOR="#000000">(</FONT><FONT COLOR="#0000ff">new </FONT><FONT COLOR="#ff0000">Runnable</FONT><FONT COLOR="#000000">() { </FONT>
+<FONT COLOR="#000000">@Override </FONT><FONT COLOR="#0000ff">public void </FONT><FONT COLOR="#000000">run() {</FONT>
+<FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.println(</FONT><FONT COLOR="#ff00ff">"It runs !"</FONT><FONT COLOR="#000000">);</FONT>
+<FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#000000">} </FONT>
+<FONT COLOR="#000000">start(); </FONT>
+<FONT COLOR="#0000ff">new </FONT><FONT COLOR="#ff0000">Thread</FONT><FONT COLOR="#000000">(() -&gt; { </FONT><FONT COLOR="#ff0000">System</FONT><FONT COLOR="#000000">.out.println(</FONT><FONT COLOR="#ff00ff">"It runs !"</FONT><FONT COLOR="#000000">); } ).start();</FONT>
+</PRE>
+</div>
+
+<p><i>Lambdas:</i></p>
+<h3>Examples of such functional interfaces: </h3>
+<div class="code">
+<PRE>
+<FONT COLOR="#000000">java.lang.</FONT><FONT COLOR="#ff0000">Runnable </FONT><FONT COLOR="#000000">-&gt; run()</FONT>
+<FONT COLOR="#000000">java.util.concurrent.</FONT><FONT COLOR="#ff0000">Callable </FONT><FONT COLOR="#000000">-&gt; call()</FONT>
+<FONT COLOR="#000000">java.security.</FONT><FONT COLOR="#ff0000">PrivilegedAction </FONT><FONT COLOR="#000000">-&gt; run()</FONT>
+<FONT COLOR="#000000">java.util.</FONT><FONT COLOR="#ff0000">Comparator </FONT><FONT COLOR="#000000">-&gt; compare(T o1, T o2) </FONT>
+<FONT COLOR="#000000">java.awt.event.</FONT><FONT COLOR="#ff0000">ActionListener </FONT><FONT COLOR="#000000">-&gt;</FONT>
+<FONT COLOR="#000000">actionPerformed (</FONT><FONT COLOR="#ff0000">ActionEvent </FONT><FONT COLOR="#000000">e)</FONT>
+<FONT COLOR="#000000">java.lang.</FONT><FONT COLOR="#ff0000">Iterable </FONT><FONT COLOR="#000000">-&gt; forEach(Consumer&lt;? </FONT><FONT COLOR="#0000ff">super </FONT><FONT COLOR="#000000">T&gt; action)</FONT>
+</PRE>
+</div>
+
+<p><i>Lambdas</i> java.lang.Iterable -&gt; forEach(Consumer&lt;? super T&gt; action) ?!? Isn't this breaking backward compatibility ?!?</p>
+<p><i>Lambdas</i> java.lang.Iterable -&gt; forEach(Consumer&lt;? super T&gt; action) ?!? Isn't this breaking compatibility ?!? No - because forEach is an extension method.</p>
+<p><i>Lambdas</i> Extension methods provide a mechanism for extending an existing interface without breaking backward compatibility. </p>
+<div class="code">
+<PRE>
+<FONT COLOR="#0000ff">public interface </FONT><FONT COLOR="#ff0000">Iterable</FONT><FONT COLOR="#000000">&lt;T&gt; { </FONT>
+	<FONT COLOR="#0000ff">default void </FONT><FONT COLOR="#000000">forEach(Consumer&lt;? </FONT><FONT COLOR="#0000ff">super </FONT><FONT COLOR="#000000">T&gt; action)</FONT>
+	<FONT COLOR="#000000">{</FONT>
+		<FONT COLOR="#000000">Objects.requireNonNull(action);</FONT>
+		<FONT COLOR="#0000ff">for </FONT><FONT COLOR="#000000">(T t : </FONT><FONT COLOR="#0000ff">this</FONT><FONT COLOR="#000000">) { action.accept(t); } } }</FONT>
+</PRE>
+</div>
+<p><i>Lambdas:</i> This essentially means that lambdas can be used to replace all functional interfaces used in a gazillion of libraries </p>
+<p> Moreover lambdas increase performance when used instead of anonymous inner classes because they are implemented with the invokedynamic instruction </p>
+<p>In this regard many of the standard JDK class are being refactored to use lambdas</p>
+<p><i>Lambdas</i> Additional functional interfaces are provided by the java.util.function package for use by lambdas such as: o Predicate&lt;T&gt; - one method with param of type T and boolean return type o Consumer&lt;T&gt; - one method with param T and no return type o Function&lt;T, R&gt; - one method with param T and return type R o Supplier&lt;T&gt; - one method with no params and return type T</p>
+<p><i>Stream API:</i> Databases and other programming languages allow us to specify aggregate operations explicitly </p>
+<p> The streams API provides this mechanism in the Java platform</p>
+ <p>The notion of streams is derived from functional programming languages</p>
+<p><i>Stream API :</i> The stream API makes use of lambdas and extension methods </p> 
+<p>Streams can be applied on collections, arrays, IO streams and generator functions</p>
+<p><i>Stream API:</i> Streams can be finite or infinite </p>
+<p>Streams can apply intermediate functions on the data that produce another stream (e.g. map, reduce)</p>
+<h3>Stream API:</h3> 
+<div class="code">
+<PRE>
+<FONT COLOR="#000000">java.util.stream.Stream&lt;T&gt;</FONT>
+<FONT COLOR="#000000">collection.stream(); </FONT>
+<FONT COLOR="#000000">java.util.stream.Stream&lt;T&gt; </FONT>
+<FONT COLOR="#000000">collection.parallelStream(); </FONT>
+<FONT COLOR="#000000">Useful methods: o filter(</FONT><FONT COLOR="#ff0000">Predicate</FONT><FONT COLOR="#000000">), map(Function), </FONT>
+<FONT COLOR="#000000">reduce(BinaryOperator), collect() o sum()</FONT>
+<FONT COLOR="#000000">, min(), max(), count() o anyMatch(), </FONT>
+<FONT COLOR="#000000">allMatch(), forEach(),</FONT>
+</PRE>
+</div>
+
+<p><i>Stream internals</i> int sum = widgets.stream() .filter(w -&gt; w.getColor() == RED) .mapToInt(w -&gt; w.getWeight()) .sum();  Stream operations are composed into a pipeline  Streams are lazy: computation is performed when the terminal operation is invoked</p>
+<p><i>Method references :</i> Intended to be used in lambda expressions, preventing unnecessary boilerplate </p>
+<p>Example: books.stream().map(b -&gt; b.getTitle()) &#61672; books.stream().map(Book::getTitle)  Lambda parameter list and return type must 
+match the signature of the method</p>
+<p><i>Method references:</i> static methods public class Printers </p>
+<div class="code">
+<PRE>
+<FONT COLOR="#000000">{ </FONT>
+	<FONT COLOR="#0000ff">public static void </FONT><FONT COLOR="#000000">print(</FONT><FONT COLOR="#ff0000">String </FONT><FONT COLOR="#000000">s) {...} </FONT>
+	<FONT COLOR="#000000">} </FONT>
+	<FONT COLOR="#ff0000">Arrays</FONT><FONT COLOR="#000000">.asList(</FONT><FONT COLOR="#ff00ff">"a"</FONT><FONT COLOR="#000000">, </FONT><FONT COLOR="#ff00ff">"b"</FONT><FONT COLOR="#000000">, </FONT><FONT COLOR="#ff00ff">"c"</FONT><FONT COLOR="#000000">).forEach(Printers::print)</FONT>
+</PRE>
+</div>
+<p><i>Method references :</i>instance methods (1) public class Document</p>
+<div class="code">
+<PRE>
+ <FONT COLOR="#000000">{</FONT>
+	 <FONT COLOR="#0000ff">public </FONT><FONT COLOR="#ff0000">String </FONT><FONT COLOR="#000000">getPageContent(</FONT><FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">pageNumber) </FONT>
+	 <FONT COLOR="#000000">{</FONT>
+		 <FONT COLOR="#0000ff">return this</FONT><FONT COLOR="#000000">.pages.get(pageNumber).getContent();</FONT>
+<FONT COLOR="#000000">} }</FONT>
+<FONT COLOR="#0000ff">public static void </FONT><FONT COLOR="#000000">printPages(</FONT><FONT COLOR="#ff0000">Document </FONT><FONT COLOR="#000000">doc, </FONT><FONT COLOR="#0000ff">int</FONT><FONT COLOR="#000000">[] pageNumbers)</FONT>
+<FONT COLOR="#000000">{ </FONT>
+	<FONT COLOR="#ff0000">Arrays</FONT><FONT COLOR="#000000">.stream(pageNumbers) .map(doc::getPageContent) .forEach(Printers::print);</FONT>
+	<FONT COLOR="#000000">}</FONT>
+</PRE>
+</div>
+<p><i>Method references :</i> instance methods (2)</p>
+ <div class="code">
+<PRE>
+<FONT COLOR="#0000ff">public class </FONT><FONT COLOR="#ff0000">Document </FONT><FONT COLOR="#000000">{</FONT>
+	<FONT COLOR="#0000ff">public </FONT><FONT COLOR="#ff0000">String </FONT><FONT COLOR="#000000">getPageContent(</FONT><FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">pageNumber) {</FONT>
+		<FONT COLOR="#0000ff">return this</FONT><FONT COLOR="#000000">.pages.get(pageNumber).getContent();</FONT>
+		<FONT COLOR="#000000">} }</FONT>
+		<FONT COLOR="#0000ff">public static void </FONT><FONT COLOR="#000000">printDocuments(</FONT><FONT COLOR="#ff0000">List</FONT><FONT COLOR="#000000">&lt;Page&gt; pages) {</FONT>
+			<FONT COLOR="#000000">pages.stream() .map(Page::getContent) .forEach(Printers::print);</FONT>
+			<FONT COLOR="#000000">}</FONT>
+</PRE>
+ </div>
+<p><i>Method references:</i> constructors public static Stream&lt;Page&gt; createPagesFrom(Stream&lt;String&gt; contents) { return contents.map(Page::new). }</p>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="jdk1.8-Introduction.shtml" title="Introduction of JDK1.8">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="index.shtml" title="Home">Next</a></td>
+  </tr> 
+</table>
+
+	     <!-- Footer Start-->	
+
+		</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->

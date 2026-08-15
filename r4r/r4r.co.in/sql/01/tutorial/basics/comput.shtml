@@ -1,0 +1,117 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>Using COMPUTE Clause,use of the COMPUTE and COMPUTE BY</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="Using COMPUTE Clause,use of the COMPUTE and COMPUTE BY" >
+<meta name="keywords" CONTENT="Using COMPUTE Clause,use of the COMPUTE and COMPUTE BY">
+
+<!--header start-->
+
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>DATABASE & SQL/PLSQL</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a><img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+			<a href="/sql/">SQL </a>
+              </div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/sql/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	  
+
+                        	                        	<!-- Header End--> 	
+    <div class="heading">Using COMPUTE BY Clause</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="group_compute.shtml" title="Using GROUP BY Clause">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="string_fun.shtml" title="Using String Functions">Next</a></td>
+  </tr>
+</table> 
+
+<p>Used to generate summary rows using aggregate function in the query results.
+COMPUTE BY clause can be used to calculate summary values of the result set on a group of data.The main difference between GROUP BY and COMPUTE BY Clause is,</p>
+
+<p>GROUP BY Clause is used to generate a group summary report and does not produce individual table rows in the result set 
+whereas COMPUTE BY Clause generate the summary report  with individual data rows from the table.</p>
+
+<div class="code">
+<pre>
+SELECT  column_name
+FROM  table_name
+ORDER BY  column_name
+COMPUTE  aggregate_function (column_name)  BY  column_name 1...column_name n
+</pre>
+</div>       
+
+<h3>Example:</h3>
+<div class="code">
+<pre>
+SELECT  type, advance
+FROM  titles
+ORDER BY  type
+COMPUTE AVG (advance)  BY  type</pre>
+</div>  
+
+<p><i>output</i></p>
+<div class="output">
+<div class="image">
+<img src="Image/comput.GIF" >
+</div>
+</div>
+
+<h3>Some points regarding the use of the COMPUTE and COMPUTE BY</h3>
+
+<ol type="1">
+<li>The DISTINCT keyword cannot be used with the aggregate function</li>
+<li>All columns referred to in the COMPUTE clause must appear in the select column list </li>
+<li>The ORDER BY Clause must be used whenever the COMPUTE BY Clause is used </li>
+<li>The ORDER BY Clause can be eliminate only when the COMPUTE BY Clause is used </li>
+<li>The column listed in the COMPUTE BY Clause must match the columns used in the ORDER BY Clause </li>
+<li>More than one COMPUTE clause can be used in the SELECT statement to produce a result with subtotals and grand total </li>
+<li>The different aggregate function can be used on more than one column with the COMPUTE BY Clause</li>
+<li>More than one column or expression can be specified after the COMPUTE BY clause. 
+The order of columns or expression used in the COMPUTE BY clause must match 
+the order of columns or expression specified in the ORDER BY Clause. </li>
+</ol>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="group_compute.shtml" title="Using GROUP BY Clause">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="string_fun.shtml" title="Using String Functions">Next</a></td>
+  </tr>
+</table>          
+
+                                     <!--Footer  -->
+
+</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>

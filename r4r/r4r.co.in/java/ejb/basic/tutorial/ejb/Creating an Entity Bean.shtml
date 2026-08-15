@@ -1,0 +1,226 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+
+<HTML><HEAD>
+
+<meta http-equiv="Content-Language" content="en-us">
+
+<TITLE>Creating a entity beans</TITLE>
+
+<META content="Rajesh Kumar" name="author">
+
+<META http-equiv="expires" content="0">
+
+<META content="r4r.co.in" name="owner">
+
+<META http-equiv=Content-Type content="text/html; charset=windows-1252">
+
+<meta name="description" CONTENT="Creating an Entity Bean,Important,Entity beans require a certain framework" >
+
+<meta name="keywords" CONTENT="Creating an Entity Bean,Important,Entity beans require a certain framework">
+
+<!--Header start-->
+
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>EJB</h1>
+            <div class="link_menu"><A href="/">R4R</A>
+
+<img border="0" src="/images/left_menu_bullet.gif" width="11" height="6"> <A href="/java">Java</A><img border="0" src="/images/left_menu_bullet.gif" width="11" height="6"><A href="/java/ejb/">EJB</A></font> </div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/ejb/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	  
+
+<!-- header End-->
+
+<div class="heading">Creating an Entity Bean</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="Message%20Driven%20beans.shtml" title=" Message Driven Beans
+">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="Home%20Interface.shtml" title="Home Interface">Next</a></td>
+  </tr>
+</table>
+
+<p>EJB's requiring for an EJB Container, it's commonly provided as part of an Application server. We will be 
+using the Blazix application server as the EJB container. </p> </p>
+
+<p>Before beginning, 
+download and install the server from the link above if you don't already have 
+it. (Even if you are using another server, for the first few lessons you will 
+need Blazix. It includes an EJB wizard that we will use for generating EJBs.</p>
+
+<p>
+This way, We don't need to deal with all the details initially and we can 
+concentrate on the important concepts. Once you understand the concepts, it 
+should be relatively easy to transfer the concepts to other servers as well.)
+</p>
+
+<p>
+Also it's make sure to modify your PATH to include the Blazix installation 
+directory, and to modify your CLASSPATH to include the blazix.jar file.</p>
+
+<p>The advantages of getting an actual server and trying everything hands-on cannot be overstated. Blazix is 
+only a 1.5 MB download so it can easily be downloaded even over a modem in a few 
+minutes. It will run on any Java platform including XP operating system. Running 
+the tutorial examples and doing the exercises is very important, because this 
+tutorial has been written with the hands-on student in mind. So if you haven't 
+yet, it is strongly recommended that you go get the server now, before you 
+proceed with this tutorial anymore.</p>
+
+<div class="heading">Entity beans require a certain framework:</div>
+<p>A <font class="point_out">remote</font> interface. This is the interface that does the real work , 
+it provides the actual services needed by the clients of the entity bean.</p>
+<p>A <font class="point_out">home</font> interface. Before using an entity bean, one must find it, or create it. 
+The <font class="point_out">home</font> interface provides methods for creating or finding the beans.</p>
+<p>
+Entity beans also need a <font class="point_out">primary key</font> class. Each entity bean has a <font class="point_out">primary 
+key</font>. The primary key may be a single member field contained in the entity bean, 
+or it may consist of a few member fields. If the primary key is composed of more 
+than one member fields, a class must be provided that corresponds to the primary 
+key member fields.</p>
+<p>The Blazix EJB Wizard - Blizzard - takes care of generating the basic framework, 
+thereby simplifying the task of creating an entity bean. For the first few 
+exercises, we will be taking advantage of the wizard so we won't need to know 
+all the details of the framework.</p>
+<p>For this example, we will create an entity bean that is a permanent, shareable version of a Property list. 
+It will allow any of its clients to add a string at a given <font class="point_out">key</font>, and to 
+retrieve the string stored at a given key. This is a very simple usage of an 
+entity bean, but is still useful and displays the advantages of entity beans.</p>
+
+<p>We must decide upon a database representation first. For this entity bean, a table with one column 
+called <font class="point_out">key</font> and one column called <font class="point_out">value</font> is sufficient.</p>
+
+<p><i>Step 1:</i>
+Firstly To Creating a database table called <font class="point_out">PropsTable</font> with two columns, one 
+called <font class="point_out">key</font> and one called <font class="point_out">value</font>. They should be <font class="point_out">varchar</font> (or the 
+corresponding type in your database) with some reasonable space limit, such as 
+255. </p>
+<p><i>
+IMPORTANT: </i> Do not use the <font class="point_out">char</font> datatype, otherwise all your calls will need 
+
+padding the string to the correct length with spaces.</p>
+
+<p>
+
+If you do not have access to a database, and if you are on a Windows machine, 
+
+download the Props.mdb file which is an MS-Access database and should work on 
+
+all Windows machines.</p>
+
+<p><i>
+Step 2:</i> 
+
+After that Configuring the database table created in step 1 into the EJB 
+configuration file. A convenient way to do this is to create an ODBC data 
+source. Suppose you created an ODBC data source called <font class="point_out">PropsOdbc</font>. Then add the 
+following lines to the EJB configuration file ejb.ini:</p>
+
+<ul><li>dataSource.name: propsDataSource</li>
+<li>dataSource.propsDatasource.odbc: PropsOdbc</li>
+</ul>
+
+<p><i>Step 3:</i>
+Run the Blazix EJB wizard Blizzard, and select <font class="point_out">Create an Entity bean</font>. Give the 
+
+wizard the datasource you created in step 2, and the name of the table you 
+
+created in step 1 above. The wizard will go through the table columns. For 
+
+column <font class="point_out">key</font>, select <font class="point_out">primary key</font>. For both columns, select the datatype 
+
+<font class="point_out">String</font>. For column <font class="point_out">value</font>, select <font class="point_out">generate Setters</font>. The following link show 
+
+the various pages the wizard displays.</p>
+<p>Entity Bean Wizard Steps</p>
+
+<p>
+<i>Note:</i> In the next steps of the tutorial, it is assumed that in the last page of 
+
+the wizard, the bean name has been changed to <font class="point_out">Props</font>.</p>
+
+<p>Now examine the files 
+
+created by the wizard. We will be covering the ejb-jar.xml file later, but for 
+
+now, look in the remote interface, the home interface and the bean class. Notice 
+
+that the remote interface consists of methods to access the bean fields, the 
+
+home interface consists of methods to create or find the beans, and the bean 
+
+class provides a simple implementation of the remote interface.</p>
+
+<p>
+<i>Step 4:</i>
+Build the bean. The wizard creates a .cmd file containing the list of commands 
+
+you must type to build the bean. This involves compiling the source files, 
+
+running <font class="point_out">jar</font> to create a Jar file containing all the classes and the 
+
+ejb-jar.xml file (we will be examining this file in more detail in a later step) 
+
+created by the wizard, and then running blxejbc, the Blazix EJB compiler. The 
+
+EJB compiler will generate another Jar file, which is ready to deploy. Note that 
+
+you will need Blazix installation directory to be in your path in order to be 
+
+able to use the blxejbc command.</p>
+
+<h3>Exercise:</h3>
+
+<p>Build another entity bean 
+
+called <font class="point_out">Employees</font>. The primary key for this will be social security numbers 
+
+(use strings) of the employees. Create a database table with fields for the 
+
+social security number, first name, last name, salary, position, employment 
+
+year, and date of birth. Create and build an entity bean from this database 
+
+table.</p>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="Message%20Driven%20beans.shtml" title=" Message Driven Beans
+">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="Home%20Interface.shtml" title="Home Interface">Next</a></td>
+  </tr>
+</table>
+
+<!-- Footer Start-->
+</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>

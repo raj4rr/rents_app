@@ -1,0 +1,134 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>PASSING PARAMETER TO THE PROCEDURE</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="PASSING PARAMETER TO THE PROCEDURE" >
+<meta name="keywords" CONTENT="PASSING PARAMETER TO THE PROCEDURE">
+
+<LINK href="/sql/css/new_css.css" type="text/css" rel="stylesheet">
+<!--header start-->
+
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>DATABASE & SQL/PLSQL</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a><img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+			<a href="/sql/">SQL </a>
+              </div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/sql/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	  
+
+                        	                        	<!-- Header End-->	
+ <div class="heading">PASSING PARAMETER TO THE PROCEDURE</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="Start_with_sQL_server.shtml" title="Start with SQL Server">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="introduction.shtml" title="Introduction (Database)">Next</a></td>
+  </tr>
+</table>
+
+<p><font color="#0000FF" size="4"><b>PASSING PARAMETER TO THE PROCEDURE</b></font></p>
+
+<p><font color="#0000FF"><b>Parameter: </b></font>A parameter is a placeholder 
+in a query or a stored procedure that accepts a user-defined value whenever the 
+query or stored procedure is executed.</p>
+
+<p><font color="#0000FF"><b>Passing parameter to the Procedure</b></font> </p>
+
+<p>The parameters declared in the parameter declaration section serve as a means 
+for data to be exchanged between the stored procedure and the object that has 
+invoked it, also known as caller or invoker.&nbsp; </p>
+
+<p>The stored procedure have two types of parameter:</p>
+
+<ul>
+  <li><font color="#0000FF"><b>Input Parameter: </b></font>
+  <font color="#111111">It allow the invoker to pass the data value to the 
+  procedure</font></li>
+  <li><b><font color="#0000FF">Output Parameter: </font></b>
+  <font color="#111111">It allows the stored procedure to the pass data value 
+  back to the invoker</font></li>
+</ul>
+
+<p><b><font color="#111111">For Example</font></b></p>
+
+<p><font color="#0000FF">CREATE PROC</font><font color="#111111">&nbsp; <i>
+addressList @city char(15) </i><br>
+</font><font color="#0000FF">AS<br>
+BEGIN</font><font color="#111111"><br>
+</font><font color="#0000FF">SELECT</font><font color="#111111">&nbsp; <i>
+emp_name,emp_sal</i><br>
+</font><font color="#0000FF">FROM</font><font color="#111111">&nbsp; <i>employee</i><br>
+</font><font color="#0000FF">WHERE</font><font color="#111111">&nbsp; <i>emp_add=@city</i><br>
+</font><font color="#0000FF">END</font></p>
+
+<p><b>Out Put</b></p>
+
+<p>The command (s) completed successfully.</p>
+
+<p><font color="#800000">sp_helptext </font><i>&nbsp;addressList</i></p>
+
+<p><b>Out Put</b></p>
+
+<p><img border="0" src="Image/stored1.gif" width="348" height="161"></p>
+
+<p><font color="#0000FF"><b>Execute the procedure with an existing value</b></font></p>
+
+<p>addressList <i>&nbsp;lucknow</i></p>
+
+<p><b>Out Put</b></p>
+
+<p><img border="0" src="Image/stored2.gif" width="214" height="105"></p>
+
+<p><br>
+<font color="#0000FF"><b>Execute the procedure with a non-existing value</b></font></p>
+
+<p>addressList&nbsp; <i>jaunpur</i></p>
+
+<p><b>Out Put</b></p>
+
+<p>No value display</p>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="Start_with_sQL_server.shtml" title="How To Create Stored Procedure">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="introduction.shtml" title="Introduction (Database)">Next</a></td>
+  </tr>
+</table>
+
+                       <!--Footer  -->
+
+</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>

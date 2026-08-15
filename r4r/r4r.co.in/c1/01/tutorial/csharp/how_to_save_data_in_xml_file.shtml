@@ -1,0 +1,131 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>How to Save Data in XML File</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="How to Save Data in XML File" >
+<meta name="keywords" CONTENT="How to Save Data in XML File">
+
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+     <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>C# Tutorial</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a><img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/c1/">C#</a>
+
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/c1/commonfiles/leftmenu.shtml'); ?></td>
+
+                       <td style="80%" valign="top">
+                        <div class="main_content"> 
+
+	<!-- Header End-->
+
+	<div class="heading">How to Save Data in XML File</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="caching__in_asp.shtml" 
+    title="Caching in ASP.Net">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="how_to_use_xml_in_asp.shtml" 
+    title="How to Save Data in XML File">Next</a></td>
+  </tr>
+</table>
+<h3>How to Save Data in XML File</h3>
+<p>XML is designed to store and transport data. We can store data in a Xml file or Can use Xml as a databse. Here is and 
+example of how we can use xml file to store data in Xml file using Asp.Net and C#</p>
+<p><h3>Example:</h3> First Create Xml File Like This And Save Regis.xml</p>
+<div class="image">
+<img src="xmlsave.gif">
+</div>
+<h3>.cs Code</h3>
+<p>Add NameSpace in .CS File</p>
+<p>Using System.XML;</p>
+<p>Code of Saving Data in XML File</p>
+
+<div class="code">
+<pre>
+<font color="#0000ff">protected void </font><font color="#000000">Button1_Click(</font><font color="#0000ff">object </font><font color="#000000">sender, </font><font color="#808000">EventArgs </font><font color="#000000">e) {</font>
+
+<font color="#808000">XmlDocument </font><font color="#000000">xmldoc = </font>
+<font color="#0000ff">new </font><font color="#808000">XmlDocument</font><font color="#000000">();</font>
+<font color="#000000">xmldoc.Load(Server.MapPath(</font><font color="#ff00ff">&quot;regis.xml&quot;</font><font color="#000000">));</font>
+<font color="#808000">XmlElement </font><font color="#000000">parentelement = xmldoc.CreateElement(</font><font color="#ff00ff">&quot;Comments&quot;</font><font color="#000000">);</font>
+<font color="#808000">XmlElement </font><font color="#000000">name = xmldoc.CreateElement(</font><font color="#ff00ff">&quot;Name&quot;</font><font color="#000000">);</font>
+<font color="#000000">name.InnerText = TextBox1.</font><font color="#008080">Text</font><font color="#000000">;</font>
+<font color="#808000">XmlElement </font><font color="#000000">location = xmldoc.CreateElement(</font><font color="#ff00ff">&quot;location&quot;</font><font color="#000000">);</font>
+<font color="#000000">location.InnerText = TextBox2.;</font>
+<font color="#808000">XmlElement </font><font color="#000000">email = xmldoc.CreateElement(</font><font color="#ff00ff">&quot;Email&quot;</font><font color="#000000">);</font>
+<font color="#000000">email.InnerText = TextBox3.</font><font color="#008080">Text</font><font color="#000000">;</font>
+<font color="#808000">XmlElement </font><font color="#008080">Description </font><font color="#000000">= xmldoc.CreateElement(</font><font color="#ff00ff">&quot;Description&quot;</font><font color="#000000">);</font>
+<font color="#008080">Description</font><font color="#000000">.InnerText = TextBox4.</font><font color="#008080">Text</font><font color="#000000">;</font>
+<font color="#808000">XmlElement </font><font color="#000000">date = xmldoc.CreateElement(</font><font color="#ff00ff">&quot;Date&quot;</font><font color="#000000">);</font>
+<font color="#000000">date.InnerText = DateTime.Now.ToString();</font>
+<font color="#000000">parentelement.AppendChild(name);</font>
+<font color="#000000">parentelement.AppendChild(location);</font>
+<font color="#000000">parentelement.AppendChild(email);</font>
+<font color="#000000">parentelement.AppendChild(</font><font color="#008080">Description</font><font color="#000000">);</font>
+<font color="#000000">parentelement.AppendChild(date);</font>
+
+<font color="#000000">xmldoc.DocumentElement.AppendChild(parentelement);</font>
+<font color="#000000">xmldoc.Save(Server.MapPath(</font><font color="#ff00ff">&quot;regis.xml&quot;</font><font color="#000000">));</font>
+<font color="#000000">}</font>
+</pre>
+</div>
+
+<p>Code of Display XML File In Gridview</p>
+<div class="code">
+<pre>
+<font color="#0000ff">protected void </font><font color="#000000">Page_Load(</font><font color="#0000ff">object </font><font color="#000000">sender, </font><font color="#808000">EventArgs </font><font color="#000000">e) {</font>
+<font color="#808000">DataSet </font><font color="#000000">ds = </font><font color="#0000ff">new </font><font color="#808000">DataSet</font><font color="#000000">();</font>
+<font color="#000000">ds.ReadXml(MapPath(</font><font color="#ff00ff">&quot;Registration.xml&quot;</font><font color="#000000">));</font>
+<font color="#000000">GridView1.DataSource = ds;</font>
+<font color="#008000">//DataGrid1.DataSource = ds;</font>
+<font color="#000000">GridView1.DataBind();</font>
+<font color="#000000">}</font>
+</pre>
+</div>
+
+<p><h3>Design Output</h3></p>
+<div class="output">
+<div class="image">
+<img src="xmlout.gif">
+</div></div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="caching__in_asp.shtml" 
+    title="Caching in ASP.Net">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="how_to_use_xml_in_asp.shtml" 
+    title="How to Save Data in XML File">Next</a></td>
+  </tr>
+</table>
+ <!--Footer-->
+   </div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/dotnet/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+     <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>

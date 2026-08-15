@@ -1,0 +1,17 @@
+//How to Define Class and Object
+class a
+{
+	//method
+	public void display()
+	{
+		System.Console.WriteLine("Hello");
+	}
+}
+class b 
+{
+	public static void Main()
+	{
+		a x=new a(); // x is object of class a
+		x.display();
+	}
+}

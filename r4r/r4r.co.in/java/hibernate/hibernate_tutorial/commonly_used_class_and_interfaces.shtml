@@ -1,0 +1,95 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<HTML><HEAD><TITLE>Hibernate Commonly Used Class And Interface</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv="content-type" content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="Hibernate Commonly Used Class And Interface tutorial  Learn With r4r tutorial how to  use Hibenate Class 
+and Hibernate Interfaces with Examples Stepwise Step" >
+<meta name="keywords" CONTENT="Commonly used Class and Interfaces,Hibernate, tutorial,Hibernate Interfaces, Hibernate Classes caching,HQL queries, association, has a mapping
+ ,How to use hibernate interfaces Class, classes in Hibernate ">
+
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<META http-equiv="Content-Language" content="en-us">
+<link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+<link href="/css/main.css" rel="stylesheet" type="text/css" />
+</HEAD>
+<BODY>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>Hibernate</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+            <img src="/images/left_menu_bullet.gif"/> <a href="/java/hibernate/">Hibernate</a>
+             </div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top">
+                            <?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/hibernate/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                       <div class="main_content">  	 
+
+      <div class="heading">Commonly Used Class and Interface</div>
+
+      <p>Hibernate provides a core set of interfaces and classes that you will use in almost every application to interact with the database. Below are the most commonly used ones:</p>
+
+      <h3>1. Configuration</h3>
+      <p>
+          The <code>Configuration</code> class is typically the first object created in a Hibernate application. It is responsible for reading the Hibernate configuration file (e.g., <code>hibernate.cfg.xml</code>) and mapping files, and is used to bootstrap and build the <code>SessionFactory</code>.
+      </p>
+
+      <h3>2. SessionFactory</h3>
+      <p>
+          The <code>SessionFactory</code> interface is a thread-safe, immutable factory for creating <code>Session</code> instances. Because it is heavy-weight and expensive to create, typically only a single <code>SessionFactory</code> is instantiated per database during application startup and shared across the entire application.
+      </p>
+
+      <h3>3. Session</h3>
+      <p>
+          The <code>Session</code> interface is the primary interface used to perform CRUD (Create, Read, Update, Delete) operations on database entities. It wraps a JDBC connection and serves as a factory for <code>Transaction</code> and <code>Query</code> objects. A <code>Session</code> is a light-weight, non-thread-safe object that represents a single unit of work and should be opened and closed quickly.
+      </p>
+
+      <h3>4. Transaction</h3>
+      <p>
+          The <code>Transaction</code> interface represents a single unit of work with the database. It is used to demarcate transaction boundaries, allowing you to commit or rollback changes. In modern applications, all database interactions should occur within an active transaction.
+      </p>
+
+      <h3>5. Query and TypedQuery</h3>
+      <p>
+          The <code>Query</code> interface (and its modern JPA equivalent, <code>TypedQuery</code>) allows you to execute Hibernate Query Language (HQL) or native SQL queries. It provides methods to bind query parameters, limit the number of returned results, and retrieve the final query result list.
+      </p>
+
+      <h3>6. CriteriaBuilder and CriteriaQuery</h3>
+      <p>
+          The <code>CriteriaBuilder</code> and <code>CriteriaQuery</code> interfaces are part of the JPA Criteria API. They are used to construct type-safe, object-oriented queries programmatically. This approach is highly recommended when building complex, dynamic queries where appending strings together would be error-prone.
+      </p>
+
+      <table id="indexing">
+
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="first_app_in_hibernate.shtml" title="First Application In Hibernate">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="a_simple_program_of_select.shtml" title="A simple program of select">Next</a></td>
+  </tr> 
+</table>
+
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+
+                <?php @include($_SERVER['DOCUMENT_ROOT'] . '/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>

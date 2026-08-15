@@ -1,0 +1,130 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>Write a program that display Session tracking?</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="Write a program that display Session tracking?" >
+<meta name="keywords" CONTENT="Write a program that display Session tracking?">
+
+<!-- header start-->	
+		<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>Java Server Page</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a>
+            <img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+            <a href="/java/">Java</a>
+              <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/java/jsp">JSP</a>
+
+              </div>
+
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/jsp/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	 
+<!-- header End-->
+
+<div class="heading">Write a program that display Session tracking</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="Write%20a%20program%20that%20display%20Increment%20in%20counter.shtml" title="Write a program that display Increment in counter">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="Write%20a%20program%20that%20display%20That%20generate%20dynamic%20DateTime.shtml" title="Write a program that display That generate dynamic Date/Time">Next</a></td>
+  </tr> 
+</table>
+<div class="comment">Save that program as a  session.jsp  </div>
+<p>  In this program two condition define first, <i>when counter  at zero </i>if condition is execute than after refresh the page <i> counter have some value (counter increment)</i> 
+           then else condition execute until the browser not close </p>
+
+<div class="code"> 
+<pre>
+<font color="#000000">&lt;%@page contentType=</font><font color="#ff00ff">&quot;text/html&quot; </font><font color="#000000">pageEncoding=</font><font color="#ff00ff">&quot;UTF-8&quot;</font><font color="#000000">%&gt;</font>
+<font color="#000000">&lt;%@page </font><font color="#0000ff">import</font><font color="#000000">=</font><font color="#ff00ff">&quot;java.io.*;&quot; </font><font color="#000000">%&gt;</font>
+<font color="#000000">&lt;%@page </font><font color="#0000ff">import</font><font color="#000000">=</font><font color="#ff00ff">&quot;javax.servlet.http.*;&quot; </font><font color="#000000">%&gt;</font>
+<font color="#000000">&lt;!DOCTYPE HTML PUBLIC </font><font color="#ff00ff">&quot;-//W3C//DTD HTML 4.01 Transitional//EN&quot;</font>
+   <font color="#ff00ff">&quot;http://www.w3.org/TR/html4/loose.dtd&quot;</font><font color="#000000">&gt;</font>
+<font color="#000000">&lt;%--</font>
+  <font color="#000000">save as a session.jsp</font>
+   <font color="#000000">This program contain session tracking.</font>
+<font color="#000000">--%&gt;</font>
+<font color="#000000">&lt;html&gt;</font>
+    <font color="#000000">&lt;head&gt;</font>
+        <font color="#000000">&lt;meta http-equiv=</font><font color="#ff00ff">&quot;Content-Type&quot; </font><font color="#000000">content=</font><font color="#ff00ff">&quot;text/html; charset=UTF-8&quot;</font><font color="#000000">&gt;</font>
+        <font color="#000000">&lt;title&gt;R4R Tech Soft&lt;/title&gt;</font>
+    <font color="#000000">&lt;/head&gt;</font>
+    <font color="#000000">&lt;body&gt;</font>
+        <font color="#000000">&lt;h1&gt;Hello R4R Tech Soft! Session Tracking&lt;/h1&gt;</font>
+        <font color="#000000">&lt;%!  </font><font color="#ff0000">String </font><font color="#000000">sitename = </font><font color="#ff00ff">&quot;www.r4r.co.in&quot;</font><font color="#000000">; %&gt;</font>
+         <font color="#000000">Website visit of the day:</font>
+                 <font color="#000000">&lt;%= sitename %&gt;</font>
+	       <font color="#000000">&lt;%</font>
+            <font color="#008000">//Create a session variable - &quot;visit&quot;;</font>
+             <font color="#000000">Integer visit = (Integer) session.getAttribute(</font><font color="#ff00ff">&quot;visit&quot;</font><font color="#000000">);</font>
+
+           <font color="#008000">/*  First time when page is load,if codition operate</font>
+<font color="#008000">           *  print this statement, because counter at initial is zero *\</font>
+<font color="#008000">            if (visit == null) {</font>
+<font color="#008000">                visit = new Integer(0);</font>
+<font color="#008000">                session.setAttribute(&quot;visit&quot;, visit);</font>
+
+<font color="#008000">                out.println(&quot;&lt;BR&gt;&lt;BR&gt;Welcome visiter: &quot; + sitename 
++&quot; welcome you&quot; );</font>
+<font color="#008000">              /*After counter have some value(&lt;0)</font>
+<font color="#008000">              * else condition operate &amp; print that statement */</font>
+            <font color="#000000">} </font><font color="#0000ff">else </font><font color="#000000">{</font>
+                <font color="#000000">visit = </font><font color="#0000ff">new </font><font color="#000000">Integer(visit.intValue() + </font><font color="#800080">1</font><font color="#000000">);</font>
+                <font color="#000000">session.setAttribute(</font><font color="#ff00ff">&quot;visit&quot;</font><font color="#000000">, visit);</font>
+                <font color="#000000">out.println(</font><font color="#ff00ff">&quot;&lt;BR&gt;&lt;BR&gt; No. of time Website visit: &quot; </font><font color="#000000">
++ visit + </font><font color="#ff00ff">&quot;time&quot;</font><font color="#000000">);</font>
+            <font color="#000000">}</font>
+        <font color="#000000">%&gt;</font>
+    <font color="#000000">&lt;/body&gt;</font>
+<font color="#000000">&lt;/html&gt;</font>
+</pre>
+</div>
+
+<div class="output"><i>Output: </i>
+<p> First, when counter is in initial condition at zero value, if condition execute. </p>
+<div class="image"><img src="images/session1.png" ></div>
+<p>Now refresh that page to increment counter value, than else condition execute.</p>
+<div class="image"><img src="images/session2.png"></div></div>
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="Write%20a%20program%20that%20display%20Increment%20in%20counter.shtml" title="Write a program that display Increment in counter"">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="Write%20a%20program%20that%20display%20That%20generate%20dynamic%20DateTime.shtml" title="Write a program that display That generate dynamic Date/Time">Next</a></td>
+  </tr> 
+</table>
+
+<!-- Footer Start-->	
+
+		</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>
+<!-- Footer End-->

@@ -1,0 +1,118 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+
+<HTML><HEAD><TITLE>C tutorial on Allocating memory in C,Freeing memory in C</TITLE>
+<META content=r4r.co.in name=owner>
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="Learn memory allocation in C,Freeing memory in C using Calloc,Malloc and realloc function">
+<meta name="keywords" CONTENT="Allocating memory in C,Freeing memory in C,Calloc function,Malloc function,realloc function,Pointers,Array,Storage class,Loops,Functions,Data types,C constants,Union,Preprocessor">
+<META content="Rajesh Kumar" name=author>
+<META http-equiv="expires" content="0"> 
+
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+     <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>C Programming language</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a><img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/c/">C </a>
+              <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/c/basic_tutorials/01/">Learn C in 15 days</a></div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/c/commonfiles/leftmenu.shtml'); ?></td>
+
+                       <td style="80%" valign="top">
+                        <div class="main_content">
+
+	<!-- Header End-->	
+
+    <div class="heading">Dynamic Memory Allocation in C: Allcating and Freeing Memory</div> 
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="dma1.shtml" title="Dynamic Memory Allocation in C: Introduction and Example">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="index.shtml" title="Basic C Tutorial with Example">Next</a></td>
+  </tr>
+</table>
+
+<h2>Allocating memory</h2>
+<p>We use malloc() function to allocate memory.</p>
+<div class="code">
+<PRE>
+<FONT COLOR="#0000ff">void </FONT><FONT COLOR="#000000">* malloc(size_t size); </FONT>
+</PRE>
+</div>
+<p>malloc function takes size_t as its argument and returns a void pointer. The void pointer is used because it can allocate memory for any type. The malloc function will return NULL if requested memory couldnt be allocated or size argument is equal 0.</p>
+<p>Here is an example of using malloc function to allocate memory:</p>
+<div class="code">
+<PRE>
+<FONT COLOR="#0000ff">int</FONT><FONT COLOR="#000000">* pi;</FONT>
+<FONT COLOR="#0000ff">int </FONT><FONT COLOR="#000000">size = </FONT><FONT COLOR="#800080">5</FONT><FONT COLOR="#000000">;</FONT>
+<FONT COLOR="#000000">pi = (</FONT><FONT COLOR="#0000ff">int</FONT><FONT COLOR="#000000">*)malloc(size * sizeof(</FONT><FONT COLOR="#0000ff">int</FONT><FONT COLOR="#000000">));</FONT>
+</PRE>
+</div>
+
+<p>sizeof(int) return size of integer (4 bytes) and multiply with size which equals 5 so pi pointer now points to the first byte of 5 * 4 = 20 bytes memory block. We can check whether the malloc function allocate memory space is successful or not by checking the return value.</p>
+<div class="code">
+<PRE>
+<FONT COLOR="#0000ff">if</FONT><FONT COLOR="#000000">(pi == NULL)</FONT>
+<FONT COLOR="#000000">{</FONT>
+<FONT COLOR="#000000">fprintf(stderr,</FONT><FONT COLOR="#ff00ff">"error occurred: out of memory"</FONT><FONT COLOR="#000000">);</FONT>
+<FONT COLOR="#000000">exit(EXIT_FAILURE);</FONT>
+<FONT COLOR="#000000">}</FONT>
+</PRE>
+</div>
+
+<p>Beside malloc function, C also provides two other functions which make convenient ways to allocate memory.</p>
+<div class="code">
+<PRE>
+<FONT COLOR="#0000ff">void </FONT><FONT COLOR="#000000">*calloc(size_t num, size_t size);</FONT>
+<FONT COLOR="#0000ff">void </FONT><FONT COLOR="#000000">*realloc(</FONT><FONT COLOR="#0000ff">void </FONT><FONT COLOR="#000000">*ptr, size_t size); </FONT>
+</PRE>
+</div>
+
+<p>calloc function not only allocates memory like malloc but also allocates memory for a group of objects which is specified by num argument.<br>
+realloc function takes in the pointer to the original area of memory to extend and how much the total size of memory should be.</p>
+
+<h2>Freeing memory</h2>
+<p>When you use malloc to allocate memory you implicitly get the memory from a dynamic memory pool which is called heap. The heap is limited so you have to deallocate or free the memory you requested when you dont use it in any more. C provides free function to free memory.</p>
+<p>Here is the function prototype:</p>
+<div class="code">
+<PRE>
+<FONT COLOR="#0000ff">void </FONT><FONT COLOR="#000000">free(</FONT><FONT COLOR="#0000ff">void </FONT><FONT COLOR="#000000">*ptr); </FONT>
+</PRE>
+</div>
+
+<p>You should always use malloc and free as a pair in your program to a void memory leak.</p>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="dma1.shtml" title="Dynamic Memory Allocation in C: Introduction and Example">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="index.shtml" title="Basic C Tutorial with Example">Next</a></td>
+  </tr>
+</table>
+
+<!--Footer  --> 
+</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>

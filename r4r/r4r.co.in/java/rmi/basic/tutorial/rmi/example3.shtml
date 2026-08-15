@@ -1,0 +1,220 @@
+	<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+
+<HTML><HEAD><TITLE>Example of RMI Client and server</TITLE>
+
+<META content="r4r.co.in" name="owner">
+<META http-equiv="content-type" content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="Example of RMI Client and server" >
+<meta name="keywords" CONTENT="Example of RMI Client and server">
+
+	<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+		<META http-equiv="Content-Language" content="en-us">
+		   <link href="/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+	</HEAD>
+
+	<BODY>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/header.php"); ?>
+
+    <div class="page_wrapper" style=" padding-top:10px;">
+        <table cellpadding="3">
+        	<tr>
+            <td style="width:83%;" valign="top"><h1>RMI</h1>
+            <div class="link_menu"><a href="/">R4R<sup>&reg;</sup></a><img src="/images/left_menu_bullet.gif" width="11" height="6"/> 
+			<a href="/java/">Java </a>
+              <img src="/images/left_menu_bullet.gif" width="11" height="6"/> <a href="/java/rmi">RMI</a></div>
+            	<table>
+                    <tr>
+                        <td style="width:20%" valign="top"><?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/rmi/commonfiles/leftmenu.shtml'); ?></td>
+
+                        <td style="80%" valign="top">
+                        <div class="main_content"> 	  
+
+	<!-- header End-->	
+
+	<div class="heading">RMI-Example</div>
+	<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="example2.shtml" title=" Second Example of RMI
+">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="Display_string.shtml" title="Display String by using RMI">Next</a></td>
+  </tr>
+</table>
+
+    <p>In this page of the tutorials we are going to take an example which is show 
+    you how will see function calls from client to server. This application for 
+    running requires a Remote Machine.</p>
+
+    <p>For running this application we need to machine in which first is server and 
+    second is client. the server IP address is 192.168.10.97 and client IP 
+    address is 192.168.10.113.</p>
+    <p>
+    Here machine having IP address 192.168.10.113 is a client and machine having 
+    IP address 192.168.10.97 is a server. </p>
+	<p>So we divide the programs in two categories one for server and other for client.</p>
+	<p>
+    Well in this application there are seven java files. List of java files and 
+    their code are shown below.</p>
+
+    <p><i>step 1:</i> Create RemoteInterface1.java interface</p>
+	</li>
+<div class="code">
+<pre>
+<font color="#0000ff">package </font><font color="#000000">r4r;</font>
+<font color="#0000ff">import </font><font color="#000000">java.rmi.*;</font>
+<font color="#0000ff">public interface </font><font color="#000000">RemoteInterface1 </font><font color="#0000ff">extends </font><font color="#ff0000">Remote </font><font color="#000000">{</font>
+<font color="#0000ff">public int </font><font color="#000000">add(</font><font color="#0000ff">int </font><font color="#000000">x, </font><font color="#0000ff">int </font><font color="#000000">y) </font><font color="#0000ff">throws </font><font color="#ff0000">Exception</font><font color="#000000">;</font>
+<font color="#000000">}</font>
+</pre>
+</div>
+
+<p><i> step 2:</i> Create RemoteInterface2.java interface</p>
+
+<div class="code">
+<pre>
+<font color="#0000ff">package </font><font color="#000000">r4r;</font>
+<font color="#0000ff">import </font><font color="#000000">java.rmi.*;</font>
+<font color="#0000ff">public interface </font><font color="#000000">RemoteInterface2 </font><font color="#0000ff">extends </font><font color="#ff0000">Remote </font><font color="#000000">{</font>
+<font color="#0000ff">public int </font><font color="#000000">sub(</font><font color="#0000ff">int </font><font color="#000000">x, </font><font color="#0000ff">int </font><font color="#000000">y) </font><font color="#0000ff">throws </font><font color="#ff0000">Exception</font><font color="#000000">;</font>
+<font color="#000000">}</font>
+</pre>
+</div>
+
+<p><i>step 3:</i> Create ServerImplements.java Class</p>
+
+<div class="code">
+<pre>
+<font color="#0000ff">package </font><font color="#000000">r4r;</font>
+<font color="#0000ff">import </font><font color="#000000">java.rmi.*;</font>
+<font color="#0000ff">import </font><font color="#000000">java.rmi.server.*;</font>
+<font color="#0000ff">interface </font><font color="#000000">RemoteInterface1 </font><font color="#0000ff">extends </font><font color="#ff0000">Remote </font><font color="#000000">{</font>
+<font color="#0000ff">public int </font><font color="#000000">add(</font><font color="#0000ff">int </font><font color="#000000">a, </font><font color="#0000ff">int </font><font color="#000000">b) </font><font color="#0000ff">throws </font><font color="#ff0000">Exception</font><font color="#000000">;</font>
+<font color="#000000">}</font>
+<font color="#0000ff">public class </font><font color="#000000">ServerImplements </font><font color="#0000ff">extends </font><font color="#ff0000">UnicastRemoteObject </font>
+<font color="#0000ff">implements </font><font color="#000000">RemoteInterface1 {</font>
+<font color="#0000ff">public </font><font color="#000000">ServerImplements() </font><font color="#0000ff">throws </font><font color="#ff0000">Exception </font><font color="#000000">{</font>
+<font color="#0000ff">super</font><font color="#000000">();</font>
+<font color="#000000">}</font>
+<font color="#0000ff">public int </font><font color="#000000">add(</font><font color="#0000ff">int </font><font color="#000000">a, </font><font color="#0000ff">int </font><font color="#000000">b) {</font>
+<font color="#0000ff">return </font><font color="#000000">(a + b);</font>
+<font color="#000000">}</font>
+<font color="#000000">}</font>
+</pre>
+</div>
+
+<p><i>step 4:</i> Create ServerImplements2.java class</p>
+<div class="code">
+<pre>
+<font color="#0000ff">package </font><font color="#000000">r4r;</font>
+<font color="#0000ff">import </font><font color="#000000">java.rmi.*;</font>
+<font color="#0000ff">import </font><font color="#000000">java.rmi.server.*;</font>
+<font color="#0000ff">interface </font><font color="#000000">RemoteInterface </font><font color="#0000ff">extends </font><font color="#ff0000">Remote </font><font color="#000000">{</font>
+<font color="#0000ff">public int </font><font color="#000000">sub(</font><font color="#0000ff">int </font><font color="#000000">a, </font><font color="#0000ff">int </font><font color="#000000">b) </font><font color="#0000ff">throws </font><font color="#ff0000">Exception</font><font color="#000000">;</font>
+<font color="#000000">}</font>
+<font color="#0000ff">public class </font><font color="#000000">ServerImplements2 </font><font color="#0000ff">extends </font><font color="#ff0000">UnicastRemoteObject</font>
+<font color="#0000ff">implements </font><font color="#000000">RemoteInterface2 {</font>
+<font color="#0000ff">public </font><font color="#000000">ServerImplements2() </font><font color="#0000ff">throws </font><font color="#ff0000">Exception </font><font color="#000000">{</font>
+<font color="#0000ff">super</font><font color="#000000">();</font>
+<font color="#000000">}</font>
+<font color="#0000ff">public int </font><font color="#000000">sub(</font><font color="#0000ff">int </font><font color="#000000">a, </font><font color="#0000ff">int </font><font color="#000000">b) {</font>
+<font color="#0000ff">return </font><font color="#000000">(a - b);</font>
+<font color="#000000">}</font>
+<font color="#000000">}</font>
+</pre>
+</div>			
+
+<p><i>step 5:</i> Create the Server1.java class
+</p>
+<div class="code">
+<pre>
+<font color="#0000ff">package </font><font color="#000000">r4r;</font>
+<font color="#0000ff">import </font><font color="#000000">java.rmi.*;</font>
+<font color="#0000ff">import </font><font color="#000000">java.net.*;</font>
+<font color="#0000ff">public class </font><font color="#000000">server1 {</font>
+<font color="#0000ff">public static void </font><font color="#000000">main(</font><font color="#ff0000">String </font><font color="#000000">args[]) {</font>
+<font color="#0000ff">try </font><font color="#000000">{</font>
+<font color="#000000">ServerImplements si1 = </font><font color="#0000ff">new </font><font color="#000000">ServerImplements();</font>
+<font color="#ff0000">Naming</font><font color="#000000">.rebind(</font><font color="#ff00ff">&quot;SERVICE&quot;</font><font color="#000000">, si1);</font>
+<font color="#ff0000">System</font><font color="#000000">.out.println(</font><font color="#ff00ff">&quot;Server 1 Started&quot;</font><font color="#000000">);</font>
+<font color="#000000">} </font><font color="#0000ff">catch </font><font color="#000000">(</font><font color="#ff0000">Exception </font><font color="#000000">e) {</font>
+<font color="#ff0000">System</font><font color="#000000">.out.println(e.getMessage());</font>
+<font color="#000000">}</font>
+<font color="#000000">}</font>
+<font color="#000000">}</font>
+</pre>
+</div>
+
+<p><i>step 6:</i> Create the server2.java class</p>
+<div class="code">
+<pre>
+<font color="#0000ff">package </font><font color="#000000">r4r;</font>
+<font color="#0000ff">import </font><font color="#000000">java.rmi.*;</font>
+<font color="#0000ff">import </font><font color="#000000">java.net.*;</font>
+<font color="#0000ff">public class </font><font color="#000000">server2 {</font>
+<font color="#0000ff">public static void </font><font color="#000000">main(</font><font color="#ff0000">String </font><font color="#000000">args[]) {</font>
+<font color="#0000ff">try </font><font color="#000000">{</font>
+<font color="#000000">ServerImplements2 si2 = </font><font color="#0000ff">new </font><font color="#000000">ServerImplements2();</font>
+<font color="#ff0000">Naming</font><font color="#000000">.rebind(</font><font color="#ff00ff">&quot;SERVICE2&quot;</font><font color="#000000">, si2);</font>
+<font color="#ff0000">System</font><font color="#000000">.out.println(</font><font color="#ff00ff">&quot;Server 2 Started&quot;</font><font color="#000000">);</font>
+<font color="#000000">} </font><font color="#0000ff">catch </font><font color="#000000">(</font><font color="#ff0000">Exception </font><font color="#000000">e) {</font>
+<font color="#ff0000">System</font><font color="#000000">.out.println(e.getMessage());</font>
+<font color="#000000">}</font>
+<font color="#000000">}</font>
+<font color="#000000">}</font>
+</pre>
+</div>
+
+<p><i>step 7:</i> Create Client.java class</p>
+
+<div class="code">
+<pre>
+<font color="#0000ff">package </font><font color="#000000">r4r;</font>
+<font color="#0000ff">import </font><font color="#000000">java.rmi.*;</font>
+<font color="#0000ff">import </font><font color="#000000">java.net.*;</font>
+<font color="#0000ff">import </font><font color="#000000">java.io.*;</font>
+<font color="#0000ff">public class </font><font color="#000000">Client {</font>
+<font color="#0000ff">public static void </font><font color="#000000">main(</font><font color="#ff0000">String </font><font color="#000000">args[]) {</font>
+<font color="#0000ff">try </font><font color="#000000">{</font>
+<font color="#ff0000">String </font><font color="#000000">ip1 = </font><font color="#ff00ff">&quot;rmi://192.168.10.97/SERVICE&quot;</font><font color="#000000">;</font>
+<font color="#ff0000">String </font><font color="#000000">ip2 = </font><font color="#ff00ff">&quot;rmi://192.168.10.113/SERVICE2&quot;</font><font color="#000000">;</font>
+<font color="#000000">RemoteInterface1 si1 = (RemoteInterface1) </font><font color="#ff0000">Naming</font><font color="#000000">.lookup(ip1);</font>
+<font color="#000000">RemoteInterface2 si2 = (RemoteInterface2) </font><font color="#ff0000">Naming</font><font color="#000000">.lookup(ip2);</font>
+<font color="#ff0000">System</font><font color="#000000">.out.println(</font><font color="#ff00ff">&quot;Add:&quot; </font><font color="#000000">+ si1.add(</font><font color="#800080">1</font><font color="#000000">, </font><font color="#800080">4</font><font color="#000000">));</font>
+<font color="#ff0000">System</font><font color="#000000">.out.println(</font><font color="#ff00ff">&quot;sub:&quot; </font><font color="#000000">+ si2.sub(</font><font color="#800080">3</font><font color="#000000">, </font><font color="#800080">1</font><font color="#000000">));</font>
+<font color="#000000">} </font><font color="#0000ff">catch </font><font color="#000000">(</font><font color="#ff0000">Exception </font><font color="#000000">e) {</font>
+<font color="#ff0000">System</font><font color="#000000">.out.println(e.getMessage());</font>
+<font color="#000000">e.printStackTrace();</font>
+<font color="#000000">}</font>
+<font color="#000000">}</font>
+<font color="#000000">}</font>
+</pre>
+</div>
+
+<table id="indexing">
+  <tr>
+    <td style="width:33%; text-align:left;"><a href="example2.shtml" title=" Second Example of RMI
+">Previous</a></td>
+    <td style="width:34%; text-align:center;"><a href="index.shtml">Home</a></td>
+    <td style="width:33%; text-align:right;"><a href="Display_string.shtml" title="Display String by using RMI">Next</a></td>
+  </tr>
+</table>
+
+<!-- Footer Start-->		
+
+		</div>
+                        </td>
+                    </tr>
+            	</table>
+            </td>
+            <td style="width:17%" valign="top">
+				<?php @include($_SERVER['DOCUMENT_ROOT'] . '/java/commonfiles/rightmenu.shtml'); ?>
+           	</td></tr>
+
+        </table>
+    </div>
+
+    <?php include($_SERVER['DOCUMENT_ROOT'] . "/template/footer.php"); ?>
+
+</BODY>
+</HTML>

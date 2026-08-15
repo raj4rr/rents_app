@@ -1,0 +1,288 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" 
+
+"http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML><HEAD><TITLE>How to pass Textbox value between the forms 
+using the static concept</TITLE>
+<META content="Rajesh Kumar" name="author">
+<META http-equiv="expires" content="0">
+<META content="r4r.co.in" name="owner">
+<META http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta name="description" CONTENT="How to pass Textbox value between the forms 
+using the static concept:" >
+<meta name="keywords" CONTENT="How to pass Textbox value between the forms 
+using the static concept">
+
+<LINK href="/c1/css/new_css.css" type="text/css" rel="stylesheet">
+<script type="text/javascript" src="/c1/js/directlinks.js"></script>
+<link href="http://r4r.co.in/images/logo.gif" type="image/gif" rel="SHORTCUT ICON">
+</HEAD>
+<BODY leftMargin="0" topMargin="0">
+
+<!--#include File="/c1/common-files/new_header.shtml" -->
+
+<DIV id="LeftMNav">
+
+<!--#include File="/c1/common-files/new_menu.shtml" --></DIV>
+
+<TABLE cellSpacing="0" cellPadding="0" width="100%" border="0">
+  <TBODY>
+  <TR>
+
+    <TD width="120" vAlign="top" class="nav">
+
+      <DIV id="LeftMNav" align="left">
+
+<!--#include File="/c1/common-files/new_left_menu.shtml" -->
+      </DIV>
+	  </TD>
+
+     <TD width="847" align="left" vAlign="top"  colspan="2">
+<!--#include File="/c1/common-files/googleadds1.shtml" -->
+
+	   
+ <table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" 
+
+bordercolor="#111111" width="100%" id="AutoNumber1">
+  <tr>
+    <td width="33%">
+<a href="How%20to%20Move%20windows%20form%20without%20Border.shtml">
+<img border="0" src="/c1/images/previous.gif" alt="previous" width="46" 
+
+height="25"></a></td>
+    <td width="33%">
+    <p align="center">
+<a href="index.shtml">
+<img border="0" src="/c1/images/home.gif" alt="Home" width="46" height="25"></a></td>
+    <td width="34%">
+    <p align="right">
+<a href="Passing%20Data%20Between%20Forms%20Without%20Events%20and%20Delegates.shtml">
+<img border="0" src="/c1/images/next.gif" alt="Next" width="46" height="25"></a></td>
+  </tr>
+</table>
+
+<p><font size="4" color="#0000FF"><html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>How to pass Textbox value between the forms using the static concept</title>
+</head>
+
+<body>
+
+<p><u><font color="#0000FF" size="4">How to pass Textbox value between the forms 
+using the static concept:</font></u></p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+</font>
+
+<p>This Example shows how to pass textbox value between the forms using the 
+static concept. </p>
+<font size="4" color="#0000FF">
+<p>
+<img border="0" src="passdata.gif" width="487" height="428"></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><u><font size="4" color="#0000FF">Form1.CS Code </font></u></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<table border="1" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="100%" id="AutoNumber1">
+  <tr>
+    <td width="100%">&nbsp;<HTML>
+<BODY>
+<PRE><FONT FACE="Courier New">
+<FONT COLOR="#000000">using System;</FONT>
+<FONT COLOR="#0000ff">using </FONT><FONT COLOR="#008080">System</FONT><FONT COLOR="#000000">.</FONT><FONT COLOR="#008080">Collections</FONT><FONT COLOR="#000000">.Generic;</FONT>
+<FONT COLOR="#0000ff">using </FONT><FONT COLOR="#008080">System</FONT><FONT COLOR="#000000">.</FONT><FONT COLOR="#008080">ComponentModel</FONT><FONT COLOR="#000000">;</FONT>
+<FONT COLOR="#0000ff">using </FONT><FONT COLOR="#008080">System</FONT><FONT COLOR="#000000">.</FONT><FONT COLOR="#008080">Data</FONT><FONT COLOR="#000000">;</FONT>
+<FONT COLOR="#0000ff">using </FONT><FONT COLOR="#008080">System</FONT><FONT COLOR="#000000">.</FONT><FONT COLOR="#008080">Drawing</FONT><FONT COLOR="#000000">;</FONT>
+<FONT COLOR="#0000ff">using </FONT><FONT COLOR="#008080">System</FONT><FONT COLOR="#000000">.Linq;</FONT>
+<FONT COLOR="#0000ff">using </FONT><FONT COLOR="#008080">System</FONT><FONT COLOR="#000000">.</FONT><FONT COLOR="#008080">Text</FONT><FONT COLOR="#000000">;</FONT>
+<FONT COLOR="#0000ff">using </FONT><FONT COLOR="#008080">System</FONT><FONT COLOR="#000000">.</FONT><FONT COLOR="#008080">Windows</FONT><FONT COLOR="#000000">.</FONT><FONT COLOR="#008080">Forms</FONT><FONT COLOR="#000000">;</FONT>
+
+<FONT COLOR="#0000ff">namespace </FONT><FONT COLOR="#000000">PassData_between_forms</FONT>
+<FONT COLOR="#000000">{</FONT>
+    <FONT COLOR="#0000ff">public </FONT><FONT COLOR="#000000">partial </FONT><FONT COLOR="#0000ff">class </FONT><FONT COLOR="#000000">Form1 : </FONT><FONT COLOR="#808000">Form</FONT>
+    <FONT COLOR="#000000">{</FONT>
+        <FONT COLOR="#0000ff">public </FONT><FONT COLOR="#000000">Form1()</FONT>
+        <FONT COLOR="#000000">{</FONT>
+            <FONT COLOR="#000000">InitializeComponent();</FONT>
+        <FONT COLOR="#000000">}</FONT>
+
+        <FONT COLOR="#0000ff">public static </FONT><FONT COLOR="#000000">Parent p;</FONT>
+        <FONT COLOR="#0000ff">private void </FONT><FONT COLOR="#000000">btn_parentOpen_Click(</FONT><FONT COLOR="#0000ff">object </FONT><FONT COLOR="#000000">sender, </FONT><FONT COLOR="#808000">EventArgs </FONT><FONT COLOR="#000000">e)</FONT>
+        <FONT COLOR="#000000">{</FONT>
+            <FONT COLOR="#000000">p = </FONT><FONT COLOR="#0000ff">new </FONT><FONT COLOR="#000000">Parent();</FONT>
+            <FONT COLOR="#000000">p.Show();</FONT>
+        <FONT COLOR="#000000">}        </FONT>
+    <FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#000000">}</FONT>
+
+</FONT>
+</PRE>
+</BODY>
+</HTML></td>
+  </tr>
+</table>
+
+<p><u><font color="#0000FF" size="4">Parent.cs:</font></u></p>
+<table border="1" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="100%" id="AutoNumber2">
+  <tr>
+    <td width="100%">&nbsp;<HTML>
+<BODY>
+<PRE><FONT FACE="Courier New">
+<FONT COLOR="#0000ff">using </FONT><FONT COLOR="#008080">System</FONT><FONT COLOR="#000000">;</FONT>
+<FONT COLOR="#0000ff">using </FONT><FONT COLOR="#008080">System</FONT><FONT COLOR="#000000">.</FONT><FONT COLOR="#008080">Collections</FONT><FONT COLOR="#000000">.Generic;</FONT>
+<FONT COLOR="#0000ff">using </FONT><FONT COLOR="#008080">System</FONT><FONT COLOR="#000000">.</FONT><FONT COLOR="#008080">ComponentModel</FONT><FONT COLOR="#000000">;</FONT>
+<FONT COLOR="#0000ff">using </FONT><FONT COLOR="#008080">System</FONT><FONT COLOR="#000000">.</FONT><FONT COLOR="#008080">Data</FONT><FONT COLOR="#000000">;</FONT>
+<FONT COLOR="#0000ff">using </FONT><FONT COLOR="#008080">System</FONT><FONT COLOR="#000000">.</FONT><FONT COLOR="#008080">Drawing</FONT><FONT COLOR="#000000">;</FONT>
+<FONT COLOR="#0000ff">using </FONT><FONT COLOR="#008080">System</FONT><FONT COLOR="#000000">.Linq;</FONT>
+<FONT COLOR="#0000ff">using </FONT><FONT COLOR="#008080">System</FONT><FONT COLOR="#000000">.</FONT><FONT COLOR="#008080">Text</FONT><FONT COLOR="#000000">;</FONT>
+<FONT COLOR="#0000ff">using </FONT><FONT COLOR="#008080">System</FONT><FONT COLOR="#000000">.</FONT><FONT COLOR="#008080">Windows</FONT><FONT COLOR="#000000">.</FONT><FONT COLOR="#008080">Forms</FONT><FONT COLOR="#000000">;</FONT>
+
+<FONT COLOR="#0000ff">namespace </FONT><FONT COLOR="#000000">PassData_between_forms</FONT>
+<FONT COLOR="#000000">{</FONT>
+    <FONT COLOR="#0000ff">public </FONT><FONT COLOR="#000000">partial </FONT><FONT COLOR="#0000ff">class </FONT><FONT COLOR="#000000">Parent : </FONT><FONT COLOR="#808000">Form</FONT>
+    <FONT COLOR="#000000">{</FONT>
+        <FONT COLOR="#0000ff">public </FONT><FONT COLOR="#000000">Parent()</FONT>
+        <FONT COLOR="#000000">{</FONT>
+            <FONT COLOR="#000000">InitializeComponent();</FONT>
+        <FONT COLOR="#000000">}</FONT>
+
+        <FONT COLOR="#0000ff">private void </FONT><FONT COLOR="#000000">btnAdd_Click(</FONT><FONT COLOR="#0000ff">object </FONT><FONT COLOR="#000000">sender, </FONT><FONT COLOR="#808000">EventArgs </FONT><FONT COLOR="#000000">e)</FONT>
+        <FONT COLOR="#000000">{</FONT>
+            <FONT COLOR="#000000">Child c = </FONT><FONT COLOR="#0000ff">new </FONT><FONT COLOR="#000000">Child();        </FONT><FONT COLOR="#008080">// Calling of child Form   </FONT>
+            <FONT COLOR="#000000">c.ShowDialog();</FONT>
+        <FONT COLOR="#000000">}</FONT>
+
+        <FONT COLOR="#0000ff">private void </FONT><FONT COLOR="#000000">txt_divison_TextChanged(</FONT><FONT COLOR="#0000ff">object </FONT><FONT COLOR="#000000">sender, </FONT><FONT COLOR="#808000">EventArgs </FONT><FONT COLOR="#000000">e)</FONT>
+        <FONT COLOR="#000000">{</FONT>
+
+        <FONT COLOR="#000000">}</FONT>
+    <FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#000000">}</FONT>
+
+</FONT>
+</PRE>
+</BODY>
+</HTML></td>
+  </tr>
+</table>
+
+<p><u><font color="#0000FF" size="4">Child.cs:</font></u></p>
+<table border="1" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="100%" id="AutoNumber3">
+  <tr>
+    <td width="100%">&nbsp;<HTML>
+<BODY>
+<PRE><FONT FACE="Courier New">
+<FONT COLOR="#0000ff">using </FONT><FONT COLOR="#008080">System</FONT><FONT COLOR="#000000">;</FONT>
+<FONT COLOR="#0000ff">using </FONT><FONT COLOR="#008080">System</FONT><FONT COLOR="#000000">.</FONT><FONT COLOR="#008080">Collections</FONT><FONT COLOR="#000000">.Generic;</FONT>
+<FONT COLOR="#0000ff">using </FONT><FONT COLOR="#008080">System</FONT><FONT COLOR="#000000">.</FONT><FONT COLOR="#008080">ComponentModel</FONT><FONT COLOR="#000000">;</FONT>
+<FONT COLOR="#0000ff">using </FONT><FONT COLOR="#008080">System</FONT><FONT COLOR="#000000">.</FONT><FONT COLOR="#008080">Data</FONT><FONT COLOR="#000000">;</FONT>
+<FONT COLOR="#0000ff">using </FONT><FONT COLOR="#008080">System</FONT><FONT COLOR="#000000">.</FONT><FONT COLOR="#008080">Drawing</FONT><FONT COLOR="#000000">;</FONT>
+<FONT COLOR="#0000ff">using </FONT><FONT COLOR="#008080">System</FONT><FONT COLOR="#000000">.Linq;</FONT>
+<FONT COLOR="#0000ff">using </FONT><FONT COLOR="#008080">System</FONT><FONT COLOR="#000000">.</FONT><FONT COLOR="#008080">Text</FONT><FONT COLOR="#000000">;</FONT>
+<FONT COLOR="#0000ff">using </FONT><FONT COLOR="#008080">System</FONT><FONT COLOR="#000000">.</FONT><FONT COLOR="#008080">Windows</FONT><FONT COLOR="#000000">.</FONT><FONT COLOR="#008080">Forms</FONT><FONT COLOR="#000000">;</FONT>
+
+<FONT COLOR="#0000ff">namespace </FONT><FONT COLOR="#000000">PassData_between_forms</FONT>
+<FONT COLOR="#000000">{</FONT>
+    <FONT COLOR="#0000ff">public </FONT><FONT COLOR="#000000">partial </FONT><FONT COLOR="#0000ff">class </FONT><FONT COLOR="#000000">Child : </FONT><FONT COLOR="#808000">Form</FONT>
+    <FONT COLOR="#000000">{</FONT>
+        <FONT COLOR="#0000ff">public </FONT><FONT COLOR="#000000">Child()</FONT>
+        <FONT COLOR="#000000">{</FONT>
+            <FONT COLOR="#000000">InitializeComponent();</FONT>
+        <FONT COLOR="#000000">}</FONT>
+
+        <FONT COLOR="#0000ff">private void </FONT><FONT COLOR="#000000">btn_ok_Click(</FONT><FONT COLOR="#0000ff">object </FONT><FONT COLOR="#000000">sender, </FONT><FONT COLOR="#808000">EventArgs </FONT><FONT COLOR="#000000">e)</FONT>
+        <FONT COLOR="#000000">{</FONT>
+            <FONT COLOR="#000000">Form1.p.txtname.</FONT><FONT COLOR="#008080">Text </FONT><FONT COLOR="#000000">= txtname.</FONT><FONT COLOR="#008080">Text</FONT><FONT COLOR="#000000">;</FONT>
+            <FONT COLOR="#000000">Form1.p.fname.</FONT><FONT COLOR="#008080">Text </FONT><FONT COLOR="#000000">= fname.</FONT><FONT COLOR="#008080">Text</FONT><FONT COLOR="#000000">;</FONT>
+            <FONT COLOR="#000000">Form1.p.course.</FONT><FONT COLOR="#008080">Text </FONT><FONT COLOR="#000000">= txtcourse.</FONT><FONT COLOR="#008080">Text</FONT><FONT COLOR="#000000">;</FONT>
+            <FONT COLOR="#000000">Form1.p.txt_divison.</FONT><FONT COLOR="#008080">Text </FONT><FONT COLOR="#000000">= txt_divison.</FONT><FONT COLOR="#008080">Text</FONT><FONT COLOR="#000000">;</FONT>
+
+            <FONT COLOR="#0000ff">this</FONT><FONT COLOR="#000000">.Close();</FONT>
+        <FONT COLOR="#000000">}</FONT>
+    <FONT COLOR="#000000">}</FONT>
+<FONT COLOR="#000000">}</FONT>
+
+</FONT>
+</PRE>
+</BODY>
+</HTML></td>
+  </tr>
+</table>
+<!--#include virtual="/commonfiles/ads-middle.shtml" -->
+<p><u><font color="#0000FF" size="4">Output:</font></u></p>
+<p>When You Fill All entries in Child form and After this You click on OK Button 
+it will be display on parents form</p>
+<p>Like this:</p>
+<p><img border="0" src="child.gif" width="210" height="223"></p>
+<p><img border="0" src="parent.gif" width="267" height="232"></p>
+
+</body>
+
+</html></font></p>
+
+<p>&nbsp;</p>
+
+<table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" 
+
+bordercolor="#111111" width="100%" id="AutoNumber1">
+  <tr>
+    <td width="33%">
+<a href="How%20to%20Move%20windows%20form%20without%20Border.shtml">
+<img border="0" src="/c1/images/previous.gif" alt="previous" width="46" 
+
+height="25"></a></td>
+    <td width="33%">
+    <p align="center">
+<a href="index.shtml">
+<img border="0" src="/c1/images/home.gif" alt="Home" width="46" height="25"></a></td>
+    <td width="34%">
+    <p align="right">
+<a href="Passing%20Data%20Between%20Forms%20Without%20Events%20and%20Delegates.shtml">
+<img border="0" src="/c1/images/next.gif" alt="Next" width="46" height="25"></a></td>
+  </tr>
+</table>
+
+
+<!--#include File="/c1/common-files/googleadds2.shtml" -->
+
+
+	
+
+    <TD width="120" id=LeftMNavR align="left" vAlign="top" >
+
+	<!--#include File="/c1/common-files/project_list.shtml" -->
+
+      </TD></TR>
+
+  <TR>
+
+    <TD vAlign="top"><!--#include File="/c1/common-files/contact_us.shtml" --> </TD>
+
+    <TD align="left" vAlign="top"><!--#include File="/c1/common-files/comment.shtml" 
+
+--></TD>
+
+    <TD vAlign="top" align="left"><!--#include File="/c1/common-files/news.shtml" --></TD>
+
+    <TD align="left" vAlign="top" ><!--#include 
+
+File="/c1/common-files/left_most_footer.shtml" --></TD>
+
+  </TR>
+
+  </TBODY></TABLE>
+
+</DIV>
+
+<DIV></DIV>
+
+</BODY></HTML>
